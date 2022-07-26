@@ -41,7 +41,7 @@ brews:
       owner: protoconf
       name: homebrew-tap
 
-      token: "{{ .Env.DEPLOY_GITHUB_TOKEN }}"
+      # token: "{{ .Env.DEPLOY_GITHUB_TOKEN }}"
 
     # Git author used to commit to the repository.
     # Defaults are shown.
