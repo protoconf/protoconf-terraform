@@ -9,6 +9,7 @@ import (
 	"os/exec"
 	"os/signal"
 	"path/filepath"
+	"strings"
 	"syscall"
 
 	"github.com/avast/retry-go"
@@ -29,14 +30,23 @@ import (
 
 var (
 	logger = hclog.New(&hclog.LoggerOptions{
-		Name:  "eggpack-terraform-plugin",
-		Level: hclog.Info,
+		Name:       "eggpack-terraform-plugin",
+		Level:      hclog.Info,
+		JSONFormat: true,
 	})
 	cliConfig = &config.TerraformPluginConfig{
 		AgentAddress: ":4300",
 		ConfigPath:   "test/main",
+		LogLevel:     config.TerraformPluginConfig_LOG_LEVEL_INFO,
 	}
 )
+
+func tfLogStr() string {
+	if cliConfig.LogAsJson {
+		return "TF_LOG=JSON"
+	}
+	return "TF_LOG=" + strings.TrimPrefix(cliConfig.LogLevel.String(), "LOG_LEVEL_")
+}
 
 func runTerraform(ctx context.Context, key string, tf *dynamic.Message) error {
 	root, err := filepath.Abs(cliConfig.TerraformRoot)
@@ -58,13 +68,19 @@ func runTerraform(ctx context.Context, key string, tf *dynamic.Message) error {
 		return err
 	}
 	l.Info("running terraform init")
-	cmd := exec.Command("terraform", "-chdir="+workDir, "init")
+	cmd := exec.CommandContext(ctx, "terraform", "-chdir="+workDir, "init")
+	cmd.Env = os.Environ()
+	cmd.Env = append(cmd.Env, tfLogStr())
+	cmd.Stderr = os.Stderr
 	if err = cmd.Run(); err != nil {
 		l.Error("failed to run terraform init", "error", err)
 		return err
 	}
 	l.Info("running terraform apply")
-	cmd = exec.Command("terraform", "-chdir="+workDir, "apply", "-auto-approve")
+	cmd = exec.CommandContext(ctx, "terraform", "-chdir="+workDir, "apply", "-auto-approve")
+	cmd.Env = os.Environ()
+	cmd.Env = append(cmd.Env, tfLogStr())
+	cmd.Stderr = os.Stderr
 	if err = cmd.Run(); err != nil {
 		l.Error("failed to run terraform apply", "error", err)
 		return err
@@ -87,6 +103,11 @@ func main() {
 	if flagset.Parse(os.Args[1:]) != nil {
 		logger.Error("failed to parse flag data")
 	}
+	logger = hclog.New(&hclog.LoggerOptions{
+		Name:       "eggpack-terraform-plugin",
+		Level:      hclog.Level(cliConfig.LogLevel),
+		JSONFormat: cliConfig.LogAsJson,
+	})
 
 	parser := &protoparse.Parser{ImportPaths: []string{"src", ""}}
 	descriptors, err := parser.ParseFiles("terraform/v1/terraform.proto")
