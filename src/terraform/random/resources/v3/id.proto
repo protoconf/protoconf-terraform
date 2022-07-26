@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+//Provider: random 3.3.2
+package terraform.random.resources.v3;
+
+import "terraform/v1/meta.proto";
+
+//RandomId version is 0
+message RandomId {
+  //The generated id presented in base64 without additional transformations.
+  string b64_std = 1 [json_name = "b64_std"];
+
+  //The generated id presented in base64, using the URL-friendly character set: case-sensitive letters, digits and the characters `_` and `-`.
+  string b64_url = 2 [json_name = "b64_url"];
+
+  //The number of random bytes to produce. The minimum value is 1, which produces eight bits of randomness.
+  int64 byte_length = 3 [json_name = "byte_length"];
+
+  //The generated id presented in non-padded decimal digits.
+  string dec = 4;
+
+  //The generated id presented in padded hexadecimal digits. This result will always be twice as long as the requested byte length.
+  string hex = 5;
+
+  //The generated id presented in base64 without additional transformations or prefix.
+  string id = 6;
+
+  //Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider documentation](../index.html) for more information.
+  map<string, string> keepers = 7;
+
+  //Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
+  string prefix = 8;
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  map<string, string> for_each = 11 [json_name = "for_each"];
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}

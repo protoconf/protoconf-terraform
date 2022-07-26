@@ -1,0 +1,9 @@
+version: v1
+build:
+  excludes: ["src"]
+lint:
+  use:
+    - DEFAULT
+breaking:
+  use:
+    - FILE

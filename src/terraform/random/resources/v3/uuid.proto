@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+//Provider: random 3.3.2
+package terraform.random.resources.v3;
+
+import "terraform/v1/meta.proto";
+
+//RandomUuid version is 0
+message RandomUuid {
+  //The generated uuid presented in string format.
+  string id = 1;
+
+  //Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider documentation](../index.html) for more information.
+  map<string, string> keepers = 2;
+
+  //The generated uuid presented in string format.
+  string result = 3;
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  map<string, string> for_each = 6 [json_name = "for_each"];
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}

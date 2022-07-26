@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+//Provider: random 3.3.2
+package terraform.random.provider.v3;
+
+import "terraform/v1/meta.proto";
+
+//Random version is 0
+message Random {
+  repeated string depends_on = 1 [json_name = "depends_on"];
+
+  int32 count = 2;
+
+  map<string, string> for_each = 3 [json_name = "for_each"];
+
+  string provider = 4;
+
+  terraform.v1.Lifecycle lifecycle = 5;
+
+  string alias = 6;
+}

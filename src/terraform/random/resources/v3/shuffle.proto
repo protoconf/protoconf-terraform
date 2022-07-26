@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+//Provider: random 3.3.2
+package terraform.random.resources.v3;
+
+import "terraform/v1/meta.proto";
+
+//RandomShuffle version is 0
+message RandomShuffle {
+  //A static value used internally by Terraform, this should not be referenced in configurations.
+  string id = 1;
+
+  //The list of strings to shuffle.
+  repeated string input = 2;
+
+  //Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider documentation](../index.html) for more information.
+  map<string, string> keepers = 3;
+
+  //Random permutation of the list of strings given in `input`.
+  repeated string result = 4;
+
+  //The number of results to return. Defaults to the number of items in the `input` list. If fewer items are requested, some elements will be excluded from the result. If more items are requested, items will be repeated in the result but not more frequently than the number of items in the input list.
+  int64 result_count = 5 [json_name = "result_count"];
+
+  //Arbitrary string with which to seed the random number generator, in order to produce less-volatile permutations of the list.
+  //
+  //**Important:** Even with an identical seed, it is not guaranteed that the same permutation will be produced across different versions of Terraform. This argument causes the result to be *less volatile*, but not fixed for all time.
+  string seed = 6;
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  map<string, string> for_each = 9 [json_name = "for_each"];
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}

@@ -1,0 +1,9 @@
+{
+  "protoFile": "config/v1/config.proto",
+  "value": {
+    "@type": "type.googleapis.com/config.v1.SubscriptionConfig",
+    "keys": [
+      "test/cat"
+    ]
+  }
+}
