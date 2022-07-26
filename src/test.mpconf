@@ -1,7 +1,7 @@
 load("//terraform/v1/terraform.proto", "Terraform")
 load("//terraform/random/provider/v3/random.proto", "Random")
 load("//terraform/random/resources/v3/pet.proto", "RandomPet")
-load("//config/v1/config.proto", "SubscriptionConfig")
+load("//protoconf_terraform/config/v1/config.proto", "SubscriptionConfig")
 
 def make_tf(name):
     tf=Terraform(resource=Terraform.Resources(), provider=Terraform.Providers(random=[Random()]))
@@ -12,9 +12,9 @@ def main():
 
     return {
         "main": SubscriptionConfig(keys=[
-            # "test/dog",
+            "test/dog",
             "test/cat"
         ]),
-        "dog": make_tf("dog!"),
+        "dog": make_tf("happy_dog"),
         "cat": make_tf("cat"),
     }

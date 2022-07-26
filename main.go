@@ -4,8 +4,11 @@ import (
 	"context"
 	"flag"
 	"io"
+	"io/ioutil"
 	"os"
+	"os/exec"
 	"os/signal"
+	"path/filepath"
 	"syscall"
 
 	"github.com/avast/retry-go"
@@ -13,7 +16,7 @@ import (
 	"github.com/jhump/protoreflect/desc/protoparse"
 	"github.com/jhump/protoreflect/dynamic"
 	"github.com/protoconf/libprotoconf"
-	"github.com/protoconf/protoconf-terraform/proto/protoconf-terraform/config/v1"
+	"github.com/protoconf/protoconf-terraform/proto/protoconf_terraform/config/v1"
 	protoconf "github.com/protoconf/protoconf/agent/api/proto/v1"
 	"github.com/smintz/keygroup"
 	"google.golang.org/grpc"
@@ -29,9 +32,43 @@ var (
 		Name:  "eggpack-terraform-plugin",
 		Level: hclog.Info,
 	})
+	cliConfig = &config.TerraformPluginConfig{
+		AgentAddress: ":4300",
+		ConfigPath:   "test/main",
+	}
 )
 
-func runTerraform(ctx context.Context, tf *dynamic.Message) error {
+func runTerraform(ctx context.Context, key string, tf *dynamic.Message) error {
+	root, err := filepath.Abs(cliConfig.TerraformRoot)
+	if err != nil {
+		return err
+	}
+	workDir := filepath.Join(root, key)
+	l := logger.Named("runner").With("key", key, "workdir", workDir)
+	l.Info("creating workdir")
+	if err = os.MkdirAll(workDir, 0755); err != nil {
+		return err
+	}
+	l.Info("writing file")
+	jsonBytes, err := tf.MarshalJSONIndent()
+	if err != nil {
+		return nil
+	}
+	if err = ioutil.WriteFile(filepath.Join(workDir, "main.tf.json"), jsonBytes, 0644); err != nil {
+		return err
+	}
+	l.Info("running terraform init")
+	cmd := exec.Command("terraform", "-chdir="+workDir, "init")
+	if err = cmd.Run(); err != nil {
+		l.Error("failed to run terraform init", "error", err)
+		return err
+	}
+	l.Info("running terraform apply")
+	cmd = exec.Command("terraform", "-chdir="+workDir, "apply", "-auto-approve")
+	if err = cmd.Run(); err != nil {
+		l.Error("failed to run terraform apply", "error", err)
+		return err
+	}
 	return nil
 }
 
@@ -39,10 +76,6 @@ func main() {
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 	done := make(chan bool, 1)
-	cliConfig := &config.TerraformPluginConfig{
-		AgentAddress: ":4300",
-		ConfigPath:   "test/main",
-	}
 	pConfig := libprotoconf.NewConfig(cliConfig)
 	flagset := flag.NewFlagSet("eggpack-terraform-plugin", flag.ExitOnError)
 	pConfig.SetEnvKeyPrefix("PROTOCONF")
@@ -77,7 +110,6 @@ func main() {
 		retry.Do(func() error {
 			tfLogger := logger.With("key", key)
 			tfLogger.Info("start watching")
-			defer tfLogger.Info("stop watching")
 			stub := protoconf.NewProtoconfServiceClient(conn)
 			stream, err := stub.SubscribeForConfig(ctx, &protoconf.ConfigSubscriptionRequest{Path: key})
 			if err != nil {
@@ -86,7 +118,7 @@ func main() {
 			}
 
 			for {
-				tfLogger.Info("waiting for update")
+				tfLogger.Debug("waiting for update")
 				update, err := stream.Recv()
 				if err == io.EOF {
 					break
@@ -99,7 +131,6 @@ func main() {
 					tfLogger.Error("got error reading from stream", "error", err, "code", status.Code(err))
 					return err
 				}
-				tfLogger.Info("channel update", "content", update)
 				name, err := anyResolver.Resolve(update.GetValue().TypeUrl)
 				if err != nil {
 					tfLogger.Error("failed to resolve name", "error", err)
@@ -115,9 +146,10 @@ func main() {
 					tfLogger.Error("failed to unmarshal message from bytes", "error", err)
 					return err
 				}
-				return runTerraform(ctx, tfMsg)
+				return runTerraform(ctx, key, tfMsg)
 
 			}
+			tfLogger.Info("stop watching")
 			return nil
 		})
 	}
@@ -134,7 +166,7 @@ func main() {
 			return err
 		}
 		for {
-			logger.Info("waiting for list update")
+			logger.Debug("waiting for list update")
 			update, err := stream.Recv()
 			if err == io.EOF {
 				logger.Error("server stopped")

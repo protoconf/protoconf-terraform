@@ -9,7 +9,7 @@
     },
     "resource": {
       "random_pet": {
-        "dog!": {}
+        "happy_dog": {}
       }
     }
   }

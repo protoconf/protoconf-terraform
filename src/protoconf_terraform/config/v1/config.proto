@@ -1,12 +1,13 @@
 syntax = "proto3";
 
-package config.v1;
+package protoconf_terraform.config.v1;
 
-option go_package = "github.com/protoconf/protoconf-terraform/proto/protoconf-terraform/config/v1;config";
+option go_package = "github.com/protoconf/protoconf-terraform/proto/protoconf_terraform/config/v1;config";
 
 message TerraformPluginConfig {
     string agent_address = 1 [json_name = "agent-address"];
     string config_path = 2 [json_name = "config-path"];
+    string terraform_root = 3;
 }
 
 message SubscriptionConfig {
