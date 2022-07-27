@@ -133,6 +133,10 @@ func main() {
 			tfLogger.Info("start watching")
 			stub := protoconf.NewProtoconfServiceClient(conn)
 			stream, err := stub.SubscribeForConfig(ctx, &protoconf.ConfigSubscriptionRequest{Path: key})
+			if status.Code(err) == codes.Canceled {
+				tfLogger.Info("stopping")
+				return nil
+			}
 			if err != nil {
 				tfLogger.Error("failed to create stream", "error", err)
 				return err
@@ -167,7 +171,11 @@ func main() {
 					tfLogger.Error("failed to unmarshal message from bytes", "error", err)
 					return err
 				}
-				return runTerraform(ctx, key, tfMsg)
+				err = runTerraform(ctx, key, tfMsg)
+				if err != nil {
+					tfLogger.Error("failed to run terraform", "error", err)
+					return err
+				}
 
 			}
 			tfLogger.Info("stop watching")
