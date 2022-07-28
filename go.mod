@@ -10,7 +10,7 @@ require (
 	github.com/protoconf/protoconf v0.1.6
 	github.com/smintz/keygroup v0.1.0
 	google.golang.org/grpc v1.48.0
-	google.golang.org/protobuf v1.28.0
+	google.golang.org/protobuf v1.28.1
 )
 
 require (
