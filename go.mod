@@ -3,7 +3,7 @@ module github.com/protoconf/protoconf-terraform
 go 1.18
 
 require (
-	github.com/avast/retry-go v3.0.0+incompatible
+	github.com/avast/retry-go v3.1.1+incompatible
 	github.com/avast/retry-go/v4 v4.1.0
 	github.com/hashicorp/go-hclog v1.2.2
 	github.com/jhump/protoreflect v1.12.0
