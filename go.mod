@@ -6,7 +6,7 @@ require (
 	github.com/avast/retry-go v3.0.0+incompatible
 	github.com/avast/retry-go/v4 v4.1.0
 	github.com/hashicorp/go-hclog v1.2.2
-	github.com/jhump/protoreflect v1.12.0
+	github.com/jhump/protoreflect v1.14.0
 	github.com/protoconf/libprotoconf v0.0.0-20211017074511-4cffcc3620de
 	github.com/protoconf/protoconf v0.1.6
 	github.com/smintz/keygroup v0.1.0
