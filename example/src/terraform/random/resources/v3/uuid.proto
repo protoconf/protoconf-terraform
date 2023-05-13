@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-//Provider: random 3.3.2
+//Provider: random 3.5.1
 package terraform.random.resources.v3;
 
 import "terraform/v1/meta.proto";
@@ -16,11 +16,11 @@ message RandomUuid {
   //The generated uuid presented in string format.
   string result = 3;
 
-  repeated string depends_on = 4 [json_name = "depends_on"];
+  map<string, string> for_each = 4 [json_name = "for_each"];
 
-  int32 count = 5;
+  repeated string depends_on = 5 [json_name = "depends_on"];
 
-  map<string, string> for_each = 6 [json_name = "for_each"];
+  int32 count = 6;
 
   string provider = 7;
 

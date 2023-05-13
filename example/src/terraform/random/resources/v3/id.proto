@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-//Provider: random 3.3.2
+//Provider: random 3.5.1
 package terraform.random.resources.v3;
 
 import "terraform/v1/meta.proto";
@@ -31,11 +31,11 @@ message RandomId {
   //Arbitrary string to prefix the output value with. This string is supplied as-is, meaning it is not guaranteed to be URL-safe or base64 encoded.
   string prefix = 8;
 
-  repeated string depends_on = 9 [json_name = "depends_on"];
+  map<string, string> for_each = 9 [json_name = "for_each"];
 
-  int32 count = 10;
+  repeated string depends_on = 10 [json_name = "depends_on"];
 
-  map<string, string> for_each = 11 [json_name = "for_each"];
+  int32 count = 11;
 
   string provider = 12;
 

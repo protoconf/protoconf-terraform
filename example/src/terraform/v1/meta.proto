@@ -7,9 +7,7 @@ message MetaFields {
 
   int32 count = 2;
 
-  map<string, string> for_each = 3 [json_name = "for_each"];
-
-  string provider = 4;
+  string provider = 3;
 }
 
 message Lifecycle {
