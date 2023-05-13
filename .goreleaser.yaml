@@ -9,12 +9,17 @@ before:
 builds:
   - env:
       - CGO_ENABLED=0
+    ldflags:
+      - -s -w -X github.com/protoconf/protoconf-terraform/pkg/build.Version={{.Version}}
     goos:
       - linux
       - windows
       - darwin
     ignore:
-      - goarch: 386
+      - goarch: "386"
+      - goos: windows
+        goarch: arm64
+    main: ./cmd/protoconf-terraform
 archives:
   - replacements:
       386: i386
