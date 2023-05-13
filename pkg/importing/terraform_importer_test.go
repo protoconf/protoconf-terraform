@@ -1,0 +1,32 @@
+package importing
+
+import (
+	"io/ioutil"
+	"log"
+	"testing"
+
+	"github.com/mitchellh/cli"
+	assert "github.com/stretchr/testify/require"
+)
+
+func TestGenerate(t *testing.T) {
+	dir, err := ioutil.TempDir("", "generate_test")
+	assert.NoError(t, err)
+	provider := "tfe"
+	version := "0.27.0"
+	err = DownloadPlugin(dir, provider, version)
+	assert.NoError(t, err)
+	dst, err := ioutil.TempDir("", "generate_dest")
+	assert.NoError(t, err)
+	g := NewGenerator(dir, dst, cli.NewMockUi())
+	err = g.PopulateProviders()
+	assert.NoError(t, err)
+	for name := range g.Providers {
+		log.Println("found", name)
+	}
+	assert.Equal(t, "", "")
+	err = g.Save()
+	assert.NoError(t, err)
+	Print(g.Importer.MasterFile)
+	// t.Fail()
+}

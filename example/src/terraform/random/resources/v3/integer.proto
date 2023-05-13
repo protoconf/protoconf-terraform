@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-//Provider: random 3.3.2
+//Provider: random 3.5.1
 package terraform.random.resources.v3;
 
 import "terraform/v1/meta.proto";
@@ -25,11 +25,11 @@ message RandomInteger {
   //A custom seed to always produce the same value.
   string seed = 6;
 
-  repeated string depends_on = 7 [json_name = "depends_on"];
+  map<string, string> for_each = 7 [json_name = "for_each"];
 
-  int32 count = 8;
+  repeated string depends_on = 8 [json_name = "depends_on"];
 
-  map<string, string> for_each = 9 [json_name = "for_each"];
+  int32 count = 9;
 
   string provider = 10;
 
