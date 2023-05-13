@@ -13,7 +13,7 @@ require (
 	github.com/protoconf/libprotoconf v0.0.0-20211017074511-4cffcc3620de
 	github.com/protoconf/protoconf v0.1.6
 	github.com/smintz/keygroup v0.1.0
-	github.com/stretchr/testify v1.8.0
+	github.com/stretchr/testify v1.8.2
 	github.com/zclconf/go-cty v1.10.0
 	go.uber.org/zap v1.20.0
 	google.golang.org/grpc v1.48.0
