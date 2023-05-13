@@ -4,6 +4,10 @@ package protoconf_terraform.config.v1;
 
 option go_package = "github.com/protoconf/protoconf-terraform/proto/protoconf_terraform/config/v1;config";
 
+message TerraformInitCommand {
+    string output_path = 1;
+}
+
 message TerraformPluginConfig {
     string agent_address = 1 [json_name = "agent-address"];
     string config_path = 2 [json_name = "config-path"];

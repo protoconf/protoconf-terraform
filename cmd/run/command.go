@@ -1,8 +1,9 @@
-package main
+package run
 
 import (
 	"context"
 	"flag"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"os"
@@ -16,6 +17,7 @@ import (
 	"github.com/hashicorp/go-hclog"
 	"github.com/jhump/protoreflect/desc/protoparse"
 	"github.com/jhump/protoreflect/dynamic"
+	"github.com/mitchellh/cli"
 	"github.com/protoconf/libprotoconf"
 	"github.com/protoconf/protoconf-terraform/proto/protoconf_terraform/config/v1"
 	protoconf "github.com/protoconf/protoconf/agent/api/proto/v1"
@@ -34,22 +36,60 @@ var (
 		Level:      hclog.Info,
 		JSONFormat: true,
 	})
-	cliConfig = &config.TerraformPluginConfig{
+)
+
+type Command struct {
+	config  *config.TerraformPluginConfig
+	flagset *flag.FlagSet
+	ui      cli.Ui
+}
+
+var _ cli.Command = &Command{}
+
+func (c *Command) Synopsis() string {
+	return "Listen to protoconf changes and trigger terraform runs upon changes."
+}
+
+func (c *Command) Help() string {
+	buf := &strings.Builder{}
+	c.flagset.SetOutput(buf)
+	c.flagset.Usage()
+	return fmt.Sprintf("%s\n\n%v", c.Synopsis(), buf.String())
+}
+
+func NewCommand() (cli.Command, error) {
+	ui := cli.BasicUi{
+		Reader:      os.Stdin,
+		Writer:      os.Stdout,
+		ErrorWriter: os.Stderr,
+	}
+	config := &config.TerraformPluginConfig{
 		AgentAddress: ":4300",
 		ConfigPath:   "test/main",
 		LogLevel:     config.TerraformPluginConfig_LOG_LEVEL_INFO,
 	}
-)
-
-func tfLogStr() string {
-	if cliConfig.LogAsJson {
-		return "TF_LOG=JSON"
+	pConfig := libprotoconf.NewConfig(config)
+	pConfig.SetEnvKeyPrefix("PROTOCONF")
+	if err := pConfig.Environment(); err != nil {
+		ui.Error("failed to parse environment variables")
+		return nil, err
 	}
-	return "TF_LOG=" + strings.TrimPrefix(cliConfig.LogLevel.String(), "LOG_LEVEL_")
+	flagset := pConfig.DefaultFlagSet()
+	return &Command{
+		config:  config,
+		flagset: flagset,
+	}, nil
 }
 
-func runTerraform(ctx context.Context, key string, tf *dynamic.Message) error {
-	root, err := filepath.Abs(cliConfig.TerraformRoot)
+func (c *Command) tfLogStr() string {
+	if c.config.LogAsJson {
+		return "TF_LOG=JSON"
+	}
+	return "TF_LOG=" + strings.TrimPrefix(c.config.LogLevel.String(), "LOG_LEVEL_")
+}
+
+func (c *Command) runTerraform(ctx context.Context, key string, tf *dynamic.Message) error {
+	root, err := filepath.Abs(c.config.TerraformRoot)
 	if err != nil {
 		return err
 	}
@@ -70,7 +110,7 @@ func runTerraform(ctx context.Context, key string, tf *dynamic.Message) error {
 	l.Info("running terraform init")
 	cmd := exec.CommandContext(ctx, "terraform", "-chdir="+workDir, "init")
 	cmd.Env = os.Environ()
-	cmd.Env = append(cmd.Env, tfLogStr())
+	cmd.Env = append(cmd.Env, c.tfLogStr())
 	cmd.Stderr = os.Stderr
 	if err = cmd.Run(); err != nil {
 		l.Error("failed to run terraform init", "error", err)
@@ -79,7 +119,7 @@ func runTerraform(ctx context.Context, key string, tf *dynamic.Message) error {
 	l.Info("running terraform apply")
 	cmd = exec.CommandContext(ctx, "terraform", "-chdir="+workDir, "apply", "-auto-approve")
 	cmd.Env = os.Environ()
-	cmd.Env = append(cmd.Env, tfLogStr())
+	cmd.Env = append(cmd.Env, c.tfLogStr())
 	cmd.Stderr = os.Stderr
 	if err = cmd.Run(); err != nil {
 		l.Error("failed to run terraform apply", "error", err)
@@ -88,42 +128,37 @@ func runTerraform(ctx context.Context, key string, tf *dynamic.Message) error {
 	return nil
 }
 
-func main() {
+func (c *Command) Run(args []string) int {
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 	done := make(chan bool, 1)
-	pConfig := libprotoconf.NewConfig(cliConfig)
-	flagset := flag.NewFlagSet("eggpack-terraform-plugin", flag.ExitOnError)
-	pConfig.SetEnvKeyPrefix("PROTOCONF")
-	if pConfig.Environment() != nil {
-		logger.Error("failed to parse environment variables")
-	}
-	pConfig.PopulateFlagSet(flagset)
-	logger.Info("starting")
-	if flagset.Parse(os.Args[1:]) != nil {
+
+	if c.flagset.Parse(args) != nil {
 		logger.Error("failed to parse flag data")
 	}
+	logger.Info("starting")
 	logger = hclog.New(&hclog.LoggerOptions{
 		Name:       "eggpack-terraform-plugin",
-		Level:      hclog.Level(cliConfig.LogLevel),
-		JSONFormat: cliConfig.LogAsJson,
+		Level:      hclog.Level(c.config.LogLevel),
+		JSONFormat: c.config.LogAsJson,
 	})
 
 	parser := &protoparse.Parser{ImportPaths: []string{"src", ""}}
 	descriptors, err := parser.ParseFiles("terraform/v1/terraform.proto")
 	if err != nil {
-		logger.Error("failed to parse proto files", "error", err)
+		c.ui.Error(fmt.Sprintf("failed to parse proto files: %v", err))
+		return 1
 	}
 	mf := dynamic.NewMessageFactoryWithDefaults()
 	anyResolver := dynamic.AnyResolver(mf, descriptors...)
 
 	conn, err := grpc.Dial(
-		cliConfig.AgentAddress,
+		c.config.AgentAddress,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 	)
 	if err != nil {
-		logger.Error("failed to connect to agent", "error", err)
-		return
+		c.ui.Error(fmt.Sprintf("failed to connect to agent: %v", err))
+		return 2
 	}
 	defer conn.Close()
 
@@ -171,7 +206,7 @@ func main() {
 					tfLogger.Error("failed to unmarshal message from bytes", "error", err)
 					return err
 				}
-				err = runTerraform(ctx, key, tfMsg)
+				err = c.runTerraform(ctx, key, tfMsg)
 				if err != nil {
 					tfLogger.Error("failed to run terraform", "error", err)
 					return err
@@ -187,9 +222,7 @@ func main() {
 	go retry.Do(func() error {
 		stub := protoconf.NewProtoconfServiceClient(conn)
 		ctx := context.Background()
-		// ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
-		// defer cancel()
-		stream, err := stub.SubscribeForConfig(ctx, &protoconf.ConfigSubscriptionRequest{Path: cliConfig.ConfigPath})
+		stream, err := stub.SubscribeForConfig(ctx, &protoconf.ConfigSubscriptionRequest{Path: c.config.ConfigPath})
 		if err != nil {
 			logger.Error("failed to create stream", "error", err)
 			return err
@@ -209,7 +242,7 @@ func main() {
 				logger.Error("Got error reading from stream", "code", status.Code(err), "error", err)
 				return err
 			}
-			logger.Info("got update on main config", "key", cliConfig.ConfigPath, "result", update)
+			logger.Info("got update on main config", "key", c.config.ConfigPath, "result", update)
 			var list = &config.SubscriptionConfig{}
 			err = anypb.UnmarshalTo(update.GetValue(), list, proto.UnmarshalOptions{})
 			if err != nil {
@@ -231,4 +264,5 @@ func main() {
 	kg.CancelWait()
 	logger.Info("exiting")
 
+	return 0
 }
