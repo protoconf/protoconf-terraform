@@ -8,6 +8,7 @@ import (
 	"github.com/protoconf/protoconf-terraform/cmd/generate"
 	initcmd "github.com/protoconf/protoconf-terraform/cmd/init"
 	"github.com/protoconf/protoconf-terraform/cmd/run"
+	"github.com/protoconf/protoconf-terraform/pkg/build"
 )
 
 func main() {
@@ -16,7 +17,7 @@ func main() {
 		Writer:      os.Stdout,
 		ErrorWriter: os.Stderr,
 	}
-	cmd := cli.NewCLI("protoconf-terraform", "v0.1.3")
+	cmd := cli.NewCLI("protoconf-terraform", build.Version)
 	cmd.Args = os.Args[1:]
 	cmd.Commands = map[string]cli.CommandFactory{
 		"init":     initcmd.NewCommand,
