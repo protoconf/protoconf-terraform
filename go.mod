@@ -17,7 +17,7 @@ require (
 	github.com/zclconf/go-cty v1.10.0
 	go.uber.org/zap v1.20.0
 	google.golang.org/grpc v1.48.0
-	google.golang.org/protobuf v1.28.1
+	google.golang.org/protobuf v1.30.0
 )
 
 require (
