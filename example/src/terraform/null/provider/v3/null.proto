@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-// Provider: random 3.5.1
-package terraform.random.provider.v3;
+// Provider: null 3.2.1
+package terraform.null.provider.v3;
 
 import "terraform/v1/meta.proto";
 
-// Random version is 0
-message Random {
+// Null version is 0
+message Null {
   map<string, string> for_each = 1 [json_name = "for_each"];
 
   repeated string depends_on = 2 [json_name = "depends_on"];

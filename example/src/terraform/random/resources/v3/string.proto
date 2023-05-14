@@ -1,52 +1,52 @@
 syntax = "proto3";
 
-//Provider: random 3.5.1
+// Provider: random 3.5.1
 package terraform.random.resources.v3;
 
 import "terraform/v1/meta.proto";
 
-//RandomString version is 2
+// RandomString version is 2
 message RandomString {
-  //The generated random string.
+  // The generated random string.
   string id = 1;
 
-  //Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider documentation](../index.html) for more information.
+  // Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider documentation](../index.html) for more information.
   map<string, string> keepers = 2;
 
-  //The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
+  // The length of the string desired. The minimum value for length is 1 and, length must also be >= (`min_upper` + `min_lower` + `min_numeric` + `min_special`).
   int64 length = 3;
 
-  //Include lowercase alphabet characters in the result. Default value is `true`.
+  // Include lowercase alphabet characters in the result. Default value is `true`.
   bool lower = 4;
 
-  //Minimum number of lowercase alphabet characters in the result. Default value is `0`.
+  // Minimum number of lowercase alphabet characters in the result. Default value is `0`.
   int64 min_lower = 5 [json_name = "min_lower"];
 
-  //Minimum number of numeric characters in the result. Default value is `0`.
+  // Minimum number of numeric characters in the result. Default value is `0`.
   int64 min_numeric = 6 [json_name = "min_numeric"];
 
-  //Minimum number of special characters in the result. Default value is `0`.
+  // Minimum number of special characters in the result. Default value is `0`.
   int64 min_special = 7 [json_name = "min_special"];
 
-  //Minimum number of uppercase alphabet characters in the result. Default value is `0`.
+  // Minimum number of uppercase alphabet characters in the result. Default value is `0`.
   int64 min_upper = 8 [json_name = "min_upper"];
 
-  //Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
+  // Include numeric characters in the result. Default value is `true`. **NOTE**: This is deprecated, use `numeric` instead.
   bool number = 9;
 
-  //Include numeric characters in the result. Default value is `true`.
+  // Include numeric characters in the result. Default value is `true`.
   bool numeric = 10;
 
-  //Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
+  // Supply your own list of special characters to use for string generation.  This overrides the default character list in the special argument.  The `special` argument must still be set to true for any overwritten characters to be used in generation.
   string override_special = 11 [json_name = "override_special"];
 
-  //The generated random string.
+  // The generated random string.
   string result = 12;
 
-  //Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
+  // Include special characters in the result. These are `!@#$%&*()-_=+[]{}<>:?`. Default value is `true`.
   bool special = 13;
 
-  //Include uppercase alphabet characters in the result. Default value is `true`.
+  // Include uppercase alphabet characters in the result. Default value is `true`.
   bool upper = 14;
 
   map<string, string> for_each = 15 [json_name = "for_each"];

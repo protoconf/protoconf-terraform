@@ -1,28 +1,28 @@
 syntax = "proto3";
 
-//Provider: random 3.5.1
+// Provider: random 3.5.1
 package terraform.random.resources.v3;
 
 import "terraform/v1/meta.proto";
 
-//RandomInteger version is 0
+// RandomInteger version is 0
 message RandomInteger {
-  //The string representation of the integer result.
+  // The string representation of the integer result.
   string id = 1;
 
-  //Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider documentation](../index.html) for more information.
+  // Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider documentation](../index.html) for more information.
   map<string, string> keepers = 2;
 
-  //The maximum inclusive value of the range.
+  // The maximum inclusive value of the range.
   int64 max = 3;
 
-  //The minimum inclusive value of the range.
+  // The minimum inclusive value of the range.
   int64 min = 4;
 
-  //The random integer result.
+  // The random integer result.
   int64 result = 5;
 
-  //A custom seed to always produce the same value.
+  // A custom seed to always produce the same value.
   string seed = 6;
 
   map<string, string> for_each = 7 [json_name = "for_each"];

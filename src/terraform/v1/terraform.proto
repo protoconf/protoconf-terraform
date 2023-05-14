@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package terraform.v1;
 
+import "google/protobuf/struct.proto";
+
 message Terraform {
   Resources resource = 1;
 
@@ -15,7 +17,7 @@ message Terraform {
 
   map<string, string> locals = 6;
 
-  Module module = 7;
+  map<string, google.protobuf.Struct> module = 7;
 
   TerraformSettings terraform = 8;
 
@@ -38,9 +40,6 @@ message Terraform {
 
   message Output {
     string value = 1;
-  }
-
-  message Module {
   }
 
   message TerraformSettings {

@@ -32,7 +32,7 @@ func NewCommand() (cli.Command, error) {
 		Ui: ui,
 	}
 	config := &config.TerraformInitCommand{
-		OutputPath: "tmp",
+		OutputPath: ".",
 	}
 	lpc := libprotoconf.NewConfig(config)
 	flagset := lpc.DefaultFlagSet()

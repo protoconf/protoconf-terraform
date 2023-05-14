@@ -10,6 +10,7 @@ import (
 	"github.com/jhump/protoreflect/desc/builder"
 	"github.com/mitchellh/cli"
 
+	"github.com/protoconf/protoconf-terraform/pkg/wktbuilders"
 	"github.com/protoconf/protoconf/importers"
 )
 
@@ -113,9 +114,8 @@ func addLocalMessage(main *builder.MessageBuilder) error {
 }
 
 func addModuleMessage(main *builder.MessageBuilder) error {
-	local := builder.NewMessage("Module")
-	main.AddNestedMessage(local)
-	main.AddField(builder.NewField("module", builder.FieldTypeMessage(local)))
+	valuebuilder := wktbuilders.StructBuilder.GetMessage("Struct")
+	main.AddField(builder.NewMapField("module", builder.FieldTypeString(), builder.FieldTypeMessage(valuebuilder)))
 	return nil
 }
 
