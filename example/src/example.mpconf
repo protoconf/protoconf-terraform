@@ -1,0 +1,47 @@
+load("//terraform/v1/util.pinc", "util")
+load("//terraform/random/provider/v3/random.proto", "Random")
+load("//terraform/random/resources/v3/pet.proto", "RandomPet")
+load("//terraform/null/provider/v3/null.proto", "Null")
+load("//terraform/null/datasources/v3/data.proto", "NullDataSource")
+load("//protoconf_terraform/config/v1/config.proto", "SubscriptionConfig")
+
+
+tf = util.Terraform(
+    util.Provider(Random()),
+    util.Resource(
+        "dog",  # id of the resource (internal to terraform)
+        RandomPet(),  # the actual resource and it's params
+        # Optional: add functions which accepts link input and returns chain components
+        lambda dog: util.Output(
+            "dog_name", dog.id  # `dog.id` will translate into `${random_pet.dog.id}`
+        ),
+    ),
+    util.Data(
+        "null_name",
+        NullDataSource(),
+        lambda data: util.Group(  # util.Group is used when we want to generate more than 1
+            util.Output(
+                "null_random",
+                data.random,  # `data.random` translates into `${data.null_data_source.null_name.random}`
+            ),
+            util.Output("has_computed_default", data.has_computed_default),
+        ),
+    ),
+    util.Module(
+        "ssh_key",  # id of module (internal to terraform)
+        source="JamesWoolfenden/key/tls",  # Required
+        version="0.0.6",
+        out_dir="/tmp/sshkey",  # Input for module
+        then=(  # functions to run, will receive the output of the module as a callable functions and will return hooks
+            lambda output: util.Group(
+                util.Output(
+                    "public_key", output("public_key")
+                ),  # `output("public_key")` translates into `${module.ssh_key.public_key}`
+            ),
+        ),
+    ),
+)
+
+
+def main():
+    return {"dog": tf, "watch": SubscriptionConfig(keys=["example/dog"])}

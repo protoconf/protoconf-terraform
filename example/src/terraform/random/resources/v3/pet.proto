@@ -1,25 +1,25 @@
 syntax = "proto3";
 
-//Provider: random 3.5.1
+// Provider: random 3.5.1
 package terraform.random.resources.v3;
 
 import "terraform/v1/meta.proto";
 
-//RandomPet version is 0
+// RandomPet version is 0
 message RandomPet {
-  //The random pet name.
+  // The random pet name.
   string id = 1;
 
-  //Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider documentation](../index.html) for more information.
+  // Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider documentation](../index.html) for more information.
   map<string, string> keepers = 2;
 
-  //The length (in words) of the pet name. Defaults to 2
+  // The length (in words) of the pet name. Defaults to 2
   int64 length = 3;
 
-  //A string to prefix the name with.
+  // A string to prefix the name with.
   string prefix = 4;
 
-  //The character to separate words in the pet name. Defaults to "-"
+  // The character to separate words in the pet name. Defaults to "-"
   string separator = 5;
 
   map<string, string> for_each = 6 [json_name = "for_each"];

@@ -1,0 +1,42 @@
+{
+  "protoFile": "terraform/v1/terraform.proto",
+  "value": {
+    "@type": "type.googleapis.com/terraform.v1.Terraform",
+    "resource": {
+      "random_pet": {
+        "dog": {}
+      }
+    },
+    "data": {
+      "null_data_source": {
+        "null_name": {}
+      }
+    },
+    "provider": {
+      "random": [
+        {}
+      ]
+    },
+    "output": {
+      "dog_name": {
+        "value": "${random_pet.dog.id}"
+      },
+      "has_computed_default": {
+        "value": "${data.null_data_source.null_name.has_computed_default}"
+      },
+      "null_random": {
+        "value": "${data.null_data_source.null_name.random}"
+      },
+      "public_key": {
+        "value": "${module.ssh_key.public_key}"
+      }
+    },
+    "module": {
+      "ssh_key": {
+        "out_dir": "/tmp/sshkey",
+        "source": "JamesWoolfenden/key/tls",
+        "version": "0.0.6"
+      }
+    }
+  }
+}
