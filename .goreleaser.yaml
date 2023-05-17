@@ -68,3 +68,22 @@ brews:
     # SPDX identifier of your app's license.
     # Default is empty.
     license: "MIT"
+dockers:
+  - id: protoconf-docker
+    image_templates:
+      - "protoconf/protoconf-terraform:latest"
+      - "protoconf/protoconf-terraform:{{ .Tag }}"
+      - "protoconf/protoconf-terraform:v{{ .Major }}"
+      - "protoconf/protoconf-terraform:v{{ .Major }}.{{ .Minor }}"
+      - "ghcr.io/protoconf/protoconf-terraform:latest"
+      - "ghcr.io/protoconf/protoconf-terraform:{{ .Tag }}"
+      - "ghcr.io/protoconf/protoconf-terraform:{{ .Major }}"
+      - "ghcr.io/protoconf/protoconf-terraform:{{ .Major }}.{{ .Minor }}"
+    dockerfile: build/Dockerfile
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.title={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--platform=linux/amd64"
