@@ -6,7 +6,7 @@ require (
 	github.com/avast/retry-go v3.0.0+incompatible
 	github.com/hashicorp/go-getter v1.5.11
 	github.com/hashicorp/go-hclog v1.5.0
-	github.com/hashicorp/go-plugin v1.4.9
+	github.com/hashicorp/go-plugin v1.4.10
 	github.com/hashicorp/terraform v0.12.18
 	github.com/jhump/protoreflect v1.15.1
 	github.com/mitchellh/cli v1.1.5
