@@ -1,0 +1,87 @@
+{
+  "protoFile": "terraform/v1/terraform.proto",
+  "value": {
+    "@type": "type.googleapis.com/terraform.v1.Terraform",
+    "resource": {
+      "aws_autoscaling_group": {
+        "asg": {
+          "desired_capacity": "3",
+          "max_size": "10",
+          "min_size": "3",
+          "name": "my_asg",
+          "vpc_zone_identifier": [
+            "${module.vpc.public_subnets.0}",
+            "${module.vpc.public_subnets.1}",
+            "${module.vpc.public_subnets.2}"
+          ],
+          "launch_template": {
+            "id": "${aws_launch_template.lauch_template.id}",
+            "version": "${aws_launch_template.lauch_template.latest_version}"
+          }
+        }
+      },
+      "aws_launch_template": {
+        "lauch_template": {
+          "image_id": "${data.aws_ami.ubuntu.id}",
+          "instance_type": "t2.micro",
+          "name_prefix": "web",
+          "user_data": "IyEvYmluL2Jhc2gKYXB0LWdldCB1cGRhdGUgLXkKYXB0LWdldCBpbnN0YWxsIG5naW54IC15CnN5c3RlbWN0bCBzdGFydCBuZ2lueAo="
+        }
+      }
+    },
+    "data": {
+      "aws_ami": {
+        "ubuntu": {
+          "most_recent": true,
+          "owners": [
+            "099720109477"
+          ],
+          "filter": [
+            {
+              "name": "name",
+              "values": [
+                "ubuntu/images/hvm-ssd/*amd64-server-*"
+              ]
+            },
+            {
+              "name": "virtualization-type",
+              "values": [
+                "hvm"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "provider": {
+      "aws": [
+        {
+          "region": "eu-west-1"
+        }
+      ]
+    },
+    "module": {
+      "vpc": {
+        "azs": [
+          "eu-west-1a",
+          "eu-west-1b",
+          "eu-west-1c"
+        ],
+        "cidr": "10.0.0.0/16",
+        "enable_nat_gateway": true,
+        "enable_vpn_gateway": true,
+        "private_subnets": [
+          "10.0.1.0/24",
+          "10.0.2.0/24",
+          "10.0.3.0/24"
+        ],
+        "public_subnets": [
+          "10.0.101.0/24",
+          "10.0.102.0/24",
+          "10.0.103.0/24"
+        ],
+        "source": "terraform-aws-modules/vpc/aws"
+      }
+    }
+  }
+}
