@@ -1,0 +1,85 @@
+load("//terraform/v1/util.pinc", "util")
+load("//protoconf_terraform/config/v1/config.proto", "SubscriptionConfig")
+load("//terraform/aws/provider/v5/aws.proto", "Aws")
+load("//terraform/aws/datasources/v5/ami.proto", "AwsAmi")
+load("//terraform/aws/resources/v5/launch.proto", "AwsLaunchTemplate")
+load("//terraform/aws/resources/v5/autoscaling.proto", "AwsAutoscalingGroup")
+load("encoding/base64.star", "base64")
+
+REGION = "eu-west-1"
+AZS = ["a", "b", "c"]
+
+USER_DATA = """#!/bin/bash
+apt-get update -y
+apt-get install nginx -y
+systemctl start nginx
+"""
+
+tf = util.Terraform(
+    # Configure our provider
+    util.Provider(Aws(region=REGION)),
+    # Get the latest Ubuntu LTS
+    util.Data(
+        "ubuntu",
+        AwsAmi(
+            most_recent=True,
+            filter=[
+                AwsAmi.Filter(
+                    name="name", values=["ubuntu/images/hvm-ssd/*amd64-server-*"],
+                ),
+                AwsAmi.Filter(name="virtualization-type", values=["hvm"]),
+            ],
+            owners=["099720109477"],  # Canonical
+        ),
+        # util.Data can receive hooks to run with an object containing references to the ami
+        # for example: ami.id will be translated to `${data.aws_ami.ubuntu.id}`
+        lambda ami: util.Resource(
+            # Define the launch_configuration, which uses t
+            "lauch_template",
+            AwsLaunchTemplate(
+                name_prefix="web",
+                image_id=ami.id,
+                instance_type="t2.micro",
+                user_data=base64.encode(USER_DATA),
+            ),
+            lambda launch_template: util.Group(
+                # Create a VPC using a module
+                util.Module(
+                    "vpc",
+                    source="terraform-aws-modules/vpc/aws",
+                    cidr="10.0.0.0/16",
+                    azs=[REGION + az for az in AZS],
+                    private_subnets=["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"],
+                    public_subnets=["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"],
+                    enable_nat_gateway=True,
+                    enable_vpn_gateway=True,
+                    # tags={"Terraform": "true", "Environment": "dev"},
+                    then=(
+                        # Create resources which requires this VPC
+                        lambda vpc: util.Resource(
+                            "asg",
+                            AwsAutoscalingGroup(
+                                name="my_asg",
+                                min_size=3,
+                                max_size=10,
+                                desired_capacity=3,
+                                launch_template=AwsAutoscalingGroup.LaunchTemplate(
+                                    id=launch_template.id,
+                                    version=launch_template.latest_version,
+                                ),
+                                vpc_zone_identifier=[
+                                    vpc("public_subnets.%d" % i)
+                                    for i in range(0, len(AZS))
+                                ],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
+)
+
+
+def main():
+    return {"asg.tf.json": tf, "watch": SubscriptionConfig(keys=["example/dog"])}
