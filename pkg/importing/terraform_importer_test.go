@@ -1,8 +1,9 @@
 package importing
 
 import (
-	"io/ioutil"
 	"log"
+	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/mitchellh/cli"
@@ -10,16 +11,18 @@ import (
 )
 
 func TestGenerate(t *testing.T) {
-	dir, err := ioutil.TempDir("", "generate_test")
-	assert.NoError(t, err)
-	provider := "tfe"
-	version := "0.27.0"
-	err = DownloadPlugin(dir, provider, version)
-	assert.NoError(t, err)
-	dst, err := ioutil.TempDir("", "generate_dest")
-	assert.NoError(t, err)
+	dir := t.TempDir()
+	dst := filepath.Join(dir, "src")
+	providersSource := `
+	terraform {
+		required_providers {
+		  cloudflare = { source = "cloudflare/cloudflare"}
+		}
+	  }
+	`
+	os.WriteFile(filepath.Join(dir, "providers.tf"), []byte(providersSource), os.ModePerm)
 	g := NewGenerator(dir, dst, cli.NewMockUi())
-	err = g.PopulateProviders()
+	err := g.PopulateProviders()
 	assert.NoError(t, err)
 	for name := range g.Providers {
 		log.Println("found", name)

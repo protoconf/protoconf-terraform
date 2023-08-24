@@ -56,7 +56,10 @@ tf = util.Terraform(
                     # tags={"Terraform": "true", "Environment": "dev"},
                     then=(
                         # Create resources which requires this VPC
-                        lambda vpc: util.Resource(
+                        lambda vpc: util.Resource("alb", AwsLb(
+                            name="public-alb"
+                        )),
+                        util.Resource(
                             "asg",
                             AwsAutoscalingGroup(
                                 name="my_asg",

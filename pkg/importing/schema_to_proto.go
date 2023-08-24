@@ -7,14 +7,13 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/hashicorp/terraform/configs/configschema"
-	"github.com/hashicorp/terraform/providers"
 	"github.com/jhump/protoreflect/desc/builder"
 	"github.com/jhump/protoreflect/desc/protoprint"
 	"github.com/zclconf/go-cty/cty"
 	"go.uber.org/zap"
 
 	"github.com/protoconf/protoconf-terraform/pkg/importing/meta"
+	"github.com/protoconf/protoconf-terraform/pkg/importing/parse"
 	"github.com/protoconf/protoconf-terraform/pkg/wktbuilders"
 	"github.com/protoconf/protoconf/importers"
 )
@@ -55,7 +54,7 @@ func Print(b *builder.FileBuilder) {
 	log.Println(str)
 }
 
-func (p *ProviderImporter) schemaToProtoMessage(name string, schema providers.Schema) *builder.MessageBuilder {
+func (p *ProviderImporter) schemaToProtoMessage(name string, schema *parse.Schema) *builder.MessageBuilder {
 
 	m := p.msgBuilderFromBlock(name, schema.Block)
 	c := builder.Comments{LeadingComment: fmt.Sprintf("%s version is %d", name, schema.Version)}
@@ -80,7 +79,7 @@ func (p *ProviderImporter) schemaToProtoMessage(name string, schema providers.Sc
 	return m
 }
 
-func (p *ProviderImporter) msgBuilderFromBlock(name string, b *configschema.Block) *builder.MessageBuilder {
+func (p *ProviderImporter) msgBuilderFromBlock(name string, b *parse.Block) *builder.MessageBuilder {
 	m := builder.NewMessage(name)
 	attrs := b.Attributes
 	keys := make([]string, 0, len(attrs))
@@ -102,7 +101,7 @@ func (p *ProviderImporter) msgBuilderFromBlock(name string, b *configschema.Bloc
 
 	for _, n := range block_keys {
 		nb := blocks[n]
-		nm := p.msgBuilderFromBlock(capitalizeMessageName(n), &nb.Block)
+		nm := p.msgBuilderFromBlock(capitalizeMessageName(n), nb.Block)
 		f := builder.NewField(n, builder.FieldTypeMessage(nm))
 		if nb.MaxItems != 1 {
 			f.SetRepeated()
@@ -117,8 +116,9 @@ func (p *ProviderImporter) msgBuilderFromBlock(name string, b *configschema.Bloc
 	return m
 }
 
-func (p *ProviderImporter) attributeToProtoField(msg *builder.MessageBuilder, name string, attr *configschema.Attribute) *builder.MessageBuilder {
-	t := attr.Type
+func (p *ProviderImporter) attributeToProtoField(msg *builder.MessageBuilder, name string, attr *parse.Attribute) *builder.MessageBuilder {
+	t := attr.AttributeType
+
 	err := p.handleCty(msg, name, t, attr.Description)
 	if err != nil {
 		log.Fatal(err)
