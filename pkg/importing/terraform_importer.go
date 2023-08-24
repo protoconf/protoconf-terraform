@@ -4,12 +4,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/hashicorp/go-hclog"
-	tfplugin "github.com/hashicorp/terraform/plugin"
-	"github.com/hashicorp/terraform/plugin/discovery"
 	"github.com/jhump/protoreflect/desc/builder"
 	"github.com/mitchellh/cli"
 
+	"github.com/protoconf/protoconf-terraform/pkg/importing/parse"
 	"github.com/protoconf/protoconf-terraform/pkg/wktbuilders"
 	"github.com/protoconf/protoconf/importers"
 )
@@ -61,24 +59,23 @@ func (g *Generator) PopulateProviders() error {
 	if err != nil {
 		return err
 	}
-	dirs, err := filepath.Glob(abs)
+	// dirs, err := filepath.Glob(abs)
+	// if err != nil {
+	// 	return err
+	// }
+	meta, err := parse.ParseTerraformSchema(abs)
 	if err != nil {
 		return err
 	}
-	meta := discovery.FindPlugins("provider", dirs)
 
-	for c := range meta {
-		config := tfplugin.ClientConfig(c)
-		config.Logger = hclog.NewNullLogger()
-		client, err := NewGRPCClient(config)
+	for fqdn, schema := range meta.Schemas {
+		parts := strings.Split(fqdn, "/")
+		name := parts[len(parts)-1]
+		p, err := NewProviderImporter(name, schema, g.Importer, g.ui)
 		if err != nil {
 			return err
 		}
-		p, err := NewProviderImporter(c, client, g.Importer, g.ui)
-		if err != nil {
-			return err
-		}
-		g.Providers[c.Name] = p
+		g.Providers[name] = p
 	}
 
 	return nil
