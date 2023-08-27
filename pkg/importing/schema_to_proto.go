@@ -180,7 +180,7 @@ func (p *ProviderImporter) ctyTypeToProtoField(name string, t cty.Type) *builder
 	f := builder.NewField(name, builder.FieldTypeString())
 	f.SetJsonName(jsonName)
 
-	if t.IsListType() || t.IsSetType() {
+	if t.IsListType() || t.IsSetType() || t.IsCollectionType() {
 		t = t.ElementType()
 		f.SetRepeated()
 	}
@@ -197,6 +197,9 @@ func (p *ProviderImporter) ctyTypeToProtoField(name string, t cty.Type) *builder
 
 func ctyTypeToProtoFieldType(t cty.Type) *builder.FieldType {
 	var ft *builder.FieldType
+	if t.IsCollectionType() {
+		t = t.ElementType()
+	}
 	switch x := t.FriendlyName(); x {
 	case "string":
 		return builder.FieldTypeString()
@@ -205,6 +208,7 @@ func ctyTypeToProtoFieldType(t cty.Type) *builder.FieldType {
 	case "bool":
 		return builder.FieldTypeBool()
 	case "dynamic":
+	case "object":
 		return builder.FieldTypeMessage(wktbuilders.StructBuilder.GetMessage("Value"))
 	default:
 		log.Fatalf("unknown type: %v", x)
