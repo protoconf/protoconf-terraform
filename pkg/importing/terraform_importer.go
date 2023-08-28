@@ -71,7 +71,7 @@ func (g *Generator) PopulateProviders() error {
 	for fqdn, schema := range meta.Schemas {
 		parts := strings.Split(fqdn, "/")
 		name := parts[len(parts)-1]
-		p, err := NewProviderImporter(name, schema, g.Importer, g.ui)
+		p, err := NewProviderImporter(fqdn, schema, g.Importer, g.ui)
 		if err != nil {
 			return err
 		}

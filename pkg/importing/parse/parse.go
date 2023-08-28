@@ -3,6 +3,7 @@ package parse
 import (
 	"encoding/json"
 	"os/exec"
+	"regexp"
 
 	"github.com/zclconf/go-cty/cty"
 )
@@ -16,6 +17,7 @@ type Provider struct {
 	Provider          *Schema            `json:"provider,omitempty"`
 	ResourceSchemas   map[string]*Schema `json:"resource_schemas,omitempty"`
 	DataSourceSchemas map[string]*Schema `json:"data_source_schemas,omitempty"`
+	ProviderVersion   string
 }
 type Schema struct {
 	Version uint64 `json:"version"`
@@ -75,8 +77,23 @@ func ParseTerraformSchema(path string) (*Providers, error) {
 		return nil, err
 	}
 	err = cmd.Wait()
+
 	if err != nil {
 		return nil, err
 	}
+
+	cmdVersion, err := exec.Command("terraform", "-chdir="+path, "providers").Output()
+	if err != nil {
+		return nil, err
+	}
+
+	matcher := regexp.MustCompile(`provider\[(?P<name>.+)\]( (?P<version>.+)|)`)
+	parsed := matcher.FindAllStringSubmatch(string(cmdVersion), -1)
+	for _, item := range parsed {
+		fqdn := item[matcher.SubexpIndex("name")]
+		version := item[matcher.SubexpIndex("version")]
+		schema.Schemas[fqdn].ProviderVersion = version
+	}
+
 	return schema, nil
 }

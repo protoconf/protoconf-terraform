@@ -41,10 +41,16 @@ def Provider(provider):
     def do(tf, next):
         if not tf.provider:
             tf.provider = TerraformProto.Providers()
+        if not tf.terraform:
+            tf.terraform = TerraformProto.TerraformSettings()
 
         provider_name = str(provider).split(".")[1]
         providerlist = getattr(tf.provider, provider_name)
         providerlist.append(provider)
+        tf.terraform.required_providers[provider_name] = TerraformProto.TerraformSettings.Provider(
+            source = provider.provider_fqdn,
+            version = provider.provider_version
+        )
         return next(tf)
 
     return do
