@@ -16,7 +16,7 @@ func TestGenerate(t *testing.T) {
 	providersSource := `
 	terraform {
 		required_providers {
-		  cloudflare = { source = "cloudflare/cloudflare"}
+		  cloudflare = { source = "cloudflare/cloudflare", version = "4.13.0"}
 		  aws = { source = "hashicorp/aws"}
 		  google = { source = "hashicorp/google"}
 		  azurerm = { source = "hashicorp/azurerm"}
@@ -30,7 +30,6 @@ func TestGenerate(t *testing.T) {
 	for name := range g.Providers {
 		log.Println("found", name)
 	}
-	assert.Equal(t, "", "")
 	err = g.Save()
 	assert.NoError(t, err)
 	Print(g.Importer.MasterFile)
