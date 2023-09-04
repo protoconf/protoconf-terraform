@@ -82,12 +82,12 @@ func ParseTerraformSchema(path string) (*Providers, error) {
 		return nil, err
 	}
 
-	cmdVersion, err := exec.Command("terraform", "-chdir="+path, "providers").Output()
+	cmdVersion, err := exec.Command("terraform", "-chdir="+path, "version").Output()
 	if err != nil {
 		return nil, err
 	}
 
-	matcher := regexp.MustCompile(`provider\[(?P<name>.+)\]( (?P<version>.+)|)`)
+	matcher := regexp.MustCompile(`provider (?P<name>.+) v(?P<version>.+)`)
 	parsed := matcher.FindAllStringSubmatch(string(cmdVersion), -1)
 	for _, item := range parsed {
 		fqdn := item[matcher.SubexpIndex("name")]
