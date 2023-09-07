@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/avast/retry-go v3.0.0+incompatible
 	github.com/hashicorp/go-hclog v1.5.0
-	github.com/hashicorp/terraform v0.12.18
+	github.com/hashicorp/terraform v1.5.7
 	github.com/jhump/protoreflect v1.15.1
 	github.com/mitchellh/cli v1.1.5
 	github.com/protoconf/libprotoconf v0.0.0-20211017074511-4cffcc3620de
