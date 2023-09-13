@@ -19,6 +19,11 @@ import (
 )
 
 var metaFile *builder.FileBuilder = meta.MetaFile()
+var breakLinesRegex *regexp.Regexp
+
+func init() {
+	breakLinesRegex = regexp.MustCompile(`(.{1,80}\S)(?:[\r\n\f\v ]+|$)`)
+}
 
 // NewFile returns a FileBuilder prepared with the required filename format
 func NewFile(providerName, kind, version, family string) *builder.FileBuilder {
@@ -55,7 +60,6 @@ func Print(b *builder.FileBuilder) {
 }
 
 func (p *ProviderImporter) schemaToProtoMessage(name string, schema *parse.Schema) *builder.MessageBuilder {
-
 	m := p.msgBuilderFromBlock(name, schema.Block)
 	c := builder.Comments{LeadingComment: fmt.Sprintf("%s version is %d", name, schema.Version)}
 	m.SetComments(c)
@@ -137,7 +141,11 @@ func (p *ProviderImporter) handleCty(parent *builder.MessageBuilder, fieldName s
 		p.handleObject(fieldName, t, f, parent)
 	}
 
-	c := builder.Comments{LeadingComment: description}
+	comments := breakLinesRegex.FindAllString(description, -1)
+
+	c := builder.Comments{
+		LeadingComment: strings.Join(comments, "\n"),
+	}
 	f.SetComments(c)
 	return parent.TryAddField(f)
 }
