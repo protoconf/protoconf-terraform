@@ -10,7 +10,6 @@ import (
 	"github.com/jhump/protoreflect/desc/builder"
 	"github.com/jhump/protoreflect/desc/protoprint"
 	"github.com/zclconf/go-cty/cty"
-	"go.uber.org/zap"
 
 	"github.com/protoconf/protoconf-terraform/pkg/importing/meta"
 	"github.com/protoconf/protoconf-terraform/pkg/importing/parse"
@@ -174,7 +173,7 @@ func (p *ProviderImporter) handleObject(name string, t cty.Type, f *builder.Fiel
 	}
 
 	if err := msg.TryAddNestedMessage(m); err != nil {
-		log.Fatal("failed to add message", zap.Error(err))
+		log.Fatal("failed to add message", err)
 	}
 	f.SetType(builder.FieldTypeMessage(m))
 }
