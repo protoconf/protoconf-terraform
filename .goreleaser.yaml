@@ -20,9 +20,6 @@ builds:
       - goos: windows
         goarch: arm64
     main: ./cmd/protoconf-terraform
-archives:
-  - replacements:
-      386: i386
 checksum:
   name_template: "checksums.txt"
 snapshot:
@@ -38,7 +35,7 @@ brews:
     # Default to project name
     name: protoconf-terraform
 
-    tap:
+    repository:
       owner: protoconf
       name: homebrew-tap
 
