@@ -16,6 +16,7 @@ func TestGenerate(t *testing.T) {
 	providersSource := `
 	terraform {
 		required_providers {
+		  http = { source = "hashicorp/http" }
 		  cloudflare = { source = "cloudflare/cloudflare", version = "4.13.0"}
 		  aws = { source = "hashicorp/aws"}
 		  google = { source = "hashicorp/google"}

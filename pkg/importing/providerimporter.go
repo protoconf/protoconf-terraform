@@ -55,7 +55,10 @@ func (p *ProviderImporter) populateResources(msg *builder.MessageBuilder, schema
 
 	for _, n := range keys {
 		s := schema[n]
-		family := strings.Split(n, "_")[1]
+		family := n
+		if strings.Contains(n, "_") {
+			family = strings.Split(n, "_")[1]
+		}
 		file := resourceFile(p.importer, p.meta.Name, strings.ToLower(msg.GetName()), string(p.meta.Version), family)
 		m := p.schemaToProtoMessage(capitalizeMessageName(n), s)
 		file.TryAddMessage(m)
