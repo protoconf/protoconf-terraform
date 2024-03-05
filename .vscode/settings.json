@@ -7,5 +7,6 @@
     "coveredGutterStyle": "blockgreen",
     "uncoveredGutterStyle": "blockred"
   },
-  "go.coverOnSingleTest": true
+  "go.coverOnSingleTest": true,
+  "go.testTimeout": "300s"
 }

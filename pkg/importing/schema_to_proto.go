@@ -215,6 +215,7 @@ func ctyTypeToProtoFieldType(t cty.Type) *builder.FieldType {
 	case "bool":
 		return builder.FieldTypeBool()
 	case "dynamic":
+		return builder.FieldTypeMessage(wktbuilders.StructBuilder.GetMessage("Value"))
 	case "object":
 		return builder.FieldTypeMessage(wktbuilders.StructBuilder.GetMessage("Value"))
 	default:
