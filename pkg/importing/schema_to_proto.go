@@ -64,7 +64,7 @@ func (p *ProviderImporter) schemaToProtoMessage(name string, schema *parse.Schem
 	m.SetComments(c)
 
 	// for_each
-	fieldForEach := builder.NewMapField("for_each", builder.FieldTypeString(), builder.FieldTypeString()).SetJsonName("for_each")
+	fieldForEach := builder.NewField("for_each", builder.FieldTypeMessage(wktbuilders.StructBuilder.GetMessage("Value"))).SetJsonName("for_each")
 	m.AddField(fieldForEach)
 	// Adding meta fields
 	metaMsg := metaFile.GetMessage("MetaFields")
@@ -187,13 +187,13 @@ func (p *ProviderImporter) ctyTypeToProtoField(name string, t cty.Type) *builder
 	f := builder.NewField(name, builder.FieldTypeString())
 	f.SetJsonName(jsonName)
 
-	if t.IsListType() || t.IsSetType() || t.IsCollectionType() {
-		t = t.ElementType()
-		f.SetRepeated()
-	}
 	if t.IsMapType() {
 		f = builder.NewMapField(name, builder.FieldTypeString(), builder.FieldTypeString()).SetJsonName(name)
 		return f
+	}
+	if t.IsListType() || t.IsSetType() || t.IsCollectionType() {
+		t = t.ElementType()
+		f.SetRepeated()
 	}
 	if t.IsObjectType() {
 		return f
