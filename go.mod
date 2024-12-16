@@ -1,6 +1,8 @@
 module github.com/protoconf/protoconf-terraform
 
-go 1.18
+go 1.21
+
+toolchain go1.23.4
 
 require (
 	github.com/avast/retry-go v3.0.0+incompatible
@@ -14,7 +16,7 @@ require (
 	github.com/stretchr/testify v1.8.4
 	github.com/zclconf/go-cty v1.10.0
 	google.golang.org/grpc v1.55.0
-	google.golang.org/protobuf v1.31.0
+	google.golang.org/protobuf v1.36.0
 )
 
 require (
