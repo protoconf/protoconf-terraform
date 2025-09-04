@@ -11,7 +11,7 @@ require (
 	github.com/protoconf/libprotoconf v0.0.0-20211017074511-4cffcc3620de
 	github.com/protoconf/protoconf v0.1.7
 	github.com/smintz/keygroup v0.1.0
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.11.1
 	github.com/zclconf/go-cty v1.10.0
 	google.golang.org/grpc v1.55.0
 	google.golang.org/protobuf v1.31.0
