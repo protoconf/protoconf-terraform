@@ -1,6 +1,6 @@
 module github.com/protoconf/protoconf-terraform
 
-go 1.18
+go 1.23
 
 require (
 	github.com/avast/retry-go v3.0.0+incompatible
@@ -12,7 +12,7 @@ require (
 	github.com/protoconf/protoconf v0.1.7
 	github.com/smintz/keygroup v0.1.0
 	github.com/stretchr/testify v1.8.4
-	github.com/zclconf/go-cty v1.10.0
+	github.com/zclconf/go-cty v1.17.0
 	google.golang.org/grpc v1.55.0
 	google.golang.org/protobuf v1.31.0
 )
@@ -29,6 +29,7 @@ require (
 	github.com/agext/levenshtein v1.2.2 // indirect
 	github.com/apparentlymart/go-textseg v1.0.0 // indirect
 	github.com/apparentlymart/go-textseg/v13 v13.0.0 // indirect
+	github.com/apparentlymart/go-textseg/v15 v15.0.0 // indirect
 	github.com/armon/go-radix v1.0.0 // indirect
 	github.com/aws/aws-sdk-go v1.25.3 // indirect
 	github.com/bgentry/go-netrc v0.0.0-20140422174119-9fd32a8b3d3d // indirect
@@ -77,7 +78,7 @@ require (
 	golang.org/x/oauth2 v0.6.0 // indirect
 	golang.org/x/sync v0.2.0 // indirect
 	golang.org/x/sys v0.8.0 // indirect
-	golang.org/x/text v0.9.0 // indirect
+	golang.org/x/text v0.11.0 // indirect
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	google.golang.org/api v0.110.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
