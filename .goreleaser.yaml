@@ -20,7 +20,7 @@ builds:
       # - freebsd
       # - openbsd
       # - solaris
-    main: ./cmd/protoconf
+    main: ./cmd/protoconf-terraform
 checksum:
   name_template: "checksums.txt"
 snapshot:
