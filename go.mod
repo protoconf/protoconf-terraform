@@ -1,6 +1,6 @@
 module github.com/protoconf/protoconf-terraform
 
-go 1.18
+go 1.23
 
 require (
 	github.com/avast/retry-go v3.0.0+incompatible
@@ -14,7 +14,7 @@ require (
 	github.com/stretchr/testify v1.8.4
 	github.com/zclconf/go-cty v1.10.0
 	google.golang.org/grpc v1.55.0
-	google.golang.org/protobuf v1.31.0
+	google.golang.org/protobuf v1.36.10
 )
 
 require (
@@ -40,7 +40,7 @@ require (
 	github.com/go-logr/stdr v1.1.0 // indirect
 	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
-	github.com/google/go-cmp v0.5.9 // indirect
+	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/google/go-jsonnet v0.17.0 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.2.3 // indirect
