@@ -20,6 +20,10 @@ builds:
       # - freebsd
       # - openbsd
       # - solaris
+    ignore:
+      - goarch: "386"
+      - goos: windows
+        goarch: arm64
     main: ./cmd/protoconf-terraform
 checksum:
   name_template: "checksums.txt"
