@@ -1,25 +1,26 @@
 # This is an example .goreleaser.yml file with some sensible defaults.
 # Make sure to check the documentation at https://goreleaser.com
-before:
-  hooks:
-    # You may remove this if you don't use go modules.
-    - go mod tidy
-    # you may remove this if you don't need go generate
-    - go generate ./...
+# before:
+#   hooks:
+#     # You may remove this if you don't use go modules.
+#     # - go mod tidy
+#     # you may remove this if you don't need go generate
+#     # - go generate ./...
+version: 2.0
 builds:
-  - env:
+  - id: protoconf-terraform
+    env:
       - CGO_ENABLED=0
     ldflags:
       - -s -w -X github.com/protoconf/protoconf-terraform/pkg/build.Version={{.Version}}
     goos:
       - linux
-      - windows
+      # - windows
       - darwin
-    ignore:
-      - goarch: "386"
-      - goos: windows
-        goarch: arm64
-    main: ./cmd/protoconf-terraform
+      # - freebsd
+      # - openbsd
+      # - solaris
+    main: ./cmd/protoconf
 checksum:
   name_template: "checksums.txt"
 snapshot:
@@ -30,6 +31,7 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
+      - "^fix(deps):"
 brews:
   - # Name template of the recipe
     # Default to project name
@@ -52,11 +54,11 @@ brews:
 
     # Folder inside the repository to put the formula.
     # Default is the root folder.
-    folder: Formula
+    directory: Formula
 
     # Your app's homepage.
     # Default is empty.
-    homepage: "https://docs.protoconf.sh/"
+    homepage: "https://www.protoconf.dev/"
 
     # Template of your app's description.
     # Default is empty.
@@ -67,6 +69,8 @@ brews:
     license: "MIT"
 dockers:
   - id: protoconf-docker
+    ids:
+      - protoconf-terraform
     image_templates:
       - "protoconf/protoconf-terraform:latest"
       - "protoconf/protoconf-terraform:{{ .Tag }}"
