@@ -192,12 +192,143 @@ func addTerraformS3Backend(b *builder.MessageBuilder, oof *builder.OneOfBuilder)
 	return nil
 }
 
+func addTerraformConsulBackend(b *builder.MessageBuilder, oof *builder.OneOfBuilder) error {
+	l := builder.NewMessage("BackendConsul")
+	defaultStringField(l, "path", "(Required) Path in the Consul KV store.")
+	defaultStringField(l, "access_token", "(Optional) Consul Access Token.")
+	defaultStringField(l, "address", "(Optional) DNS name and port of your Consul endpoint specified in the format dnsname:port.")
+	defaultStringField(l, "scheme", "(Optional) Specifies what protocol to use when talking to the given address — either http or https. SSL support can also be triggered by setting the environment variable CONSUL_HTTP_SSL to true.")
+	defaultStringField(l, "datacenter", "(Optional) The datacenter to use. Defaults to that of the agent.")
+	defaultStringField(l, "http_auth", "(Optional) HTTP Basic Authentication credentials to be used when communicating with Consul, in the format of either user or user:pass.")
+	defaultStringField(l, "gzip", "(Optional) true to compress the state data using gzip, or false (the default) to leave it uncompressed.")
+	defaultStringField(l, "lock", "(Optional) false to disable locking. Defaults to true.")
+	defaultStringField(l, "ca_file", "(Optional) A path to a PEM-encoded certificate authority used to verify the remote agent's certificate.")
+	defaultStringField(l, "cert_file", "(Optional) A path to a PEM-encoded certificate provided to the remote agent; requires use of key_file.")
+	defaultStringField(l, "key_file", "(Optional) A path to a PEM-encoded private key, required if cert_file is specified.")
+	b.AddNestedMessage(l)
+	oof.AddChoice(builder.NewField("consul", builder.FieldTypeMessage(l)))
+	return nil
+}
+
+func addTerraformAzurermBackend(b *builder.MessageBuilder, oof *builder.OneOfBuilder) error {
+	l := builder.NewMessage("BackendAzurerm")
+	defaultStringField(l, "storage_account_name", "(Required) The Name of the Storage Account.")
+	defaultStringField(l, "container_name", "(Required) The Name of the Storage Container within the Storage Account.")
+	defaultStringField(l, "key", "(Required) The name of the Blob used to retrieve/store Terraform's State file inside the Storage Container.")
+	defaultStringField(l, "environment", "(Optional) The Azure Environment which should be used. Possible values are public, china, german, stack and usgovernment. Defaults to public.")
+	defaultStringField(l, "endpoint", "(Optional) The Custom Endpoint for Azure Resource Manager.")
+	defaultStringField(l, "metadata_host", "(Optional) The Hostname of the Azure Metadata Service.")
+	defaultStringField(l, "snapshot", "(Optional) Should the Blob used to store the Terraform Statefile be snapshotted before use? Defaults to false.")
+	defaultStringField(l, "resource_group_name", "(Required for AzureAD/MSI auth) The Name of the Resource Group in which the Storage Account exists.")
+	defaultStringField(l, "msi_endpoint", "(Optional) The path to a custom Managed Service Identity endpoint.")
+	defaultStringField(l, "subscription_id", "(Optional) The Subscription ID in which the Storage Account exists.")
+	defaultStringField(l, "tenant_id", "(Optional) The Tenant ID in which the Subscription exists.")
+	defaultStringField(l, "client_id", "(Optional) The Client ID of the Service Principal.")
+	defaultStringField(l, "client_secret", "(Optional) The Client Secret of the Service Principal.")
+	defaultStringField(l, "client_certificate_password", "(Optional) The password associated with the Client Certificate specified in client_certificate_path.")
+	defaultStringField(l, "client_certificate_path", "(Optional) The path to the PFX file used as the Client Certificate when authenticating as a Service Principal.")
+	defaultStringField(l, "sas_token", "(Optional) The SAS Token used to access the Blob Storage Account.")
+	defaultStringField(l, "access_key", "(Optional) The Access Key used to access the Blob Storage Account.")
+	defaultStringField(l, "use_msi", "(Optional) Should Managed Service Identity authentication be used?")
+	defaultStringField(l, "use_azuread_auth", "(Optional) Should Terraform use AzureAD authentication to access the Blob?")
+	defaultStringField(l, "use_oidc", "(Optional) Should OIDC authentication be used?")
+	defaultStringField(l, "oidc_request_token", "(Optional) The bearer token for the request to the OIDC provider.")
+	defaultStringField(l, "oidc_request_url", "(Optional) The URL for the OIDC provider from which to request an ID token.")
+	defaultStringField(l, "oidc_token", "(Optional) The OIDC ID token for use when authenticating using OIDC.")
+	defaultStringField(l, "oidc_token_file_path", "(Optional) The path to a file containing an OIDC ID token for use when authenticating using OIDC.")
+	b.AddNestedMessage(l)
+	oof.AddChoice(builder.NewField("azurerm", builder.FieldTypeMessage(l)))
+	return nil
+}
+
+func addTerraformGCSBackend(b *builder.MessageBuilder, oof *builder.OneOfBuilder) error {
+	l := builder.NewMessage("BackendGCS")
+	defaultStringField(l, "bucket", "(Required) The name of the GCS bucket. This bucket must exist before Terraform can be configured to use it.")
+	defaultStringField(l, "credentials", "(Optional) Local path to Google Cloud Platform account credentials in JSON format. If unset, the path to your default credentials will be used (set via gcloud auth application-default login or GOOGLE_APPLICATION_CREDENTIALS).")
+	defaultStringField(l, "impersonate_service_account", "(Optional) The service account to impersonate for accessing the State Bucket.")
+	defaultStringField(l, "impersonate_service_account_delegates", "(Optional) The delegation chain for impersonating a service account.")
+	defaultStringField(l, "access_token", "(Optional) A temporary OAuth 2.0 access token obtained from the Google Authorization server.")
+	defaultStringField(l, "prefix", "(Optional) GCS prefix inside the bucket. Named states for workspaces are stored in an object called <prefix>/<name>.tfstate.")
+	defaultStringField(l, "encryption_key", "(Optional) A 32 byte base64 encoded customer supplied encryption key (CSEK) used to encrypt all state.")
+	defaultStringField(l, "kms_encryption_key", "(Optional) A Cloud KMS key (KMS_KEY) name used for encryption — projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{name}.")
+	defaultStringField(l, "storage_custom_endpoint", "(Optional) A URL containing the protocol, the DNS name pointing to a Private Service Connect endpoint, and the path for the Cloud Storage API (typically /storage/v1/b).")
+	b.AddNestedMessage(l)
+	oof.AddChoice(builder.NewField("gcs", builder.FieldTypeMessage(l)))
+	return nil
+}
+
+func addTerraformHTTPBackend(b *builder.MessageBuilder, oof *builder.OneOfBuilder) error {
+	l := builder.NewMessage("BackendHTTP")
+	defaultStringField(l, "address", "(Required) The address of the REST endpoint.")
+	defaultStringField(l, "update_method", "(Optional) HTTP method to use when updating state. Defaults to POST.")
+	defaultStringField(l, "lock_address", "(Optional) The address of the lock REST endpoint. Defaults to disabled.")
+	defaultStringField(l, "lock_method", "(Optional) The HTTP method to use when locking. Defaults to LOCK.")
+	defaultStringField(l, "unlock_address", "(Optional) The address of the unlock REST endpoint. Defaults to disabled.")
+	defaultStringField(l, "unlock_method", "(Optional) The HTTP method to use when unlocking. Defaults to UNLOCK.")
+	defaultStringField(l, "username", "(Optional) The username for HTTP basic authentication.")
+	defaultStringField(l, "password", "(Optional) The password for HTTP basic authentication.")
+	defaultStringField(l, "skip_cert_verification", "(Optional) Whether to skip TLS verification. Defaults to false.")
+	defaultStringField(l, "retry_max", "(Optional) The number of HTTP request retries. Defaults to 2.")
+	defaultStringField(l, "retry_wait_min", "(Optional) The minimum time in seconds to wait between HTTP request attempts. Defaults to 1.")
+	defaultStringField(l, "retry_wait_max", "(Optional) The maximum time in seconds to wait between HTTP request attempts. Defaults to 30.")
+	defaultStringField(l, "client_ca_certificate_pem", "(Optional) A PEM-encoded CA certificate chain used by the client to verify server certificates during TLS authentication.")
+	defaultStringField(l, "client_certificate_pem", "(Optional) A PEM-encoded certificate used by the server to verify the client during mutual TLS (mTLS) authentication.")
+	defaultStringField(l, "client_private_key_pem", "(Optional) A PEM-encoded private key, required if client_certificate_pem is specified.")
+	b.AddNestedMessage(l)
+	oof.AddChoice(builder.NewField("http", builder.FieldTypeMessage(l)))
+	return nil
+}
+
+func addTerraformKubernetesBackend(b *builder.MessageBuilder, oof *builder.OneOfBuilder) error {
+	l := builder.NewMessage("BackendKubernetes")
+	defaultStringField(l, "secret_suffix", "(Required) Suffix used when creating the secret. The secret will be named in the format: tfstate-{workspace}-{secret_suffix}.")
+	defaultStringField(l, "labels", "(Optional) Map of additional labels to be applied to the secret and config map.")
+	defaultStringField(l, "namespace", "(Optional) Namespace to store the secret in.")
+	defaultStringField(l, "in_cluster_config", "(Optional) Used to authenticate to the cluster from inside a pod.")
+	defaultStringField(l, "load_config_file", "(Optional) Load local kubeconfig.")
+	defaultStringField(l, "host", "(Optional) The hostname (in form of URI) of the Kubernetes API.")
+	defaultStringField(l, "username", "(Optional) The username to use for HTTP basic authentication when accessing the Kubernetes API.")
+	defaultStringField(l, "password", "(Optional) The password to use for HTTP basic authentication when accessing the Kubernetes API.")
+	defaultStringField(l, "insecure", "(Optional) Whether server should be accessed without verifying the TLS certificate.")
+	defaultStringField(l, "client_certificate", "(Optional) PEM-encoded client certificate for TLS authentication.")
+	defaultStringField(l, "client_key", "(Optional) PEM-encoded client certificate key for TLS authentication.")
+	defaultStringField(l, "cluster_ca_certificate", "(Optional) PEM-encoded root certificates bundle for TLS authentication.")
+	defaultStringField(l, "config_paths", "(Optional) A list of paths to kubeconfig files.")
+	defaultStringField(l, "config_path", "(Optional) Path to the kubeconfig file. Can be sourced from KUBE_CONFIG_PATH.")
+	defaultStringField(l, "config_context", "(Optional) Context to choose from the config file. Can be sourced from KUBE_CTX.")
+	defaultStringField(l, "config_context_auth_info", "(Optional) Authentication info context of the kube config (--user flag in kubectl).")
+	defaultStringField(l, "config_context_cluster", "(Optional) Cluster context of the kube config (--cluster flag in kubectl).")
+	defaultStringField(l, "token", "(Optional) Token of your service account.")
+	defaultStringField(l, "exec", "(Optional) Configuration block to use an exec-based credential plugin.")
+	b.AddNestedMessage(l)
+	oof.AddChoice(builder.NewField("kubernetes", builder.FieldTypeMessage(l)))
+	return nil
+}
+
+func addTerraformPgBackend(b *builder.MessageBuilder, oof *builder.OneOfBuilder) error {
+	l := builder.NewMessage("BackendPg")
+	defaultStringField(l, "conn_str", "(Required) Postgres connection string; a postgres:// URL.")
+	defaultStringField(l, "schema_name", "(Optional) Name of the automatically-managed Postgres schema to store state. Defaults to terraform_remote_state.")
+	defaultStringField(l, "skip_schema_creation", "(Optional) If set to true, the Postgres schema must already exist. Defaults to false.")
+	defaultStringField(l, "skip_table_creation", "(Optional) If set to true, the Postgres table must already exist.")
+	defaultStringField(l, "skip_index_creation", "(Optional) If set to true, the Postgres index must already exist.")
+	b.AddNestedMessage(l)
+	oof.AddChoice(builder.NewField("pg", builder.FieldTypeMessage(l)))
+	return nil
+}
+
 func addTerraformBackend(tf *builder.MessageBuilder) error {
 	backend := builder.NewMessage("Backend")
 	oneof := builder.NewOneOf("config")
 	addTerraformLocalBackend(backend, oneof)
 	addTerraformRemoteBackend(backend, oneof)
 	addTerraformS3Backend(backend, oneof)
+	addTerraformConsulBackend(backend, oneof)
+	addTerraformAzurermBackend(backend, oneof)
+	addTerraformGCSBackend(backend, oneof)
+	addTerraformHTTPBackend(backend, oneof)
+	addTerraformKubernetesBackend(backend, oneof)
+	addTerraformPgBackend(backend, oneof)
 
 	backend.AddOneOf(oneof)
 	tf.AddNestedMessage(backend)
