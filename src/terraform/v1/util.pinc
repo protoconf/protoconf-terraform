@@ -138,40 +138,6 @@ def Data(name, datasource, *hooks):
     return do
 
 
-def Link(*hooks, **resources):
-    def do(tf, next):
-        tf = Terraform(
-            From(tf),
-            *[Resource(name, resource) for name, resource in resources.items()]
-        )
-        inputs = struct(
-            resource=module("resources", **resources),
-            link=module(
-                "links",
-                **dict(
-                    [
-                        (name, link(name, resource))
-                        for name, resource in resources.items()
-                    ]
-                )
-            ),
-            var=module(
-                "links",
-                **dict(
-                    [
-                        (name, link(name, resource, True))
-                        for name, resource in resources.items()
-                    ]
-                )
-            ),
-        )
-        Chain(inputs, *hooks)
-
-        return next(tf)
-
-    return do
-
-
 def Walk(component, func):
     func(component)
     for dep in component.upstreams:
@@ -264,7 +230,6 @@ util = module(
     Provider=Provider,
     Resource=Resource,
     Data=Data,
-    Link=Link,
     Output=Output,
     Group=Group,
     Module=Module,
