@@ -4,6 +4,11 @@ load("terraform.proto", TerraformProto="Terraform")
 load("//protoconf_terraform/config/v1/config.proto", "SubscriptionConfig")
 load("//google/protobuf/struct.proto", "Struct", "Value", "ListValue")
 
+# The Any type_url for the top-level Terraform message. Used by
+# GenerateTerraformConfigs to identify Terraform configs nested inside
+# protoconf component config maps.
+_TERRAFORM_TYPE_URL = "type.googleapis.com/terraform.v1.Terraform"
+
 def Chain(msg, *hooks):
     """
     Run a sequence of hooks against msg.
@@ -42,8 +47,11 @@ def Provider(provider):
             tf.terraform = TerraformProto.TerraformSettings()
 
         provider_name = str(provider).split(".")[1]
-        providerlist = getattr(tf.provider, provider_name)
-        providerlist.append(provider)
+        provider_list = getattr(tf.provider, provider_name)
+        # Dedup at insertion time so calling Provider(google) twice in the
+        # same chain doesn't produce duplicate entries.
+        if provider not in provider_list:
+            provider_list.append(provider)
         tf.terraform.required_providers[provider_name] = TerraformProto.TerraformSettings.Provider(
             source = provider.provider_fqdn,
             version = provider.provider_version
@@ -91,7 +99,7 @@ def _link(name, resource, var=False, is_data=False):
 def _flatten(x):
     result = []
     for el in x:
-        if type(el) == "list":
+        if type(el) == "list" or type(el) == "tuple":
             result.extend(_flatten(el))
         else:
             result.append(el)
@@ -144,10 +152,22 @@ def Group(*hooks):
     return do
 
 
-def Walk(component, func):
+def Walk(component, func, _seen=None):
+    """
+    Depth-first walk over a component and its upstreams, calling func once
+    per unique component. Cycles and diamond shapes are handled — each
+    (domain, name) pair is visited at most once.
+
+    _seen is internal; callers should not pass it.
+    """
+    seen = _seen if _seen != None else {}
+    key = (component.domain, component.name)
+    if key in seen:
+        return
+    seen[key] = True
     func(component)
     for dep in component.upstreams:
-        Walk(dep, func)
+        Walk(dep, func, seen)
 
 
 def GenerateTerraformConfigs(
@@ -157,10 +177,13 @@ def GenerateTerraformConfigs(
 
     def extract_config(component):
         for config_name, config in component.configs.items():
-            if config.type_url == "type.googleapis.com/terraform.v1.Terraform":
+            if config.type_url == _TERRAFORM_TYPE_URL:
                 unpackedConfig = any.unpack(config, TerraformProto())
 
-                # fixes a bug in any.pack which duplicates entries in repeated providers
+                # any.pack/unpack duplicates entries in repeated provider lists;
+                # dedupe each list back down. Provider() also dedupes at
+                # insertion time, but that only catches duplicates introduced
+                # in this chain — pack/unpack adds its own.
                 for providerType in dir(unpackedConfig.provider):
                     p = getattr(unpackedConfig.provider, providerType)
                     if p:
@@ -232,11 +255,16 @@ def Module(name, source, then=(), **kwargs):
 
 util = module(
     "Terraform",
+    Chain=Chain,
     Terraform=Terraform,
+    From=From,
     Provider=Provider,
     Resource=Resource,
     Data=Data,
     Output=Output,
     Group=Group,
     Module=Module,
+    Walk=Walk,
+    GenerateTerraformConfigs=GenerateTerraformConfigs,
+    to_value=to_value,
 )
