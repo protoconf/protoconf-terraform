@@ -11,6 +11,22 @@ import (
 	"github.com/protoconf/protoconf/importers"
 )
 
+// safeProviderPackageName remaps Terraform provider names that would collide
+// with well-known proto package prefixes when used as a proto package segment.
+// Currently only `google` collides (with `google.protobuf.*`): a package like
+// `terraform.google.resources.v6` causes proto resolvers to find the local
+// `google` segment and fail to fall back to the global `google.protobuf` WKTs.
+var safeProviderPackageName = map[string]string{
+	"google": "googlecloud",
+}
+
+func safeProviderName(name string) string {
+	if mapped, ok := safeProviderPackageName[name]; ok {
+		return mapped
+	}
+	return name
+}
+
 // ProviderImporter queries a Terraform provider binary for its schema
 // and returns a proto FileBuilder
 type ProviderImporter struct {
@@ -22,7 +38,7 @@ type ProviderImporter struct {
 // NewProviderImporter returns a ProviderImporter
 func NewProviderImporter(fqdn string, schemaResponse *parse.Provider, importer *importers.Importer, ui cli.Ui) (*ProviderImporter, error) {
 	parts := strings.Split(fqdn, "/")
-	name := parts[len(parts)-1]
+	name := safeProviderName(parts[len(parts)-1])
 	meta := discovery.PluginMeta{Name: name, Version: discovery.VersionStr(strings.Split(schemaResponse.ProviderVersion, ".")[0])}
 	p := &ProviderImporter{importer: importer, meta: meta, ui: &cli.PrefixedUi{OutputPrefix: importer.MasterFile.Package, Ui: ui}}
 
