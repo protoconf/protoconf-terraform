@@ -98,42 +98,48 @@ def flatten(x):
     return result
 
 
-def Resource(name, resource, *hooks):
+# _add_resource powers Resource() and Data(). The two differ only in which
+# container they populate (tf.resource vs tf.data), the constructor for that
+# container, and whether the link prefix gets a "data." segment.
+#
+# *link_consumers is variadic; each element is `lambda link_obj: hook` — a
+# callable that receives the resource's link view and returns one or more
+# real (msg, next) hooks to splice back into the chain. Returning a list (or
+# nested list) is fine; flatten() unwraps it.
+def _add_resource(name, resource, link_consumers, container_attr, container_ctor, is_data):
     def do(tf, next):
-        if not tf.resource:
-            tf.resource = TerraformProto.Resources()
-        resource_dict = getattr(tf.resource, resource_type(resource))
-        resource_dict[name] = resource
-        l = link(name, resource, True)
-
-        subresources = [hook(l) for hook in hooks]
-        tf = Terraform(From(tf), *flatten(subresources))
-
-        return next(tf)
+        if not getattr(tf, container_attr):
+            setattr(tf, container_attr, container_ctor())
+        bucket = getattr(getattr(tf, container_attr), resource_type(resource))
+        bucket[name] = resource
+        l = link(name, resource, var=True, is_data=is_data)
+        sub = flatten([consumer(l) for consumer in link_consumers])
+        return next(Chain(tf, *sub))
 
     return do
+
+
+def Resource(name, resource, *link_consumers):
+    return _add_resource(
+        name, resource, link_consumers,
+        container_attr="resource",
+        container_ctor=TerraformProto.Resources,
+        is_data=False,
+    )
+
+
+def Data(name, datasource, *link_consumers):
+    return _add_resource(
+        name, datasource, link_consumers,
+        container_attr="data",
+        container_ctor=TerraformProto.Datasources,
+        is_data=True,
+    )
 
 
 def Group(*hooks):
     def do(tf, next):
-        tf = Terraform(From(tf), *hooks)
-        return next(tf)
-
-    return do
-
-
-def Data(name, datasource, *hooks):
-    def do(tf, next):
-        if not tf.data:
-            tf.data = TerraformProto.Datasources()
-
-        resource_dict = getattr(tf.data, resource_type(datasource))
-        resource_dict[name] = datasource
-        l = link(name, datasource, True, True)
-
-        subresources = [hook(l) for hook in hooks]
-        tf = Terraform(From(tf), *flatten(subresources))
-        return next(tf)
+        return next(Chain(tf, *hooks))
 
     return do
 
@@ -218,8 +224,7 @@ def Module(name, source, then=(), **kwargs):
         kwargs["source"] = source
         tf.module[name] = _to_struct(kwargs)
         outputs = lambda key: "${module.%s.%s}" % (name, key)
-        tf = Terraform(From(tf), *[child(outputs) for child in then])
-        return next(tf)
+        return next(Chain(tf, *[child(outputs) for child in then]))
 
     return do
 
