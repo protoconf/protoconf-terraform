@@ -216,34 +216,44 @@ def Output(k, v):
     return do
 
 
+def _to_struct(d):
+    """Build a google.protobuf.Struct from a Starlark dict."""
+    return Struct(fields=dict([(k, value(vv)) for k, vv in d.items()]))
+
+
 def value(v):
     """
-    value gets a variable and returns is as a wkt `Value`
+    Convert a Starlark scalar / list / dict to a google.protobuf.Value.
+
+    Dicts become Value(struct_value=Struct(...)), so nested lists-of-dicts
+    round-trip correctly. None becomes Value(null_value=...).
 
     Args:
-        v: a variable
+        v: a Starlark value (string, int, float, bool, None, list, dict)
     Returns:
-        Value()
+        Value
     """
+    if v == None:
+        return Value(null_value=0)
     if type(v) == "string":
         return Value(string_value=v)
     if type(v) == "int":
         return Value(number_value=float(v))
-    if type(v) == "double":
+    if type(v) == "float":
         return Value(number_value=v)
     if type(v) == "bool":
         return Value(bool_value=v)
     if type(v) == "list":
         return Value(list_value=ListValue(values=[value(i) for i in v]))
     if type(v) == "dict":
-        return Struct(fields=dict([(k, value(vv)) for k, vv in v.items()]))
-    return None
+        return Value(struct_value=_to_struct(v))
+    fail("value(): unsupported type %s for %r" % (type(v), v))
 
 
 def Module(name, source, then=(), **kwargs):
     def do(tf, next):
         kwargs["source"] = source
-        tf.module[name] = value(kwargs)
+        tf.module[name] = _to_struct(kwargs)
         outputs = lambda key: "${module.%s.%s}" % (name, key)
         tf = Terraform(From(tf), *[child(outputs) for child in then])
         return next(tf)
