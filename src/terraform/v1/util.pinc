@@ -49,8 +49,10 @@ def Provider(provider):
         provider_name = str(provider).split(".")[1]
         provider_list = getattr(tf.provider, provider_name)
         # Dedup at insertion time so calling Provider(google) twice in the
-        # same chain doesn't produce duplicate entries.
-        if provider not in provider_list:
+        # same chain doesn't produce duplicate entries. The `in` operator
+        # is not defined on Starlark proto repeated fields, so wrap in
+        # list() first.
+        if provider not in list(provider_list):
             provider_list.append(provider)
         tf.terraform.required_providers[provider_name] = TerraformProto.TerraformSettings.Provider(
             source = provider.provider_fqdn,
@@ -107,18 +109,19 @@ def _flatten(x):
 
 
 # _add_resource powers Resource() and Data(). The two differ only in which
-# container they populate (tf.resource vs tf.data), the constructor for that
-# container, and whether the link prefix gets a "data." segment.
+# container they populate (tf.resource vs tf.data) and whether the link
+# prefix gets a "data." segment. The container is created and returned by
+# get_container — Starlark has no setattr(), so each caller writes its own
+# attribute assignment via a small closure.
 #
 # *link_consumers is variadic; each element is `lambda link_obj: hook` — a
 # callable that receives the resource's link view and returns one or more
 # real (msg, next) hooks to splice back into the chain. Returning a list (or
-# nested list) is fine; flatten() unwraps it.
-def _add_resource(name, resource, link_consumers, container_attr, container_ctor, is_data):
+# nested list) is fine; _flatten() unwraps it.
+def _add_resource(name, resource, link_consumers, get_container, is_data):
     def do(tf, next):
-        if not getattr(tf, container_attr):
-            setattr(tf, container_attr, container_ctor())
-        bucket = getattr(getattr(tf, container_attr), _resource_type(resource))
+        container = get_container(tf)
+        bucket = getattr(container, _resource_type(resource))
         bucket[name] = resource
         ref = _link(name, resource, var=True, is_data=is_data)
         sub = _flatten([consumer(ref) for consumer in link_consumers])
@@ -128,21 +131,21 @@ def _add_resource(name, resource, link_consumers, container_attr, container_ctor
 
 
 def Resource(name, resource, *link_consumers):
-    return _add_resource(
-        name, resource, link_consumers,
-        container_attr="resource",
-        container_ctor=TerraformProto.Resources,
-        is_data=False,
-    )
+    def get_resources(tf):
+        if not tf.resource:
+            tf.resource = TerraformProto.Resources()
+        return tf.resource
+
+    return _add_resource(name, resource, link_consumers, get_resources, is_data=False)
 
 
 def Data(name, datasource, *link_consumers):
-    return _add_resource(
-        name, datasource, link_consumers,
-        container_attr="data",
-        container_ctor=TerraformProto.Datasources,
-        is_data=True,
-    )
+    def get_data(tf):
+        if not tf.data:
+            tf.data = TerraformProto.Datasources()
+        return tf.data
+
+    return _add_resource(name, datasource, link_consumers, get_data, is_data=True)
 
 
 def Group(*hooks):
