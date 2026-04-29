@@ -4,30 +4,27 @@ load("terraform.proto", TerraformProto="Terraform")
 load("//protoconf_terraform/config/v1/config.proto", "SubscriptionConfig")
 load("//google/protobuf/struct.proto", "Struct", "Value", "ListValue")
 
-# Last is the last hook, which returns the component without calling next()
-def Last(c, _):
-    return c
-
-
 def Chain(msg, *hooks):
+    """
+    Run a sequence of hooks against msg.
+
+    Each hook has signature (msg, next) and either returns next(msg) to
+    continue, or returns its own value to terminate the chain. An empty
+    hooks list is valid and returns msg unchanged.
+    """
     queue = list(hooks)
 
     def run_next(c):
-        next = queue.pop(0)
-        return next(c, run_next)
+        if not queue:
+            return c
+        nxt = queue.pop(0)
+        return nxt(c, run_next)
 
-    first = queue.pop(0)
-    return first(msg, run_next)
-
-
-def ChainWithLast(msg, *hooks):
-    return Chain(msg, *hooks + (Last,))
+    return run_next(msg)
 
 
 def Terraform(*hooks):
-    tf = TerraformProto()
-
-    return ChainWithLast(tf, *hooks)
+    return Chain(TerraformProto(), *hooks)
 
 
 def From(tf):
@@ -168,7 +165,7 @@ def Link(*hooks, **resources):
                 )
             ),
         )
-        ChainWithLast(inputs, *hooks)
+        Chain(inputs, *hooks)
 
         return next(tf)
 
