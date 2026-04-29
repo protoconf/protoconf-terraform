@@ -4,7 +4,13 @@
     "@type": "type.googleapis.com/terraform.v1.Terraform",
     "resource": {
       "random_pet": {
-        "dog": {}
+        "dog": {},
+        "first": {
+          "prefix": "Sir"
+        },
+        "last": {
+          "prefix": "Lady"
+        }
       }
     },
     "data": {
@@ -21,8 +27,17 @@
       "dog_name": {
         "value": "${random_pet.dog.id}"
       },
+      "first_name": {
+        "value": "${random_pet.first.id}"
+      },
+      "full_name": {
+        "value": "${random_pet.first.id} ${random_pet.last.id}"
+      },
       "has_computed_default": {
         "value": "${data.null_data_source.null_name.has_computed_default}"
+      },
+      "last_name": {
+        "value": "${random_pet.last.id}"
       },
       "null_random": {
         "value": "${data.null_data_source.null_name.random}"
@@ -36,6 +51,14 @@
         "out_dir": "/tmp/sshkey",
         "source": "JamesWoolfenden/key/tls",
         "version": "0.0.6"
+      }
+    },
+    "terraform": {
+      "required_providers": {
+        "random": {
+          "source": "registry.terraform.io/hashicorp/random",
+          "version": "3.8.1"
+        }
       }
     }
   }

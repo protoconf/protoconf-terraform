@@ -1,9 +1,0 @@
-{
-  "protoFile": "protoconf_terraform/config/v1/config.proto",
-  "value": {
-    "@type": "type.googleapis.com/protoconf_terraform.config.v1.SubscriptionConfig",
-    "keys": [
-      "example/dog"
-    ]
-  }
-}

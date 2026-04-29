@@ -16,6 +16,26 @@ tf = util.Terraform(
             "dog_name", dog.id  # `dog.id` will translate into `${random_pet.dog.id}`
         ),
     ),
+    # util.Link attaches multiple resources at once and gives each consumer
+    # access to ALL of them via an `inputs` struct with three views:
+    #   inputs.resource.<name>      - the raw resource message
+    #   inputs.link.<name>.<field>  - the bare HCL path "<type>.<name>.<field>"
+    #   inputs.var.<name>.<field>   - the interpolation "${<type>.<name>.<field>}"
+    util.Link(
+        # Per-resource outputs — same idea as Resource(name, ..., lambda r: ...)
+        # would give you, but reachable from a single Link block.
+        lambda inputs: util.Output("first_name", inputs.var.first.id),
+        lambda inputs: util.Output("last_name", inputs.var.last.id),
+        # The point of Link: a consumer that references MORE THAN ONE
+        # registered resource. Combines first.id and last.id into a single
+        # Terraform-side interpolated string.
+        lambda inputs: util.Output(
+            "full_name",
+            "%s %s" % (inputs.var.first.id, inputs.var.last.id),
+        ),
+        first=RandomPet(prefix="Sir"),
+        last=RandomPet(prefix="Lady"),
+    ),
     util.Data(
         "null_name",
         NullDataSource(),
