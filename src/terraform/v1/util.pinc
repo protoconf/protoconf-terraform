@@ -155,6 +155,60 @@ def Group(*hooks):
     return do
 
 
+def Link(*link_consumers, **resources):
+    """
+    Attach multiple resources at once and let consumer hooks reference any
+    of them by name.
+
+    Where Resource(name, foo, lambda foo_link: ...) gives a single consumer
+    access to one resource's link, Link gives consumers a view over ALL
+    the registered resources at once via an `inputs` struct:
+
+        util.Link(
+            lambda inputs: util.Output("ip",   inputs.var.web.private_ip),
+            lambda inputs: util.Output("name", inputs.var.db.identifier),
+            web=AwsInstance(...),
+            db=AwsRdsInstance(...),
+        )
+
+    The inputs struct exposes three views of each registered resource:
+
+        inputs.resource.<name>      the resource message itself
+        inputs.link.<name>.<field>  the bare HCL path "<type>.<name>.<field>"
+        inputs.var.<name>.<field>   the interpolation "${<type>.<name>.<field>}"
+
+    Each *link_consumer is a `lambda inputs: hook | [hook, ...]` callable
+    — receives the inputs struct and returns one or more real (msg, next)
+    hooks to splice back into the chain. Returning a list (or nested list
+    or tuple) is fine; _flatten unwraps them. This is the same convention
+    Resource() and Data() use for their trailing lambdas.
+
+    NOTE: Earlier versions of Link took *hooks (real (msg, next) hooks)
+    instead of *link_consumers and ran them against a frozen struct whose
+    mutations could not propagate back to tf — i.e. the hooks were silent
+    no-ops. Migrate by wrapping your hooks in `lambda inputs: <hook>`.
+    """
+    def do(tf, next):
+        register = [Resource(name, resource) for name, resource in resources.items()]
+        tf = Chain(tf, *register)
+
+        inputs = struct(
+            resource=module("resources", **resources),
+            link=module("paths", **{
+                name: _link(name, resource)
+                for name, resource in resources.items()
+            }),
+            var=module("interpolations", **{
+                name: _link(name, resource, var=True)
+                for name, resource in resources.items()
+            }),
+        )
+        sub = _flatten([consumer(inputs) for consumer in link_consumers])
+        return next(Chain(tf, *sub))
+
+    return do
+
+
 def Walk(component, func, _seen=None):
     """
     Depth-first walk over a component and its upstreams, calling func once
@@ -266,6 +320,7 @@ util = module(
     Data=Data,
     Output=Output,
     Group=Group,
+    Link=Link,
     Module=Module,
     Walk=Walk,
     GenerateTerraformConfigs=GenerateTerraformConfigs,
