@@ -53,22 +53,22 @@ def Provider(provider):
     return do
 
 
-matchFirstCap = re.compile("(.)([A-Z][a-z]+)")
-matchAllCap = re.compile("([a-z0-9])([A-Z])")
+_match_first_cap = re.compile("(.)([A-Z][a-z]+)")
+_match_all_cap = re.compile("([a-z0-9])([A-Z])")
 
 
-def toSnakeCase(snake):
-    snake = matchFirstCap.sub("${1}_${2}", snake)
-    snake = matchAllCap.sub("${1}_${2}", snake)
-    return snake.lower()
+def _to_snake_case(s):
+    s = _match_first_cap.sub("${1}_${2}", s)
+    s = _match_all_cap.sub("${1}_${2}", s)
+    return s.lower()
 
 
-def resource_type(resource):
-    return toSnakeCase(str(resource).split()[0].split(".")[-1])
+def _resource_type(resource):
+    return _to_snake_case(str(resource).split()[0].split(".")[-1])
 
 
-def link(name, resource, var=False, is_data=False):
-    prefix = ".".join([resource_type(resource), name])
+def _link(name, resource, var=False, is_data=False):
+    prefix = ".".join([_resource_type(resource), name])
     if is_data:
         prefix = ".".join(["data", prefix])
     return module(
@@ -88,11 +88,11 @@ def link(name, resource, var=False, is_data=False):
     )
 
 
-def flatten(x):
+def _flatten(x):
     result = []
     for el in x:
         if type(el) == "list":
-            result.extend(flatten(el))
+            result.extend(_flatten(el))
         else:
             result.append(el)
     return result
@@ -110,10 +110,10 @@ def _add_resource(name, resource, link_consumers, container_attr, container_ctor
     def do(tf, next):
         if not getattr(tf, container_attr):
             setattr(tf, container_attr, container_ctor())
-        bucket = getattr(getattr(tf, container_attr), resource_type(resource))
+        bucket = getattr(getattr(tf, container_attr), _resource_type(resource))
         bucket[name] = resource
-        l = link(name, resource, var=True, is_data=is_data)
-        sub = flatten([consumer(l) for consumer in link_consumers])
+        ref = _link(name, resource, var=True, is_data=is_data)
+        sub = _flatten([consumer(ref) for consumer in link_consumers])
         return next(Chain(tf, *sub))
 
     return do
@@ -187,15 +187,16 @@ def Output(k, v):
 
 def _to_struct(d):
     """Build a google.protobuf.Struct from a Starlark dict."""
-    return Struct(fields=dict([(k, value(vv)) for k, vv in d.items()]))
+    return Struct(fields=dict([(k, to_value(vv)) for k, vv in d.items()]))
 
 
-def value(v):
+def to_value(v):
     """
     Convert a Starlark scalar / list / dict to a google.protobuf.Value.
 
-    Dicts become Value(struct_value=Struct(...)), so nested lists-of-dicts
-    round-trip correctly. None becomes Value(null_value=...).
+    Named to_value (not `value`) so it does not shadow the imported Value
+    WKT type. Dicts become Value(struct_value=Struct(...)), so nested
+    lists-of-dicts round-trip correctly. None becomes Value(null_value=...).
 
     Args:
         v: a Starlark value (string, int, float, bool, None, list, dict)
@@ -213,10 +214,10 @@ def value(v):
     if type(v) == "bool":
         return Value(bool_value=v)
     if type(v) == "list":
-        return Value(list_value=ListValue(values=[value(i) for i in v]))
+        return Value(list_value=ListValue(values=[to_value(i) for i in v]))
     if type(v) == "dict":
         return Value(struct_value=_to_struct(v))
-    fail("value(): unsupported type %s for %r" % (type(v), v))
+    fail("to_value(): unsupported type %s for %r" % (type(v), v))
 
 
 def Module(name, source, then=(), **kwargs):
