@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsDevopsguruNotificationChannel version is 0
+message AwsDevopsguruNotificationChannel {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  repeated Filters filters = 3;
+
+  repeated Sns sns = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message Filters {
+    repeated string message_types = 1 [json_name = "message_types"];
+
+    repeated string severities = 2;
+  }
+
+  message Sns {
+    string topic_arn = 1 [json_name = "topic_arn"];
+  }
+}
+
+// AwsDevopsguruResourceCollection version is 0
+message AwsDevopsguruResourceCollection {
+  repeated Cloudformation cloudformation = 1;
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated Tags tags = 4;
+
+  string type = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Cloudformation {
+    // stack_names: list of string
+    repeated string stack_names = 1 [json_name = "stack_names"];
+  }
+
+  message Tags {
+    // app_boundary_key: string
+    string app_boundary_key = 1 [json_name = "app_boundary_key"];
+
+    // tag_values: list of string
+    repeated string tag_values = 2 [json_name = "tag_values"];
+  }
+}

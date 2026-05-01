@@ -1,0 +1,1078 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsRoute53CidrCollection version is 0
+message AwsRoute53CidrCollection {
+  string arn = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  int64 version = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsRoute53CidrLocation version is 0
+message AwsRoute53CidrLocation {
+  repeated string cidr_blocks = 1 [json_name = "cidr_blocks"];
+
+  string cidr_collection_id = 2 [json_name = "cidr_collection_id"];
+
+  string id = 3;
+
+  string name = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsRoute53DelegationSet version is 0
+message AwsRoute53DelegationSet {
+  string arn = 1;
+
+  string id = 2;
+
+  repeated string name_servers = 3 [json_name = "name_servers"];
+
+  string reference_name = 4 [json_name = "reference_name"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsRoute53HealthCheck version is 0
+message AwsRoute53HealthCheck {
+  string arn = 1;
+
+  int64 child_health_threshold = 2 [json_name = "child_health_threshold"];
+
+  repeated string child_healthchecks = 3 [json_name = "child_healthchecks"];
+
+  string cloudwatch_alarm_name = 4 [json_name = "cloudwatch_alarm_name"];
+
+  string cloudwatch_alarm_region = 5 [json_name = "cloudwatch_alarm_region"];
+
+  bool disabled = 6;
+
+  bool enable_sni = 7 [json_name = "enable_sni"];
+
+  int64 failure_threshold = 8 [json_name = "failure_threshold"];
+
+  string fqdn = 9;
+
+  string id = 10;
+
+  string insufficient_data_health_status = 11 [json_name = "insufficient_data_health_status"];
+
+  bool invert_healthcheck = 12 [json_name = "invert_healthcheck"];
+
+  string ip_address = 13 [json_name = "ip_address"];
+
+  bool measure_latency = 14 [json_name = "measure_latency"];
+
+  int64 port = 15;
+
+  string reference_name = 16 [json_name = "reference_name"];
+
+  repeated string regions = 17;
+
+  int64 request_interval = 18 [json_name = "request_interval"];
+
+  string resource_path = 19 [json_name = "resource_path"];
+
+  string routing_control_arn = 20 [json_name = "routing_control_arn"];
+
+  string search_string = 21 [json_name = "search_string"];
+
+  map<string, string> tags = 22;
+
+  map<string, string> tags_all = 23 [json_name = "tags_all"];
+
+  map<string, string> triggers = 24;
+
+  string type = 25;
+
+  google.protobuf.Value for_each = 26 [json_name = "for_each"];
+
+  repeated string depends_on = 27 [json_name = "depends_on"];
+
+  int32 count = 28;
+
+  string provider = 29;
+
+  terraform.v1.Lifecycle lifecycle = 30;
+}
+
+// AwsRoute53HostedZoneDnssec version is 0
+message AwsRoute53HostedZoneDnssec {
+  string hosted_zone_id = 1 [json_name = "hosted_zone_id"];
+
+  string id = 2;
+
+  string signing_status = 3 [json_name = "signing_status"];
+
+  repeated Timeouts timeouts = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsRoute53KeySigningKey version is 0
+message AwsRoute53KeySigningKey {
+  string digest_algorithm_mnemonic = 1 [json_name = "digest_algorithm_mnemonic"];
+
+  int64 digest_algorithm_type = 2 [json_name = "digest_algorithm_type"];
+
+  string digest_value = 3 [json_name = "digest_value"];
+
+  string dnskey_record = 4 [json_name = "dnskey_record"];
+
+  string ds_record = 5 [json_name = "ds_record"];
+
+  int64 flag = 6;
+
+  string hosted_zone_id = 7 [json_name = "hosted_zone_id"];
+
+  string id = 8;
+
+  string key_management_service_arn = 9 [json_name = "key_management_service_arn"];
+
+  int64 key_tag = 10 [json_name = "key_tag"];
+
+  string name = 11;
+
+  string public_key = 12 [json_name = "public_key"];
+
+  string signing_algorithm_mnemonic = 13 [json_name = "signing_algorithm_mnemonic"];
+
+  int64 signing_algorithm_type = 14 [json_name = "signing_algorithm_type"];
+
+  string status = 15;
+
+  repeated Timeouts timeouts = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsRoute53QueryLog version is 0
+message AwsRoute53QueryLog {
+  string arn = 1;
+
+  string cloudwatch_log_group_arn = 2 [json_name = "cloudwatch_log_group_arn"];
+
+  string id = 3;
+
+  string zone_id = 4 [json_name = "zone_id"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsRoute53Record version is 2
+message AwsRoute53Record {
+  bool allow_overwrite = 1 [json_name = "allow_overwrite"];
+
+  string fqdn = 2;
+
+  string health_check_id = 3 [json_name = "health_check_id"];
+
+  string id = 4;
+
+  bool multivalue_answer_routing_policy = 5 [json_name = "multivalue_answer_routing_policy"];
+
+  string name = 6;
+
+  repeated string records = 7;
+
+  string set_identifier = 8 [json_name = "set_identifier"];
+
+  int64 ttl = 9;
+
+  string type = 10;
+
+  string zone_id = 11 [json_name = "zone_id"];
+
+  Alias alias = 12;
+
+  CidrRoutingPolicy cidr_routing_policy = 13 [json_name = "cidr_routing_policy"];
+
+  FailoverRoutingPolicy failover_routing_policy = 14 [json_name = "failover_routing_policy"];
+
+  GeolocationRoutingPolicy geolocation_routing_policy = 15 [json_name = "geolocation_routing_policy"];
+
+  GeoproximityRoutingPolicy geoproximity_routing_policy = 16 [json_name = "geoproximity_routing_policy"];
+
+  LatencyRoutingPolicy latency_routing_policy = 17 [json_name = "latency_routing_policy"];
+
+  repeated Timeouts timeouts = 18;
+
+  WeightedRoutingPolicy weighted_routing_policy = 19 [json_name = "weighted_routing_policy"];
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message Alias {
+    bool evaluate_target_health = 1 [json_name = "evaluate_target_health"];
+
+    string name = 2;
+
+    string zone_id = 3 [json_name = "zone_id"];
+  }
+
+  message CidrRoutingPolicy {
+    string collection_id = 1 [json_name = "collection_id"];
+
+    string location_name = 2 [json_name = "location_name"];
+  }
+
+  message FailoverRoutingPolicy {
+    string type = 1;
+  }
+
+  message GeolocationRoutingPolicy {
+    string continent = 1;
+
+    string country = 2;
+
+    string subdivision = 3;
+  }
+
+  message GeoproximityRoutingPolicy {
+    string aws_region = 1 [json_name = "aws_region"];
+
+    int64 bias = 2;
+
+    string local_zone_group = 3 [json_name = "local_zone_group"];
+
+    repeated Coordinates coordinates = 4;
+
+    message Coordinates {
+      string latitude = 1;
+
+      string longitude = 2;
+    }
+  }
+
+  message LatencyRoutingPolicy {
+    string region = 1;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+
+  message WeightedRoutingPolicy {
+    int64 weight = 1;
+  }
+}
+
+// AwsRoute53RecordsExclusive version is 0
+message AwsRoute53RecordsExclusive {
+  string zone_id = 1 [json_name = "zone_id"];
+
+  repeated ResourceRecordSet resource_record_set = 2 [json_name = "resource_record_set"];
+
+  repeated Timeouts timeouts = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message ResourceRecordSet {
+    string failover = 1;
+
+    string health_check_id = 2 [json_name = "health_check_id"];
+
+    bool multi_value_answer = 3 [json_name = "multi_value_answer"];
+
+    string name = 4;
+
+    string region = 5;
+
+    string set_identifier = 6 [json_name = "set_identifier"];
+
+    string traffic_policy_instance_id = 7 [json_name = "traffic_policy_instance_id"];
+
+    int64 ttl = 8;
+
+    string type = 9;
+
+    int64 weight = 10;
+
+    repeated AliasTarget alias_target = 11 [json_name = "alias_target"];
+
+    repeated CidrRoutingConfig cidr_routing_config = 12 [json_name = "cidr_routing_config"];
+
+    repeated Geolocation geolocation = 13;
+
+    repeated GeoproximityLocation geoproximity_location = 14 [json_name = "geoproximity_location"];
+
+    repeated ResourceRecords resource_records = 15 [json_name = "resource_records"];
+
+    message AliasTarget {
+      string dns_name = 1 [json_name = "dns_name"];
+
+      bool evaluate_target_health = 2 [json_name = "evaluate_target_health"];
+
+      string hosted_zone_id = 3 [json_name = "hosted_zone_id"];
+    }
+
+    message CidrRoutingConfig {
+      string collection_id = 1 [json_name = "collection_id"];
+
+      string location_name = 2 [json_name = "location_name"];
+    }
+
+    message Geolocation {
+      string continent_code = 1 [json_name = "continent_code"];
+
+      string country_code = 2 [json_name = "country_code"];
+
+      string subdivision_code = 3 [json_name = "subdivision_code"];
+    }
+
+    message GeoproximityLocation {
+      string aws_region = 1 [json_name = "aws_region"];
+
+      int64 bias = 2;
+
+      string local_zone_group = 3 [json_name = "local_zone_group"];
+
+      repeated Coordinates coordinates = 4;
+
+      message Coordinates {
+        string latitude = 1;
+
+        string longitude = 2;
+      }
+    }
+
+    message ResourceRecords {
+      string value = 1;
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 2;
+  }
+}
+
+// AwsRoute53ResolverConfig version is 0
+message AwsRoute53ResolverConfig {
+  string autodefined_reverse_flag = 1 [json_name = "autodefined_reverse_flag"];
+
+  string id = 2;
+
+  string owner_id = 3 [json_name = "owner_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string resource_id = 5 [json_name = "resource_id"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsRoute53ResolverDnssecConfig version is 0
+message AwsRoute53ResolverDnssecConfig {
+  string arn = 1;
+
+  string id = 2;
+
+  string owner_id = 3 [json_name = "owner_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string resource_id = 5 [json_name = "resource_id"];
+
+  string validation_status = 6 [json_name = "validation_status"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsRoute53ResolverEndpoint version is 0
+message AwsRoute53ResolverEndpoint {
+  string arn = 1;
+
+  string direction = 2;
+
+  string host_vpc_id = 3 [json_name = "host_vpc_id"];
+
+  string id = 4;
+
+  string name = 5;
+
+  repeated string protocols = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string resolver_endpoint_type = 8 [json_name = "resolver_endpoint_type"];
+
+  bool rni_enhanced_metrics_enabled = 9 [json_name = "rni_enhanced_metrics_enabled"];
+
+  repeated string security_group_ids = 10 [json_name = "security_group_ids"];
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  bool target_name_server_metrics_enabled = 13 [json_name = "target_name_server_metrics_enabled"];
+
+  repeated IpAddress ip_address = 14 [json_name = "ip_address"];
+
+  repeated Timeouts timeouts = 15;
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message IpAddress {
+    string ip = 1;
+
+    string ip_id = 2 [json_name = "ip_id"];
+
+    string ipv6 = 3;
+
+    string subnet_id = 4 [json_name = "subnet_id"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsRoute53ResolverFirewallConfig version is 0
+message AwsRoute53ResolverFirewallConfig {
+  string firewall_fail_open = 1 [json_name = "firewall_fail_open"];
+
+  string id = 2;
+
+  string owner_id = 3 [json_name = "owner_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string resource_id = 5 [json_name = "resource_id"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsRoute53ResolverFirewallDomainList version is 0
+message AwsRoute53ResolverFirewallDomainList {
+  string arn = 1;
+
+  repeated string domains = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsRoute53ResolverFirewallRule version is 0
+message AwsRoute53ResolverFirewallRule {
+  string action = 1;
+
+  string block_override_dns_type = 2 [json_name = "block_override_dns_type"];
+
+  string block_override_domain = 3 [json_name = "block_override_domain"];
+
+  int64 block_override_ttl = 4 [json_name = "block_override_ttl"];
+
+  string block_response = 5 [json_name = "block_response"];
+
+  string confidence_threshold = 6 [json_name = "confidence_threshold"];
+
+  string dns_threat_protection = 7 [json_name = "dns_threat_protection"];
+
+  string firewall_domain_list_id = 8 [json_name = "firewall_domain_list_id"];
+
+  string firewall_domain_redirection_action = 9 [json_name = "firewall_domain_redirection_action"];
+
+  string firewall_rule_group_id = 10 [json_name = "firewall_rule_group_id"];
+
+  string firewall_threat_protection_id = 11 [json_name = "firewall_threat_protection_id"];
+
+  string id = 12;
+
+  string name = 13;
+
+  int64 priority = 14;
+
+  string q_type = 15 [json_name = "q_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+}
+
+// AwsRoute53ResolverFirewallRuleGroup version is 0
+message AwsRoute53ResolverFirewallRuleGroup {
+  string arn = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  string owner_id = 4 [json_name = "owner_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string share_status = 6 [json_name = "share_status"];
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsRoute53ResolverFirewallRuleGroupAssociation version is 0
+message AwsRoute53ResolverFirewallRuleGroupAssociation {
+  string arn = 1;
+
+  string firewall_rule_group_id = 2 [json_name = "firewall_rule_group_id"];
+
+  string id = 3;
+
+  string mutation_protection = 4 [json_name = "mutation_protection"];
+
+  string name = 5;
+
+  int64 priority = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  string vpc_id = 10 [json_name = "vpc_id"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+}
+
+// AwsRoute53ResolverQueryLogConfig version is 0
+message AwsRoute53ResolverQueryLogConfig {
+  string arn = 1;
+
+  string destination_arn = 2 [json_name = "destination_arn"];
+
+  string id = 3;
+
+  string name = 4;
+
+  string owner_id = 5 [json_name = "owner_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string share_status = 7 [json_name = "share_status"];
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsRoute53ResolverQueryLogConfigAssociation version is 0
+message AwsRoute53ResolverQueryLogConfigAssociation {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string resolver_query_log_config_id = 3 [json_name = "resolver_query_log_config_id"];
+
+  string resource_id = 4 [json_name = "resource_id"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsRoute53ResolverRule version is 0
+message AwsRoute53ResolverRule {
+  string arn = 1;
+
+  string domain_name = 2 [json_name = "domain_name"];
+
+  string id = 3;
+
+  string name = 4;
+
+  string owner_id = 5 [json_name = "owner_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string resolver_endpoint_id = 7 [json_name = "resolver_endpoint_id"];
+
+  string rule_type = 8 [json_name = "rule_type"];
+
+  string share_status = 9 [json_name = "share_status"];
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  repeated TargetIp target_ip = 12 [json_name = "target_ip"];
+
+  repeated Timeouts timeouts = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message TargetIp {
+    string ip = 1;
+
+    string ipv6 = 2;
+
+    int64 port = 3;
+
+    string protocol = 4;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsRoute53ResolverRuleAssociation version is 0
+message AwsRoute53ResolverRuleAssociation {
+  string id = 1;
+
+  string name = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string resolver_rule_id = 4 [json_name = "resolver_rule_id"];
+
+  string vpc_id = 5 [json_name = "vpc_id"];
+
+  repeated Timeouts timeouts = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsRoute53TrafficPolicy version is 0
+message AwsRoute53TrafficPolicy {
+  string arn = 1;
+
+  string comment = 2;
+
+  string document = 3;
+
+  string id = 4;
+
+  string name = 5;
+
+  string type = 6;
+
+  int64 version = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsRoute53TrafficPolicyInstance version is 0
+message AwsRoute53TrafficPolicyInstance {
+  string arn = 1;
+
+  string hosted_zone_id = 2 [json_name = "hosted_zone_id"];
+
+  string id = 3;
+
+  string name = 4;
+
+  string traffic_policy_id = 5 [json_name = "traffic_policy_id"];
+
+  int64 traffic_policy_version = 6 [json_name = "traffic_policy_version"];
+
+  int64 ttl = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsRoute53VpcAssociationAuthorization version is 0
+message AwsRoute53VpcAssociationAuthorization {
+  string id = 1;
+
+  string vpc_id = 2 [json_name = "vpc_id"];
+
+  string vpc_region = 3 [json_name = "vpc_region"];
+
+  string zone_id = 4 [json_name = "zone_id"];
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string read = 3;
+  }
+}
+
+// AwsRoute53Zone version is 0
+message AwsRoute53Zone {
+  string arn = 1;
+
+  string comment = 2;
+
+  string delegation_set_id = 3 [json_name = "delegation_set_id"];
+
+  bool enable_accelerated_recovery = 4 [json_name = "enable_accelerated_recovery"];
+
+  bool force_destroy = 5 [json_name = "force_destroy"];
+
+  string id = 6;
+
+  string name = 7;
+
+  repeated string name_servers = 8 [json_name = "name_servers"];
+
+  string primary_name_server = 9 [json_name = "primary_name_server"];
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  string zone_id = 12 [json_name = "zone_id"];
+
+  repeated Timeouts timeouts = 13;
+
+  repeated Vpc vpc = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+
+  message Vpc {
+    string vpc_id = 1 [json_name = "vpc_id"];
+
+    string vpc_region = 2 [json_name = "vpc_region"];
+  }
+}
+
+// AwsRoute53ZoneAssociation version is 0
+message AwsRoute53ZoneAssociation {
+  string id = 1;
+
+  string owning_account = 2 [json_name = "owning_account"];
+
+  string vpc_id = 3 [json_name = "vpc_id"];
+
+  string vpc_region = 4 [json_name = "vpc_region"];
+
+  string zone_id = 5 [json_name = "zone_id"];
+
+  repeated Timeouts timeouts = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}

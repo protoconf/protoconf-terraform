@@ -1,0 +1,820 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsAppsyncApi version is 0
+message AwsAppsyncApi {
+  string api_arn = 1 [json_name = "api_arn"];
+
+  string api_id = 2 [json_name = "api_id"];
+
+  map<string, string> dns = 3;
+
+  string name = 4;
+
+  string owner_contact = 5 [json_name = "owner_contact"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  string waf_web_acl_arn = 9 [json_name = "waf_web_acl_arn"];
+
+  bool xray_enabled = 10 [json_name = "xray_enabled"];
+
+  repeated EventConfig event_config = 11 [json_name = "event_config"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message EventConfig {
+    repeated AuthProvider auth_provider = 1 [json_name = "auth_provider"];
+
+    repeated ConnectionAuthMode connection_auth_mode = 2 [json_name = "connection_auth_mode"];
+
+    repeated DefaultPublishAuthMode default_publish_auth_mode = 3 [json_name = "default_publish_auth_mode"];
+
+    repeated DefaultSubscribeAuthMode default_subscribe_auth_mode = 4 [json_name = "default_subscribe_auth_mode"];
+
+    repeated LogConfig log_config = 5 [json_name = "log_config"];
+
+    message AuthProvider {
+      string auth_type = 1 [json_name = "auth_type"];
+
+      repeated CognitoConfig cognito_config = 2 [json_name = "cognito_config"];
+
+      repeated LambdaAuthorizerConfig lambda_authorizer_config = 3 [json_name = "lambda_authorizer_config"];
+
+      repeated OpenidConnectConfig openid_connect_config = 4 [json_name = "openid_connect_config"];
+
+      message CognitoConfig {
+        string app_id_client_regex = 1 [json_name = "app_id_client_regex"];
+
+        string aws_region = 2 [json_name = "aws_region"];
+
+        string user_pool_id = 3 [json_name = "user_pool_id"];
+      }
+
+      message LambdaAuthorizerConfig {
+        int64 authorizer_result_ttl_in_seconds = 1 [json_name = "authorizer_result_ttl_in_seconds"];
+
+        string authorizer_uri = 2 [json_name = "authorizer_uri"];
+
+        string identity_validation_expression = 3 [json_name = "identity_validation_expression"];
+      }
+
+      message OpenidConnectConfig {
+        int64 auth_ttl = 1 [json_name = "auth_ttl"];
+
+        string client_id = 2 [json_name = "client_id"];
+
+        int64 iat_ttl = 3 [json_name = "iat_ttl"];
+
+        string issuer = 4;
+      }
+    }
+
+    message ConnectionAuthMode {
+      string auth_type = 1 [json_name = "auth_type"];
+    }
+
+    message DefaultPublishAuthMode {
+      string auth_type = 1 [json_name = "auth_type"];
+    }
+
+    message DefaultSubscribeAuthMode {
+      string auth_type = 1 [json_name = "auth_type"];
+    }
+
+    message LogConfig {
+      string cloudwatch_logs_role_arn = 1 [json_name = "cloudwatch_logs_role_arn"];
+
+      string log_level = 2 [json_name = "log_level"];
+    }
+  }
+}
+
+// AwsAppsyncApiCache version is 0
+message AwsAppsyncApiCache {
+  string api_caching_behavior = 1 [json_name = "api_caching_behavior"];
+
+  string api_id = 2 [json_name = "api_id"];
+
+  bool at_rest_encryption_enabled = 3 [json_name = "at_rest_encryption_enabled"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  bool transit_encryption_enabled = 6 [json_name = "transit_encryption_enabled"];
+
+  int64 ttl = 7;
+
+  string type = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsAppsyncApiKey version is 0
+message AwsAppsyncApiKey {
+  string api_id = 1 [json_name = "api_id"];
+
+  string api_key_id = 2 [json_name = "api_key_id"];
+
+  string description = 3;
+
+  string expires = 4;
+
+  string id = 5;
+
+  string key = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsAppsyncChannelNamespace version is 0
+message AwsAppsyncChannelNamespace {
+  string api_id = 1 [json_name = "api_id"];
+
+  string channel_namespace_arn = 2 [json_name = "channel_namespace_arn"];
+
+  string code_handlers = 3 [json_name = "code_handlers"];
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  repeated HandlerConfigs handler_configs = 8 [json_name = "handler_configs"];
+
+  repeated PublishAuthMode publish_auth_mode = 9 [json_name = "publish_auth_mode"];
+
+  repeated SubscribeAuthMode subscribe_auth_mode = 10 [json_name = "subscribe_auth_mode"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message HandlerConfigs {
+    repeated OnPublish on_publish = 1 [json_name = "on_publish"];
+
+    repeated OnSubscribe on_subscribe = 2 [json_name = "on_subscribe"];
+
+    message OnPublish {
+      string behavior = 1;
+
+      repeated Integration integration = 2;
+
+      message Integration {
+        string data_source_name = 1 [json_name = "data_source_name"];
+
+        repeated LambdaConfig lambda_config = 2 [json_name = "lambda_config"];
+
+        message LambdaConfig {
+          string invoke_type = 1 [json_name = "invoke_type"];
+        }
+      }
+    }
+
+    message OnSubscribe {
+      string behavior = 1;
+
+      repeated Integration integration = 2;
+
+      message Integration {
+        string data_source_name = 1 [json_name = "data_source_name"];
+
+        repeated LambdaConfig lambda_config = 2 [json_name = "lambda_config"];
+
+        message LambdaConfig {
+          string invoke_type = 1 [json_name = "invoke_type"];
+        }
+      }
+    }
+  }
+
+  message PublishAuthMode {
+    string auth_type = 1 [json_name = "auth_type"];
+  }
+
+  message SubscribeAuthMode {
+    string auth_type = 1 [json_name = "auth_type"];
+  }
+}
+
+// AwsAppsyncDatasource version is 0
+message AwsAppsyncDatasource {
+  string api_id = 1 [json_name = "api_id"];
+
+  string arn = 2;
+
+  string description = 3;
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string service_role_arn = 7 [json_name = "service_role_arn"];
+
+  string type = 8;
+
+  DynamodbConfig dynamodb_config = 9 [json_name = "dynamodb_config"];
+
+  ElasticsearchConfig elasticsearch_config = 10 [json_name = "elasticsearch_config"];
+
+  EventBridgeConfig event_bridge_config = 11 [json_name = "event_bridge_config"];
+
+  HttpConfig http_config = 12 [json_name = "http_config"];
+
+  LambdaConfig lambda_config = 13 [json_name = "lambda_config"];
+
+  OpensearchserviceConfig opensearchservice_config = 14 [json_name = "opensearchservice_config"];
+
+  RelationalDatabaseConfig relational_database_config = 15 [json_name = "relational_database_config"];
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message DynamodbConfig {
+    string region = 1;
+
+    string table_name = 2 [json_name = "table_name"];
+
+    bool use_caller_credentials = 3 [json_name = "use_caller_credentials"];
+
+    bool versioned = 4;
+
+    DeltaSyncConfig delta_sync_config = 5 [json_name = "delta_sync_config"];
+
+    message DeltaSyncConfig {
+      int64 base_table_ttl = 1 [json_name = "base_table_ttl"];
+
+      string delta_sync_table_name = 2 [json_name = "delta_sync_table_name"];
+
+      int64 delta_sync_table_ttl = 3 [json_name = "delta_sync_table_ttl"];
+    }
+  }
+
+  message ElasticsearchConfig {
+    string endpoint = 1;
+
+    string region = 2;
+  }
+
+  message EventBridgeConfig {
+    string event_bus_arn = 1 [json_name = "event_bus_arn"];
+  }
+
+  message HttpConfig {
+    string endpoint = 1;
+
+    AuthorizationConfig authorization_config = 2 [json_name = "authorization_config"];
+
+    message AuthorizationConfig {
+      string authorization_type = 1 [json_name = "authorization_type"];
+
+      AwsIamConfig aws_iam_config = 2 [json_name = "aws_iam_config"];
+
+      message AwsIamConfig {
+        string signing_region = 1 [json_name = "signing_region"];
+
+        string signing_service_name = 2 [json_name = "signing_service_name"];
+      }
+    }
+  }
+
+  message LambdaConfig {
+    string function_arn = 1 [json_name = "function_arn"];
+  }
+
+  message OpensearchserviceConfig {
+    string endpoint = 1;
+
+    string region = 2;
+  }
+
+  message RelationalDatabaseConfig {
+    string source_type = 1 [json_name = "source_type"];
+
+    HttpEndpointConfig http_endpoint_config = 2 [json_name = "http_endpoint_config"];
+
+    message HttpEndpointConfig {
+      string aws_secret_store_arn = 1 [json_name = "aws_secret_store_arn"];
+
+      string database_name = 2 [json_name = "database_name"];
+
+      string db_cluster_identifier = 3 [json_name = "db_cluster_identifier"];
+
+      string region = 4;
+
+      string schema = 5;
+    }
+  }
+}
+
+// AwsAppsyncDomainName version is 0
+message AwsAppsyncDomainName {
+  string appsync_domain_name = 1 [json_name = "appsync_domain_name"];
+
+  string certificate_arn = 2 [json_name = "certificate_arn"];
+
+  string description = 3;
+
+  string domain_name = 4 [json_name = "domain_name"];
+
+  string hosted_zone_id = 5 [json_name = "hosted_zone_id"];
+
+  string id = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsAppsyncDomainNameApiAssociation version is 0
+message AwsAppsyncDomainNameApiAssociation {
+  string api_id = 1 [json_name = "api_id"];
+
+  string domain_name = 2 [json_name = "domain_name"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsAppsyncFunction version is 0
+message AwsAppsyncFunction {
+  string api_id = 1 [json_name = "api_id"];
+
+  string arn = 2;
+
+  string code = 3;
+
+  string data_source = 4 [json_name = "data_source"];
+
+  string description = 5;
+
+  string function_id = 6 [json_name = "function_id"];
+
+  string function_version = 7 [json_name = "function_version"];
+
+  string id = 8;
+
+  int64 max_batch_size = 9 [json_name = "max_batch_size"];
+
+  string name = 10;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string request_mapping_template = 12 [json_name = "request_mapping_template"];
+
+  string response_mapping_template = 13 [json_name = "response_mapping_template"];
+
+  Runtime runtime = 14;
+
+  SyncConfig sync_config = 15 [json_name = "sync_config"];
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message Runtime {
+    string name = 1;
+
+    string runtime_version = 2 [json_name = "runtime_version"];
+  }
+
+  message SyncConfig {
+    string conflict_detection = 1 [json_name = "conflict_detection"];
+
+    string conflict_handler = 2 [json_name = "conflict_handler"];
+
+    LambdaConflictHandlerConfig lambda_conflict_handler_config = 3 [json_name = "lambda_conflict_handler_config"];
+
+    message LambdaConflictHandlerConfig {
+      string lambda_conflict_handler_arn = 1 [json_name = "lambda_conflict_handler_arn"];
+    }
+  }
+}
+
+// AwsAppsyncGraphqlApi version is 0
+message AwsAppsyncGraphqlApi {
+  string api_type = 1 [json_name = "api_type"];
+
+  string arn = 2;
+
+  string authentication_type = 3 [json_name = "authentication_type"];
+
+  string id = 4;
+
+  string introspection_config = 5 [json_name = "introspection_config"];
+
+  string merged_api_execution_role_arn = 6 [json_name = "merged_api_execution_role_arn"];
+
+  string name = 7;
+
+  int64 query_depth_limit = 8 [json_name = "query_depth_limit"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  int64 resolver_count_limit = 10 [json_name = "resolver_count_limit"];
+
+  string schema = 11;
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  map<string, string> uris = 14;
+
+  string visibility = 15;
+
+  bool xray_enabled = 16 [json_name = "xray_enabled"];
+
+  repeated AdditionalAuthenticationProvider additional_authentication_provider = 17 [json_name = "additional_authentication_provider"];
+
+  EnhancedMetricsConfig enhanced_metrics_config = 18 [json_name = "enhanced_metrics_config"];
+
+  LambdaAuthorizerConfig lambda_authorizer_config = 19 [json_name = "lambda_authorizer_config"];
+
+  LogConfig log_config = 20 [json_name = "log_config"];
+
+  OpenidConnectConfig openid_connect_config = 21 [json_name = "openid_connect_config"];
+
+  UserPoolConfig user_pool_config = 22 [json_name = "user_pool_config"];
+
+  google.protobuf.Value for_each = 23 [json_name = "for_each"];
+
+  repeated string depends_on = 24 [json_name = "depends_on"];
+
+  int32 count = 25;
+
+  string provider = 26;
+
+  terraform.v1.Lifecycle lifecycle = 27;
+
+  message AdditionalAuthenticationProvider {
+    string authentication_type = 1 [json_name = "authentication_type"];
+
+    LambdaAuthorizerConfig lambda_authorizer_config = 2 [json_name = "lambda_authorizer_config"];
+
+    OpenidConnectConfig openid_connect_config = 3 [json_name = "openid_connect_config"];
+
+    UserPoolConfig user_pool_config = 4 [json_name = "user_pool_config"];
+
+    message LambdaAuthorizerConfig {
+      int64 authorizer_result_ttl_in_seconds = 1 [json_name = "authorizer_result_ttl_in_seconds"];
+
+      string authorizer_uri = 2 [json_name = "authorizer_uri"];
+
+      string identity_validation_expression = 3 [json_name = "identity_validation_expression"];
+    }
+
+    message OpenidConnectConfig {
+      int64 auth_ttl = 1 [json_name = "auth_ttl"];
+
+      string client_id = 2 [json_name = "client_id"];
+
+      int64 iat_ttl = 3 [json_name = "iat_ttl"];
+
+      string issuer = 4;
+    }
+
+    message UserPoolConfig {
+      string app_id_client_regex = 1 [json_name = "app_id_client_regex"];
+
+      string aws_region = 2 [json_name = "aws_region"];
+
+      string user_pool_id = 3 [json_name = "user_pool_id"];
+    }
+  }
+
+  message EnhancedMetricsConfig {
+    string data_source_level_metrics_behavior = 1 [json_name = "data_source_level_metrics_behavior"];
+
+    string operation_level_metrics_config = 2 [json_name = "operation_level_metrics_config"];
+
+    string resolver_level_metrics_behavior = 3 [json_name = "resolver_level_metrics_behavior"];
+  }
+
+  message LambdaAuthorizerConfig {
+    int64 authorizer_result_ttl_in_seconds = 1 [json_name = "authorizer_result_ttl_in_seconds"];
+
+    string authorizer_uri = 2 [json_name = "authorizer_uri"];
+
+    string identity_validation_expression = 3 [json_name = "identity_validation_expression"];
+  }
+
+  message LogConfig {
+    string cloudwatch_logs_role_arn = 1 [json_name = "cloudwatch_logs_role_arn"];
+
+    bool exclude_verbose_content = 2 [json_name = "exclude_verbose_content"];
+
+    string field_log_level = 3 [json_name = "field_log_level"];
+  }
+
+  message OpenidConnectConfig {
+    int64 auth_ttl = 1 [json_name = "auth_ttl"];
+
+    string client_id = 2 [json_name = "client_id"];
+
+    int64 iat_ttl = 3 [json_name = "iat_ttl"];
+
+    string issuer = 4;
+  }
+
+  message UserPoolConfig {
+    string app_id_client_regex = 1 [json_name = "app_id_client_regex"];
+
+    string aws_region = 2 [json_name = "aws_region"];
+
+    string default_action = 3 [json_name = "default_action"];
+
+    string user_pool_id = 4 [json_name = "user_pool_id"];
+  }
+}
+
+// AwsAppsyncResolver version is 0
+message AwsAppsyncResolver {
+  string api_id = 1 [json_name = "api_id"];
+
+  string arn = 2;
+
+  string code = 3;
+
+  string data_source = 4 [json_name = "data_source"];
+
+  string field = 5;
+
+  string id = 6;
+
+  string kind = 7;
+
+  int64 max_batch_size = 8 [json_name = "max_batch_size"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  string request_template = 10 [json_name = "request_template"];
+
+  string response_template = 11 [json_name = "response_template"];
+
+  string type = 12;
+
+  CachingConfig caching_config = 13 [json_name = "caching_config"];
+
+  PipelineConfig pipeline_config = 14 [json_name = "pipeline_config"];
+
+  Runtime runtime = 15;
+
+  SyncConfig sync_config = 16 [json_name = "sync_config"];
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message CachingConfig {
+    repeated string caching_keys = 1 [json_name = "caching_keys"];
+
+    int64 ttl = 2;
+  }
+
+  message PipelineConfig {
+    repeated string functions = 1;
+  }
+
+  message Runtime {
+    string name = 1;
+
+    string runtime_version = 2 [json_name = "runtime_version"];
+  }
+
+  message SyncConfig {
+    string conflict_detection = 1 [json_name = "conflict_detection"];
+
+    string conflict_handler = 2 [json_name = "conflict_handler"];
+
+    LambdaConflictHandlerConfig lambda_conflict_handler_config = 3 [json_name = "lambda_conflict_handler_config"];
+
+    message LambdaConflictHandlerConfig {
+      string lambda_conflict_handler_arn = 1 [json_name = "lambda_conflict_handler_arn"];
+    }
+  }
+}
+
+// AwsAppsyncSourceApiAssociation version is 0
+message AwsAppsyncSourceApiAssociation {
+  string arn = 1;
+
+  string association_id = 2 [json_name = "association_id"];
+
+  string description = 3;
+
+  string id = 4;
+
+  string merged_api_arn = 5 [json_name = "merged_api_arn"];
+
+  string merged_api_id = 6 [json_name = "merged_api_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string source_api_arn = 8 [json_name = "source_api_arn"];
+
+  repeated SourceApiAssociationConfig source_api_association_config = 9 [json_name = "source_api_association_config"];
+
+  string source_api_id = 10 [json_name = "source_api_id"];
+
+  repeated Timeouts timeouts = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message SourceApiAssociationConfig {
+    // merge_type: string
+    string merge_type = 1 [json_name = "merge_type"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsAppsyncType version is 0
+message AwsAppsyncType {
+  string api_id = 1 [json_name = "api_id"];
+
+  string arn = 2;
+
+  string definition = 3;
+
+  string description = 4;
+
+  string format = 5;
+
+  string id = 6;
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}

@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsDatapipelinePipeline version is 0
+message AwsDatapipelinePipeline {
+  string description = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  string pipeline_id = 4 [json_name = "pipeline_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsDatapipelinePipelineDefinition version is 0
+message AwsDatapipelinePipelineDefinition {
+  string id = 1;
+
+  repeated ParameterObject parameter_object = 2 [json_name = "parameter_object"];
+
+  string pipeline_id = 3 [json_name = "pipeline_id"];
+
+  repeated PipelineObject pipeline_object = 4 [json_name = "pipeline_object"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated ParameterValue parameter_value = 6 [json_name = "parameter_value"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message ParameterObject {
+    // attribute: set of object
+    repeated Attribute attribute = 1;
+
+    // id: string
+    string id = 2;
+
+    message Attribute {
+      // key: string
+      string key = 1;
+
+      // string_value: string
+      string string_value = 2 [json_name = "string_value"];
+    }
+  }
+
+  message PipelineObject {
+    // field: set of object
+    repeated Field field = 1;
+
+    // id: string
+    string id = 2;
+
+    // name: string
+    string name = 3;
+
+    message Field {
+      // key: string
+      string key = 1;
+
+      // ref_value: string
+      string ref_value = 2 [json_name = "ref_value"];
+
+      // string_value: string
+      string string_value = 3 [json_name = "string_value"];
+    }
+  }
+
+  message ParameterValue {
+    string id = 1;
+
+    string string_value = 2 [json_name = "string_value"];
+  }
+}

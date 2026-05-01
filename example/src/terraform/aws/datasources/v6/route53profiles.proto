@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsRoute53profilesProfiles version is 0
+message AwsRoute53profilesProfiles {
+  repeated Profiles profiles = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+
+  message Profiles {
+    // arn: string
+    string arn = 1;
+
+    // id: string
+    string id = 2;
+
+    // name: string
+    string name = 3;
+
+    // share_status: string
+    string share_status = 4 [json_name = "share_status"];
+  }
+}

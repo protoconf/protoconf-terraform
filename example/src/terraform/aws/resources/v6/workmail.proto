@@ -1,0 +1,292 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsWorkmailDefaultDomain version is 0
+message AwsWorkmailDefaultDomain {
+  // Mail domain name to set as the default.
+  string domain_name = 1 [json_name = "domain_name"];
+
+  // Identifier of the WorkMail organization.
+  string organization_id = 2 [json_name = "organization_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsWorkmailDomain version is 0
+message AwsWorkmailDomain {
+  // DKIM verification status for the domain.
+  string dkim_verification_status = 1 [json_name = "dkim_verification_status"];
+
+  // Mail domain name to register.
+  string domain_name = 2 [json_name = "domain_name"];
+
+  // Whether this domain is the default mail domain for the organization.
+  bool is_default = 3 [json_name = "is_default"];
+
+  // Whether this is the auto-provisioned test domain.
+  bool is_test_domain = 4 [json_name = "is_test_domain"];
+
+  // Identifier of the WorkMail organization.
+  string organization_id = 5 [json_name = "organization_id"];
+
+  // Domain ownership verification status.
+  string ownership_verification_status = 6 [json_name = "ownership_verification_status"];
+
+  repeated Records records = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Records {
+    // hostname: string
+    string hostname = 1;
+
+    // type: string
+    string type = 2;
+
+    // value: string
+    string value = 3;
+  }
+}
+
+// AwsWorkmailGroup version is 0
+message AwsWorkmailGroup {
+  // Timestamp when the group was disabled from WorkMail use.
+  string disabled_date = 1 [json_name = "disabled_date"];
+
+  // Primary email address used to register the group with WorkMail.
+  string email = 2;
+
+  // Timestamp when the group was enabled for WorkMail use.
+  string enabled_date = 3 [json_name = "enabled_date"];
+
+  // Identifier of the group.
+  string group_id = 4 [json_name = "group_id"];
+
+  // Whether to hide the group from the global address list.
+  bool hidden_from_global_address_list = 5 [json_name = "hidden_from_global_address_list"];
+
+  // Name of the group.
+  string name = 6;
+
+  // Identifier of the WorkMail organization where the group is managed.
+  string organization_id = 7 [json_name = "organization_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  // Current WorkMail state of the group.
+  string state = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsWorkmailOrganization version is 0
+message AwsWorkmailOrganization {
+  string arn = 1;
+
+  string completed_date = 2 [json_name = "completed_date"];
+
+  string default_mail_domain = 3 [json_name = "default_mail_domain"];
+
+  bool delete_directory = 4 [json_name = "delete_directory"];
+
+  bool delete_identity_center_application = 5 [json_name = "delete_identity_center_application"];
+
+  string directory_id = 6 [json_name = "directory_id"];
+
+  string directory_type = 7 [json_name = "directory_type"];
+
+  bool interoperability_enabled = 8 [json_name = "interoperability_enabled"];
+
+  string kms_key_arn = 9 [json_name = "kms_key_arn"];
+
+  string migration_admin = 10 [json_name = "migration_admin"];
+
+  string organization_alias = 11 [json_name = "organization_alias"];
+
+  string organization_id = 12 [json_name = "organization_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  string state = 14;
+
+  map<string, string> tags = 15;
+
+  map<string, string> tags_all = 16 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 17;
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsWorkmailUser version is 0
+message AwsWorkmailUser {
+  // City where the user is located.
+  string city = 1;
+
+  // Company associated with the user.
+  string company = 2;
+
+  // Country where the user is located.
+  string country = 3;
+
+  // Department associated with the user.
+  string department = 4;
+
+  // Timestamp when the user was disabled from WorkMail use.
+  string disabled_date = 5 [json_name = "disabled_date"];
+
+  // Display name of the user.
+  string display_name = 6 [json_name = "display_name"];
+
+  // Primary email address used to register the user with WorkMail.
+  string email = 7;
+
+  // Timestamp when the user was enabled for WorkMail use.
+  string enabled_date = 8 [json_name = "enabled_date"];
+
+  // First name of the user.
+  string first_name = 9 [json_name = "first_name"];
+
+  // Whether to hide the user from the global address list.
+  bool hidden_from_global_address_list = 10 [json_name = "hidden_from_global_address_list"];
+
+  // Identity store ID from IAM Identity Center associated with the user.
+  string identity_provider_identity_store_id = 11 [json_name = "identity_provider_identity_store_id"];
+
+  // User ID from IAM Identity Center associated with the user.
+  string identity_provider_user_id = 12 [json_name = "identity_provider_user_id"];
+
+  // Initials of the user.
+  string initials = 13;
+
+  // Job title of the user.
+  string job_title = 14 [json_name = "job_title"];
+
+  // Last name of the user.
+  string last_name = 15 [json_name = "last_name"];
+
+  // Timestamp when the mailbox was removed for the user.
+  string mailbox_deprovisioned_date = 16 [json_name = "mailbox_deprovisioned_date"];
+
+  // Timestamp when the mailbox was created for the user.
+  string mailbox_provisioned_date = 17 [json_name = "mailbox_provisioned_date"];
+
+  // Username of the user.
+  string name = 18;
+
+  // Office where the user is located.
+  string office = 19;
+
+  // Identifier of the WorkMail organization where the user is managed.
+  string organization_id = 20 [json_name = "organization_id"];
+
+  // Password to set for the user.
+  string password = 21;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 22;
+
+  // Current WorkMail state of the user.
+  string state = 23;
+
+  // Street address of the user.
+  string street = 24;
+
+  // Telephone number of the user.
+  string telephone = 25;
+
+  // Identifier of the user.
+  string user_id = 26 [json_name = "user_id"];
+
+  // Role assigned to the user.
+  string user_role = 27 [json_name = "user_role"];
+
+  // ZIP or postal code of the user.
+  string zip_code = 28 [json_name = "zip_code"];
+
+  google.protobuf.Value for_each = 29 [json_name = "for_each"];
+
+  repeated string depends_on = 30 [json_name = "depends_on"];
+
+  int32 count = 31;
+
+  string provider = 32;
+
+  terraform.v1.Lifecycle lifecycle = 33;
+}

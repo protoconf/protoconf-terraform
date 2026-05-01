@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsS3outpostsEndpoint version is 0
+message AwsS3outpostsEndpoint {
+  string access_type = 1 [json_name = "access_type"];
+
+  string arn = 2;
+
+  string cidr_block = 3 [json_name = "cidr_block"];
+
+  string creation_time = 4 [json_name = "creation_time"];
+
+  string customer_owned_ipv4_pool = 5 [json_name = "customer_owned_ipv4_pool"];
+
+  string id = 6;
+
+  repeated NetworkInterfaces network_interfaces = 7 [json_name = "network_interfaces"];
+
+  string outpost_id = 8 [json_name = "outpost_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  string security_group_id = 10 [json_name = "security_group_id"];
+
+  string subnet_id = 11 [json_name = "subnet_id"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message NetworkInterfaces {
+    // network_interface_id: string
+    string network_interface_id = 1 [json_name = "network_interface_id"];
+  }
+}

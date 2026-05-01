@@ -1,0 +1,965 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsImagebuilderComponent version is 0
+message AwsImagebuilderComponent {
+  string arn = 1;
+
+  string change_description = 2 [json_name = "change_description"];
+
+  string data = 3;
+
+  string date_created = 4 [json_name = "date_created"];
+
+  string description = 5;
+
+  bool encrypted = 6;
+
+  string id = 7;
+
+  string kms_key_id = 8 [json_name = "kms_key_id"];
+
+  string name = 9;
+
+  string owner = 10;
+
+  string platform = 11;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  repeated string supported_os_versions = 13 [json_name = "supported_os_versions"];
+
+  map<string, string> tags = 14;
+
+  string type = 15;
+
+  string version = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+}
+
+// AwsImagebuilderComponents version is 0
+message AwsImagebuilderComponents {
+  repeated string arns = 1;
+
+  string id = 2;
+
+  repeated string names = 3;
+
+  string owner = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated Filter filter = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+}
+
+// AwsImagebuilderContainerRecipe version is 0
+message AwsImagebuilderContainerRecipe {
+  string arn = 1;
+
+  repeated Component component = 2;
+
+  string container_type = 3 [json_name = "container_type"];
+
+  string date_created = 4 [json_name = "date_created"];
+
+  string description = 5;
+
+  string dockerfile_template_data = 6 [json_name = "dockerfile_template_data"];
+
+  bool encrypted = 7;
+
+  string id = 8;
+
+  repeated InstanceConfiguration instance_configuration = 9 [json_name = "instance_configuration"];
+
+  string kms_key_id = 10 [json_name = "kms_key_id"];
+
+  string name = 11;
+
+  string owner = 12;
+
+  string parent_image = 13 [json_name = "parent_image"];
+
+  string platform = 14;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 15;
+
+  map<string, string> tags = 16;
+
+  repeated TargetRepository target_repository = 17 [json_name = "target_repository"];
+
+  string version = 18;
+
+  string working_directory = 19 [json_name = "working_directory"];
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message Component {
+    // component_arn: string
+    string component_arn = 1 [json_name = "component_arn"];
+
+    // parameter: set of object
+    repeated Parameter parameter = 2;
+
+    message Parameter {
+      // name: string
+      string name = 1;
+
+      // value: string
+      string value = 2;
+    }
+  }
+
+  message InstanceConfiguration {
+    // block_device_mapping: set of object
+    repeated BlockDeviceMapping block_device_mapping = 1 [json_name = "block_device_mapping"];
+
+    // image: string
+    string image = 2;
+
+    message BlockDeviceMapping {
+      // device_name: string
+      string device_name = 1 [json_name = "device_name"];
+
+      // ebs: list of object
+      repeated Ebs ebs = 2;
+
+      // no_device: string
+      string no_device = 3 [json_name = "no_device"];
+
+      // virtual_name: string
+      string virtual_name = 4 [json_name = "virtual_name"];
+
+      message Ebs {
+        // delete_on_termination: bool
+        bool delete_on_termination = 1 [json_name = "delete_on_termination"];
+
+        // encrypted: bool
+        bool encrypted = 2;
+
+        // iops: number
+        int64 iops = 3;
+
+        // kms_key_id: string
+        string kms_key_id = 4 [json_name = "kms_key_id"];
+
+        // snapshot_id: string
+        string snapshot_id = 5 [json_name = "snapshot_id"];
+
+        // throughput: number
+        int64 throughput = 6;
+
+        // volume_size: number
+        int64 volume_size = 7 [json_name = "volume_size"];
+
+        // volume_type: string
+        string volume_type = 8 [json_name = "volume_type"];
+      }
+    }
+  }
+
+  message TargetRepository {
+    // repository_name: string
+    string repository_name = 1 [json_name = "repository_name"];
+
+    // service: string
+    string service = 2;
+  }
+}
+
+// AwsImagebuilderContainerRecipes version is 0
+message AwsImagebuilderContainerRecipes {
+  repeated string arns = 1;
+
+  string id = 2;
+
+  repeated string names = 3;
+
+  string owner = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated Filter filter = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+}
+
+// AwsImagebuilderDistributionConfiguration version is 0
+message AwsImagebuilderDistributionConfiguration {
+  string arn = 1;
+
+  string date_created = 2 [json_name = "date_created"];
+
+  string date_updated = 3 [json_name = "date_updated"];
+
+  string description = 4;
+
+  repeated Distribution distribution = 5;
+
+  string id = 6;
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Distribution {
+    // ami_distribution_configuration: set of object
+    repeated AmiDistributionConfiguration ami_distribution_configuration = 1 [json_name = "ami_distribution_configuration"];
+
+    // container_distribution_configuration: set of object
+    repeated ContainerDistributionConfiguration container_distribution_configuration = 2 [json_name = "container_distribution_configuration"];
+
+    // fast_launch_configuration: set of object
+    repeated FastLaunchConfiguration fast_launch_configuration = 3 [json_name = "fast_launch_configuration"];
+
+    // launch_template_configuration: set of object
+    repeated LaunchTemplateConfiguration launch_template_configuration = 4 [json_name = "launch_template_configuration"];
+
+    // license_configuration_arns: set of string
+    repeated string license_configuration_arns = 5 [json_name = "license_configuration_arns"];
+
+    // region: string
+    string region = 6;
+
+    // s3_export_configuration: set of object
+    repeated S3ExportConfiguration s3_export_configuration = 7 [json_name = "s3_export_configuration"];
+
+    // ssm_parameter_configuration: set of object
+    repeated SsmParameterConfiguration ssm_parameter_configuration = 8 [json_name = "ssm_parameter_configuration"];
+
+    message AmiDistributionConfiguration {
+      // ami_tags: map of string
+      map<string, string> ami_tags = 1 [json_name = "ami_tags"];
+
+      // description: string
+      string description = 2;
+
+      // kms_key_id: string
+      string kms_key_id = 3 [json_name = "kms_key_id"];
+
+      // launch_permission: set of object
+      repeated LaunchPermission launch_permission = 4 [json_name = "launch_permission"];
+
+      // name: string
+      string name = 5;
+
+      // target_account_ids: set of string
+      repeated string target_account_ids = 6 [json_name = "target_account_ids"];
+
+      message LaunchPermission {
+        // organization_arns: set of string
+        repeated string organization_arns = 1 [json_name = "organization_arns"];
+
+        // organizational_unit_arns: set of string
+        repeated string organizational_unit_arns = 2 [json_name = "organizational_unit_arns"];
+
+        // user_groups: set of string
+        repeated string user_groups = 3 [json_name = "user_groups"];
+
+        // user_ids: set of string
+        repeated string user_ids = 4 [json_name = "user_ids"];
+      }
+    }
+
+    message ContainerDistributionConfiguration {
+      // container_tags: set of string
+      repeated string container_tags = 1 [json_name = "container_tags"];
+
+      // description: string
+      string description = 2;
+
+      // target_repository: set of object
+      repeated TargetRepository target_repository = 3 [json_name = "target_repository"];
+
+      message TargetRepository {
+        // repository_name: string
+        string repository_name = 1 [json_name = "repository_name"];
+
+        // service: string
+        string service = 2;
+      }
+    }
+
+    message FastLaunchConfiguration {
+      // account_id: string
+      string account_id = 1 [json_name = "account_id"];
+
+      // enabled: bool
+      bool enabled = 2;
+
+      // launch_template: set of object
+      repeated LaunchTemplate launch_template = 3 [json_name = "launch_template"];
+
+      // max_parallel_launches: number
+      int64 max_parallel_launches = 4 [json_name = "max_parallel_launches"];
+
+      // snapshot_configuration: set of object
+      repeated SnapshotConfiguration snapshot_configuration = 5 [json_name = "snapshot_configuration"];
+
+      message LaunchTemplate {
+        // launch_template_id: string
+        string launch_template_id = 1 [json_name = "launch_template_id"];
+
+        // launch_template_name: string
+        string launch_template_name = 2 [json_name = "launch_template_name"];
+
+        // launch_template_version: string
+        string launch_template_version = 3 [json_name = "launch_template_version"];
+      }
+
+      message SnapshotConfiguration {
+        // target_resource_count: number
+        int64 target_resource_count = 1 [json_name = "target_resource_count"];
+      }
+    }
+
+    message LaunchTemplateConfiguration {
+      // account_id: string
+      string account_id = 1 [json_name = "account_id"];
+
+      // default: bool
+      bool default = 2;
+
+      // launch_template_id: string
+      string launch_template_id = 3 [json_name = "launch_template_id"];
+    }
+
+    message S3ExportConfiguration {
+      // disk_image_format: string
+      string disk_image_format = 1 [json_name = "disk_image_format"];
+
+      // role_name: string
+      string role_name = 2 [json_name = "role_name"];
+
+      // s3_bucket: string
+      string s3_bucket = 3 [json_name = "s3_bucket"];
+
+      // s3_prefix: string
+      string s3_prefix = 4 [json_name = "s3_prefix"];
+    }
+
+    message SsmParameterConfiguration {
+      // ami_account_id: string
+      string ami_account_id = 1 [json_name = "ami_account_id"];
+
+      // data_type: string
+      string data_type = 2 [json_name = "data_type"];
+
+      // parameter_name: string
+      string parameter_name = 3 [json_name = "parameter_name"];
+    }
+  }
+}
+
+// AwsImagebuilderDistributionConfigurations version is 0
+message AwsImagebuilderDistributionConfigurations {
+  repeated string arns = 1;
+
+  string id = 2;
+
+  repeated string names = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated Filter filter = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+}
+
+// AwsImagebuilderImage version is 0
+message AwsImagebuilderImage {
+  string arn = 1;
+
+  string build_version_arn = 2 [json_name = "build_version_arn"];
+
+  string container_recipe_arn = 3 [json_name = "container_recipe_arn"];
+
+  string date_created = 4 [json_name = "date_created"];
+
+  string distribution_configuration_arn = 5 [json_name = "distribution_configuration_arn"];
+
+  bool enhanced_image_metadata_enabled = 6 [json_name = "enhanced_image_metadata_enabled"];
+
+  string id = 7;
+
+  string image_recipe_arn = 8 [json_name = "image_recipe_arn"];
+
+  repeated ImageScanningConfiguration image_scanning_configuration = 9 [json_name = "image_scanning_configuration"];
+
+  repeated ImageTestsConfiguration image_tests_configuration = 10 [json_name = "image_tests_configuration"];
+
+  string infrastructure_configuration_arn = 11 [json_name = "infrastructure_configuration_arn"];
+
+  string name = 12;
+
+  string os_version = 13 [json_name = "os_version"];
+
+  repeated OutputResources output_resources = 14 [json_name = "output_resources"];
+
+  string platform = 15;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 16;
+
+  map<string, string> tags = 17;
+
+  string version = 18;
+
+  google.protobuf.Value for_each = 19 [json_name = "for_each"];
+
+  repeated string depends_on = 20 [json_name = "depends_on"];
+
+  int32 count = 21;
+
+  string provider = 22;
+
+  terraform.v1.Lifecycle lifecycle = 23;
+
+  message ImageScanningConfiguration {
+    // ecr_configuration: list of object
+    repeated EcrConfiguration ecr_configuration = 1 [json_name = "ecr_configuration"];
+
+    // image_scanning_enabled: bool
+    bool image_scanning_enabled = 2 [json_name = "image_scanning_enabled"];
+
+    message EcrConfiguration {
+      // container_tags: set of string
+      repeated string container_tags = 1 [json_name = "container_tags"];
+
+      // repository_name: string
+      string repository_name = 2 [json_name = "repository_name"];
+    }
+  }
+
+  message ImageTestsConfiguration {
+    // image_tests_enabled: bool
+    bool image_tests_enabled = 1 [json_name = "image_tests_enabled"];
+
+    // timeout_minutes: number
+    int64 timeout_minutes = 2 [json_name = "timeout_minutes"];
+  }
+
+  message OutputResources {
+    // amis: set of object
+    repeated Amis amis = 1;
+
+    // containers: set of object
+    repeated Containers containers = 2;
+
+    message Amis {
+      // account_id: string
+      string account_id = 1 [json_name = "account_id"];
+
+      // description: string
+      string description = 2;
+
+      // image: string
+      string image = 3;
+
+      // name: string
+      string name = 4;
+
+      // region: string
+      string region = 5;
+    }
+
+    message Containers {
+      // image_uris: set of string
+      repeated string image_uris = 1 [json_name = "image_uris"];
+
+      // region: string
+      string region = 2;
+    }
+  }
+}
+
+// AwsImagebuilderImagePipeline version is 0
+message AwsImagebuilderImagePipeline {
+  string arn = 1;
+
+  string container_recipe_arn = 2 [json_name = "container_recipe_arn"];
+
+  string date_created = 3 [json_name = "date_created"];
+
+  string date_last_run = 4 [json_name = "date_last_run"];
+
+  string date_next_run = 5 [json_name = "date_next_run"];
+
+  string date_updated = 6 [json_name = "date_updated"];
+
+  string description = 7;
+
+  string distribution_configuration_arn = 8 [json_name = "distribution_configuration_arn"];
+
+  bool enhanced_image_metadata_enabled = 9 [json_name = "enhanced_image_metadata_enabled"];
+
+  string id = 10;
+
+  string image_recipe_arn = 11 [json_name = "image_recipe_arn"];
+
+  repeated ImageScanningConfiguration image_scanning_configuration = 12 [json_name = "image_scanning_configuration"];
+
+  repeated ImageTestsConfiguration image_tests_configuration = 13 [json_name = "image_tests_configuration"];
+
+  string infrastructure_configuration_arn = 14 [json_name = "infrastructure_configuration_arn"];
+
+  string name = 15;
+
+  string platform = 16;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 17;
+
+  repeated Schedule schedule = 18;
+
+  string status = 19;
+
+  map<string, string> tags = 20;
+
+  google.protobuf.Value for_each = 21 [json_name = "for_each"];
+
+  repeated string depends_on = 22 [json_name = "depends_on"];
+
+  int32 count = 23;
+
+  string provider = 24;
+
+  terraform.v1.Lifecycle lifecycle = 25;
+
+  message ImageScanningConfiguration {
+    // ecr_configuration: list of object
+    repeated EcrConfiguration ecr_configuration = 1 [json_name = "ecr_configuration"];
+
+    // image_scanning_enabled: bool
+    bool image_scanning_enabled = 2 [json_name = "image_scanning_enabled"];
+
+    message EcrConfiguration {
+      // container_tags: set of string
+      repeated string container_tags = 1 [json_name = "container_tags"];
+
+      // repository_name: string
+      string repository_name = 2 [json_name = "repository_name"];
+    }
+  }
+
+  message ImageTestsConfiguration {
+    // image_tests_enabled: bool
+    bool image_tests_enabled = 1 [json_name = "image_tests_enabled"];
+
+    // timeout_minutes: number
+    int64 timeout_minutes = 2 [json_name = "timeout_minutes"];
+  }
+
+  message Schedule {
+    // pipeline_execution_start_condition: string
+    string pipeline_execution_start_condition = 1 [json_name = "pipeline_execution_start_condition"];
+
+    // schedule_expression: string
+    string schedule_expression = 2 [json_name = "schedule_expression"];
+  }
+}
+
+// AwsImagebuilderImagePipelines version is 0
+message AwsImagebuilderImagePipelines {
+  repeated string arns = 1;
+
+  string id = 2;
+
+  repeated string names = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated Filter filter = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+}
+
+// AwsImagebuilderImageRecipe version is 0
+message AwsImagebuilderImageRecipe {
+  map<string, string> ami_tags = 1 [json_name = "ami_tags"];
+
+  string arn = 2;
+
+  repeated BlockDeviceMapping block_device_mapping = 3 [json_name = "block_device_mapping"];
+
+  repeated Component component = 4;
+
+  string date_created = 5 [json_name = "date_created"];
+
+  string description = 6;
+
+  string id = 7;
+
+  string name = 8;
+
+  string owner = 9;
+
+  string parent_image = 10 [json_name = "parent_image"];
+
+  string platform = 11;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  map<string, string> tags = 13;
+
+  string user_data_base64 = 14 [json_name = "user_data_base64"];
+
+  string version = 15;
+
+  string working_directory = 16 [json_name = "working_directory"];
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message BlockDeviceMapping {
+    // device_name: string
+    string device_name = 1 [json_name = "device_name"];
+
+    // ebs: list of object
+    repeated Ebs ebs = 2;
+
+    // no_device: string
+    string no_device = 3 [json_name = "no_device"];
+
+    // virtual_name: string
+    string virtual_name = 4 [json_name = "virtual_name"];
+
+    message Ebs {
+      // delete_on_termination: string
+      string delete_on_termination = 1 [json_name = "delete_on_termination"];
+
+      // encrypted: string
+      string encrypted = 2;
+
+      // iops: number
+      int64 iops = 3;
+
+      // kms_key_id: string
+      string kms_key_id = 4 [json_name = "kms_key_id"];
+
+      // snapshot_id: string
+      string snapshot_id = 5 [json_name = "snapshot_id"];
+
+      // throughput: number
+      int64 throughput = 6;
+
+      // volume_size: number
+      int64 volume_size = 7 [json_name = "volume_size"];
+
+      // volume_type: string
+      string volume_type = 8 [json_name = "volume_type"];
+    }
+  }
+
+  message Component {
+    // component_arn: string
+    string component_arn = 1 [json_name = "component_arn"];
+
+    // parameter: set of object
+    repeated Parameter parameter = 2;
+
+    message Parameter {
+      // name: string
+      string name = 1;
+
+      // value: string
+      string value = 2;
+    }
+  }
+}
+
+// AwsImagebuilderImageRecipes version is 0
+message AwsImagebuilderImageRecipes {
+  repeated string arns = 1;
+
+  string id = 2;
+
+  repeated string names = 3;
+
+  string owner = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated Filter filter = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+}
+
+// AwsImagebuilderInfrastructureConfiguration version is 0
+message AwsImagebuilderInfrastructureConfiguration {
+  string arn = 1;
+
+  string date_created = 2 [json_name = "date_created"];
+
+  string date_updated = 3 [json_name = "date_updated"];
+
+  string description = 4;
+
+  string id = 5;
+
+  repeated InstanceMetadataOptions instance_metadata_options = 6 [json_name = "instance_metadata_options"];
+
+  string instance_profile_name = 7 [json_name = "instance_profile_name"];
+
+  repeated string instance_types = 8 [json_name = "instance_types"];
+
+  string key_pair = 9 [json_name = "key_pair"];
+
+  repeated Logging logging = 10;
+
+  string name = 11;
+
+  repeated Placement placement = 12;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  map<string, string> resource_tags = 14 [json_name = "resource_tags"];
+
+  repeated string security_group_ids = 15 [json_name = "security_group_ids"];
+
+  string sns_topic_arn = 16 [json_name = "sns_topic_arn"];
+
+  string subnet_id = 17 [json_name = "subnet_id"];
+
+  map<string, string> tags = 18;
+
+  bool terminate_instance_on_failure = 19 [json_name = "terminate_instance_on_failure"];
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message InstanceMetadataOptions {
+    // http_put_response_hop_limit: number
+    int64 http_put_response_hop_limit = 1 [json_name = "http_put_response_hop_limit"];
+
+    // http_tokens: string
+    string http_tokens = 2 [json_name = "http_tokens"];
+  }
+
+  message Logging {
+    // s3_logs: list of object
+    repeated S3Logs s3_logs = 1 [json_name = "s3_logs"];
+
+    message S3Logs {
+      // s3_bucket_name: string
+      string s3_bucket_name = 1 [json_name = "s3_bucket_name"];
+
+      // s3_key_prefix: string
+      string s3_key_prefix = 2 [json_name = "s3_key_prefix"];
+    }
+  }
+
+  message Placement {
+    // availability_zone: string
+    string availability_zone = 1 [json_name = "availability_zone"];
+
+    // host_id: string
+    string host_id = 2 [json_name = "host_id"];
+
+    // host_resource_group_arn: string
+    string host_resource_group_arn = 3 [json_name = "host_resource_group_arn"];
+
+    // tenancy: string
+    string tenancy = 4;
+  }
+}
+
+// AwsImagebuilderInfrastructureConfigurations version is 0
+message AwsImagebuilderInfrastructureConfigurations {
+  repeated string arns = 1;
+
+  string id = 2;
+
+  repeated string names = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated Filter filter = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+}

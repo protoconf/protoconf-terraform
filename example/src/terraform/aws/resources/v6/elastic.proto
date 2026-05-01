@@ -1,0 +1,228 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsElasticBeanstalkApplication version is 0
+message AwsElasticBeanstalkApplication {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  AppversionLifecycle appversion_lifecycle = 8 [json_name = "appversion_lifecycle"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message AppversionLifecycle {
+    bool delete_source_from_s3 = 1 [json_name = "delete_source_from_s3"];
+
+    int64 max_age_in_days = 2 [json_name = "max_age_in_days"];
+
+    int64 max_count = 3 [json_name = "max_count"];
+
+    string service_role = 4 [json_name = "service_role"];
+  }
+}
+
+// AwsElasticBeanstalkApplicationVersion version is 0
+message AwsElasticBeanstalkApplicationVersion {
+  string application = 1;
+
+  string arn = 2;
+
+  string bucket = 3;
+
+  string description = 4;
+
+  bool force_delete = 5 [json_name = "force_delete"];
+
+  string id = 6;
+
+  string key = 7;
+
+  string name = 8;
+
+  bool process = 9;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+}
+
+// AwsElasticBeanstalkConfigurationTemplate version is 0
+message AwsElasticBeanstalkConfigurationTemplate {
+  string application = 1;
+
+  string description = 2;
+
+  string environment_id = 3 [json_name = "environment_id"];
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string solution_stack_name = 7 [json_name = "solution_stack_name"];
+
+  repeated Setting setting = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Setting {
+    string name = 1;
+
+    string namespace = 2;
+
+    string resource = 3;
+
+    string value = 4;
+  }
+}
+
+// AwsElasticBeanstalkEnvironment version is 1
+message AwsElasticBeanstalkEnvironment {
+  repeated AllSettings all_settings = 1 [json_name = "all_settings"];
+
+  string application = 2;
+
+  string arn = 3;
+
+  repeated string autoscaling_groups = 4 [json_name = "autoscaling_groups"];
+
+  string cname = 5;
+
+  string cname_prefix = 6 [json_name = "cname_prefix"];
+
+  string description = 7;
+
+  string endpoint_url = 8 [json_name = "endpoint_url"];
+
+  string id = 9;
+
+  repeated string instances = 10;
+
+  repeated string launch_configurations = 11 [json_name = "launch_configurations"];
+
+  repeated string load_balancers = 12 [json_name = "load_balancers"];
+
+  string name = 13;
+
+  string platform_arn = 14 [json_name = "platform_arn"];
+
+  string poll_interval = 15 [json_name = "poll_interval"];
+
+  repeated string queues = 16;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 17;
+
+  string solution_stack_name = 18 [json_name = "solution_stack_name"];
+
+  map<string, string> tags = 19;
+
+  map<string, string> tags_all = 20 [json_name = "tags_all"];
+
+  string template_name = 21 [json_name = "template_name"];
+
+  string tier = 22;
+
+  repeated string triggers = 23;
+
+  string version_label = 24 [json_name = "version_label"];
+
+  string wait_for_ready_timeout = 25 [json_name = "wait_for_ready_timeout"];
+
+  repeated Setting setting = 26;
+
+  google.protobuf.Value for_each = 27 [json_name = "for_each"];
+
+  repeated string depends_on = 28 [json_name = "depends_on"];
+
+  int32 count = 29;
+
+  string provider = 30;
+
+  terraform.v1.Lifecycle lifecycle = 31;
+
+  message AllSettings {
+    // name: string
+    string name = 1;
+
+    // namespace: string
+    string namespace = 2;
+
+    // resource: string
+    string resource = 3;
+
+    // value: string
+    string value = 4;
+  }
+
+  message Setting {
+    string name = 1;
+
+    string namespace = 2;
+
+    string resource = 3;
+
+    string value = 4;
+  }
+}

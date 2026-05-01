@@ -1,0 +1,298 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsWorkspacesConnectionAlias version is 0
+message AwsWorkspacesConnectionAlias {
+  // The connection string specified for the connection alias. The connection string
+  // must be in the form of a fully qualified domain name (FQDN), such as
+  // www.example.com.
+  string connection_string = 1 [json_name = "connection_string"];
+
+  string id = 2;
+
+  // The identifier of the Amazon Web Services account that owns the connection alias.
+  string owner_account_id = 3 [json_name = "owner_account_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  // The current state of the connection alias.
+  string state = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsWorkspacesDirectory version is 0
+message AwsWorkspacesDirectory {
+  string alias = 1;
+
+  string customer_user_name = 2 [json_name = "customer_user_name"];
+
+  string directory_id = 3 [json_name = "directory_id"];
+
+  string directory_name = 4 [json_name = "directory_name"];
+
+  string directory_type = 5 [json_name = "directory_type"];
+
+  repeated string dns_ip_addresses = 6 [json_name = "dns_ip_addresses"];
+
+  string iam_role_id = 7 [json_name = "iam_role_id"];
+
+  string id = 8;
+
+  repeated string ip_group_ids = 9 [json_name = "ip_group_ids"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  string registration_code = 11 [json_name = "registration_code"];
+
+  repeated string subnet_ids = 12 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 13;
+
+  map<string, string> tags_all = 14 [json_name = "tags_all"];
+
+  string tenancy = 15;
+
+  string user_identity_type = 16 [json_name = "user_identity_type"];
+
+  string workspace_directory_description = 17 [json_name = "workspace_directory_description"];
+
+  string workspace_directory_name = 18 [json_name = "workspace_directory_name"];
+
+  string workspace_security_group_id = 19 [json_name = "workspace_security_group_id"];
+
+  string workspace_type = 20 [json_name = "workspace_type"];
+
+  ActiveDirectoryConfig active_directory_config = 21 [json_name = "active_directory_config"];
+
+  CertificateBasedAuthProperties certificate_based_auth_properties = 22 [json_name = "certificate_based_auth_properties"];
+
+  SamlProperties saml_properties = 23 [json_name = "saml_properties"];
+
+  SelfServicePermissions self_service_permissions = 24 [json_name = "self_service_permissions"];
+
+  WorkspaceAccessProperties workspace_access_properties = 25 [json_name = "workspace_access_properties"];
+
+  WorkspaceCreationProperties workspace_creation_properties = 26 [json_name = "workspace_creation_properties"];
+
+  google.protobuf.Value for_each = 27 [json_name = "for_each"];
+
+  repeated string depends_on = 28 [json_name = "depends_on"];
+
+  int32 count = 29;
+
+  string provider = 30;
+
+  terraform.v1.Lifecycle lifecycle = 31;
+
+  message ActiveDirectoryConfig {
+    string domain_name = 1 [json_name = "domain_name"];
+
+    string service_account_secret_arn = 2 [json_name = "service_account_secret_arn"];
+  }
+
+  message CertificateBasedAuthProperties {
+    string certificate_authority_arn = 1 [json_name = "certificate_authority_arn"];
+
+    string status = 2;
+  }
+
+  message SamlProperties {
+    string relay_state_parameter_name = 1 [json_name = "relay_state_parameter_name"];
+
+    string status = 2;
+
+    string user_access_url = 3 [json_name = "user_access_url"];
+  }
+
+  message SelfServicePermissions {
+    bool change_compute_type = 1 [json_name = "change_compute_type"];
+
+    bool increase_volume_size = 2 [json_name = "increase_volume_size"];
+
+    bool rebuild_workspace = 3 [json_name = "rebuild_workspace"];
+
+    bool restart_workspace = 4 [json_name = "restart_workspace"];
+
+    bool switch_running_mode = 5 [json_name = "switch_running_mode"];
+  }
+
+  message WorkspaceAccessProperties {
+    string device_type_android = 1 [json_name = "device_type_android"];
+
+    string device_type_chromeos = 2 [json_name = "device_type_chromeos"];
+
+    string device_type_ios = 3 [json_name = "device_type_ios"];
+
+    string device_type_linux = 4 [json_name = "device_type_linux"];
+
+    string device_type_osx = 5 [json_name = "device_type_osx"];
+
+    string device_type_web = 6 [json_name = "device_type_web"];
+
+    string device_type_windows = 7 [json_name = "device_type_windows"];
+
+    string device_type_zeroclient = 8 [json_name = "device_type_zeroclient"];
+  }
+
+  message WorkspaceCreationProperties {
+    string custom_security_group_id = 1 [json_name = "custom_security_group_id"];
+
+    string default_ou = 2 [json_name = "default_ou"];
+
+    bool enable_internet_access = 3 [json_name = "enable_internet_access"];
+
+    bool enable_maintenance_mode = 4 [json_name = "enable_maintenance_mode"];
+
+    bool user_enabled_as_local_administrator = 5 [json_name = "user_enabled_as_local_administrator"];
+  }
+}
+
+// AwsWorkspacesIpGroup version is 0
+message AwsWorkspacesIpGroup {
+  string description = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  map<string, string> tags = 5;
+
+  map<string, string> tags_all = 6 [json_name = "tags_all"];
+
+  repeated Rules rules = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message Rules {
+    string description = 1;
+
+    string source = 2;
+  }
+}
+
+// AwsWorkspacesWorkspace version is 0
+message AwsWorkspacesWorkspace {
+  string bundle_id = 1 [json_name = "bundle_id"];
+
+  string computer_name = 2 [json_name = "computer_name"];
+
+  string directory_id = 3 [json_name = "directory_id"];
+
+  string id = 4;
+
+  string ip_address = 5 [json_name = "ip_address"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  bool root_volume_encryption_enabled = 7 [json_name = "root_volume_encryption_enabled"];
+
+  string state = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  string user_name = 11 [json_name = "user_name"];
+
+  bool user_volume_encryption_enabled = 12 [json_name = "user_volume_encryption_enabled"];
+
+  string volume_encryption_key = 13 [json_name = "volume_encryption_key"];
+
+  repeated Timeouts timeouts = 14;
+
+  WorkspaceProperties workspace_properties = 15 [json_name = "workspace_properties"];
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+
+  message WorkspaceProperties {
+    string compute_type_name = 1 [json_name = "compute_type_name"];
+
+    int64 root_volume_size_gib = 2 [json_name = "root_volume_size_gib"];
+
+    string running_mode = 3 [json_name = "running_mode"];
+
+    int64 running_mode_auto_stop_timeout_in_minutes = 4 [
+      json_name = "running_mode_auto_stop_timeout_in_minutes"
+    ];
+
+    int64 user_volume_size_gib = 5 [json_name = "user_volume_size_gib"];
+  }
+}

@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsFlowLog version is 1
+message AwsFlowLog {
+  string arn = 1;
+
+  string deliver_cross_account_role = 2 [json_name = "deliver_cross_account_role"];
+
+  string eni_id = 3 [json_name = "eni_id"];
+
+  string iam_role_arn = 4 [json_name = "iam_role_arn"];
+
+  string id = 5;
+
+  string log_destination = 6 [json_name = "log_destination"];
+
+  string log_destination_type = 7 [json_name = "log_destination_type"];
+
+  string log_format = 8 [json_name = "log_format"];
+
+  int64 max_aggregation_interval = 9 [json_name = "max_aggregation_interval"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  string regional_nat_gateway_id = 11 [json_name = "regional_nat_gateway_id"];
+
+  string subnet_id = 12 [json_name = "subnet_id"];
+
+  map<string, string> tags = 13;
+
+  map<string, string> tags_all = 14 [json_name = "tags_all"];
+
+  string traffic_type = 15 [json_name = "traffic_type"];
+
+  string transit_gateway_attachment_id = 16 [json_name = "transit_gateway_attachment_id"];
+
+  string transit_gateway_id = 17 [json_name = "transit_gateway_id"];
+
+  string vpc_id = 18 [json_name = "vpc_id"];
+
+  DestinationOptions destination_options = 19 [json_name = "destination_options"];
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message DestinationOptions {
+    string file_format = 1 [json_name = "file_format"];
+
+    bool hive_compatible_partitions = 2 [json_name = "hive_compatible_partitions"];
+
+    bool per_hour_partition = 3 [json_name = "per_hour_partition"];
+  }
+}

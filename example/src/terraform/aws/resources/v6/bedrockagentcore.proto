@@ -1,0 +1,1444 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsBedrockagentcoreAgentRuntime version is 0
+message AwsBedrockagentcoreAgentRuntime {
+  string agent_runtime_arn = 1 [json_name = "agent_runtime_arn"];
+
+  string agent_runtime_id = 2 [json_name = "agent_runtime_id"];
+
+  string agent_runtime_name = 3 [json_name = "agent_runtime_name"];
+
+  string agent_runtime_version = 4 [json_name = "agent_runtime_version"];
+
+  string description = 5;
+
+  map<string, string> environment_variables = 6 [json_name = "environment_variables"];
+
+  repeated LifecycleConfiguration lifecycle_configuration = 7 [json_name = "lifecycle_configuration"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  string role_arn = 9 [json_name = "role_arn"];
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  repeated WorkloadIdentityDetails workload_identity_details = 12 [json_name = "workload_identity_details"];
+
+  repeated AgentRuntimeArtifact agent_runtime_artifact = 13 [json_name = "agent_runtime_artifact"];
+
+  repeated AuthorizerConfiguration authorizer_configuration = 14 [json_name = "authorizer_configuration"];
+
+  repeated NetworkConfiguration network_configuration = 15 [json_name = "network_configuration"];
+
+  repeated ProtocolConfiguration protocol_configuration = 16 [json_name = "protocol_configuration"];
+
+  repeated RequestHeaderConfiguration request_header_configuration = 17 [json_name = "request_header_configuration"];
+
+  repeated Timeouts timeouts = 18;
+
+  google.protobuf.Value for_each = 19 [json_name = "for_each"];
+
+  repeated string depends_on = 20 [json_name = "depends_on"];
+
+  int32 count = 21;
+
+  string provider = 22;
+
+  terraform.v1.Lifecycle lifecycle = 23;
+
+  message LifecycleConfiguration {
+    // idle_runtime_session_timeout: number
+    int64 idle_runtime_session_timeout = 1 [json_name = "idle_runtime_session_timeout"];
+
+    // max_lifetime: number
+    int64 max_lifetime = 2 [json_name = "max_lifetime"];
+  }
+
+  message WorkloadIdentityDetails {
+    // workload_identity_arn: string
+    string workload_identity_arn = 1 [json_name = "workload_identity_arn"];
+  }
+
+  message AgentRuntimeArtifact {
+    repeated CodeConfiguration code_configuration = 1 [json_name = "code_configuration"];
+
+    repeated ContainerConfiguration container_configuration = 2 [json_name = "container_configuration"];
+
+    message CodeConfiguration {
+      repeated string entry_point = 1 [json_name = "entry_point"];
+
+      string runtime = 2;
+
+      repeated Code code = 3;
+
+      message Code {
+        repeated S3 s3 = 1;
+
+        message S3 {
+          string bucket = 1;
+
+          string prefix = 2;
+
+          string version_id = 3 [json_name = "version_id"];
+        }
+      }
+    }
+
+    message ContainerConfiguration {
+      string container_uri = 1 [json_name = "container_uri"];
+    }
+  }
+
+  message AuthorizerConfiguration {
+    repeated CustomJwtAuthorizer custom_jwt_authorizer = 1 [json_name = "custom_jwt_authorizer"];
+
+    message CustomJwtAuthorizer {
+      repeated string allowed_audience = 1 [json_name = "allowed_audience"];
+
+      repeated string allowed_clients = 2 [json_name = "allowed_clients"];
+
+      repeated string allowed_scopes = 3 [json_name = "allowed_scopes"];
+
+      string discovery_url = 4 [json_name = "discovery_url"];
+
+      repeated CustomClaim custom_claim = 5 [json_name = "custom_claim"];
+
+      message CustomClaim {
+        string inbound_token_claim_name = 1 [json_name = "inbound_token_claim_name"];
+
+        string inbound_token_claim_value_type = 2 [json_name = "inbound_token_claim_value_type"];
+
+        repeated AuthorizingClaimMatchValue authorizing_claim_match_value = 3 [json_name = "authorizing_claim_match_value"];
+
+        message AuthorizingClaimMatchValue {
+          string claim_match_operator = 1 [json_name = "claim_match_operator"];
+
+          repeated ClaimMatchValue claim_match_value = 2 [json_name = "claim_match_value"];
+
+          message ClaimMatchValue {
+            string match_value_string = 1 [json_name = "match_value_string"];
+
+            repeated string match_value_string_list = 2 [json_name = "match_value_string_list"];
+          }
+        }
+      }
+    }
+  }
+
+  message NetworkConfiguration {
+    string network_mode = 1 [json_name = "network_mode"];
+
+    repeated NetworkModeConfig network_mode_config = 2 [json_name = "network_mode_config"];
+
+    message NetworkModeConfig {
+      repeated string security_groups = 1 [json_name = "security_groups"];
+
+      repeated string subnets = 2;
+    }
+  }
+
+  message ProtocolConfiguration {
+    string server_protocol = 1 [json_name = "server_protocol"];
+  }
+
+  message RequestHeaderConfiguration {
+    repeated string request_header_allowlist = 1 [json_name = "request_header_allowlist"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsBedrockagentcoreAgentRuntimeEndpoint version is 0
+message AwsBedrockagentcoreAgentRuntimeEndpoint {
+  string agent_runtime_arn = 1 [json_name = "agent_runtime_arn"];
+
+  string agent_runtime_endpoint_arn = 2 [json_name = "agent_runtime_endpoint_arn"];
+
+  string agent_runtime_id = 3 [json_name = "agent_runtime_id"];
+
+  string agent_runtime_version = 4 [json_name = "agent_runtime_version"];
+
+  string description = 5;
+
+  string name = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsBedrockagentcoreApiKeyCredentialProvider version is 0
+message AwsBedrockagentcoreApiKeyCredentialProvider {
+  string api_key = 1 [json_name = "api_key"];
+
+  repeated ApiKeySecretArn api_key_secret_arn = 2 [json_name = "api_key_secret_arn"];
+
+  string api_key_wo = 3 [json_name = "api_key_wo"];
+
+  int64 api_key_wo_version = 4 [json_name = "api_key_wo_version"];
+
+  string credential_provider_arn = 5 [json_name = "credential_provider_arn"];
+
+  string name = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message ApiKeySecretArn {
+    // secret_arn: string
+    string secret_arn = 1 [json_name = "secret_arn"];
+  }
+}
+
+// AwsBedrockagentcoreBrowser version is 0
+message AwsBedrockagentcoreBrowser {
+  string browser_arn = 1 [json_name = "browser_arn"];
+
+  string browser_id = 2 [json_name = "browser_id"];
+
+  string description = 3;
+
+  string execution_role_arn = 4 [json_name = "execution_role_arn"];
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  repeated NetworkConfiguration network_configuration = 9 [json_name = "network_configuration"];
+
+  repeated Recording recording = 10;
+
+  repeated Timeouts timeouts = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message NetworkConfiguration {
+    string network_mode = 1 [json_name = "network_mode"];
+
+    repeated VpcConfig vpc_config = 2 [json_name = "vpc_config"];
+
+    message VpcConfig {
+      repeated string security_groups = 1 [json_name = "security_groups"];
+
+      repeated string subnets = 2;
+    }
+  }
+
+  message Recording {
+    bool enabled = 1;
+
+    repeated S3Location s3_location = 2 [json_name = "s3_location"];
+
+    message S3Location {
+      string bucket = 1;
+
+      string prefix = 2;
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsBedrockagentcoreCodeInterpreter version is 0
+message AwsBedrockagentcoreCodeInterpreter {
+  string code_interpreter_arn = 1 [json_name = "code_interpreter_arn"];
+
+  string code_interpreter_id = 2 [json_name = "code_interpreter_id"];
+
+  string description = 3;
+
+  string execution_role_arn = 4 [json_name = "execution_role_arn"];
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  repeated NetworkConfiguration network_configuration = 9 [json_name = "network_configuration"];
+
+  repeated Timeouts timeouts = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message NetworkConfiguration {
+    string network_mode = 1 [json_name = "network_mode"];
+
+    repeated VpcConfig vpc_config = 2 [json_name = "vpc_config"];
+
+    message VpcConfig {
+      repeated string security_groups = 1 [json_name = "security_groups"];
+
+      repeated string subnets = 2;
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsBedrockagentcoreGateway version is 0
+message AwsBedrockagentcoreGateway {
+  string authorizer_type = 1 [json_name = "authorizer_type"];
+
+  string description = 2;
+
+  string exception_level = 3 [json_name = "exception_level"];
+
+  string gateway_arn = 4 [json_name = "gateway_arn"];
+
+  string gateway_id = 5 [json_name = "gateway_id"];
+
+  string gateway_url = 6 [json_name = "gateway_url"];
+
+  string kms_key_arn = 7 [json_name = "kms_key_arn"];
+
+  string name = 8;
+
+  string protocol_type = 9 [json_name = "protocol_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  string role_arn = 11 [json_name = "role_arn"];
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  repeated WorkloadIdentityDetails workload_identity_details = 14 [json_name = "workload_identity_details"];
+
+  repeated AuthorizerConfiguration authorizer_configuration = 15 [json_name = "authorizer_configuration"];
+
+  repeated InterceptorConfiguration interceptor_configuration = 16 [json_name = "interceptor_configuration"];
+
+  repeated ProtocolConfiguration protocol_configuration = 17 [json_name = "protocol_configuration"];
+
+  repeated Timeouts timeouts = 18;
+
+  google.protobuf.Value for_each = 19 [json_name = "for_each"];
+
+  repeated string depends_on = 20 [json_name = "depends_on"];
+
+  int32 count = 21;
+
+  string provider = 22;
+
+  terraform.v1.Lifecycle lifecycle = 23;
+
+  message WorkloadIdentityDetails {
+    // workload_identity_arn: string
+    string workload_identity_arn = 1 [json_name = "workload_identity_arn"];
+  }
+
+  message AuthorizerConfiguration {
+    repeated CustomJwtAuthorizer custom_jwt_authorizer = 1 [json_name = "custom_jwt_authorizer"];
+
+    message CustomJwtAuthorizer {
+      repeated string allowed_audience = 1 [json_name = "allowed_audience"];
+
+      repeated string allowed_clients = 2 [json_name = "allowed_clients"];
+
+      repeated string allowed_scopes = 3 [json_name = "allowed_scopes"];
+
+      string discovery_url = 4 [json_name = "discovery_url"];
+
+      repeated CustomClaim custom_claim = 5 [json_name = "custom_claim"];
+
+      message CustomClaim {
+        string inbound_token_claim_name = 1 [json_name = "inbound_token_claim_name"];
+
+        string inbound_token_claim_value_type = 2 [json_name = "inbound_token_claim_value_type"];
+
+        repeated AuthorizingClaimMatchValue authorizing_claim_match_value = 3 [json_name = "authorizing_claim_match_value"];
+
+        message AuthorizingClaimMatchValue {
+          string claim_match_operator = 1 [json_name = "claim_match_operator"];
+
+          repeated ClaimMatchValue claim_match_value = 2 [json_name = "claim_match_value"];
+
+          message ClaimMatchValue {
+            string match_value_string = 1 [json_name = "match_value_string"];
+
+            repeated string match_value_string_list = 2 [json_name = "match_value_string_list"];
+          }
+        }
+      }
+    }
+  }
+
+  message InterceptorConfiguration {
+    repeated string interception_points = 1 [json_name = "interception_points"];
+
+    repeated InputConfiguration input_configuration = 2 [json_name = "input_configuration"];
+
+    repeated Interceptor interceptor = 3;
+
+    message InputConfiguration {
+      bool pass_request_headers = 1 [json_name = "pass_request_headers"];
+    }
+
+    message Interceptor {
+      repeated Lambda lambda = 1;
+
+      message Lambda {
+        string arn = 1;
+      }
+    }
+  }
+
+  message ProtocolConfiguration {
+    repeated Mcp mcp = 1;
+
+    message Mcp {
+      string instructions = 1;
+
+      string search_type = 2 [json_name = "search_type"];
+
+      repeated string supported_versions = 3 [json_name = "supported_versions"];
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsBedrockagentcoreGatewayTarget version is 0
+message AwsBedrockagentcoreGatewayTarget {
+  string description = 1;
+
+  string gateway_identifier = 2 [json_name = "gateway_identifier"];
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string target_id = 5 [json_name = "target_id"];
+
+  repeated CredentialProviderConfiguration credential_provider_configuration = 6 [json_name = "credential_provider_configuration"];
+
+  repeated MetadataConfiguration metadata_configuration = 7 [json_name = "metadata_configuration"];
+
+  repeated TargetConfiguration target_configuration = 8 [json_name = "target_configuration"];
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message CredentialProviderConfiguration {
+    repeated ApiKey api_key = 1 [json_name = "api_key"];
+
+    repeated GatewayIamRole gateway_iam_role = 2 [json_name = "gateway_iam_role"];
+
+    repeated Oauth oauth = 3;
+
+    message ApiKey {
+      string credential_location = 1 [json_name = "credential_location"];
+
+      string credential_parameter_name = 2 [json_name = "credential_parameter_name"];
+
+      string credential_prefix = 3 [json_name = "credential_prefix"];
+
+      string provider_arn = 4 [json_name = "provider_arn"];
+    }
+
+    message GatewayIamRole {
+    }
+
+    message Oauth {
+      map<string, string> custom_parameters = 1 [json_name = "custom_parameters"];
+
+      // The URL where the end user's browser is redirected after obtaining the
+      // authorization code. Required when grant_type is AUTHORIZATION_CODE.
+      string default_return_url = 2 [json_name = "default_return_url"];
+
+      // The OAuth grant type. Valid values are AUTHORIZATION_CODE and CLIENT_CREDENTIALS.
+      string grant_type = 3 [json_name = "grant_type"];
+
+      string provider_arn = 4 [json_name = "provider_arn"];
+
+      repeated string scopes = 5;
+    }
+  }
+
+  message MetadataConfiguration {
+    // A list of URL query parameters that are allowed to be propagated from incoming
+    // gateway URL to the target.
+    repeated string allowed_query_parameters = 1 [json_name = "allowed_query_parameters"];
+
+    // A list of HTTP headers that are allowed to be propagated from incoming client
+    // requests to the target.
+    repeated string allowed_request_headers = 2 [json_name = "allowed_request_headers"];
+
+    // A list of HTTP headers that are allowed to be propagated from the target response
+    // back to the client.
+    repeated string allowed_response_headers = 3 [json_name = "allowed_response_headers"];
+  }
+
+  message TargetConfiguration {
+    repeated Mcp mcp = 1;
+
+    message Mcp {
+      repeated ApiGateway api_gateway = 1 [json_name = "api_gateway"];
+
+      repeated Lambda lambda = 2;
+
+      repeated McpServer mcp_server = 3 [json_name = "mcp_server"];
+
+      repeated OpenApiSchema open_api_schema = 4 [json_name = "open_api_schema"];
+
+      repeated SmithyModel smithy_model = 5 [json_name = "smithy_model"];
+
+      message ApiGateway {
+        string rest_api_id = 1 [json_name = "rest_api_id"];
+
+        string stage = 2;
+
+        repeated ApiGatewayToolConfiguration api_gateway_tool_configuration = 3 [json_name = "api_gateway_tool_configuration"];
+
+        message ApiGatewayToolConfiguration {
+          repeated ToolFilter tool_filter = 1 [json_name = "tool_filter"];
+
+          repeated ToolOverride tool_override = 2 [json_name = "tool_override"];
+
+          message ToolFilter {
+            string filter_path = 1 [json_name = "filter_path"];
+
+            repeated string methods = 2;
+          }
+
+          message ToolOverride {
+            string description = 1;
+
+            string method = 2;
+
+            string name = 3;
+
+            string path = 4;
+          }
+        }
+      }
+
+      message Lambda {
+        string lambda_arn = 1 [json_name = "lambda_arn"];
+
+        repeated ToolSchema tool_schema = 2 [json_name = "tool_schema"];
+
+        message ToolSchema {
+          repeated InlinePayload inline_payload = 1 [json_name = "inline_payload"];
+
+          repeated S3 s3 = 2;
+
+          message InlinePayload {
+            string description = 1;
+
+            string name = 2;
+
+            repeated InputSchema input_schema = 3 [json_name = "input_schema"];
+
+            repeated OutputSchema output_schema = 4 [json_name = "output_schema"];
+
+            message InputSchema {
+              string description = 1;
+
+              string type = 2;
+
+              repeated Items items = 3;
+
+              repeated Property property = 4;
+
+              message Items {
+                string description = 1;
+
+                string type = 2;
+
+                repeated Items items = 3;
+
+                repeated Property property = 4;
+
+                message Items {
+                  string description = 1;
+
+                  string items_json = 2 [json_name = "items_json"];
+
+                  string properties_json = 3 [json_name = "properties_json"];
+
+                  string type = 4;
+                }
+
+                message Property {
+                  string description = 1;
+
+                  string items_json = 2 [json_name = "items_json"];
+
+                  string name = 3;
+
+                  string properties_json = 4 [json_name = "properties_json"];
+
+                  bool required = 5;
+
+                  string type = 6;
+                }
+              }
+
+              message Property {
+                string description = 1;
+
+                string name = 2;
+
+                bool required = 3;
+
+                string type = 4;
+
+                repeated Items items = 5;
+
+                repeated Property property = 6;
+
+                message Items {
+                  string description = 1;
+
+                  string type = 2;
+
+                  repeated Items items = 3;
+
+                  repeated Property property = 4;
+
+                  message Items {
+                    string description = 1;
+
+                    string items_json = 2 [json_name = "items_json"];
+
+                    string properties_json = 3 [json_name = "properties_json"];
+
+                    string type = 4;
+                  }
+
+                  message Property {
+                    string description = 1;
+
+                    string items_json = 2 [json_name = "items_json"];
+
+                    string name = 3;
+
+                    string properties_json = 4 [json_name = "properties_json"];
+
+                    bool required = 5;
+
+                    string type = 6;
+                  }
+                }
+
+                message Property {
+                  string description = 1;
+
+                  string items_json = 2 [json_name = "items_json"];
+
+                  string name = 3;
+
+                  string properties_json = 4 [json_name = "properties_json"];
+
+                  bool required = 5;
+
+                  string type = 6;
+                }
+              }
+            }
+
+            message OutputSchema {
+              string description = 1;
+
+              string type = 2;
+
+              repeated Items items = 3;
+
+              repeated Property property = 4;
+
+              message Items {
+                string description = 1;
+
+                string type = 2;
+
+                repeated Items items = 3;
+
+                repeated Property property = 4;
+
+                message Items {
+                  string description = 1;
+
+                  string items_json = 2 [json_name = "items_json"];
+
+                  string properties_json = 3 [json_name = "properties_json"];
+
+                  string type = 4;
+                }
+
+                message Property {
+                  string description = 1;
+
+                  string items_json = 2 [json_name = "items_json"];
+
+                  string name = 3;
+
+                  string properties_json = 4 [json_name = "properties_json"];
+
+                  bool required = 5;
+
+                  string type = 6;
+                }
+              }
+
+              message Property {
+                string description = 1;
+
+                string name = 2;
+
+                bool required = 3;
+
+                string type = 4;
+
+                repeated Items items = 5;
+
+                repeated Property property = 6;
+
+                message Items {
+                  string description = 1;
+
+                  string type = 2;
+
+                  repeated Items items = 3;
+
+                  repeated Property property = 4;
+
+                  message Items {
+                    string description = 1;
+
+                    string items_json = 2 [json_name = "items_json"];
+
+                    string properties_json = 3 [json_name = "properties_json"];
+
+                    string type = 4;
+                  }
+
+                  message Property {
+                    string description = 1;
+
+                    string items_json = 2 [json_name = "items_json"];
+
+                    string name = 3;
+
+                    string properties_json = 4 [json_name = "properties_json"];
+
+                    bool required = 5;
+
+                    string type = 6;
+                  }
+                }
+
+                message Property {
+                  string description = 1;
+
+                  string items_json = 2 [json_name = "items_json"];
+
+                  string name = 3;
+
+                  string properties_json = 4 [json_name = "properties_json"];
+
+                  bool required = 5;
+
+                  string type = 6;
+                }
+              }
+            }
+          }
+
+          message S3 {
+            string bucket_owner_account_id = 1 [json_name = "bucket_owner_account_id"];
+
+            string uri = 2;
+          }
+        }
+      }
+
+      message McpServer {
+        string endpoint = 1;
+      }
+
+      message OpenApiSchema {
+        repeated InlinePayload inline_payload = 1 [json_name = "inline_payload"];
+
+        repeated S3 s3 = 2;
+
+        message InlinePayload {
+          string payload = 1;
+        }
+
+        message S3 {
+          string bucket_owner_account_id = 1 [json_name = "bucket_owner_account_id"];
+
+          string uri = 2;
+        }
+      }
+
+      message SmithyModel {
+        repeated InlinePayload inline_payload = 1 [json_name = "inline_payload"];
+
+        repeated S3 s3 = 2;
+
+        message InlinePayload {
+          string payload = 1;
+        }
+
+        message S3 {
+          string bucket_owner_account_id = 1 [json_name = "bucket_owner_account_id"];
+
+          string uri = 2;
+        }
+      }
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsBedrockagentcoreMemory version is 0
+message AwsBedrockagentcoreMemory {
+  string arn = 1;
+
+  string description = 2;
+
+  string encryption_key_arn = 3 [json_name = "encryption_key_arn"];
+
+  int64 event_expiry_duration = 4 [json_name = "event_expiry_duration"];
+
+  string id = 5;
+
+  string memory_execution_role_arn = 6 [json_name = "memory_execution_role_arn"];
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsBedrockagentcoreMemoryStrategy version is 0
+message AwsBedrockagentcoreMemoryStrategy {
+  string description = 1;
+
+  string memory_execution_role_arn = 2 [json_name = "memory_execution_role_arn"];
+
+  string memory_id = 3 [json_name = "memory_id"];
+
+  string memory_strategy_id = 4 [json_name = "memory_strategy_id"];
+
+  string name = 5;
+
+  repeated string namespaces = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string type = 8;
+
+  repeated Configuration configuration = 9;
+
+  repeated Timeouts timeouts = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message Configuration {
+    string type = 1;
+
+    repeated Consolidation consolidation = 2;
+
+    repeated Extraction extraction = 3;
+
+    message Consolidation {
+      string append_to_prompt = 1 [json_name = "append_to_prompt"];
+
+      string model_id = 2 [json_name = "model_id"];
+    }
+
+    message Extraction {
+      string append_to_prompt = 1 [json_name = "append_to_prompt"];
+
+      string model_id = 2 [json_name = "model_id"];
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsBedrockagentcoreOauth2CredentialProvider version is 0
+message AwsBedrockagentcoreOauth2CredentialProvider {
+  repeated ClientSecretArn client_secret_arn = 1 [json_name = "client_secret_arn"];
+
+  string credential_provider_arn = 2 [json_name = "credential_provider_arn"];
+
+  string credential_provider_vendor = 3 [json_name = "credential_provider_vendor"];
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  repeated Oauth2ProviderConfig oauth2_provider_config = 8 [json_name = "oauth2_provider_config"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message ClientSecretArn {
+    // secret_arn: string
+    string secret_arn = 1 [json_name = "secret_arn"];
+  }
+
+  message Oauth2ProviderConfig {
+    repeated CustomOauth2ProviderConfig custom_oauth2_provider_config = 1 [json_name = "custom_oauth2_provider_config"];
+
+    repeated GithubOauth2ProviderConfig github_oauth2_provider_config = 2 [json_name = "github_oauth2_provider_config"];
+
+    repeated GoogleOauth2ProviderConfig google_oauth2_provider_config = 3 [json_name = "google_oauth2_provider_config"];
+
+    repeated MicrosoftOauth2ProviderConfig microsoft_oauth2_provider_config = 4 [json_name = "microsoft_oauth2_provider_config"];
+
+    repeated SalesforceOauth2ProviderConfig salesforce_oauth2_provider_config = 5 [json_name = "salesforce_oauth2_provider_config"];
+
+    repeated SlackOauth2ProviderConfig slack_oauth2_provider_config = 6 [json_name = "slack_oauth2_provider_config"];
+
+    message CustomOauth2ProviderConfig {
+      int64 client_credentials_wo_version = 1 [json_name = "client_credentials_wo_version"];
+
+      string client_id = 2 [json_name = "client_id"];
+
+      string client_id_wo = 3 [json_name = "client_id_wo"];
+
+      string client_secret = 4 [json_name = "client_secret"];
+
+      string client_secret_wo = 5 [json_name = "client_secret_wo"];
+
+      repeated OauthDiscovery oauth_discovery = 6 [json_name = "oauth_discovery"];
+
+      message OauthDiscovery {
+        string discovery_url = 1 [json_name = "discovery_url"];
+
+        repeated AuthorizationServerMetadata authorization_server_metadata = 2 [json_name = "authorization_server_metadata"];
+
+        message AuthorizationServerMetadata {
+          string authorization_endpoint = 1 [json_name = "authorization_endpoint"];
+
+          string issuer = 2;
+
+          repeated string response_types = 3 [json_name = "response_types"];
+
+          string token_endpoint = 4 [json_name = "token_endpoint"];
+        }
+      }
+    }
+
+    message GithubOauth2ProviderConfig {
+      int64 client_credentials_wo_version = 1 [json_name = "client_credentials_wo_version"];
+
+      string client_id = 2 [json_name = "client_id"];
+
+      string client_id_wo = 3 [json_name = "client_id_wo"];
+
+      string client_secret = 4 [json_name = "client_secret"];
+
+      string client_secret_wo = 5 [json_name = "client_secret_wo"];
+
+      repeated OauthDiscovery oauth_discovery = 6 [json_name = "oauth_discovery"];
+
+      message OauthDiscovery {
+        // authorization_server_metadata: list of object
+        repeated AuthorizationServerMetadata authorization_server_metadata = 1 [json_name = "authorization_server_metadata"];
+
+        // discovery_url: string
+        string discovery_url = 2 [json_name = "discovery_url"];
+
+        message AuthorizationServerMetadata {
+          // authorization_endpoint: string
+          string authorization_endpoint = 1 [json_name = "authorization_endpoint"];
+
+          // issuer: string
+          string issuer = 2;
+
+          // response_types: set of string
+          repeated string response_types = 3 [json_name = "response_types"];
+
+          // token_endpoint: string
+          string token_endpoint = 4 [json_name = "token_endpoint"];
+        }
+      }
+    }
+
+    message GoogleOauth2ProviderConfig {
+      int64 client_credentials_wo_version = 1 [json_name = "client_credentials_wo_version"];
+
+      string client_id = 2 [json_name = "client_id"];
+
+      string client_id_wo = 3 [json_name = "client_id_wo"];
+
+      string client_secret = 4 [json_name = "client_secret"];
+
+      string client_secret_wo = 5 [json_name = "client_secret_wo"];
+
+      repeated OauthDiscovery oauth_discovery = 6 [json_name = "oauth_discovery"];
+
+      message OauthDiscovery {
+        // authorization_server_metadata: list of object
+        repeated AuthorizationServerMetadata authorization_server_metadata = 1 [json_name = "authorization_server_metadata"];
+
+        // discovery_url: string
+        string discovery_url = 2 [json_name = "discovery_url"];
+
+        message AuthorizationServerMetadata {
+          // authorization_endpoint: string
+          string authorization_endpoint = 1 [json_name = "authorization_endpoint"];
+
+          // issuer: string
+          string issuer = 2;
+
+          // response_types: set of string
+          repeated string response_types = 3 [json_name = "response_types"];
+
+          // token_endpoint: string
+          string token_endpoint = 4 [json_name = "token_endpoint"];
+        }
+      }
+    }
+
+    message MicrosoftOauth2ProviderConfig {
+      int64 client_credentials_wo_version = 1 [json_name = "client_credentials_wo_version"];
+
+      string client_id = 2 [json_name = "client_id"];
+
+      string client_id_wo = 3 [json_name = "client_id_wo"];
+
+      string client_secret = 4 [json_name = "client_secret"];
+
+      string client_secret_wo = 5 [json_name = "client_secret_wo"];
+
+      repeated OauthDiscovery oauth_discovery = 6 [json_name = "oauth_discovery"];
+
+      message OauthDiscovery {
+        // authorization_server_metadata: list of object
+        repeated AuthorizationServerMetadata authorization_server_metadata = 1 [json_name = "authorization_server_metadata"];
+
+        // discovery_url: string
+        string discovery_url = 2 [json_name = "discovery_url"];
+
+        message AuthorizationServerMetadata {
+          // authorization_endpoint: string
+          string authorization_endpoint = 1 [json_name = "authorization_endpoint"];
+
+          // issuer: string
+          string issuer = 2;
+
+          // response_types: set of string
+          repeated string response_types = 3 [json_name = "response_types"];
+
+          // token_endpoint: string
+          string token_endpoint = 4 [json_name = "token_endpoint"];
+        }
+      }
+    }
+
+    message SalesforceOauth2ProviderConfig {
+      int64 client_credentials_wo_version = 1 [json_name = "client_credentials_wo_version"];
+
+      string client_id = 2 [json_name = "client_id"];
+
+      string client_id_wo = 3 [json_name = "client_id_wo"];
+
+      string client_secret = 4 [json_name = "client_secret"];
+
+      string client_secret_wo = 5 [json_name = "client_secret_wo"];
+
+      repeated OauthDiscovery oauth_discovery = 6 [json_name = "oauth_discovery"];
+
+      message OauthDiscovery {
+        // authorization_server_metadata: list of object
+        repeated AuthorizationServerMetadata authorization_server_metadata = 1 [json_name = "authorization_server_metadata"];
+
+        // discovery_url: string
+        string discovery_url = 2 [json_name = "discovery_url"];
+
+        message AuthorizationServerMetadata {
+          // authorization_endpoint: string
+          string authorization_endpoint = 1 [json_name = "authorization_endpoint"];
+
+          // issuer: string
+          string issuer = 2;
+
+          // response_types: set of string
+          repeated string response_types = 3 [json_name = "response_types"];
+
+          // token_endpoint: string
+          string token_endpoint = 4 [json_name = "token_endpoint"];
+        }
+      }
+    }
+
+    message SlackOauth2ProviderConfig {
+      int64 client_credentials_wo_version = 1 [json_name = "client_credentials_wo_version"];
+
+      string client_id = 2 [json_name = "client_id"];
+
+      string client_id_wo = 3 [json_name = "client_id_wo"];
+
+      string client_secret = 4 [json_name = "client_secret"];
+
+      string client_secret_wo = 5 [json_name = "client_secret_wo"];
+
+      repeated OauthDiscovery oauth_discovery = 6 [json_name = "oauth_discovery"];
+
+      message OauthDiscovery {
+        // authorization_server_metadata: list of object
+        repeated AuthorizationServerMetadata authorization_server_metadata = 1 [json_name = "authorization_server_metadata"];
+
+        // discovery_url: string
+        string discovery_url = 2 [json_name = "discovery_url"];
+
+        message AuthorizationServerMetadata {
+          // authorization_endpoint: string
+          string authorization_endpoint = 1 [json_name = "authorization_endpoint"];
+
+          // issuer: string
+          string issuer = 2;
+
+          // response_types: set of string
+          repeated string response_types = 3 [json_name = "response_types"];
+
+          // token_endpoint: string
+          string token_endpoint = 4 [json_name = "token_endpoint"];
+        }
+      }
+    }
+  }
+}
+
+// AwsBedrockagentcoreTokenVaultCmk version is 0
+message AwsBedrockagentcoreTokenVaultCmk {
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 1;
+
+  string token_vault_id = 2 [json_name = "token_vault_id"];
+
+  repeated KmsConfiguration kms_configuration = 3 [json_name = "kms_configuration"];
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message KmsConfiguration {
+    string key_type = 1 [json_name = "key_type"];
+
+    string kms_key_arn = 2 [json_name = "kms_key_arn"];
+  }
+}
+
+// AwsBedrockagentcoreWorkloadIdentity version is 0
+message AwsBedrockagentcoreWorkloadIdentity {
+  repeated string allowed_resource_oauth2_return_urls = 1 [json_name = "allowed_resource_oauth2_return_urls"];
+
+  string name = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string workload_identity_arn = 4 [json_name = "workload_identity_arn"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}

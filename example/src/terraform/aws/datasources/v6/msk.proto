@@ -1,0 +1,359 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsMskBootstrapBrokers version is 0
+message AwsMskBootstrapBrokers {
+  string bootstrap_brokers = 1 [json_name = "bootstrap_brokers"];
+
+  string bootstrap_brokers_public_sasl_iam = 2 [json_name = "bootstrap_brokers_public_sasl_iam"];
+
+  string bootstrap_brokers_public_sasl_scram = 3 [json_name = "bootstrap_brokers_public_sasl_scram"];
+
+  string bootstrap_brokers_public_tls = 4 [json_name = "bootstrap_brokers_public_tls"];
+
+  string bootstrap_brokers_sasl_iam = 5 [json_name = "bootstrap_brokers_sasl_iam"];
+
+  string bootstrap_brokers_sasl_scram = 6 [json_name = "bootstrap_brokers_sasl_scram"];
+
+  string bootstrap_brokers_tls = 7 [json_name = "bootstrap_brokers_tls"];
+
+  string bootstrap_brokers_vpc_connectivity_sasl_iam = 8 [
+    json_name = "bootstrap_brokers_vpc_connectivity_sasl_iam"
+  ];
+
+  string bootstrap_brokers_vpc_connectivity_sasl_scram = 9 [
+    json_name = "bootstrap_brokers_vpc_connectivity_sasl_scram"
+  ];
+
+  string bootstrap_brokers_vpc_connectivity_tls = 10 [
+    json_name = "bootstrap_brokers_vpc_connectivity_tls"
+  ];
+
+  string cluster_arn = 11 [json_name = "cluster_arn"];
+
+  string id = 12;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+}
+
+// AwsMskBrokerNodes version is 0
+message AwsMskBrokerNodes {
+  string cluster_arn = 1 [json_name = "cluster_arn"];
+
+  string id = 2;
+
+  repeated NodeInfoList node_info_list = 3 [json_name = "node_info_list"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message NodeInfoList {
+    // attached_eni_id: string
+    string attached_eni_id = 1 [json_name = "attached_eni_id"];
+
+    // broker_id: number
+    int64 broker_id = 2 [json_name = "broker_id"];
+
+    // client_subnet: string
+    string client_subnet = 3 [json_name = "client_subnet"];
+
+    // client_vpc_ip_address: string
+    string client_vpc_ip_address = 4 [json_name = "client_vpc_ip_address"];
+
+    // endpoints: set of string
+    repeated string endpoints = 5;
+
+    // node_arn: string
+    string node_arn = 6 [json_name = "node_arn"];
+  }
+}
+
+// AwsMskCluster version is 0
+message AwsMskCluster {
+  string arn = 1;
+
+  string bootstrap_brokers = 2 [json_name = "bootstrap_brokers"];
+
+  string bootstrap_brokers_public_sasl_iam = 3 [json_name = "bootstrap_brokers_public_sasl_iam"];
+
+  string bootstrap_brokers_public_sasl_scram = 4 [json_name = "bootstrap_brokers_public_sasl_scram"];
+
+  string bootstrap_brokers_public_tls = 5 [json_name = "bootstrap_brokers_public_tls"];
+
+  string bootstrap_brokers_sasl_iam = 6 [json_name = "bootstrap_brokers_sasl_iam"];
+
+  string bootstrap_brokers_sasl_scram = 7 [json_name = "bootstrap_brokers_sasl_scram"];
+
+  string bootstrap_brokers_tls = 8 [json_name = "bootstrap_brokers_tls"];
+
+  repeated BrokerNodeGroupInfo broker_node_group_info = 9 [json_name = "broker_node_group_info"];
+
+  string cluster_name = 10 [json_name = "cluster_name"];
+
+  string cluster_uuid = 11 [json_name = "cluster_uuid"];
+
+  string id = 12;
+
+  string kafka_version = 13 [json_name = "kafka_version"];
+
+  int64 number_of_broker_nodes = 14 [json_name = "number_of_broker_nodes"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 15;
+
+  map<string, string> tags = 16;
+
+  string zookeeper_connect_string = 17 [json_name = "zookeeper_connect_string"];
+
+  string zookeeper_connect_string_tls = 18 [json_name = "zookeeper_connect_string_tls"];
+
+  google.protobuf.Value for_each = 19 [json_name = "for_each"];
+
+  repeated string depends_on = 20 [json_name = "depends_on"];
+
+  int32 count = 21;
+
+  string provider = 22;
+
+  terraform.v1.Lifecycle lifecycle = 23;
+
+  message BrokerNodeGroupInfo {
+    // az_distribution: string
+    string az_distribution = 1 [json_name = "az_distribution"];
+
+    // client_subnets: set of string
+    repeated string client_subnets = 2 [json_name = "client_subnets"];
+
+    // connectivity_info: list of object
+    repeated ConnectivityInfo connectivity_info = 3 [json_name = "connectivity_info"];
+
+    // instance_type: string
+    string instance_type = 4 [json_name = "instance_type"];
+
+    // security_groups: set of string
+    repeated string security_groups = 5 [json_name = "security_groups"];
+
+    // storage_info: list of object
+    repeated StorageInfo storage_info = 6 [json_name = "storage_info"];
+
+    message ConnectivityInfo {
+      // network_type: string
+      string network_type = 1 [json_name = "network_type"];
+
+      // public_access: list of object
+      repeated PublicAccess public_access = 2 [json_name = "public_access"];
+
+      // vpc_connectivity: list of object
+      repeated VpcConnectivity vpc_connectivity = 3 [json_name = "vpc_connectivity"];
+
+      message PublicAccess {
+        // type: string
+        string type = 1;
+      }
+
+      message VpcConnectivity {
+        // client_authentication: list of object
+        repeated ClientAuthentication client_authentication = 1 [json_name = "client_authentication"];
+
+        message ClientAuthentication {
+          // sasl: list of object
+          repeated Sasl sasl = 1;
+
+          // tls: bool
+          bool tls = 2;
+
+          message Sasl {
+            // iam: bool
+            bool iam = 1;
+
+            // scram: bool
+            bool scram = 2;
+          }
+        }
+      }
+    }
+
+    message StorageInfo {
+      // ebs_storage_info: list of object
+      repeated EbsStorageInfo ebs_storage_info = 1 [json_name = "ebs_storage_info"];
+
+      message EbsStorageInfo {
+        // provisioned_throughput: list of object
+        repeated ProvisionedThroughput provisioned_throughput = 1 [json_name = "provisioned_throughput"];
+
+        // volume_size: number
+        int64 volume_size = 2 [json_name = "volume_size"];
+
+        message ProvisionedThroughput {
+          // enabled: bool
+          bool enabled = 1;
+
+          // volume_throughput: number
+          int64 volume_throughput = 2 [json_name = "volume_throughput"];
+        }
+      }
+    }
+  }
+}
+
+// AwsMskConfiguration version is 0
+message AwsMskConfiguration {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  repeated string kafka_versions = 4 [json_name = "kafka_versions"];
+
+  int64 latest_revision = 5 [json_name = "latest_revision"];
+
+  string name = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string server_properties = 8 [json_name = "server_properties"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsMskKafkaVersion version is 0
+message AwsMskKafkaVersion {
+  string id = 1;
+
+  repeated string preferred_versions = 2 [json_name = "preferred_versions"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string status = 4;
+
+  string version = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsMskTopic version is 0
+message AwsMskTopic {
+  string arn = 1;
+
+  string cluster_arn = 2 [json_name = "cluster_arn"];
+
+  string configs = 3;
+
+  string name = 4;
+
+  int64 partition_count = 5 [json_name = "partition_count"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  int64 replication_factor = 7 [json_name = "replication_factor"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsMskVpcConnection version is 0
+message AwsMskVpcConnection {
+  string arn = 1;
+
+  string authentication = 2;
+
+  repeated string client_subnets = 3 [json_name = "client_subnets"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated string security_groups = 6 [json_name = "security_groups"];
+
+  map<string, string> tags = 7;
+
+  string target_cluster_arn = 8 [json_name = "target_cluster_arn"];
+
+  string vpc_id = 9 [json_name = "vpc_id"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}

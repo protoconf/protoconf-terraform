@@ -1,0 +1,181 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsDxConnection version is 0
+message AwsDxConnection {
+  string arn = 1;
+
+  string aws_device = 2 [json_name = "aws_device"];
+
+  string bandwidth = 3;
+
+  string id = 4;
+
+  string location = 5;
+
+  string name = 6;
+
+  string owner_account_id = 7 [json_name = "owner_account_id"];
+
+  string partner_name = 8 [json_name = "partner_name"];
+
+  string provider_name = 9 [json_name = "provider_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  string state = 11;
+
+  map<string, string> tags = 12;
+
+  int64 vlan_id = 13 [json_name = "vlan_id"];
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+}
+
+// AwsDxGateway version is 0
+message AwsDxGateway {
+  string amazon_side_asn = 1 [json_name = "amazon_side_asn"];
+
+  string arn = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  string owner_account_id = 5 [json_name = "owner_account_id"];
+
+  map<string, string> tags = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsDxLocation version is 0
+message AwsDxLocation {
+  repeated string available_macsec_port_speeds = 1 [json_name = "available_macsec_port_speeds"];
+
+  repeated string available_port_speeds = 2 [json_name = "available_port_speeds"];
+
+  repeated string available_providers = 3 [json_name = "available_providers"];
+
+  string id = 4;
+
+  string location_code = 5 [json_name = "location_code"];
+
+  string location_name = 6 [json_name = "location_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsDxLocations version is 0
+message AwsDxLocations {
+  string id = 1;
+
+  repeated string location_codes = 2 [json_name = "location_codes"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsDxRouterConfiguration version is 0
+message AwsDxRouterConfiguration {
+  string customer_router_config = 1 [json_name = "customer_router_config"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated Router router = 4;
+
+  string router_type_identifier = 5 [json_name = "router_type_identifier"];
+
+  string virtual_interface_id = 6 [json_name = "virtual_interface_id"];
+
+  string virtual_interface_name = 7 [json_name = "virtual_interface_name"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message Router {
+    // platform: string
+    string platform = 1;
+
+    // router_type_identifier: string
+    string router_type_identifier = 2 [json_name = "router_type_identifier"];
+
+    // software: string
+    string software = 3;
+
+    // vendor: string
+    string vendor = 4;
+
+    // xslt_template_name: string
+    string xslt_template_name = 5 [json_name = "xslt_template_name"];
+
+    // xslt_template_name_for_mac_sec: string
+    string xslt_template_name_for_mac_sec = 6 [json_name = "xslt_template_name_for_mac_sec"];
+  }
+}

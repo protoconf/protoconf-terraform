@@ -1,0 +1,330 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsNetworkfirewallFirewall version is 0
+message AwsNetworkfirewallFirewall {
+  string arn = 1;
+
+  bool availability_zone_change_protection = 2 [json_name = "availability_zone_change_protection"];
+
+  repeated AvailabilityZoneMapping availability_zone_mapping = 3 [json_name = "availability_zone_mapping"];
+
+  bool delete_protection = 4 [json_name = "delete_protection"];
+
+  string description = 5;
+
+  repeated string enabled_analysis_types = 6 [json_name = "enabled_analysis_types"];
+
+  repeated EncryptionConfiguration encryption_configuration = 7 [json_name = "encryption_configuration"];
+
+  string firewall_policy_arn = 8 [json_name = "firewall_policy_arn"];
+
+  bool firewall_policy_change_protection = 9 [json_name = "firewall_policy_change_protection"];
+
+  repeated FirewallStatus firewall_status = 10 [json_name = "firewall_status"];
+
+  string id = 11;
+
+  string name = 12;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  bool subnet_change_protection = 14 [json_name = "subnet_change_protection"];
+
+  repeated SubnetMapping subnet_mapping = 15 [json_name = "subnet_mapping"];
+
+  map<string, string> tags = 16;
+
+  string transit_gateway_id = 17 [json_name = "transit_gateway_id"];
+
+  string transit_gateway_owner_account_id = 18 [json_name = "transit_gateway_owner_account_id"];
+
+  string update_token = 19 [json_name = "update_token"];
+
+  string vpc_id = 20 [json_name = "vpc_id"];
+
+  google.protobuf.Value for_each = 21 [json_name = "for_each"];
+
+  repeated string depends_on = 22 [json_name = "depends_on"];
+
+  int32 count = 23;
+
+  string provider = 24;
+
+  terraform.v1.Lifecycle lifecycle = 25;
+
+  message AvailabilityZoneMapping {
+    // availability_zone_id: string
+    string availability_zone_id = 1 [json_name = "availability_zone_id"];
+  }
+
+  message EncryptionConfiguration {
+    // key_id: string
+    string key_id = 1 [json_name = "key_id"];
+
+    // type: string
+    string type = 2;
+  }
+
+  message FirewallStatus {
+    // capacity_usage_summary: set of object
+    repeated CapacityUsageSummary capacity_usage_summary = 1 [json_name = "capacity_usage_summary"];
+
+    // configuration_sync_state_summary: string
+    string configuration_sync_state_summary = 2 [json_name = "configuration_sync_state_summary"];
+
+    // status: string
+    string status = 3;
+
+    // sync_states: set of object
+    repeated SyncStates sync_states = 4 [json_name = "sync_states"];
+
+    // transit_gateway_attachment_sync_states: list of object
+    repeated TransitGatewayAttachmentSyncStates transit_gateway_attachment_sync_states = 5 [
+      json_name = "transit_gateway_attachment_sync_states"
+    ];
+
+    message CapacityUsageSummary {
+      // cidrs: set of object
+      repeated Cidrs cidrs = 1;
+
+      message Cidrs {
+        // available_cidr_count: number
+        int64 available_cidr_count = 1 [json_name = "available_cidr_count"];
+
+        // ip_set_references: set of object
+        repeated IpSetReferences ip_set_references = 2 [json_name = "ip_set_references"];
+
+        // utilized_cidr_count: number
+        int64 utilized_cidr_count = 3 [json_name = "utilized_cidr_count"];
+
+        message IpSetReferences {
+          // resolved_cidr_count: number
+          int64 resolved_cidr_count = 1 [json_name = "resolved_cidr_count"];
+        }
+      }
+    }
+
+    message SyncStates {
+      // attachment: list of object
+      repeated Attachment attachment = 1;
+
+      // availability_zone: string
+      string availability_zone = 2 [json_name = "availability_zone"];
+
+      message Attachment {
+        // endpoint_id: string
+        string endpoint_id = 1 [json_name = "endpoint_id"];
+
+        // status: string
+        string status = 2;
+
+        // status_message: string
+        string status_message = 3 [json_name = "status_message"];
+
+        // subnet_id: string
+        string subnet_id = 4 [json_name = "subnet_id"];
+      }
+    }
+
+    message TransitGatewayAttachmentSyncStates {
+      // attachment_id: string
+      string attachment_id = 1 [json_name = "attachment_id"];
+
+      // status_message: string
+      string status_message = 2 [json_name = "status_message"];
+
+      // transit_gateway_attachment_status: string
+      string transit_gateway_attachment_status = 3 [json_name = "transit_gateway_attachment_status"];
+    }
+  }
+
+  message SubnetMapping {
+    // subnet_id: string
+    string subnet_id = 1 [json_name = "subnet_id"];
+  }
+}
+
+// AwsNetworkfirewallFirewallPolicy version is 0
+message AwsNetworkfirewallFirewallPolicy {
+  string arn = 1;
+
+  string description = 2;
+
+  repeated FirewallPolicy firewall_policy = 3 [json_name = "firewall_policy"];
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  string update_token = 8 [json_name = "update_token"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message FirewallPolicy {
+    // enable_tls_session_holding: bool
+    bool enable_tls_session_holding = 1 [json_name = "enable_tls_session_holding"];
+
+    // policy_variables: list of object
+    repeated PolicyVariables policy_variables = 2 [json_name = "policy_variables"];
+
+    // stateful_default_actions: set of string
+    repeated string stateful_default_actions = 3 [json_name = "stateful_default_actions"];
+
+    // stateful_engine_options: list of object
+    repeated StatefulEngineOptions stateful_engine_options = 4 [json_name = "stateful_engine_options"];
+
+    // stateful_rule_group_reference: set of object
+    repeated StatefulRuleGroupReference stateful_rule_group_reference = 5 [json_name = "stateful_rule_group_reference"];
+
+    // stateless_custom_action: set of object
+    repeated StatelessCustomAction stateless_custom_action = 6 [json_name = "stateless_custom_action"];
+
+    // stateless_default_actions: set of string
+    repeated string stateless_default_actions = 7 [json_name = "stateless_default_actions"];
+
+    // stateless_fragment_default_actions: set of string
+    repeated string stateless_fragment_default_actions = 8 [json_name = "stateless_fragment_default_actions"];
+
+    // stateless_rule_group_reference: set of object
+    repeated StatelessRuleGroupReference stateless_rule_group_reference = 9 [json_name = "stateless_rule_group_reference"];
+
+    // tls_inspection_configuration_arn: string
+    string tls_inspection_configuration_arn = 10 [json_name = "tls_inspection_configuration_arn"];
+
+    message PolicyVariables {
+      // rule_variables: set of object
+      repeated RuleVariables rule_variables = 1 [json_name = "rule_variables"];
+
+      message RuleVariables {
+        // ip_set: list of object
+        repeated IpSet ip_set = 1 [json_name = "ip_set"];
+
+        // key: string
+        string key = 2;
+
+        message IpSet {
+          // definition: set of string
+          repeated string definition = 1;
+        }
+      }
+    }
+
+    message StatefulEngineOptions {
+      // flow_timeouts: list of object
+      repeated FlowTimeouts flow_timeouts = 1 [json_name = "flow_timeouts"];
+
+      // rule_order: string
+      string rule_order = 2 [json_name = "rule_order"];
+
+      // stream_exception_policy: string
+      string stream_exception_policy = 3 [json_name = "stream_exception_policy"];
+
+      message FlowTimeouts {
+        // tcp_idle_timeout_seconds: number
+        int64 tcp_idle_timeout_seconds = 1 [json_name = "tcp_idle_timeout_seconds"];
+      }
+    }
+
+    message StatefulRuleGroupReference {
+      // deep_threat_inspection: string
+      string deep_threat_inspection = 1 [json_name = "deep_threat_inspection"];
+
+      // override: list of object
+      repeated Override override = 2;
+
+      // priority: number
+      int64 priority = 3;
+
+      // resource_arn: string
+      string resource_arn = 4 [json_name = "resource_arn"];
+
+      message Override {
+        // action: string
+        string action = 1;
+      }
+    }
+
+    message StatelessCustomAction {
+      // action_definition: list of object
+      repeated ActionDefinition action_definition = 1 [json_name = "action_definition"];
+
+      // action_name: string
+      string action_name = 2 [json_name = "action_name"];
+
+      message ActionDefinition {
+        // publish_metric_action: list of object
+        repeated PublishMetricAction publish_metric_action = 1 [json_name = "publish_metric_action"];
+
+        message PublishMetricAction {
+          // dimension: set of object
+          repeated Dimension dimension = 1;
+
+          message Dimension {
+            // value: string
+            string value = 1;
+          }
+        }
+      }
+    }
+
+    message StatelessRuleGroupReference {
+      // priority: number
+      int64 priority = 1;
+
+      // resource_arn: string
+      string resource_arn = 2 [json_name = "resource_arn"];
+    }
+  }
+}
+
+// AwsNetworkfirewallResourcePolicy version is 0
+message AwsNetworkfirewallResourcePolicy {
+  string id = 1;
+
+  string policy = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string resource_arn = 4 [json_name = "resource_arn"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}

@@ -1,0 +1,461 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsEbsDefaultKmsKey version is 0
+message AwsEbsDefaultKmsKey {
+  string id = 1;
+
+  string key_arn = 2 [json_name = "key_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsEbsEncryptionByDefault version is 0
+message AwsEbsEncryptionByDefault {
+  bool enabled = 1;
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsEbsFastSnapshotRestore version is 0
+message AwsEbsFastSnapshotRestore {
+  string availability_zone = 1 [json_name = "availability_zone"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string snapshot_id = 4 [json_name = "snapshot_id"];
+
+  string state = 5;
+
+  repeated Timeouts timeouts = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsEbsSnapshot version is 0
+message AwsEbsSnapshot {
+  string arn = 1;
+
+  string data_encryption_key_id = 2 [json_name = "data_encryption_key_id"];
+
+  string description = 3;
+
+  bool encrypted = 4;
+
+  string id = 5;
+
+  string kms_key_id = 6 [json_name = "kms_key_id"];
+
+  string outpost_arn = 7 [json_name = "outpost_arn"];
+
+  string owner_alias = 8 [json_name = "owner_alias"];
+
+  string owner_id = 9 [json_name = "owner_id"];
+
+  bool permanent_restore = 10 [json_name = "permanent_restore"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string storage_tier = 12 [json_name = "storage_tier"];
+
+  map<string, string> tags = 13;
+
+  map<string, string> tags_all = 14 [json_name = "tags_all"];
+
+  int64 temporary_restore_days = 15 [json_name = "temporary_restore_days"];
+
+  string volume_id = 16 [json_name = "volume_id"];
+
+  int64 volume_size = 17 [json_name = "volume_size"];
+
+  repeated Timeouts timeouts = 18;
+
+  google.protobuf.Value for_each = 19 [json_name = "for_each"];
+
+  repeated string depends_on = 20 [json_name = "depends_on"];
+
+  int32 count = 21;
+
+  string provider = 22;
+
+  terraform.v1.Lifecycle lifecycle = 23;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsEbsSnapshotBlockPublicAccess version is 0
+message AwsEbsSnapshotBlockPublicAccess {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string state = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsEbsSnapshotCopy version is 0
+message AwsEbsSnapshotCopy {
+  string arn = 1;
+
+  int64 completion_duration_minutes = 2 [json_name = "completion_duration_minutes"];
+
+  string data_encryption_key_id = 3 [json_name = "data_encryption_key_id"];
+
+  string description = 4;
+
+  bool encrypted = 5;
+
+  string id = 6;
+
+  string kms_key_id = 7 [json_name = "kms_key_id"];
+
+  string outpost_arn = 8 [json_name = "outpost_arn"];
+
+  string owner_alias = 9 [json_name = "owner_alias"];
+
+  string owner_id = 10 [json_name = "owner_id"];
+
+  bool permanent_restore = 11 [json_name = "permanent_restore"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  string source_region = 13 [json_name = "source_region"];
+
+  string source_snapshot_id = 14 [json_name = "source_snapshot_id"];
+
+  string storage_tier = 15 [json_name = "storage_tier"];
+
+  map<string, string> tags = 16;
+
+  map<string, string> tags_all = 17 [json_name = "tags_all"];
+
+  int64 temporary_restore_days = 18 [json_name = "temporary_restore_days"];
+
+  string volume_id = 19 [json_name = "volume_id"];
+
+  int64 volume_size = 20 [json_name = "volume_size"];
+
+  repeated Timeouts timeouts = 21;
+
+  google.protobuf.Value for_each = 22 [json_name = "for_each"];
+
+  repeated string depends_on = 23 [json_name = "depends_on"];
+
+  int32 count = 24;
+
+  string provider = 25;
+
+  terraform.v1.Lifecycle lifecycle = 26;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsEbsSnapshotImport version is 0
+message AwsEbsSnapshotImport {
+  string arn = 1;
+
+  string data_encryption_key_id = 2 [json_name = "data_encryption_key_id"];
+
+  string description = 3;
+
+  bool encrypted = 4;
+
+  string id = 5;
+
+  string kms_key_id = 6 [json_name = "kms_key_id"];
+
+  string outpost_arn = 7 [json_name = "outpost_arn"];
+
+  string owner_alias = 8 [json_name = "owner_alias"];
+
+  string owner_id = 9 [json_name = "owner_id"];
+
+  bool permanent_restore = 10 [json_name = "permanent_restore"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string role_name = 12 [json_name = "role_name"];
+
+  string storage_tier = 13 [json_name = "storage_tier"];
+
+  map<string, string> tags = 14;
+
+  map<string, string> tags_all = 15 [json_name = "tags_all"];
+
+  int64 temporary_restore_days = 16 [json_name = "temporary_restore_days"];
+
+  string volume_id = 17 [json_name = "volume_id"];
+
+  int64 volume_size = 18 [json_name = "volume_size"];
+
+  ClientData client_data = 19 [json_name = "client_data"];
+
+  DiskContainer disk_container = 20 [json_name = "disk_container"];
+
+  repeated Timeouts timeouts = 21;
+
+  google.protobuf.Value for_each = 22 [json_name = "for_each"];
+
+  repeated string depends_on = 23 [json_name = "depends_on"];
+
+  int32 count = 24;
+
+  string provider = 25;
+
+  terraform.v1.Lifecycle lifecycle = 26;
+
+  message ClientData {
+    string comment = 1;
+
+    string upload_end = 2 [json_name = "upload_end"];
+
+    int64 upload_size = 3 [json_name = "upload_size"];
+
+    string upload_start = 4 [json_name = "upload_start"];
+  }
+
+  message DiskContainer {
+    string description = 1;
+
+    string format = 2;
+
+    string url = 3;
+
+    UserBucket user_bucket = 4 [json_name = "user_bucket"];
+
+    message UserBucket {
+      string s3_bucket = 1 [json_name = "s3_bucket"];
+
+      string s3_key = 2 [json_name = "s3_key"];
+    }
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsEbsVolume version is 0
+message AwsEbsVolume {
+  string arn = 1;
+
+  string availability_zone = 2 [json_name = "availability_zone"];
+
+  string create_time = 3 [json_name = "create_time"];
+
+  bool encrypted = 4;
+
+  bool final_snapshot = 5 [json_name = "final_snapshot"];
+
+  string id = 6;
+
+  int64 iops = 7;
+
+  string kms_key_id = 8 [json_name = "kms_key_id"];
+
+  bool multi_attach_enabled = 9 [json_name = "multi_attach_enabled"];
+
+  string outpost_arn = 10 [json_name = "outpost_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  int64 size = 12;
+
+  string snapshot_id = 13 [json_name = "snapshot_id"];
+
+  map<string, string> tags = 14;
+
+  map<string, string> tags_all = 15 [json_name = "tags_all"];
+
+  int64 throughput = 16;
+
+  string type = 17;
+
+  int64 volume_initialization_rate = 18 [json_name = "volume_initialization_rate"];
+
+  repeated Timeouts timeouts = 19;
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsEbsVolumeCopy version is 0
+message AwsEbsVolumeCopy {
+  string arn = 1;
+
+  string availability_zone = 2 [json_name = "availability_zone"];
+
+  string id = 3;
+
+  int64 iops = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  int64 size = 6;
+
+  string source_volume_id = 7 [json_name = "source_volume_id"];
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  int64 throughput = 10;
+
+  string volume_type = 11 [json_name = "volume_type"];
+
+  repeated Timeouts timeouts = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}

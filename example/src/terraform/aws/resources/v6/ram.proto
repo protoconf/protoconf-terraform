@@ -1,0 +1,242 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsRamPermission version is 0
+message AwsRamPermission {
+  string arn = 1;
+
+  bool default_version = 2 [json_name = "default_version"];
+
+  string name = 3;
+
+  string policy_template = 4 [json_name = "policy_template"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string resource_type = 6 [json_name = "resource_type"];
+
+  string status = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  string version = 10;
+
+  repeated Timeouts timeouts = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 1;
+  }
+}
+
+// AwsRamPrincipalAssociation version is 0
+message AwsRamPrincipalAssociation {
+  string id = 1;
+
+  string principal = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string resource_share_arn = 4 [json_name = "resource_share_arn"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsRamResourceAssociation version is 0
+message AwsRamResourceAssociation {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string resource_arn = 3 [json_name = "resource_arn"];
+
+  string resource_share_arn = 4 [json_name = "resource_share_arn"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsRamResourceShare version is 0
+message AwsRamResourceShare {
+  bool allow_external_principals = 1 [json_name = "allow_external_principals"];
+
+  string arn = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  repeated string permission_arns = 5 [json_name = "permission_arns"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  ResourceShareConfiguration resource_share_configuration = 9 [json_name = "resource_share_configuration"];
+
+  repeated Timeouts timeouts = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message ResourceShareConfiguration {
+    bool retain_sharing_on_account_leave_organization = 1 [
+      json_name = "retain_sharing_on_account_leave_organization"
+    ];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsRamResourceShareAccepter version is 0
+message AwsRamResourceShareAccepter {
+  string id = 1;
+
+  string invitation_arn = 2 [json_name = "invitation_arn"];
+
+  string receiver_account_id = 3 [json_name = "receiver_account_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated string resources = 5;
+
+  string sender_account_id = 6 [json_name = "sender_account_id"];
+
+  string share_arn = 7 [json_name = "share_arn"];
+
+  string share_id = 8 [json_name = "share_id"];
+
+  string share_name = 9 [json_name = "share_name"];
+
+  string status = 10;
+
+  repeated Timeouts timeouts = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsRamResourceShareAssociationsExclusive version is 0
+message AwsRamResourceShareAssociationsExclusive {
+  repeated string principals = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  repeated string resource_arns = 3 [json_name = "resource_arns"];
+
+  string resource_share_arn = 4 [json_name = "resource_share_arn"];
+
+  repeated string sources = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsRamSharingWithOrganization version is 0
+message AwsRamSharingWithOrganization {
+  string id = 1;
+
+  google.protobuf.Value for_each = 2 [json_name = "for_each"];
+
+  repeated string depends_on = 3 [json_name = "depends_on"];
+
+  int32 count = 4;
+
+  string provider = 5;
+
+  terraform.v1.Lifecycle lifecycle = 6;
+}

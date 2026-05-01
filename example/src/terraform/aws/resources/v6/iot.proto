@@ -1,0 +1,1313 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsIotAuthorizer version is 0
+message AwsIotAuthorizer {
+  string arn = 1;
+
+  string authorizer_function_arn = 2 [json_name = "authorizer_function_arn"];
+
+  bool enable_caching_for_http = 3 [json_name = "enable_caching_for_http"];
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  bool signing_disabled = 7 [json_name = "signing_disabled"];
+
+  string status = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  string token_key_name = 11 [json_name = "token_key_name"];
+
+  map<string, string> token_signing_public_keys = 12 [json_name = "token_signing_public_keys"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+}
+
+// AwsIotBillingGroup version is 0
+message AwsIotBillingGroup {
+  string arn = 1;
+
+  string id = 2;
+
+  repeated Metadata metadata = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  int64 version = 8;
+
+  repeated Properties properties = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Metadata {
+    // creation_date: string
+    string creation_date = 1 [json_name = "creation_date"];
+  }
+
+  message Properties {
+    string description = 1;
+  }
+}
+
+// AwsIotCaCertificate version is 0
+message AwsIotCaCertificate {
+  bool active = 1;
+
+  bool allow_auto_registration = 2 [json_name = "allow_auto_registration"];
+
+  string arn = 3;
+
+  string ca_certificate_pem = 4 [json_name = "ca_certificate_pem"];
+
+  string certificate_mode = 5 [json_name = "certificate_mode"];
+
+  int64 customer_version = 6 [json_name = "customer_version"];
+
+  string generation_id = 7 [json_name = "generation_id"];
+
+  string id = 8;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  repeated Validity validity = 12;
+
+  string verification_certificate_pem = 13 [json_name = "verification_certificate_pem"];
+
+  RegistrationConfig registration_config = 14 [json_name = "registration_config"];
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message Validity {
+    // not_after: string
+    string not_after = 1 [json_name = "not_after"];
+
+    // not_before: string
+    string not_before = 2 [json_name = "not_before"];
+  }
+
+  message RegistrationConfig {
+    string role_arn = 1 [json_name = "role_arn"];
+
+    string template_body = 2 [json_name = "template_body"];
+
+    string template_name = 3 [json_name = "template_name"];
+  }
+}
+
+// AwsIotCertificate version is 0
+message AwsIotCertificate {
+  bool active = 1;
+
+  string arn = 2;
+
+  string ca_certificate_id = 3 [json_name = "ca_certificate_id"];
+
+  string ca_pem = 4 [json_name = "ca_pem"];
+
+  string certificate_pem = 5 [json_name = "certificate_pem"];
+
+  string csr = 6;
+
+  string id = 7;
+
+  string private_key = 8 [json_name = "private_key"];
+
+  string public_key = 9 [json_name = "public_key"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+}
+
+// AwsIotDomainConfiguration version is 0
+message AwsIotDomainConfiguration {
+  string application_protocol = 1 [json_name = "application_protocol"];
+
+  string arn = 2;
+
+  string authentication_type = 3 [json_name = "authentication_type"];
+
+  string domain_name = 4 [json_name = "domain_name"];
+
+  string domain_type = 5 [json_name = "domain_type"];
+
+  string id = 6;
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  repeated string server_certificate_arns = 9 [json_name = "server_certificate_arns"];
+
+  string service_type = 10 [json_name = "service_type"];
+
+  string status = 11;
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  string validation_certificate_arn = 14 [json_name = "validation_certificate_arn"];
+
+  AuthorizerConfig authorizer_config = 15 [json_name = "authorizer_config"];
+
+  TlsConfig tls_config = 16 [json_name = "tls_config"];
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message AuthorizerConfig {
+    bool allow_authorizer_override = 1 [json_name = "allow_authorizer_override"];
+
+    string default_authorizer_name = 2 [json_name = "default_authorizer_name"];
+  }
+
+  message TlsConfig {
+    string security_policy = 1 [json_name = "security_policy"];
+  }
+}
+
+// AwsIotEventConfigurations version is 0
+message AwsIotEventConfigurations {
+  map<string, string> event_configurations = 1 [json_name = "event_configurations"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsIotIndexingConfiguration version is 0
+message AwsIotIndexingConfiguration {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  ThingGroupIndexingConfiguration thing_group_indexing_configuration = 3 [json_name = "thing_group_indexing_configuration"];
+
+  ThingIndexingConfiguration thing_indexing_configuration = 4 [json_name = "thing_indexing_configuration"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message ThingGroupIndexingConfiguration {
+    string thing_group_indexing_mode = 1 [json_name = "thing_group_indexing_mode"];
+
+    repeated CustomField custom_field = 2 [json_name = "custom_field"];
+
+    repeated ManagedField managed_field = 3 [json_name = "managed_field"];
+
+    message CustomField {
+      string name = 1;
+
+      string type = 2;
+    }
+
+    message ManagedField {
+      string name = 1;
+
+      string type = 2;
+    }
+  }
+
+  message ThingIndexingConfiguration {
+    string device_defender_indexing_mode = 1 [json_name = "device_defender_indexing_mode"];
+
+    string named_shadow_indexing_mode = 2 [json_name = "named_shadow_indexing_mode"];
+
+    string thing_connectivity_indexing_mode = 3 [json_name = "thing_connectivity_indexing_mode"];
+
+    string thing_indexing_mode = 4 [json_name = "thing_indexing_mode"];
+
+    repeated CustomField custom_field = 5 [json_name = "custom_field"];
+
+    Filter filter = 6;
+
+    repeated ManagedField managed_field = 7 [json_name = "managed_field"];
+
+    message CustomField {
+      string name = 1;
+
+      string type = 2;
+    }
+
+    message Filter {
+      repeated string named_shadow_names = 1 [json_name = "named_shadow_names"];
+    }
+
+    message ManagedField {
+      string name = 1;
+
+      string type = 2;
+    }
+  }
+}
+
+// AwsIotLoggingOptions version is 0
+message AwsIotLoggingOptions {
+  string default_log_level = 1 [json_name = "default_log_level"];
+
+  bool disable_all_logs = 2 [json_name = "disable_all_logs"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string role_arn = 5 [json_name = "role_arn"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsIotPolicy version is 0
+message AwsIotPolicy {
+  string arn = 1;
+
+  string default_version_id = 2 [json_name = "default_version_id"];
+
+  string id = 3;
+
+  string name = 4;
+
+  string policy = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Timeouts {
+    string delete = 1;
+
+    string update = 2;
+  }
+}
+
+// AwsIotPolicyAttachment version is 0
+message AwsIotPolicyAttachment {
+  string id = 1;
+
+  string policy = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string target = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsIotProvisioningTemplate version is 0
+message AwsIotProvisioningTemplate {
+  string arn = 1;
+
+  int64 default_version_id = 2 [json_name = "default_version_id"];
+
+  string description = 3;
+
+  bool enabled = 4;
+
+  string id = 5;
+
+  string name = 6;
+
+  string provisioning_role_arn = 7 [json_name = "provisioning_role_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  string template_body = 11 [json_name = "template_body"];
+
+  string type = 12;
+
+  PreProvisioningHook pre_provisioning_hook = 13 [json_name = "pre_provisioning_hook"];
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message PreProvisioningHook {
+    string payload_version = 1 [json_name = "payload_version"];
+
+    string target_arn = 2 [json_name = "target_arn"];
+  }
+}
+
+// AwsIotRoleAlias version is 0
+message AwsIotRoleAlias {
+  string alias = 1;
+
+  string arn = 2;
+
+  int64 credential_duration = 3 [json_name = "credential_duration"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string role_arn = 6 [json_name = "role_arn"];
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsIotThing version is 0
+message AwsIotThing {
+  string arn = 1;
+
+  map<string, string> attributes = 2;
+
+  string default_client_id = 3 [json_name = "default_client_id"];
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string thing_type_name = 7 [json_name = "thing_type_name"];
+
+  int64 version = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsIotThingGroup version is 0
+message AwsIotThingGroup {
+  string arn = 1;
+
+  string id = 2;
+
+  repeated Metadata metadata = 3;
+
+  string name = 4;
+
+  string parent_group_name = 5 [json_name = "parent_group_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  int64 version = 9;
+
+  Properties properties = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message Metadata {
+    // creation_date: string
+    string creation_date = 1 [json_name = "creation_date"];
+
+    // parent_group_name: string
+    string parent_group_name = 2 [json_name = "parent_group_name"];
+
+    // root_to_parent_groups: list of object
+    repeated RootToParentGroups root_to_parent_groups = 3 [json_name = "root_to_parent_groups"];
+
+    message RootToParentGroups {
+      // group_arn: string
+      string group_arn = 1 [json_name = "group_arn"];
+
+      // group_name: string
+      string group_name = 2 [json_name = "group_name"];
+    }
+  }
+
+  message Properties {
+    string description = 1;
+
+    AttributePayload attribute_payload = 2 [json_name = "attribute_payload"];
+
+    message AttributePayload {
+      map<string, string> attributes = 1;
+    }
+  }
+}
+
+// AwsIotThingGroupMembership version is 0
+message AwsIotThingGroupMembership {
+  string id = 1;
+
+  bool override_dynamic_group = 2 [json_name = "override_dynamic_group"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string thing_group_name = 4 [json_name = "thing_group_name"];
+
+  string thing_name = 5 [json_name = "thing_name"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsIotThingPrincipalAttachment version is 0
+message AwsIotThingPrincipalAttachment {
+  string id = 1;
+
+  string principal = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string thing = 4;
+
+  string thing_principal_type = 5 [json_name = "thing_principal_type"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsIotThingType version is 0
+message AwsIotThingType {
+  string arn = 1;
+
+  bool deprecated = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  Properties properties = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Properties {
+    string description = 1;
+
+    repeated string searchable_attributes = 2 [json_name = "searchable_attributes"];
+  }
+}
+
+// AwsIotTopicRule version is 0
+message AwsIotTopicRule {
+  string arn = 1;
+
+  string description = 2;
+
+  bool enabled = 3;
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string sql = 7;
+
+  string sql_version = 8 [json_name = "sql_version"];
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  repeated CloudwatchAlarm cloudwatch_alarm = 11 [json_name = "cloudwatch_alarm"];
+
+  repeated CloudwatchLogs cloudwatch_logs = 12 [json_name = "cloudwatch_logs"];
+
+  repeated CloudwatchMetric cloudwatch_metric = 13 [json_name = "cloudwatch_metric"];
+
+  repeated Dynamodb dynamodb = 14;
+
+  repeated Dynamodbv2 dynamodbv2 = 15;
+
+  repeated Elasticsearch elasticsearch = 16;
+
+  ErrorAction error_action = 17 [json_name = "error_action"];
+
+  repeated Firehose firehose = 18;
+
+  repeated Http http = 19;
+
+  repeated IotAnalytics iot_analytics = 20 [json_name = "iot_analytics"];
+
+  repeated IotEvents iot_events = 21 [json_name = "iot_events"];
+
+  repeated Kafka kafka = 22;
+
+  repeated Kinesis kinesis = 23;
+
+  repeated Lambda lambda = 24;
+
+  repeated Republish republish = 25;
+
+  repeated S3 s3 = 26;
+
+  repeated Sns sns = 27;
+
+  repeated Sqs sqs = 28;
+
+  repeated StepFunctions step_functions = 29 [json_name = "step_functions"];
+
+  repeated Timestream timestream = 30;
+
+  google.protobuf.Value for_each = 31 [json_name = "for_each"];
+
+  repeated string depends_on = 32 [json_name = "depends_on"];
+
+  int32 count = 33;
+
+  string provider = 34;
+
+  terraform.v1.Lifecycle lifecycle = 35;
+
+  message CloudwatchAlarm {
+    string alarm_name = 1 [json_name = "alarm_name"];
+
+    string role_arn = 2 [json_name = "role_arn"];
+
+    string state_reason = 3 [json_name = "state_reason"];
+
+    string state_value = 4 [json_name = "state_value"];
+  }
+
+  message CloudwatchLogs {
+    bool batch_mode = 1 [json_name = "batch_mode"];
+
+    string log_group_name = 2 [json_name = "log_group_name"];
+
+    string role_arn = 3 [json_name = "role_arn"];
+  }
+
+  message CloudwatchMetric {
+    string metric_name = 1 [json_name = "metric_name"];
+
+    string metric_namespace = 2 [json_name = "metric_namespace"];
+
+    string metric_timestamp = 3 [json_name = "metric_timestamp"];
+
+    string metric_unit = 4 [json_name = "metric_unit"];
+
+    string metric_value = 5 [json_name = "metric_value"];
+
+    string role_arn = 6 [json_name = "role_arn"];
+  }
+
+  message Dynamodb {
+    string hash_key_field = 1 [json_name = "hash_key_field"];
+
+    string hash_key_type = 2 [json_name = "hash_key_type"];
+
+    string hash_key_value = 3 [json_name = "hash_key_value"];
+
+    string operation = 4;
+
+    string payload_field = 5 [json_name = "payload_field"];
+
+    string range_key_field = 6 [json_name = "range_key_field"];
+
+    string range_key_type = 7 [json_name = "range_key_type"];
+
+    string range_key_value = 8 [json_name = "range_key_value"];
+
+    string role_arn = 9 [json_name = "role_arn"];
+
+    string table_name = 10 [json_name = "table_name"];
+  }
+
+  message Dynamodbv2 {
+    string role_arn = 1 [json_name = "role_arn"];
+
+    PutItem put_item = 2 [json_name = "put_item"];
+
+    message PutItem {
+      string table_name = 1 [json_name = "table_name"];
+    }
+  }
+
+  message Elasticsearch {
+    string endpoint = 1;
+
+    string id = 2;
+
+    string index = 3;
+
+    string role_arn = 4 [json_name = "role_arn"];
+
+    string type = 5;
+  }
+
+  message ErrorAction {
+    CloudwatchAlarm cloudwatch_alarm = 1 [json_name = "cloudwatch_alarm"];
+
+    CloudwatchLogs cloudwatch_logs = 2 [json_name = "cloudwatch_logs"];
+
+    CloudwatchMetric cloudwatch_metric = 3 [json_name = "cloudwatch_metric"];
+
+    Dynamodb dynamodb = 4;
+
+    Dynamodbv2 dynamodbv2 = 5;
+
+    Elasticsearch elasticsearch = 6;
+
+    Firehose firehose = 7;
+
+    Http http = 8;
+
+    IotAnalytics iot_analytics = 9 [json_name = "iot_analytics"];
+
+    IotEvents iot_events = 10 [json_name = "iot_events"];
+
+    Kafka kafka = 11;
+
+    Kinesis kinesis = 12;
+
+    Lambda lambda = 13;
+
+    Republish republish = 14;
+
+    S3 s3 = 15;
+
+    Sns sns = 16;
+
+    Sqs sqs = 17;
+
+    StepFunctions step_functions = 18 [json_name = "step_functions"];
+
+    Timestream timestream = 19;
+
+    message CloudwatchAlarm {
+      string alarm_name = 1 [json_name = "alarm_name"];
+
+      string role_arn = 2 [json_name = "role_arn"];
+
+      string state_reason = 3 [json_name = "state_reason"];
+
+      string state_value = 4 [json_name = "state_value"];
+    }
+
+    message CloudwatchLogs {
+      bool batch_mode = 1 [json_name = "batch_mode"];
+
+      string log_group_name = 2 [json_name = "log_group_name"];
+
+      string role_arn = 3 [json_name = "role_arn"];
+    }
+
+    message CloudwatchMetric {
+      string metric_name = 1 [json_name = "metric_name"];
+
+      string metric_namespace = 2 [json_name = "metric_namespace"];
+
+      string metric_timestamp = 3 [json_name = "metric_timestamp"];
+
+      string metric_unit = 4 [json_name = "metric_unit"];
+
+      string metric_value = 5 [json_name = "metric_value"];
+
+      string role_arn = 6 [json_name = "role_arn"];
+    }
+
+    message Dynamodb {
+      string hash_key_field = 1 [json_name = "hash_key_field"];
+
+      string hash_key_type = 2 [json_name = "hash_key_type"];
+
+      string hash_key_value = 3 [json_name = "hash_key_value"];
+
+      string operation = 4;
+
+      string payload_field = 5 [json_name = "payload_field"];
+
+      string range_key_field = 6 [json_name = "range_key_field"];
+
+      string range_key_type = 7 [json_name = "range_key_type"];
+
+      string range_key_value = 8 [json_name = "range_key_value"];
+
+      string role_arn = 9 [json_name = "role_arn"];
+
+      string table_name = 10 [json_name = "table_name"];
+    }
+
+    message Dynamodbv2 {
+      string role_arn = 1 [json_name = "role_arn"];
+
+      PutItem put_item = 2 [json_name = "put_item"];
+
+      message PutItem {
+        string table_name = 1 [json_name = "table_name"];
+      }
+    }
+
+    message Elasticsearch {
+      string endpoint = 1;
+
+      string id = 2;
+
+      string index = 3;
+
+      string role_arn = 4 [json_name = "role_arn"];
+
+      string type = 5;
+    }
+
+    message Firehose {
+      bool batch_mode = 1 [json_name = "batch_mode"];
+
+      string delivery_stream_name = 2 [json_name = "delivery_stream_name"];
+
+      string role_arn = 3 [json_name = "role_arn"];
+
+      string separator = 4;
+    }
+
+    message Http {
+      string confirmation_url = 1 [json_name = "confirmation_url"];
+
+      string url = 2;
+
+      repeated HttpHeader http_header = 3 [json_name = "http_header"];
+
+      message HttpHeader {
+        string key = 1;
+
+        string value = 2;
+      }
+    }
+
+    message IotAnalytics {
+      bool batch_mode = 1 [json_name = "batch_mode"];
+
+      string channel_name = 2 [json_name = "channel_name"];
+
+      string role_arn = 3 [json_name = "role_arn"];
+    }
+
+    message IotEvents {
+      bool batch_mode = 1 [json_name = "batch_mode"];
+
+      string input_name = 2 [json_name = "input_name"];
+
+      string message_id = 3 [json_name = "message_id"];
+
+      string role_arn = 4 [json_name = "role_arn"];
+    }
+
+    message Kafka {
+      map<string, string> client_properties = 1 [json_name = "client_properties"];
+
+      string destination_arn = 2 [json_name = "destination_arn"];
+
+      string key = 3;
+
+      string partition = 4;
+
+      string topic = 5;
+
+      repeated Header header = 6;
+
+      message Header {
+        string key = 1;
+
+        string value = 2;
+      }
+    }
+
+    message Kinesis {
+      string partition_key = 1 [json_name = "partition_key"];
+
+      string role_arn = 2 [json_name = "role_arn"];
+
+      string stream_name = 3 [json_name = "stream_name"];
+    }
+
+    message Lambda {
+      string function_arn = 1 [json_name = "function_arn"];
+    }
+
+    message Republish {
+      int64 qos = 1;
+
+      string role_arn = 2 [json_name = "role_arn"];
+
+      string topic = 3;
+    }
+
+    message S3 {
+      string bucket_name = 1 [json_name = "bucket_name"];
+
+      string canned_acl = 2 [json_name = "canned_acl"];
+
+      string key = 3;
+
+      string role_arn = 4 [json_name = "role_arn"];
+    }
+
+    message Sns {
+      string message_format = 1 [json_name = "message_format"];
+
+      string role_arn = 2 [json_name = "role_arn"];
+
+      string target_arn = 3 [json_name = "target_arn"];
+    }
+
+    message Sqs {
+      string queue_url = 1 [json_name = "queue_url"];
+
+      string role_arn = 2 [json_name = "role_arn"];
+
+      bool use_base64 = 3 [json_name = "use_base64"];
+    }
+
+    message StepFunctions {
+      string execution_name_prefix = 1 [json_name = "execution_name_prefix"];
+
+      string role_arn = 2 [json_name = "role_arn"];
+
+      string state_machine_name = 3 [json_name = "state_machine_name"];
+    }
+
+    message Timestream {
+      string database_name = 1 [json_name = "database_name"];
+
+      string role_arn = 2 [json_name = "role_arn"];
+
+      string table_name = 3 [json_name = "table_name"];
+
+      repeated Dimension dimension = 4;
+
+      Timestamp timestamp = 5;
+
+      message Dimension {
+        string name = 1;
+
+        string value = 2;
+      }
+
+      message Timestamp {
+        string unit = 1;
+
+        string value = 2;
+      }
+    }
+  }
+
+  message Firehose {
+    bool batch_mode = 1 [json_name = "batch_mode"];
+
+    string delivery_stream_name = 2 [json_name = "delivery_stream_name"];
+
+    string role_arn = 3 [json_name = "role_arn"];
+
+    string separator = 4;
+  }
+
+  message Http {
+    string confirmation_url = 1 [json_name = "confirmation_url"];
+
+    string url = 2;
+
+    repeated HttpHeader http_header = 3 [json_name = "http_header"];
+
+    message HttpHeader {
+      string key = 1;
+
+      string value = 2;
+    }
+  }
+
+  message IotAnalytics {
+    bool batch_mode = 1 [json_name = "batch_mode"];
+
+    string channel_name = 2 [json_name = "channel_name"];
+
+    string role_arn = 3 [json_name = "role_arn"];
+  }
+
+  message IotEvents {
+    bool batch_mode = 1 [json_name = "batch_mode"];
+
+    string input_name = 2 [json_name = "input_name"];
+
+    string message_id = 3 [json_name = "message_id"];
+
+    string role_arn = 4 [json_name = "role_arn"];
+  }
+
+  message Kafka {
+    map<string, string> client_properties = 1 [json_name = "client_properties"];
+
+    string destination_arn = 2 [json_name = "destination_arn"];
+
+    string key = 3;
+
+    string partition = 4;
+
+    string topic = 5;
+
+    repeated Header header = 6;
+
+    message Header {
+      string key = 1;
+
+      string value = 2;
+    }
+  }
+
+  message Kinesis {
+    string partition_key = 1 [json_name = "partition_key"];
+
+    string role_arn = 2 [json_name = "role_arn"];
+
+    string stream_name = 3 [json_name = "stream_name"];
+  }
+
+  message Lambda {
+    string function_arn = 1 [json_name = "function_arn"];
+  }
+
+  message Republish {
+    int64 qos = 1;
+
+    string role_arn = 2 [json_name = "role_arn"];
+
+    string topic = 3;
+  }
+
+  message S3 {
+    string bucket_name = 1 [json_name = "bucket_name"];
+
+    string canned_acl = 2 [json_name = "canned_acl"];
+
+    string key = 3;
+
+    string role_arn = 4 [json_name = "role_arn"];
+  }
+
+  message Sns {
+    string message_format = 1 [json_name = "message_format"];
+
+    string role_arn = 2 [json_name = "role_arn"];
+
+    string target_arn = 3 [json_name = "target_arn"];
+  }
+
+  message Sqs {
+    string queue_url = 1 [json_name = "queue_url"];
+
+    string role_arn = 2 [json_name = "role_arn"];
+
+    bool use_base64 = 3 [json_name = "use_base64"];
+  }
+
+  message StepFunctions {
+    string execution_name_prefix = 1 [json_name = "execution_name_prefix"];
+
+    string role_arn = 2 [json_name = "role_arn"];
+
+    string state_machine_name = 3 [json_name = "state_machine_name"];
+  }
+
+  message Timestream {
+    string database_name = 1 [json_name = "database_name"];
+
+    string role_arn = 2 [json_name = "role_arn"];
+
+    string table_name = 3 [json_name = "table_name"];
+
+    repeated Dimension dimension = 4;
+
+    Timestamp timestamp = 5;
+
+    message Dimension {
+      string name = 1;
+
+      string value = 2;
+    }
+
+    message Timestamp {
+      string unit = 1;
+
+      string value = 2;
+    }
+  }
+}
+
+// AwsIotTopicRuleDestination version is 0
+message AwsIotTopicRuleDestination {
+  string arn = 1;
+
+  bool enabled = 2;
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated Timeouts timeouts = 5;
+
+  VpcConfiguration vpc_configuration = 6 [json_name = "vpc_configuration"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+
+  message VpcConfiguration {
+    string role_arn = 1 [json_name = "role_arn"];
+
+    repeated string security_groups = 2 [json_name = "security_groups"];
+
+    repeated string subnet_ids = 3 [json_name = "subnet_ids"];
+
+    string vpc_id = 4 [json_name = "vpc_id"];
+  }
+}

@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCloudhsmV2Cluster version is 0
+message AwsCloudhsmV2Cluster {
+  repeated ClusterCertificates cluster_certificates = 1 [json_name = "cluster_certificates"];
+
+  string cluster_id = 2 [json_name = "cluster_id"];
+
+  string cluster_state = 3 [json_name = "cluster_state"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string security_group_id = 6 [json_name = "security_group_id"];
+
+  repeated string subnet_ids = 7 [json_name = "subnet_ids"];
+
+  string vpc_id = 8 [json_name = "vpc_id"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message ClusterCertificates {
+    // aws_hardware_certificate: string
+    string aws_hardware_certificate = 1 [json_name = "aws_hardware_certificate"];
+
+    // cluster_certificate: string
+    string cluster_certificate = 2 [json_name = "cluster_certificate"];
+
+    // cluster_csr: string
+    string cluster_csr = 3 [json_name = "cluster_csr"];
+
+    // hsm_certificate: string
+    string hsm_certificate = 4 [json_name = "hsm_certificate"];
+
+    // manufacturer_hardware_certificate: string
+    string manufacturer_hardware_certificate = 5 [json_name = "manufacturer_hardware_certificate"];
+  }
+}

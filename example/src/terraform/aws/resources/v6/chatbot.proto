@@ -1,0 +1,146 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsChatbotSlackChannelConfiguration version is 0
+message AwsChatbotSlackChannelConfiguration {
+  string chat_configuration_arn = 1 [json_name = "chat_configuration_arn"];
+
+  string configuration_name = 2 [json_name = "configuration_name"];
+
+  repeated string guardrail_policy_arns = 3 [json_name = "guardrail_policy_arns"];
+
+  string iam_role_arn = 4 [json_name = "iam_role_arn"];
+
+  string logging_level = 5 [json_name = "logging_level"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string slack_channel_id = 7 [json_name = "slack_channel_id"];
+
+  string slack_channel_name = 8 [json_name = "slack_channel_name"];
+
+  string slack_team_id = 9 [json_name = "slack_team_id"];
+
+  string slack_team_name = 10 [json_name = "slack_team_name"];
+
+  repeated string sns_topic_arns = 11 [json_name = "sns_topic_arns"];
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  bool user_authorization_required = 14 [json_name = "user_authorization_required"];
+
+  repeated Timeouts timeouts = 15;
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsChatbotTeamsChannelConfiguration version is 0
+message AwsChatbotTeamsChannelConfiguration {
+  string channel_id = 1 [json_name = "channel_id"];
+
+  string channel_name = 2 [json_name = "channel_name"];
+
+  string chat_configuration_arn = 3 [json_name = "chat_configuration_arn"];
+
+  string configuration_name = 4 [json_name = "configuration_name"];
+
+  repeated string guardrail_policy_arns = 5 [json_name = "guardrail_policy_arns"];
+
+  string iam_role_arn = 6 [json_name = "iam_role_arn"];
+
+  string logging_level = 7 [json_name = "logging_level"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  repeated string sns_topic_arns = 9 [json_name = "sns_topic_arns"];
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  string team_id = 12 [json_name = "team_id"];
+
+  string team_name = 13 [json_name = "team_name"];
+
+  string tenant_id = 14 [json_name = "tenant_id"];
+
+  bool user_authorization_required = 15 [json_name = "user_authorization_required"];
+
+  repeated Timeouts timeouts = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}

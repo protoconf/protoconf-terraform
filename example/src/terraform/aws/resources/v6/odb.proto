@@ -1,0 +1,1126 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsOdbCloudAutonomousVmCluster version is 0
+message AwsOdbCloudAutonomousVmCluster {
+  string arn = 1;
+
+  // The progress of the current operation on the Autonomous VM cluster, as a
+  // percentage.
+  int64 autonomous_data_storage_percentage = 2 [json_name = "autonomous_data_storage_percentage"];
+
+  // The data storage size allocated for Autonomous Databases in the Autonomous VM
+  // cluster, in TB. Changing this will force terraform to create new resource.
+  int64 autonomous_data_storage_size_in_tbs = 3 [json_name = "autonomous_data_storage_size_in_tbs"];
+
+  // The available data storage space for Autonomous Databases in the Autonomous VM
+  // cluster, in TB.
+  int64 available_autonomous_data_storage_size_in_tbs = 4 [
+    json_name = "available_autonomous_data_storage_size_in_tbs"
+  ];
+
+  // The number of Autonomous CDBs that you can create with the currently available
+  // storage.
+  int64 available_container_databases = 5 [json_name = "available_container_databases"];
+
+  // The number of CPU cores available for allocation to Autonomous Databases
+  int64 available_cpus = 6 [json_name = "available_cpus"];
+
+  // The unique identifier of the Exadata infrastructure for this VM cluster. Changing
+  // this will create a new resource.
+  string cloud_exadata_infrastructure_arn = 7 [json_name = "cloud_exadata_infrastructure_arn"];
+
+  // Exadata infrastructure id. Changing this will force terraform to create new
+  // resource.
+  string cloud_exadata_infrastructure_id = 8 [json_name = "cloud_exadata_infrastructure_id"];
+
+  // The compute model of the Autonomous VM cluster: ECPU or OCPU.
+  string compute_model = 9 [json_name = "compute_model"];
+
+  // The total number of CPU cores in the Autonomous VM cluster.
+  int64 cpu_core_count = 10 [json_name = "cpu_core_count"];
+
+  // The number of CPU cores enabled per node in the Autonomous VM cluster.
+  int64 cpu_core_count_per_node = 11 [json_name = "cpu_core_count_per_node"];
+
+  // The percentage of total CPU cores currently in use in the Autonomous VM cluster.
+  int64 cpu_percentage = 12 [json_name = "cpu_percentage"];
+
+  // The date and time when the Autonomous VM cluster was created.
+  string created_at = 13 [json_name = "created_at"];
+
+  // The total data storage allocated to the Autonomous VM cluster, in GB.
+  int64 data_storage_size_in_gbs = 14 [json_name = "data_storage_size_in_gbs"];
+
+  // The total data storage allocated to the Autonomous VM cluster, in TB.
+  int64 data_storage_size_in_tbs = 15 [json_name = "data_storage_size_in_tbs"];
+
+  // The database servers in the Autonomous VM cluster. Changing this will force
+  // terraform to create new resource.
+  repeated string db_servers = 16 [json_name = "db_servers"];
+
+  // The description of the Autonomous VM cluster.
+  string description = 17;
+
+  // The display name of the Autonomous VM cluster. Changing this will force terraform
+  // to create new resource.
+  string display_name = 18 [json_name = "display_name"];
+
+  // The domain name of the Autonomous VM cluster.
+  string domain = 19;
+
+  // The minimum value to which you can scale down the Exadata storage, in TB.
+  int64 exadata_storage_in_tbs_lowest_scaled_value = 20 [
+    json_name = "exadata_storage_in_tbs_lowest_scaled_value"
+  ];
+
+  // The hostname of the Autonomous VM cluster.
+  string hostname = 21;
+
+  string id = 22;
+
+  // Indicates whether mutual TLS (mTLS) authentication is enabled for the Autonomous
+  // VM cluster. Changing this will force terraform to create new resource.
+  bool is_mtls_enabled_vm_cluster = 23 [json_name = "is_mtls_enabled_vm_cluster"];
+
+  // The license model for the Autonomous VM cluster. Valid values are
+  // LICENSE_INCLUDED or BRING_YOUR_OWN_LICENSE . Changing this will force terraform
+  // to create new resource.
+  string license_model = 24 [json_name = "license_model"];
+
+  // The minimum value to which you can scale down the maximum number of Autonomous
+  // CDBs.
+  int64 max_acds_lowest_scaled_value = 25 [json_name = "max_acds_lowest_scaled_value"];
+
+  // The amount of memory allocated per Oracle Compute Unit, in GB. Changing this will
+  // force terraform to create new resource.
+  int64 memory_per_oracle_compute_unit_in_gbs = 26 [
+    json_name = "memory_per_oracle_compute_unit_in_gbs"
+  ];
+
+  // The total amount of memory allocated to the Autonomous VM cluster, in
+  // gigabytes(GB).
+  int64 memory_size_in_gbs = 27 [json_name = "memory_size_in_gbs"];
+
+  // The number of database server nodes in the Autonomous VM cluster.
+  int64 node_count = 28 [json_name = "node_count"];
+
+  // The number of Autonomous CDBs that can't be provisioned because of resource
+  // constraints.
+  int64 non_provisionable_autonomous_container_databases = 29 [
+    json_name = "non_provisionable_autonomous_container_databases"
+  ];
+
+  // The name of the OCI resource anchor associated with this Autonomous VM cluster.
+  string oci_resource_anchor_name = 30 [json_name = "oci_resource_anchor_name"];
+
+  // The URL for accessing the OCI console page for this Autonomous VM cluster.
+  string oci_url = 31 [json_name = "oci_url"];
+
+  // The Oracle Cloud Identifier (OCID) of the Autonomous VM cluster.
+  string ocid = 32;
+
+  // The unique identifier of the ODB network for the VM cluster. This member is
+  // required. Changing this will create a new resource.
+  string odb_network_arn = 33 [json_name = "odb_network_arn"];
+
+  // The unique identifier of the ODB network associated with this Autonomous VM
+  // Cluster. Changing this will force terraform to create new resource.
+  string odb_network_id = 34 [json_name = "odb_network_id"];
+
+  // The local node storage allocated to the Autonomous VM cluster, in gigabytes (GB)
+  int64 odb_node_storage_size_in_gbs = 35 [json_name = "odb_node_storage_size_in_gbs"];
+
+  // The progress of the current operation on the Autonomous VM cluster, as a
+  // percentage.
+  int64 percent_progress = 36 [json_name = "percent_progress"];
+
+  // The number of Autonomous CDBs that can be provisioned in the Autonomous VM
+  // cluster.
+  int64 provisionable_autonomous_container_databases = 37 [
+    json_name = "provisionable_autonomous_container_databases"
+  ];
+
+  // The number of Autonomous CDBs currently provisioned in the Autonomous VM cluster.
+  int64 provisioned_autonomous_container_databases = 38 [
+    json_name = "provisioned_autonomous_container_databases"
+  ];
+
+  // The number of CPUs provisioned in the Autonomous VM cluster.
+  int64 provisioned_cpus = 39 [json_name = "provisioned_cpus"];
+
+  // The number of CPU cores that can be reclaimed from terminated or scaled-down
+  // Autonomous Databases.
+  int64 reclaimable_cpus = 40 [json_name = "reclaimable_cpus"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 41;
+
+  // The number of CPU cores reserved for system operations and redundancy.
+  int64 reserved_cpus = 42 [json_name = "reserved_cpus"];
+
+  // The SCAN listener port for non-TLS (TCP) protocol. The default is 1521. Changing
+  // this will force terraform to create new resource.
+  int64 scan_listener_port_non_tls = 43 [json_name = "scan_listener_port_non_tls"];
+
+  // The SCAN listener port for TLS (TCP) protocol. The default is 2484. Changing this
+  // will force terraform to create new resource.
+  int64 scan_listener_port_tls = 44 [json_name = "scan_listener_port_tls"];
+
+  // The shape of the Exadata infrastructure for the Autonomous VM cluster.
+  string shape = 45;
+
+  // The status of the Autonomous VM cluster. Possible values include CREATING,
+  // AVAILABLE , UPDATING , DELETING , DELETED , FAILED
+  string status = 46;
+
+  // Additional information about the current status of the Autonomous VM cluster.
+  string status_reason = 47 [json_name = "status_reason"];
+
+  map<string, string> tags = 48;
+
+  map<string, string> tags_all = 49 [json_name = "tags_all"];
+
+  // The expiration date and time of the database SSL certificate.
+  string time_database_ssl_certificate_expires = 50 [
+    json_name = "time_database_ssl_certificate_expires"
+  ];
+
+  string time_ords_certificate_expires = 51 [json_name = "time_ords_certificate_expires"];
+
+  // The time zone of the Autonomous VM cluster. Changing this will force terraform to
+  // create new resource.
+  string time_zone = 52 [json_name = "time_zone"];
+
+  // The total number of Autonomous Container Databases that can be created with the
+  // allocated local storage. Changing this will force terraform to create new
+  // resource.
+  int64 total_container_databases = 53 [json_name = "total_container_databases"];
+
+  repeated MaintenanceWindow maintenance_window = 54 [json_name = "maintenance_window"];
+
+  repeated Timeouts timeouts = 55;
+
+  google.protobuf.Value for_each = 56 [json_name = "for_each"];
+
+  repeated string depends_on = 57 [json_name = "depends_on"];
+
+  int32 count = 58;
+
+  string provider = 59;
+
+  terraform.v1.Lifecycle lifecycle = 60;
+
+  message MaintenanceWindow {
+    // The days of the week when maintenance can be performed.
+    repeated DaysOfWeek days_of_week = 1 [json_name = "days_of_week"];
+
+    // The hours of the day when maintenance can be performed.
+    repeated int64 hours_of_day = 2 [json_name = "hours_of_day"];
+
+    // The lead time in weeks before the maintenance window.
+    int64 lead_time_in_weeks = 3 [json_name = "lead_time_in_weeks"];
+
+    // The months when maintenance can be performed.
+    repeated Months months = 4;
+
+    // The preference for the maintenance window scheduling.
+    string preference = 5;
+
+    // Indicates whether to skip release updates during maintenance.
+    repeated int64 weeks_of_month = 6 [json_name = "weeks_of_month"];
+
+    message DaysOfWeek {
+      // name: string
+      string name = 1;
+    }
+
+    message Months {
+      // name: string
+      string name = 1;
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsOdbCloudExadataInfrastructure version is 0
+message AwsOdbCloudExadataInfrastructure {
+  // The number of storage servers requested for the Exadata infrastructure
+  int64 activated_storage_count = 1 [json_name = "activated_storage_count"];
+
+  // The number of storage servers requested for the Exadata infrastructure
+  int64 additional_storage_count = 2 [json_name = "additional_storage_count"];
+
+  string arn = 3;
+
+  // The name of the Availability Zone (AZ) where the Exadata infrastructure is
+  // located. Changing this will force terraform to create new resource
+  string availability_zone = 4 [json_name = "availability_zone"];
+
+  // The AZ ID of the AZ where the Exadata infrastructure is located. Changing this
+  // will force terraform to create new resource
+  string availability_zone_id = 5 [json_name = "availability_zone_id"];
+
+  // The amount of available storage, in gigabytes (GB), for the Exadata
+  // infrastructure
+  int64 available_storage_size_in_gbs = 6 [json_name = "available_storage_size_in_gbs"];
+
+  // The number of compute instances that the Exadata infrastructure is located
+  int64 compute_count = 7 [json_name = "compute_count"];
+
+  // The OCI model compute model used when you create or clone an
+  //
+  // instance: ECPU or OCPU. An ECPU is an abstracted measure of
+  //
+  // compute resources. ECPUs are based on the number of cores
+  //
+  // elastically allocated from a pool of compute and storage servers.
+  //
+  // An OCPU is a legacy physical measure of compute resources. OCPUs
+  //
+  // are based on the physical core of a processor with
+  //
+  // hyper-threading enabled.
+  string compute_model = 8 [json_name = "compute_model"];
+
+  // The total number of CPU cores that are allocated to the Exadata infrastructure
+  int64 cpu_count = 9 [json_name = "cpu_count"];
+
+  // The time when the Exadata infrastructure was created.
+  string created_at = 10 [json_name = "created_at"];
+
+  // The email addresses of contacts to receive notification from Oracle about
+  // maintenance updates for the Exadata infrastructure. Changing this will force
+  // terraform to create new resource
+  repeated CustomerContactsToSendToOci customer_contacts_to_send_to_oci = 11 [json_name = "customer_contacts_to_send_to_oci"];
+
+  // The size of the Exadata infrastructure's data disk group, in terabytes (TB)
+  int64 data_storage_size_in_tbs = 12 [json_name = "data_storage_size_in_tbs"];
+
+  // The database server model type of the Exadata infrastructure. For the list of
+  // valid model names, use the ListDbSystemShapes operation
+  string database_server_type = 13 [json_name = "database_server_type"];
+
+  // The size of the Exadata infrastructure's local node storage, in gigabytes (GB)
+  int64 db_node_storage_size_in_gbs = 14 [json_name = "db_node_storage_size_in_gbs"];
+
+  // The software version of the database servers (dom0) in the Exadata infrastructure
+  string db_server_version = 15 [json_name = "db_server_version"];
+
+  // The user-friendly name for the Exadata infrastructure. Changing this will force
+  // terraform to create a new resource
+  string display_name = 16 [json_name = "display_name"];
+
+  string id = 17;
+
+  // The Oracle Cloud Identifier (OCID) of the last maintenance run for the Exadata
+  // infrastructure
+  string last_maintenance_run_id = 18 [json_name = "last_maintenance_run_id"];
+
+  // The total number of CPU cores available on the Exadata infrastructure
+  int64 max_cpu_count = 19 [json_name = "max_cpu_count"];
+
+  // The total amount of data disk group storage, in terabytes (TB), that's available
+  // on the Exadata infrastructure
+  int64 max_data_storage_in_tbs = 20 [json_name = "max_data_storage_in_tbs"];
+
+  // The total amount of local node storage, in gigabytes (GB), that's available on
+  // the Exadata infrastructure
+  int64 max_db_node_storage_size_in_gbs = 21 [json_name = "max_db_node_storage_size_in_gbs"];
+
+  // The total amount of memory in gigabytes (GB) available on the Exadata
+  // infrastructure
+  int64 max_memory_in_gbs = 22 [json_name = "max_memory_in_gbs"];
+
+  // The amount of memory, in gigabytes (GB), that's allocated on the Exadata
+  // infrastructure
+  int64 memory_size_in_gbs = 23 [json_name = "memory_size_in_gbs"];
+
+  // The monthly software version of the database servers in the Exadata
+  // infrastructure
+  string monthly_db_server_version = 24 [json_name = "monthly_db_server_version"];
+
+  // The monthly software version of the storage servers installed on the Exadata
+  // infrastructure
+  string monthly_storage_server_version = 25 [json_name = "monthly_storage_server_version"];
+
+  // The OCID of the next maintenance run for the Exadata infrastructure
+  string next_maintenance_run_id = 26 [json_name = "next_maintenance_run_id"];
+
+  // The name of the OCI resource anchor for the Exadata infrastructure
+  string oci_resource_anchor_name = 27 [json_name = "oci_resource_anchor_name"];
+
+  // The HTTPS link to the Exadata infrastructure in OCI
+  string oci_url = 28 [json_name = "oci_url"];
+
+  // The OCID of the Exadata infrastructure
+  string ocid = 29;
+
+  // The amount of progress made on the current operation on the Exadata
+  // infrastructure, expressed as a percentage
+  int64 percent_progress = 30 [json_name = "percent_progress"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 31;
+
+  // The model name of the Exadata infrastructure. Changing this will force terraform
+  // to create new resource
+  string shape = 32;
+
+  // The current status of the Exadata infrastructure
+  string status = 33;
+
+  // Additional information about the status of the Exadata infrastructure
+  string status_reason = 34 [json_name = "status_reason"];
+
+  // TThe number of storage servers that are activated for the Exadata infrastructure
+  int64 storage_count = 35 [json_name = "storage_count"];
+
+  // The storage server model type of the Exadata infrastructure. For the list of
+  // valid model names, use the ListDbSystemShapes operation
+  string storage_server_type = 36 [json_name = "storage_server_type"];
+
+  // The software version of the storage servers on the Exadata infrastructure.
+  string storage_server_version = 37 [json_name = "storage_server_version"];
+
+  map<string, string> tags = 38;
+
+  map<string, string> tags_all = 39 [json_name = "tags_all"];
+
+  // The total amount of storage, in gigabytes (GB), on the Exadata infrastructure.
+  int64 total_storage_size_in_gbs = 40 [json_name = "total_storage_size_in_gbs"];
+
+  repeated MaintenanceWindow maintenance_window = 41 [json_name = "maintenance_window"];
+
+  repeated Timeouts timeouts = 42;
+
+  google.protobuf.Value for_each = 43 [json_name = "for_each"];
+
+  repeated string depends_on = 44 [json_name = "depends_on"];
+
+  int32 count = 45;
+
+  string provider = 46;
+
+  terraform.v1.Lifecycle lifecycle = 47;
+
+  message CustomerContactsToSendToOci {
+    // email: string
+    string email = 1;
+  }
+
+  message MaintenanceWindow {
+    int64 custom_action_timeout_in_mins = 1 [json_name = "custom_action_timeout_in_mins"];
+
+    repeated DaysOfWeek days_of_week = 2 [json_name = "days_of_week"];
+
+    repeated int64 hours_of_day = 3 [json_name = "hours_of_day"];
+
+    bool is_custom_action_timeout_enabled = 4 [json_name = "is_custom_action_timeout_enabled"];
+
+    int64 lead_time_in_weeks = 5 [json_name = "lead_time_in_weeks"];
+
+    repeated Months months = 6;
+
+    string patching_mode = 7 [json_name = "patching_mode"];
+
+    string preference = 8;
+
+    repeated int64 weeks_of_month = 9 [json_name = "weeks_of_month"];
+
+    message DaysOfWeek {
+      // name: string
+      string name = 1;
+    }
+
+    message Months {
+      // name: string
+      string name = 1;
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsOdbCloudVmCluster version is 0
+message AwsOdbCloudVmCluster {
+  string arn = 1;
+
+  // The unique identifier of the Exadata infrastructure for this VM cluster. Changing
+  // this will create a new resource.
+  string cloud_exadata_infrastructure_arn = 2 [json_name = "cloud_exadata_infrastructure_arn"];
+
+  // The unique identifier of the Exadata infrastructure for this VM cluster. Changing
+  // this will create a new resource.
+  string cloud_exadata_infrastructure_id = 3 [json_name = "cloud_exadata_infrastructure_id"];
+
+  // The name of the Grid Infrastructure (GI) cluster. Changing this will create a new
+  // resource.
+  string cluster_name = 4 [json_name = "cluster_name"];
+
+  // The compute model used when the instance is created or cloned — either ECPU or
+  // OCPU. ECPU is a virtualized compute unit; OCPU is a physical processor core with
+  // hyper-threading.
+  string compute_model = 5 [json_name = "compute_model"];
+
+  // The number of CPU cores to enable on the VM cluster. Changing this will create a
+  // new resource.
+  int64 cpu_core_count = 6 [json_name = "cpu_core_count"];
+
+  // The timestamp when the VM cluster was created.
+  string created_at = 7 [json_name = "created_at"];
+
+  // The size of the data disk group, in terabytes (TBs), to allocate for the VM
+  // cluster. Changing this will create a new resource.
+  int64 data_storage_size_in_tbs = 8 [json_name = "data_storage_size_in_tbs"];
+
+  // The amount of local node storage, in gigabytes (GBs), to allocate for the VM
+  // cluster. Changing this will create a new resource.
+  int64 db_node_storage_size_in_gbs = 9 [json_name = "db_node_storage_size_in_gbs"];
+
+  // The list of database servers for the VM cluster. Changing this will create a new
+  // resource.
+  repeated string db_servers = 10 [json_name = "db_servers"];
+
+  // The type of redundancy for the VM cluster: NORMAL (2-way) or HIGH (3-way).
+  string disk_redundancy = 11 [json_name = "disk_redundancy"];
+
+  // A user-friendly name for the VM cluster. This member is required. Changing this
+  // will create a new resource.
+  string display_name = 12 [json_name = "display_name"];
+
+  // The domain name associated with the VM cluster.
+  string domain = 13;
+
+  // A valid software version of Oracle Grid Infrastructure (GI). To get the list of
+  // valid values, use the ListGiVersions operation and specify the shape of the
+  // Exadata infrastructure. Example: 19.0.0.0 This member is required. Changing this
+  // will create a new resource.
+  string gi_version = 14 [json_name = "gi_version"];
+
+  // A complete software version of Oracle Grid Infrastructure (GI).
+  string gi_version_computed = 15 [json_name = "gi_version_computed"];
+
+  // The host name prefix for the VM cluster. Constraints: - Can't be "localhost" or
+  // "hostname". - Can't contain "-version". - The maximum length of the combined
+  // hostname and domain is 63 characters. - The hostname must be unique within the
+  // subnet. This member is required. Changing this will create a new resource.
+  string hostname_prefix = 16 [json_name = "hostname_prefix"];
+
+  // The host name for the VM cluster. Constraints: - Can't be "localhost" or
+  // "hostname". - Can't contain "-version". - The maximum length of the combined
+  // hostname and domain is 63 characters. - The hostname must be unique within the
+  // subnet. This member is required. Changing this will create a new resource.
+  string hostname_prefix_computed = 17 [json_name = "hostname_prefix_computed"];
+
+  string id = 18;
+
+  // The Exadata IORM (I/O Resource Manager) configuration cache details for the VM
+  // cluster.
+  repeated IormConfigCache iorm_config_cache = 19 [json_name = "iorm_config_cache"];
+
+  // Specifies whether to enable database backups to local Exadata storage for the VM
+  // cluster. Changing this will create a new resource.
+  bool is_local_backup_enabled = 20 [json_name = "is_local_backup_enabled"];
+
+  // Specifies whether to create a sparse disk group for the VM cluster. Changing this
+  // will create a new resource.
+  bool is_sparse_diskgroup_enabled = 21 [json_name = "is_sparse_diskgroup_enabled"];
+
+  // The OCID of the most recent maintenance update history entry.
+  string last_update_history_entry_id = 22 [json_name = "last_update_history_entry_id"];
+
+  // The Oracle license model to apply to the VM cluster. Default: LICENSE_INCLUDED.
+  // Changing this will create a new resource.
+  string license_model = 23 [json_name = "license_model"];
+
+  // The listener port number configured on the VM cluster.
+  int64 listener_port = 24 [json_name = "listener_port"];
+
+  // The amount of memory, in gigabytes (GBs), to allocate for the VM cluster.
+  // Changing this will create a new resource.
+  int64 memory_size_in_gbs = 25 [json_name = "memory_size_in_gbs"];
+
+  // The total number of nodes in the VM cluster.
+  int64 node_count = 26 [json_name = "node_count"];
+
+  // The name of the OCI resource anchor associated with the VM cluster.
+  string oci_resource_anchor_name = 27 [json_name = "oci_resource_anchor_name"];
+
+  // The HTTPS link to the VM cluster resource in OCI.
+  string oci_url = 28 [json_name = "oci_url"];
+
+  // The OCID (Oracle Cloud Identifier) of the VM cluster.
+  string ocid = 29;
+
+  // The unique identifier of the ODB network for the VM cluster. This member is
+  // required. Changing this will create a new resource.
+  string odb_network_arn = 30 [json_name = "odb_network_arn"];
+
+  // The unique identifier of the ODB network for the VM cluster. This member is
+  // required. Changing this will create a new resource.
+  string odb_network_id = 31 [json_name = "odb_network_id"];
+
+  // The percentage of progress made on the current operation for the VM cluster.
+  int64 percent_progress = 32 [json_name = "percent_progress"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 33;
+
+  // The fully qualified domain name (FQDN) for the SCAN IP addresses associated with
+  // the VM cluster.
+  string scan_dns_name = 34 [json_name = "scan_dns_name"];
+
+  // The OCID of the DNS record for the SCAN IPs linked to the VM cluster.
+  string scan_dns_record_id = 35 [json_name = "scan_dns_record_id"];
+
+  // The list of OCIDs for SCAN IP addresses associated with the VM cluster.
+  repeated string scan_ip_ids = 36 [json_name = "scan_ip_ids"];
+
+  // The port number for TCP connections to the single client access name (SCAN)
+  // listener. Valid values: 1024–8999 with the following exceptions: 2484 , 6100 ,
+  // 6200 , 7060, 7070 , 7085 , and 7879Default: 1521. Changing this will create a new
+  // resource.
+  int64 scan_listener_port_tcp = 37 [json_name = "scan_listener_port_tcp"];
+
+  // The hardware model name of the Exadata infrastructure running the VM cluster.
+  string shape = 38;
+
+  // The public key portion of one or more key pairs used for SSH access to the VM
+  // cluster. This member is required. Changing this will create a new resource.
+  repeated string ssh_public_keys = 39 [json_name = "ssh_public_keys"];
+
+  // The current lifecycle status of the VM cluster.
+  string status = 40;
+
+  // Additional information regarding the current status of the VM cluster.
+  string status_reason = 41 [json_name = "status_reason"];
+
+  // The local node storage allocated to the VM cluster, in gigabytes (GB).
+  int64 storage_size_in_gbs = 42 [json_name = "storage_size_in_gbs"];
+
+  // The operating system version of the image chosen for the VM cluster.
+  string system_version = 43 [json_name = "system_version"];
+
+  map<string, string> tags = 44;
+
+  map<string, string> tags_all = 45 [json_name = "tags_all"];
+
+  // The configured time zone of the VM cluster. Changing this will create a new
+  // resource.
+  string timezone = 46;
+
+  // The virtual IP (VIP) addresses assigned to the VM cluster. CRS assigns one VIP
+  // per node for failover support.
+  repeated string vip_ids = 47 [json_name = "vip_ids"];
+
+  repeated DataCollectionOptions data_collection_options = 48 [json_name = "data_collection_options"];
+
+  repeated Timeouts timeouts = 49;
+
+  google.protobuf.Value for_each = 50 [json_name = "for_each"];
+
+  repeated string depends_on = 51 [json_name = "depends_on"];
+
+  int32 count = 52;
+
+  string provider = 53;
+
+  terraform.v1.Lifecycle lifecycle = 54;
+
+  message IormConfigCache {
+    // db_plans: list of object
+    repeated DbPlans db_plans = 1 [json_name = "db_plans"];
+
+    // lifecycle_details: string
+    string lifecycle_details = 2 [json_name = "lifecycle_details"];
+
+    // lifecycle_state: string
+    string lifecycle_state = 3 [json_name = "lifecycle_state"];
+
+    // objective: string
+    string objective = 4;
+
+    message DbPlans {
+      // db_name: string
+      string db_name = 1 [json_name = "db_name"];
+
+      // flash_cache_limit: string
+      string flash_cache_limit = 2 [json_name = "flash_cache_limit"];
+
+      // share: number
+      int64 share = 3;
+    }
+  }
+
+  message DataCollectionOptions {
+    bool is_diagnostics_events_enabled = 1 [json_name = "is_diagnostics_events_enabled"];
+
+    bool is_health_monitoring_enabled = 2 [json_name = "is_health_monitoring_enabled"];
+
+    bool is_incident_logs_enabled = 3 [json_name = "is_incident_logs_enabled"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsOdbNetwork version is 0
+message AwsOdbNetwork {
+  string arn = 1;
+
+  // The name of the Availability Zone (AZ) where the odb network is located. Changing
+  // this will force terraform to create new resource
+  string availability_zone = 2 [json_name = "availability_zone"];
+
+  // The AZ ID of the AZ where the ODB network is located. Changing this will force
+  // terraform to create new resource.
+  string availability_zone_id = 3 [json_name = "availability_zone_id"];
+
+  // The CIDR range of the backup subnet for the ODB network. Changing this will force
+  // terraform to create new resource.
+  //
+  // 	Constraints:
+  //
+  // 	   - Must not overlap with the CIDR range of the client subnet.
+  //
+  // 	   - Must not overlap with the CIDR ranges of the VPCs that are connected to the
+  //
+  // 	   ODB network.
+  //
+  // 	   - Must not use the following CIDR ranges that are reserved by OCI:
+  //
+  // 	   - 100.106.0.0/16 and 100.107.0.0/16
+  //
+  // 	   - 169.254.0.0/16
+  //
+  // 	   - 224.0.0.0 - 239.255.255.255
+  //
+  // 	   - 240.0.0.0 - 255.255.255.255
+  string backup_subnet_cidr = 4 [json_name = "backup_subnet_cidr"];
+
+  // The CIDR notation for the network resource. Changing this will force terraform to
+  // create new resource.
+  //
+  // Constraints:
+  //
+  // 	 - Must not overlap with the CIDR range of the backup subnet.
+  //
+  // 	- Must not overlap with the CIDR ranges of the VPCs that are connected to the
+  //
+  // ODB network.
+  //
+  // 	- Must not use the following CIDR ranges that are reserved by OCI:
+  //
+  // 	 - 100.106.0.0/16 and 100.107.0.0/16
+  //
+  // 	 - 169.254.0.0/16
+  //
+  // 	- 224.0.0.0 - 239.255.255.255
+  //
+  // 	- 240.0.0.0 - 255.255.255.255
+  string client_subnet_cidr = 5 [json_name = "client_subnet_cidr"];
+
+  // The date and time when the ODB network was created.
+  string created_at = 6 [json_name = "created_at"];
+
+  // The list of regions enabled for cross-region restore in the ODB network.
+  repeated string cross_region_s3_restore_sources_access = 7 [
+    json_name = "cross_region_s3_restore_sources_access"
+  ];
+
+  // The name of the custom domain that the network is located. custom_domain_name and
+  // default_dns_prefix both can't be given.
+  string custom_domain_name = 8 [json_name = "custom_domain_name"];
+
+  // The default DNS prefix for the network resource. Changing this will force
+  // terraform to create new resource.
+  string default_dns_prefix = 9 [json_name = "default_dns_prefix"];
+
+  // If set to true deletes associated OCI resources. Default false.
+  bool delete_associated_resources = 10 [json_name = "delete_associated_resources"];
+
+  // The user-friendly name for the odb network. Changing this will force terraform to
+  // create a new resource.
+  string display_name = 11 [json_name = "display_name"];
+
+  string id = 12;
+
+  // Specifies the configuration for Amazon KMS access from the ODB network.
+  string kms_access = 13 [json_name = "kms_access"];
+
+  // Specifies the endpoint policy for Amazon KMS access from the ODB network.
+  string kms_policy_document = 14 [json_name = "kms_policy_document"];
+
+  // The managed services configuration for the ODB network.
+  repeated ManagedServices managed_services = 15 [json_name = "managed_services"];
+
+  // The DNS resolver endpoint in OCI for forwarding DNS queries for the
+  // ociPrivateZone domain.
+  repeated OciDnsForwardingConfigs oci_dns_forwarding_configs = 16 [json_name = "oci_dns_forwarding_configs"];
+
+  // The unique identifier of the OCI network anchor for the ODB network.
+  string oci_network_anchor_id = 17 [json_name = "oci_network_anchor_id"];
+
+  // The URL of the OCI network anchor for the ODB network.
+  string oci_network_anchor_url = 18 [json_name = "oci_network_anchor_url"];
+
+  // The name of the OCI resource anchor for the ODB network.
+  string oci_resource_anchor_name = 19 [json_name = "oci_resource_anchor_name"];
+
+  // The unique identifier  Oracle Cloud ID (OCID) of the OCI VCN for the ODB network.
+  string oci_vcn_id = 20 [json_name = "oci_vcn_id"];
+
+  // The URL of the OCI VCN for the ODB network.
+  string oci_vcn_url = 21 [json_name = "oci_vcn_url"];
+
+  // The list of CIDR ranges from the peered VPC that are allowed access to the ODB
+  // network. Please refer odb network peering documentation.
+  repeated string peered_cidrs = 22 [json_name = "peered_cidrs"];
+
+  // The amount of progress made on the current operation on the ODB network,
+  // expressed as a percentage.
+  int64 percent_progress = 23 [json_name = "percent_progress"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 24;
+
+  // Specifies the configuration for Amazon S3 access from the ODB network.
+  string s3_access = 25 [json_name = "s3_access"];
+
+  // Specifies the endpoint policy for Amazon S3 access from the ODB network.
+  string s3_policy_document = 26 [json_name = "s3_policy_document"];
+
+  // The status of the network resource.
+  string status = 27;
+
+  // Additional information about the current status of the ODB network.
+  string status_reason = 28 [json_name = "status_reason"];
+
+  // Specifies the configuration for Amazon STS access from the ODB network.
+  string sts_access = 29 [json_name = "sts_access"];
+
+  // Specifies the endpoint policy for Amazon STS access from the ODB network.
+  string sts_policy_document = 30 [json_name = "sts_policy_document"];
+
+  map<string, string> tags = 31;
+
+  map<string, string> tags_all = 32 [json_name = "tags_all"];
+
+  // Specifies the configuration for Zero-ETL access from the ODB network.
+  string zero_etl_access = 33 [json_name = "zero_etl_access"];
+
+  repeated Timeouts timeouts = 34;
+
+  google.protobuf.Value for_each = 35 [json_name = "for_each"];
+
+  repeated string depends_on = 36 [json_name = "depends_on"];
+
+  int32 count = 37;
+
+  string provider = 38;
+
+  terraform.v1.Lifecycle lifecycle = 39;
+
+  message ManagedServices {
+    // cross_region_s3_restore_sources_access: list of object
+    repeated CrossRegionS3RestoreSourcesAccess cross_region_s3_restore_sources_access = 1 [
+      json_name = "cross_region_s3_restore_sources_access"
+    ];
+
+    // kms_access: list of object
+    repeated KmsAccess kms_access = 2 [json_name = "kms_access"];
+
+    // managed_s3_backup_access: list of object
+    repeated ManagedS3BackupAccess managed_s3_backup_access = 3 [json_name = "managed_s3_backup_access"];
+
+    // managed_service_ipv4_cidrs: set of string
+    repeated string managed_service_ipv4_cidrs = 4 [json_name = "managed_service_ipv4_cidrs"];
+
+    // resource_gateway_arn: string
+    string resource_gateway_arn = 5 [json_name = "resource_gateway_arn"];
+
+    // s3_access: list of object
+    repeated S3Access s3_access = 6 [json_name = "s3_access"];
+
+    // service_network_arn: string
+    string service_network_arn = 7 [json_name = "service_network_arn"];
+
+    // service_network_endpoint: list of object
+    repeated ServiceNetworkEndpoint service_network_endpoint = 8 [json_name = "service_network_endpoint"];
+
+    // sts_access: list of object
+    repeated StsAccess sts_access = 9 [json_name = "sts_access"];
+
+    // zero_etl_access: list of object
+    repeated ZeroEtlAccess zero_etl_access = 10 [json_name = "zero_etl_access"];
+
+    message CrossRegionS3RestoreSourcesAccess {
+      // ipv4_addresses: set of string
+      repeated string ipv4_addresses = 1 [json_name = "ipv4_addresses"];
+
+      // region: string
+      string region = 2;
+
+      // status: string
+      string status = 3;
+    }
+
+    message KmsAccess {
+      // domain_name: string
+      string domain_name = 1 [json_name = "domain_name"];
+
+      // ipv4_addresses: set of string
+      repeated string ipv4_addresses = 2 [json_name = "ipv4_addresses"];
+
+      // kms_policy_document: string
+      string kms_policy_document = 3 [json_name = "kms_policy_document"];
+
+      // status: string
+      string status = 4;
+    }
+
+    message ManagedS3BackupAccess {
+      // ipv4_addresses: set of string
+      repeated string ipv4_addresses = 1 [json_name = "ipv4_addresses"];
+
+      // status: string
+      string status = 2;
+    }
+
+    message S3Access {
+      // domain_name: string
+      string domain_name = 1 [json_name = "domain_name"];
+
+      // ipv4_addresses: set of string
+      repeated string ipv4_addresses = 2 [json_name = "ipv4_addresses"];
+
+      // s3_policy_document: string
+      string s3_policy_document = 3 [json_name = "s3_policy_document"];
+
+      // status: string
+      string status = 4;
+    }
+
+    message ServiceNetworkEndpoint {
+      // vpc_endpoint_id: string
+      string vpc_endpoint_id = 1 [json_name = "vpc_endpoint_id"];
+
+      // vpc_endpoint_type: string
+      string vpc_endpoint_type = 2 [json_name = "vpc_endpoint_type"];
+    }
+
+    message StsAccess {
+      // domain_name: string
+      string domain_name = 1 [json_name = "domain_name"];
+
+      // ipv4_addresses: set of string
+      repeated string ipv4_addresses = 2 [json_name = "ipv4_addresses"];
+
+      // status: string
+      string status = 3;
+
+      // sts_policy_document: string
+      string sts_policy_document = 4 [json_name = "sts_policy_document"];
+    }
+
+    message ZeroEtlAccess {
+      // cidr: string
+      string cidr = 1;
+
+      // status: string
+      string status = 2;
+    }
+  }
+
+  message OciDnsForwardingConfigs {
+    // domain_name: string
+    string domain_name = 1 [json_name = "domain_name"];
+
+    // oci_dns_listener_ip: string
+    string oci_dns_listener_ip = 2 [json_name = "oci_dns_listener_ip"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsOdbNetworkPeeringConnection version is 0
+message AwsOdbNetworkPeeringConnection {
+  string arn = 1;
+
+  // Created time of the odb network peering connection.
+  string created_at = 2 [json_name = "created_at"];
+
+  // Display name of the odb network peering connection. Changing this will force
+  // terraform to create new resource
+  string display_name = 3 [json_name = "display_name"];
+
+  string id = 4;
+
+  // ARN of the odb network peering connection.
+  string odb_network_arn = 5 [json_name = "odb_network_arn"];
+
+  // Required field. The unique identifier of the ODB network that initiates the
+  // peering connection. A sample ID is odbpcx-abcdefgh12345678. Changing this will
+  // force terraform to create new resource.
+  string odb_network_id = 6 [json_name = "odb_network_id"];
+
+  // Type of the odb peering connection.
+  string odb_peering_connection_type = 7 [json_name = "odb_peering_connection_type"];
+
+  // ARN of the peer network peering connection.
+  string peer_network_arn = 8 [json_name = "peer_network_arn"];
+
+  // List of peered network cidrs.
+  repeated string peer_network_cidrs = 9 [json_name = "peer_network_cidrs"];
+
+  // Required field. The unique identifier of the ODB peering connection. Changing
+  // this will force terraform to create new resource
+  string peer_network_id = 10 [json_name = "peer_network_id"];
+
+  // Progress of the odb network peering connection.
+  int64 percent_progress = 11 [json_name = "percent_progress"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  // Status of the odb network peering connection.
+  string status = 13;
+
+  // The reason for the current status of the ODB peering connection..
+  string status_reason = 14 [json_name = "status_reason"];
+
+  map<string, string> tags = 15;
+
+  map<string, string> tags_all = 16 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 17;
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}

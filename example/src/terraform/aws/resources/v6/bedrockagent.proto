@@ -1,0 +1,1758 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsBedrockagentAgent version is 0
+message AwsBedrockagentAgent {
+  string agent_arn = 1 [json_name = "agent_arn"];
+
+  string agent_collaboration = 2 [json_name = "agent_collaboration"];
+
+  string agent_id = 3 [json_name = "agent_id"];
+
+  string agent_name = 4 [json_name = "agent_name"];
+
+  string agent_resource_role_arn = 5 [json_name = "agent_resource_role_arn"];
+
+  string agent_version = 6 [json_name = "agent_version"];
+
+  string customer_encryption_key_arn = 7 [json_name = "customer_encryption_key_arn"];
+
+  string description = 8;
+
+  string foundation_model = 9 [json_name = "foundation_model"];
+
+  repeated GuardrailConfiguration guardrail_configuration = 10 [json_name = "guardrail_configuration"];
+
+  string id = 11;
+
+  int64 idle_session_ttl_in_seconds = 12 [json_name = "idle_session_ttl_in_seconds"];
+
+  string instruction = 13;
+
+  repeated MemoryConfiguration memory_configuration = 14 [json_name = "memory_configuration"];
+
+  bool prepare_agent = 15 [json_name = "prepare_agent"];
+
+  string prepared_at = 16 [json_name = "prepared_at"];
+
+  repeated PromptOverrideConfiguration prompt_override_configuration = 17 [json_name = "prompt_override_configuration"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 18;
+
+  bool skip_resource_in_use_check = 19 [json_name = "skip_resource_in_use_check"];
+
+  map<string, string> tags = 20;
+
+  map<string, string> tags_all = 21 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 22;
+
+  google.protobuf.Value for_each = 23 [json_name = "for_each"];
+
+  repeated string depends_on = 24 [json_name = "depends_on"];
+
+  int32 count = 25;
+
+  string provider = 26;
+
+  terraform.v1.Lifecycle lifecycle = 27;
+
+  message GuardrailConfiguration {
+    // guardrail_identifier: string
+    string guardrail_identifier = 1 [json_name = "guardrail_identifier"];
+
+    // guardrail_version: string
+    string guardrail_version = 2 [json_name = "guardrail_version"];
+  }
+
+  message MemoryConfiguration {
+    // enabled_memory_types: list of string
+    repeated string enabled_memory_types = 1 [json_name = "enabled_memory_types"];
+
+    // session_summary_configuration: list of object
+    repeated SessionSummaryConfiguration session_summary_configuration = 2 [json_name = "session_summary_configuration"];
+
+    // storage_days: number
+    int64 storage_days = 3 [json_name = "storage_days"];
+
+    message SessionSummaryConfiguration {
+      // max_recent_sessions: number
+      int64 max_recent_sessions = 1 [json_name = "max_recent_sessions"];
+    }
+  }
+
+  message PromptOverrideConfiguration {
+    // override_lambda: string
+    string override_lambda = 1 [json_name = "override_lambda"];
+
+    // prompt_configurations: set of object
+    repeated PromptConfigurations prompt_configurations = 2 [json_name = "prompt_configurations"];
+
+    message PromptConfigurations {
+      // base_prompt_template: string
+      string base_prompt_template = 1 [json_name = "base_prompt_template"];
+
+      // inference_configuration: list of object
+      repeated InferenceConfiguration inference_configuration = 2 [json_name = "inference_configuration"];
+
+      // parser_mode: string
+      string parser_mode = 3 [json_name = "parser_mode"];
+
+      // prompt_creation_mode: string
+      string prompt_creation_mode = 4 [json_name = "prompt_creation_mode"];
+
+      // prompt_state: string
+      string prompt_state = 5 [json_name = "prompt_state"];
+
+      // prompt_type: string
+      string prompt_type = 6 [json_name = "prompt_type"];
+
+      message InferenceConfiguration {
+        // max_length: number
+        int64 max_length = 1 [json_name = "max_length"];
+
+        // stop_sequences: list of string
+        repeated string stop_sequences = 2 [json_name = "stop_sequences"];
+
+        // temperature: number
+        int64 temperature = 3;
+
+        // top_k: number
+        int64 top_k = 4 [json_name = "top_k"];
+
+        // top_p: number
+        int64 top_p = 5 [json_name = "top_p"];
+      }
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsBedrockagentAgentActionGroup version is 0
+message AwsBedrockagentAgentActionGroup {
+  string action_group_id = 1 [json_name = "action_group_id"];
+
+  string action_group_name = 2 [json_name = "action_group_name"];
+
+  string action_group_state = 3 [json_name = "action_group_state"];
+
+  string agent_id = 4 [json_name = "agent_id"];
+
+  string agent_version = 5 [json_name = "agent_version"];
+
+  string description = 6;
+
+  string id = 7;
+
+  string parent_action_group_signature = 8 [json_name = "parent_action_group_signature"];
+
+  bool prepare_agent = 9 [json_name = "prepare_agent"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  bool skip_resource_in_use_check = 11 [json_name = "skip_resource_in_use_check"];
+
+  repeated ActionGroupExecutor action_group_executor = 12 [json_name = "action_group_executor"];
+
+  repeated ApiSchema api_schema = 13 [json_name = "api_schema"];
+
+  repeated FunctionSchema function_schema = 14 [json_name = "function_schema"];
+
+  repeated Timeouts timeouts = 15;
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message ActionGroupExecutor {
+    string custom_control = 1 [json_name = "custom_control"];
+
+    string lambda = 2;
+  }
+
+  message ApiSchema {
+    string payload = 1;
+
+    repeated S3 s3 = 2;
+
+    message S3 {
+      string s3_bucket_name = 1 [json_name = "s3_bucket_name"];
+
+      string s3_object_key = 2 [json_name = "s3_object_key"];
+    }
+  }
+
+  message FunctionSchema {
+    repeated MemberFunctions member_functions = 1 [json_name = "member_functions"];
+
+    message MemberFunctions {
+      repeated Functions functions = 1;
+
+      message Functions {
+        string description = 1;
+
+        string name = 2;
+
+        repeated Parameters parameters = 3;
+
+        message Parameters {
+          string description = 1;
+
+          string map_block_key = 2 [json_name = "map_block_key"];
+
+          bool required = 3;
+
+          string type = 4;
+        }
+      }
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 2;
+  }
+}
+
+// AwsBedrockagentAgentAlias version is 0
+message AwsBedrockagentAgentAlias {
+  string agent_alias_arn = 1 [json_name = "agent_alias_arn"];
+
+  string agent_alias_id = 2 [json_name = "agent_alias_id"];
+
+  string agent_alias_name = 3 [json_name = "agent_alias_name"];
+
+  string agent_id = 4 [json_name = "agent_id"];
+
+  string description = 5;
+
+  string id = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  repeated RoutingConfiguration routing_configuration = 8 [json_name = "routing_configuration"];
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message RoutingConfiguration {
+    // agent_version: string
+    string agent_version = 1 [json_name = "agent_version"];
+
+    // provisioned_throughput: string
+    string provisioned_throughput = 2 [json_name = "provisioned_throughput"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsBedrockagentAgentCollaborator version is 0
+message AwsBedrockagentAgentCollaborator {
+  string agent_id = 1 [json_name = "agent_id"];
+
+  string agent_version = 2 [json_name = "agent_version"];
+
+  string collaboration_instruction = 3 [json_name = "collaboration_instruction"];
+
+  string collaborator_id = 4 [json_name = "collaborator_id"];
+
+  string collaborator_name = 5 [json_name = "collaborator_name"];
+
+  string id = 6;
+
+  bool prepare_agent = 7 [json_name = "prepare_agent"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  string relay_conversation_history = 9 [json_name = "relay_conversation_history"];
+
+  repeated AgentDescriptor agent_descriptor = 10 [json_name = "agent_descriptor"];
+
+  repeated Timeouts timeouts = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message AgentDescriptor {
+    string alias_arn = 1 [json_name = "alias_arn"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsBedrockagentAgentKnowledgeBaseAssociation version is 0
+message AwsBedrockagentAgentKnowledgeBaseAssociation {
+  string agent_id = 1 [json_name = "agent_id"];
+
+  string agent_version = 2 [json_name = "agent_version"];
+
+  string description = 3;
+
+  string id = 4;
+
+  string knowledge_base_id = 5 [json_name = "knowledge_base_id"];
+
+  string knowledge_base_state = 6 [json_name = "knowledge_base_state"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  repeated Timeouts timeouts = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 2;
+  }
+}
+
+// AwsBedrockagentDataSource version is 0
+message AwsBedrockagentDataSource {
+  string data_deletion_policy = 1 [json_name = "data_deletion_policy"];
+
+  string data_source_id = 2 [json_name = "data_source_id"];
+
+  string description = 3;
+
+  string id = 4;
+
+  string knowledge_base_id = 5 [json_name = "knowledge_base_id"];
+
+  string name = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  repeated DataSourceConfiguration data_source_configuration = 8 [json_name = "data_source_configuration"];
+
+  repeated ServerSideEncryptionConfiguration server_side_encryption_configuration = 9 [json_name = "server_side_encryption_configuration"];
+
+  repeated Timeouts timeouts = 10;
+
+  repeated VectorIngestionConfiguration vector_ingestion_configuration = 11 [json_name = "vector_ingestion_configuration"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message DataSourceConfiguration {
+    string type = 1;
+
+    repeated ConfluenceConfiguration confluence_configuration = 2 [json_name = "confluence_configuration"];
+
+    repeated S3Configuration s3_configuration = 3 [json_name = "s3_configuration"];
+
+    repeated SalesforceConfiguration salesforce_configuration = 4 [json_name = "salesforce_configuration"];
+
+    repeated SharePointConfiguration share_point_configuration = 5 [json_name = "share_point_configuration"];
+
+    repeated WebConfiguration web_configuration = 6 [json_name = "web_configuration"];
+
+    message ConfluenceConfiguration {
+      repeated CrawlerConfiguration crawler_configuration = 1 [json_name = "crawler_configuration"];
+
+      repeated SourceConfiguration source_configuration = 2 [json_name = "source_configuration"];
+
+      message CrawlerConfiguration {
+        repeated FilterConfiguration filter_configuration = 1 [json_name = "filter_configuration"];
+
+        message FilterConfiguration {
+          string type = 1;
+
+          repeated PatternObjectFilter pattern_object_filter = 2 [json_name = "pattern_object_filter"];
+
+          message PatternObjectFilter {
+            repeated Filters filters = 1;
+
+            message Filters {
+              repeated string exclusion_filters = 1 [json_name = "exclusion_filters"];
+
+              repeated string inclusion_filters = 2 [json_name = "inclusion_filters"];
+
+              string object_type = 3 [json_name = "object_type"];
+            }
+          }
+        }
+      }
+
+      message SourceConfiguration {
+        string auth_type = 1 [json_name = "auth_type"];
+
+        string credentials_secret_arn = 2 [json_name = "credentials_secret_arn"];
+
+        string host_type = 3 [json_name = "host_type"];
+
+        string host_url = 4 [json_name = "host_url"];
+      }
+    }
+
+    message S3Configuration {
+      string bucket_arn = 1 [json_name = "bucket_arn"];
+
+      string bucket_owner_account_id = 2 [json_name = "bucket_owner_account_id"];
+
+      repeated string inclusion_prefixes = 3 [json_name = "inclusion_prefixes"];
+    }
+
+    message SalesforceConfiguration {
+      repeated CrawlerConfiguration crawler_configuration = 1 [json_name = "crawler_configuration"];
+
+      repeated SourceConfiguration source_configuration = 2 [json_name = "source_configuration"];
+
+      message CrawlerConfiguration {
+        repeated FilterConfiguration filter_configuration = 1 [json_name = "filter_configuration"];
+
+        message FilterConfiguration {
+          string type = 1;
+
+          repeated PatternObjectFilter pattern_object_filter = 2 [json_name = "pattern_object_filter"];
+
+          message PatternObjectFilter {
+            repeated Filters filters = 1;
+
+            message Filters {
+              repeated string exclusion_filters = 1 [json_name = "exclusion_filters"];
+
+              repeated string inclusion_filters = 2 [json_name = "inclusion_filters"];
+
+              string object_type = 3 [json_name = "object_type"];
+            }
+          }
+        }
+      }
+
+      message SourceConfiguration {
+        string auth_type = 1 [json_name = "auth_type"];
+
+        string credentials_secret_arn = 2 [json_name = "credentials_secret_arn"];
+
+        string host_url = 3 [json_name = "host_url"];
+      }
+    }
+
+    message SharePointConfiguration {
+      repeated CrawlerConfiguration crawler_configuration = 1 [json_name = "crawler_configuration"];
+
+      repeated SourceConfiguration source_configuration = 2 [json_name = "source_configuration"];
+
+      message CrawlerConfiguration {
+        repeated FilterConfiguration filter_configuration = 1 [json_name = "filter_configuration"];
+
+        message FilterConfiguration {
+          string type = 1;
+
+          repeated PatternObjectFilter pattern_object_filter = 2 [json_name = "pattern_object_filter"];
+
+          message PatternObjectFilter {
+            repeated Filters filters = 1;
+
+            message Filters {
+              repeated string exclusion_filters = 1 [json_name = "exclusion_filters"];
+
+              repeated string inclusion_filters = 2 [json_name = "inclusion_filters"];
+
+              string object_type = 3 [json_name = "object_type"];
+            }
+          }
+        }
+      }
+
+      message SourceConfiguration {
+        string auth_type = 1 [json_name = "auth_type"];
+
+        string credentials_secret_arn = 2 [json_name = "credentials_secret_arn"];
+
+        string domain = 3;
+
+        string host_type = 4 [json_name = "host_type"];
+
+        repeated string site_urls = 5 [json_name = "site_urls"];
+
+        string tenant_id = 6 [json_name = "tenant_id"];
+      }
+    }
+
+    message WebConfiguration {
+      repeated CrawlerConfiguration crawler_configuration = 1 [json_name = "crawler_configuration"];
+
+      repeated SourceConfiguration source_configuration = 2 [json_name = "source_configuration"];
+
+      message CrawlerConfiguration {
+        repeated string exclusion_filters = 1 [json_name = "exclusion_filters"];
+
+        repeated string inclusion_filters = 2 [json_name = "inclusion_filters"];
+
+        string scope = 3;
+
+        string user_agent = 4 [json_name = "user_agent"];
+
+        repeated CrawlerLimits crawler_limits = 5 [json_name = "crawler_limits"];
+
+        message CrawlerLimits {
+          int64 max_pages = 1 [json_name = "max_pages"];
+
+          int64 rate_limit = 2 [json_name = "rate_limit"];
+        }
+      }
+
+      message SourceConfiguration {
+        repeated UrlConfiguration url_configuration = 1 [json_name = "url_configuration"];
+
+        message UrlConfiguration {
+          repeated SeedUrls seed_urls = 1 [json_name = "seed_urls"];
+
+          message SeedUrls {
+            string url = 1;
+          }
+        }
+      }
+    }
+  }
+
+  message ServerSideEncryptionConfiguration {
+    string kms_key_arn = 1 [json_name = "kms_key_arn"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+
+  message VectorIngestionConfiguration {
+    repeated ChunkingConfiguration chunking_configuration = 1 [json_name = "chunking_configuration"];
+
+    repeated CustomTransformationConfiguration custom_transformation_configuration = 2 [json_name = "custom_transformation_configuration"];
+
+    repeated ParsingConfiguration parsing_configuration = 3 [json_name = "parsing_configuration"];
+
+    message ChunkingConfiguration {
+      string chunking_strategy = 1 [json_name = "chunking_strategy"];
+
+      repeated FixedSizeChunkingConfiguration fixed_size_chunking_configuration = 2 [json_name = "fixed_size_chunking_configuration"];
+
+      repeated HierarchicalChunkingConfiguration hierarchical_chunking_configuration = 3 [json_name = "hierarchical_chunking_configuration"];
+
+      repeated SemanticChunkingConfiguration semantic_chunking_configuration = 4 [json_name = "semantic_chunking_configuration"];
+
+      message FixedSizeChunkingConfiguration {
+        int64 max_tokens = 1 [json_name = "max_tokens"];
+
+        int64 overlap_percentage = 2 [json_name = "overlap_percentage"];
+      }
+
+      message HierarchicalChunkingConfiguration {
+        int64 overlap_tokens = 1 [json_name = "overlap_tokens"];
+
+        repeated LevelConfiguration level_configuration = 2 [json_name = "level_configuration"];
+
+        message LevelConfiguration {
+          int64 max_tokens = 1 [json_name = "max_tokens"];
+        }
+      }
+
+      message SemanticChunkingConfiguration {
+        int64 breakpoint_percentile_threshold = 1 [json_name = "breakpoint_percentile_threshold"];
+
+        int64 buffer_size = 2 [json_name = "buffer_size"];
+
+        int64 max_token = 3 [json_name = "max_token"];
+      }
+    }
+
+    message CustomTransformationConfiguration {
+      repeated IntermediateStorage intermediate_storage = 1 [json_name = "intermediate_storage"];
+
+      repeated Transformation transformation = 2;
+
+      message IntermediateStorage {
+        repeated S3Location s3_location = 1 [json_name = "s3_location"];
+
+        message S3Location {
+          string uri = 1;
+        }
+      }
+
+      message Transformation {
+        string step_to_apply = 1 [json_name = "step_to_apply"];
+
+        repeated TransformationFunction transformation_function = 2 [json_name = "transformation_function"];
+
+        message TransformationFunction {
+          repeated TransformationLambdaConfiguration transformation_lambda_configuration = 1 [json_name = "transformation_lambda_configuration"];
+
+          message TransformationLambdaConfiguration {
+            string lambda_arn = 1 [json_name = "lambda_arn"];
+          }
+        }
+      }
+    }
+
+    message ParsingConfiguration {
+      string parsing_strategy = 1 [json_name = "parsing_strategy"];
+
+      repeated BedrockDataAutomationConfiguration bedrock_data_automation_configuration = 2 [
+        json_name = "bedrock_data_automation_configuration"
+      ];
+
+      repeated BedrockFoundationModelConfiguration bedrock_foundation_model_configuration = 3 [
+        json_name = "bedrock_foundation_model_configuration"
+      ];
+
+      message BedrockDataAutomationConfiguration {
+        string parsing_modality = 1 [json_name = "parsing_modality"];
+      }
+
+      message BedrockFoundationModelConfiguration {
+        string model_arn = 1 [json_name = "model_arn"];
+
+        string parsing_modality = 2 [json_name = "parsing_modality"];
+
+        repeated ParsingPrompt parsing_prompt = 3 [json_name = "parsing_prompt"];
+
+        message ParsingPrompt {
+          string parsing_prompt_string = 1 [json_name = "parsing_prompt_string"];
+        }
+      }
+    }
+  }
+}
+
+// AwsBedrockagentFlow version is 0
+message AwsBedrockagentFlow {
+  string arn = 1;
+
+  string created_at = 2 [json_name = "created_at"];
+
+  string customer_encryption_key_arn = 3 [json_name = "customer_encryption_key_arn"];
+
+  string description = 4;
+
+  string execution_role_arn = 5 [json_name = "execution_role_arn"];
+
+  string id = 6;
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  string status = 9;
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  string updated_at = 12 [json_name = "updated_at"];
+
+  string version = 13;
+
+  repeated Definition definition = 14;
+
+  repeated Timeouts timeouts = 15;
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message Definition {
+    repeated Connection connection = 1;
+
+    repeated Node node = 2;
+
+    message Connection {
+      string name = 1;
+
+      string source = 2;
+
+      string target = 3;
+
+      string type = 4;
+
+      repeated Configuration configuration = 5;
+
+      message Configuration {
+        repeated Conditional conditional = 1;
+
+        repeated Data data = 2;
+
+        message Conditional {
+          string condition = 1;
+        }
+
+        message Data {
+          string source_output = 1 [json_name = "source_output"];
+
+          string target_input = 2 [json_name = "target_input"];
+        }
+      }
+    }
+
+    message Node {
+      string name = 1;
+
+      string type = 2;
+
+      repeated Configuration configuration = 3;
+
+      repeated Input input = 4;
+
+      repeated Output output = 5;
+
+      message Configuration {
+        repeated Agent agent = 1;
+
+        repeated Collector collector = 2;
+
+        repeated Condition condition = 3;
+
+        repeated InlineCode inline_code = 4 [json_name = "inline_code"];
+
+        repeated Input input = 5;
+
+        repeated Iterator iterator = 6;
+
+        repeated KnowledgeBase knowledge_base = 7 [json_name = "knowledge_base"];
+
+        repeated LambdaFunction lambda_function = 8 [json_name = "lambda_function"];
+
+        repeated Lex lex = 9;
+
+        repeated Output output = 10;
+
+        repeated Prompt prompt = 11;
+
+        repeated Retrieval retrieval = 12;
+
+        repeated Storage storage = 13;
+
+        message Agent {
+          string agent_alias_arn = 1 [json_name = "agent_alias_arn"];
+        }
+
+        message Collector {
+        }
+
+        message Condition {
+          repeated Condition condition = 1;
+
+          message Condition {
+            string expression = 1;
+
+            string name = 2;
+          }
+        }
+
+        message InlineCode {
+          string code = 1;
+
+          string language = 2;
+        }
+
+        message Input {
+        }
+
+        message Iterator {
+        }
+
+        message KnowledgeBase {
+          string knowledge_base_id = 1 [json_name = "knowledge_base_id"];
+
+          string model_id = 2 [json_name = "model_id"];
+
+          int64 number_of_results = 3 [json_name = "number_of_results"];
+
+          repeated GuardrailConfiguration guardrail_configuration = 4 [json_name = "guardrail_configuration"];
+
+          repeated InferenceConfiguration inference_configuration = 5 [json_name = "inference_configuration"];
+
+          message GuardrailConfiguration {
+            string guardrail_identifier = 1 [json_name = "guardrail_identifier"];
+
+            string guardrail_version = 2 [json_name = "guardrail_version"];
+          }
+
+          message InferenceConfiguration {
+            repeated Text text = 1;
+
+            message Text {
+              int64 max_tokens = 1 [json_name = "max_tokens"];
+
+              repeated string stop_sequences = 2 [json_name = "stop_sequences"];
+
+              int64 temperature = 3;
+
+              int64 top_p = 4 [json_name = "top_p"];
+            }
+          }
+        }
+
+        message LambdaFunction {
+          string lambda_arn = 1 [json_name = "lambda_arn"];
+        }
+
+        message Lex {
+          string bot_alias_arn = 1 [json_name = "bot_alias_arn"];
+
+          string locale_id = 2 [json_name = "locale_id"];
+        }
+
+        message Output {
+        }
+
+        message Prompt {
+          repeated GuardrailConfiguration guardrail_configuration = 1 [json_name = "guardrail_configuration"];
+
+          repeated SourceConfiguration source_configuration = 2 [json_name = "source_configuration"];
+
+          message GuardrailConfiguration {
+            string guardrail_identifier = 1 [json_name = "guardrail_identifier"];
+
+            string guardrail_version = 2 [json_name = "guardrail_version"];
+          }
+
+          message SourceConfiguration {
+            repeated Inline inline = 1;
+
+            repeated Resource resource = 2;
+
+            message Inline {
+              string additional_model_request_fields = 1 [json_name = "additional_model_request_fields"];
+
+              string model_id = 2 [json_name = "model_id"];
+
+              string template_type = 3 [json_name = "template_type"];
+
+              repeated InferenceConfiguration inference_configuration = 4 [json_name = "inference_configuration"];
+
+              repeated TemplateConfiguration template_configuration = 5 [json_name = "template_configuration"];
+
+              message InferenceConfiguration {
+                repeated Text text = 1;
+
+                message Text {
+                  int64 max_tokens = 1 [json_name = "max_tokens"];
+
+                  repeated string stop_sequences = 2 [json_name = "stop_sequences"];
+
+                  int64 temperature = 3;
+
+                  int64 top_p = 4 [json_name = "top_p"];
+                }
+              }
+
+              message TemplateConfiguration {
+                repeated Chat chat = 1;
+
+                repeated Text text = 2;
+
+                message Chat {
+                  repeated InputVariable input_variable = 1 [json_name = "input_variable"];
+
+                  repeated Message message = 2;
+
+                  repeated System system = 3;
+
+                  repeated ToolConfiguration tool_configuration = 4 [json_name = "tool_configuration"];
+
+                  message InputVariable {
+                    string name = 1;
+                  }
+
+                  message Message {
+                    string role = 1;
+
+                    repeated Content content = 2;
+
+                    message Content {
+                      string text = 1;
+
+                      repeated CachePoint cache_point = 2 [json_name = "cache_point"];
+
+                      message CachePoint {
+                        string type = 1;
+                      }
+                    }
+                  }
+
+                  message System {
+                    string text = 1;
+
+                    repeated CachePoint cache_point = 2 [json_name = "cache_point"];
+
+                    message CachePoint {
+                      string type = 1;
+                    }
+                  }
+
+                  message ToolConfiguration {
+                    repeated Tool tool = 1;
+
+                    repeated ToolChoice tool_choice = 2 [json_name = "tool_choice"];
+
+                    message Tool {
+                      repeated CachePoint cache_point = 1 [json_name = "cache_point"];
+
+                      repeated ToolSpec tool_spec = 2 [json_name = "tool_spec"];
+
+                      message CachePoint {
+                        string type = 1;
+                      }
+
+                      message ToolSpec {
+                        string description = 1;
+
+                        string name = 2;
+
+                        repeated InputSchema input_schema = 3 [json_name = "input_schema"];
+
+                        message InputSchema {
+                          string json = 1;
+                        }
+                      }
+                    }
+
+                    message ToolChoice {
+                      repeated Any any = 1;
+
+                      repeated Auto auto = 2;
+
+                      repeated Tool tool = 3;
+
+                      message Any {
+                      }
+
+                      message Auto {
+                      }
+
+                      message Tool {
+                        string name = 1;
+                      }
+                    }
+                  }
+                }
+
+                message Text {
+                  string text = 1;
+
+                  repeated CachePoint cache_point = 2 [json_name = "cache_point"];
+
+                  repeated InputVariable input_variable = 3 [json_name = "input_variable"];
+
+                  message CachePoint {
+                    string type = 1;
+                  }
+
+                  message InputVariable {
+                    string name = 1;
+                  }
+                }
+              }
+            }
+
+            message Resource {
+              string prompt_arn = 1 [json_name = "prompt_arn"];
+            }
+          }
+        }
+
+        message Retrieval {
+          repeated ServiceConfiguration service_configuration = 1 [json_name = "service_configuration"];
+
+          message ServiceConfiguration {
+            repeated S3 s3 = 1;
+
+            message S3 {
+              string bucket_name = 1 [json_name = "bucket_name"];
+            }
+          }
+        }
+
+        message Storage {
+          repeated ServiceConfiguration service_configuration = 1 [json_name = "service_configuration"];
+
+          message ServiceConfiguration {
+            repeated S3 s3 = 1;
+
+            message S3 {
+              string bucket_name = 1 [json_name = "bucket_name"];
+            }
+          }
+        }
+      }
+
+      message Input {
+        string category = 1;
+
+        string expression = 2;
+
+        string name = 3;
+
+        string type = 4;
+      }
+
+      message Output {
+        string name = 1;
+
+        string type = 2;
+      }
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsBedrockagentKnowledgeBase version is 0
+message AwsBedrockagentKnowledgeBase {
+  string arn = 1;
+
+  string created_at = 2 [json_name = "created_at"];
+
+  string description = 3;
+
+  repeated string failure_reasons = 4 [json_name = "failure_reasons"];
+
+  string id = 5;
+
+  string name = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string role_arn = 8 [json_name = "role_arn"];
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  string updated_at = 11 [json_name = "updated_at"];
+
+  repeated KnowledgeBaseConfiguration knowledge_base_configuration = 12 [json_name = "knowledge_base_configuration"];
+
+  repeated StorageConfiguration storage_configuration = 13 [json_name = "storage_configuration"];
+
+  repeated Timeouts timeouts = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message KnowledgeBaseConfiguration {
+    string type = 1;
+
+    repeated KendraKnowledgeBaseConfiguration kendra_knowledge_base_configuration = 2 [json_name = "kendra_knowledge_base_configuration"];
+
+    repeated SqlKnowledgeBaseConfiguration sql_knowledge_base_configuration = 3 [json_name = "sql_knowledge_base_configuration"];
+
+    repeated VectorKnowledgeBaseConfiguration vector_knowledge_base_configuration = 4 [json_name = "vector_knowledge_base_configuration"];
+
+    message KendraKnowledgeBaseConfiguration {
+      string kendra_index_arn = 1 [json_name = "kendra_index_arn"];
+    }
+
+    message SqlKnowledgeBaseConfiguration {
+      string type = 1;
+
+      repeated RedshiftConfiguration redshift_configuration = 2 [json_name = "redshift_configuration"];
+
+      message RedshiftConfiguration {
+        repeated QueryEngineConfiguration query_engine_configuration = 1 [json_name = "query_engine_configuration"];
+
+        repeated QueryGenerationConfiguration query_generation_configuration = 2 [json_name = "query_generation_configuration"];
+
+        repeated StorageConfiguration storage_configuration = 3 [json_name = "storage_configuration"];
+
+        message QueryEngineConfiguration {
+          string type = 1;
+
+          repeated ProvisionedConfiguration provisioned_configuration = 2 [json_name = "provisioned_configuration"];
+
+          repeated ServerlessConfiguration serverless_configuration = 3 [json_name = "serverless_configuration"];
+
+          message ProvisionedConfiguration {
+            string cluster_identifier = 1 [json_name = "cluster_identifier"];
+
+            repeated AuthConfiguration auth_configuration = 2 [json_name = "auth_configuration"];
+
+            message AuthConfiguration {
+              string database_user = 1 [json_name = "database_user"];
+
+              string type = 2;
+
+              string username_password_secret_arn = 3 [json_name = "username_password_secret_arn"];
+            }
+          }
+
+          message ServerlessConfiguration {
+            string workgroup_arn = 1 [json_name = "workgroup_arn"];
+
+            repeated AuthConfiguration auth_configuration = 2 [json_name = "auth_configuration"];
+
+            message AuthConfiguration {
+              string type = 1;
+
+              string username_password_secret_arn = 2 [json_name = "username_password_secret_arn"];
+            }
+          }
+        }
+
+        message QueryGenerationConfiguration {
+          int64 execution_timeout_seconds = 1 [json_name = "execution_timeout_seconds"];
+
+          repeated GenerationContext generation_context = 2 [json_name = "generation_context"];
+
+          message GenerationContext {
+            repeated CuratedQuery curated_query = 1 [json_name = "curated_query"];
+
+            repeated Table table = 2;
+
+            message CuratedQuery {
+              string natural_language = 1 [json_name = "natural_language"];
+
+              string sql = 2;
+            }
+
+            message Table {
+              string description = 1;
+
+              string inclusion = 2;
+
+              string name = 3;
+
+              repeated Column column = 4;
+
+              message Column {
+                string description = 1;
+
+                string inclusion = 2;
+
+                string name = 3;
+              }
+            }
+          }
+        }
+
+        message StorageConfiguration {
+          string type = 1;
+
+          repeated AwsDataCatalogConfiguration aws_data_catalog_configuration = 2 [json_name = "aws_data_catalog_configuration"];
+
+          repeated RedshiftConfiguration redshift_configuration = 3 [json_name = "redshift_configuration"];
+
+          message AwsDataCatalogConfiguration {
+            repeated string table_names = 1 [json_name = "table_names"];
+          }
+
+          message RedshiftConfiguration {
+            string database_name = 1 [json_name = "database_name"];
+          }
+        }
+      }
+    }
+
+    message VectorKnowledgeBaseConfiguration {
+      string embedding_model_arn = 1 [json_name = "embedding_model_arn"];
+
+      repeated EmbeddingModelConfiguration embedding_model_configuration = 2 [json_name = "embedding_model_configuration"];
+
+      repeated SupplementalDataStorageConfiguration supplemental_data_storage_configuration = 3 [
+        json_name = "supplemental_data_storage_configuration"
+      ];
+
+      message EmbeddingModelConfiguration {
+        repeated BedrockEmbeddingModelConfiguration bedrock_embedding_model_configuration = 1 [
+          json_name = "bedrock_embedding_model_configuration"
+        ];
+
+        message BedrockEmbeddingModelConfiguration {
+          int64 dimensions = 1;
+
+          string embedding_data_type = 2 [json_name = "embedding_data_type"];
+        }
+      }
+
+      message SupplementalDataStorageConfiguration {
+        repeated StorageLocation storage_location = 1 [json_name = "storage_location"];
+
+        message StorageLocation {
+          string type = 1;
+
+          repeated S3Location s3_location = 2 [json_name = "s3_location"];
+
+          message S3Location {
+            string uri = 1;
+          }
+        }
+      }
+    }
+  }
+
+  message StorageConfiguration {
+    string type = 1;
+
+    repeated MongoDbAtlasConfiguration mongo_db_atlas_configuration = 2 [json_name = "mongo_db_atlas_configuration"];
+
+    repeated NeptuneAnalyticsConfiguration neptune_analytics_configuration = 3 [json_name = "neptune_analytics_configuration"];
+
+    repeated OpensearchManagedClusterConfiguration opensearch_managed_cluster_configuration = 4 [
+      json_name = "opensearch_managed_cluster_configuration"
+    ];
+
+    repeated OpensearchServerlessConfiguration opensearch_serverless_configuration = 5 [json_name = "opensearch_serverless_configuration"];
+
+    repeated PineconeConfiguration pinecone_configuration = 6 [json_name = "pinecone_configuration"];
+
+    repeated RdsConfiguration rds_configuration = 7 [json_name = "rds_configuration"];
+
+    repeated RedisEnterpriseCloudConfiguration redis_enterprise_cloud_configuration = 8 [json_name = "redis_enterprise_cloud_configuration"];
+
+    repeated S3VectorsConfiguration s3_vectors_configuration = 9 [json_name = "s3_vectors_configuration"];
+
+    message MongoDbAtlasConfiguration {
+      string collection_name = 1 [json_name = "collection_name"];
+
+      string credentials_secret_arn = 2 [json_name = "credentials_secret_arn"];
+
+      string database_name = 3 [json_name = "database_name"];
+
+      string endpoint = 4;
+
+      string endpoint_service_name = 5 [json_name = "endpoint_service_name"];
+
+      string text_index_name = 6 [json_name = "text_index_name"];
+
+      string vector_index_name = 7 [json_name = "vector_index_name"];
+
+      repeated FieldMapping field_mapping = 8 [json_name = "field_mapping"];
+
+      message FieldMapping {
+        string metadata_field = 1 [json_name = "metadata_field"];
+
+        string text_field = 2 [json_name = "text_field"];
+
+        string vector_field = 3 [json_name = "vector_field"];
+      }
+    }
+
+    message NeptuneAnalyticsConfiguration {
+      string graph_arn = 1 [json_name = "graph_arn"];
+
+      repeated FieldMapping field_mapping = 2 [json_name = "field_mapping"];
+
+      message FieldMapping {
+        string metadata_field = 1 [json_name = "metadata_field"];
+
+        string text_field = 2 [json_name = "text_field"];
+      }
+    }
+
+    message OpensearchManagedClusterConfiguration {
+      string domain_arn = 1 [json_name = "domain_arn"];
+
+      string domain_endpoint = 2 [json_name = "domain_endpoint"];
+
+      string vector_index_name = 3 [json_name = "vector_index_name"];
+
+      repeated FieldMapping field_mapping = 4 [json_name = "field_mapping"];
+
+      message FieldMapping {
+        string metadata_field = 1 [json_name = "metadata_field"];
+
+        string text_field = 2 [json_name = "text_field"];
+
+        string vector_field = 3 [json_name = "vector_field"];
+      }
+    }
+
+    message OpensearchServerlessConfiguration {
+      string collection_arn = 1 [json_name = "collection_arn"];
+
+      string vector_index_name = 2 [json_name = "vector_index_name"];
+
+      repeated FieldMapping field_mapping = 3 [json_name = "field_mapping"];
+
+      message FieldMapping {
+        string metadata_field = 1 [json_name = "metadata_field"];
+
+        string text_field = 2 [json_name = "text_field"];
+
+        string vector_field = 3 [json_name = "vector_field"];
+      }
+    }
+
+    message PineconeConfiguration {
+      string connection_string = 1 [json_name = "connection_string"];
+
+      string credentials_secret_arn = 2 [json_name = "credentials_secret_arn"];
+
+      string namespace = 3;
+
+      repeated FieldMapping field_mapping = 4 [json_name = "field_mapping"];
+
+      message FieldMapping {
+        string metadata_field = 1 [json_name = "metadata_field"];
+
+        string text_field = 2 [json_name = "text_field"];
+      }
+    }
+
+    message RdsConfiguration {
+      string credentials_secret_arn = 1 [json_name = "credentials_secret_arn"];
+
+      string database_name = 2 [json_name = "database_name"];
+
+      string resource_arn = 3 [json_name = "resource_arn"];
+
+      string table_name = 4 [json_name = "table_name"];
+
+      repeated FieldMapping field_mapping = 5 [json_name = "field_mapping"];
+
+      message FieldMapping {
+        string custom_metadata_field = 1 [json_name = "custom_metadata_field"];
+
+        string metadata_field = 2 [json_name = "metadata_field"];
+
+        string primary_key_field = 3 [json_name = "primary_key_field"];
+
+        string text_field = 4 [json_name = "text_field"];
+
+        string vector_field = 5 [json_name = "vector_field"];
+      }
+    }
+
+    message RedisEnterpriseCloudConfiguration {
+      string credentials_secret_arn = 1 [json_name = "credentials_secret_arn"];
+
+      string endpoint = 2;
+
+      string vector_index_name = 3 [json_name = "vector_index_name"];
+
+      repeated FieldMapping field_mapping = 4 [json_name = "field_mapping"];
+
+      message FieldMapping {
+        string metadata_field = 1 [json_name = "metadata_field"];
+
+        string text_field = 2 [json_name = "text_field"];
+
+        string vector_field = 3 [json_name = "vector_field"];
+      }
+    }
+
+    message S3VectorsConfiguration {
+      string index_arn = 1 [json_name = "index_arn"];
+
+      string index_name = 2 [json_name = "index_name"];
+
+      string vector_bucket_arn = 3 [json_name = "vector_bucket_arn"];
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsBedrockagentPrompt version is 0
+message AwsBedrockagentPrompt {
+  string arn = 1;
+
+  string created_at = 2 [json_name = "created_at"];
+
+  string customer_encryption_key_arn = 3 [json_name = "customer_encryption_key_arn"];
+
+  string default_variant = 4 [json_name = "default_variant"];
+
+  string description = 5;
+
+  string id = 6;
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  string updated_at = 11 [json_name = "updated_at"];
+
+  string version = 12;
+
+  repeated Variant variant = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message Variant {
+    string additional_model_request_fields = 1 [json_name = "additional_model_request_fields"];
+
+    string model_id = 2 [json_name = "model_id"];
+
+    string name = 3;
+
+    string template_type = 4 [json_name = "template_type"];
+
+    repeated GenAiResource gen_ai_resource = 5 [json_name = "gen_ai_resource"];
+
+    repeated InferenceConfiguration inference_configuration = 6 [json_name = "inference_configuration"];
+
+    repeated Metadata metadata = 7;
+
+    repeated TemplateConfiguration template_configuration = 8 [json_name = "template_configuration"];
+
+    message GenAiResource {
+      repeated Agent agent = 1;
+
+      message Agent {
+        string agent_identifier = 1 [json_name = "agent_identifier"];
+      }
+    }
+
+    message InferenceConfiguration {
+      repeated Text text = 1;
+
+      message Text {
+        int64 max_tokens = 1 [json_name = "max_tokens"];
+
+        repeated string stop_sequences = 2 [json_name = "stop_sequences"];
+
+        int64 temperature = 3;
+
+        int64 top_p = 4 [json_name = "top_p"];
+      }
+    }
+
+    message Metadata {
+      string key = 1;
+
+      string value = 2;
+    }
+
+    message TemplateConfiguration {
+      repeated Chat chat = 1;
+
+      repeated Text text = 2;
+
+      message Chat {
+        repeated InputVariable input_variable = 1 [json_name = "input_variable"];
+
+        repeated Message message = 2;
+
+        repeated System system = 3;
+
+        repeated ToolConfiguration tool_configuration = 4 [json_name = "tool_configuration"];
+
+        message InputVariable {
+          string name = 1;
+        }
+
+        message Message {
+          string role = 1;
+
+          repeated Content content = 2;
+
+          message Content {
+            string text = 1;
+
+            repeated CachePoint cache_point = 2 [json_name = "cache_point"];
+
+            message CachePoint {
+              string type = 1;
+            }
+          }
+        }
+
+        message System {
+          string text = 1;
+
+          repeated CachePoint cache_point = 2 [json_name = "cache_point"];
+
+          message CachePoint {
+            string type = 1;
+          }
+        }
+
+        message ToolConfiguration {
+          repeated Tool tool = 1;
+
+          repeated ToolChoice tool_choice = 2 [json_name = "tool_choice"];
+
+          message Tool {
+            repeated CachePoint cache_point = 1 [json_name = "cache_point"];
+
+            repeated ToolSpec tool_spec = 2 [json_name = "tool_spec"];
+
+            message CachePoint {
+              string type = 1;
+            }
+
+            message ToolSpec {
+              string description = 1;
+
+              string name = 2;
+
+              repeated InputSchema input_schema = 3 [json_name = "input_schema"];
+
+              message InputSchema {
+                string json = 1;
+              }
+            }
+          }
+
+          message ToolChoice {
+            repeated Any any = 1;
+
+            repeated Auto auto = 2;
+
+            repeated Tool tool = 3;
+
+            message Any {
+            }
+
+            message Auto {
+            }
+
+            message Tool {
+              string name = 1;
+            }
+          }
+        }
+      }
+
+      message Text {
+        string text = 1;
+
+        repeated CachePoint cache_point = 2 [json_name = "cache_point"];
+
+        repeated InputVariable input_variable = 3 [json_name = "input_variable"];
+
+        message CachePoint {
+          string type = 1;
+        }
+
+        message InputVariable {
+          string name = 1;
+        }
+      }
+    }
+  }
+}

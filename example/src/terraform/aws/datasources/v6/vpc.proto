@@ -1,0 +1,990 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsVpc version is 0
+message AwsVpc {
+  string arn = 1;
+
+  string cidr_block = 2 [json_name = "cidr_block"];
+
+  repeated CidrBlockAssociations cidr_block_associations = 3 [json_name = "cidr_block_associations"];
+
+  bool default = 4;
+
+  string dhcp_options_id = 5 [json_name = "dhcp_options_id"];
+
+  bool enable_dns_hostnames = 6 [json_name = "enable_dns_hostnames"];
+
+  bool enable_dns_support = 7 [json_name = "enable_dns_support"];
+
+  bool enable_network_address_usage_metrics = 8 [json_name = "enable_network_address_usage_metrics"];
+
+  string id = 9;
+
+  string instance_tenancy = 10 [json_name = "instance_tenancy"];
+
+  string ipv6_association_id = 11 [json_name = "ipv6_association_id"];
+
+  string ipv6_cidr_block = 12 [json_name = "ipv6_cidr_block"];
+
+  string main_route_table_id = 13 [json_name = "main_route_table_id"];
+
+  string owner_id = 14 [json_name = "owner_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 15;
+
+  string state = 16;
+
+  map<string, string> tags = 17;
+
+  repeated Filter filter = 18;
+
+  repeated Timeouts timeouts = 19;
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message CidrBlockAssociations {
+    // association_id: string
+    string association_id = 1 [json_name = "association_id"];
+
+    // cidr_block: string
+    string cidr_block = 2 [json_name = "cidr_block"];
+
+    // state: string
+    string state = 3;
+  }
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsVpcDhcpOptions version is 0
+message AwsVpcDhcpOptions {
+  string arn = 1;
+
+  string dhcp_options_id = 2 [json_name = "dhcp_options_id"];
+
+  string domain_name = 3 [json_name = "domain_name"];
+
+  repeated string domain_name_servers = 4 [json_name = "domain_name_servers"];
+
+  string id = 5;
+
+  string ipv6_address_preferred_lease_time = 6 [json_name = "ipv6_address_preferred_lease_time"];
+
+  repeated string netbios_name_servers = 7 [json_name = "netbios_name_servers"];
+
+  string netbios_node_type = 8 [json_name = "netbios_node_type"];
+
+  repeated string ntp_servers = 9 [json_name = "ntp_servers"];
+
+  string owner_id = 10 [json_name = "owner_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  map<string, string> tags = 12;
+
+  repeated Filter filter = 13;
+
+  repeated Timeouts timeouts = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsVpcEndpoint version is 0
+message AwsVpcEndpoint {
+  string arn = 1;
+
+  repeated string cidr_blocks = 2 [json_name = "cidr_blocks"];
+
+  repeated DnsEntry dns_entry = 3 [json_name = "dns_entry"];
+
+  repeated DnsOptions dns_options = 4 [json_name = "dns_options"];
+
+  string id = 5;
+
+  string ip_address_type = 6 [json_name = "ip_address_type"];
+
+  repeated string network_interface_ids = 7 [json_name = "network_interface_ids"];
+
+  string owner_id = 8 [json_name = "owner_id"];
+
+  string policy = 9;
+
+  string prefix_list_id = 10 [json_name = "prefix_list_id"];
+
+  bool private_dns_enabled = 11 [json_name = "private_dns_enabled"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  bool requester_managed = 13 [json_name = "requester_managed"];
+
+  repeated string route_table_ids = 14 [json_name = "route_table_ids"];
+
+  repeated string security_group_ids = 15 [json_name = "security_group_ids"];
+
+  string service_name = 16 [json_name = "service_name"];
+
+  string service_region = 17 [json_name = "service_region"];
+
+  string state = 18;
+
+  repeated string subnet_ids = 19 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 20;
+
+  string vpc_endpoint_type = 21 [json_name = "vpc_endpoint_type"];
+
+  string vpc_id = 22 [json_name = "vpc_id"];
+
+  repeated Filter filter = 23;
+
+  repeated Timeouts timeouts = 24;
+
+  google.protobuf.Value for_each = 25 [json_name = "for_each"];
+
+  repeated string depends_on = 26 [json_name = "depends_on"];
+
+  int32 count = 27;
+
+  string provider = 28;
+
+  terraform.v1.Lifecycle lifecycle = 29;
+
+  message DnsEntry {
+    // dns_name: string
+    string dns_name = 1 [json_name = "dns_name"];
+
+    // hosted_zone_id: string
+    string hosted_zone_id = 2 [json_name = "hosted_zone_id"];
+  }
+
+  message DnsOptions {
+    // dns_record_ip_type: string
+    string dns_record_ip_type = 1 [json_name = "dns_record_ip_type"];
+
+    // private_dns_only_for_inbound_resolver_endpoint: bool
+    bool private_dns_only_for_inbound_resolver_endpoint = 2 [
+      json_name = "private_dns_only_for_inbound_resolver_endpoint"
+    ];
+
+    // private_dns_preference: string
+    string private_dns_preference = 3 [json_name = "private_dns_preference"];
+
+    // private_dns_specified_domains: set of string
+    repeated string private_dns_specified_domains = 4 [json_name = "private_dns_specified_domains"];
+  }
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsVpcEndpointAssociations version is 0
+message AwsVpcEndpointAssociations {
+  repeated Associations associations = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string vpc_endpoint_id = 3 [json_name = "vpc_endpoint_id"];
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message Associations {
+    // associated_resource_accessibility: string
+    string associated_resource_accessibility = 1 [json_name = "associated_resource_accessibility"];
+
+    // associated_resource_arn: string
+    string associated_resource_arn = 2 [json_name = "associated_resource_arn"];
+
+    // dns_entry: list of object
+    repeated DnsEntry dns_entry = 3 [json_name = "dns_entry"];
+
+    // id: string
+    string id = 4;
+
+    // private_dns_entry: list of object
+    repeated PrivateDnsEntry private_dns_entry = 5 [json_name = "private_dns_entry"];
+
+    // resource_configuration_group_arn: string
+    string resource_configuration_group_arn = 6 [json_name = "resource_configuration_group_arn"];
+
+    // service_network_arn: string
+    string service_network_arn = 7 [json_name = "service_network_arn"];
+
+    // service_network_name: string
+    string service_network_name = 8 [json_name = "service_network_name"];
+
+    // tags: map of string
+    map<string, string> tags = 9;
+
+    message DnsEntry {
+      // dns_name: string
+      string dns_name = 1 [json_name = "dns_name"];
+
+      // hosted_zone_id: string
+      string hosted_zone_id = 2 [json_name = "hosted_zone_id"];
+    }
+
+    message PrivateDnsEntry {
+      // dns_name: string
+      string dns_name = 1 [json_name = "dns_name"];
+
+      // hosted_zone_id: string
+      string hosted_zone_id = 2 [json_name = "hosted_zone_id"];
+    }
+  }
+}
+
+// AwsVpcEndpointService version is 0
+message AwsVpcEndpointService {
+  bool acceptance_required = 1 [json_name = "acceptance_required"];
+
+  string arn = 2;
+
+  repeated string availability_zones = 3 [json_name = "availability_zones"];
+
+  repeated string base_endpoint_dns_names = 4 [json_name = "base_endpoint_dns_names"];
+
+  string id = 5;
+
+  bool manages_vpc_endpoints = 6 [json_name = "manages_vpc_endpoints"];
+
+  string owner = 7;
+
+  string private_dns_name = 8 [json_name = "private_dns_name"];
+
+  repeated string private_dns_names = 9 [json_name = "private_dns_names"];
+
+  string region = 10;
+
+  string service = 11;
+
+  string service_id = 12 [json_name = "service_id"];
+
+  string service_name = 13 [json_name = "service_name"];
+
+  string service_region = 14 [json_name = "service_region"];
+
+  repeated string service_regions = 15 [json_name = "service_regions"];
+
+  string service_type = 16 [json_name = "service_type"];
+
+  repeated string supported_ip_address_types = 17 [json_name = "supported_ip_address_types"];
+
+  map<string, string> tags = 18;
+
+  bool vpc_endpoint_policy_supported = 19 [json_name = "vpc_endpoint_policy_supported"];
+
+  repeated Filter filter = 20;
+
+  repeated Timeouts timeouts = 21;
+
+  google.protobuf.Value for_each = 22 [json_name = "for_each"];
+
+  repeated string depends_on = 23 [json_name = "depends_on"];
+
+  int32 count = 24;
+
+  string provider = 25;
+
+  terraform.v1.Lifecycle lifecycle = 26;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsVpcIpam version is 0
+message AwsVpcIpam {
+  string arn = 1;
+
+  string default_resource_discovery_association_id = 2 [
+    json_name = "default_resource_discovery_association_id"
+  ];
+
+  string default_resource_discovery_id = 3 [json_name = "default_resource_discovery_id"];
+
+  string description = 4;
+
+  bool enable_private_gua = 5 [json_name = "enable_private_gua"];
+
+  string id = 6;
+
+  string ipam_region = 7 [json_name = "ipam_region"];
+
+  string metered_account = 8 [json_name = "metered_account"];
+
+  repeated OperatingRegions operating_regions = 9 [json_name = "operating_regions"];
+
+  string owner_id = 10 [json_name = "owner_id"];
+
+  string private_default_scope_id = 11 [json_name = "private_default_scope_id"];
+
+  string public_default_scope_id = 12 [json_name = "public_default_scope_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  int64 resource_discovery_association_count = 14 [json_name = "resource_discovery_association_count"];
+
+  int64 scope_count = 15 [json_name = "scope_count"];
+
+  string state = 16;
+
+  string state_message = 17 [json_name = "state_message"];
+
+  map<string, string> tags = 18;
+
+  string tier = 19;
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message OperatingRegions {
+    // region_name: string
+    string region_name = 1 [json_name = "region_name"];
+  }
+}
+
+// AwsVpcIpamPool version is 0
+message AwsVpcIpamPool {
+  string address_family = 1 [json_name = "address_family"];
+
+  int64 allocation_default_netmask_length = 2 [json_name = "allocation_default_netmask_length"];
+
+  int64 allocation_max_netmask_length = 3 [json_name = "allocation_max_netmask_length"];
+
+  int64 allocation_min_netmask_length = 4 [json_name = "allocation_min_netmask_length"];
+
+  map<string, string> allocation_resource_tags = 5 [json_name = "allocation_resource_tags"];
+
+  string arn = 6;
+
+  bool auto_import = 7 [json_name = "auto_import"];
+
+  string aws_service = 8 [json_name = "aws_service"];
+
+  string description = 9;
+
+  string id = 10;
+
+  string ipam_pool_id = 11 [json_name = "ipam_pool_id"];
+
+  string ipam_scope_id = 12 [json_name = "ipam_scope_id"];
+
+  string ipam_scope_type = 13 [json_name = "ipam_scope_type"];
+
+  string locale = 14;
+
+  int64 pool_depth = 15 [json_name = "pool_depth"];
+
+  bool publicly_advertisable = 16 [json_name = "publicly_advertisable"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 17;
+
+  string source_ipam_pool_id = 18 [json_name = "source_ipam_pool_id"];
+
+  repeated SourceResource source_resource = 19 [json_name = "source_resource"];
+
+  string state = 20;
+
+  map<string, string> tags = 21;
+
+  repeated Filter filter = 22;
+
+  repeated Timeouts timeouts = 23;
+
+  google.protobuf.Value for_each = 24 [json_name = "for_each"];
+
+  repeated string depends_on = 25 [json_name = "depends_on"];
+
+  int32 count = 26;
+
+  string provider = 27;
+
+  terraform.v1.Lifecycle lifecycle = 28;
+
+  message SourceResource {
+    // resource_id: string
+    string resource_id = 1 [json_name = "resource_id"];
+
+    // resource_owner: string
+    string resource_owner = 2 [json_name = "resource_owner"];
+
+    // resource_region: string
+    string resource_region = 3 [json_name = "resource_region"];
+
+    // resource_type: string
+    string resource_type = 4 [json_name = "resource_type"];
+  }
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsVpcIpamPoolCidrs version is 0
+message AwsVpcIpamPoolCidrs {
+  string id = 1;
+
+  repeated IpamPoolCidrs ipam_pool_cidrs = 2 [json_name = "ipam_pool_cidrs"];
+
+  string ipam_pool_id = 3 [json_name = "ipam_pool_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated Filter filter = 5;
+
+  repeated Timeouts timeouts = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message IpamPoolCidrs {
+    // cidr: string
+    string cidr = 1;
+
+    // state: string
+    string state = 2;
+  }
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsVpcIpamPools version is 0
+message AwsVpcIpamPools {
+  string id = 1;
+
+  repeated IpamPools ipam_pools = 2 [json_name = "ipam_pools"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated Filter filter = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message IpamPools {
+    // address_family: string
+    string address_family = 1 [json_name = "address_family"];
+
+    // allocation_default_netmask_length: number
+    int64 allocation_default_netmask_length = 2 [json_name = "allocation_default_netmask_length"];
+
+    // allocation_max_netmask_length: number
+    int64 allocation_max_netmask_length = 3 [json_name = "allocation_max_netmask_length"];
+
+    // allocation_min_netmask_length: number
+    int64 allocation_min_netmask_length = 4 [json_name = "allocation_min_netmask_length"];
+
+    // allocation_resource_tags: map of string
+    map<string, string> allocation_resource_tags = 5 [json_name = "allocation_resource_tags"];
+
+    // arn: string
+    string arn = 6;
+
+    // auto_import: bool
+    bool auto_import = 7 [json_name = "auto_import"];
+
+    // aws_service: string
+    string aws_service = 8 [json_name = "aws_service"];
+
+    // description: string
+    string description = 9;
+
+    // id: string
+    string id = 10;
+
+    // ipam_scope_id: string
+    string ipam_scope_id = 11 [json_name = "ipam_scope_id"];
+
+    // ipam_scope_type: string
+    string ipam_scope_type = 12 [json_name = "ipam_scope_type"];
+
+    // locale: string
+    string locale = 13;
+
+    // pool_depth: number
+    int64 pool_depth = 14 [json_name = "pool_depth"];
+
+    // publicly_advertisable: bool
+    bool publicly_advertisable = 15 [json_name = "publicly_advertisable"];
+
+    // source_ipam_pool_id: string
+    string source_ipam_pool_id = 16 [json_name = "source_ipam_pool_id"];
+
+    // state: string
+    string state = 17;
+
+    // tags: map of string
+    map<string, string> tags = 18;
+  }
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+}
+
+// AwsVpcIpamPreviewNextCidr version is 0
+message AwsVpcIpamPreviewNextCidr {
+  string cidr = 1;
+
+  repeated string disallowed_cidrs = 2 [json_name = "disallowed_cidrs"];
+
+  string id = 3;
+
+  string ipam_pool_id = 4 [json_name = "ipam_pool_id"];
+
+  int64 netmask_length = 5 [json_name = "netmask_length"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  repeated Timeouts timeouts = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsVpcIpams version is 0
+message AwsVpcIpams {
+  repeated string ipam_ids = 1 [json_name = "ipam_ids"];
+
+  repeated Ipams ipams = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated Filter filter = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message Ipams {
+    // arn: string
+    string arn = 1;
+
+    // default_resource_discovery_association_id: string
+    string default_resource_discovery_association_id = 2 [
+      json_name = "default_resource_discovery_association_id"
+    ];
+
+    // default_resource_discovery_id: string
+    string default_resource_discovery_id = 3 [json_name = "default_resource_discovery_id"];
+
+    // description: string
+    string description = 4;
+
+    // enable_private_gua: bool
+    bool enable_private_gua = 5 [json_name = "enable_private_gua"];
+
+    // id: string
+    string id = 6;
+
+    // ipam_region: string
+    string ipam_region = 7 [json_name = "ipam_region"];
+
+    // metered_account: string
+    string metered_account = 8 [json_name = "metered_account"];
+
+    // operating_regions: list of object
+    repeated OperatingRegions operating_regions = 9 [json_name = "operating_regions"];
+
+    // owner_id: string
+    string owner_id = 10 [json_name = "owner_id"];
+
+    // private_default_scope_id: string
+    string private_default_scope_id = 11 [json_name = "private_default_scope_id"];
+
+    // public_default_scope_id: string
+    string public_default_scope_id = 12 [json_name = "public_default_scope_id"];
+
+    // resource_discovery_association_count: number
+    int64 resource_discovery_association_count = 13 [json_name = "resource_discovery_association_count"];
+
+    // scope_count: number
+    int64 scope_count = 14 [json_name = "scope_count"];
+
+    // state: string
+    string state = 15;
+
+    // state_message: string
+    string state_message = 16 [json_name = "state_message"];
+
+    // tier: string
+    string tier = 17;
+
+    message OperatingRegions {
+      // region_name: string
+      string region_name = 1 [json_name = "region_name"];
+    }
+  }
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+}
+
+// AwsVpcPeeringConnection version is 0
+message AwsVpcPeeringConnection {
+  map<string, string> accepter = 1;
+
+  string cidr_block = 2 [json_name = "cidr_block"];
+
+  repeated CidrBlockSet cidr_block_set = 3 [json_name = "cidr_block_set"];
+
+  string id = 4;
+
+  repeated Ipv6CidrBlockSet ipv6_cidr_block_set = 5 [json_name = "ipv6_cidr_block_set"];
+
+  string owner_id = 6 [json_name = "owner_id"];
+
+  string peer_cidr_block = 7 [json_name = "peer_cidr_block"];
+
+  repeated PeerCidrBlockSet peer_cidr_block_set = 8 [json_name = "peer_cidr_block_set"];
+
+  repeated PeerIpv6CidrBlockSet peer_ipv6_cidr_block_set = 9 [json_name = "peer_ipv6_cidr_block_set"];
+
+  string peer_owner_id = 10 [json_name = "peer_owner_id"];
+
+  string peer_region = 11 [json_name = "peer_region"];
+
+  string peer_vpc_id = 12 [json_name = "peer_vpc_id"];
+
+  string region = 13;
+
+  map<string, string> requester = 14;
+
+  string requester_region = 15 [json_name = "requester_region"];
+
+  string status = 16;
+
+  map<string, string> tags = 17;
+
+  string vpc_id = 18 [json_name = "vpc_id"];
+
+  repeated Filter filter = 19;
+
+  repeated Timeouts timeouts = 20;
+
+  google.protobuf.Value for_each = 21 [json_name = "for_each"];
+
+  repeated string depends_on = 22 [json_name = "depends_on"];
+
+  int32 count = 23;
+
+  string provider = 24;
+
+  terraform.v1.Lifecycle lifecycle = 25;
+
+  message CidrBlockSet {
+    // cidr_block: string
+    string cidr_block = 1 [json_name = "cidr_block"];
+  }
+
+  message Ipv6CidrBlockSet {
+    // ipv6_cidr_block: string
+    string ipv6_cidr_block = 1 [json_name = "ipv6_cidr_block"];
+  }
+
+  message PeerCidrBlockSet {
+    // cidr_block: string
+    string cidr_block = 1 [json_name = "cidr_block"];
+  }
+
+  message PeerIpv6CidrBlockSet {
+    // ipv6_cidr_block: string
+    string ipv6_cidr_block = 1 [json_name = "ipv6_cidr_block"];
+  }
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsVpcPeeringConnections version is 0
+message AwsVpcPeeringConnections {
+  string id = 1;
+
+  repeated string ids = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  map<string, string> tags = 4;
+
+  repeated Filter filter = 5;
+
+  repeated Timeouts timeouts = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsVpcSecurityGroupRule version is 0
+message AwsVpcSecurityGroupRule {
+  string arn = 1;
+
+  string cidr_ipv4 = 2 [json_name = "cidr_ipv4"];
+
+  string cidr_ipv6 = 3 [json_name = "cidr_ipv6"];
+
+  string description = 4;
+
+  int64 from_port = 5 [json_name = "from_port"];
+
+  string id = 6;
+
+  string ip_protocol = 7 [json_name = "ip_protocol"];
+
+  bool is_egress = 8 [json_name = "is_egress"];
+
+  string prefix_list_id = 9 [json_name = "prefix_list_id"];
+
+  string referenced_security_group_id = 10 [json_name = "referenced_security_group_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string security_group_id = 12 [json_name = "security_group_id"];
+
+  string security_group_rule_id = 13 [json_name = "security_group_rule_id"];
+
+  map<string, string> tags = 14;
+
+  int64 to_port = 15 [json_name = "to_port"];
+
+  repeated Filter filter = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+}
+
+// AwsVpcSecurityGroupRules version is 0
+message AwsVpcSecurityGroupRules {
+  string id = 1;
+
+  repeated string ids = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  map<string, string> tags = 4;
+
+  repeated Filter filter = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+}

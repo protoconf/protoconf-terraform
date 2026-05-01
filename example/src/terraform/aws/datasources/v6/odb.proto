@@ -1,0 +1,1672 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsOdbCloudAutonomousVmCluster version is 0
+message AwsOdbCloudAutonomousVmCluster {
+  string arn = 1;
+
+  // The percentage of data storage currently in use for Autonomous Databases in the
+  // Autonomous VM cluster.
+  int64 autonomous_data_storage_percentage = 2 [json_name = "autonomous_data_storage_percentage"];
+
+  // The data storage size allocated for Autonomous Databases in the Autonomous VM
+  // cluster, in TB.
+  int64 autonomous_data_storage_size_in_tbs = 3 [json_name = "autonomous_data_storage_size_in_tbs"];
+
+  // The available data storage space for Autonomous Databases in the Autonomous VM
+  // cluster, in TB.
+  int64 available_autonomous_data_storage_size_in_tbs = 4 [
+    json_name = "available_autonomous_data_storage_size_in_tbs"
+  ];
+
+  // The number of Autonomous CDBs that you can create with the currently available
+  // storage.
+  int64 available_container_databases = 5 [json_name = "available_container_databases"];
+
+  // The number of CPU cores available for allocation to Autonomous Databases.
+  int64 available_cpus = 6 [json_name = "available_cpus"];
+
+  // Cloud exadata infrastructure arn associated with this cloud autonomous VM
+  // cluster.
+  string cloud_exadata_infrastructure_arn = 7 [json_name = "cloud_exadata_infrastructure_arn"];
+
+  // Cloud exadata infrastructure id associated with this cloud autonomous VM cluster.
+  string cloud_exadata_infrastructure_id = 8 [json_name = "cloud_exadata_infrastructure_id"];
+
+  // The compute model of the Autonomous VM cluster: ECPU or OCPU.
+  string compute_model = 9 [json_name = "compute_model"];
+
+  // The total number of CPU cores in the Autonomous VM cluster.
+  int64 cpu_core_count = 10 [json_name = "cpu_core_count"];
+
+  // The number of CPU cores enabled per node in the Autonomous VM cluster.
+  int64 cpu_core_count_per_node = 11 [json_name = "cpu_core_count_per_node"];
+
+  // The percentage of total CPU cores currently in use in the Autonomous VM cluster.
+  int64 cpu_percentage = 12 [json_name = "cpu_percentage"];
+
+  // The date and time when the Autonomous VM cluster was created.
+  string created_at = 13 [json_name = "created_at"];
+
+  // The total data storage allocated to the Autonomous VM cluster, in GB.
+  int64 data_storage_size_in_gbs = 14 [json_name = "data_storage_size_in_gbs"];
+
+  // The total data storage allocated to the Autonomous VM cluster, in TB.
+  int64 data_storage_size_in_tbs = 15 [json_name = "data_storage_size_in_tbs"];
+
+  // The list of database servers associated with the Autonomous VM cluster.
+  repeated string db_servers = 16 [json_name = "db_servers"];
+
+  // The user-provided description of the Autonomous VM cluster.
+  string description = 17;
+
+  // The display name of the Autonomous VM cluster.
+  string display_name = 18 [json_name = "display_name"];
+
+  // The domain name of the Autonomous VM cluster.
+  string domain = 19;
+
+  // The minimum value to which you can scale down the Exadata storage, in TB.
+  int64 exadata_storage_in_tbs_lowest_scaled_value = 20 [
+    json_name = "exadata_storage_in_tbs_lowest_scaled_value"
+  ];
+
+  // The hostname of the Autonomous VM cluster.
+  string hostname = 21;
+
+  // Unique ID of the Autonomous VM cluster.
+  string id = 22;
+
+  // Indicates whether mutual TLS (mTLS) authentication is enabled for the Autonomous
+  // VM cluster.
+  bool is_mtls_enabled_vm_cluster = 23 [json_name = "is_mtls_enabled_vm_cluster"];
+
+  // The Oracle license model that applies to the Autonomous VM cluster. Valid values
+  // are LICENSE_INCLUDED or BRING_YOUR_OWN_LICENSE .
+  string license_model = 24 [json_name = "license_model"];
+
+  // The maintenance window for the Autonomous VM cluster.
+  repeated MaintenanceWindow maintenance_window = 25 [json_name = "maintenance_window"];
+
+  // The minimum value to which you can scale down the maximum number of Autonomous
+  // CDBs.
+  int64 max_acds_lowest_scaled_value = 26 [json_name = "max_acds_lowest_scaled_value"];
+
+  // The amount of memory allocated per Oracle Compute Unit, in GB.
+  int64 memory_per_oracle_compute_unit_in_gbs = 27 [
+    json_name = "memory_per_oracle_compute_unit_in_gbs"
+  ];
+
+  // The total amount of memory allocated to the Autonomous VM cluster, in gigabytes
+  // (GB).
+  int64 memory_size_in_gbs = 28 [json_name = "memory_size_in_gbs"];
+
+  // The number of database server nodes in the Autonomous VM cluster.
+  int64 node_count = 29 [json_name = "node_count"];
+
+  // The number of Autonomous CDBs that can't be provisioned because of resource
+  // constraints.
+  int64 non_provisionable_autonomous_container_databases = 30 [
+    json_name = "non_provisionable_autonomous_container_databases"
+  ];
+
+  // The name of the OCI resource anchor associated with this Autonomous VM cluster.
+  string oci_resource_anchor_name = 31 [json_name = "oci_resource_anchor_name"];
+
+  // The URL for accessing the OCI console page for this Autonomous VM cluster.
+  string oci_url = 32 [json_name = "oci_url"];
+
+  // The Oracle Cloud Identifier (OCID) of the Autonomous VM cluster.
+  string ocid = 33;
+
+  // The arn of the ODB network associated with this Autonomous VM cluster.
+  string odb_network_arn = 34 [json_name = "odb_network_arn"];
+
+  // The unique identifier of the ODB network associated with this Autonomous VM
+  // cluster.
+  string odb_network_id = 35 [json_name = "odb_network_id"];
+
+  // The local node storage allocated to the Autonomous VM cluster, in gigabytes (GB).
+  int64 odb_node_storage_size_in_gbs = 36 [json_name = "odb_node_storage_size_in_gbs"];
+
+  // The progress of the current operation on the Autonomous VM cluster, as a
+  // percentage.
+  int64 percent_progress = 37 [json_name = "percent_progress"];
+
+  // The number of Autonomous CDBs that can be provisioned in the Autonomous VM
+  // cluster.
+  int64 provisionable_autonomous_container_databases = 38 [
+    json_name = "provisionable_autonomous_container_databases"
+  ];
+
+  // The number of Autonomous CDBs currently provisioned in the Autonomous VM cluster.
+  int64 provisioned_autonomous_container_databases = 39 [
+    json_name = "provisioned_autonomous_container_databases"
+  ];
+
+  // The number of CPU cores currently provisioned in the Autonomous VM cluster.
+  int64 provisioned_cpus = 40 [json_name = "provisioned_cpus"];
+
+  // The number of CPU cores that can be reclaimed from terminated or scaled-down
+  // Autonomous Databases.
+  int64 reclaimable_cpus = 41 [json_name = "reclaimable_cpus"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 42;
+
+  // The number of CPU cores reserved for system operations and redundancy.
+  int64 reserved_cpus = 43 [json_name = "reserved_cpus"];
+
+  // The SCAN listener port for non-TLS (TCP) protocol. The default is 1521.
+  int64 scan_listener_port_non_tls = 44 [json_name = "scan_listener_port_non_tls"];
+
+  // The SCAN listener port for TLS (TCP) protocol. The default is 2484.
+  int64 scan_listener_port_tls = 45 [json_name = "scan_listener_port_tls"];
+
+  // The shape of the Exadata infrastructure for the Autonomous VM cluster.
+  string shape = 46;
+
+  // The status of the Autonomous VM cluster.
+  string status = 47;
+
+  // Additional information about the current status of the Autonomous VM cluster.
+  string status_reason = 48 [json_name = "status_reason"];
+
+  map<string, string> tags = 49;
+
+  // The expiration date and time of the database SSL certificate.
+  string time_database_ssl_certificate_expires = 50 [
+    json_name = "time_database_ssl_certificate_expires"
+  ];
+
+  // The expiration date and time of the Oracle REST Data Services (ORDS)certificate .
+  string time_ords_certificate_expires = 51 [json_name = "time_ords_certificate_expires"];
+
+  // The time zone of the Autonomous VM cluster.
+  string time_zone = 52 [json_name = "time_zone"];
+
+  // The total number of Autonomous Container Databases that can be created with the
+  // allocated local storage.
+  int64 total_container_databases = 53 [json_name = "total_container_databases"];
+
+  google.protobuf.Value for_each = 54 [json_name = "for_each"];
+
+  repeated string depends_on = 55 [json_name = "depends_on"];
+
+  int32 count = 56;
+
+  string provider = 57;
+
+  terraform.v1.Lifecycle lifecycle = 58;
+
+  message MaintenanceWindow {
+    // days_of_week: set of object
+    repeated DaysOfWeek days_of_week = 1 [json_name = "days_of_week"];
+
+    // hours_of_day: set of number
+    repeated int64 hours_of_day = 2 [json_name = "hours_of_day"];
+
+    // lead_time_in_weeks: number
+    int64 lead_time_in_weeks = 3 [json_name = "lead_time_in_weeks"];
+
+    // months: set of object
+    repeated Months months = 4;
+
+    // preference: string
+    string preference = 5;
+
+    // weeks_of_month: set of number
+    repeated int64 weeks_of_month = 6 [json_name = "weeks_of_month"];
+
+    message DaysOfWeek {
+      // name: string
+      string name = 1;
+    }
+
+    message Months {
+      // name: string
+      string name = 1;
+    }
+  }
+}
+
+// AwsOdbCloudAutonomousVmClusters version is 0
+message AwsOdbCloudAutonomousVmClusters {
+  // List of Cloud Autonomous VM Clusters. The list going to contain basic information
+  // about the cloud autonomous VM clusters.
+  repeated CloudAutonomousVmClusters cloud_autonomous_vm_clusters = 1 [json_name = "cloud_autonomous_vm_clusters"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+
+  message CloudAutonomousVmClusters {
+    // arn: string
+    string arn = 1;
+
+    // cloud_exadata_infrastructure_id: string
+    string cloud_exadata_infrastructure_id = 2 [json_name = "cloud_exadata_infrastructure_id"];
+
+    // display_name: string
+    string display_name = 3 [json_name = "display_name"];
+
+    // id: string
+    string id = 4;
+
+    // oci_resource_anchor_name: string
+    string oci_resource_anchor_name = 5 [json_name = "oci_resource_anchor_name"];
+
+    // oci_url: string
+    string oci_url = 6 [json_name = "oci_url"];
+
+    // ocid: string
+    string ocid = 7;
+
+    // odb_network_id: string
+    string odb_network_id = 8 [json_name = "odb_network_id"];
+  }
+}
+
+// AwsOdbCloudExadataInfrastructure version is 0
+message AwsOdbCloudExadataInfrastructure {
+  // The number of storage servers requested for the Exadata infrastructure.
+  int64 activated_storage_count = 1 [json_name = "activated_storage_count"];
+
+  // The number of storage servers requested for the Exadata infrastructure.
+  int64 additional_storage_count = 2 [json_name = "additional_storage_count"];
+
+  // The Amazon Resource Name (ARN) for the Exadata infrastructure.
+  string arn = 3;
+
+  // The name of the Availability Zone (AZ) where the Exadata infrastructure is
+  // located.
+  string availability_zone = 4 [json_name = "availability_zone"];
+
+  // The AZ ID of the AZ where the Exadata infrastructure is located.
+  string availability_zone_id = 5 [json_name = "availability_zone_id"];
+
+  // The amount of available storage, in gigabytes (GB), for the Exadata
+  // infrastructure.
+  int64 available_storage_size_in_gbs = 6 [json_name = "available_storage_size_in_gbs"];
+
+  // The number of database servers for the Exadata infrastructure.
+  int64 compute_count = 7 [json_name = "compute_count"];
+
+  // The OCI model compute model used when you create or clone an instance: ECPU or
+  //
+  // OCPU. An ECPU is an abstracted measure of compute resources. ECPUs are based on
+  //
+  // the number of cores elastically allocated from a pool of compute and storage
+  //
+  // servers. An OCPU is a legacy physical measure of compute resources. OCPUs are
+  //
+  // based on the physical core of a processor with hyper-threading enabled.
+  string compute_model = 8 [json_name = "compute_model"];
+
+  // The total number of CPU cores that are allocated to the Exadata infrastructure.
+  int64 cpu_count = 9 [json_name = "cpu_count"];
+
+  // The time when the Exadata infrastructure was created.
+  string created_at = 10 [json_name = "created_at"];
+
+  // The email addresses of contacts to receive notification from Oracle about
+  // maintenance updates for the Exadata infrastructure.
+  repeated CustomerContactsToSendToOci customer_contacts_to_send_to_oci = 11 [json_name = "customer_contacts_to_send_to_oci"];
+
+  // The size of the Exadata infrastructure's data disk group, in terabytes (TB).
+  int64 data_storage_size_in_tbs = 12 [json_name = "data_storage_size_in_tbs"];
+
+  // The database server model type of the Exadata infrastructure. For the list of
+  // valid model names, use the ListDbSystemShapes operation.
+  string database_server_type = 13 [json_name = "database_server_type"];
+
+  // The database server model type of the Exadata infrastructure. For the list of
+  //
+  // valid model names, use the ListDbSystemShapes operation.
+  int64 db_node_storage_size_in_gbs = 14 [json_name = "db_node_storage_size_in_gbs"];
+
+  // The version of the Exadata infrastructure.
+  string db_server_version = 15 [json_name = "db_server_version"];
+
+  // The display name of the Exadata infrastructure.
+  string display_name = 16 [json_name = "display_name"];
+
+  // The unique identifier of the Exadata infrastructure.
+  string id = 17;
+
+  // The Oracle Cloud Identifier (OCID) of the last maintenance run for the Exadata
+  // infrastructure.
+  string last_maintenance_run_id = 18 [json_name = "last_maintenance_run_id"];
+
+  // The scheduling details for the maintenance window. Patching and system updates
+  // take place during the maintenance window
+  repeated MaintenanceWindow maintenance_window = 19 [json_name = "maintenance_window"];
+
+  // The total number of CPU cores available on the Exadata infrastructure.
+  int64 max_cpu_count = 20 [json_name = "max_cpu_count"];
+
+  // The total amount of data disk group storage, in terabytes (TB), that's available
+  // on the Exadata infrastructure.
+  int64 max_data_storage_in_tbs = 21 [json_name = "max_data_storage_in_tbs"];
+
+  // The total amount of local node storage, in gigabytes (GB), that's available on
+  // the Exadata infrastructure.
+  int64 max_db_node_storage_size_in_gbs = 22 [json_name = "max_db_node_storage_size_in_gbs"];
+
+  // The total amount of memory, in gigabytes (GB), that's available on the Exadata
+  // infrastructure.
+  int64 max_memory_in_gbs = 23 [json_name = "max_memory_in_gbs"];
+
+  // The amount of memory, in gigabytes (GB), that's allocated on the Exadata
+  // infrastructure.
+  int64 memory_size_in_gbs = 24 [json_name = "memory_size_in_gbs"];
+
+  // The monthly software version of the database servers installed on the Exadata
+  // infrastructure.
+  string monthly_db_server_version = 25 [json_name = "monthly_db_server_version"];
+
+  // The monthly software version of the storage servers installed on the Exadata
+  // infrastructure.
+  string monthly_storage_server_version = 26 [json_name = "monthly_storage_server_version"];
+
+  // The OCID of the next maintenance run for the Exadata infrastructure.
+  string next_maintenance_run_id = 27 [json_name = "next_maintenance_run_id"];
+
+  // The name of the OCI resource anchor for the Exadata infrastructure.
+  string oci_resource_anchor_name = 28 [json_name = "oci_resource_anchor_name"];
+
+  // The HTTPS link to the Exadata infrastructure in OCI.
+  string oci_url = 29 [json_name = "oci_url"];
+
+  // The OCID of the Exadata infrastructure in OCI.
+  string ocid = 30;
+
+  // The amount of progress made on the current operation on the Exadata
+  // infrastructure expressed as a percentage.
+  int64 percent_progress = 31 [json_name = "percent_progress"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 32;
+
+  // The model name of the Exadata infrastructure.
+  string shape = 33;
+
+  // The status of the Exadata infrastructure.
+  string status = 34;
+
+  // Additional information about the status of the Exadata infrastructure.
+  string status_reason = 35 [json_name = "status_reason"];
+
+  // The number of storage servers that are activated for the Exadata infrastructure.
+  int64 storage_count = 36 [json_name = "storage_count"];
+
+  // The storage server model type of the Exadata infrastructure. For the list of
+  // valid model names, use the ListDbSystemShapes operation.
+  string storage_server_type = 37 [json_name = "storage_server_type"];
+
+  // The software version of the storage servers on the Exadata infrastructure.
+  string storage_server_version = 38 [json_name = "storage_server_version"];
+
+  map<string, string> tags = 39;
+
+  // The total amount of storage, in gigabytes (GB), on the the Exadata
+  // infrastructure.
+  int64 total_storage_size_in_gbs = 40 [json_name = "total_storage_size_in_gbs"];
+
+  google.protobuf.Value for_each = 41 [json_name = "for_each"];
+
+  repeated string depends_on = 42 [json_name = "depends_on"];
+
+  int32 count = 43;
+
+  string provider = 44;
+
+  terraform.v1.Lifecycle lifecycle = 45;
+
+  message CustomerContactsToSendToOci {
+    // email: string
+    string email = 1;
+  }
+
+  message MaintenanceWindow {
+    // custom_action_timeout_in_mins: number
+    int64 custom_action_timeout_in_mins = 1 [json_name = "custom_action_timeout_in_mins"];
+
+    // days_of_week: set of object
+    repeated DaysOfWeek days_of_week = 2 [json_name = "days_of_week"];
+
+    // hours_of_day: set of number
+    repeated int64 hours_of_day = 3 [json_name = "hours_of_day"];
+
+    // is_custom_action_timeout_enabled: bool
+    bool is_custom_action_timeout_enabled = 4 [json_name = "is_custom_action_timeout_enabled"];
+
+    // lead_time_in_weeks: number
+    int64 lead_time_in_weeks = 5 [json_name = "lead_time_in_weeks"];
+
+    // months: set of object
+    repeated Months months = 6;
+
+    // patching_mode: string
+    string patching_mode = 7 [json_name = "patching_mode"];
+
+    // preference: string
+    string preference = 8;
+
+    // weeks_of_month: set of number
+    repeated int64 weeks_of_month = 9 [json_name = "weeks_of_month"];
+
+    message DaysOfWeek {
+      // name: string
+      string name = 1;
+    }
+
+    message Months {
+      // name: string
+      string name = 1;
+    }
+  }
+}
+
+// AwsOdbCloudExadataInfrastructures version is 0
+message AwsOdbCloudExadataInfrastructures {
+  // List of Cloud Exadata Infrastructures. Returns basic information about the Cloud
+  // Exadata Infrastructures.
+  repeated CloudExadataInfrastructures cloud_exadata_infrastructures = 1 [json_name = "cloud_exadata_infrastructures"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+
+  message CloudExadataInfrastructures {
+    // arn: string
+    string arn = 1;
+
+    // display_name: string
+    string display_name = 2 [json_name = "display_name"];
+
+    // id: string
+    string id = 3;
+
+    // oci_resource_anchor_name: string
+    string oci_resource_anchor_name = 4 [json_name = "oci_resource_anchor_name"];
+
+    // oci_url: string
+    string oci_url = 5 [json_name = "oci_url"];
+
+    // ocid: string
+    string ocid = 6;
+  }
+}
+
+// AwsOdbCloudVmCluster version is 0
+message AwsOdbCloudVmCluster {
+  string arn = 1;
+
+  // The ARN of the Cloud Exadata Infrastructure.
+  string cloud_exadata_infrastructure_arn = 2 [json_name = "cloud_exadata_infrastructure_arn"];
+
+  // The ID of the Cloud Exadata Infrastructure.
+  string cloud_exadata_infrastructure_id = 3 [json_name = "cloud_exadata_infrastructure_id"];
+
+  // The name of the Grid Infrastructure (GI) cluster.
+  string cluster_name = 4 [json_name = "cluster_name"];
+
+  // The OCI model compute model used when you create or clone an instance: ECPU or
+  //
+  // OCPU. An ECPU is an abstracted measure of compute resources. ECPUs are based on
+  //
+  // the number of cores elastically allocated from a pool of compute and storage
+  //
+  // servers. An OCPU is a legacy physical measure of compute resources. OCPUs are
+  //
+  // based on the physical core of a processor with hyper-threading enabled.
+  string compute_model = 5 [json_name = "compute_model"];
+
+  // The number of CPU cores enabled on the VM cluster.
+  int64 cpu_core_count = 6 [json_name = "cpu_core_count"];
+
+  // The time when the VM cluster was created.
+  string created_at = 7 [json_name = "created_at"];
+
+  // The set of diagnostic collection options enabled for the VM cluster.
+  repeated DataCollectionOptions data_collection_options = 8 [json_name = "data_collection_options"];
+
+  // The size of the data disk group, in terabytes (TB), that's allocated for the VM
+  // cluster.
+  int64 data_storage_size_in_tbs = 9 [json_name = "data_storage_size_in_tbs"];
+
+  // The amount of local node storage, in gigabytes (GB), that's allocated for the VM
+  // cluster.
+  int64 db_node_storage_size_in_gbs = 10 [json_name = "db_node_storage_size_in_gbs"];
+
+  // The list of database servers for the VM cluster.
+  repeated string db_servers = 11 [json_name = "db_servers"];
+
+  // The type of redundancy configured for the VM cluster. NORMAL is 2-way redundancy.
+  // HIGH is 3-way redundancy.
+  string disk_redundancy = 12 [json_name = "disk_redundancy"];
+
+  // The display name of the VM cluster.
+  string display_name = 13 [json_name = "display_name"];
+
+  // The domain name of the VM cluster.
+  string domain = 14;
+
+  // The software version of the Oracle Grid Infrastructure (GI) for the VM cluster.
+  string gi_version = 15 [json_name = "gi_version"];
+
+  // The computed hostname prefix for the VM cluster.
+  string hostname_prefix_computed = 16 [json_name = "hostname_prefix_computed"];
+
+  // The unique identifier of the VM cluster.
+  string id = 17;
+
+  // The ExadataIormConfig cache details for the VM cluster.
+  repeated IormConfigCache iorm_config_cache = 18 [json_name = "iorm_config_cache"];
+
+  // Indicates whether database backups to local Exadata storage is enabled for the VM
+  // cluster.
+  bool is_local_backup_enabled = 19 [json_name = "is_local_backup_enabled"];
+
+  // Indicates whether the VM cluster is configured with a sparse disk group.
+  bool is_sparse_disk_group_enabled = 20 [json_name = "is_sparse_disk_group_enabled"];
+
+  // The Oracle Cloud ID (OCID) of the last maintenance update history entry.
+  string last_update_history_entry_id = 21 [json_name = "last_update_history_entry_id"];
+
+  // The Oracle license model applied to the VM cluster.
+  string license_model = 22 [json_name = "license_model"];
+
+  // The port number configured for the listener on the VM cluster.
+  int64 listener_port = 23 [json_name = "listener_port"];
+
+  // The amount of memory, in gigabytes (GB), that's allocated for the VM cluster.
+  int64 memory_size_in_gbs = 24 [json_name = "memory_size_in_gbs"];
+
+  // The number of nodes in the VM cluster.
+  int64 node_count = 25 [json_name = "node_count"];
+
+  // The name of the OCI Resource Anchor.
+  string oci_resource_anchor_name = 26 [json_name = "oci_resource_anchor_name"];
+
+  // The HTTPS link to the VM cluster in OCI.
+  string oci_url = 27 [json_name = "oci_url"];
+
+  // The OCID of the VM cluster.
+  string ocid = 28;
+
+  // The ARN of the ODB network.
+  string odb_network_arn = 29 [json_name = "odb_network_arn"];
+
+  // The ID of the ODB network.
+  string odb_network_id = 30 [json_name = "odb_network_id"];
+
+  // The amount of progress made on the current operation on the VM cluster,expressed
+  // as a percentage.
+  int64 percent_progress = 31 [json_name = "percent_progress"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 32;
+
+  // The FQDN of the DNS record for the Single Client Access Name (SCAN) IP
+  //
+  // addresses that are associated with the VM cluster.
+  string scan_dns_name = 33 [json_name = "scan_dns_name"];
+
+  // The OCID of the DNS record for the SCAN IP addresses that are associated with the
+  // VM cluster.
+  string scan_dns_record_id = 34 [json_name = "scan_dns_record_id"];
+
+  // The OCID of the SCAN IP addresses that are associated with the VM cluster.
+  repeated string scan_ip_ids = 35 [json_name = "scan_ip_ids"];
+
+  // The hardware model name of the Exadata infrastructure that's running the VM
+  // cluster.
+  string shape = 36;
+
+  // The public key portion of one or more key pairs used for SSH access to the VM
+  // cluster.
+  repeated string ssh_public_keys = 37 [json_name = "ssh_public_keys"];
+
+  // The status of the VM cluster.
+  string status = 38;
+
+  // Additional information about the status of the VM cluster.
+  string status_reason = 39 [json_name = "status_reason"];
+
+  // The amount of local node storage, in gigabytes (GB), that's allocated to the VM
+  // cluster.
+  int64 storage_size_in_gbs = 40 [json_name = "storage_size_in_gbs"];
+
+  // The operating system version of the image chosen for the VM cluster.
+  string system_version = 41 [json_name = "system_version"];
+
+  map<string, string> tags = 42;
+
+  // The time zone of the VM cluster.
+  string timezone = 43;
+
+  // The virtual IP (VIP) addresses that are associated with the VM cluster.
+  //
+  // Oracle's Cluster Ready Services (CRS) creates and maintains one VIP address for
+  //
+  // each node in the VM cluster to enable failover. If one node fails, the VIP is
+  //
+  // reassigned to another active node in the cluster.
+  repeated string vip_ids = 44 [json_name = "vip_ids"];
+
+  google.protobuf.Value for_each = 45 [json_name = "for_each"];
+
+  repeated string depends_on = 46 [json_name = "depends_on"];
+
+  int32 count = 47;
+
+  string provider = 48;
+
+  terraform.v1.Lifecycle lifecycle = 49;
+
+  message DataCollectionOptions {
+    // is_diagnostics_events_enabled: bool
+    bool is_diagnostics_events_enabled = 1 [json_name = "is_diagnostics_events_enabled"];
+
+    // is_health_monitoring_enabled: bool
+    bool is_health_monitoring_enabled = 2 [json_name = "is_health_monitoring_enabled"];
+
+    // is_incident_logs_enabled: bool
+    bool is_incident_logs_enabled = 3 [json_name = "is_incident_logs_enabled"];
+  }
+
+  message IormConfigCache {
+    // db_plans: list of object
+    repeated DbPlans db_plans = 1 [json_name = "db_plans"];
+
+    // lifecycle_details: string
+    string lifecycle_details = 2 [json_name = "lifecycle_details"];
+
+    // lifecycle_state: string
+    string lifecycle_state = 3 [json_name = "lifecycle_state"];
+
+    // objective: string
+    string objective = 4;
+
+    message DbPlans {
+      // db_name: string
+      string db_name = 1 [json_name = "db_name"];
+
+      // flash_cache_limit: string
+      string flash_cache_limit = 2 [json_name = "flash_cache_limit"];
+
+      // share: number
+      int64 share = 3;
+    }
+  }
+}
+
+// AwsOdbCloudVmClusters version is 0
+message AwsOdbCloudVmClusters {
+  // List of Cloud VM Clusters. It returns only basic information about the cloud VM
+  // clusters.
+  repeated CloudVmClusters cloud_vm_clusters = 1 [json_name = "cloud_vm_clusters"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+
+  message CloudVmClusters {
+    // arn: string
+    string arn = 1;
+
+    // cloud_exadata_infrastructure_id: string
+    string cloud_exadata_infrastructure_id = 2 [json_name = "cloud_exadata_infrastructure_id"];
+
+    // display_name: string
+    string display_name = 3 [json_name = "display_name"];
+
+    // id: string
+    string id = 4;
+
+    // oci_resource_anchor_name: string
+    string oci_resource_anchor_name = 5 [json_name = "oci_resource_anchor_name"];
+
+    // oci_url: string
+    string oci_url = 6 [json_name = "oci_url"];
+
+    // ocid: string
+    string ocid = 7;
+
+    // odb_network_id: string
+    string odb_network_id = 8 [json_name = "odb_network_id"];
+  }
+}
+
+// AwsOdbDbNode version is 0
+message AwsOdbDbNode {
+  // Additional information about the planned maintenance.
+  string additional_details = 1 [json_name = "additional_details"];
+
+  string arn = 2;
+
+  // The Oracle Cloud ID (OCID) of the backup IP address that's associated with the DB
+  // node.
+  string backup_ip_id = 3 [json_name = "backup_ip_id"];
+
+  // The OCID of the second backup VNIC.
+  string backup_vnic2_id = 4 [json_name = "backup_vnic2_id"];
+
+  // The OCID of the backup VNIC.
+  string backup_vnic_id = 5 [json_name = "backup_vnic_id"];
+
+  string cloud_vm_cluster_id = 6 [json_name = "cloud_vm_cluster_id"];
+
+  // Number of CPU cores enabled on the DB node.
+  int64 cpu_core_count = 7 [json_name = "cpu_core_count"];
+
+  // The date and time when the DB node was created.
+  string created_at = 8 [json_name = "created_at"];
+
+  // The unique identifier of the DB server that is associated with the DB node.
+  string db_server_id = 9 [json_name = "db_server_id"];
+
+  // The amount of local node storage, in gigabytes (GBs), allocated on the DB node.
+  int64 db_storage_size_in_gbs = 10 [json_name = "db_storage_size_in_gbs"];
+
+  // The OCID of the DB system.
+  string db_system_id = 11 [json_name = "db_system_id"];
+
+  // The name of the fault domain the instance is contained in.
+  string fault_domain = 12 [json_name = "fault_domain"];
+
+  // The floating IP address assigned to the DB node.
+  string floating_ip_address = 13 [json_name = "floating_ip_address"];
+
+  // The OCID of the host IP address that's associated with the DB node.
+  string host_ip_id = 14 [json_name = "host_ip_id"];
+
+  // The host name for the DB node.
+  string hostname = 15;
+
+  string id = 16;
+
+  // The type of database node maintenance. Either VMDB_REBOOT_MIGRATION or
+  // EXADBXS_REBOOT_MIGRATION.
+  string maintenance_type = 17 [json_name = "maintenance_type"];
+
+  // The allocated memory in GBs on the DB node.
+  int64 memory_size_in_gbs = 18 [json_name = "memory_size_in_gbs"];
+
+  // The name of the OCI resource anchor for the DB node.
+  string oci_resource_anchor_name = 19 [json_name = "oci_resource_anchor_name"];
+
+  // The OCID of the DB node.
+  string ocid = 20;
+
+  // The private IP address assigned to the DB node.
+  string private_ip_address = 21 [json_name = "private_ip_address"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 22;
+
+  // The size (in GB) of the block storage volume allocation for the DB system.
+  int64 software_storage_size_in_gbs = 23 [json_name = "software_storage_size_in_gbs"];
+
+  // The current status of the DB node.
+  string status = 24;
+
+  // Additional information about the status of the DB node.
+  string status_reason = 25 [json_name = "status_reason"];
+
+  // End date and time of maintenance window.
+  string time_maintenance_window_end = 26 [json_name = "time_maintenance_window_end"];
+
+  // Start date and time of maintenance window.
+  string time_maintenance_window_start = 27 [json_name = "time_maintenance_window_start"];
+
+  // The total number of CPU cores reserved on the DB node.
+  int64 total_cpu_core_count = 28 [json_name = "total_cpu_core_count"];
+
+  // The OCID of the second VNIC.
+  string vnic2_id = 29 [json_name = "vnic2_id"];
+
+  // The OCID of the VNIC.
+  string vnic_id = 30 [json_name = "vnic_id"];
+
+  google.protobuf.Value for_each = 31 [json_name = "for_each"];
+
+  repeated string depends_on = 32 [json_name = "depends_on"];
+
+  int32 count = 33;
+
+  string provider = 34;
+
+  terraform.v1.Lifecycle lifecycle = 35;
+}
+
+// AwsOdbDbNodes version is 0
+message AwsOdbDbNodes {
+  // Id of the cloud VM cluster. The unique identifier of the VM cluster.
+  string cloud_vm_cluster_id = 1 [json_name = "cloud_vm_cluster_id"];
+
+  // The list of DB nodes along with their properties.
+  repeated DbNodes db_nodes = 2 [json_name = "db_nodes"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message DbNodes {
+    // additional_details: string
+    string additional_details = 1 [json_name = "additional_details"];
+
+    // arn: string
+    string arn = 2;
+
+    // backup_ip_id: string
+    string backup_ip_id = 3 [json_name = "backup_ip_id"];
+
+    // backup_vnic2_id: string
+    string backup_vnic2_id = 4 [json_name = "backup_vnic2_id"];
+
+    // backup_vnic_id: string
+    string backup_vnic_id = 5 [json_name = "backup_vnic_id"];
+
+    // cpu_core_count: number
+    int64 cpu_core_count = 6 [json_name = "cpu_core_count"];
+
+    // created_at: string
+    string created_at = 7 [json_name = "created_at"];
+
+    // db_node_storage_size: number
+    int64 db_node_storage_size = 8 [json_name = "db_node_storage_size"];
+
+    // db_server_id: string
+    string db_server_id = 9 [json_name = "db_server_id"];
+
+    // db_system_id: string
+    string db_system_id = 10 [json_name = "db_system_id"];
+
+    // fault_domain: string
+    string fault_domain = 11 [json_name = "fault_domain"];
+
+    // host_ip_id: string
+    string host_ip_id = 12 [json_name = "host_ip_id"];
+
+    // hostname: string
+    string hostname = 13;
+
+    // id: string
+    string id = 14;
+
+    // maintenance_type: string
+    string maintenance_type = 15 [json_name = "maintenance_type"];
+
+    // memory_size: number
+    int64 memory_size = 16 [json_name = "memory_size"];
+
+    // oci_resource_anchor_name: string
+    string oci_resource_anchor_name = 17 [json_name = "oci_resource_anchor_name"];
+
+    // ocid: string
+    string ocid = 18;
+
+    // software_storage_size: number
+    int64 software_storage_size = 19 [json_name = "software_storage_size"];
+
+    // status: string
+    string status = 20;
+
+    // status_reason: string
+    string status_reason = 21 [json_name = "status_reason"];
+
+    // time_maintenance_window_end: string
+    string time_maintenance_window_end = 22 [json_name = "time_maintenance_window_end"];
+
+    // time_maintenance_window_start: string
+    string time_maintenance_window_start = 23 [json_name = "time_maintenance_window_start"];
+
+    // total_cpu_core_count: number
+    int64 total_cpu_core_count = 24 [json_name = "total_cpu_core_count"];
+
+    // vnic2_id: string
+    string vnic2_id = 25 [json_name = "vnic2_id"];
+
+    // vnic_id: string
+    string vnic_id = 26 [json_name = "vnic_id"];
+  }
+}
+
+// AwsOdbDbServer version is 0
+message AwsOdbDbServer {
+  // The list of unique identifiers for the Autonomous VMs associated with this
+  // database server.
+  repeated string autonomous_virtual_machine_ids = 1 [json_name = "autonomous_virtual_machine_ids"];
+
+  // The OCID of the autonomous VM clusters that are associated with the database
+  // server.
+  repeated string autonomous_vm_cluster_ids = 2 [json_name = "autonomous_vm_cluster_ids"];
+
+  // The identifier of the database server to retrieve information about.
+  string cloud_exadata_infrastructure_id = 3 [json_name = "cloud_exadata_infrastructure_id"];
+
+  // The compute model of the database server.
+  string compute_model = 4 [json_name = "compute_model"];
+
+  // The number of CPU cores enabled on the database server.
+  int64 cpu_core_count = 5 [json_name = "cpu_core_count"];
+
+  // The date and time when the database server was created.
+  string created_at = 6 [json_name = "created_at"];
+
+  // The allocated local node storage in GBs on the database server.
+  int64 db_node_storage_size_in_gbs = 7 [json_name = "db_node_storage_size_in_gbs"];
+
+  // The scheduling details for the quarterly maintenance window. Patching and
+  //
+  // system updates take place during the maintenance window.
+  repeated DbServerPatchingDetails db_server_patching_details = 8 [json_name = "db_server_patching_details"];
+
+  // The display name of the database server.
+  string display_name = 9 [json_name = "display_name"];
+
+  // The exadata infrastructure ID of the database server.
+  string exadata_infrastructure_id = 10 [json_name = "exadata_infrastructure_id"];
+
+  // The identifier of the the database server.
+  string id = 11;
+
+  // The total number of CPU cores available.
+  int64 max_cpu_count = 12 [json_name = "max_cpu_count"];
+
+  // The total local node storage available in GBs.
+  int64 max_db_node_storage_in_gbs = 13 [json_name = "max_db_node_storage_in_gbs"];
+
+  // The total memory available in GBs.
+  int64 max_memory_in_gbs = 14 [json_name = "max_memory_in_gbs"];
+
+  // The allocated memory in GBs on the database server.
+  int64 memory_size_in_gbs = 15 [json_name = "memory_size_in_gbs"];
+
+  // The name of the OCI resource anchor.
+  string oci_resource_anchor_name = 16 [json_name = "oci_resource_anchor_name"];
+
+  // The OCID of the database server to retrieve information about.
+  string ocid = 17;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 18;
+
+  // The shape of the database server. The shape determines the amount of CPU,
+  // storage, and memory resources available.
+  string shape = 19;
+
+  // The status of the database server.
+  string status = 20;
+
+  // Additional information about the current status of the database server.
+  string status_reason = 21 [json_name = "status_reason"];
+
+  // The OCID of the VM clusters that are associated with the database server.
+  repeated string vm_cluster_ids = 22 [json_name = "vm_cluster_ids"];
+
+  google.protobuf.Value for_each = 23 [json_name = "for_each"];
+
+  repeated string depends_on = 24 [json_name = "depends_on"];
+
+  int32 count = 25;
+
+  string provider = 26;
+
+  terraform.v1.Lifecycle lifecycle = 27;
+
+  message DbServerPatchingDetails {
+    // estimated_patch_duration: number
+    int64 estimated_patch_duration = 1 [json_name = "estimated_patch_duration"];
+
+    // patching_status: string
+    string patching_status = 2 [json_name = "patching_status"];
+
+    // time_patching_ended: string
+    string time_patching_ended = 3 [json_name = "time_patching_ended"];
+
+    // time_patching_started: string
+    string time_patching_started = 4 [json_name = "time_patching_started"];
+  }
+}
+
+// AwsOdbDbServers version is 0
+message AwsOdbDbServers {
+  // The cloud exadata infrastructure ID. Mandatory field.
+  string cloud_exadata_infrastructure_id = 1 [json_name = "cloud_exadata_infrastructure_id"];
+
+  // List of database servers associated with cloud_exadata_infrastructure_id.
+  repeated DbServers db_servers = 2 [json_name = "db_servers"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message DbServers {
+    // autonomous_virtual_machine_ids: list of string
+    repeated string autonomous_virtual_machine_ids = 1 [json_name = "autonomous_virtual_machine_ids"];
+
+    // autonomous_vm_cluster_ids: list of string
+    repeated string autonomous_vm_cluster_ids = 2 [json_name = "autonomous_vm_cluster_ids"];
+
+    // compute_model: string
+    string compute_model = 3 [json_name = "compute_model"];
+
+    // cpu_core_count: number
+    int64 cpu_core_count = 4 [json_name = "cpu_core_count"];
+
+    // created_at: string
+    string created_at = 5 [json_name = "created_at"];
+
+    // db_node_storage_size_in_gbs: number
+    int64 db_node_storage_size_in_gbs = 6 [json_name = "db_node_storage_size_in_gbs"];
+
+    // db_server_patching_details: list of object
+    repeated DbServerPatchingDetails db_server_patching_details = 7 [json_name = "db_server_patching_details"];
+
+    // display_name: string
+    string display_name = 8 [json_name = "display_name"];
+
+    // exadata_infrastructure_id: string
+    string exadata_infrastructure_id = 9 [json_name = "exadata_infrastructure_id"];
+
+    // id: string
+    string id = 10;
+
+    // max_cpu_count: number
+    int64 max_cpu_count = 11 [json_name = "max_cpu_count"];
+
+    // max_db_node_storage_in_gbs: number
+    int64 max_db_node_storage_in_gbs = 12 [json_name = "max_db_node_storage_in_gbs"];
+
+    // max_memory_in_gbs: number
+    int64 max_memory_in_gbs = 13 [json_name = "max_memory_in_gbs"];
+
+    // memory_size_in_gbs: number
+    int64 memory_size_in_gbs = 14 [json_name = "memory_size_in_gbs"];
+
+    // oci_resource_anchor_name: string
+    string oci_resource_anchor_name = 15 [json_name = "oci_resource_anchor_name"];
+
+    // ocid: string
+    string ocid = 16;
+
+    // shape: string
+    string shape = 17;
+
+    // status: string
+    string status = 18;
+
+    // status_reason: string
+    string status_reason = 19 [json_name = "status_reason"];
+
+    // vm_cluster_ids: list of string
+    repeated string vm_cluster_ids = 20 [json_name = "vm_cluster_ids"];
+
+    message DbServerPatchingDetails {
+      // estimated_patch_duration: number
+      int64 estimated_patch_duration = 1 [json_name = "estimated_patch_duration"];
+
+      // patching_status: string
+      string patching_status = 2 [json_name = "patching_status"];
+
+      // time_patching_ended: string
+      string time_patching_ended = 3 [json_name = "time_patching_ended"];
+
+      // time_patching_started: string
+      string time_patching_started = 4 [json_name = "time_patching_started"];
+    }
+  }
+}
+
+// AwsOdbDbSystemShapes version is 0
+message AwsOdbDbSystemShapes {
+  // The physical ID of the AZ, for example, use1-az4. This ID persists across
+  // accounts.
+  string availability_zone_id = 1 [json_name = "availability_zone_id"];
+
+  // The list of shapes and their properties. Information about a hardware system
+  // model (shape) that's available for an Exadata infrastructure.The shape determines
+  // resources, such as CPU cores, memory, and storage, to allocate to the Exadata
+  // infrastructure.
+  repeated DbSystemShapes db_system_shapes = 2 [json_name = "db_system_shapes"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message DbSystemShapes {
+    // available_core_count: number
+    int64 available_core_count = 1 [json_name = "available_core_count"];
+
+    // available_core_count_per_node: number
+    int64 available_core_count_per_node = 2 [json_name = "available_core_count_per_node"];
+
+    // available_data_storage_in_tbs: number
+    int64 available_data_storage_in_tbs = 3 [json_name = "available_data_storage_in_tbs"];
+
+    // available_data_storage_per_server_in_tbs: number
+    int64 available_data_storage_per_server_in_tbs = 4 [
+      json_name = "available_data_storage_per_server_in_tbs"
+    ];
+
+    // available_db_node_per_node_in_gbs: number
+    int64 available_db_node_per_node_in_gbs = 5 [json_name = "available_db_node_per_node_in_gbs"];
+
+    // available_db_node_storage_in_gbs: number
+    int64 available_db_node_storage_in_gbs = 6 [json_name = "available_db_node_storage_in_gbs"];
+
+    // available_memory_in_gbs: number
+    int64 available_memory_in_gbs = 7 [json_name = "available_memory_in_gbs"];
+
+    // available_memory_per_node_in_gbs: number
+    int64 available_memory_per_node_in_gbs = 8 [json_name = "available_memory_per_node_in_gbs"];
+
+    // core_count_increment: number
+    int64 core_count_increment = 9 [json_name = "core_count_increment"];
+
+    // max_storage_count: number
+    int64 max_storage_count = 10 [json_name = "max_storage_count"];
+
+    // maximum_node_count: number
+    int64 maximum_node_count = 11 [json_name = "maximum_node_count"];
+
+    // min_core_count_per_node: number
+    int64 min_core_count_per_node = 12 [json_name = "min_core_count_per_node"];
+
+    // min_data_storage_in_tbs: number
+    int64 min_data_storage_in_tbs = 13 [json_name = "min_data_storage_in_tbs"];
+
+    // min_db_node_storage_per_node_in_gbs: number
+    int64 min_db_node_storage_per_node_in_gbs = 14 [json_name = "min_db_node_storage_per_node_in_gbs"];
+
+    // min_memory_per_node_in_gbs: number
+    int64 min_memory_per_node_in_gbs = 15 [json_name = "min_memory_per_node_in_gbs"];
+
+    // min_storage_count: number
+    int64 min_storage_count = 16 [json_name = "min_storage_count"];
+
+    // minimum_core_count: number
+    int64 minimum_core_count = 17 [json_name = "minimum_core_count"];
+
+    // minimum_node_count: number
+    int64 minimum_node_count = 18 [json_name = "minimum_node_count"];
+
+    // name: string
+    string name = 19;
+
+    // runtime_minimum_core_count: number
+    int64 runtime_minimum_core_count = 20 [json_name = "runtime_minimum_core_count"];
+
+    // shape_family: string
+    string shape_family = 21 [json_name = "shape_family"];
+
+    // shape_type: string
+    string shape_type = 22 [json_name = "shape_type"];
+  }
+}
+
+// AwsOdbGiVersions version is 0
+message AwsOdbGiVersions {
+  // Information about a specific version of Oracle Grid Infrastructure (GI) software
+  // that can be installed on a VM cluster.
+  repeated GiVersions gi_versions = 1 [json_name = "gi_versions"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  // The system shape.
+  string shape = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message GiVersions {
+    // version: string
+    string version = 1;
+  }
+}
+
+// AwsOdbNetwork version is 0
+message AwsOdbNetwork {
+  string arn = 1;
+
+  // The availability zone where the ODB network is located.
+  string availability_zone = 2 [json_name = "availability_zone"];
+
+  // The AZ ID of the AZ where the ODB network is located.
+  string availability_zone_id = 3 [json_name = "availability_zone_id"];
+
+  // The CIDR range of the backup subnet for the ODB network.
+  string backup_subnet_cidr = 4 [json_name = "backup_subnet_cidr"];
+
+  // The CIDR notation for the network resource.
+  string client_subnet_cidr = 5 [json_name = "client_subnet_cidr"];
+
+  // The date and time when the ODB network was created.
+  string created_at = 6 [json_name = "created_at"];
+
+  // The name of the custom domain that the network is located.
+  string custom_domain_name = 7 [json_name = "custom_domain_name"];
+
+  // The default DNS prefix for the network resource.
+  string default_dns_prefix = 8 [json_name = "default_dns_prefix"];
+
+  // Display name for the network resource.
+  string display_name = 9 [json_name = "display_name"];
+
+  string id = 10;
+
+  // The managed services configuration for the ODB network.
+  repeated ManagedServices managed_services = 11 [json_name = "managed_services"];
+
+  // The DNS resolver endpoint in OCI for forwarding DNS queries for the
+  // ociPrivateZone domain.
+  repeated OciDnsForwardingConfigs oci_dns_forwarding_configs = 12 [json_name = "oci_dns_forwarding_configs"];
+
+  // The unique identifier of the OCI network anchor for the ODB network.
+  string oci_network_anchor_id = 13 [json_name = "oci_network_anchor_id"];
+
+  // The URL of the OCI network anchor for the ODB network.
+  string oci_network_anchor_url = 14 [json_name = "oci_network_anchor_url"];
+
+  // The name of the OCI resource anchor for the ODB network.
+  string oci_resource_anchor_name = 15 [json_name = "oci_resource_anchor_name"];
+
+  // The unique identifier  Oracle Cloud ID (OCID) of the OCI VCN for the ODB network.
+  string oci_vcn_id = 16 [json_name = "oci_vcn_id"];
+
+  // The URL of the OCI VCN for the ODB network.
+  string oci_vcn_url = 17 [json_name = "oci_vcn_url"];
+
+  // The list of CIDR ranges from the peered VPC that are allowed access to the ODB
+  // network. Please refer odb network peering documentation.
+  repeated string peered_cidrs = 18 [json_name = "peered_cidrs"];
+
+  // The amount of progress made on the current operation on the ODB network,
+  // expressed as a percentage.
+  int64 percent_progress = 19 [json_name = "percent_progress"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 20;
+
+  // The status of the network resource.
+  string status = 21;
+
+  // Additional information about the current status of the ODB network.
+  string status_reason = 22 [json_name = "status_reason"];
+
+  map<string, string> tags = 23;
+
+  google.protobuf.Value for_each = 24 [json_name = "for_each"];
+
+  repeated string depends_on = 25 [json_name = "depends_on"];
+
+  int32 count = 26;
+
+  string provider = 27;
+
+  terraform.v1.Lifecycle lifecycle = 28;
+
+  message ManagedServices {
+    // cross_region_s3_restore_sources_access: list of object
+    repeated CrossRegionS3RestoreSourcesAccess cross_region_s3_restore_sources_access = 1 [
+      json_name = "cross_region_s3_restore_sources_access"
+    ];
+
+    // kms_access: list of object
+    repeated KmsAccess kms_access = 2 [json_name = "kms_access"];
+
+    // managed_s3_backup_access: list of object
+    repeated ManagedS3BackupAccess managed_s3_backup_access = 3 [json_name = "managed_s3_backup_access"];
+
+    // managed_service_ipv4_cidrs: list of string
+    repeated string managed_service_ipv4_cidrs = 4 [json_name = "managed_service_ipv4_cidrs"];
+
+    // resource_gateway_arn: string
+    string resource_gateway_arn = 5 [json_name = "resource_gateway_arn"];
+
+    // s3_access: list of object
+    repeated S3Access s3_access = 6 [json_name = "s3_access"];
+
+    // service_network_arn: string
+    string service_network_arn = 7 [json_name = "service_network_arn"];
+
+    // service_network_endpoint: list of object
+    repeated ServiceNetworkEndpoint service_network_endpoint = 8 [json_name = "service_network_endpoint"];
+
+    // sts_access: list of object
+    repeated StsAccess sts_access = 9 [json_name = "sts_access"];
+
+    // zero_tl_access: list of object
+    repeated ZeroTlAccess zero_tl_access = 10 [json_name = "zero_tl_access"];
+
+    message CrossRegionS3RestoreSourcesAccess {
+      // ipv4_addresses: list of string
+      repeated string ipv4_addresses = 1 [json_name = "ipv4_addresses"];
+
+      // region: string
+      string region = 2;
+
+      // status: string
+      string status = 3;
+    }
+
+    message KmsAccess {
+      // domain_name: string
+      string domain_name = 1 [json_name = "domain_name"];
+
+      // ipv4_addresses: list of string
+      repeated string ipv4_addresses = 2 [json_name = "ipv4_addresses"];
+
+      // kms_policy_document: string
+      string kms_policy_document = 3 [json_name = "kms_policy_document"];
+
+      // status: string
+      string status = 4;
+    }
+
+    message ManagedS3BackupAccess {
+      // ipv4_addresses: list of string
+      repeated string ipv4_addresses = 1 [json_name = "ipv4_addresses"];
+
+      // status: string
+      string status = 2;
+    }
+
+    message S3Access {
+      // domain_name: string
+      string domain_name = 1 [json_name = "domain_name"];
+
+      // ipv4_addresses: list of string
+      repeated string ipv4_addresses = 2 [json_name = "ipv4_addresses"];
+
+      // s3_policy_document: string
+      string s3_policy_document = 3 [json_name = "s3_policy_document"];
+
+      // status: string
+      string status = 4;
+    }
+
+    message ServiceNetworkEndpoint {
+      // vpc_endpoint_id: string
+      string vpc_endpoint_id = 1 [json_name = "vpc_endpoint_id"];
+
+      // vpc_endpoint_type: string
+      string vpc_endpoint_type = 2 [json_name = "vpc_endpoint_type"];
+    }
+
+    message StsAccess {
+      // domain_name: string
+      string domain_name = 1 [json_name = "domain_name"];
+
+      // ipv4_addresses: list of string
+      repeated string ipv4_addresses = 2 [json_name = "ipv4_addresses"];
+
+      // status: string
+      string status = 3;
+
+      // sts_policy_document: string
+      string sts_policy_document = 4 [json_name = "sts_policy_document"];
+    }
+
+    message ZeroTlAccess {
+      // cidr: string
+      string cidr = 1;
+
+      // status: string
+      string status = 2;
+    }
+  }
+
+  message OciDnsForwardingConfigs {
+    // domain_name: string
+    string domain_name = 1 [json_name = "domain_name"];
+
+    // oci_dns_listener_ip: string
+    string oci_dns_listener_ip = 2 [json_name = "oci_dns_listener_ip"];
+  }
+}
+
+// AwsOdbNetworkPeeringConnection version is 0
+message AwsOdbNetworkPeeringConnection {
+  string arn = 1;
+
+  // Created time of the odb network peering connection.
+  string created_at = 2 [json_name = "created_at"];
+
+  // Display name of the odb network peering connection.
+  string display_name = 3 [json_name = "display_name"];
+
+  // Network Peering Connection identifier.
+  string id = 4;
+
+  // ARN of the odb network peering connection.
+  string odb_network_arn = 5 [json_name = "odb_network_arn"];
+
+  // Type of the odb peering connection.
+  string odb_peering_connection_type = 6 [json_name = "odb_peering_connection_type"];
+
+  // ARN of the peer network peering connection.
+  string peer_network_arn = 7 [json_name = "peer_network_arn"];
+
+  // List of peered network cidrs.
+  repeated string peer_network_cidrs = 8 [json_name = "peer_network_cidrs"];
+
+  // Progress of the odb network peering connection.
+  int64 percent_progress = 9 [json_name = "percent_progress"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  // Status of the odb network peering connection.
+  string status = 11;
+
+  // Status of the odb network peering connection.
+  string status_reason = 12 [json_name = "status_reason"];
+
+  map<string, string> tags = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+}
+
+// AwsOdbNetworkPeeringConnections version is 0
+message AwsOdbNetworkPeeringConnections {
+  // The list of ODB peering connections. A summary of an ODB peering connection.
+  repeated OdbPeeringConnections odb_peering_connections = 1 [json_name = "odb_peering_connections"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+
+  message OdbPeeringConnections {
+    // arn: string
+    string arn = 1;
+
+    // display_name: string
+    string display_name = 2 [json_name = "display_name"];
+
+    // id: string
+    string id = 3;
+
+    // odb_network_arn: string
+    string odb_network_arn = 4 [json_name = "odb_network_arn"];
+
+    // peer_network_arn: string
+    string peer_network_arn = 5 [json_name = "peer_network_arn"];
+  }
+}
+
+// AwsOdbNetworks version is 0
+message AwsOdbNetworks {
+  // List of odb networks returns basic information about odb networks.
+  repeated OdbNetworks odb_networks = 1 [json_name = "odb_networks"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+
+  message OdbNetworks {
+    // arn: string
+    string arn = 1;
+
+    // display_name: string
+    string display_name = 2 [json_name = "display_name"];
+
+    // id: string
+    string id = 3;
+
+    // oci_network_anchor_id: string
+    string oci_network_anchor_id = 4 [json_name = "oci_network_anchor_id"];
+
+    // oci_vcn_id: string
+    string oci_vcn_id = 5 [json_name = "oci_vcn_id"];
+
+    // oci_vcn_url: string
+    string oci_vcn_url = 6 [json_name = "oci_vcn_url"];
+  }
+}

@@ -1,0 +1,264 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsFmsAdminAccount version is 0
+message AwsFmsAdminAccount {
+  string account_id = 1 [json_name = "account_id"];
+
+  string id = 2;
+
+  repeated Timeouts timeouts = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsFmsPolicy version is 0
+message AwsFmsPolicy {
+  string arn = 1;
+
+  bool delete_all_policy_resources = 2 [json_name = "delete_all_policy_resources"];
+
+  bool delete_unused_fm_managed_resources = 3 [json_name = "delete_unused_fm_managed_resources"];
+
+  string description = 4;
+
+  bool exclude_resource_tags = 5 [json_name = "exclude_resource_tags"];
+
+  string id = 6;
+
+  string name = 7;
+
+  string policy_update_token = 8 [json_name = "policy_update_token"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  bool remediation_enabled = 10 [json_name = "remediation_enabled"];
+
+  repeated string resource_set_ids = 11 [json_name = "resource_set_ids"];
+
+  string resource_tag_logical_operator = 12 [json_name = "resource_tag_logical_operator"];
+
+  map<string, string> resource_tags = 13 [json_name = "resource_tags"];
+
+  string resource_type = 14 [json_name = "resource_type"];
+
+  repeated string resource_type_list = 15 [json_name = "resource_type_list"];
+
+  map<string, string> tags = 16;
+
+  map<string, string> tags_all = 17 [json_name = "tags_all"];
+
+  ExcludeMap exclude_map = 18 [json_name = "exclude_map"];
+
+  IncludeMap include_map = 19 [json_name = "include_map"];
+
+  SecurityServicePolicyData security_service_policy_data = 20 [json_name = "security_service_policy_data"];
+
+  google.protobuf.Value for_each = 21 [json_name = "for_each"];
+
+  repeated string depends_on = 22 [json_name = "depends_on"];
+
+  int32 count = 23;
+
+  string provider = 24;
+
+  terraform.v1.Lifecycle lifecycle = 25;
+
+  message ExcludeMap {
+    repeated string account = 1;
+
+    repeated string orgunit = 2;
+  }
+
+  message IncludeMap {
+    repeated string account = 1;
+
+    repeated string orgunit = 2;
+  }
+
+  message SecurityServicePolicyData {
+    string managed_service_data = 1 [json_name = "managed_service_data"];
+
+    string type = 2;
+
+    PolicyOption policy_option = 3 [json_name = "policy_option"];
+
+    message PolicyOption {
+      NetworkAclCommonPolicy network_acl_common_policy = 1 [json_name = "network_acl_common_policy"];
+
+      NetworkFirewallPolicy network_firewall_policy = 2 [json_name = "network_firewall_policy"];
+
+      ThirdPartyFirewallPolicy third_party_firewall_policy = 3 [json_name = "third_party_firewall_policy"];
+
+      message NetworkAclCommonPolicy {
+        NetworkAclEntrySet network_acl_entry_set = 1 [json_name = "network_acl_entry_set"];
+
+        message NetworkAclEntrySet {
+          bool force_remediate_for_first_entries = 1 [json_name = "force_remediate_for_first_entries"];
+
+          bool force_remediate_for_last_entries = 2 [json_name = "force_remediate_for_last_entries"];
+
+          repeated FirstEntry first_entry = 3 [json_name = "first_entry"];
+
+          repeated LastEntry last_entry = 4 [json_name = "last_entry"];
+
+          message FirstEntry {
+            string cidr_block = 1 [json_name = "cidr_block"];
+
+            bool egress = 2;
+
+            string ipv6_cidr_block = 3 [json_name = "ipv6_cidr_block"];
+
+            string protocol = 4;
+
+            string rule_action = 5 [json_name = "rule_action"];
+
+            repeated IcmpTypeCode icmp_type_code = 6 [json_name = "icmp_type_code"];
+
+            repeated PortRange port_range = 7 [json_name = "port_range"];
+
+            message IcmpTypeCode {
+              int64 code = 1;
+
+              int64 type = 2;
+            }
+
+            message PortRange {
+              int64 from = 1;
+
+              int64 to = 2;
+            }
+          }
+
+          message LastEntry {
+            string cidr_block = 1 [json_name = "cidr_block"];
+
+            bool egress = 2;
+
+            string ipv6_cidr_block = 3 [json_name = "ipv6_cidr_block"];
+
+            string protocol = 4;
+
+            string rule_action = 5 [json_name = "rule_action"];
+
+            repeated IcmpTypeCode icmp_type_code = 6 [json_name = "icmp_type_code"];
+
+            repeated PortRange port_range = 7 [json_name = "port_range"];
+
+            message IcmpTypeCode {
+              int64 code = 1;
+
+              int64 type = 2;
+            }
+
+            message PortRange {
+              int64 from = 1;
+
+              int64 to = 2;
+            }
+          }
+        }
+      }
+
+      message NetworkFirewallPolicy {
+        string firewall_deployment_model = 1 [json_name = "firewall_deployment_model"];
+      }
+
+      message ThirdPartyFirewallPolicy {
+        string firewall_deployment_model = 1 [json_name = "firewall_deployment_model"];
+      }
+    }
+  }
+}
+
+// AwsFmsResourceSet version is 0
+message AwsFmsResourceSet {
+  string arn = 1;
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  map<string, string> tags = 4;
+
+  map<string, string> tags_all = 5 [json_name = "tags_all"];
+
+  repeated ResourceSet resource_set = 6 [json_name = "resource_set"];
+
+  repeated Timeouts timeouts = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message ResourceSet {
+    string description = 1;
+
+    string id = 2;
+
+    string last_update_time = 3 [json_name = "last_update_time"];
+
+    string name = 4;
+
+    string resource_set_status = 5 [json_name = "resource_set_status"];
+
+    repeated string resource_type_list = 6 [json_name = "resource_type_list"];
+
+    string update_token = 7 [json_name = "update_token"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}

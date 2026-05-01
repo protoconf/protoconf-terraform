@@ -1,0 +1,1500 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsKinesisAnalyticsApplication version is 0
+message AwsKinesisAnalyticsApplication {
+  string arn = 1;
+
+  string code = 2;
+
+  string create_timestamp = 3 [json_name = "create_timestamp"];
+
+  string description = 4;
+
+  string id = 5;
+
+  string last_update_timestamp = 6 [json_name = "last_update_timestamp"];
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  bool start_application = 9 [json_name = "start_application"];
+
+  string status = 10;
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  int64 version = 13;
+
+  CloudwatchLoggingOptions cloudwatch_logging_options = 14 [json_name = "cloudwatch_logging_options"];
+
+  Inputs inputs = 15;
+
+  repeated Outputs outputs = 16;
+
+  ReferenceDataSources reference_data_sources = 17 [json_name = "reference_data_sources"];
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+
+  message CloudwatchLoggingOptions {
+    string id = 1;
+
+    string log_stream_arn = 2 [json_name = "log_stream_arn"];
+
+    string role_arn = 3 [json_name = "role_arn"];
+  }
+
+  message Inputs {
+    string id = 1;
+
+    string name_prefix = 2 [json_name = "name_prefix"];
+
+    repeated string stream_names = 3 [json_name = "stream_names"];
+
+    KinesisFirehose kinesis_firehose = 4 [json_name = "kinesis_firehose"];
+
+    KinesisStream kinesis_stream = 5 [json_name = "kinesis_stream"];
+
+    Parallelism parallelism = 6;
+
+    ProcessingConfiguration processing_configuration = 7 [json_name = "processing_configuration"];
+
+    Schema schema = 8;
+
+    repeated StartingPositionConfiguration starting_position_configuration = 9 [json_name = "starting_position_configuration"];
+
+    message KinesisFirehose {
+      string resource_arn = 1 [json_name = "resource_arn"];
+
+      string role_arn = 2 [json_name = "role_arn"];
+    }
+
+    message KinesisStream {
+      string resource_arn = 1 [json_name = "resource_arn"];
+
+      string role_arn = 2 [json_name = "role_arn"];
+    }
+
+    message Parallelism {
+      int64 count = 1;
+    }
+
+    message ProcessingConfiguration {
+      Lambda lambda = 1;
+
+      message Lambda {
+        string resource_arn = 1 [json_name = "resource_arn"];
+
+        string role_arn = 2 [json_name = "role_arn"];
+      }
+    }
+
+    message Schema {
+      string record_encoding = 1 [json_name = "record_encoding"];
+
+      repeated RecordColumns record_columns = 2 [json_name = "record_columns"];
+
+      RecordFormat record_format = 3 [json_name = "record_format"];
+
+      message RecordColumns {
+        string mapping = 1;
+
+        string name = 2;
+
+        string sql_type = 3 [json_name = "sql_type"];
+      }
+
+      message RecordFormat {
+        string record_format_type = 1 [json_name = "record_format_type"];
+
+        MappingParameters mapping_parameters = 2 [json_name = "mapping_parameters"];
+
+        message MappingParameters {
+          Csv csv = 1;
+
+          Json json = 2;
+
+          message Csv {
+            string record_column_delimiter = 1 [json_name = "record_column_delimiter"];
+
+            string record_row_delimiter = 2 [json_name = "record_row_delimiter"];
+          }
+
+          message Json {
+            string record_row_path = 1 [json_name = "record_row_path"];
+          }
+        }
+      }
+    }
+
+    message StartingPositionConfiguration {
+      string starting_position = 1 [json_name = "starting_position"];
+    }
+  }
+
+  message Outputs {
+    string id = 1;
+
+    string name = 2;
+
+    KinesisFirehose kinesis_firehose = 3 [json_name = "kinesis_firehose"];
+
+    KinesisStream kinesis_stream = 4 [json_name = "kinesis_stream"];
+
+    Lambda lambda = 5;
+
+    Schema schema = 6;
+
+    message KinesisFirehose {
+      string resource_arn = 1 [json_name = "resource_arn"];
+
+      string role_arn = 2 [json_name = "role_arn"];
+    }
+
+    message KinesisStream {
+      string resource_arn = 1 [json_name = "resource_arn"];
+
+      string role_arn = 2 [json_name = "role_arn"];
+    }
+
+    message Lambda {
+      string resource_arn = 1 [json_name = "resource_arn"];
+
+      string role_arn = 2 [json_name = "role_arn"];
+    }
+
+    message Schema {
+      string record_format_type = 1 [json_name = "record_format_type"];
+    }
+  }
+
+  message ReferenceDataSources {
+    string id = 1;
+
+    string table_name = 2 [json_name = "table_name"];
+
+    S3 s3 = 3;
+
+    Schema schema = 4;
+
+    message S3 {
+      string bucket_arn = 1 [json_name = "bucket_arn"];
+
+      string file_key = 2 [json_name = "file_key"];
+
+      string role_arn = 3 [json_name = "role_arn"];
+    }
+
+    message Schema {
+      string record_encoding = 1 [json_name = "record_encoding"];
+
+      repeated RecordColumns record_columns = 2 [json_name = "record_columns"];
+
+      RecordFormat record_format = 3 [json_name = "record_format"];
+
+      message RecordColumns {
+        string mapping = 1;
+
+        string name = 2;
+
+        string sql_type = 3 [json_name = "sql_type"];
+      }
+
+      message RecordFormat {
+        string record_format_type = 1 [json_name = "record_format_type"];
+
+        MappingParameters mapping_parameters = 2 [json_name = "mapping_parameters"];
+
+        message MappingParameters {
+          Csv csv = 1;
+
+          Json json = 2;
+
+          message Csv {
+            string record_column_delimiter = 1 [json_name = "record_column_delimiter"];
+
+            string record_row_delimiter = 2 [json_name = "record_row_delimiter"];
+          }
+
+          message Json {
+            string record_row_path = 1 [json_name = "record_row_path"];
+          }
+        }
+      }
+    }
+  }
+}
+
+// AwsKinesisFirehoseDeliveryStream version is 1
+message AwsKinesisFirehoseDeliveryStream {
+  string arn = 1;
+
+  string destination = 2;
+
+  string destination_id = 3 [json_name = "destination_id"];
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  string version_id = 9 [json_name = "version_id"];
+
+  ElasticsearchConfiguration elasticsearch_configuration = 10 [json_name = "elasticsearch_configuration"];
+
+  ExtendedS3Configuration extended_s3_configuration = 11 [json_name = "extended_s3_configuration"];
+
+  HttpEndpointConfiguration http_endpoint_configuration = 12 [json_name = "http_endpoint_configuration"];
+
+  IcebergConfiguration iceberg_configuration = 13 [json_name = "iceberg_configuration"];
+
+  KinesisSourceConfiguration kinesis_source_configuration = 14 [json_name = "kinesis_source_configuration"];
+
+  MskSourceConfiguration msk_source_configuration = 15 [json_name = "msk_source_configuration"];
+
+  OpensearchConfiguration opensearch_configuration = 16 [json_name = "opensearch_configuration"];
+
+  OpensearchserverlessConfiguration opensearchserverless_configuration = 17 [json_name = "opensearchserverless_configuration"];
+
+  RedshiftConfiguration redshift_configuration = 18 [json_name = "redshift_configuration"];
+
+  ServerSideEncryption server_side_encryption = 19 [json_name = "server_side_encryption"];
+
+  SnowflakeConfiguration snowflake_configuration = 20 [json_name = "snowflake_configuration"];
+
+  SplunkConfiguration splunk_configuration = 21 [json_name = "splunk_configuration"];
+
+  repeated Timeouts timeouts = 22;
+
+  google.protobuf.Value for_each = 23 [json_name = "for_each"];
+
+  repeated string depends_on = 24 [json_name = "depends_on"];
+
+  int32 count = 25;
+
+  string provider = 26;
+
+  terraform.v1.Lifecycle lifecycle = 27;
+
+  message ElasticsearchConfiguration {
+    int64 buffering_interval = 1 [json_name = "buffering_interval"];
+
+    int64 buffering_size = 2 [json_name = "buffering_size"];
+
+    string cluster_endpoint = 3 [json_name = "cluster_endpoint"];
+
+    string domain_arn = 4 [json_name = "domain_arn"];
+
+    string index_name = 5 [json_name = "index_name"];
+
+    string index_rotation_period = 6 [json_name = "index_rotation_period"];
+
+    int64 retry_duration = 7 [json_name = "retry_duration"];
+
+    string role_arn = 8 [json_name = "role_arn"];
+
+    string s3_backup_mode = 9 [json_name = "s3_backup_mode"];
+
+    string type_name = 10 [json_name = "type_name"];
+
+    CloudwatchLoggingOptions cloudwatch_logging_options = 11 [json_name = "cloudwatch_logging_options"];
+
+    ProcessingConfiguration processing_configuration = 12 [json_name = "processing_configuration"];
+
+    S3Configuration s3_configuration = 13 [json_name = "s3_configuration"];
+
+    VpcConfig vpc_config = 14 [json_name = "vpc_config"];
+
+    message CloudwatchLoggingOptions {
+      bool enabled = 1;
+
+      string log_group_name = 2 [json_name = "log_group_name"];
+
+      string log_stream_name = 3 [json_name = "log_stream_name"];
+    }
+
+    message ProcessingConfiguration {
+      bool enabled = 1;
+
+      repeated Processors processors = 2;
+
+      message Processors {
+        string type = 1;
+
+        repeated Parameters parameters = 2;
+
+        message Parameters {
+          string parameter_name = 1 [json_name = "parameter_name"];
+
+          string parameter_value = 2 [json_name = "parameter_value"];
+        }
+      }
+    }
+
+    message S3Configuration {
+      string bucket_arn = 1 [json_name = "bucket_arn"];
+
+      int64 buffering_interval = 2 [json_name = "buffering_interval"];
+
+      int64 buffering_size = 3 [json_name = "buffering_size"];
+
+      string compression_format = 4 [json_name = "compression_format"];
+
+      string error_output_prefix = 5 [json_name = "error_output_prefix"];
+
+      string kms_key_arn = 6 [json_name = "kms_key_arn"];
+
+      string prefix = 7;
+
+      string role_arn = 8 [json_name = "role_arn"];
+
+      CloudwatchLoggingOptions cloudwatch_logging_options = 9 [json_name = "cloudwatch_logging_options"];
+
+      message CloudwatchLoggingOptions {
+        bool enabled = 1;
+
+        string log_group_name = 2 [json_name = "log_group_name"];
+
+        string log_stream_name = 3 [json_name = "log_stream_name"];
+      }
+    }
+
+    message VpcConfig {
+      string role_arn = 1 [json_name = "role_arn"];
+
+      repeated string security_group_ids = 2 [json_name = "security_group_ids"];
+
+      repeated string subnet_ids = 3 [json_name = "subnet_ids"];
+
+      string vpc_id = 4 [json_name = "vpc_id"];
+    }
+  }
+
+  message ExtendedS3Configuration {
+    string bucket_arn = 1 [json_name = "bucket_arn"];
+
+    int64 buffering_interval = 2 [json_name = "buffering_interval"];
+
+    int64 buffering_size = 3 [json_name = "buffering_size"];
+
+    string compression_format = 4 [json_name = "compression_format"];
+
+    string custom_time_zone = 5 [json_name = "custom_time_zone"];
+
+    string error_output_prefix = 6 [json_name = "error_output_prefix"];
+
+    string file_extension = 7 [json_name = "file_extension"];
+
+    string kms_key_arn = 8 [json_name = "kms_key_arn"];
+
+    string prefix = 9;
+
+    string role_arn = 10 [json_name = "role_arn"];
+
+    string s3_backup_mode = 11 [json_name = "s3_backup_mode"];
+
+    CloudwatchLoggingOptions cloudwatch_logging_options = 12 [json_name = "cloudwatch_logging_options"];
+
+    DataFormatConversionConfiguration data_format_conversion_configuration = 13 [json_name = "data_format_conversion_configuration"];
+
+    DynamicPartitioningConfiguration dynamic_partitioning_configuration = 14 [json_name = "dynamic_partitioning_configuration"];
+
+    ProcessingConfiguration processing_configuration = 15 [json_name = "processing_configuration"];
+
+    S3BackupConfiguration s3_backup_configuration = 16 [json_name = "s3_backup_configuration"];
+
+    message CloudwatchLoggingOptions {
+      bool enabled = 1;
+
+      string log_group_name = 2 [json_name = "log_group_name"];
+
+      string log_stream_name = 3 [json_name = "log_stream_name"];
+    }
+
+    message DataFormatConversionConfiguration {
+      bool enabled = 1;
+
+      InputFormatConfiguration input_format_configuration = 2 [json_name = "input_format_configuration"];
+
+      OutputFormatConfiguration output_format_configuration = 3 [json_name = "output_format_configuration"];
+
+      SchemaConfiguration schema_configuration = 4 [json_name = "schema_configuration"];
+
+      message InputFormatConfiguration {
+        Deserializer deserializer = 1;
+
+        message Deserializer {
+          HiveJsonSerDe hive_json_ser_de = 1 [json_name = "hive_json_ser_de"];
+
+          OpenXJsonSerDe open_x_json_ser_de = 2 [json_name = "open_x_json_ser_de"];
+
+          message HiveJsonSerDe {
+            repeated string timestamp_formats = 1 [json_name = "timestamp_formats"];
+          }
+
+          message OpenXJsonSerDe {
+            bool case_insensitive = 1 [json_name = "case_insensitive"];
+
+            map<string, string> column_to_json_key_mappings = 2 [json_name = "column_to_json_key_mappings"];
+
+            bool convert_dots_in_json_keys_to_underscores = 3 [
+              json_name = "convert_dots_in_json_keys_to_underscores"
+            ];
+          }
+        }
+      }
+
+      message OutputFormatConfiguration {
+        Serializer serializer = 1;
+
+        message Serializer {
+          OrcSerDe orc_ser_de = 1 [json_name = "orc_ser_de"];
+
+          ParquetSerDe parquet_ser_de = 2 [json_name = "parquet_ser_de"];
+
+          message OrcSerDe {
+            int64 block_size_bytes = 1 [json_name = "block_size_bytes"];
+
+            repeated string bloom_filter_columns = 2 [json_name = "bloom_filter_columns"];
+
+            int64 bloom_filter_false_positive_probability = 3 [
+              json_name = "bloom_filter_false_positive_probability"
+            ];
+
+            string compression = 4;
+
+            int64 dictionary_key_threshold = 5 [json_name = "dictionary_key_threshold"];
+
+            bool enable_padding = 6 [json_name = "enable_padding"];
+
+            string format_version = 7 [json_name = "format_version"];
+
+            int64 padding_tolerance = 8 [json_name = "padding_tolerance"];
+
+            int64 row_index_stride = 9 [json_name = "row_index_stride"];
+
+            int64 stripe_size_bytes = 10 [json_name = "stripe_size_bytes"];
+          }
+
+          message ParquetSerDe {
+            int64 block_size_bytes = 1 [json_name = "block_size_bytes"];
+
+            string compression = 2;
+
+            bool enable_dictionary_compression = 3 [json_name = "enable_dictionary_compression"];
+
+            int64 max_padding_bytes = 4 [json_name = "max_padding_bytes"];
+
+            int64 page_size_bytes = 5 [json_name = "page_size_bytes"];
+
+            string writer_version = 6 [json_name = "writer_version"];
+          }
+        }
+      }
+
+      message SchemaConfiguration {
+        string catalog_id = 1 [json_name = "catalog_id"];
+
+        string database_name = 2 [json_name = "database_name"];
+
+        string region = 3;
+
+        string role_arn = 4 [json_name = "role_arn"];
+
+        string table_name = 5 [json_name = "table_name"];
+
+        string version_id = 6 [json_name = "version_id"];
+      }
+    }
+
+    message DynamicPartitioningConfiguration {
+      bool enabled = 1;
+
+      int64 retry_duration = 2 [json_name = "retry_duration"];
+    }
+
+    message ProcessingConfiguration {
+      bool enabled = 1;
+
+      repeated Processors processors = 2;
+
+      message Processors {
+        string type = 1;
+
+        repeated Parameters parameters = 2;
+
+        message Parameters {
+          string parameter_name = 1 [json_name = "parameter_name"];
+
+          string parameter_value = 2 [json_name = "parameter_value"];
+        }
+      }
+    }
+
+    message S3BackupConfiguration {
+      string bucket_arn = 1 [json_name = "bucket_arn"];
+
+      int64 buffering_interval = 2 [json_name = "buffering_interval"];
+
+      int64 buffering_size = 3 [json_name = "buffering_size"];
+
+      string compression_format = 4 [json_name = "compression_format"];
+
+      string error_output_prefix = 5 [json_name = "error_output_prefix"];
+
+      string kms_key_arn = 6 [json_name = "kms_key_arn"];
+
+      string prefix = 7;
+
+      string role_arn = 8 [json_name = "role_arn"];
+
+      CloudwatchLoggingOptions cloudwatch_logging_options = 9 [json_name = "cloudwatch_logging_options"];
+
+      message CloudwatchLoggingOptions {
+        bool enabled = 1;
+
+        string log_group_name = 2 [json_name = "log_group_name"];
+
+        string log_stream_name = 3 [json_name = "log_stream_name"];
+      }
+    }
+  }
+
+  message HttpEndpointConfiguration {
+    string access_key = 1 [json_name = "access_key"];
+
+    int64 buffering_interval = 2 [json_name = "buffering_interval"];
+
+    int64 buffering_size = 3 [json_name = "buffering_size"];
+
+    string name = 4;
+
+    int64 retry_duration = 5 [json_name = "retry_duration"];
+
+    string role_arn = 6 [json_name = "role_arn"];
+
+    string s3_backup_mode = 7 [json_name = "s3_backup_mode"];
+
+    string url = 8;
+
+    CloudwatchLoggingOptions cloudwatch_logging_options = 9 [json_name = "cloudwatch_logging_options"];
+
+    ProcessingConfiguration processing_configuration = 10 [json_name = "processing_configuration"];
+
+    RequestConfiguration request_configuration = 11 [json_name = "request_configuration"];
+
+    S3Configuration s3_configuration = 12 [json_name = "s3_configuration"];
+
+    SecretsManagerConfiguration secrets_manager_configuration = 13 [json_name = "secrets_manager_configuration"];
+
+    message CloudwatchLoggingOptions {
+      bool enabled = 1;
+
+      string log_group_name = 2 [json_name = "log_group_name"];
+
+      string log_stream_name = 3 [json_name = "log_stream_name"];
+    }
+
+    message ProcessingConfiguration {
+      bool enabled = 1;
+
+      repeated Processors processors = 2;
+
+      message Processors {
+        string type = 1;
+
+        repeated Parameters parameters = 2;
+
+        message Parameters {
+          string parameter_name = 1 [json_name = "parameter_name"];
+
+          string parameter_value = 2 [json_name = "parameter_value"];
+        }
+      }
+    }
+
+    message RequestConfiguration {
+      string content_encoding = 1 [json_name = "content_encoding"];
+
+      repeated CommonAttributes common_attributes = 2 [json_name = "common_attributes"];
+
+      message CommonAttributes {
+        string name = 1;
+
+        string value = 2;
+      }
+    }
+
+    message S3Configuration {
+      string bucket_arn = 1 [json_name = "bucket_arn"];
+
+      int64 buffering_interval = 2 [json_name = "buffering_interval"];
+
+      int64 buffering_size = 3 [json_name = "buffering_size"];
+
+      string compression_format = 4 [json_name = "compression_format"];
+
+      string error_output_prefix = 5 [json_name = "error_output_prefix"];
+
+      string kms_key_arn = 6 [json_name = "kms_key_arn"];
+
+      string prefix = 7;
+
+      string role_arn = 8 [json_name = "role_arn"];
+
+      CloudwatchLoggingOptions cloudwatch_logging_options = 9 [json_name = "cloudwatch_logging_options"];
+
+      message CloudwatchLoggingOptions {
+        bool enabled = 1;
+
+        string log_group_name = 2 [json_name = "log_group_name"];
+
+        string log_stream_name = 3 [json_name = "log_stream_name"];
+      }
+    }
+
+    message SecretsManagerConfiguration {
+      bool enabled = 1;
+
+      string role_arn = 2 [json_name = "role_arn"];
+
+      string secret_arn = 3 [json_name = "secret_arn"];
+    }
+  }
+
+  message IcebergConfiguration {
+    bool append_only = 1 [json_name = "append_only"];
+
+    int64 buffering_interval = 2 [json_name = "buffering_interval"];
+
+    int64 buffering_size = 3 [json_name = "buffering_size"];
+
+    string catalog_arn = 4 [json_name = "catalog_arn"];
+
+    int64 retry_duration = 5 [json_name = "retry_duration"];
+
+    string role_arn = 6 [json_name = "role_arn"];
+
+    string s3_backup_mode = 7 [json_name = "s3_backup_mode"];
+
+    CloudwatchLoggingOptions cloudwatch_logging_options = 8 [json_name = "cloudwatch_logging_options"];
+
+    repeated DestinationTableConfiguration destination_table_configuration = 9 [json_name = "destination_table_configuration"];
+
+    ProcessingConfiguration processing_configuration = 10 [json_name = "processing_configuration"];
+
+    S3Configuration s3_configuration = 11 [json_name = "s3_configuration"];
+
+    message CloudwatchLoggingOptions {
+      bool enabled = 1;
+
+      string log_group_name = 2 [json_name = "log_group_name"];
+
+      string log_stream_name = 3 [json_name = "log_stream_name"];
+    }
+
+    message DestinationTableConfiguration {
+      string database_name = 1 [json_name = "database_name"];
+
+      string s3_error_output_prefix = 2 [json_name = "s3_error_output_prefix"];
+
+      string table_name = 3 [json_name = "table_name"];
+
+      repeated string unique_keys = 4 [json_name = "unique_keys"];
+    }
+
+    message ProcessingConfiguration {
+      bool enabled = 1;
+
+      repeated Processors processors = 2;
+
+      message Processors {
+        string type = 1;
+
+        repeated Parameters parameters = 2;
+
+        message Parameters {
+          string parameter_name = 1 [json_name = "parameter_name"];
+
+          string parameter_value = 2 [json_name = "parameter_value"];
+        }
+      }
+    }
+
+    message S3Configuration {
+      string bucket_arn = 1 [json_name = "bucket_arn"];
+
+      int64 buffering_interval = 2 [json_name = "buffering_interval"];
+
+      int64 buffering_size = 3 [json_name = "buffering_size"];
+
+      string compression_format = 4 [json_name = "compression_format"];
+
+      string error_output_prefix = 5 [json_name = "error_output_prefix"];
+
+      string kms_key_arn = 6 [json_name = "kms_key_arn"];
+
+      string prefix = 7;
+
+      string role_arn = 8 [json_name = "role_arn"];
+
+      CloudwatchLoggingOptions cloudwatch_logging_options = 9 [json_name = "cloudwatch_logging_options"];
+
+      message CloudwatchLoggingOptions {
+        bool enabled = 1;
+
+        string log_group_name = 2 [json_name = "log_group_name"];
+
+        string log_stream_name = 3 [json_name = "log_stream_name"];
+      }
+    }
+  }
+
+  message KinesisSourceConfiguration {
+    string kinesis_stream_arn = 1 [json_name = "kinesis_stream_arn"];
+
+    string role_arn = 2 [json_name = "role_arn"];
+  }
+
+  message MskSourceConfiguration {
+    string msk_cluster_arn = 1 [json_name = "msk_cluster_arn"];
+
+    string read_from_timestamp = 2 [json_name = "read_from_timestamp"];
+
+    string topic_name = 3 [json_name = "topic_name"];
+
+    AuthenticationConfiguration authentication_configuration = 4 [json_name = "authentication_configuration"];
+
+    message AuthenticationConfiguration {
+      string connectivity = 1;
+
+      string role_arn = 2 [json_name = "role_arn"];
+    }
+  }
+
+  message OpensearchConfiguration {
+    int64 buffering_interval = 1 [json_name = "buffering_interval"];
+
+    int64 buffering_size = 2 [json_name = "buffering_size"];
+
+    string cluster_endpoint = 3 [json_name = "cluster_endpoint"];
+
+    string domain_arn = 4 [json_name = "domain_arn"];
+
+    string index_name = 5 [json_name = "index_name"];
+
+    string index_rotation_period = 6 [json_name = "index_rotation_period"];
+
+    int64 retry_duration = 7 [json_name = "retry_duration"];
+
+    string role_arn = 8 [json_name = "role_arn"];
+
+    string s3_backup_mode = 9 [json_name = "s3_backup_mode"];
+
+    string type_name = 10 [json_name = "type_name"];
+
+    CloudwatchLoggingOptions cloudwatch_logging_options = 11 [json_name = "cloudwatch_logging_options"];
+
+    DocumentIdOptions document_id_options = 12 [json_name = "document_id_options"];
+
+    ProcessingConfiguration processing_configuration = 13 [json_name = "processing_configuration"];
+
+    S3Configuration s3_configuration = 14 [json_name = "s3_configuration"];
+
+    VpcConfig vpc_config = 15 [json_name = "vpc_config"];
+
+    message CloudwatchLoggingOptions {
+      bool enabled = 1;
+
+      string log_group_name = 2 [json_name = "log_group_name"];
+
+      string log_stream_name = 3 [json_name = "log_stream_name"];
+    }
+
+    message DocumentIdOptions {
+      string default_document_id_format = 1 [json_name = "default_document_id_format"];
+    }
+
+    message ProcessingConfiguration {
+      bool enabled = 1;
+
+      repeated Processors processors = 2;
+
+      message Processors {
+        string type = 1;
+
+        repeated Parameters parameters = 2;
+
+        message Parameters {
+          string parameter_name = 1 [json_name = "parameter_name"];
+
+          string parameter_value = 2 [json_name = "parameter_value"];
+        }
+      }
+    }
+
+    message S3Configuration {
+      string bucket_arn = 1 [json_name = "bucket_arn"];
+
+      int64 buffering_interval = 2 [json_name = "buffering_interval"];
+
+      int64 buffering_size = 3 [json_name = "buffering_size"];
+
+      string compression_format = 4 [json_name = "compression_format"];
+
+      string error_output_prefix = 5 [json_name = "error_output_prefix"];
+
+      string kms_key_arn = 6 [json_name = "kms_key_arn"];
+
+      string prefix = 7;
+
+      string role_arn = 8 [json_name = "role_arn"];
+
+      CloudwatchLoggingOptions cloudwatch_logging_options = 9 [json_name = "cloudwatch_logging_options"];
+
+      message CloudwatchLoggingOptions {
+        bool enabled = 1;
+
+        string log_group_name = 2 [json_name = "log_group_name"];
+
+        string log_stream_name = 3 [json_name = "log_stream_name"];
+      }
+    }
+
+    message VpcConfig {
+      string role_arn = 1 [json_name = "role_arn"];
+
+      repeated string security_group_ids = 2 [json_name = "security_group_ids"];
+
+      repeated string subnet_ids = 3 [json_name = "subnet_ids"];
+
+      string vpc_id = 4 [json_name = "vpc_id"];
+    }
+  }
+
+  message OpensearchserverlessConfiguration {
+    int64 buffering_interval = 1 [json_name = "buffering_interval"];
+
+    int64 buffering_size = 2 [json_name = "buffering_size"];
+
+    string collection_endpoint = 3 [json_name = "collection_endpoint"];
+
+    string index_name = 4 [json_name = "index_name"];
+
+    int64 retry_duration = 5 [json_name = "retry_duration"];
+
+    string role_arn = 6 [json_name = "role_arn"];
+
+    string s3_backup_mode = 7 [json_name = "s3_backup_mode"];
+
+    CloudwatchLoggingOptions cloudwatch_logging_options = 8 [json_name = "cloudwatch_logging_options"];
+
+    ProcessingConfiguration processing_configuration = 9 [json_name = "processing_configuration"];
+
+    S3Configuration s3_configuration = 10 [json_name = "s3_configuration"];
+
+    VpcConfig vpc_config = 11 [json_name = "vpc_config"];
+
+    message CloudwatchLoggingOptions {
+      bool enabled = 1;
+
+      string log_group_name = 2 [json_name = "log_group_name"];
+
+      string log_stream_name = 3 [json_name = "log_stream_name"];
+    }
+
+    message ProcessingConfiguration {
+      bool enabled = 1;
+
+      repeated Processors processors = 2;
+
+      message Processors {
+        string type = 1;
+
+        repeated Parameters parameters = 2;
+
+        message Parameters {
+          string parameter_name = 1 [json_name = "parameter_name"];
+
+          string parameter_value = 2 [json_name = "parameter_value"];
+        }
+      }
+    }
+
+    message S3Configuration {
+      string bucket_arn = 1 [json_name = "bucket_arn"];
+
+      int64 buffering_interval = 2 [json_name = "buffering_interval"];
+
+      int64 buffering_size = 3 [json_name = "buffering_size"];
+
+      string compression_format = 4 [json_name = "compression_format"];
+
+      string error_output_prefix = 5 [json_name = "error_output_prefix"];
+
+      string kms_key_arn = 6 [json_name = "kms_key_arn"];
+
+      string prefix = 7;
+
+      string role_arn = 8 [json_name = "role_arn"];
+
+      CloudwatchLoggingOptions cloudwatch_logging_options = 9 [json_name = "cloudwatch_logging_options"];
+
+      message CloudwatchLoggingOptions {
+        bool enabled = 1;
+
+        string log_group_name = 2 [json_name = "log_group_name"];
+
+        string log_stream_name = 3 [json_name = "log_stream_name"];
+      }
+    }
+
+    message VpcConfig {
+      string role_arn = 1 [json_name = "role_arn"];
+
+      repeated string security_group_ids = 2 [json_name = "security_group_ids"];
+
+      repeated string subnet_ids = 3 [json_name = "subnet_ids"];
+
+      string vpc_id = 4 [json_name = "vpc_id"];
+    }
+  }
+
+  message RedshiftConfiguration {
+    string cluster_jdbcurl = 1 [json_name = "cluster_jdbcurl"];
+
+    string copy_options = 2 [json_name = "copy_options"];
+
+    string data_table_columns = 3 [json_name = "data_table_columns"];
+
+    string data_table_name = 4 [json_name = "data_table_name"];
+
+    string password = 5;
+
+    int64 retry_duration = 6 [json_name = "retry_duration"];
+
+    string role_arn = 7 [json_name = "role_arn"];
+
+    string s3_backup_mode = 8 [json_name = "s3_backup_mode"];
+
+    string username = 9;
+
+    CloudwatchLoggingOptions cloudwatch_logging_options = 10 [json_name = "cloudwatch_logging_options"];
+
+    ProcessingConfiguration processing_configuration = 11 [json_name = "processing_configuration"];
+
+    S3BackupConfiguration s3_backup_configuration = 12 [json_name = "s3_backup_configuration"];
+
+    S3Configuration s3_configuration = 13 [json_name = "s3_configuration"];
+
+    SecretsManagerConfiguration secrets_manager_configuration = 14 [json_name = "secrets_manager_configuration"];
+
+    message CloudwatchLoggingOptions {
+      bool enabled = 1;
+
+      string log_group_name = 2 [json_name = "log_group_name"];
+
+      string log_stream_name = 3 [json_name = "log_stream_name"];
+    }
+
+    message ProcessingConfiguration {
+      bool enabled = 1;
+
+      repeated Processors processors = 2;
+
+      message Processors {
+        string type = 1;
+
+        repeated Parameters parameters = 2;
+
+        message Parameters {
+          string parameter_name = 1 [json_name = "parameter_name"];
+
+          string parameter_value = 2 [json_name = "parameter_value"];
+        }
+      }
+    }
+
+    message S3BackupConfiguration {
+      string bucket_arn = 1 [json_name = "bucket_arn"];
+
+      int64 buffering_interval = 2 [json_name = "buffering_interval"];
+
+      int64 buffering_size = 3 [json_name = "buffering_size"];
+
+      string compression_format = 4 [json_name = "compression_format"];
+
+      string error_output_prefix = 5 [json_name = "error_output_prefix"];
+
+      string kms_key_arn = 6 [json_name = "kms_key_arn"];
+
+      string prefix = 7;
+
+      string role_arn = 8 [json_name = "role_arn"];
+
+      CloudwatchLoggingOptions cloudwatch_logging_options = 9 [json_name = "cloudwatch_logging_options"];
+
+      message CloudwatchLoggingOptions {
+        bool enabled = 1;
+
+        string log_group_name = 2 [json_name = "log_group_name"];
+
+        string log_stream_name = 3 [json_name = "log_stream_name"];
+      }
+    }
+
+    message S3Configuration {
+      string bucket_arn = 1 [json_name = "bucket_arn"];
+
+      int64 buffering_interval = 2 [json_name = "buffering_interval"];
+
+      int64 buffering_size = 3 [json_name = "buffering_size"];
+
+      string compression_format = 4 [json_name = "compression_format"];
+
+      string error_output_prefix = 5 [json_name = "error_output_prefix"];
+
+      string kms_key_arn = 6 [json_name = "kms_key_arn"];
+
+      string prefix = 7;
+
+      string role_arn = 8 [json_name = "role_arn"];
+
+      CloudwatchLoggingOptions cloudwatch_logging_options = 9 [json_name = "cloudwatch_logging_options"];
+
+      message CloudwatchLoggingOptions {
+        bool enabled = 1;
+
+        string log_group_name = 2 [json_name = "log_group_name"];
+
+        string log_stream_name = 3 [json_name = "log_stream_name"];
+      }
+    }
+
+    message SecretsManagerConfiguration {
+      bool enabled = 1;
+
+      string role_arn = 2 [json_name = "role_arn"];
+
+      string secret_arn = 3 [json_name = "secret_arn"];
+    }
+  }
+
+  message ServerSideEncryption {
+    bool enabled = 1;
+
+    string key_arn = 2 [json_name = "key_arn"];
+
+    string key_type = 3 [json_name = "key_type"];
+  }
+
+  message SnowflakeConfiguration {
+    string account_url = 1 [json_name = "account_url"];
+
+    int64 buffering_interval = 2 [json_name = "buffering_interval"];
+
+    int64 buffering_size = 3 [json_name = "buffering_size"];
+
+    string content_column_name = 4 [json_name = "content_column_name"];
+
+    string data_loading_option = 5 [json_name = "data_loading_option"];
+
+    string database = 6;
+
+    string key_passphrase = 7 [json_name = "key_passphrase"];
+
+    string metadata_column_name = 8 [json_name = "metadata_column_name"];
+
+    string private_key = 9 [json_name = "private_key"];
+
+    int64 retry_duration = 10 [json_name = "retry_duration"];
+
+    string role_arn = 11 [json_name = "role_arn"];
+
+    string s3_backup_mode = 12 [json_name = "s3_backup_mode"];
+
+    string schema = 13;
+
+    string table = 14;
+
+    string user = 15;
+
+    CloudwatchLoggingOptions cloudwatch_logging_options = 16 [json_name = "cloudwatch_logging_options"];
+
+    ProcessingConfiguration processing_configuration = 17 [json_name = "processing_configuration"];
+
+    S3Configuration s3_configuration = 18 [json_name = "s3_configuration"];
+
+    SecretsManagerConfiguration secrets_manager_configuration = 19 [json_name = "secrets_manager_configuration"];
+
+    SnowflakeRoleConfiguration snowflake_role_configuration = 20 [json_name = "snowflake_role_configuration"];
+
+    SnowflakeVpcConfiguration snowflake_vpc_configuration = 21 [json_name = "snowflake_vpc_configuration"];
+
+    message CloudwatchLoggingOptions {
+      bool enabled = 1;
+
+      string log_group_name = 2 [json_name = "log_group_name"];
+
+      string log_stream_name = 3 [json_name = "log_stream_name"];
+    }
+
+    message ProcessingConfiguration {
+      bool enabled = 1;
+
+      repeated Processors processors = 2;
+
+      message Processors {
+        string type = 1;
+
+        repeated Parameters parameters = 2;
+
+        message Parameters {
+          string parameter_name = 1 [json_name = "parameter_name"];
+
+          string parameter_value = 2 [json_name = "parameter_value"];
+        }
+      }
+    }
+
+    message S3Configuration {
+      string bucket_arn = 1 [json_name = "bucket_arn"];
+
+      int64 buffering_interval = 2 [json_name = "buffering_interval"];
+
+      int64 buffering_size = 3 [json_name = "buffering_size"];
+
+      string compression_format = 4 [json_name = "compression_format"];
+
+      string error_output_prefix = 5 [json_name = "error_output_prefix"];
+
+      string kms_key_arn = 6 [json_name = "kms_key_arn"];
+
+      string prefix = 7;
+
+      string role_arn = 8 [json_name = "role_arn"];
+
+      CloudwatchLoggingOptions cloudwatch_logging_options = 9 [json_name = "cloudwatch_logging_options"];
+
+      message CloudwatchLoggingOptions {
+        bool enabled = 1;
+
+        string log_group_name = 2 [json_name = "log_group_name"];
+
+        string log_stream_name = 3 [json_name = "log_stream_name"];
+      }
+    }
+
+    message SecretsManagerConfiguration {
+      bool enabled = 1;
+
+      string role_arn = 2 [json_name = "role_arn"];
+
+      string secret_arn = 3 [json_name = "secret_arn"];
+    }
+
+    message SnowflakeRoleConfiguration {
+      bool enabled = 1;
+
+      string snowflake_role = 2 [json_name = "snowflake_role"];
+    }
+
+    message SnowflakeVpcConfiguration {
+      string private_link_vpce_id = 1 [json_name = "private_link_vpce_id"];
+    }
+  }
+
+  message SplunkConfiguration {
+    int64 buffering_interval = 1 [json_name = "buffering_interval"];
+
+    int64 buffering_size = 2 [json_name = "buffering_size"];
+
+    int64 hec_acknowledgment_timeout = 3 [json_name = "hec_acknowledgment_timeout"];
+
+    string hec_endpoint = 4 [json_name = "hec_endpoint"];
+
+    string hec_endpoint_type = 5 [json_name = "hec_endpoint_type"];
+
+    string hec_token = 6 [json_name = "hec_token"];
+
+    int64 retry_duration = 7 [json_name = "retry_duration"];
+
+    string s3_backup_mode = 8 [json_name = "s3_backup_mode"];
+
+    CloudwatchLoggingOptions cloudwatch_logging_options = 9 [json_name = "cloudwatch_logging_options"];
+
+    ProcessingConfiguration processing_configuration = 10 [json_name = "processing_configuration"];
+
+    S3Configuration s3_configuration = 11 [json_name = "s3_configuration"];
+
+    SecretsManagerConfiguration secrets_manager_configuration = 12 [json_name = "secrets_manager_configuration"];
+
+    message CloudwatchLoggingOptions {
+      bool enabled = 1;
+
+      string log_group_name = 2 [json_name = "log_group_name"];
+
+      string log_stream_name = 3 [json_name = "log_stream_name"];
+    }
+
+    message ProcessingConfiguration {
+      bool enabled = 1;
+
+      repeated Processors processors = 2;
+
+      message Processors {
+        string type = 1;
+
+        repeated Parameters parameters = 2;
+
+        message Parameters {
+          string parameter_name = 1 [json_name = "parameter_name"];
+
+          string parameter_value = 2 [json_name = "parameter_value"];
+        }
+      }
+    }
+
+    message S3Configuration {
+      string bucket_arn = 1 [json_name = "bucket_arn"];
+
+      int64 buffering_interval = 2 [json_name = "buffering_interval"];
+
+      int64 buffering_size = 3 [json_name = "buffering_size"];
+
+      string compression_format = 4 [json_name = "compression_format"];
+
+      string error_output_prefix = 5 [json_name = "error_output_prefix"];
+
+      string kms_key_arn = 6 [json_name = "kms_key_arn"];
+
+      string prefix = 7;
+
+      string role_arn = 8 [json_name = "role_arn"];
+
+      CloudwatchLoggingOptions cloudwatch_logging_options = 9 [json_name = "cloudwatch_logging_options"];
+
+      message CloudwatchLoggingOptions {
+        bool enabled = 1;
+
+        string log_group_name = 2 [json_name = "log_group_name"];
+
+        string log_stream_name = 3 [json_name = "log_stream_name"];
+      }
+    }
+
+    message SecretsManagerConfiguration {
+      bool enabled = 1;
+
+      string role_arn = 2 [json_name = "role_arn"];
+
+      string secret_arn = 3 [json_name = "secret_arn"];
+    }
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsKinesisResourcePolicy version is 0
+message AwsKinesisResourcePolicy {
+  string id = 1;
+
+  string policy = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string resource_arn = 4 [json_name = "resource_arn"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsKinesisStream version is 1
+message AwsKinesisStream {
+  string arn = 1;
+
+  string encryption_type = 2 [json_name = "encryption_type"];
+
+  bool enforce_consumer_deletion = 3 [json_name = "enforce_consumer_deletion"];
+
+  string id = 4;
+
+  string kms_key_id = 5 [json_name = "kms_key_id"];
+
+  int64 max_record_size_in_kib = 6 [json_name = "max_record_size_in_kib"];
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  int64 retention_period = 9 [json_name = "retention_period"];
+
+  int64 shard_count = 10 [json_name = "shard_count"];
+
+  repeated string shard_level_metrics = 11 [json_name = "shard_level_metrics"];
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  StreamModeDetails stream_mode_details = 14 [json_name = "stream_mode_details"];
+
+  repeated Timeouts timeouts = 15;
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message StreamModeDetails {
+    string stream_mode = 1 [json_name = "stream_mode"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsKinesisStreamConsumer version is 0
+message AwsKinesisStreamConsumer {
+  string arn = 1;
+
+  string creation_timestamp = 2 [json_name = "creation_timestamp"];
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string stream_arn = 6 [json_name = "stream_arn"];
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsKinesisVideoStream version is 0
+message AwsKinesisVideoStream {
+  string arn = 1;
+
+  string creation_time = 2 [json_name = "creation_time"];
+
+  int64 data_retention_in_hours = 3 [json_name = "data_retention_in_hours"];
+
+  string device_name = 4 [json_name = "device_name"];
+
+  string id = 5;
+
+  string kms_key_id = 6 [json_name = "kms_key_id"];
+
+  string media_type = 7 [json_name = "media_type"];
+
+  string name = 8;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  string version = 12;
+
+  repeated Timeouts timeouts = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}

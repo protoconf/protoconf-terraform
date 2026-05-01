@@ -1,0 +1,132 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsAuditmanagerControl version is 0
+message AwsAuditmanagerControl {
+  string action_plan_instructions = 1 [json_name = "action_plan_instructions"];
+
+  string action_plan_title = 2 [json_name = "action_plan_title"];
+
+  string arn = 3;
+
+  repeated ControlMappingSources control_mapping_sources = 4 [json_name = "control_mapping_sources"];
+
+  string description = 5;
+
+  string id = 6;
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  string testing_information = 10 [json_name = "testing_information"];
+
+  string type = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message ControlMappingSources {
+    // source_description: string
+    string source_description = 1 [json_name = "source_description"];
+
+    // source_frequency: string
+    string source_frequency = 2 [json_name = "source_frequency"];
+
+    // source_id: string
+    string source_id = 3 [json_name = "source_id"];
+
+    // source_keyword: list of object
+    repeated SourceKeyword source_keyword = 4 [json_name = "source_keyword"];
+
+    // source_name: string
+    string source_name = 5 [json_name = "source_name"];
+
+    // source_set_up_option: string
+    string source_set_up_option = 6 [json_name = "source_set_up_option"];
+
+    // source_type: string
+    string source_type = 7 [json_name = "source_type"];
+
+    // troubleshooting_text: string
+    string troubleshooting_text = 8 [json_name = "troubleshooting_text"];
+
+    message SourceKeyword {
+      // keyword_input_type: string
+      string keyword_input_type = 1 [json_name = "keyword_input_type"];
+
+      // keyword_value: string
+      string keyword_value = 2 [json_name = "keyword_value"];
+    }
+  }
+}
+
+// AwsAuditmanagerFramework version is 0
+message AwsAuditmanagerFramework {
+  string arn = 1;
+
+  string compliance_type = 2 [json_name = "compliance_type"];
+
+  repeated ControlSets control_sets = 3 [json_name = "control_sets"];
+
+  string description = 4;
+
+  string framework_type = 5 [json_name = "framework_type"];
+
+  string id = 6;
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message ControlSets {
+    // controls: set of object
+    repeated Controls controls = 1;
+
+    // id: string
+    string id = 2;
+
+    // name: string
+    string name = 3;
+
+    message Controls {
+      // id: string
+      string id = 1;
+    }
+  }
+}

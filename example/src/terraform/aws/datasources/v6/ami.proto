@@ -1,0 +1,192 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsAmi version is 0
+message AwsAmi {
+  bool allow_unsafe_filter = 1 [json_name = "allow_unsafe_filter"];
+
+  string architecture = 2;
+
+  string arn = 3;
+
+  repeated BlockDeviceMappings block_device_mappings = 4 [json_name = "block_device_mappings"];
+
+  string boot_mode = 5 [json_name = "boot_mode"];
+
+  string creation_date = 6 [json_name = "creation_date"];
+
+  string deprecation_time = 7 [json_name = "deprecation_time"];
+
+  string description = 8;
+
+  bool ena_support = 9 [json_name = "ena_support"];
+
+  repeated string executable_users = 10 [json_name = "executable_users"];
+
+  string hypervisor = 11;
+
+  string id = 12;
+
+  string image_id = 13 [json_name = "image_id"];
+
+  string image_location = 14 [json_name = "image_location"];
+
+  string image_owner_alias = 15 [json_name = "image_owner_alias"];
+
+  string image_type = 16 [json_name = "image_type"];
+
+  string imds_support = 17 [json_name = "imds_support"];
+
+  bool include_deprecated = 18 [json_name = "include_deprecated"];
+
+  string kernel_id = 19 [json_name = "kernel_id"];
+
+  string last_launched_time = 20 [json_name = "last_launched_time"];
+
+  bool most_recent = 21 [json_name = "most_recent"];
+
+  string name = 22;
+
+  string name_regex = 23 [json_name = "name_regex"];
+
+  string owner_id = 24 [json_name = "owner_id"];
+
+  repeated string owners = 25;
+
+  string platform = 26;
+
+  string platform_details = 27 [json_name = "platform_details"];
+
+  repeated ProductCodes product_codes = 28 [json_name = "product_codes"];
+
+  bool public = 29;
+
+  string ramdisk_id = 30 [json_name = "ramdisk_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 31;
+
+  string root_device_name = 32 [json_name = "root_device_name"];
+
+  string root_device_type = 33 [json_name = "root_device_type"];
+
+  string root_snapshot_id = 34 [json_name = "root_snapshot_id"];
+
+  string sriov_net_support = 35 [json_name = "sriov_net_support"];
+
+  string state = 36;
+
+  map<string, string> state_reason = 37 [json_name = "state_reason"];
+
+  map<string, string> tags = 38;
+
+  string tpm_support = 39 [json_name = "tpm_support"];
+
+  string uefi_data = 40 [json_name = "uefi_data"];
+
+  string usage_operation = 41 [json_name = "usage_operation"];
+
+  string virtualization_type = 42 [json_name = "virtualization_type"];
+
+  repeated Filter filter = 43;
+
+  repeated Timeouts timeouts = 44;
+
+  google.protobuf.Value for_each = 45 [json_name = "for_each"];
+
+  repeated string depends_on = 46 [json_name = "depends_on"];
+
+  int32 count = 47;
+
+  string provider = 48;
+
+  terraform.v1.Lifecycle lifecycle = 49;
+
+  message BlockDeviceMappings {
+    // device_name: string
+    string device_name = 1 [json_name = "device_name"];
+
+    // ebs: map of string
+    map<string, string> ebs = 2;
+
+    // no_device: string
+    string no_device = 3 [json_name = "no_device"];
+
+    // virtual_name: string
+    string virtual_name = 4 [json_name = "virtual_name"];
+  }
+
+  message ProductCodes {
+    // product_code_id: string
+    string product_code_id = 1 [json_name = "product_code_id"];
+
+    // product_code_type: string
+    string product_code_type = 2 [json_name = "product_code_type"];
+  }
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsAmiIds version is 0
+message AwsAmiIds {
+  repeated string executable_users = 1 [json_name = "executable_users"];
+
+  string id = 2;
+
+  repeated string ids = 3;
+
+  bool include_deprecated = 4 [json_name = "include_deprecated"];
+
+  string name_regex = 5 [json_name = "name_regex"];
+
+  repeated string owners = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  bool sort_ascending = 8 [json_name = "sort_ascending"];
+
+  repeated Filter filter = 9;
+
+  repeated Timeouts timeouts = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}

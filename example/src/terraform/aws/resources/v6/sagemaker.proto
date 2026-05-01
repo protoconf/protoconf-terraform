@@ -1,0 +1,5174 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSagemakerAlgorithm version is 0
+message AwsSagemakerAlgorithm {
+  string algorithm_description = 1 [json_name = "algorithm_description"];
+
+  string algorithm_name = 2 [json_name = "algorithm_name"];
+
+  string algorithm_status = 3 [json_name = "algorithm_status"];
+
+  string arn = 4;
+
+  bool certify_for_marketplace = 5 [json_name = "certify_for_marketplace"];
+
+  string creation_time = 6 [json_name = "creation_time"];
+
+  string product_id = 7 [json_name = "product_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  repeated InferenceSpecification inference_specification = 11 [json_name = "inference_specification"];
+
+  repeated Timeouts timeouts = 12;
+
+  repeated TrainingSpecification training_specification = 13 [json_name = "training_specification"];
+
+  repeated ValidationSpecification validation_specification = 14 [json_name = "validation_specification"];
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message InferenceSpecification {
+    repeated string supported_content_types = 1 [json_name = "supported_content_types"];
+
+    repeated string supported_realtime_inference_instance_types = 2 [
+      json_name = "supported_realtime_inference_instance_types"
+    ];
+
+    repeated string supported_response_mime_types = 3 [json_name = "supported_response_mime_types"];
+
+    repeated string supported_transform_instance_types = 4 [json_name = "supported_transform_instance_types"];
+
+    repeated Containers containers = 5;
+
+    message Containers {
+      string container_hostname = 1 [json_name = "container_hostname"];
+
+      map<string, string> environment = 2;
+
+      string framework = 3;
+
+      string framework_version = 4 [json_name = "framework_version"];
+
+      string image = 5;
+
+      string image_digest = 6 [json_name = "image_digest"];
+
+      bool is_checkpoint = 7 [json_name = "is_checkpoint"];
+
+      string model_data_etag = 8 [json_name = "model_data_etag"];
+
+      string model_data_url = 9 [json_name = "model_data_url"];
+
+      string nearest_model_name = 10 [json_name = "nearest_model_name"];
+
+      string product_id = 11 [json_name = "product_id"];
+
+      repeated AdditionalS3DataSource additional_s3_data_source = 12 [json_name = "additional_s3_data_source"];
+
+      repeated BaseModel base_model = 13 [json_name = "base_model"];
+
+      repeated ModelDataSource model_data_source = 14 [json_name = "model_data_source"];
+
+      repeated ModelInput model_input = 15 [json_name = "model_input"];
+
+      message AdditionalS3DataSource {
+        string compression_type = 1 [json_name = "compression_type"];
+
+        string etag = 2;
+
+        string s3_data_type = 3 [json_name = "s3_data_type"];
+
+        string s3_uri = 4 [json_name = "s3_uri"];
+      }
+
+      message BaseModel {
+        string hub_content_name = 1 [json_name = "hub_content_name"];
+
+        string hub_content_version = 2 [json_name = "hub_content_version"];
+
+        string recipe_name = 3 [json_name = "recipe_name"];
+      }
+
+      message ModelDataSource {
+        repeated S3DataSource s3_data_source = 1 [json_name = "s3_data_source"];
+
+        message S3DataSource {
+          string compression_type = 1 [json_name = "compression_type"];
+
+          string etag = 2;
+
+          string manifest_etag = 3 [json_name = "manifest_etag"];
+
+          string manifest_s3_uri = 4 [json_name = "manifest_s3_uri"];
+
+          string s3_data_type = 5 [json_name = "s3_data_type"];
+
+          string s3_uri = 6 [json_name = "s3_uri"];
+
+          repeated HubAccessConfig hub_access_config = 7 [json_name = "hub_access_config"];
+
+          repeated ModelAccessConfig model_access_config = 8 [json_name = "model_access_config"];
+
+          message HubAccessConfig {
+            string hub_content_arn = 1 [json_name = "hub_content_arn"];
+          }
+
+          message ModelAccessConfig {
+            bool accept_eula = 1 [json_name = "accept_eula"];
+          }
+        }
+      }
+
+      message ModelInput {
+        string data_input_config = 1 [json_name = "data_input_config"];
+      }
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+
+  message TrainingSpecification {
+    repeated string supported_training_instance_types = 1 [json_name = "supported_training_instance_types"];
+
+    bool supports_distributed_training = 2 [json_name = "supports_distributed_training"];
+
+    string training_image = 3 [json_name = "training_image"];
+
+    string training_image_digest = 4 [json_name = "training_image_digest"];
+
+    repeated AdditionalS3DataSource additional_s3_data_source = 5 [json_name = "additional_s3_data_source"];
+
+    repeated MetricDefinitions metric_definitions = 6 [json_name = "metric_definitions"];
+
+    repeated SupportedHyperParameters supported_hyper_parameters = 7 [json_name = "supported_hyper_parameters"];
+
+    repeated SupportedTuningJobObjectiveMetrics supported_tuning_job_objective_metrics = 8 [
+      json_name = "supported_tuning_job_objective_metrics"
+    ];
+
+    repeated TrainingChannels training_channels = 9 [json_name = "training_channels"];
+
+    message AdditionalS3DataSource {
+      string compression_type = 1 [json_name = "compression_type"];
+
+      string etag = 2;
+
+      string s3_data_type = 3 [json_name = "s3_data_type"];
+
+      string s3_uri = 4 [json_name = "s3_uri"];
+    }
+
+    message MetricDefinitions {
+      string name = 1;
+
+      string regex = 2;
+    }
+
+    message SupportedHyperParameters {
+      string default_value = 1 [json_name = "default_value"];
+
+      string description = 2;
+
+      bool is_required = 3 [json_name = "is_required"];
+
+      bool is_tunable = 4 [json_name = "is_tunable"];
+
+      string name = 5;
+
+      string type = 6;
+
+      repeated Range range = 7;
+
+      message Range {
+        repeated CategoricalParameterRangeSpecification categorical_parameter_range_specification = 1 [
+          json_name = "categorical_parameter_range_specification"
+        ];
+
+        repeated ContinuousParameterRangeSpecification continuous_parameter_range_specification = 2 [
+          json_name = "continuous_parameter_range_specification"
+        ];
+
+        repeated IntegerParameterRangeSpecification integer_parameter_range_specification = 3 [
+          json_name = "integer_parameter_range_specification"
+        ];
+
+        message CategoricalParameterRangeSpecification {
+          repeated string values = 1;
+        }
+
+        message ContinuousParameterRangeSpecification {
+          string max_value = 1 [json_name = "max_value"];
+
+          string min_value = 2 [json_name = "min_value"];
+        }
+
+        message IntegerParameterRangeSpecification {
+          string max_value = 1 [json_name = "max_value"];
+
+          string min_value = 2 [json_name = "min_value"];
+        }
+      }
+    }
+
+    message SupportedTuningJobObjectiveMetrics {
+      string metric_name = 1 [json_name = "metric_name"];
+
+      string type = 2;
+    }
+
+    message TrainingChannels {
+      string description = 1;
+
+      bool is_required = 2 [json_name = "is_required"];
+
+      string name = 3;
+
+      repeated string supported_compression_types = 4 [json_name = "supported_compression_types"];
+
+      repeated string supported_content_types = 5 [json_name = "supported_content_types"];
+
+      repeated string supported_input_modes = 6 [json_name = "supported_input_modes"];
+    }
+  }
+
+  message ValidationSpecification {
+    string validation_role = 1 [json_name = "validation_role"];
+
+    repeated ValidationProfiles validation_profiles = 2 [json_name = "validation_profiles"];
+
+    message ValidationProfiles {
+      string profile_name = 1 [json_name = "profile_name"];
+
+      repeated TrainingJobDefinition training_job_definition = 2 [json_name = "training_job_definition"];
+
+      repeated TransformJobDefinition transform_job_definition = 3 [json_name = "transform_job_definition"];
+
+      message TrainingJobDefinition {
+        map<string, string> hyper_parameters = 1 [json_name = "hyper_parameters"];
+
+        string training_input_mode = 2 [json_name = "training_input_mode"];
+
+        repeated InputDataConfig input_data_config = 3 [json_name = "input_data_config"];
+
+        repeated OutputDataConfig output_data_config = 4 [json_name = "output_data_config"];
+
+        repeated ResourceConfig resource_config = 5 [json_name = "resource_config"];
+
+        repeated StoppingCondition stopping_condition = 6 [json_name = "stopping_condition"];
+
+        message InputDataConfig {
+          string channel_name = 1 [json_name = "channel_name"];
+
+          string compression_type = 2 [json_name = "compression_type"];
+
+          string content_type = 3 [json_name = "content_type"];
+
+          string input_mode = 4 [json_name = "input_mode"];
+
+          string record_wrapper_type = 5 [json_name = "record_wrapper_type"];
+
+          repeated DataSource data_source = 6 [json_name = "data_source"];
+
+          repeated ShuffleConfig shuffle_config = 7 [json_name = "shuffle_config"];
+
+          message DataSource {
+            repeated FileSystemDataSource file_system_data_source = 1 [json_name = "file_system_data_source"];
+
+            repeated S3DataSource s3_data_source = 2 [json_name = "s3_data_source"];
+
+            message FileSystemDataSource {
+              string directory_path = 1 [json_name = "directory_path"];
+
+              string file_system_access_mode = 2 [json_name = "file_system_access_mode"];
+
+              string file_system_id = 3 [json_name = "file_system_id"];
+
+              string file_system_type = 4 [json_name = "file_system_type"];
+            }
+
+            message S3DataSource {
+              repeated string attribute_names = 1 [json_name = "attribute_names"];
+
+              repeated string instance_group_names = 2 [json_name = "instance_group_names"];
+
+              string s3_data_distribution_type = 3 [json_name = "s3_data_distribution_type"];
+
+              string s3_data_type = 4 [json_name = "s3_data_type"];
+
+              string s3_uri = 5 [json_name = "s3_uri"];
+
+              repeated HubAccessConfig hub_access_config = 6 [json_name = "hub_access_config"];
+
+              repeated ModelAccessConfig model_access_config = 7 [json_name = "model_access_config"];
+
+              message HubAccessConfig {
+                string hub_content_arn = 1 [json_name = "hub_content_arn"];
+              }
+
+              message ModelAccessConfig {
+                bool accept_eula = 1 [json_name = "accept_eula"];
+              }
+            }
+          }
+
+          message ShuffleConfig {
+            int64 seed = 1;
+          }
+        }
+
+        message OutputDataConfig {
+          string compression_type = 1 [json_name = "compression_type"];
+
+          string kms_key_id = 2 [json_name = "kms_key_id"];
+
+          string s3_output_path = 3 [json_name = "s3_output_path"];
+        }
+
+        message ResourceConfig {
+          int64 instance_count = 1 [json_name = "instance_count"];
+
+          string instance_type = 2 [json_name = "instance_type"];
+
+          int64 keep_alive_period_in_seconds = 3 [json_name = "keep_alive_period_in_seconds"];
+
+          string training_plan_arn = 4 [json_name = "training_plan_arn"];
+
+          string volume_kms_key_id = 5 [json_name = "volume_kms_key_id"];
+
+          int64 volume_size_in_gb = 6 [json_name = "volume_size_in_gb"];
+
+          repeated InstanceGroups instance_groups = 7 [json_name = "instance_groups"];
+
+          repeated InstancePlacementConfig instance_placement_config = 8 [json_name = "instance_placement_config"];
+
+          message InstanceGroups {
+            int64 instance_count = 1 [json_name = "instance_count"];
+
+            string instance_group_name = 2 [json_name = "instance_group_name"];
+
+            string instance_type = 3 [json_name = "instance_type"];
+          }
+
+          message InstancePlacementConfig {
+            bool enable_multiple_jobs = 1 [json_name = "enable_multiple_jobs"];
+
+            repeated PlacementSpecifications placement_specifications = 2 [json_name = "placement_specifications"];
+
+            message PlacementSpecifications {
+              int64 instance_count = 1 [json_name = "instance_count"];
+
+              string ultra_server_id = 2 [json_name = "ultra_server_id"];
+            }
+          }
+        }
+
+        message StoppingCondition {
+          int64 max_pending_time_in_seconds = 1 [json_name = "max_pending_time_in_seconds"];
+
+          int64 max_runtime_in_seconds = 2 [json_name = "max_runtime_in_seconds"];
+
+          int64 max_wait_time_in_seconds = 3 [json_name = "max_wait_time_in_seconds"];
+        }
+      }
+
+      message TransformJobDefinition {
+        string batch_strategy = 1 [json_name = "batch_strategy"];
+
+        map<string, string> environment = 2;
+
+        int64 max_concurrent_transforms = 3 [json_name = "max_concurrent_transforms"];
+
+        int64 max_payload_in_mb = 4 [json_name = "max_payload_in_mb"];
+
+        repeated TransformInput transform_input = 5 [json_name = "transform_input"];
+
+        repeated TransformOutput transform_output = 6 [json_name = "transform_output"];
+
+        repeated TransformResources transform_resources = 7 [json_name = "transform_resources"];
+
+        message TransformInput {
+          string compression_type = 1 [json_name = "compression_type"];
+
+          string content_type = 2 [json_name = "content_type"];
+
+          string split_type = 3 [json_name = "split_type"];
+
+          repeated DataSource data_source = 4 [json_name = "data_source"];
+
+          message DataSource {
+            repeated S3DataSource s3_data_source = 1 [json_name = "s3_data_source"];
+
+            message S3DataSource {
+              string s3_data_type = 1 [json_name = "s3_data_type"];
+
+              string s3_uri = 2 [json_name = "s3_uri"];
+            }
+          }
+        }
+
+        message TransformOutput {
+          string accept = 1;
+
+          string assemble_with = 2 [json_name = "assemble_with"];
+
+          string kms_key_id = 3 [json_name = "kms_key_id"];
+
+          string s3_output_path = 4 [json_name = "s3_output_path"];
+        }
+
+        message TransformResources {
+          int64 instance_count = 1 [json_name = "instance_count"];
+
+          string instance_type = 2 [json_name = "instance_type"];
+
+          string transform_ami_version = 3 [json_name = "transform_ami_version"];
+
+          string volume_kms_key_id = 4 [json_name = "volume_kms_key_id"];
+        }
+      }
+    }
+  }
+}
+
+// AwsSagemakerApp version is 0
+message AwsSagemakerApp {
+  string app_name = 1 [json_name = "app_name"];
+
+  string app_type = 2 [json_name = "app_type"];
+
+  string arn = 3;
+
+  string domain_id = 4 [json_name = "domain_id"];
+
+  string id = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string space_name = 7 [json_name = "space_name"];
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  string user_profile_name = 10 [json_name = "user_profile_name"];
+
+  ResourceSpec resource_spec = 11 [json_name = "resource_spec"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message ResourceSpec {
+    string instance_type = 1 [json_name = "instance_type"];
+
+    string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+    string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+    string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+    string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+  }
+}
+
+// AwsSagemakerAppImageConfig version is 0
+message AwsSagemakerAppImageConfig {
+  string app_image_config_name = 1 [json_name = "app_image_config_name"];
+
+  string arn = 2;
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  map<string, string> tags = 5;
+
+  map<string, string> tags_all = 6 [json_name = "tags_all"];
+
+  CodeEditorAppImageConfig code_editor_app_image_config = 7 [json_name = "code_editor_app_image_config"];
+
+  JupyterLabImageConfig jupyter_lab_image_config = 8 [json_name = "jupyter_lab_image_config"];
+
+  KernelGatewayImageConfig kernel_gateway_image_config = 9 [json_name = "kernel_gateway_image_config"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message CodeEditorAppImageConfig {
+    ContainerConfig container_config = 1 [json_name = "container_config"];
+
+    FileSystemConfig file_system_config = 2 [json_name = "file_system_config"];
+
+    message ContainerConfig {
+      repeated string container_arguments = 1 [json_name = "container_arguments"];
+
+      repeated string container_entrypoint = 2 [json_name = "container_entrypoint"];
+
+      map<string, string> container_environment_variables = 3 [json_name = "container_environment_variables"];
+    }
+
+    message FileSystemConfig {
+      int64 default_gid = 1 [json_name = "default_gid"];
+
+      int64 default_uid = 2 [json_name = "default_uid"];
+
+      string mount_path = 3 [json_name = "mount_path"];
+    }
+  }
+
+  message JupyterLabImageConfig {
+    ContainerConfig container_config = 1 [json_name = "container_config"];
+
+    FileSystemConfig file_system_config = 2 [json_name = "file_system_config"];
+
+    message ContainerConfig {
+      repeated string container_arguments = 1 [json_name = "container_arguments"];
+
+      repeated string container_entrypoint = 2 [json_name = "container_entrypoint"];
+
+      map<string, string> container_environment_variables = 3 [json_name = "container_environment_variables"];
+    }
+
+    message FileSystemConfig {
+      int64 default_gid = 1 [json_name = "default_gid"];
+
+      int64 default_uid = 2 [json_name = "default_uid"];
+
+      string mount_path = 3 [json_name = "mount_path"];
+    }
+  }
+
+  message KernelGatewayImageConfig {
+    FileSystemConfig file_system_config = 1 [json_name = "file_system_config"];
+
+    repeated KernelSpec kernel_spec = 2 [json_name = "kernel_spec"];
+
+    message FileSystemConfig {
+      int64 default_gid = 1 [json_name = "default_gid"];
+
+      int64 default_uid = 2 [json_name = "default_uid"];
+
+      string mount_path = 3 [json_name = "mount_path"];
+    }
+
+    message KernelSpec {
+      string display_name = 1 [json_name = "display_name"];
+
+      string name = 2;
+    }
+  }
+}
+
+// AwsSagemakerCodeRepository version is 0
+message AwsSagemakerCodeRepository {
+  string arn = 1;
+
+  string code_repository_name = 2 [json_name = "code_repository_name"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  map<string, string> tags = 5;
+
+  map<string, string> tags_all = 6 [json_name = "tags_all"];
+
+  GitConfig git_config = 7 [json_name = "git_config"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message GitConfig {
+    string branch = 1;
+
+    string repository_url = 2 [json_name = "repository_url"];
+
+    string secret_arn = 3 [json_name = "secret_arn"];
+  }
+}
+
+// AwsSagemakerDataQualityJobDefinition version is 0
+message AwsSagemakerDataQualityJobDefinition {
+  string arn = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string role_arn = 5 [json_name = "role_arn"];
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  DataQualityAppSpecification data_quality_app_specification = 8 [json_name = "data_quality_app_specification"];
+
+  DataQualityBaselineConfig data_quality_baseline_config = 9 [json_name = "data_quality_baseline_config"];
+
+  DataQualityJobInput data_quality_job_input = 10 [json_name = "data_quality_job_input"];
+
+  DataQualityJobOutputConfig data_quality_job_output_config = 11 [json_name = "data_quality_job_output_config"];
+
+  JobResources job_resources = 12 [json_name = "job_resources"];
+
+  NetworkConfig network_config = 13 [json_name = "network_config"];
+
+  StoppingCondition stopping_condition = 14 [json_name = "stopping_condition"];
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message DataQualityAppSpecification {
+    map<string, string> environment = 1;
+
+    string image_uri = 2 [json_name = "image_uri"];
+
+    string post_analytics_processor_source_uri = 3 [json_name = "post_analytics_processor_source_uri"];
+
+    string record_preprocessor_source_uri = 4 [json_name = "record_preprocessor_source_uri"];
+  }
+
+  message DataQualityBaselineConfig {
+    ConstraintsResource constraints_resource = 1 [json_name = "constraints_resource"];
+
+    StatisticsResource statistics_resource = 2 [json_name = "statistics_resource"];
+
+    message ConstraintsResource {
+      string s3_uri = 1 [json_name = "s3_uri"];
+    }
+
+    message StatisticsResource {
+      string s3_uri = 1 [json_name = "s3_uri"];
+    }
+  }
+
+  message DataQualityJobInput {
+    BatchTransformInput batch_transform_input = 1 [json_name = "batch_transform_input"];
+
+    EndpointInput endpoint_input = 2 [json_name = "endpoint_input"];
+
+    message BatchTransformInput {
+      string data_captured_destination_s3_uri = 1 [json_name = "data_captured_destination_s3_uri"];
+
+      string local_path = 2 [json_name = "local_path"];
+
+      string s3_data_distribution_type = 3 [json_name = "s3_data_distribution_type"];
+
+      string s3_input_mode = 4 [json_name = "s3_input_mode"];
+
+      DatasetFormat dataset_format = 5 [json_name = "dataset_format"];
+
+      message DatasetFormat {
+        Csv csv = 1;
+
+        Json json = 2;
+
+        message Csv {
+          bool header = 1;
+        }
+
+        message Json {
+          bool line = 1;
+        }
+      }
+    }
+
+    message EndpointInput {
+      string endpoint_name = 1 [json_name = "endpoint_name"];
+
+      string local_path = 2 [json_name = "local_path"];
+
+      string s3_data_distribution_type = 3 [json_name = "s3_data_distribution_type"];
+
+      string s3_input_mode = 4 [json_name = "s3_input_mode"];
+    }
+  }
+
+  message DataQualityJobOutputConfig {
+    string kms_key_id = 1 [json_name = "kms_key_id"];
+
+    MonitoringOutputs monitoring_outputs = 2 [json_name = "monitoring_outputs"];
+
+    message MonitoringOutputs {
+      S3Output s3_output = 1 [json_name = "s3_output"];
+
+      message S3Output {
+        string local_path = 1 [json_name = "local_path"];
+
+        string s3_upload_mode = 2 [json_name = "s3_upload_mode"];
+
+        string s3_uri = 3 [json_name = "s3_uri"];
+      }
+    }
+  }
+
+  message JobResources {
+    ClusterConfig cluster_config = 1 [json_name = "cluster_config"];
+
+    message ClusterConfig {
+      int64 instance_count = 1 [json_name = "instance_count"];
+
+      string instance_type = 2 [json_name = "instance_type"];
+
+      string volume_kms_key_id = 3 [json_name = "volume_kms_key_id"];
+
+      int64 volume_size_in_gb = 4 [json_name = "volume_size_in_gb"];
+    }
+  }
+
+  message NetworkConfig {
+    bool enable_inter_container_traffic_encryption = 1 [
+      json_name = "enable_inter_container_traffic_encryption"
+    ];
+
+    bool enable_network_isolation = 2 [json_name = "enable_network_isolation"];
+
+    VpcConfig vpc_config = 3 [json_name = "vpc_config"];
+
+    message VpcConfig {
+      repeated string security_group_ids = 1 [json_name = "security_group_ids"];
+
+      repeated string subnets = 2;
+    }
+  }
+
+  message StoppingCondition {
+    int64 max_runtime_in_seconds = 1 [json_name = "max_runtime_in_seconds"];
+  }
+}
+
+// AwsSagemakerDevice version is 0
+message AwsSagemakerDevice {
+  string agent_version = 1 [json_name = "agent_version"];
+
+  string arn = 2;
+
+  string device_fleet_name = 3 [json_name = "device_fleet_name"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  Device device = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Device {
+    string description = 1;
+
+    string device_name = 2 [json_name = "device_name"];
+
+    string iot_thing_name = 3 [json_name = "iot_thing_name"];
+  }
+}
+
+// AwsSagemakerDeviceFleet version is 0
+message AwsSagemakerDeviceFleet {
+  string arn = 1;
+
+  string description = 2;
+
+  string device_fleet_name = 3 [json_name = "device_fleet_name"];
+
+  bool enable_iot_role_alias = 4 [json_name = "enable_iot_role_alias"];
+
+  string id = 5;
+
+  string iot_role_alias = 6 [json_name = "iot_role_alias"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string role_arn = 8 [json_name = "role_arn"];
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  OutputConfig output_config = 11 [json_name = "output_config"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message OutputConfig {
+    string kms_key_id = 1 [json_name = "kms_key_id"];
+
+    string s3_output_location = 2 [json_name = "s3_output_location"];
+  }
+}
+
+// AwsSagemakerDomain version is 0
+message AwsSagemakerDomain {
+  string app_network_access_type = 1 [json_name = "app_network_access_type"];
+
+  string app_security_group_management = 2 [json_name = "app_security_group_management"];
+
+  string arn = 3;
+
+  string auth_mode = 4 [json_name = "auth_mode"];
+
+  string domain_name = 5 [json_name = "domain_name"];
+
+  string home_efs_file_system_id = 6 [json_name = "home_efs_file_system_id"];
+
+  string id = 7;
+
+  string kms_key_id = 8 [json_name = "kms_key_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  string security_group_id_for_domain_boundary = 10 [
+    json_name = "security_group_id_for_domain_boundary"
+  ];
+
+  string single_sign_on_application_arn = 11 [json_name = "single_sign_on_application_arn"];
+
+  string single_sign_on_managed_application_instance_id = 12 [
+    json_name = "single_sign_on_managed_application_instance_id"
+  ];
+
+  repeated string subnet_ids = 13 [json_name = "subnet_ids"];
+
+  string tag_propagation = 14 [json_name = "tag_propagation"];
+
+  map<string, string> tags = 15;
+
+  map<string, string> tags_all = 16 [json_name = "tags_all"];
+
+  string url = 17;
+
+  string vpc_id = 18 [json_name = "vpc_id"];
+
+  DefaultSpaceSettings default_space_settings = 19 [json_name = "default_space_settings"];
+
+  DefaultUserSettings default_user_settings = 20 [json_name = "default_user_settings"];
+
+  DomainSettings domain_settings = 21 [json_name = "domain_settings"];
+
+  RetentionPolicy retention_policy = 22 [json_name = "retention_policy"];
+
+  google.protobuf.Value for_each = 23 [json_name = "for_each"];
+
+  repeated string depends_on = 24 [json_name = "depends_on"];
+
+  int32 count = 25;
+
+  string provider = 26;
+
+  terraform.v1.Lifecycle lifecycle = 27;
+
+  message DefaultSpaceSettings {
+    string execution_role = 1 [json_name = "execution_role"];
+
+    repeated string security_groups = 2 [json_name = "security_groups"];
+
+    repeated CustomFileSystemConfig custom_file_system_config = 3 [json_name = "custom_file_system_config"];
+
+    CustomPosixUserConfig custom_posix_user_config = 4 [json_name = "custom_posix_user_config"];
+
+    JupyterLabAppSettings jupyter_lab_app_settings = 5 [json_name = "jupyter_lab_app_settings"];
+
+    JupyterServerAppSettings jupyter_server_app_settings = 6 [json_name = "jupyter_server_app_settings"];
+
+    KernelGatewayAppSettings kernel_gateway_app_settings = 7 [json_name = "kernel_gateway_app_settings"];
+
+    SpaceStorageSettings space_storage_settings = 8 [json_name = "space_storage_settings"];
+
+    message CustomFileSystemConfig {
+      EfsFileSystemConfig efs_file_system_config = 1 [json_name = "efs_file_system_config"];
+
+      message EfsFileSystemConfig {
+        string file_system_id = 1 [json_name = "file_system_id"];
+
+        string file_system_path = 2 [json_name = "file_system_path"];
+      }
+    }
+
+    message CustomPosixUserConfig {
+      int64 gid = 1;
+
+      int64 uid = 2;
+    }
+
+    message JupyterLabAppSettings {
+      string built_in_lifecycle_config_arn = 1 [json_name = "built_in_lifecycle_config_arn"];
+
+      repeated string lifecycle_config_arns = 2 [json_name = "lifecycle_config_arns"];
+
+      AppLifecycleManagement app_lifecycle_management = 3 [json_name = "app_lifecycle_management"];
+
+      repeated CodeRepository code_repository = 4 [json_name = "code_repository"];
+
+      repeated CustomImage custom_image = 5 [json_name = "custom_image"];
+
+      DefaultResourceSpec default_resource_spec = 6 [json_name = "default_resource_spec"];
+
+      EmrSettings emr_settings = 7 [json_name = "emr_settings"];
+
+      message AppLifecycleManagement {
+        IdleSettings idle_settings = 1 [json_name = "idle_settings"];
+
+        message IdleSettings {
+          int64 idle_timeout_in_minutes = 1 [json_name = "idle_timeout_in_minutes"];
+
+          string lifecycle_management = 2 [json_name = "lifecycle_management"];
+
+          int64 max_idle_timeout_in_minutes = 3 [json_name = "max_idle_timeout_in_minutes"];
+
+          int64 min_idle_timeout_in_minutes = 4 [json_name = "min_idle_timeout_in_minutes"];
+        }
+      }
+
+      message CodeRepository {
+        string repository_url = 1 [json_name = "repository_url"];
+      }
+
+      message CustomImage {
+        string app_image_config_name = 1 [json_name = "app_image_config_name"];
+
+        string image_name = 2 [json_name = "image_name"];
+
+        int64 image_version_number = 3 [json_name = "image_version_number"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+
+      message EmrSettings {
+        repeated string assumable_role_arns = 1 [json_name = "assumable_role_arns"];
+
+        repeated string execution_role_arns = 2 [json_name = "execution_role_arns"];
+      }
+    }
+
+    message JupyterServerAppSettings {
+      repeated string lifecycle_config_arns = 1 [json_name = "lifecycle_config_arns"];
+
+      repeated CodeRepository code_repository = 2 [json_name = "code_repository"];
+
+      DefaultResourceSpec default_resource_spec = 3 [json_name = "default_resource_spec"];
+
+      message CodeRepository {
+        string repository_url = 1 [json_name = "repository_url"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message KernelGatewayAppSettings {
+      repeated string lifecycle_config_arns = 1 [json_name = "lifecycle_config_arns"];
+
+      repeated CustomImage custom_image = 2 [json_name = "custom_image"];
+
+      DefaultResourceSpec default_resource_spec = 3 [json_name = "default_resource_spec"];
+
+      message CustomImage {
+        string app_image_config_name = 1 [json_name = "app_image_config_name"];
+
+        string image_name = 2 [json_name = "image_name"];
+
+        int64 image_version_number = 3 [json_name = "image_version_number"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message SpaceStorageSettings {
+      DefaultEbsStorageSettings default_ebs_storage_settings = 1 [json_name = "default_ebs_storage_settings"];
+
+      message DefaultEbsStorageSettings {
+        int64 default_ebs_volume_size_in_gb = 1 [json_name = "default_ebs_volume_size_in_gb"];
+
+        int64 maximum_ebs_volume_size_in_gb = 2 [json_name = "maximum_ebs_volume_size_in_gb"];
+      }
+    }
+  }
+
+  message DefaultUserSettings {
+    string auto_mount_home_efs = 1 [json_name = "auto_mount_home_efs"];
+
+    string default_landing_uri = 2 [json_name = "default_landing_uri"];
+
+    string execution_role = 3 [json_name = "execution_role"];
+
+    repeated string security_groups = 4 [json_name = "security_groups"];
+
+    string studio_web_portal = 5 [json_name = "studio_web_portal"];
+
+    CanvasAppSettings canvas_app_settings = 6 [json_name = "canvas_app_settings"];
+
+    CodeEditorAppSettings code_editor_app_settings = 7 [json_name = "code_editor_app_settings"];
+
+    repeated CustomFileSystemConfig custom_file_system_config = 8 [json_name = "custom_file_system_config"];
+
+    CustomPosixUserConfig custom_posix_user_config = 9 [json_name = "custom_posix_user_config"];
+
+    JupyterLabAppSettings jupyter_lab_app_settings = 10 [json_name = "jupyter_lab_app_settings"];
+
+    JupyterServerAppSettings jupyter_server_app_settings = 11 [json_name = "jupyter_server_app_settings"];
+
+    KernelGatewayAppSettings kernel_gateway_app_settings = 12 [json_name = "kernel_gateway_app_settings"];
+
+    RSessionAppSettings r_session_app_settings = 13 [json_name = "r_session_app_settings"];
+
+    RStudioServerProAppSettings r_studio_server_pro_app_settings = 14 [json_name = "r_studio_server_pro_app_settings"];
+
+    SharingSettings sharing_settings = 15 [json_name = "sharing_settings"];
+
+    SpaceStorageSettings space_storage_settings = 16 [json_name = "space_storage_settings"];
+
+    StudioWebPortalSettings studio_web_portal_settings = 17 [json_name = "studio_web_portal_settings"];
+
+    TensorBoardAppSettings tensor_board_app_settings = 18 [json_name = "tensor_board_app_settings"];
+
+    message CanvasAppSettings {
+      DirectDeploySettings direct_deploy_settings = 1 [json_name = "direct_deploy_settings"];
+
+      EmrServerlessSettings emr_serverless_settings = 2 [json_name = "emr_serverless_settings"];
+
+      GenerativeAiSettings generative_ai_settings = 3 [json_name = "generative_ai_settings"];
+
+      repeated IdentityProviderOauthSettings identity_provider_oauth_settings = 4 [json_name = "identity_provider_oauth_settings"];
+
+      KendraSettings kendra_settings = 5 [json_name = "kendra_settings"];
+
+      ModelRegisterSettings model_register_settings = 6 [json_name = "model_register_settings"];
+
+      TimeSeriesForecastingSettings time_series_forecasting_settings = 7 [json_name = "time_series_forecasting_settings"];
+
+      WorkspaceSettings workspace_settings = 8 [json_name = "workspace_settings"];
+
+      message DirectDeploySettings {
+        string status = 1;
+      }
+
+      message EmrServerlessSettings {
+        string execution_role_arn = 1 [json_name = "execution_role_arn"];
+
+        string status = 2;
+      }
+
+      message GenerativeAiSettings {
+        string amazon_bedrock_role_arn = 1 [json_name = "amazon_bedrock_role_arn"];
+      }
+
+      message IdentityProviderOauthSettings {
+        string data_source_name = 1 [json_name = "data_source_name"];
+
+        string secret_arn = 2 [json_name = "secret_arn"];
+
+        string status = 3;
+      }
+
+      message KendraSettings {
+        string status = 1;
+      }
+
+      message ModelRegisterSettings {
+        string cross_account_model_register_role_arn = 1 [
+          json_name = "cross_account_model_register_role_arn"
+        ];
+
+        string status = 2;
+      }
+
+      message TimeSeriesForecastingSettings {
+        string amazon_forecast_role_arn = 1 [json_name = "amazon_forecast_role_arn"];
+
+        string status = 2;
+      }
+
+      message WorkspaceSettings {
+        string s3_artifact_path = 1 [json_name = "s3_artifact_path"];
+
+        string s3_kms_key_id = 2 [json_name = "s3_kms_key_id"];
+      }
+    }
+
+    message CodeEditorAppSettings {
+      string built_in_lifecycle_config_arn = 1 [json_name = "built_in_lifecycle_config_arn"];
+
+      repeated string lifecycle_config_arns = 2 [json_name = "lifecycle_config_arns"];
+
+      AppLifecycleManagement app_lifecycle_management = 3 [json_name = "app_lifecycle_management"];
+
+      repeated CustomImage custom_image = 4 [json_name = "custom_image"];
+
+      DefaultResourceSpec default_resource_spec = 5 [json_name = "default_resource_spec"];
+
+      message AppLifecycleManagement {
+        IdleSettings idle_settings = 1 [json_name = "idle_settings"];
+
+        message IdleSettings {
+          int64 idle_timeout_in_minutes = 1 [json_name = "idle_timeout_in_minutes"];
+
+          string lifecycle_management = 2 [json_name = "lifecycle_management"];
+
+          int64 max_idle_timeout_in_minutes = 3 [json_name = "max_idle_timeout_in_minutes"];
+
+          int64 min_idle_timeout_in_minutes = 4 [json_name = "min_idle_timeout_in_minutes"];
+        }
+      }
+
+      message CustomImage {
+        string app_image_config_name = 1 [json_name = "app_image_config_name"];
+
+        string image_name = 2 [json_name = "image_name"];
+
+        int64 image_version_number = 3 [json_name = "image_version_number"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message CustomFileSystemConfig {
+      EfsFileSystemConfig efs_file_system_config = 1 [json_name = "efs_file_system_config"];
+
+      message EfsFileSystemConfig {
+        string file_system_id = 1 [json_name = "file_system_id"];
+
+        string file_system_path = 2 [json_name = "file_system_path"];
+      }
+    }
+
+    message CustomPosixUserConfig {
+      int64 gid = 1;
+
+      int64 uid = 2;
+    }
+
+    message JupyterLabAppSettings {
+      string built_in_lifecycle_config_arn = 1 [json_name = "built_in_lifecycle_config_arn"];
+
+      repeated string lifecycle_config_arns = 2 [json_name = "lifecycle_config_arns"];
+
+      AppLifecycleManagement app_lifecycle_management = 3 [json_name = "app_lifecycle_management"];
+
+      repeated CodeRepository code_repository = 4 [json_name = "code_repository"];
+
+      repeated CustomImage custom_image = 5 [json_name = "custom_image"];
+
+      DefaultResourceSpec default_resource_spec = 6 [json_name = "default_resource_spec"];
+
+      EmrSettings emr_settings = 7 [json_name = "emr_settings"];
+
+      message AppLifecycleManagement {
+        IdleSettings idle_settings = 1 [json_name = "idle_settings"];
+
+        message IdleSettings {
+          int64 idle_timeout_in_minutes = 1 [json_name = "idle_timeout_in_minutes"];
+
+          string lifecycle_management = 2 [json_name = "lifecycle_management"];
+
+          int64 max_idle_timeout_in_minutes = 3 [json_name = "max_idle_timeout_in_minutes"];
+
+          int64 min_idle_timeout_in_minutes = 4 [json_name = "min_idle_timeout_in_minutes"];
+        }
+      }
+
+      message CodeRepository {
+        string repository_url = 1 [json_name = "repository_url"];
+      }
+
+      message CustomImage {
+        string app_image_config_name = 1 [json_name = "app_image_config_name"];
+
+        string image_name = 2 [json_name = "image_name"];
+
+        int64 image_version_number = 3 [json_name = "image_version_number"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+
+      message EmrSettings {
+        repeated string assumable_role_arns = 1 [json_name = "assumable_role_arns"];
+
+        repeated string execution_role_arns = 2 [json_name = "execution_role_arns"];
+      }
+    }
+
+    message JupyterServerAppSettings {
+      repeated string lifecycle_config_arns = 1 [json_name = "lifecycle_config_arns"];
+
+      repeated CodeRepository code_repository = 2 [json_name = "code_repository"];
+
+      DefaultResourceSpec default_resource_spec = 3 [json_name = "default_resource_spec"];
+
+      message CodeRepository {
+        string repository_url = 1 [json_name = "repository_url"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message KernelGatewayAppSettings {
+      repeated string lifecycle_config_arns = 1 [json_name = "lifecycle_config_arns"];
+
+      repeated CustomImage custom_image = 2 [json_name = "custom_image"];
+
+      DefaultResourceSpec default_resource_spec = 3 [json_name = "default_resource_spec"];
+
+      message CustomImage {
+        string app_image_config_name = 1 [json_name = "app_image_config_name"];
+
+        string image_name = 2 [json_name = "image_name"];
+
+        int64 image_version_number = 3 [json_name = "image_version_number"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message RSessionAppSettings {
+      repeated CustomImage custom_image = 1 [json_name = "custom_image"];
+
+      DefaultResourceSpec default_resource_spec = 2 [json_name = "default_resource_spec"];
+
+      message CustomImage {
+        string app_image_config_name = 1 [json_name = "app_image_config_name"];
+
+        string image_name = 2 [json_name = "image_name"];
+
+        int64 image_version_number = 3 [json_name = "image_version_number"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message RStudioServerProAppSettings {
+      string access_status = 1 [json_name = "access_status"];
+
+      string user_group = 2 [json_name = "user_group"];
+    }
+
+    message SharingSettings {
+      string notebook_output_option = 1 [json_name = "notebook_output_option"];
+
+      string s3_kms_key_id = 2 [json_name = "s3_kms_key_id"];
+
+      string s3_output_path = 3 [json_name = "s3_output_path"];
+    }
+
+    message SpaceStorageSettings {
+      DefaultEbsStorageSettings default_ebs_storage_settings = 1 [json_name = "default_ebs_storage_settings"];
+
+      message DefaultEbsStorageSettings {
+        int64 default_ebs_volume_size_in_gb = 1 [json_name = "default_ebs_volume_size_in_gb"];
+
+        int64 maximum_ebs_volume_size_in_gb = 2 [json_name = "maximum_ebs_volume_size_in_gb"];
+      }
+    }
+
+    message StudioWebPortalSettings {
+      repeated string hidden_app_types = 1 [json_name = "hidden_app_types"];
+
+      repeated string hidden_instance_types = 2 [json_name = "hidden_instance_types"];
+
+      repeated string hidden_ml_tools = 3 [json_name = "hidden_ml_tools"];
+    }
+
+    message TensorBoardAppSettings {
+      DefaultResourceSpec default_resource_spec = 1 [json_name = "default_resource_spec"];
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+  }
+
+  message DomainSettings {
+    string execution_role_identity_config = 1 [json_name = "execution_role_identity_config"];
+
+    repeated string security_group_ids = 2 [json_name = "security_group_ids"];
+
+    DockerSettings docker_settings = 3 [json_name = "docker_settings"];
+
+    RStudioServerProDomainSettings r_studio_server_pro_domain_settings = 4 [json_name = "r_studio_server_pro_domain_settings"];
+
+    TrustedIdentityPropagationSettings trusted_identity_propagation_settings = 5 [
+      json_name = "trusted_identity_propagation_settings"
+    ];
+
+    message DockerSettings {
+      string enable_docker_access = 1 [json_name = "enable_docker_access"];
+
+      repeated string vpc_only_trusted_accounts = 2 [json_name = "vpc_only_trusted_accounts"];
+    }
+
+    message RStudioServerProDomainSettings {
+      string domain_execution_role_arn = 1 [json_name = "domain_execution_role_arn"];
+
+      string r_studio_connect_url = 2 [json_name = "r_studio_connect_url"];
+
+      string r_studio_package_manager_url = 3 [json_name = "r_studio_package_manager_url"];
+
+      DefaultResourceSpec default_resource_spec = 4 [json_name = "default_resource_spec"];
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message TrustedIdentityPropagationSettings {
+      string status = 1;
+    }
+  }
+
+  message RetentionPolicy {
+    string home_efs_file_system = 1 [json_name = "home_efs_file_system"];
+  }
+}
+
+// AwsSagemakerEndpoint version is 0
+message AwsSagemakerEndpoint {
+  string arn = 1;
+
+  string endpoint_config_name = 2 [json_name = "endpoint_config_name"];
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  DeploymentConfig deployment_config = 8 [json_name = "deployment_config"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message DeploymentConfig {
+    AutoRollbackConfiguration auto_rollback_configuration = 1 [json_name = "auto_rollback_configuration"];
+
+    BlueGreenUpdatePolicy blue_green_update_policy = 2 [json_name = "blue_green_update_policy"];
+
+    RollingUpdatePolicy rolling_update_policy = 3 [json_name = "rolling_update_policy"];
+
+    message AutoRollbackConfiguration {
+      repeated Alarms alarms = 1;
+
+      message Alarms {
+        string alarm_name = 1 [json_name = "alarm_name"];
+      }
+    }
+
+    message BlueGreenUpdatePolicy {
+      int64 maximum_execution_timeout_in_seconds = 1 [json_name = "maximum_execution_timeout_in_seconds"];
+
+      int64 termination_wait_in_seconds = 2 [json_name = "termination_wait_in_seconds"];
+
+      TrafficRoutingConfiguration traffic_routing_configuration = 3 [json_name = "traffic_routing_configuration"];
+
+      message TrafficRoutingConfiguration {
+        string type = 1;
+
+        int64 wait_interval_in_seconds = 2 [json_name = "wait_interval_in_seconds"];
+
+        CanarySize canary_size = 3 [json_name = "canary_size"];
+
+        LinearStepSize linear_step_size = 4 [json_name = "linear_step_size"];
+
+        message CanarySize {
+          string type = 1;
+
+          int64 value = 2;
+        }
+
+        message LinearStepSize {
+          string type = 1;
+
+          int64 value = 2;
+        }
+      }
+    }
+
+    message RollingUpdatePolicy {
+      int64 maximum_execution_timeout_in_seconds = 1 [json_name = "maximum_execution_timeout_in_seconds"];
+
+      int64 wait_interval_in_seconds = 2 [json_name = "wait_interval_in_seconds"];
+
+      MaximumBatchSize maximum_batch_size = 3 [json_name = "maximum_batch_size"];
+
+      RollbackMaximumBatchSize rollback_maximum_batch_size = 4 [json_name = "rollback_maximum_batch_size"];
+
+      message MaximumBatchSize {
+        string type = 1;
+
+        int64 value = 2;
+      }
+
+      message RollbackMaximumBatchSize {
+        string type = 1;
+
+        int64 value = 2;
+      }
+    }
+  }
+}
+
+// AwsSagemakerEndpointConfiguration version is 0
+message AwsSagemakerEndpointConfiguration {
+  string arn = 1;
+
+  string execution_role_arn = 2 [json_name = "execution_role_arn"];
+
+  string id = 3;
+
+  string kms_key_arn = 4 [json_name = "kms_key_arn"];
+
+  string name = 5;
+
+  string name_prefix = 6 [json_name = "name_prefix"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  AsyncInferenceConfig async_inference_config = 10 [json_name = "async_inference_config"];
+
+  DataCaptureConfig data_capture_config = 11 [json_name = "data_capture_config"];
+
+  repeated ProductionVariants production_variants = 12 [json_name = "production_variants"];
+
+  repeated ShadowProductionVariants shadow_production_variants = 13 [json_name = "shadow_production_variants"];
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message AsyncInferenceConfig {
+    ClientConfig client_config = 1 [json_name = "client_config"];
+
+    OutputConfig output_config = 2 [json_name = "output_config"];
+
+    message ClientConfig {
+      int64 max_concurrent_invocations_per_instance = 1 [
+        json_name = "max_concurrent_invocations_per_instance"
+      ];
+    }
+
+    message OutputConfig {
+      string kms_key_id = 1 [json_name = "kms_key_id"];
+
+      string s3_failure_path = 2 [json_name = "s3_failure_path"];
+
+      string s3_output_path = 3 [json_name = "s3_output_path"];
+
+      NotificationConfig notification_config = 4 [json_name = "notification_config"];
+
+      message NotificationConfig {
+        string error_topic = 1 [json_name = "error_topic"];
+
+        repeated string include_inference_response_in = 2 [json_name = "include_inference_response_in"];
+
+        string success_topic = 3 [json_name = "success_topic"];
+      }
+    }
+  }
+
+  message DataCaptureConfig {
+    string destination_s3_uri = 1 [json_name = "destination_s3_uri"];
+
+    bool enable_capture = 2 [json_name = "enable_capture"];
+
+    int64 initial_sampling_percentage = 3 [json_name = "initial_sampling_percentage"];
+
+    string kms_key_id = 4 [json_name = "kms_key_id"];
+
+    CaptureContentTypeHeader capture_content_type_header = 5 [json_name = "capture_content_type_header"];
+
+    repeated CaptureOptions capture_options = 6 [json_name = "capture_options"];
+
+    message CaptureContentTypeHeader {
+      repeated string csv_content_types = 1 [json_name = "csv_content_types"];
+
+      repeated string json_content_types = 2 [json_name = "json_content_types"];
+    }
+
+    message CaptureOptions {
+      string capture_mode = 1 [json_name = "capture_mode"];
+    }
+  }
+
+  message ProductionVariants {
+    string accelerator_type = 1 [json_name = "accelerator_type"];
+
+    int64 container_startup_health_check_timeout_in_seconds = 2 [
+      json_name = "container_startup_health_check_timeout_in_seconds"
+    ];
+
+    bool enable_ssm_access = 3 [json_name = "enable_ssm_access"];
+
+    string inference_ami_version = 4 [json_name = "inference_ami_version"];
+
+    int64 initial_instance_count = 5 [json_name = "initial_instance_count"];
+
+    int64 initial_variant_weight = 6 [json_name = "initial_variant_weight"];
+
+    string instance_type = 7 [json_name = "instance_type"];
+
+    int64 model_data_download_timeout_in_seconds = 8 [
+      json_name = "model_data_download_timeout_in_seconds"
+    ];
+
+    string model_name = 9 [json_name = "model_name"];
+
+    string variant_name = 10 [json_name = "variant_name"];
+
+    int64 volume_size_in_gb = 11 [json_name = "volume_size_in_gb"];
+
+    CoreDumpConfig core_dump_config = 12 [json_name = "core_dump_config"];
+
+    ManagedInstanceScaling managed_instance_scaling = 13 [json_name = "managed_instance_scaling"];
+
+    repeated RoutingConfig routing_config = 14 [json_name = "routing_config"];
+
+    ServerlessConfig serverless_config = 15 [json_name = "serverless_config"];
+
+    message CoreDumpConfig {
+      string destination_s3_uri = 1 [json_name = "destination_s3_uri"];
+
+      string kms_key_id = 2 [json_name = "kms_key_id"];
+    }
+
+    message ManagedInstanceScaling {
+      int64 max_instance_count = 1 [json_name = "max_instance_count"];
+
+      int64 min_instance_count = 2 [json_name = "min_instance_count"];
+
+      string status = 3;
+    }
+
+    message RoutingConfig {
+      string routing_strategy = 1 [json_name = "routing_strategy"];
+    }
+
+    message ServerlessConfig {
+      int64 max_concurrency = 1 [json_name = "max_concurrency"];
+
+      int64 memory_size_in_mb = 2 [json_name = "memory_size_in_mb"];
+
+      int64 provisioned_concurrency = 3 [json_name = "provisioned_concurrency"];
+    }
+  }
+
+  message ShadowProductionVariants {
+    string accelerator_type = 1 [json_name = "accelerator_type"];
+
+    int64 container_startup_health_check_timeout_in_seconds = 2 [
+      json_name = "container_startup_health_check_timeout_in_seconds"
+    ];
+
+    bool enable_ssm_access = 3 [json_name = "enable_ssm_access"];
+
+    string inference_ami_version = 4 [json_name = "inference_ami_version"];
+
+    int64 initial_instance_count = 5 [json_name = "initial_instance_count"];
+
+    int64 initial_variant_weight = 6 [json_name = "initial_variant_weight"];
+
+    string instance_type = 7 [json_name = "instance_type"];
+
+    int64 model_data_download_timeout_in_seconds = 8 [
+      json_name = "model_data_download_timeout_in_seconds"
+    ];
+
+    string model_name = 9 [json_name = "model_name"];
+
+    string variant_name = 10 [json_name = "variant_name"];
+
+    int64 volume_size_in_gb = 11 [json_name = "volume_size_in_gb"];
+
+    CoreDumpConfig core_dump_config = 12 [json_name = "core_dump_config"];
+
+    ManagedInstanceScaling managed_instance_scaling = 13 [json_name = "managed_instance_scaling"];
+
+    repeated RoutingConfig routing_config = 14 [json_name = "routing_config"];
+
+    ServerlessConfig serverless_config = 15 [json_name = "serverless_config"];
+
+    message CoreDumpConfig {
+      string destination_s3_uri = 1 [json_name = "destination_s3_uri"];
+
+      string kms_key_id = 2 [json_name = "kms_key_id"];
+    }
+
+    message ManagedInstanceScaling {
+      int64 max_instance_count = 1 [json_name = "max_instance_count"];
+
+      int64 min_instance_count = 2 [json_name = "min_instance_count"];
+
+      string status = 3;
+    }
+
+    message RoutingConfig {
+      string routing_strategy = 1 [json_name = "routing_strategy"];
+    }
+
+    message ServerlessConfig {
+      int64 max_concurrency = 1 [json_name = "max_concurrency"];
+
+      int64 memory_size_in_mb = 2 [json_name = "memory_size_in_mb"];
+
+      int64 provisioned_concurrency = 3 [json_name = "provisioned_concurrency"];
+    }
+  }
+}
+
+// AwsSagemakerFeatureGroup version is 0
+message AwsSagemakerFeatureGroup {
+  string arn = 1;
+
+  string description = 2;
+
+  string event_time_feature_name = 3 [json_name = "event_time_feature_name"];
+
+  string feature_group_name = 4 [json_name = "feature_group_name"];
+
+  string id = 5;
+
+  string record_identifier_feature_name = 6 [json_name = "record_identifier_feature_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string role_arn = 8 [json_name = "role_arn"];
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  repeated FeatureDefinition feature_definition = 11 [json_name = "feature_definition"];
+
+  OfflineStoreConfig offline_store_config = 12 [json_name = "offline_store_config"];
+
+  OnlineStoreConfig online_store_config = 13 [json_name = "online_store_config"];
+
+  ThroughputConfig throughput_config = 14 [json_name = "throughput_config"];
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message FeatureDefinition {
+    string collection_type = 1 [json_name = "collection_type"];
+
+    string feature_name = 2 [json_name = "feature_name"];
+
+    string feature_type = 3 [json_name = "feature_type"];
+
+    CollectionConfig collection_config = 4 [json_name = "collection_config"];
+
+    message CollectionConfig {
+      VectorConfig vector_config = 1 [json_name = "vector_config"];
+
+      message VectorConfig {
+        int64 dimension = 1;
+      }
+    }
+  }
+
+  message OfflineStoreConfig {
+    bool disable_glue_table_creation = 1 [json_name = "disable_glue_table_creation"];
+
+    string table_format = 2 [json_name = "table_format"];
+
+    DataCatalogConfig data_catalog_config = 3 [json_name = "data_catalog_config"];
+
+    S3StorageConfig s3_storage_config = 4 [json_name = "s3_storage_config"];
+
+    message DataCatalogConfig {
+      string catalog = 1;
+
+      string database = 2;
+
+      string table_name = 3 [json_name = "table_name"];
+    }
+
+    message S3StorageConfig {
+      string kms_key_id = 1 [json_name = "kms_key_id"];
+
+      string resolved_output_s3_uri = 2 [json_name = "resolved_output_s3_uri"];
+
+      string s3_uri = 3 [json_name = "s3_uri"];
+    }
+  }
+
+  message OnlineStoreConfig {
+    bool enable_online_store = 1 [json_name = "enable_online_store"];
+
+    string storage_type = 2 [json_name = "storage_type"];
+
+    SecurityConfig security_config = 3 [json_name = "security_config"];
+
+    TtlDuration ttl_duration = 4 [json_name = "ttl_duration"];
+
+    message SecurityConfig {
+      string kms_key_id = 1 [json_name = "kms_key_id"];
+    }
+
+    message TtlDuration {
+      string unit = 1;
+
+      int64 value = 2;
+    }
+  }
+
+  message ThroughputConfig {
+    int64 provisioned_read_capacity_units = 1 [json_name = "provisioned_read_capacity_units"];
+
+    int64 provisioned_write_capacity_units = 2 [json_name = "provisioned_write_capacity_units"];
+
+    string throughput_mode = 3 [json_name = "throughput_mode"];
+  }
+}
+
+// AwsSagemakerFlowDefinition version is 0
+message AwsSagemakerFlowDefinition {
+  string arn = 1;
+
+  string flow_definition_name = 2 [json_name = "flow_definition_name"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string role_arn = 5 [json_name = "role_arn"];
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  HumanLoopActivationConfig human_loop_activation_config = 8 [json_name = "human_loop_activation_config"];
+
+  HumanLoopConfig human_loop_config = 9 [json_name = "human_loop_config"];
+
+  HumanLoopRequestSource human_loop_request_source = 10 [json_name = "human_loop_request_source"];
+
+  OutputConfig output_config = 11 [json_name = "output_config"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message HumanLoopActivationConfig {
+    HumanLoopActivationConditionsConfig human_loop_activation_conditions_config = 1 [
+      json_name = "human_loop_activation_conditions_config"
+    ];
+
+    message HumanLoopActivationConditionsConfig {
+      string human_loop_activation_conditions = 1 [json_name = "human_loop_activation_conditions"];
+    }
+  }
+
+  message HumanLoopConfig {
+    string human_task_ui_arn = 1 [json_name = "human_task_ui_arn"];
+
+    int64 task_availability_lifetime_in_seconds = 2 [
+      json_name = "task_availability_lifetime_in_seconds"
+    ];
+
+    int64 task_count = 3 [json_name = "task_count"];
+
+    string task_description = 4 [json_name = "task_description"];
+
+    repeated string task_keywords = 5 [json_name = "task_keywords"];
+
+    int64 task_time_limit_in_seconds = 6 [json_name = "task_time_limit_in_seconds"];
+
+    string task_title = 7 [json_name = "task_title"];
+
+    string workteam_arn = 8 [json_name = "workteam_arn"];
+
+    PublicWorkforceTaskPrice public_workforce_task_price = 9 [json_name = "public_workforce_task_price"];
+
+    message PublicWorkforceTaskPrice {
+      AmountInUsd amount_in_usd = 1 [json_name = "amount_in_usd"];
+
+      message AmountInUsd {
+        int64 cents = 1;
+
+        int64 dollars = 2;
+
+        int64 tenth_fractions_of_a_cent = 3 [json_name = "tenth_fractions_of_a_cent"];
+      }
+    }
+  }
+
+  message HumanLoopRequestSource {
+    string aws_managed_human_loop_request_source = 1 [
+      json_name = "aws_managed_human_loop_request_source"
+    ];
+  }
+
+  message OutputConfig {
+    string kms_key_id = 1 [json_name = "kms_key_id"];
+
+    string s3_output_path = 2 [json_name = "s3_output_path"];
+  }
+}
+
+// AwsSagemakerHub version is 0
+message AwsSagemakerHub {
+  string arn = 1;
+
+  string hub_description = 2 [json_name = "hub_description"];
+
+  string hub_display_name = 3 [json_name = "hub_display_name"];
+
+  string hub_name = 4 [json_name = "hub_name"];
+
+  repeated string hub_search_keywords = 5 [json_name = "hub_search_keywords"];
+
+  string id = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  S3StorageConfig s3_storage_config = 10 [json_name = "s3_storage_config"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message S3StorageConfig {
+    string s3_output_path = 1 [json_name = "s3_output_path"];
+  }
+}
+
+// AwsSagemakerHumanTaskUi version is 0
+message AwsSagemakerHumanTaskUi {
+  string arn = 1;
+
+  string human_task_ui_name = 2 [json_name = "human_task_ui_name"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  map<string, string> tags = 5;
+
+  map<string, string> tags_all = 6 [json_name = "tags_all"];
+
+  UiTemplate ui_template = 7 [json_name = "ui_template"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message UiTemplate {
+    string content = 1;
+
+    string content_sha256 = 2 [json_name = "content_sha256"];
+
+    string url = 3;
+  }
+}
+
+// AwsSagemakerHyperParameterTuningJob version is 0
+message AwsSagemakerHyperParameterTuningJob {
+  string arn = 1;
+
+  string failure_reason = 2 [json_name = "failure_reason"];
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string status = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  repeated Autotune autotune = 8;
+
+  repeated Config config = 9;
+
+  repeated Timeouts timeouts = 10;
+
+  repeated TrainingJobDefinition training_job_definition = 11 [json_name = "training_job_definition"];
+
+  repeated TrainingJobDefinitions training_job_definitions = 12 [json_name = "training_job_definitions"];
+
+  repeated WarmStartConfig warm_start_config = 13 [json_name = "warm_start_config"];
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message Autotune {
+    string mode = 1;
+  }
+
+  message Config {
+    int64 random_seed = 1 [json_name = "random_seed"];
+
+    string strategy = 2;
+
+    string training_job_early_stopping_type = 3 [json_name = "training_job_early_stopping_type"];
+
+    repeated Objective objective = 4;
+
+    repeated ParameterRanges parameter_ranges = 5 [json_name = "parameter_ranges"];
+
+    repeated ResourceLimits resource_limits = 6 [json_name = "resource_limits"];
+
+    repeated StrategyConfig strategy_config = 7 [json_name = "strategy_config"];
+
+    repeated TuningJobCompletionCriteria tuning_job_completion_criteria = 8 [json_name = "tuning_job_completion_criteria"];
+
+    message Objective {
+      string metric_name = 1 [json_name = "metric_name"];
+
+      string type = 2;
+    }
+
+    message ParameterRanges {
+      repeated AutoParameters auto_parameters = 1 [json_name = "auto_parameters"];
+
+      repeated CategoricalParameterRanges categorical_parameter_ranges = 2 [json_name = "categorical_parameter_ranges"];
+
+      repeated ContinuousParameterRanges continuous_parameter_ranges = 3 [json_name = "continuous_parameter_ranges"];
+
+      repeated IntegerParameterRanges integer_parameter_ranges = 4 [json_name = "integer_parameter_ranges"];
+
+      message AutoParameters {
+        string name = 1;
+
+        string value_hint = 2 [json_name = "value_hint"];
+      }
+
+      message CategoricalParameterRanges {
+        string name = 1;
+
+        repeated string values = 2;
+      }
+
+      message ContinuousParameterRanges {
+        string max_value = 1 [json_name = "max_value"];
+
+        string min_value = 2 [json_name = "min_value"];
+
+        string name = 3;
+
+        string scaling_type = 4 [json_name = "scaling_type"];
+      }
+
+      message IntegerParameterRanges {
+        string max_value = 1 [json_name = "max_value"];
+
+        string min_value = 2 [json_name = "min_value"];
+
+        string name = 3;
+
+        string scaling_type = 4 [json_name = "scaling_type"];
+      }
+    }
+
+    message ResourceLimits {
+      int64 max_number_of_training_jobs = 1 [json_name = "max_number_of_training_jobs"];
+
+      int64 max_parallel_training_jobs = 2 [json_name = "max_parallel_training_jobs"];
+
+      int64 max_runtime_in_seconds = 3 [json_name = "max_runtime_in_seconds"];
+    }
+
+    message StrategyConfig {
+      repeated HyperbandStrategyConfig hyperband_strategy_config = 1 [json_name = "hyperband_strategy_config"];
+
+      message HyperbandStrategyConfig {
+        int64 max_resource = 1 [json_name = "max_resource"];
+
+        int64 min_resource = 2 [json_name = "min_resource"];
+      }
+    }
+
+    message TuningJobCompletionCriteria {
+      int64 target_objective_metric_value = 1 [json_name = "target_objective_metric_value"];
+
+      repeated BestObjectiveNotImproving best_objective_not_improving = 2 [json_name = "best_objective_not_improving"];
+
+      repeated ConvergenceDetected convergence_detected = 3 [json_name = "convergence_detected"];
+
+      message BestObjectiveNotImproving {
+        int64 max_number_of_training_jobs_not_improving = 1 [
+          json_name = "max_number_of_training_jobs_not_improving"
+        ];
+      }
+
+      message ConvergenceDetected {
+        string complete_on_convergence = 1 [json_name = "complete_on_convergence"];
+      }
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+
+  message TrainingJobDefinition {
+    string definition_name = 1 [json_name = "definition_name"];
+
+    bool enable_inter_container_traffic_encryption = 2 [
+      json_name = "enable_inter_container_traffic_encryption"
+    ];
+
+    bool enable_managed_spot_training = 3 [json_name = "enable_managed_spot_training"];
+
+    bool enable_network_isolation = 4 [json_name = "enable_network_isolation"];
+
+    map<string, string> environment = 5;
+
+    repeated RetryStrategy retry_strategy = 6 [json_name = "retry_strategy"];
+
+    string role_arn = 7 [json_name = "role_arn"];
+
+    map<string, string> static_hyper_parameters = 8 [json_name = "static_hyper_parameters"];
+
+    repeated AlgorithmSpecification algorithm_specification = 9 [json_name = "algorithm_specification"];
+
+    repeated CheckpointConfig checkpoint_config = 10 [json_name = "checkpoint_config"];
+
+    repeated HyperParameterRanges hyper_parameter_ranges = 11 [json_name = "hyper_parameter_ranges"];
+
+    repeated HyperParameterTuningResourceConfig hyper_parameter_tuning_resource_config = 12 [
+      json_name = "hyper_parameter_tuning_resource_config"
+    ];
+
+    repeated InputDataConfig input_data_config = 13 [json_name = "input_data_config"];
+
+    repeated OutputDataConfig output_data_config = 14 [json_name = "output_data_config"];
+
+    repeated ResourceConfig resource_config = 15 [json_name = "resource_config"];
+
+    repeated StoppingCondition stopping_condition = 16 [json_name = "stopping_condition"];
+
+    repeated TuningObjective tuning_objective = 17 [json_name = "tuning_objective"];
+
+    repeated VpcConfig vpc_config = 18 [json_name = "vpc_config"];
+
+    message RetryStrategy {
+      // maximum_retry_attempts: number
+      int64 maximum_retry_attempts = 1 [json_name = "maximum_retry_attempts"];
+    }
+
+    message AlgorithmSpecification {
+      string algorithm_name = 1 [json_name = "algorithm_name"];
+
+      string training_image = 2 [json_name = "training_image"];
+
+      string training_input_mode = 3 [json_name = "training_input_mode"];
+
+      repeated MetricDefinitions metric_definitions = 4 [json_name = "metric_definitions"];
+
+      message MetricDefinitions {
+        string name = 1;
+
+        string regex = 2;
+      }
+    }
+
+    message CheckpointConfig {
+      string local_path = 1 [json_name = "local_path"];
+
+      string s3_uri = 2 [json_name = "s3_uri"];
+    }
+
+    message HyperParameterRanges {
+      repeated AutoParameters auto_parameters = 1 [json_name = "auto_parameters"];
+
+      repeated CategoricalParameterRanges categorical_parameter_ranges = 2 [json_name = "categorical_parameter_ranges"];
+
+      repeated ContinuousParameterRanges continuous_parameter_ranges = 3 [json_name = "continuous_parameter_ranges"];
+
+      repeated IntegerParameterRanges integer_parameter_ranges = 4 [json_name = "integer_parameter_ranges"];
+
+      message AutoParameters {
+        string name = 1;
+
+        string value_hint = 2 [json_name = "value_hint"];
+      }
+
+      message CategoricalParameterRanges {
+        string name = 1;
+
+        repeated string values = 2;
+      }
+
+      message ContinuousParameterRanges {
+        string max_value = 1 [json_name = "max_value"];
+
+        string min_value = 2 [json_name = "min_value"];
+
+        string name = 3;
+
+        string scaling_type = 4 [json_name = "scaling_type"];
+      }
+
+      message IntegerParameterRanges {
+        string max_value = 1 [json_name = "max_value"];
+
+        string min_value = 2 [json_name = "min_value"];
+
+        string name = 3;
+
+        string scaling_type = 4 [json_name = "scaling_type"];
+      }
+    }
+
+    message HyperParameterTuningResourceConfig {
+      string allocation_strategy = 1 [json_name = "allocation_strategy"];
+
+      int64 instance_count = 2 [json_name = "instance_count"];
+
+      string instance_type = 3 [json_name = "instance_type"];
+
+      string volume_kms_key_id = 4 [json_name = "volume_kms_key_id"];
+
+      int64 volume_size_in_gb = 5 [json_name = "volume_size_in_gb"];
+
+      repeated InstanceConfigs instance_configs = 6 [json_name = "instance_configs"];
+
+      message InstanceConfigs {
+        int64 instance_count = 1 [json_name = "instance_count"];
+
+        string instance_type = 2 [json_name = "instance_type"];
+
+        int64 volume_size_in_gb = 3 [json_name = "volume_size_in_gb"];
+      }
+    }
+
+    message InputDataConfig {
+      string channel_name = 1 [json_name = "channel_name"];
+
+      string compression_type = 2 [json_name = "compression_type"];
+
+      string content_type = 3 [json_name = "content_type"];
+
+      string input_mode = 4 [json_name = "input_mode"];
+
+      string record_wrapper_type = 5 [json_name = "record_wrapper_type"];
+
+      repeated DataSource data_source = 6 [json_name = "data_source"];
+
+      repeated ShuffleConfig shuffle_config = 7 [json_name = "shuffle_config"];
+
+      message DataSource {
+        repeated FileSystemDataSource file_system_data_source = 1 [json_name = "file_system_data_source"];
+
+        repeated S3DataSource s3_data_source = 2 [json_name = "s3_data_source"];
+
+        message FileSystemDataSource {
+          string directory_path = 1 [json_name = "directory_path"];
+
+          string file_system_access_mode = 2 [json_name = "file_system_access_mode"];
+
+          string file_system_id = 3 [json_name = "file_system_id"];
+
+          string file_system_type = 4 [json_name = "file_system_type"];
+        }
+
+        message S3DataSource {
+          repeated string attribute_names = 1 [json_name = "attribute_names"];
+
+          repeated string instance_group_names = 2 [json_name = "instance_group_names"];
+
+          string s3_data_distribution_type = 3 [json_name = "s3_data_distribution_type"];
+
+          string s3_data_type = 4 [json_name = "s3_data_type"];
+
+          string s3_uri = 5 [json_name = "s3_uri"];
+
+          repeated HubAccessConfig hub_access_config = 6 [json_name = "hub_access_config"];
+
+          repeated ModelAccessConfig model_access_config = 7 [json_name = "model_access_config"];
+
+          message HubAccessConfig {
+            string hub_content_arn = 1 [json_name = "hub_content_arn"];
+          }
+
+          message ModelAccessConfig {
+            bool accept_eula = 1 [json_name = "accept_eula"];
+          }
+        }
+      }
+
+      message ShuffleConfig {
+        int64 seed = 1;
+      }
+    }
+
+    message OutputDataConfig {
+      string compression_type = 1 [json_name = "compression_type"];
+
+      string kms_key_id = 2 [json_name = "kms_key_id"];
+
+      string s3_output_path = 3 [json_name = "s3_output_path"];
+    }
+
+    message ResourceConfig {
+      int64 instance_count = 1 [json_name = "instance_count"];
+
+      string instance_type = 2 [json_name = "instance_type"];
+
+      int64 keep_alive_period_in_seconds = 3 [json_name = "keep_alive_period_in_seconds"];
+
+      string training_plan_arn = 4 [json_name = "training_plan_arn"];
+
+      string volume_kms_key_id = 5 [json_name = "volume_kms_key_id"];
+
+      int64 volume_size_in_gb = 6 [json_name = "volume_size_in_gb"];
+
+      repeated InstanceGroups instance_groups = 7 [json_name = "instance_groups"];
+
+      repeated InstancePlacementConfig instance_placement_config = 8 [json_name = "instance_placement_config"];
+
+      message InstanceGroups {
+        int64 instance_count = 1 [json_name = "instance_count"];
+
+        string instance_group_name = 2 [json_name = "instance_group_name"];
+
+        string instance_type = 3 [json_name = "instance_type"];
+      }
+
+      message InstancePlacementConfig {
+        bool enable_multiple_jobs = 1 [json_name = "enable_multiple_jobs"];
+
+        repeated PlacementSpecifications placement_specifications = 2 [json_name = "placement_specifications"];
+
+        message PlacementSpecifications {
+          int64 instance_count = 1 [json_name = "instance_count"];
+
+          string ultra_server_id = 2 [json_name = "ultra_server_id"];
+        }
+      }
+    }
+
+    message StoppingCondition {
+      int64 max_pending_time_in_seconds = 1 [json_name = "max_pending_time_in_seconds"];
+
+      int64 max_runtime_in_seconds = 2 [json_name = "max_runtime_in_seconds"];
+
+      int64 max_wait_time_in_seconds = 3 [json_name = "max_wait_time_in_seconds"];
+    }
+
+    message TuningObjective {
+      string metric_name = 1 [json_name = "metric_name"];
+
+      string type = 2;
+    }
+
+    message VpcConfig {
+      repeated string security_group_ids = 1 [json_name = "security_group_ids"];
+
+      repeated string subnets = 2;
+    }
+  }
+
+  message TrainingJobDefinitions {
+    string definition_name = 1 [json_name = "definition_name"];
+
+    bool enable_inter_container_traffic_encryption = 2 [
+      json_name = "enable_inter_container_traffic_encryption"
+    ];
+
+    bool enable_managed_spot_training = 3 [json_name = "enable_managed_spot_training"];
+
+    bool enable_network_isolation = 4 [json_name = "enable_network_isolation"];
+
+    map<string, string> environment = 5;
+
+    repeated RetryStrategy retry_strategy = 6 [json_name = "retry_strategy"];
+
+    string role_arn = 7 [json_name = "role_arn"];
+
+    map<string, string> static_hyper_parameters = 8 [json_name = "static_hyper_parameters"];
+
+    repeated AlgorithmSpecification algorithm_specification = 9 [json_name = "algorithm_specification"];
+
+    repeated CheckpointConfig checkpoint_config = 10 [json_name = "checkpoint_config"];
+
+    repeated HyperParameterRanges hyper_parameter_ranges = 11 [json_name = "hyper_parameter_ranges"];
+
+    repeated HyperParameterTuningResourceConfig hyper_parameter_tuning_resource_config = 12 [
+      json_name = "hyper_parameter_tuning_resource_config"
+    ];
+
+    repeated InputDataConfig input_data_config = 13 [json_name = "input_data_config"];
+
+    repeated OutputDataConfig output_data_config = 14 [json_name = "output_data_config"];
+
+    repeated ResourceConfig resource_config = 15 [json_name = "resource_config"];
+
+    repeated StoppingCondition stopping_condition = 16 [json_name = "stopping_condition"];
+
+    repeated TuningObjective tuning_objective = 17 [json_name = "tuning_objective"];
+
+    repeated VpcConfig vpc_config = 18 [json_name = "vpc_config"];
+
+    message RetryStrategy {
+      // maximum_retry_attempts: number
+      int64 maximum_retry_attempts = 1 [json_name = "maximum_retry_attempts"];
+    }
+
+    message AlgorithmSpecification {
+      string algorithm_name = 1 [json_name = "algorithm_name"];
+
+      string training_image = 2 [json_name = "training_image"];
+
+      string training_input_mode = 3 [json_name = "training_input_mode"];
+
+      repeated MetricDefinitions metric_definitions = 4 [json_name = "metric_definitions"];
+
+      message MetricDefinitions {
+        string name = 1;
+
+        string regex = 2;
+      }
+    }
+
+    message CheckpointConfig {
+      string local_path = 1 [json_name = "local_path"];
+
+      string s3_uri = 2 [json_name = "s3_uri"];
+    }
+
+    message HyperParameterRanges {
+      repeated AutoParameters auto_parameters = 1 [json_name = "auto_parameters"];
+
+      repeated CategoricalParameterRanges categorical_parameter_ranges = 2 [json_name = "categorical_parameter_ranges"];
+
+      repeated ContinuousParameterRanges continuous_parameter_ranges = 3 [json_name = "continuous_parameter_ranges"];
+
+      repeated IntegerParameterRanges integer_parameter_ranges = 4 [json_name = "integer_parameter_ranges"];
+
+      message AutoParameters {
+        string name = 1;
+
+        string value_hint = 2 [json_name = "value_hint"];
+      }
+
+      message CategoricalParameterRanges {
+        string name = 1;
+
+        repeated string values = 2;
+      }
+
+      message ContinuousParameterRanges {
+        string max_value = 1 [json_name = "max_value"];
+
+        string min_value = 2 [json_name = "min_value"];
+
+        string name = 3;
+
+        string scaling_type = 4 [json_name = "scaling_type"];
+      }
+
+      message IntegerParameterRanges {
+        string max_value = 1 [json_name = "max_value"];
+
+        string min_value = 2 [json_name = "min_value"];
+
+        string name = 3;
+
+        string scaling_type = 4 [json_name = "scaling_type"];
+      }
+    }
+
+    message HyperParameterTuningResourceConfig {
+      string allocation_strategy = 1 [json_name = "allocation_strategy"];
+
+      int64 instance_count = 2 [json_name = "instance_count"];
+
+      string instance_type = 3 [json_name = "instance_type"];
+
+      string volume_kms_key_id = 4 [json_name = "volume_kms_key_id"];
+
+      int64 volume_size_in_gb = 5 [json_name = "volume_size_in_gb"];
+
+      repeated InstanceConfigs instance_configs = 6 [json_name = "instance_configs"];
+
+      message InstanceConfigs {
+        int64 instance_count = 1 [json_name = "instance_count"];
+
+        string instance_type = 2 [json_name = "instance_type"];
+
+        int64 volume_size_in_gb = 3 [json_name = "volume_size_in_gb"];
+      }
+    }
+
+    message InputDataConfig {
+      string channel_name = 1 [json_name = "channel_name"];
+
+      string compression_type = 2 [json_name = "compression_type"];
+
+      string content_type = 3 [json_name = "content_type"];
+
+      string input_mode = 4 [json_name = "input_mode"];
+
+      string record_wrapper_type = 5 [json_name = "record_wrapper_type"];
+
+      repeated DataSource data_source = 6 [json_name = "data_source"];
+
+      repeated ShuffleConfig shuffle_config = 7 [json_name = "shuffle_config"];
+
+      message DataSource {
+        repeated FileSystemDataSource file_system_data_source = 1 [json_name = "file_system_data_source"];
+
+        repeated S3DataSource s3_data_source = 2 [json_name = "s3_data_source"];
+
+        message FileSystemDataSource {
+          string directory_path = 1 [json_name = "directory_path"];
+
+          string file_system_access_mode = 2 [json_name = "file_system_access_mode"];
+
+          string file_system_id = 3 [json_name = "file_system_id"];
+
+          string file_system_type = 4 [json_name = "file_system_type"];
+        }
+
+        message S3DataSource {
+          repeated string attribute_names = 1 [json_name = "attribute_names"];
+
+          repeated string instance_group_names = 2 [json_name = "instance_group_names"];
+
+          string s3_data_distribution_type = 3 [json_name = "s3_data_distribution_type"];
+
+          string s3_data_type = 4 [json_name = "s3_data_type"];
+
+          string s3_uri = 5 [json_name = "s3_uri"];
+
+          repeated HubAccessConfig hub_access_config = 6 [json_name = "hub_access_config"];
+
+          repeated ModelAccessConfig model_access_config = 7 [json_name = "model_access_config"];
+
+          message HubAccessConfig {
+            string hub_content_arn = 1 [json_name = "hub_content_arn"];
+          }
+
+          message ModelAccessConfig {
+            bool accept_eula = 1 [json_name = "accept_eula"];
+          }
+        }
+      }
+
+      message ShuffleConfig {
+        int64 seed = 1;
+      }
+    }
+
+    message OutputDataConfig {
+      string compression_type = 1 [json_name = "compression_type"];
+
+      string kms_key_id = 2 [json_name = "kms_key_id"];
+
+      string s3_output_path = 3 [json_name = "s3_output_path"];
+    }
+
+    message ResourceConfig {
+      int64 instance_count = 1 [json_name = "instance_count"];
+
+      string instance_type = 2 [json_name = "instance_type"];
+
+      int64 keep_alive_period_in_seconds = 3 [json_name = "keep_alive_period_in_seconds"];
+
+      string training_plan_arn = 4 [json_name = "training_plan_arn"];
+
+      string volume_kms_key_id = 5 [json_name = "volume_kms_key_id"];
+
+      int64 volume_size_in_gb = 6 [json_name = "volume_size_in_gb"];
+
+      repeated InstanceGroups instance_groups = 7 [json_name = "instance_groups"];
+
+      repeated InstancePlacementConfig instance_placement_config = 8 [json_name = "instance_placement_config"];
+
+      message InstanceGroups {
+        int64 instance_count = 1 [json_name = "instance_count"];
+
+        string instance_group_name = 2 [json_name = "instance_group_name"];
+
+        string instance_type = 3 [json_name = "instance_type"];
+      }
+
+      message InstancePlacementConfig {
+        bool enable_multiple_jobs = 1 [json_name = "enable_multiple_jobs"];
+
+        repeated PlacementSpecifications placement_specifications = 2 [json_name = "placement_specifications"];
+
+        message PlacementSpecifications {
+          int64 instance_count = 1 [json_name = "instance_count"];
+
+          string ultra_server_id = 2 [json_name = "ultra_server_id"];
+        }
+      }
+    }
+
+    message StoppingCondition {
+      int64 max_pending_time_in_seconds = 1 [json_name = "max_pending_time_in_seconds"];
+
+      int64 max_runtime_in_seconds = 2 [json_name = "max_runtime_in_seconds"];
+
+      int64 max_wait_time_in_seconds = 3 [json_name = "max_wait_time_in_seconds"];
+    }
+
+    message TuningObjective {
+      string metric_name = 1 [json_name = "metric_name"];
+
+      string type = 2;
+    }
+
+    message VpcConfig {
+      repeated string security_group_ids = 1 [json_name = "security_group_ids"];
+
+      repeated string subnets = 2;
+    }
+  }
+
+  message WarmStartConfig {
+    string warm_start_type = 1 [json_name = "warm_start_type"];
+
+    repeated ParentHyperParameterTuningJobs parent_hyper_parameter_tuning_jobs = 2 [json_name = "parent_hyper_parameter_tuning_jobs"];
+
+    message ParentHyperParameterTuningJobs {
+      string name = 1;
+    }
+  }
+}
+
+// AwsSagemakerImage version is 0
+message AwsSagemakerImage {
+  string arn = 1;
+
+  string description = 2;
+
+  string display_name = 3 [json_name = "display_name"];
+
+  string id = 4;
+
+  string image_name = 5 [json_name = "image_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string role_arn = 7 [json_name = "role_arn"];
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsSagemakerImageVersion version is 1
+message AwsSagemakerImageVersion {
+  repeated string aliases = 1;
+
+  string arn = 2;
+
+  string base_image = 3 [json_name = "base_image"];
+
+  string container_image = 4 [json_name = "container_image"];
+
+  bool horovod = 5;
+
+  string id = 6;
+
+  string image_arn = 7 [json_name = "image_arn"];
+
+  string image_name = 8 [json_name = "image_name"];
+
+  string job_type = 9 [json_name = "job_type"];
+
+  string ml_framework = 10 [json_name = "ml_framework"];
+
+  string processor = 11;
+
+  string programming_lang = 12 [json_name = "programming_lang"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  string release_notes = 14 [json_name = "release_notes"];
+
+  string vendor_guidance = 15 [json_name = "vendor_guidance"];
+
+  int64 version = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+}
+
+// AwsSagemakerLabelingJob version is 0
+message AwsSagemakerLabelingJob {
+  string failure_reason = 1 [json_name = "failure_reason"];
+
+  string job_reference_code = 2 [json_name = "job_reference_code"];
+
+  string label_attribute_name = 3 [json_name = "label_attribute_name"];
+
+  string label_category_config_s3_uri = 4 [json_name = "label_category_config_s3_uri"];
+
+  repeated LabelCounters label_counters = 5 [json_name = "label_counters"];
+
+  string labeling_job_arn = 6 [json_name = "labeling_job_arn"];
+
+  string labeling_job_name = 7 [json_name = "labeling_job_name"];
+
+  string labeling_job_status = 8 [json_name = "labeling_job_status"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  string role_arn = 10 [json_name = "role_arn"];
+
+  repeated StoppingConditions stopping_conditions = 11 [json_name = "stopping_conditions"];
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  repeated HumanTaskConfig human_task_config = 14 [json_name = "human_task_config"];
+
+  repeated InputConfig input_config = 15 [json_name = "input_config"];
+
+  repeated LabelingJobAlgorithmsConfig labeling_job_algorithms_config = 16 [json_name = "labeling_job_algorithms_config"];
+
+  repeated OutputConfig output_config = 17 [json_name = "output_config"];
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+
+  message LabelCounters {
+    // failed_non_retryable_error: number
+    int64 failed_non_retryable_error = 1 [json_name = "failed_non_retryable_error"];
+
+    // human_labeled: number
+    int64 human_labeled = 2 [json_name = "human_labeled"];
+
+    // machine_labeled: number
+    int64 machine_labeled = 3 [json_name = "machine_labeled"];
+
+    // total_labeled: number
+    int64 total_labeled = 4 [json_name = "total_labeled"];
+
+    // unlabeled: number
+    int64 unlabeled = 5;
+  }
+
+  message StoppingConditions {
+    // max_human_labeled_object_count: number
+    int64 max_human_labeled_object_count = 1 [json_name = "max_human_labeled_object_count"];
+
+    // max_percentage_of_input_dataset_labeled: number
+    int64 max_percentage_of_input_dataset_labeled = 2 [
+      json_name = "max_percentage_of_input_dataset_labeled"
+    ];
+  }
+
+  message HumanTaskConfig {
+    int64 max_concurrent_task_count = 1 [json_name = "max_concurrent_task_count"];
+
+    int64 number_of_human_workers_per_data_object = 2 [
+      json_name = "number_of_human_workers_per_data_object"
+    ];
+
+    string pre_human_task_lambda_arn = 3 [json_name = "pre_human_task_lambda_arn"];
+
+    int64 task_availability_lifetime_in_seconds = 4 [
+      json_name = "task_availability_lifetime_in_seconds"
+    ];
+
+    string task_description = 5 [json_name = "task_description"];
+
+    repeated string task_keywords = 6 [json_name = "task_keywords"];
+
+    int64 task_time_limit_in_seconds = 7 [json_name = "task_time_limit_in_seconds"];
+
+    string task_title = 8 [json_name = "task_title"];
+
+    string workteam_arn = 9 [json_name = "workteam_arn"];
+
+    repeated AnnotationConsolidationConfig annotation_consolidation_config = 10 [json_name = "annotation_consolidation_config"];
+
+    repeated PublicWorkforceTaskPrice public_workforce_task_price = 11 [json_name = "public_workforce_task_price"];
+
+    repeated UiConfig ui_config = 12 [json_name = "ui_config"];
+
+    message AnnotationConsolidationConfig {
+      string annotation_consolidation_lambda_arn = 1 [json_name = "annotation_consolidation_lambda_arn"];
+    }
+
+    message PublicWorkforceTaskPrice {
+      repeated AmountInUsd amount_in_usd = 1 [json_name = "amount_in_usd"];
+
+      message AmountInUsd {
+        int64 cents = 1;
+
+        int64 dollars = 2;
+
+        int64 tenth_fractions_of_a_cent = 3 [json_name = "tenth_fractions_of_a_cent"];
+      }
+    }
+
+    message UiConfig {
+      string human_task_ui_arn = 1 [json_name = "human_task_ui_arn"];
+
+      string ui_template_s3_uri = 2 [json_name = "ui_template_s3_uri"];
+    }
+  }
+
+  message InputConfig {
+    repeated DataAttributes data_attributes = 1 [json_name = "data_attributes"];
+
+    repeated DataSource data_source = 2 [json_name = "data_source"];
+
+    message DataAttributes {
+      repeated string content_classifiers = 1 [json_name = "content_classifiers"];
+    }
+
+    message DataSource {
+      repeated S3DataSource s3_data_source = 1 [json_name = "s3_data_source"];
+
+      repeated SnsDataSource sns_data_source = 2 [json_name = "sns_data_source"];
+
+      message S3DataSource {
+        string manifest_s3_uri = 1 [json_name = "manifest_s3_uri"];
+      }
+
+      message SnsDataSource {
+        string sns_topic_arn = 1 [json_name = "sns_topic_arn"];
+      }
+    }
+  }
+
+  message LabelingJobAlgorithmsConfig {
+    string initial_active_learning_model_arn = 1 [json_name = "initial_active_learning_model_arn"];
+
+    string labeling_job_algorithm_specification_arn = 2 [
+      json_name = "labeling_job_algorithm_specification_arn"
+    ];
+
+    repeated LabelingJobResourceConfig labeling_job_resource_config = 3 [json_name = "labeling_job_resource_config"];
+
+    message LabelingJobResourceConfig {
+      string volume_kms_key_id = 1 [json_name = "volume_kms_key_id"];
+
+      repeated VpcConfig vpc_config = 2 [json_name = "vpc_config"];
+
+      message VpcConfig {
+        repeated string security_group_ids = 1 [json_name = "security_group_ids"];
+
+        repeated string subnets = 2;
+      }
+    }
+  }
+
+  message OutputConfig {
+    string kms_key_id = 1 [json_name = "kms_key_id"];
+
+    string s3_output_path = 2 [json_name = "s3_output_path"];
+
+    string sns_topic_arn = 3 [json_name = "sns_topic_arn"];
+  }
+}
+
+// AwsSagemakerMlflowApp version is 0
+message AwsSagemakerMlflowApp {
+  string account_default_status = 1 [json_name = "account_default_status"];
+
+  string arn = 2;
+
+  string artifact_store_uri = 3 [json_name = "artifact_store_uri"];
+
+  repeated string default_domain_id_list = 4 [json_name = "default_domain_id_list"];
+
+  string model_registration_mode = 5 [json_name = "model_registration_mode"];
+
+  string name = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string role_arn = 8 [json_name = "role_arn"];
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  string weekly_maintenance_window_start = 11 [json_name = "weekly_maintenance_window_start"];
+
+  repeated Timeouts timeouts = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsSagemakerMlflowTrackingServer version is 0
+message AwsSagemakerMlflowTrackingServer {
+  string arn = 1;
+
+  string artifact_store_uri = 2 [json_name = "artifact_store_uri"];
+
+  bool automatic_model_registration = 3 [json_name = "automatic_model_registration"];
+
+  string id = 4;
+
+  string mlflow_version = 5 [json_name = "mlflow_version"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string role_arn = 7 [json_name = "role_arn"];
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  string tracking_server_name = 10 [json_name = "tracking_server_name"];
+
+  string tracking_server_size = 11 [json_name = "tracking_server_size"];
+
+  string tracking_server_url = 12 [json_name = "tracking_server_url"];
+
+  string weekly_maintenance_window_start = 13 [json_name = "weekly_maintenance_window_start"];
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+}
+
+// AwsSagemakerModel version is 0
+message AwsSagemakerModel {
+  string arn = 1;
+
+  bool enable_network_isolation = 2 [json_name = "enable_network_isolation"];
+
+  string execution_role_arn = 3 [json_name = "execution_role_arn"];
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  repeated Container container = 9;
+
+  InferenceExecutionConfig inference_execution_config = 10 [json_name = "inference_execution_config"];
+
+  PrimaryContainer primary_container = 11 [json_name = "primary_container"];
+
+  VpcConfig vpc_config = 12 [json_name = "vpc_config"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message Container {
+    string container_hostname = 1 [json_name = "container_hostname"];
+
+    map<string, string> environment = 2;
+
+    string image = 3;
+
+    string inference_specification_name = 4 [json_name = "inference_specification_name"];
+
+    string mode = 5;
+
+    string model_data_url = 6 [json_name = "model_data_url"];
+
+    string model_package_name = 7 [json_name = "model_package_name"];
+
+    repeated AdditionalModelDataSource additional_model_data_source = 8 [json_name = "additional_model_data_source"];
+
+    ImageConfig image_config = 9 [json_name = "image_config"];
+
+    ModelDataSource model_data_source = 10 [json_name = "model_data_source"];
+
+    MultiModelConfig multi_model_config = 11 [json_name = "multi_model_config"];
+
+    message AdditionalModelDataSource {
+      string channel_name = 1 [json_name = "channel_name"];
+
+      repeated S3DataSource s3_data_source = 2 [json_name = "s3_data_source"];
+
+      message S3DataSource {
+        string compression_type = 1 [json_name = "compression_type"];
+
+        string s3_data_type = 2 [json_name = "s3_data_type"];
+
+        string s3_uri = 3 [json_name = "s3_uri"];
+
+        ModelAccessConfig model_access_config = 4 [json_name = "model_access_config"];
+
+        message ModelAccessConfig {
+          bool accept_eula = 1 [json_name = "accept_eula"];
+        }
+      }
+    }
+
+    message ImageConfig {
+      string repository_access_mode = 1 [json_name = "repository_access_mode"];
+
+      RepositoryAuthConfig repository_auth_config = 2 [json_name = "repository_auth_config"];
+
+      message RepositoryAuthConfig {
+        string repository_credentials_provider_arn = 1 [json_name = "repository_credentials_provider_arn"];
+      }
+    }
+
+    message ModelDataSource {
+      repeated S3DataSource s3_data_source = 1 [json_name = "s3_data_source"];
+
+      message S3DataSource {
+        string compression_type = 1 [json_name = "compression_type"];
+
+        string s3_data_type = 2 [json_name = "s3_data_type"];
+
+        string s3_uri = 3 [json_name = "s3_uri"];
+
+        ModelAccessConfig model_access_config = 4 [json_name = "model_access_config"];
+
+        message ModelAccessConfig {
+          bool accept_eula = 1 [json_name = "accept_eula"];
+        }
+      }
+    }
+
+    message MultiModelConfig {
+      string model_cache_setting = 1 [json_name = "model_cache_setting"];
+    }
+  }
+
+  message InferenceExecutionConfig {
+    string mode = 1;
+  }
+
+  message PrimaryContainer {
+    string container_hostname = 1 [json_name = "container_hostname"];
+
+    map<string, string> environment = 2;
+
+    string image = 3;
+
+    string inference_specification_name = 4 [json_name = "inference_specification_name"];
+
+    string mode = 5;
+
+    string model_data_url = 6 [json_name = "model_data_url"];
+
+    string model_package_name = 7 [json_name = "model_package_name"];
+
+    repeated AdditionalModelDataSource additional_model_data_source = 8 [json_name = "additional_model_data_source"];
+
+    ImageConfig image_config = 9 [json_name = "image_config"];
+
+    ModelDataSource model_data_source = 10 [json_name = "model_data_source"];
+
+    MultiModelConfig multi_model_config = 11 [json_name = "multi_model_config"];
+
+    message AdditionalModelDataSource {
+      string channel_name = 1 [json_name = "channel_name"];
+
+      repeated S3DataSource s3_data_source = 2 [json_name = "s3_data_source"];
+
+      message S3DataSource {
+        string compression_type = 1 [json_name = "compression_type"];
+
+        string s3_data_type = 2 [json_name = "s3_data_type"];
+
+        string s3_uri = 3 [json_name = "s3_uri"];
+
+        ModelAccessConfig model_access_config = 4 [json_name = "model_access_config"];
+
+        message ModelAccessConfig {
+          bool accept_eula = 1 [json_name = "accept_eula"];
+        }
+      }
+    }
+
+    message ImageConfig {
+      string repository_access_mode = 1 [json_name = "repository_access_mode"];
+
+      RepositoryAuthConfig repository_auth_config = 2 [json_name = "repository_auth_config"];
+
+      message RepositoryAuthConfig {
+        string repository_credentials_provider_arn = 1 [json_name = "repository_credentials_provider_arn"];
+      }
+    }
+
+    message ModelDataSource {
+      repeated S3DataSource s3_data_source = 1 [json_name = "s3_data_source"];
+
+      message S3DataSource {
+        string compression_type = 1 [json_name = "compression_type"];
+
+        string s3_data_type = 2 [json_name = "s3_data_type"];
+
+        string s3_uri = 3 [json_name = "s3_uri"];
+
+        ModelAccessConfig model_access_config = 4 [json_name = "model_access_config"];
+
+        message ModelAccessConfig {
+          bool accept_eula = 1 [json_name = "accept_eula"];
+        }
+      }
+    }
+
+    message MultiModelConfig {
+      string model_cache_setting = 1 [json_name = "model_cache_setting"];
+    }
+  }
+
+  message VpcConfig {
+    repeated string security_group_ids = 1 [json_name = "security_group_ids"];
+
+    repeated string subnets = 2;
+  }
+}
+
+// AwsSagemakerModelCard version is 0
+message AwsSagemakerModelCard {
+  string content = 1;
+
+  string model_card_arn = 2 [json_name = "model_card_arn"];
+
+  string model_card_name = 3 [json_name = "model_card_name"];
+
+  string model_card_status = 4 [json_name = "model_card_status"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  repeated SecurityConfig security_config = 8 [json_name = "security_config"];
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message SecurityConfig {
+    string kms_key_id = 1 [json_name = "kms_key_id"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 1;
+  }
+}
+
+// AwsSagemakerModelCardExportJob version is 0
+message AwsSagemakerModelCardExportJob {
+  repeated ExportArtifacts export_artifacts = 1 [json_name = "export_artifacts"];
+
+  string model_card_export_job_arn = 2 [json_name = "model_card_export_job_arn"];
+
+  string model_card_export_job_name = 3 [json_name = "model_card_export_job_name"];
+
+  string model_card_name = 4 [json_name = "model_card_name"];
+
+  int64 model_card_version = 5 [json_name = "model_card_version"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  repeated OutputConfig output_config = 7 [json_name = "output_config"];
+
+  repeated Timeouts timeouts = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message ExportArtifacts {
+    // s3_export_artifacts: string
+    string s3_export_artifacts = 1 [json_name = "s3_export_artifacts"];
+  }
+
+  message OutputConfig {
+    string s3_output_path = 1 [json_name = "s3_output_path"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+  }
+}
+
+// AwsSagemakerModelPackageGroup version is 0
+message AwsSagemakerModelPackageGroup {
+  string arn = 1;
+
+  string id = 2;
+
+  string model_package_group_description = 3 [json_name = "model_package_group_description"];
+
+  string model_package_group_name = 4 [json_name = "model_package_group_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsSagemakerModelPackageGroupPolicy version is 0
+message AwsSagemakerModelPackageGroupPolicy {
+  string id = 1;
+
+  string model_package_group_name = 2 [json_name = "model_package_group_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string resource_policy = 4 [json_name = "resource_policy"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsSagemakerMonitoringSchedule version is 0
+message AwsSagemakerMonitoringSchedule {
+  string arn = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  map<string, string> tags = 5;
+
+  map<string, string> tags_all = 6 [json_name = "tags_all"];
+
+  MonitoringScheduleConfig monitoring_schedule_config = 7 [json_name = "monitoring_schedule_config"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message MonitoringScheduleConfig {
+    string monitoring_job_definition_name = 1 [json_name = "monitoring_job_definition_name"];
+
+    string monitoring_type = 2 [json_name = "monitoring_type"];
+
+    MonitoringJobDefinition monitoring_job_definition = 3 [json_name = "monitoring_job_definition"];
+
+    ScheduleConfig schedule_config = 4 [json_name = "schedule_config"];
+
+    message MonitoringJobDefinition {
+      map<string, string> environment = 1;
+
+      string role_arn = 2 [json_name = "role_arn"];
+
+      Baseline baseline = 3;
+
+      MonitoringAppSpecification monitoring_app_specification = 4 [json_name = "monitoring_app_specification"];
+
+      MonitoringInputs monitoring_inputs = 5 [json_name = "monitoring_inputs"];
+
+      MonitoringOutputConfig monitoring_output_config = 6 [json_name = "monitoring_output_config"];
+
+      MonitoringResources monitoring_resources = 7 [json_name = "monitoring_resources"];
+
+      NetworkConfig network_config = 8 [json_name = "network_config"];
+
+      repeated StoppingCondition stopping_condition = 9 [json_name = "stopping_condition"];
+
+      message Baseline {
+        string baselining_job_name = 1 [json_name = "baselining_job_name"];
+
+        ConstraintsResource constraints_resource = 2 [json_name = "constraints_resource"];
+
+        StatisticsResource statistics_resource = 3 [json_name = "statistics_resource"];
+
+        message ConstraintsResource {
+          string s3_uri = 1 [json_name = "s3_uri"];
+        }
+
+        message StatisticsResource {
+          string s3_uri = 1 [json_name = "s3_uri"];
+        }
+      }
+
+      message MonitoringAppSpecification {
+        repeated string container_arguments = 1 [json_name = "container_arguments"];
+
+        repeated string container_entrypoint = 2 [json_name = "container_entrypoint"];
+
+        string image_uri = 3 [json_name = "image_uri"];
+
+        string post_analytics_processor_source_uri = 4 [json_name = "post_analytics_processor_source_uri"];
+
+        string record_preprocessor_source_uri = 5 [json_name = "record_preprocessor_source_uri"];
+      }
+
+      message MonitoringInputs {
+        BatchTransformInput batch_transform_input = 1 [json_name = "batch_transform_input"];
+
+        EndpointInput endpoint_input = 2 [json_name = "endpoint_input"];
+
+        message BatchTransformInput {
+          string data_captured_destination_s3_uri = 1 [json_name = "data_captured_destination_s3_uri"];
+
+          string end_time_offset = 2 [json_name = "end_time_offset"];
+
+          string exclude_features_attribute = 3 [json_name = "exclude_features_attribute"];
+
+          string features_attribute = 4 [json_name = "features_attribute"];
+
+          string inference_attribute = 5 [json_name = "inference_attribute"];
+
+          string local_path = 6 [json_name = "local_path"];
+
+          string probability_attribute = 7 [json_name = "probability_attribute"];
+
+          int64 probability_threshold_attribute = 8 [json_name = "probability_threshold_attribute"];
+
+          string s3_data_distribution_type = 9 [json_name = "s3_data_distribution_type"];
+
+          string s3_input_mode = 10 [json_name = "s3_input_mode"];
+
+          string start_time_offset = 11 [json_name = "start_time_offset"];
+
+          DatasetFormat dataset_format = 12 [json_name = "dataset_format"];
+
+          message DatasetFormat {
+            Csv csv = 1;
+
+            Json json = 2;
+
+            message Csv {
+              bool header = 1;
+            }
+
+            message Json {
+              bool line = 1;
+            }
+          }
+        }
+
+        message EndpointInput {
+          string end_time_offset = 1 [json_name = "end_time_offset"];
+
+          string endpoint_name = 2 [json_name = "endpoint_name"];
+
+          string exclude_features_attribute = 3 [json_name = "exclude_features_attribute"];
+
+          string features_attribute = 4 [json_name = "features_attribute"];
+
+          string inference_attribute = 5 [json_name = "inference_attribute"];
+
+          string local_path = 6 [json_name = "local_path"];
+
+          string probability_attribute = 7 [json_name = "probability_attribute"];
+
+          int64 probability_threshold_attribute = 8 [json_name = "probability_threshold_attribute"];
+
+          string s3_data_distribution_type = 9 [json_name = "s3_data_distribution_type"];
+
+          string s3_input_mode = 10 [json_name = "s3_input_mode"];
+
+          string start_time_offset = 11 [json_name = "start_time_offset"];
+        }
+      }
+
+      message MonitoringOutputConfig {
+        string kms_key_id = 1 [json_name = "kms_key_id"];
+
+        MonitoringOutputs monitoring_outputs = 2 [json_name = "monitoring_outputs"];
+
+        message MonitoringOutputs {
+          S3Output s3_output = 1 [json_name = "s3_output"];
+
+          message S3Output {
+            string local_path = 1 [json_name = "local_path"];
+
+            string s3_upload_mode = 2 [json_name = "s3_upload_mode"];
+
+            string s3_uri = 3 [json_name = "s3_uri"];
+          }
+        }
+      }
+
+      message MonitoringResources {
+        ClusterConfig cluster_config = 1 [json_name = "cluster_config"];
+
+        message ClusterConfig {
+          int64 instance_count = 1 [json_name = "instance_count"];
+
+          string instance_type = 2 [json_name = "instance_type"];
+
+          string volume_kms_key_id = 3 [json_name = "volume_kms_key_id"];
+
+          int64 volume_size_in_gb = 4 [json_name = "volume_size_in_gb"];
+        }
+      }
+
+      message NetworkConfig {
+        bool enable_inter_container_traffic_encryption = 1 [
+          json_name = "enable_inter_container_traffic_encryption"
+        ];
+
+        bool enable_network_isolation = 2 [json_name = "enable_network_isolation"];
+
+        VpcConfig vpc_config = 3 [json_name = "vpc_config"];
+
+        message VpcConfig {
+          repeated string security_group_ids = 1 [json_name = "security_group_ids"];
+
+          repeated string subnets = 2;
+        }
+      }
+
+      message StoppingCondition {
+        int64 max_runtime_in_seconds = 1 [json_name = "max_runtime_in_seconds"];
+      }
+    }
+
+    message ScheduleConfig {
+      string schedule_expression = 1 [json_name = "schedule_expression"];
+    }
+  }
+}
+
+// AwsSagemakerNotebookInstance version is 0
+message AwsSagemakerNotebookInstance {
+  repeated string additional_code_repositories = 1 [json_name = "additional_code_repositories"];
+
+  string arn = 2;
+
+  string default_code_repository = 3 [json_name = "default_code_repository"];
+
+  string direct_internet_access = 4 [json_name = "direct_internet_access"];
+
+  string id = 5;
+
+  string instance_type = 6 [json_name = "instance_type"];
+
+  string kms_key_id = 7 [json_name = "kms_key_id"];
+
+  string lifecycle_config_name = 8 [json_name = "lifecycle_config_name"];
+
+  string name = 9;
+
+  string network_interface_id = 10 [json_name = "network_interface_id"];
+
+  string platform_identifier = 11 [json_name = "platform_identifier"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  string role_arn = 13 [json_name = "role_arn"];
+
+  string root_access = 14 [json_name = "root_access"];
+
+  repeated string security_groups = 15 [json_name = "security_groups"];
+
+  string subnet_id = 16 [json_name = "subnet_id"];
+
+  map<string, string> tags = 17;
+
+  map<string, string> tags_all = 18 [json_name = "tags_all"];
+
+  string url = 19;
+
+  int64 volume_size = 20 [json_name = "volume_size"];
+
+  InstanceMetadataServiceConfiguration instance_metadata_service_configuration = 21 [
+    json_name = "instance_metadata_service_configuration"
+  ];
+
+  google.protobuf.Value for_each = 22 [json_name = "for_each"];
+
+  repeated string depends_on = 23 [json_name = "depends_on"];
+
+  int32 count = 24;
+
+  string provider = 25;
+
+  terraform.v1.Lifecycle lifecycle = 26;
+
+  message InstanceMetadataServiceConfiguration {
+    string minimum_instance_metadata_service_version = 1 [
+      json_name = "minimum_instance_metadata_service_version"
+    ];
+  }
+}
+
+// AwsSagemakerNotebookInstanceLifecycleConfiguration version is 0
+message AwsSagemakerNotebookInstanceLifecycleConfiguration {
+  string arn = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  string on_create = 4 [json_name = "on_create"];
+
+  string on_start = 5 [json_name = "on_start"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsSagemakerPipeline version is 0
+message AwsSagemakerPipeline {
+  string arn = 1;
+
+  string id = 2;
+
+  string pipeline_definition = 3 [json_name = "pipeline_definition"];
+
+  string pipeline_description = 4 [json_name = "pipeline_description"];
+
+  string pipeline_display_name = 5 [json_name = "pipeline_display_name"];
+
+  string pipeline_name = 6 [json_name = "pipeline_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string role_arn = 8 [json_name = "role_arn"];
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  ParallelismConfiguration parallelism_configuration = 11 [json_name = "parallelism_configuration"];
+
+  PipelineDefinitionS3Location pipeline_definition_s3_location = 12 [json_name = "pipeline_definition_s3_location"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message ParallelismConfiguration {
+    int64 max_parallel_execution_steps = 1 [json_name = "max_parallel_execution_steps"];
+  }
+
+  message PipelineDefinitionS3Location {
+    string bucket = 1;
+
+    string object_key = 2 [json_name = "object_key"];
+
+    string version_id = 3 [json_name = "version_id"];
+  }
+}
+
+// AwsSagemakerProject version is 0
+message AwsSagemakerProject {
+  string arn = 1;
+
+  string id = 2;
+
+  string project_description = 3 [json_name = "project_description"];
+
+  string project_id = 4 [json_name = "project_id"];
+
+  string project_name = 5 [json_name = "project_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  ServiceCatalogProvisioningDetails service_catalog_provisioning_details = 9 [json_name = "service_catalog_provisioning_details"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message ServiceCatalogProvisioningDetails {
+    string path_id = 1 [json_name = "path_id"];
+
+    string product_id = 2 [json_name = "product_id"];
+
+    string provisioning_artifact_id = 3 [json_name = "provisioning_artifact_id"];
+
+    repeated ProvisioningParameter provisioning_parameter = 4 [json_name = "provisioning_parameter"];
+
+    message ProvisioningParameter {
+      string key = 1;
+
+      string value = 2;
+    }
+  }
+}
+
+// AwsSagemakerServicecatalogPortfolioStatus version is 0
+message AwsSagemakerServicecatalogPortfolioStatus {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string status = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsSagemakerSpace version is 0
+message AwsSagemakerSpace {
+  string arn = 1;
+
+  string domain_id = 2 [json_name = "domain_id"];
+
+  string home_efs_file_system_uid = 3 [json_name = "home_efs_file_system_uid"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string space_display_name = 6 [json_name = "space_display_name"];
+
+  string space_name = 7 [json_name = "space_name"];
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  string url = 10;
+
+  OwnershipSettings ownership_settings = 11 [json_name = "ownership_settings"];
+
+  SpaceSettings space_settings = 12 [json_name = "space_settings"];
+
+  SpaceSharingSettings space_sharing_settings = 13 [json_name = "space_sharing_settings"];
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message OwnershipSettings {
+    string owner_user_profile_name = 1 [json_name = "owner_user_profile_name"];
+  }
+
+  message SpaceSettings {
+    string app_type = 1 [json_name = "app_type"];
+
+    CodeEditorAppSettings code_editor_app_settings = 2 [json_name = "code_editor_app_settings"];
+
+    repeated CustomFileSystem custom_file_system = 3 [json_name = "custom_file_system"];
+
+    JupyterLabAppSettings jupyter_lab_app_settings = 4 [json_name = "jupyter_lab_app_settings"];
+
+    JupyterServerAppSettings jupyter_server_app_settings = 5 [json_name = "jupyter_server_app_settings"];
+
+    KernelGatewayAppSettings kernel_gateway_app_settings = 6 [json_name = "kernel_gateway_app_settings"];
+
+    SpaceStorageSettings space_storage_settings = 7 [json_name = "space_storage_settings"];
+
+    message CodeEditorAppSettings {
+      AppLifecycleManagement app_lifecycle_management = 1 [json_name = "app_lifecycle_management"];
+
+      DefaultResourceSpec default_resource_spec = 2 [json_name = "default_resource_spec"];
+
+      message AppLifecycleManagement {
+        IdleSettings idle_settings = 1 [json_name = "idle_settings"];
+
+        message IdleSettings {
+          int64 idle_timeout_in_minutes = 1 [json_name = "idle_timeout_in_minutes"];
+        }
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message CustomFileSystem {
+      EfsFileSystem efs_file_system = 1 [json_name = "efs_file_system"];
+
+      message EfsFileSystem {
+        string file_system_id = 1 [json_name = "file_system_id"];
+      }
+    }
+
+    message JupyterLabAppSettings {
+      AppLifecycleManagement app_lifecycle_management = 1 [json_name = "app_lifecycle_management"];
+
+      repeated CodeRepository code_repository = 2 [json_name = "code_repository"];
+
+      DefaultResourceSpec default_resource_spec = 3 [json_name = "default_resource_spec"];
+
+      message AppLifecycleManagement {
+        IdleSettings idle_settings = 1 [json_name = "idle_settings"];
+
+        message IdleSettings {
+          int64 idle_timeout_in_minutes = 1 [json_name = "idle_timeout_in_minutes"];
+        }
+      }
+
+      message CodeRepository {
+        string repository_url = 1 [json_name = "repository_url"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message JupyterServerAppSettings {
+      repeated string lifecycle_config_arns = 1 [json_name = "lifecycle_config_arns"];
+
+      repeated CodeRepository code_repository = 2 [json_name = "code_repository"];
+
+      DefaultResourceSpec default_resource_spec = 3 [json_name = "default_resource_spec"];
+
+      message CodeRepository {
+        string repository_url = 1 [json_name = "repository_url"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message KernelGatewayAppSettings {
+      repeated string lifecycle_config_arns = 1 [json_name = "lifecycle_config_arns"];
+
+      repeated CustomImage custom_image = 2 [json_name = "custom_image"];
+
+      DefaultResourceSpec default_resource_spec = 3 [json_name = "default_resource_spec"];
+
+      message CustomImage {
+        string app_image_config_name = 1 [json_name = "app_image_config_name"];
+
+        string image_name = 2 [json_name = "image_name"];
+
+        int64 image_version_number = 3 [json_name = "image_version_number"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message SpaceStorageSettings {
+      EbsStorageSettings ebs_storage_settings = 1 [json_name = "ebs_storage_settings"];
+
+      message EbsStorageSettings {
+        int64 ebs_volume_size_in_gb = 1 [json_name = "ebs_volume_size_in_gb"];
+      }
+    }
+  }
+
+  message SpaceSharingSettings {
+    string sharing_type = 1 [json_name = "sharing_type"];
+  }
+}
+
+// AwsSagemakerStudioLifecycleConfig version is 0
+message AwsSagemakerStudioLifecycleConfig {
+  string arn = 1;
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string studio_lifecycle_config_app_type = 4 [json_name = "studio_lifecycle_config_app_type"];
+
+  string studio_lifecycle_config_content = 5 [json_name = "studio_lifecycle_config_content"];
+
+  string studio_lifecycle_config_name = 6 [json_name = "studio_lifecycle_config_name"];
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsSagemakerTrainingJob version is 0
+message AwsSagemakerTrainingJob {
+  string arn = 1;
+
+  // Whether to delete model packages in the configured model package group when
+  // destroying the training job.
+  bool delete_model_packages_on_destroy = 2 [json_name = "delete_model_packages_on_destroy"];
+
+  // Whether to delete detached VPC ENIs that SageMaker may leave behind when
+  // destroying the training job.
+  bool delete_vpc_enis_on_destroy = 3 [json_name = "delete_vpc_enis_on_destroy"];
+
+  bool enable_inter_container_traffic_encryption = 4 [
+    json_name = "enable_inter_container_traffic_encryption"
+  ];
+
+  bool enable_managed_spot_training = 5 [json_name = "enable_managed_spot_training"];
+
+  bool enable_network_isolation = 6 [json_name = "enable_network_isolation"];
+
+  map<string, string> environment = 7;
+
+  map<string, string> hyper_parameters = 8 [json_name = "hyper_parameters"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  string role_arn = 10 [json_name = "role_arn"];
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  string training_job_name = 13 [json_name = "training_job_name"];
+
+  repeated AlgorithmSpecification algorithm_specification = 14 [json_name = "algorithm_specification"];
+
+  repeated CheckpointConfig checkpoint_config = 15 [json_name = "checkpoint_config"];
+
+  repeated DebugHookConfig debug_hook_config = 16 [json_name = "debug_hook_config"];
+
+  repeated DebugRuleConfigurations debug_rule_configurations = 17 [json_name = "debug_rule_configurations"];
+
+  repeated ExperimentConfig experiment_config = 18 [json_name = "experiment_config"];
+
+  repeated InfraCheckConfig infra_check_config = 19 [json_name = "infra_check_config"];
+
+  repeated InputDataConfig input_data_config = 20 [json_name = "input_data_config"];
+
+  repeated MlflowConfig mlflow_config = 21 [json_name = "mlflow_config"];
+
+  repeated ModelPackageConfig model_package_config = 22 [json_name = "model_package_config"];
+
+  repeated OutputDataConfig output_data_config = 23 [json_name = "output_data_config"];
+
+  repeated ProfilerConfig profiler_config = 24 [json_name = "profiler_config"];
+
+  repeated ProfilerRuleConfigurations profiler_rule_configurations = 25 [json_name = "profiler_rule_configurations"];
+
+  repeated RemoteDebugConfig remote_debug_config = 26 [json_name = "remote_debug_config"];
+
+  repeated ResourceConfig resource_config = 27 [json_name = "resource_config"];
+
+  repeated RetryStrategy retry_strategy = 28 [json_name = "retry_strategy"];
+
+  repeated ServerlessJobConfig serverless_job_config = 29 [json_name = "serverless_job_config"];
+
+  repeated SessionChainingConfig session_chaining_config = 30 [json_name = "session_chaining_config"];
+
+  repeated StoppingCondition stopping_condition = 31 [json_name = "stopping_condition"];
+
+  repeated TensorBoardOutputConfig tensor_board_output_config = 32 [json_name = "tensor_board_output_config"];
+
+  repeated Timeouts timeouts = 33;
+
+  repeated VpcConfig vpc_config = 34 [json_name = "vpc_config"];
+
+  google.protobuf.Value for_each = 35 [json_name = "for_each"];
+
+  repeated string depends_on = 36 [json_name = "depends_on"];
+
+  int32 count = 37;
+
+  string provider = 38;
+
+  terraform.v1.Lifecycle lifecycle = 39;
+
+  message AlgorithmSpecification {
+    // Name or ARN of a SageMaker algorithm resource. Exactly one of `algorithm_name` or
+    // `training_image` must be set.
+    string algorithm_name = 1 [json_name = "algorithm_name"];
+
+    repeated string container_arguments = 2 [json_name = "container_arguments"];
+
+    repeated string container_entrypoint = 3 [json_name = "container_entrypoint"];
+
+    // Whether SageMaker AI should publish time-series metrics. SageMaker enables this
+    // automatically for built-in algorithms, supported prebuilt images, and jobs with
+    // explicit `metric_definitions`.
+    bool enable_sagemaker_metrics_time_series = 4 [json_name = "enable_sagemaker_metrics_time_series"];
+
+    // Registry path of the training image. Exactly one of `algorithm_name` or
+    // `training_image` must be set. Use `metric_definitions` only when you need to
+    // extract custom metrics from your own training container logs.
+    string training_image = 5 [json_name = "training_image"];
+
+    string training_input_mode = 6 [json_name = "training_input_mode"];
+
+    repeated MetricDefinitions metric_definitions = 7 [json_name = "metric_definitions"];
+
+    repeated TrainingImageConfig training_image_config = 8 [json_name = "training_image_config"];
+
+    message MetricDefinitions {
+      string name = 1;
+
+      string regex = 2;
+    }
+
+    message TrainingImageConfig {
+      string training_repository_access_mode = 1 [json_name = "training_repository_access_mode"];
+
+      repeated TrainingRepositoryAuthConfig training_repository_auth_config = 2 [json_name = "training_repository_auth_config"];
+
+      message TrainingRepositoryAuthConfig {
+        string training_repository_credentials_provider_arn = 1 [
+          json_name = "training_repository_credentials_provider_arn"
+        ];
+      }
+    }
+  }
+
+  message CheckpointConfig {
+    string local_path = 1 [json_name = "local_path"];
+
+    string s3_uri = 2 [json_name = "s3_uri"];
+  }
+
+  message DebugHookConfig {
+    map<string, string> hook_parameters = 1 [json_name = "hook_parameters"];
+
+    string local_path = 2 [json_name = "local_path"];
+
+    string s3_output_path = 3 [json_name = "s3_output_path"];
+
+    repeated CollectionConfigurations collection_configurations = 4 [json_name = "collection_configurations"];
+
+    message CollectionConfigurations {
+      string collection_name = 1 [json_name = "collection_name"];
+
+      map<string, string> collection_parameters = 2 [json_name = "collection_parameters"];
+    }
+  }
+
+  message DebugRuleConfigurations {
+    string instance_type = 1 [json_name = "instance_type"];
+
+    string local_path = 2 [json_name = "local_path"];
+
+    string rule_configuration_name = 3 [json_name = "rule_configuration_name"];
+
+    string rule_evaluator_image = 4 [json_name = "rule_evaluator_image"];
+
+    map<string, string> rule_parameters = 5 [json_name = "rule_parameters"];
+
+    string s3_output_path = 6 [json_name = "s3_output_path"];
+
+    int64 volume_size_in_gb = 7 [json_name = "volume_size_in_gb"];
+  }
+
+  message ExperimentConfig {
+    string experiment_name = 1 [json_name = "experiment_name"];
+
+    string run_name = 2 [json_name = "run_name"];
+
+    string trial_component_display_name = 3 [json_name = "trial_component_display_name"];
+
+    string trial_name = 4 [json_name = "trial_name"];
+  }
+
+  message InfraCheckConfig {
+    bool enable_infra_check = 1 [json_name = "enable_infra_check"];
+  }
+
+  message InputDataConfig {
+    string channel_name = 1 [json_name = "channel_name"];
+
+    string compression_type = 2 [json_name = "compression_type"];
+
+    string content_type = 3 [json_name = "content_type"];
+
+    string input_mode = 4 [json_name = "input_mode"];
+
+    string record_wrapper_type = 5 [json_name = "record_wrapper_type"];
+
+    repeated DataSource data_source = 6 [json_name = "data_source"];
+
+    repeated ShuffleConfig shuffle_config = 7 [json_name = "shuffle_config"];
+
+    message DataSource {
+      repeated FileSystemDataSource file_system_data_source = 1 [json_name = "file_system_data_source"];
+
+      repeated S3DataSource s3_data_source = 2 [json_name = "s3_data_source"];
+
+      message FileSystemDataSource {
+        string directory_path = 1 [json_name = "directory_path"];
+
+        string file_system_access_mode = 2 [json_name = "file_system_access_mode"];
+
+        string file_system_id = 3 [json_name = "file_system_id"];
+
+        string file_system_type = 4 [json_name = "file_system_type"];
+      }
+
+      message S3DataSource {
+        repeated string attribute_names = 1 [json_name = "attribute_names"];
+
+        repeated string instance_group_names = 2 [json_name = "instance_group_names"];
+
+        string s3_data_distribution_type = 3 [json_name = "s3_data_distribution_type"];
+
+        string s3_data_type = 4 [json_name = "s3_data_type"];
+
+        string s3_uri = 5 [json_name = "s3_uri"];
+
+        repeated HubAccessConfig hub_access_config = 6 [json_name = "hub_access_config"];
+
+        repeated ModelAccessConfig model_access_config = 7 [json_name = "model_access_config"];
+
+        message HubAccessConfig {
+          string hub_content_arn = 1 [json_name = "hub_content_arn"];
+        }
+
+        message ModelAccessConfig {
+          bool accept_eula = 1 [json_name = "accept_eula"];
+        }
+      }
+    }
+
+    message ShuffleConfig {
+      int64 seed = 1;
+    }
+  }
+
+  message MlflowConfig {
+    string mlflow_experiment_name = 1 [json_name = "mlflow_experiment_name"];
+
+    string mlflow_resource_arn = 2 [json_name = "mlflow_resource_arn"];
+
+    string mlflow_run_name = 3 [json_name = "mlflow_run_name"];
+  }
+
+  message ModelPackageConfig {
+    string model_package_group_arn = 1 [json_name = "model_package_group_arn"];
+
+    string source_model_package_arn = 2 [json_name = "source_model_package_arn"];
+  }
+
+  message OutputDataConfig {
+    string compression_type = 1 [json_name = "compression_type"];
+
+    string kms_key_id = 2 [json_name = "kms_key_id"];
+
+    string s3_output_path = 3 [json_name = "s3_output_path"];
+  }
+
+  message ProfilerConfig {
+    bool disable_profiler = 1 [json_name = "disable_profiler"];
+
+    int64 profiling_interval_in_milliseconds = 2 [json_name = "profiling_interval_in_milliseconds"];
+
+    map<string, string> profiling_parameters = 3 [json_name = "profiling_parameters"];
+
+    string s3_output_path = 4 [json_name = "s3_output_path"];
+  }
+
+  message ProfilerRuleConfigurations {
+    string instance_type = 1 [json_name = "instance_type"];
+
+    string local_path = 2 [json_name = "local_path"];
+
+    string rule_configuration_name = 3 [json_name = "rule_configuration_name"];
+
+    string rule_evaluator_image = 4 [json_name = "rule_evaluator_image"];
+
+    map<string, string> rule_parameters = 5 [json_name = "rule_parameters"];
+
+    string s3_output_path = 6 [json_name = "s3_output_path"];
+
+    int64 volume_size_in_gb = 7 [json_name = "volume_size_in_gb"];
+  }
+
+  message RemoteDebugConfig {
+    bool enable_remote_debug = 1 [json_name = "enable_remote_debug"];
+  }
+
+  message ResourceConfig {
+    int64 instance_count = 1 [json_name = "instance_count"];
+
+    string instance_type = 2 [json_name = "instance_type"];
+
+    int64 keep_alive_period_in_seconds = 3 [json_name = "keep_alive_period_in_seconds"];
+
+    string training_plan_arn = 4 [json_name = "training_plan_arn"];
+
+    string volume_kms_key_id = 5 [json_name = "volume_kms_key_id"];
+
+    int64 volume_size_in_gb = 6 [json_name = "volume_size_in_gb"];
+
+    repeated InstanceGroups instance_groups = 7 [json_name = "instance_groups"];
+
+    repeated InstancePlacementConfig instance_placement_config = 8 [json_name = "instance_placement_config"];
+
+    message InstanceGroups {
+      int64 instance_count = 1 [json_name = "instance_count"];
+
+      string instance_group_name = 2 [json_name = "instance_group_name"];
+
+      string instance_type = 3 [json_name = "instance_type"];
+    }
+
+    message InstancePlacementConfig {
+      bool enable_multiple_jobs = 1 [json_name = "enable_multiple_jobs"];
+
+      repeated PlacementSpecifications placement_specifications = 2 [json_name = "placement_specifications"];
+
+      message PlacementSpecifications {
+        int64 instance_count = 1 [json_name = "instance_count"];
+
+        string ultra_server_id = 2 [json_name = "ultra_server_id"];
+      }
+    }
+  }
+
+  message RetryStrategy {
+    int64 maximum_retry_attempts = 1 [json_name = "maximum_retry_attempts"];
+  }
+
+  message ServerlessJobConfig {
+    bool accept_eula = 1 [json_name = "accept_eula"];
+
+    // Base model ARN in SageMaker Public Hub. SageMaker always selects the latest
+    // version of the provided model.
+    string base_model_arn = 2 [json_name = "base_model_arn"];
+
+    string customization_technique = 3 [json_name = "customization_technique"];
+
+    string evaluation_type = 4 [json_name = "evaluation_type"];
+
+    string evaluator_arn = 5 [json_name = "evaluator_arn"];
+
+    string job_type = 6 [json_name = "job_type"];
+
+    string peft = 7;
+  }
+
+  message SessionChainingConfig {
+    bool enable_session_tag_chaining = 1 [json_name = "enable_session_tag_chaining"];
+  }
+
+  message StoppingCondition {
+    int64 max_pending_time_in_seconds = 1 [json_name = "max_pending_time_in_seconds"];
+
+    int64 max_runtime_in_seconds = 2 [json_name = "max_runtime_in_seconds"];
+
+    int64 max_wait_time_in_seconds = 3 [json_name = "max_wait_time_in_seconds"];
+  }
+
+  message TensorBoardOutputConfig {
+    string local_path = 1 [json_name = "local_path"];
+
+    string s3_output_path = 2 [json_name = "s3_output_path"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+
+  message VpcConfig {
+    repeated string security_group_ids = 1 [json_name = "security_group_ids"];
+
+    repeated string subnets = 2;
+  }
+}
+
+// AwsSagemakerUserProfile version is 0
+message AwsSagemakerUserProfile {
+  string arn = 1;
+
+  string domain_id = 2 [json_name = "domain_id"];
+
+  string home_efs_file_system_uid = 3 [json_name = "home_efs_file_system_uid"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string single_sign_on_user_identifier = 6 [json_name = "single_sign_on_user_identifier"];
+
+  string single_sign_on_user_value = 7 [json_name = "single_sign_on_user_value"];
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  string user_profile_name = 10 [json_name = "user_profile_name"];
+
+  UserSettings user_settings = 11 [json_name = "user_settings"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message UserSettings {
+    string auto_mount_home_efs = 1 [json_name = "auto_mount_home_efs"];
+
+    string default_landing_uri = 2 [json_name = "default_landing_uri"];
+
+    string execution_role = 3 [json_name = "execution_role"];
+
+    repeated string security_groups = 4 [json_name = "security_groups"];
+
+    string studio_web_portal = 5 [json_name = "studio_web_portal"];
+
+    CanvasAppSettings canvas_app_settings = 6 [json_name = "canvas_app_settings"];
+
+    CodeEditorAppSettings code_editor_app_settings = 7 [json_name = "code_editor_app_settings"];
+
+    repeated CustomFileSystemConfig custom_file_system_config = 8 [json_name = "custom_file_system_config"];
+
+    CustomPosixUserConfig custom_posix_user_config = 9 [json_name = "custom_posix_user_config"];
+
+    JupyterLabAppSettings jupyter_lab_app_settings = 10 [json_name = "jupyter_lab_app_settings"];
+
+    JupyterServerAppSettings jupyter_server_app_settings = 11 [json_name = "jupyter_server_app_settings"];
+
+    KernelGatewayAppSettings kernel_gateway_app_settings = 12 [json_name = "kernel_gateway_app_settings"];
+
+    RSessionAppSettings r_session_app_settings = 13 [json_name = "r_session_app_settings"];
+
+    RStudioServerProAppSettings r_studio_server_pro_app_settings = 14 [json_name = "r_studio_server_pro_app_settings"];
+
+    SharingSettings sharing_settings = 15 [json_name = "sharing_settings"];
+
+    SpaceStorageSettings space_storage_settings = 16 [json_name = "space_storage_settings"];
+
+    StudioWebPortalSettings studio_web_portal_settings = 17 [json_name = "studio_web_portal_settings"];
+
+    TensorBoardAppSettings tensor_board_app_settings = 18 [json_name = "tensor_board_app_settings"];
+
+    message CanvasAppSettings {
+      DirectDeploySettings direct_deploy_settings = 1 [json_name = "direct_deploy_settings"];
+
+      EmrServerlessSettings emr_serverless_settings = 2 [json_name = "emr_serverless_settings"];
+
+      GenerativeAiSettings generative_ai_settings = 3 [json_name = "generative_ai_settings"];
+
+      repeated IdentityProviderOauthSettings identity_provider_oauth_settings = 4 [json_name = "identity_provider_oauth_settings"];
+
+      KendraSettings kendra_settings = 5 [json_name = "kendra_settings"];
+
+      ModelRegisterSettings model_register_settings = 6 [json_name = "model_register_settings"];
+
+      TimeSeriesForecastingSettings time_series_forecasting_settings = 7 [json_name = "time_series_forecasting_settings"];
+
+      WorkspaceSettings workspace_settings = 8 [json_name = "workspace_settings"];
+
+      message DirectDeploySettings {
+        string status = 1;
+      }
+
+      message EmrServerlessSettings {
+        string execution_role_arn = 1 [json_name = "execution_role_arn"];
+
+        string status = 2;
+      }
+
+      message GenerativeAiSettings {
+        string amazon_bedrock_role_arn = 1 [json_name = "amazon_bedrock_role_arn"];
+      }
+
+      message IdentityProviderOauthSettings {
+        string data_source_name = 1 [json_name = "data_source_name"];
+
+        string secret_arn = 2 [json_name = "secret_arn"];
+
+        string status = 3;
+      }
+
+      message KendraSettings {
+        string status = 1;
+      }
+
+      message ModelRegisterSettings {
+        string cross_account_model_register_role_arn = 1 [
+          json_name = "cross_account_model_register_role_arn"
+        ];
+
+        string status = 2;
+      }
+
+      message TimeSeriesForecastingSettings {
+        string amazon_forecast_role_arn = 1 [json_name = "amazon_forecast_role_arn"];
+
+        string status = 2;
+      }
+
+      message WorkspaceSettings {
+        string s3_artifact_path = 1 [json_name = "s3_artifact_path"];
+
+        string s3_kms_key_id = 2 [json_name = "s3_kms_key_id"];
+      }
+    }
+
+    message CodeEditorAppSettings {
+      string built_in_lifecycle_config_arn = 1 [json_name = "built_in_lifecycle_config_arn"];
+
+      repeated string lifecycle_config_arns = 2 [json_name = "lifecycle_config_arns"];
+
+      AppLifecycleManagement app_lifecycle_management = 3 [json_name = "app_lifecycle_management"];
+
+      repeated CustomImage custom_image = 4 [json_name = "custom_image"];
+
+      DefaultResourceSpec default_resource_spec = 5 [json_name = "default_resource_spec"];
+
+      message AppLifecycleManagement {
+        IdleSettings idle_settings = 1 [json_name = "idle_settings"];
+
+        message IdleSettings {
+          int64 idle_timeout_in_minutes = 1 [json_name = "idle_timeout_in_minutes"];
+
+          string lifecycle_management = 2 [json_name = "lifecycle_management"];
+
+          int64 max_idle_timeout_in_minutes = 3 [json_name = "max_idle_timeout_in_minutes"];
+
+          int64 min_idle_timeout_in_minutes = 4 [json_name = "min_idle_timeout_in_minutes"];
+        }
+      }
+
+      message CustomImage {
+        string app_image_config_name = 1 [json_name = "app_image_config_name"];
+
+        string image_name = 2 [json_name = "image_name"];
+
+        int64 image_version_number = 3 [json_name = "image_version_number"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message CustomFileSystemConfig {
+      repeated EfsFileSystemConfig efs_file_system_config = 1 [json_name = "efs_file_system_config"];
+
+      message EfsFileSystemConfig {
+        string file_system_id = 1 [json_name = "file_system_id"];
+
+        string file_system_path = 2 [json_name = "file_system_path"];
+      }
+    }
+
+    message CustomPosixUserConfig {
+      int64 gid = 1;
+
+      int64 uid = 2;
+    }
+
+    message JupyterLabAppSettings {
+      string built_in_lifecycle_config_arn = 1 [json_name = "built_in_lifecycle_config_arn"];
+
+      repeated string lifecycle_config_arns = 2 [json_name = "lifecycle_config_arns"];
+
+      AppLifecycleManagement app_lifecycle_management = 3 [json_name = "app_lifecycle_management"];
+
+      repeated CodeRepository code_repository = 4 [json_name = "code_repository"];
+
+      repeated CustomImage custom_image = 5 [json_name = "custom_image"];
+
+      DefaultResourceSpec default_resource_spec = 6 [json_name = "default_resource_spec"];
+
+      EmrSettings emr_settings = 7 [json_name = "emr_settings"];
+
+      message AppLifecycleManagement {
+        IdleSettings idle_settings = 1 [json_name = "idle_settings"];
+
+        message IdleSettings {
+          int64 idle_timeout_in_minutes = 1 [json_name = "idle_timeout_in_minutes"];
+
+          string lifecycle_management = 2 [json_name = "lifecycle_management"];
+
+          int64 max_idle_timeout_in_minutes = 3 [json_name = "max_idle_timeout_in_minutes"];
+
+          int64 min_idle_timeout_in_minutes = 4 [json_name = "min_idle_timeout_in_minutes"];
+        }
+      }
+
+      message CodeRepository {
+        string repository_url = 1 [json_name = "repository_url"];
+      }
+
+      message CustomImage {
+        string app_image_config_name = 1 [json_name = "app_image_config_name"];
+
+        string image_name = 2 [json_name = "image_name"];
+
+        int64 image_version_number = 3 [json_name = "image_version_number"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+
+      message EmrSettings {
+        repeated string assumable_role_arns = 1 [json_name = "assumable_role_arns"];
+
+        repeated string execution_role_arns = 2 [json_name = "execution_role_arns"];
+      }
+    }
+
+    message JupyterServerAppSettings {
+      repeated string lifecycle_config_arns = 1 [json_name = "lifecycle_config_arns"];
+
+      repeated CodeRepository code_repository = 2 [json_name = "code_repository"];
+
+      DefaultResourceSpec default_resource_spec = 3 [json_name = "default_resource_spec"];
+
+      message CodeRepository {
+        string repository_url = 1 [json_name = "repository_url"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message KernelGatewayAppSettings {
+      repeated string lifecycle_config_arns = 1 [json_name = "lifecycle_config_arns"];
+
+      repeated CustomImage custom_image = 2 [json_name = "custom_image"];
+
+      DefaultResourceSpec default_resource_spec = 3 [json_name = "default_resource_spec"];
+
+      message CustomImage {
+        string app_image_config_name = 1 [json_name = "app_image_config_name"];
+
+        string image_name = 2 [json_name = "image_name"];
+
+        int64 image_version_number = 3 [json_name = "image_version_number"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message RSessionAppSettings {
+      repeated CustomImage custom_image = 1 [json_name = "custom_image"];
+
+      DefaultResourceSpec default_resource_spec = 2 [json_name = "default_resource_spec"];
+
+      message CustomImage {
+        string app_image_config_name = 1 [json_name = "app_image_config_name"];
+
+        string image_name = 2 [json_name = "image_name"];
+
+        int64 image_version_number = 3 [json_name = "image_version_number"];
+      }
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+
+    message RStudioServerProAppSettings {
+      string access_status = 1 [json_name = "access_status"];
+
+      string user_group = 2 [json_name = "user_group"];
+    }
+
+    message SharingSettings {
+      string notebook_output_option = 1 [json_name = "notebook_output_option"];
+
+      string s3_kms_key_id = 2 [json_name = "s3_kms_key_id"];
+
+      string s3_output_path = 3 [json_name = "s3_output_path"];
+    }
+
+    message SpaceStorageSettings {
+      DefaultEbsStorageSettings default_ebs_storage_settings = 1 [json_name = "default_ebs_storage_settings"];
+
+      message DefaultEbsStorageSettings {
+        int64 default_ebs_volume_size_in_gb = 1 [json_name = "default_ebs_volume_size_in_gb"];
+
+        int64 maximum_ebs_volume_size_in_gb = 2 [json_name = "maximum_ebs_volume_size_in_gb"];
+      }
+    }
+
+    message StudioWebPortalSettings {
+      repeated string hidden_app_types = 1 [json_name = "hidden_app_types"];
+
+      repeated string hidden_instance_types = 2 [json_name = "hidden_instance_types"];
+
+      repeated string hidden_ml_tools = 3 [json_name = "hidden_ml_tools"];
+    }
+
+    message TensorBoardAppSettings {
+      DefaultResourceSpec default_resource_spec = 1 [json_name = "default_resource_spec"];
+
+      message DefaultResourceSpec {
+        string instance_type = 1 [json_name = "instance_type"];
+
+        string lifecycle_config_arn = 2 [json_name = "lifecycle_config_arn"];
+
+        string sagemaker_image_arn = 3 [json_name = "sagemaker_image_arn"];
+
+        string sagemaker_image_version_alias = 4 [json_name = "sagemaker_image_version_alias"];
+
+        string sagemaker_image_version_arn = 5 [json_name = "sagemaker_image_version_arn"];
+      }
+    }
+  }
+}
+
+// AwsSagemakerWorkforce version is 0
+message AwsSagemakerWorkforce {
+  string arn = 1;
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string subdomain = 4;
+
+  string workforce_name = 5 [json_name = "workforce_name"];
+
+  CognitoConfig cognito_config = 6 [json_name = "cognito_config"];
+
+  OidcConfig oidc_config = 7 [json_name = "oidc_config"];
+
+  SourceIpConfig source_ip_config = 8 [json_name = "source_ip_config"];
+
+  WorkforceVpcConfig workforce_vpc_config = 9 [json_name = "workforce_vpc_config"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message CognitoConfig {
+    string client_id = 1 [json_name = "client_id"];
+
+    string user_pool = 2 [json_name = "user_pool"];
+  }
+
+  message OidcConfig {
+    map<string, string> authentication_request_extra_params = 1 [json_name = "authentication_request_extra_params"];
+
+    string authorization_endpoint = 2 [json_name = "authorization_endpoint"];
+
+    string client_id = 3 [json_name = "client_id"];
+
+    string client_secret = 4 [json_name = "client_secret"];
+
+    string issuer = 5;
+
+    string jwks_uri = 6 [json_name = "jwks_uri"];
+
+    string logout_endpoint = 7 [json_name = "logout_endpoint"];
+
+    string scope = 8;
+
+    string token_endpoint = 9 [json_name = "token_endpoint"];
+
+    string user_info_endpoint = 10 [json_name = "user_info_endpoint"];
+  }
+
+  message SourceIpConfig {
+    repeated string cidrs = 1;
+  }
+
+  message WorkforceVpcConfig {
+    repeated string security_group_ids = 1 [json_name = "security_group_ids"];
+
+    repeated string subnets = 2;
+
+    string vpc_endpoint_id = 3 [json_name = "vpc_endpoint_id"];
+
+    string vpc_id = 4 [json_name = "vpc_id"];
+  }
+}
+
+// AwsSagemakerWorkteam version is 0
+message AwsSagemakerWorkteam {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string subdomain = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  string workforce_name = 8 [json_name = "workforce_name"];
+
+  string workteam_name = 9 [json_name = "workteam_name"];
+
+  repeated MemberDefinition member_definition = 10 [json_name = "member_definition"];
+
+  NotificationConfiguration notification_configuration = 11 [json_name = "notification_configuration"];
+
+  WorkerAccessConfiguration worker_access_configuration = 12 [json_name = "worker_access_configuration"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message MemberDefinition {
+    CognitoMemberDefinition cognito_member_definition = 1 [json_name = "cognito_member_definition"];
+
+    OidcMemberDefinition oidc_member_definition = 2 [json_name = "oidc_member_definition"];
+
+    message CognitoMemberDefinition {
+      string client_id = 1 [json_name = "client_id"];
+
+      string user_group = 2 [json_name = "user_group"];
+
+      string user_pool = 3 [json_name = "user_pool"];
+    }
+
+    message OidcMemberDefinition {
+      repeated string groups = 1;
+    }
+  }
+
+  message NotificationConfiguration {
+    string notification_topic_arn = 1 [json_name = "notification_topic_arn"];
+  }
+
+  message WorkerAccessConfiguration {
+    S3Presign s3_presign = 1 [json_name = "s3_presign"];
+
+    message S3Presign {
+      IamPolicyConstraints iam_policy_constraints = 1 [json_name = "iam_policy_constraints"];
+
+      message IamPolicyConstraints {
+        string source_ip = 1 [json_name = "source_ip"];
+
+        string vpc_source_ip = 2 [json_name = "vpc_source_ip"];
+      }
+    }
+  }
+}

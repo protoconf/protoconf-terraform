@@ -1,0 +1,166 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCodeartifactDomain version is 0
+message AwsCodeartifactDomain {
+  string arn = 1;
+
+  string asset_size_bytes = 2 [json_name = "asset_size_bytes"];
+
+  string created_time = 3 [json_name = "created_time"];
+
+  string domain = 4;
+
+  string encryption_key = 5 [json_name = "encryption_key"];
+
+  string id = 6;
+
+  string owner = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  int64 repository_count = 9 [json_name = "repository_count"];
+
+  string s3_bucket_arn = 10 [json_name = "s3_bucket_arn"];
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+}
+
+// AwsCodeartifactDomainPermissionsPolicy version is 0
+message AwsCodeartifactDomainPermissionsPolicy {
+  string domain = 1;
+
+  string domain_owner = 2 [json_name = "domain_owner"];
+
+  string id = 3;
+
+  string policy_document = 4 [json_name = "policy_document"];
+
+  string policy_revision = 5 [json_name = "policy_revision"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string resource_arn = 7 [json_name = "resource_arn"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsCodeartifactRepository version is 0
+message AwsCodeartifactRepository {
+  string administrator_account = 1 [json_name = "administrator_account"];
+
+  string arn = 2;
+
+  string description = 3;
+
+  string domain = 4;
+
+  string domain_owner = 5 [json_name = "domain_owner"];
+
+  string id = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string repository = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  ExternalConnections external_connections = 11 [json_name = "external_connections"];
+
+  repeated Upstream upstream = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message ExternalConnections {
+    string external_connection_name = 1 [json_name = "external_connection_name"];
+
+    string package_format = 2 [json_name = "package_format"];
+
+    string status = 3;
+  }
+
+  message Upstream {
+    string repository_name = 1 [json_name = "repository_name"];
+  }
+}
+
+// AwsCodeartifactRepositoryPermissionsPolicy version is 0
+message AwsCodeartifactRepositoryPermissionsPolicy {
+  string domain = 1;
+
+  string domain_owner = 2 [json_name = "domain_owner"];
+
+  string id = 3;
+
+  string policy_document = 4 [json_name = "policy_document"];
+
+  string policy_revision = 5 [json_name = "policy_revision"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string repository = 7;
+
+  string resource_arn = 8 [json_name = "resource_arn"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}

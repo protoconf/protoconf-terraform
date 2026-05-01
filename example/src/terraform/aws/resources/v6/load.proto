@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsLoadBalancerBackendServerPolicy version is 0
+message AwsLoadBalancerBackendServerPolicy {
+  string id = 1;
+
+  int64 instance_port = 2 [json_name = "instance_port"];
+
+  string load_balancer_name = 3 [json_name = "load_balancer_name"];
+
+  repeated string policy_names = 4 [json_name = "policy_names"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsLoadBalancerListenerPolicy version is 0
+message AwsLoadBalancerListenerPolicy {
+  string id = 1;
+
+  string load_balancer_name = 2 [json_name = "load_balancer_name"];
+
+  int64 load_balancer_port = 3 [json_name = "load_balancer_port"];
+
+  repeated string policy_names = 4 [json_name = "policy_names"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> triggers = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsLoadBalancerPolicy version is 0
+message AwsLoadBalancerPolicy {
+  string id = 1;
+
+  string load_balancer_name = 2 [json_name = "load_balancer_name"];
+
+  string policy_name = 3 [json_name = "policy_name"];
+
+  string policy_type_name = 4 [json_name = "policy_type_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated PolicyAttribute policy_attribute = 6 [json_name = "policy_attribute"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message PolicyAttribute {
+    string name = 1;
+
+    string value = 2;
+  }
+}

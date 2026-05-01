@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsResourcegroupstaggingapiRequiredTags version is 0
+message AwsResourcegroupstaggingapiRequiredTags {
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 1;
+
+  repeated RequiredTags required_tags = 2 [json_name = "required_tags"];
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+
+  message RequiredTags {
+    // cloud_formation_resource_types: list of string
+    repeated string cloud_formation_resource_types = 1 [json_name = "cloud_formation_resource_types"];
+
+    // reporting_tag_keys: list of string
+    repeated string reporting_tag_keys = 2 [json_name = "reporting_tag_keys"];
+
+    // resource_type: string
+    string resource_type = 3 [json_name = "resource_type"];
+  }
+}
+
+// AwsResourcegroupstaggingapiResources version is 0
+message AwsResourcegroupstaggingapiResources {
+  bool exclude_compliant_resources = 1 [json_name = "exclude_compliant_resources"];
+
+  string id = 2;
+
+  bool include_compliance_details = 3 [json_name = "include_compliance_details"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated string resource_arn_list = 5 [json_name = "resource_arn_list"];
+
+  repeated ResourceTagMappingList resource_tag_mapping_list = 6 [json_name = "resource_tag_mapping_list"];
+
+  repeated string resource_type_filters = 7 [json_name = "resource_type_filters"];
+
+  repeated TagFilter tag_filter = 8 [json_name = "tag_filter"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message ResourceTagMappingList {
+    // compliance_details: list of object
+    repeated ComplianceDetails compliance_details = 1 [json_name = "compliance_details"];
+
+    // resource_arn: string
+    string resource_arn = 2 [json_name = "resource_arn"];
+
+    // tags: map of string
+    map<string, string> tags = 3;
+
+    message ComplianceDetails {
+      // compliance_status: bool
+      bool compliance_status = 1 [json_name = "compliance_status"];
+
+      // keys_with_noncompliant_values: set of string
+      repeated string keys_with_noncompliant_values = 2 [json_name = "keys_with_noncompliant_values"];
+
+      // non_compliant_keys: set of string
+      repeated string non_compliant_keys = 3 [json_name = "non_compliant_keys"];
+    }
+  }
+
+  message TagFilter {
+    string key = 1;
+
+    repeated string values = 2;
+  }
+}

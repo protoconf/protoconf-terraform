@@ -1,0 +1,357 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsGlobalacceleratorAccelerator version is 0
+message AwsGlobalacceleratorAccelerator {
+  string arn = 1;
+
+  string dns_name = 2 [json_name = "dns_name"];
+
+  string dual_stack_dns_name = 3 [json_name = "dual_stack_dns_name"];
+
+  bool enabled = 4;
+
+  string hosted_zone_id = 5 [json_name = "hosted_zone_id"];
+
+  string id = 6;
+
+  string ip_address_type = 7 [json_name = "ip_address_type"];
+
+  repeated string ip_addresses = 8 [json_name = "ip_addresses"];
+
+  repeated IpSets ip_sets = 9 [json_name = "ip_sets"];
+
+  string name = 10;
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  Attributes attributes = 13;
+
+  repeated Timeouts timeouts = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message IpSets {
+    // ip_addresses: list of string
+    repeated string ip_addresses = 1 [json_name = "ip_addresses"];
+
+    // ip_family: string
+    string ip_family = 2 [json_name = "ip_family"];
+  }
+
+  message Attributes {
+    bool flow_logs_enabled = 1 [json_name = "flow_logs_enabled"];
+
+    string flow_logs_s3_bucket = 2 [json_name = "flow_logs_s3_bucket"];
+
+    string flow_logs_s3_prefix = 3 [json_name = "flow_logs_s3_prefix"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string update = 2;
+  }
+}
+
+// AwsGlobalacceleratorCrossAccountAttachment version is 0
+message AwsGlobalacceleratorCrossAccountAttachment {
+  string arn = 1;
+
+  string created_time = 2 [json_name = "created_time"];
+
+  string id = 3;
+
+  string last_modified_time = 4 [json_name = "last_modified_time"];
+
+  string name = 5;
+
+  repeated string principals = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  repeated Resource resource = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Resource {
+    string cidr_block = 1 [json_name = "cidr_block"];
+
+    string endpoint_id = 2 [json_name = "endpoint_id"];
+
+    string region = 3;
+  }
+}
+
+// AwsGlobalacceleratorCustomRoutingAccelerator version is 0
+message AwsGlobalacceleratorCustomRoutingAccelerator {
+  string arn = 1;
+
+  string dns_name = 2 [json_name = "dns_name"];
+
+  bool enabled = 3;
+
+  string hosted_zone_id = 4 [json_name = "hosted_zone_id"];
+
+  string id = 5;
+
+  string ip_address_type = 6 [json_name = "ip_address_type"];
+
+  repeated string ip_addresses = 7 [json_name = "ip_addresses"];
+
+  repeated IpSets ip_sets = 8 [json_name = "ip_sets"];
+
+  string name = 9;
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  Attributes attributes = 12;
+
+  repeated Timeouts timeouts = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message IpSets {
+    // ip_addresses: list of string
+    repeated string ip_addresses = 1 [json_name = "ip_addresses"];
+
+    // ip_family: string
+    string ip_family = 2 [json_name = "ip_family"];
+  }
+
+  message Attributes {
+    bool flow_logs_enabled = 1 [json_name = "flow_logs_enabled"];
+
+    string flow_logs_s3_bucket = 2 [json_name = "flow_logs_s3_bucket"];
+
+    string flow_logs_s3_prefix = 3 [json_name = "flow_logs_s3_prefix"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string update = 2;
+  }
+}
+
+// AwsGlobalacceleratorCustomRoutingEndpointGroup version is 0
+message AwsGlobalacceleratorCustomRoutingEndpointGroup {
+  string arn = 1;
+
+  string endpoint_group_region = 2 [json_name = "endpoint_group_region"];
+
+  string id = 3;
+
+  string listener_arn = 4 [json_name = "listener_arn"];
+
+  repeated DestinationConfiguration destination_configuration = 5 [json_name = "destination_configuration"];
+
+  repeated EndpointConfiguration endpoint_configuration = 6 [json_name = "endpoint_configuration"];
+
+  repeated Timeouts timeouts = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message DestinationConfiguration {
+    int64 from_port = 1 [json_name = "from_port"];
+
+    repeated string protocols = 2;
+
+    int64 to_port = 3 [json_name = "to_port"];
+  }
+
+  message EndpointConfiguration {
+    string endpoint_id = 1 [json_name = "endpoint_id"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsGlobalacceleratorCustomRoutingListener version is 0
+message AwsGlobalacceleratorCustomRoutingListener {
+  string accelerator_arn = 1 [json_name = "accelerator_arn"];
+
+  string arn = 2;
+
+  string id = 3;
+
+  repeated PortRange port_range = 4 [json_name = "port_range"];
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message PortRange {
+    int64 from_port = 1 [json_name = "from_port"];
+
+    int64 to_port = 2 [json_name = "to_port"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsGlobalacceleratorEndpointGroup version is 0
+message AwsGlobalacceleratorEndpointGroup {
+  string arn = 1;
+
+  string endpoint_group_region = 2 [json_name = "endpoint_group_region"];
+
+  int64 health_check_interval_seconds = 3 [json_name = "health_check_interval_seconds"];
+
+  string health_check_path = 4 [json_name = "health_check_path"];
+
+  int64 health_check_port = 5 [json_name = "health_check_port"];
+
+  string health_check_protocol = 6 [json_name = "health_check_protocol"];
+
+  string id = 7;
+
+  string listener_arn = 8 [json_name = "listener_arn"];
+
+  int64 threshold_count = 9 [json_name = "threshold_count"];
+
+  int64 traffic_dial_percentage = 10 [json_name = "traffic_dial_percentage"];
+
+  repeated EndpointConfiguration endpoint_configuration = 11 [json_name = "endpoint_configuration"];
+
+  repeated PortOverride port_override = 12 [json_name = "port_override"];
+
+  repeated Timeouts timeouts = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message EndpointConfiguration {
+    string attachment_arn = 1 [json_name = "attachment_arn"];
+
+    bool client_ip_preservation_enabled = 2 [json_name = "client_ip_preservation_enabled"];
+
+    string endpoint_id = 3 [json_name = "endpoint_id"];
+
+    int64 weight = 4;
+  }
+
+  message PortOverride {
+    int64 endpoint_port = 1 [json_name = "endpoint_port"];
+
+    int64 listener_port = 2 [json_name = "listener_port"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsGlobalacceleratorListener version is 0
+message AwsGlobalacceleratorListener {
+  string accelerator_arn = 1 [json_name = "accelerator_arn"];
+
+  string arn = 2;
+
+  string client_affinity = 3 [json_name = "client_affinity"];
+
+  string id = 4;
+
+  string protocol = 5;
+
+  repeated PortRange port_range = 6 [json_name = "port_range"];
+
+  repeated Timeouts timeouts = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message PortRange {
+    int64 from_port = 1 [json_name = "from_port"];
+
+    int64 to_port = 2 [json_name = "to_port"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}

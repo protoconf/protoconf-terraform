@@ -1,0 +1,152 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsXrayEncryptionConfig version is 0
+message AwsXrayEncryptionConfig {
+  string id = 1;
+
+  string key_id = 2 [json_name = "key_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string type = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsXrayGroup version is 0
+message AwsXrayGroup {
+  string arn = 1;
+
+  string filter_expression = 2 [json_name = "filter_expression"];
+
+  string group_name = 3 [json_name = "group_name"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  InsightsConfiguration insights_configuration = 8 [json_name = "insights_configuration"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message InsightsConfiguration {
+    bool insights_enabled = 1 [json_name = "insights_enabled"];
+
+    bool notifications_enabled = 2 [json_name = "notifications_enabled"];
+  }
+}
+
+// AwsXrayResourcePolicy version is 0
+message AwsXrayResourcePolicy {
+  bool bypass_policy_lockout_check = 1 [json_name = "bypass_policy_lockout_check"];
+
+  string last_updated_time = 2 [json_name = "last_updated_time"];
+
+  string policy_document = 3 [json_name = "policy_document"];
+
+  string policy_name = 4 [json_name = "policy_name"];
+
+  string policy_revision_id = 5 [json_name = "policy_revision_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsXraySamplingRule version is 0
+message AwsXraySamplingRule {
+  string arn = 1;
+
+  map<string, string> attributes = 2;
+
+  int64 fixed_rate = 3 [json_name = "fixed_rate"];
+
+  string host = 4;
+
+  string http_method = 5 [json_name = "http_method"];
+
+  string id = 6;
+
+  int64 priority = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  int64 reservoir_size = 9 [json_name = "reservoir_size"];
+
+  string resource_arn = 10 [json_name = "resource_arn"];
+
+  string rule_name = 11 [json_name = "rule_name"];
+
+  string service_name = 12 [json_name = "service_name"];
+
+  string service_type = 13 [json_name = "service_type"];
+
+  map<string, string> tags = 14;
+
+  map<string, string> tags_all = 15 [json_name = "tags_all"];
+
+  string url_path = 16 [json_name = "url_path"];
+
+  int64 version = 17;
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+}

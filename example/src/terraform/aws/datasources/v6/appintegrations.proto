@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsAppintegrationsEventIntegration version is 0
+message AwsAppintegrationsEventIntegration {
+  string arn = 1;
+
+  string description = 2;
+
+  repeated EventFilter event_filter = 3 [json_name = "event_filter"];
+
+  string eventbridge_bus = 4 [json_name = "eventbridge_bus"];
+
+  string id = 5;
+
+  string name = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message EventFilter {
+    // source: string
+    string source = 1;
+  }
+}

@@ -1,0 +1,567 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCognitoIdentityPool version is 0
+message AwsCognitoIdentityPool {
+  bool allow_classic_flow = 1 [json_name = "allow_classic_flow"];
+
+  bool allow_unauthenticated_identities = 2 [json_name = "allow_unauthenticated_identities"];
+
+  string arn = 3;
+
+  repeated CognitoIdentityProviders cognito_identity_providers = 4 [json_name = "cognito_identity_providers"];
+
+  string developer_provider_name = 5 [json_name = "developer_provider_name"];
+
+  string id = 6;
+
+  string identity_pool_name = 7 [json_name = "identity_pool_name"];
+
+  repeated string openid_connect_provider_arns = 8 [json_name = "openid_connect_provider_arns"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  repeated string saml_provider_arns = 10 [json_name = "saml_provider_arns"];
+
+  map<string, string> supported_login_providers = 11 [json_name = "supported_login_providers"];
+
+  map<string, string> tags = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message CognitoIdentityProviders {
+    // client_id: string
+    string client_id = 1 [json_name = "client_id"];
+
+    // provider_name: string
+    string provider_name = 2 [json_name = "provider_name"];
+
+    // server_side_token_check: bool
+    bool server_side_token_check = 3 [json_name = "server_side_token_check"];
+  }
+}
+
+// AwsCognitoUserGroup version is 0
+message AwsCognitoUserGroup {
+  string description = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  int64 precedence = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string role_arn = 6 [json_name = "role_arn"];
+
+  string user_pool_id = 7 [json_name = "user_pool_id"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsCognitoUserGroups version is 0
+message AwsCognitoUserGroups {
+  repeated Groups groups = 1;
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string user_pool_id = 4 [json_name = "user_pool_id"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message Groups {
+    // description: string
+    string description = 1;
+
+    // group_name: string
+    string group_name = 2 [json_name = "group_name"];
+
+    // precedence: number
+    int64 precedence = 3;
+
+    // role_arn: string
+    string role_arn = 4 [json_name = "role_arn"];
+  }
+}
+
+// AwsCognitoUserPool version is 0
+message AwsCognitoUserPool {
+  repeated AccountRecoverySetting account_recovery_setting = 1 [json_name = "account_recovery_setting"];
+
+  repeated AdminCreateUserConfig admin_create_user_config = 2 [json_name = "admin_create_user_config"];
+
+  string arn = 3;
+
+  repeated string auto_verified_attributes = 4 [json_name = "auto_verified_attributes"];
+
+  string creation_date = 5 [json_name = "creation_date"];
+
+  string custom_domain = 6 [json_name = "custom_domain"];
+
+  string deletion_protection = 7 [json_name = "deletion_protection"];
+
+  repeated DeviceConfiguration device_configuration = 8 [json_name = "device_configuration"];
+
+  string domain = 9;
+
+  repeated EmailConfiguration email_configuration = 10 [json_name = "email_configuration"];
+
+  int64 estimated_number_of_users = 11 [json_name = "estimated_number_of_users"];
+
+  string id = 12;
+
+  repeated LambdaConfig lambda_config = 13 [json_name = "lambda_config"];
+
+  string last_modified_date = 14 [json_name = "last_modified_date"];
+
+  string mfa_configuration = 15 [json_name = "mfa_configuration"];
+
+  string name = 16;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 17;
+
+  repeated SchemaAttributes schema_attributes = 18 [json_name = "schema_attributes"];
+
+  string sms_authentication_message = 19 [json_name = "sms_authentication_message"];
+
+  string sms_configuration_failure = 20 [json_name = "sms_configuration_failure"];
+
+  string sms_verification_message = 21 [json_name = "sms_verification_message"];
+
+  map<string, string> tags = 22;
+
+  repeated UserPoolAddOns user_pool_add_ons = 23 [json_name = "user_pool_add_ons"];
+
+  string user_pool_id = 24 [json_name = "user_pool_id"];
+
+  map<string, string> user_pool_tags = 25 [json_name = "user_pool_tags"];
+
+  repeated string username_attributes = 26 [json_name = "username_attributes"];
+
+  google.protobuf.Value for_each = 27 [json_name = "for_each"];
+
+  repeated string depends_on = 28 [json_name = "depends_on"];
+
+  int32 count = 29;
+
+  string provider = 30;
+
+  terraform.v1.Lifecycle lifecycle = 31;
+
+  message AccountRecoverySetting {
+    // recovery_mechanism: list of object
+    repeated RecoveryMechanism recovery_mechanism = 1 [json_name = "recovery_mechanism"];
+
+    message RecoveryMechanism {
+      // name: string
+      string name = 1;
+
+      // priority: number
+      int64 priority = 2;
+    }
+  }
+
+  message AdminCreateUserConfig {
+    // allow_admin_create_user_only: bool
+    bool allow_admin_create_user_only = 1 [json_name = "allow_admin_create_user_only"];
+
+    // invite_message_template: list of object
+    repeated InviteMessageTemplate invite_message_template = 2 [json_name = "invite_message_template"];
+
+    // unused_account_validity_days: number
+    int64 unused_account_validity_days = 3 [json_name = "unused_account_validity_days"];
+
+    message InviteMessageTemplate {
+      // email_message: string
+      string email_message = 1 [json_name = "email_message"];
+
+      // email_subject: string
+      string email_subject = 2 [json_name = "email_subject"];
+
+      // sms_message: string
+      string sms_message = 3 [json_name = "sms_message"];
+    }
+  }
+
+  message DeviceConfiguration {
+    // challenge_required_on_new_device: bool
+    bool challenge_required_on_new_device = 1 [json_name = "challenge_required_on_new_device"];
+
+    // device_only_remembered_on_user_prompt: bool
+    bool device_only_remembered_on_user_prompt = 2 [
+      json_name = "device_only_remembered_on_user_prompt"
+    ];
+  }
+
+  message EmailConfiguration {
+    // configuration_set: string
+    string configuration_set = 1 [json_name = "configuration_set"];
+
+    // email_sending_account: string
+    string email_sending_account = 2 [json_name = "email_sending_account"];
+
+    // from: string
+    string from = 3;
+
+    // reply_to_email_address: string
+    string reply_to_email_address = 4 [json_name = "reply_to_email_address"];
+
+    // source_arn: string
+    string source_arn = 5 [json_name = "source_arn"];
+  }
+
+  message LambdaConfig {
+    // create_auth_challenge: string
+    string create_auth_challenge = 1 [json_name = "create_auth_challenge"];
+
+    // custom_email_sender: list of object
+    repeated CustomEmailSender custom_email_sender = 2 [json_name = "custom_email_sender"];
+
+    // custom_message: string
+    string custom_message = 3 [json_name = "custom_message"];
+
+    // custom_sms_sender: list of object
+    repeated CustomSmsSender custom_sms_sender = 4 [json_name = "custom_sms_sender"];
+
+    // define_auth_challenge: string
+    string define_auth_challenge = 5 [json_name = "define_auth_challenge"];
+
+    // kms_key_id: string
+    string kms_key_id = 6 [json_name = "kms_key_id"];
+
+    // post_authentication: string
+    string post_authentication = 7 [json_name = "post_authentication"];
+
+    // post_confirmation: string
+    string post_confirmation = 8 [json_name = "post_confirmation"];
+
+    // pre_authentication: string
+    string pre_authentication = 9 [json_name = "pre_authentication"];
+
+    // pre_sign_up: string
+    string pre_sign_up = 10 [json_name = "pre_sign_up"];
+
+    // pre_token_generation: string
+    string pre_token_generation = 11 [json_name = "pre_token_generation"];
+
+    // pre_token_generation_config: list of object
+    repeated PreTokenGenerationConfig pre_token_generation_config = 12 [json_name = "pre_token_generation_config"];
+
+    // user_migration: string
+    string user_migration = 13 [json_name = "user_migration"];
+
+    // verify_auth_challenge_response: string
+    string verify_auth_challenge_response = 14 [json_name = "verify_auth_challenge_response"];
+
+    message CustomEmailSender {
+      // lambda_arn: string
+      string lambda_arn = 1 [json_name = "lambda_arn"];
+
+      // lambda_version: string
+      string lambda_version = 2 [json_name = "lambda_version"];
+    }
+
+    message CustomSmsSender {
+      // lambda_arn: string
+      string lambda_arn = 1 [json_name = "lambda_arn"];
+
+      // lambda_version: string
+      string lambda_version = 2 [json_name = "lambda_version"];
+    }
+
+    message PreTokenGenerationConfig {
+      // lambda_arn: string
+      string lambda_arn = 1 [json_name = "lambda_arn"];
+
+      // lambda_version: string
+      string lambda_version = 2 [json_name = "lambda_version"];
+    }
+  }
+
+  message SchemaAttributes {
+    // attribute_data_type: string
+    string attribute_data_type = 1 [json_name = "attribute_data_type"];
+
+    // developer_only_attribute: bool
+    bool developer_only_attribute = 2 [json_name = "developer_only_attribute"];
+
+    // mutable: bool
+    bool mutable = 3;
+
+    // name: string
+    string name = 4;
+
+    // number_attribute_constraints: list of object
+    repeated NumberAttributeConstraints number_attribute_constraints = 5 [json_name = "number_attribute_constraints"];
+
+    // required: bool
+    bool required = 6;
+
+    // string_attribute_constraints: list of object
+    repeated StringAttributeConstraints string_attribute_constraints = 7 [json_name = "string_attribute_constraints"];
+
+    message NumberAttributeConstraints {
+      // max_value: string
+      string max_value = 1 [json_name = "max_value"];
+
+      // min_value: string
+      string min_value = 2 [json_name = "min_value"];
+    }
+
+    message StringAttributeConstraints {
+      // max_length: string
+      string max_length = 1 [json_name = "max_length"];
+
+      // min_length: string
+      string min_length = 2 [json_name = "min_length"];
+    }
+  }
+
+  message UserPoolAddOns {
+    // advanced_security_additional_flows: list of object
+    repeated AdvancedSecurityAdditionalFlows advanced_security_additional_flows = 1 [json_name = "advanced_security_additional_flows"];
+
+    // advanced_security_mode: string
+    string advanced_security_mode = 2 [json_name = "advanced_security_mode"];
+
+    message AdvancedSecurityAdditionalFlows {
+      // custom_auth_mode: string
+      string custom_auth_mode = 1 [json_name = "custom_auth_mode"];
+    }
+  }
+}
+
+// AwsCognitoUserPoolClient version is 0
+message AwsCognitoUserPoolClient {
+  int64 access_token_validity = 1 [json_name = "access_token_validity"];
+
+  repeated string allowed_oauth_flows = 2 [json_name = "allowed_oauth_flows"];
+
+  bool allowed_oauth_flows_user_pool_client = 3 [json_name = "allowed_oauth_flows_user_pool_client"];
+
+  repeated string allowed_oauth_scopes = 4 [json_name = "allowed_oauth_scopes"];
+
+  repeated AnalyticsConfiguration analytics_configuration = 5 [json_name = "analytics_configuration"];
+
+  repeated string callback_urls = 6 [json_name = "callback_urls"];
+
+  string client_id = 7 [json_name = "client_id"];
+
+  string client_secret = 8 [json_name = "client_secret"];
+
+  string default_redirect_uri = 9 [json_name = "default_redirect_uri"];
+
+  bool enable_propagate_additional_user_context_data = 10 [
+    json_name = "enable_propagate_additional_user_context_data"
+  ];
+
+  bool enable_token_revocation = 11 [json_name = "enable_token_revocation"];
+
+  repeated string explicit_auth_flows = 12 [json_name = "explicit_auth_flows"];
+
+  bool generate_secret = 13 [json_name = "generate_secret"];
+
+  string id = 14;
+
+  int64 id_token_validity = 15 [json_name = "id_token_validity"];
+
+  repeated string logout_urls = 16 [json_name = "logout_urls"];
+
+  string name = 17;
+
+  string prevent_user_existence_errors = 18 [json_name = "prevent_user_existence_errors"];
+
+  repeated string read_attributes = 19 [json_name = "read_attributes"];
+
+  repeated RefreshTokenRotation refresh_token_rotation = 20 [json_name = "refresh_token_rotation"];
+
+  int64 refresh_token_validity = 21 [json_name = "refresh_token_validity"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 22;
+
+  repeated string supported_identity_providers = 23 [json_name = "supported_identity_providers"];
+
+  repeated TokenValidityUnits token_validity_units = 24 [json_name = "token_validity_units"];
+
+  string user_pool_id = 25 [json_name = "user_pool_id"];
+
+  repeated string write_attributes = 26 [json_name = "write_attributes"];
+
+  google.protobuf.Value for_each = 27 [json_name = "for_each"];
+
+  repeated string depends_on = 28 [json_name = "depends_on"];
+
+  int32 count = 29;
+
+  string provider = 30;
+
+  terraform.v1.Lifecycle lifecycle = 31;
+
+  message AnalyticsConfiguration {
+    // application_arn: string
+    string application_arn = 1 [json_name = "application_arn"];
+
+    // application_id: string
+    string application_id = 2 [json_name = "application_id"];
+
+    // external_id: string
+    string external_id = 3 [json_name = "external_id"];
+
+    // role_arn: string
+    string role_arn = 4 [json_name = "role_arn"];
+
+    // user_data_shared: bool
+    bool user_data_shared = 5 [json_name = "user_data_shared"];
+  }
+
+  message RefreshTokenRotation {
+    // feature: string
+    string feature = 1;
+
+    // retry_grace_period_seconds: number
+    int64 retry_grace_period_seconds = 2 [json_name = "retry_grace_period_seconds"];
+  }
+
+  message TokenValidityUnits {
+    // access_token: string
+    string access_token = 1 [json_name = "access_token"];
+
+    // id_token: string
+    string id_token = 2 [json_name = "id_token"];
+
+    // refresh_token: string
+    string refresh_token = 3 [json_name = "refresh_token"];
+  }
+}
+
+// AwsCognitoUserPoolClients version is 0
+message AwsCognitoUserPoolClients {
+  repeated string client_ids = 1 [json_name = "client_ids"];
+
+  repeated string client_names = 2 [json_name = "client_names"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string user_pool_id = 5 [json_name = "user_pool_id"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsCognitoUserPoolSigningCertificate version is 0
+message AwsCognitoUserPoolSigningCertificate {
+  string certificate = 1;
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string user_pool_id = 4 [json_name = "user_pool_id"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsCognitoUserPools version is 0
+message AwsCognitoUserPools {
+  repeated string arns = 1;
+
+  string id = 2;
+
+  repeated string ids = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}

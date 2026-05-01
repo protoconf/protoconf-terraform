@@ -1,0 +1,152 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsNatGateway version is 0
+message AwsNatGateway {
+  string allocation_id = 1 [json_name = "allocation_id"];
+
+  string association_id = 2 [json_name = "association_id"];
+
+  string auto_provision_zones = 3 [json_name = "auto_provision_zones"];
+
+  string auto_scaling_ips = 4 [json_name = "auto_scaling_ips"];
+
+  string availability_mode = 5 [json_name = "availability_mode"];
+
+  string connectivity_type = 6 [json_name = "connectivity_type"];
+
+  string id = 7;
+
+  string network_interface_id = 8 [json_name = "network_interface_id"];
+
+  string private_ip = 9 [json_name = "private_ip"];
+
+  string public_ip = 10 [json_name = "public_ip"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  repeated RegionalNatGatewayAddress regional_nat_gateway_address = 12 [json_name = "regional_nat_gateway_address"];
+
+  string regional_nat_gateway_auto_mode = 13 [json_name = "regional_nat_gateway_auto_mode"];
+
+  string route_table_id = 14 [json_name = "route_table_id"];
+
+  repeated string secondary_allocation_ids = 15 [json_name = "secondary_allocation_ids"];
+
+  int64 secondary_private_ip_address_count = 16 [json_name = "secondary_private_ip_address_count"];
+
+  repeated string secondary_private_ip_addresses = 17 [json_name = "secondary_private_ip_addresses"];
+
+  string subnet_id = 18 [json_name = "subnet_id"];
+
+  map<string, string> tags = 19;
+
+  map<string, string> tags_all = 20 [json_name = "tags_all"];
+
+  string vpc_id = 21 [json_name = "vpc_id"];
+
+  repeated AvailabilityZoneAddress availability_zone_address = 22 [json_name = "availability_zone_address"];
+
+  repeated Timeouts timeouts = 23;
+
+  google.protobuf.Value for_each = 24 [json_name = "for_each"];
+
+  repeated string depends_on = 25 [json_name = "depends_on"];
+
+  int32 count = 26;
+
+  string provider = 27;
+
+  terraform.v1.Lifecycle lifecycle = 28;
+
+  message RegionalNatGatewayAddress {
+    // allocation_id: string
+    string allocation_id = 1 [json_name = "allocation_id"];
+
+    // association_id: string
+    string association_id = 2 [json_name = "association_id"];
+
+    // availability_zone: string
+    string availability_zone = 3 [json_name = "availability_zone"];
+
+    // availability_zone_id: string
+    string availability_zone_id = 4 [json_name = "availability_zone_id"];
+
+    // network_interface_id: string
+    string network_interface_id = 5 [json_name = "network_interface_id"];
+
+    // public_ip: string
+    string public_ip = 6 [json_name = "public_ip"];
+
+    // status: string
+    string status = 7;
+  }
+
+  message AvailabilityZoneAddress {
+    repeated string allocation_ids = 1 [json_name = "allocation_ids"];
+
+    string availability_zone = 2 [json_name = "availability_zone"];
+
+    string availability_zone_id = 3 [json_name = "availability_zone_id"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsNatGatewayEipAssociation version is 0
+message AwsNatGatewayEipAssociation {
+  string allocation_id = 1 [json_name = "allocation_id"];
+
+  string association_id = 2 [json_name = "association_id"];
+
+  string nat_gateway_id = 3 [json_name = "nat_gateway_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}

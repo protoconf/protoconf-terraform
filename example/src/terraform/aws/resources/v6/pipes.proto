@@ -1,0 +1,553 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsPipesPipe version is 0
+message AwsPipesPipe {
+  string arn = 1;
+
+  string description = 2;
+
+  string desired_state = 3 [json_name = "desired_state"];
+
+  string enrichment = 4;
+
+  string id = 5;
+
+  string kms_key_identifier = 6 [json_name = "kms_key_identifier"];
+
+  string name = 7;
+
+  string name_prefix = 8 [json_name = "name_prefix"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  string role_arn = 10 [json_name = "role_arn"];
+
+  string source = 11;
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  string target = 14;
+
+  EnrichmentParameters enrichment_parameters = 15 [json_name = "enrichment_parameters"];
+
+  LogConfiguration log_configuration = 16 [json_name = "log_configuration"];
+
+  SourceParameters source_parameters = 17 [json_name = "source_parameters"];
+
+  TargetParameters target_parameters = 18 [json_name = "target_parameters"];
+
+  repeated Timeouts timeouts = 19;
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message EnrichmentParameters {
+    string input_template = 1 [json_name = "input_template"];
+
+    HttpParameters http_parameters = 2 [json_name = "http_parameters"];
+
+    message HttpParameters {
+      map<string, string> header_parameters = 1 [json_name = "header_parameters"];
+
+      repeated string path_parameter_values = 2 [json_name = "path_parameter_values"];
+
+      map<string, string> query_string_parameters = 3 [json_name = "query_string_parameters"];
+    }
+  }
+
+  message LogConfiguration {
+    repeated string include_execution_data = 1 [json_name = "include_execution_data"];
+
+    string level = 2;
+
+    CloudwatchLogsLogDestination cloudwatch_logs_log_destination = 3 [json_name = "cloudwatch_logs_log_destination"];
+
+    FirehoseLogDestination firehose_log_destination = 4 [json_name = "firehose_log_destination"];
+
+    S3LogDestination s3_log_destination = 5 [json_name = "s3_log_destination"];
+
+    message CloudwatchLogsLogDestination {
+      string log_group_arn = 1 [json_name = "log_group_arn"];
+    }
+
+    message FirehoseLogDestination {
+      string delivery_stream_arn = 1 [json_name = "delivery_stream_arn"];
+    }
+
+    message S3LogDestination {
+      string bucket_name = 1 [json_name = "bucket_name"];
+
+      string bucket_owner = 2 [json_name = "bucket_owner"];
+
+      string output_format = 3 [json_name = "output_format"];
+
+      string prefix = 4;
+    }
+  }
+
+  message SourceParameters {
+    ActivemqBrokerParameters activemq_broker_parameters = 1 [json_name = "activemq_broker_parameters"];
+
+    DynamodbStreamParameters dynamodb_stream_parameters = 2 [json_name = "dynamodb_stream_parameters"];
+
+    FilterCriteria filter_criteria = 3 [json_name = "filter_criteria"];
+
+    KinesisStreamParameters kinesis_stream_parameters = 4 [json_name = "kinesis_stream_parameters"];
+
+    ManagedStreamingKafkaParameters managed_streaming_kafka_parameters = 5 [json_name = "managed_streaming_kafka_parameters"];
+
+    RabbitmqBrokerParameters rabbitmq_broker_parameters = 6 [json_name = "rabbitmq_broker_parameters"];
+
+    SelfManagedKafkaParameters self_managed_kafka_parameters = 7 [json_name = "self_managed_kafka_parameters"];
+
+    SqsQueueParameters sqs_queue_parameters = 8 [json_name = "sqs_queue_parameters"];
+
+    message ActivemqBrokerParameters {
+      int64 batch_size = 1 [json_name = "batch_size"];
+
+      int64 maximum_batching_window_in_seconds = 2 [json_name = "maximum_batching_window_in_seconds"];
+
+      string queue_name = 3 [json_name = "queue_name"];
+
+      Credentials credentials = 4;
+
+      message Credentials {
+        string basic_auth = 1 [json_name = "basic_auth"];
+      }
+    }
+
+    message DynamodbStreamParameters {
+      int64 batch_size = 1 [json_name = "batch_size"];
+
+      int64 maximum_batching_window_in_seconds = 2 [json_name = "maximum_batching_window_in_seconds"];
+
+      int64 maximum_record_age_in_seconds = 3 [json_name = "maximum_record_age_in_seconds"];
+
+      int64 maximum_retry_attempts = 4 [json_name = "maximum_retry_attempts"];
+
+      string on_partial_batch_item_failure = 5 [json_name = "on_partial_batch_item_failure"];
+
+      int64 parallelization_factor = 6 [json_name = "parallelization_factor"];
+
+      string starting_position = 7 [json_name = "starting_position"];
+
+      DeadLetterConfig dead_letter_config = 8 [json_name = "dead_letter_config"];
+
+      message DeadLetterConfig {
+        string arn = 1;
+      }
+    }
+
+    message FilterCriteria {
+      repeated Filter filter = 1;
+
+      message Filter {
+        string pattern = 1;
+      }
+    }
+
+    message KinesisStreamParameters {
+      int64 batch_size = 1 [json_name = "batch_size"];
+
+      int64 maximum_batching_window_in_seconds = 2 [json_name = "maximum_batching_window_in_seconds"];
+
+      int64 maximum_record_age_in_seconds = 3 [json_name = "maximum_record_age_in_seconds"];
+
+      int64 maximum_retry_attempts = 4 [json_name = "maximum_retry_attempts"];
+
+      string on_partial_batch_item_failure = 5 [json_name = "on_partial_batch_item_failure"];
+
+      int64 parallelization_factor = 6 [json_name = "parallelization_factor"];
+
+      string starting_position = 7 [json_name = "starting_position"];
+
+      string starting_position_timestamp = 8 [json_name = "starting_position_timestamp"];
+
+      DeadLetterConfig dead_letter_config = 9 [json_name = "dead_letter_config"];
+
+      message DeadLetterConfig {
+        string arn = 1;
+      }
+    }
+
+    message ManagedStreamingKafkaParameters {
+      int64 batch_size = 1 [json_name = "batch_size"];
+
+      string consumer_group_id = 2 [json_name = "consumer_group_id"];
+
+      int64 maximum_batching_window_in_seconds = 3 [json_name = "maximum_batching_window_in_seconds"];
+
+      string starting_position = 4 [json_name = "starting_position"];
+
+      string topic_name = 5 [json_name = "topic_name"];
+
+      Credentials credentials = 6;
+
+      message Credentials {
+        string client_certificate_tls_auth = 1 [json_name = "client_certificate_tls_auth"];
+
+        string sasl_scram_512_auth = 2 [json_name = "sasl_scram_512_auth"];
+      }
+    }
+
+    message RabbitmqBrokerParameters {
+      int64 batch_size = 1 [json_name = "batch_size"];
+
+      int64 maximum_batching_window_in_seconds = 2 [json_name = "maximum_batching_window_in_seconds"];
+
+      string queue_name = 3 [json_name = "queue_name"];
+
+      string virtual_host = 4 [json_name = "virtual_host"];
+
+      Credentials credentials = 5;
+
+      message Credentials {
+        string basic_auth = 1 [json_name = "basic_auth"];
+      }
+    }
+
+    message SelfManagedKafkaParameters {
+      repeated string additional_bootstrap_servers = 1 [json_name = "additional_bootstrap_servers"];
+
+      int64 batch_size = 2 [json_name = "batch_size"];
+
+      string consumer_group_id = 3 [json_name = "consumer_group_id"];
+
+      int64 maximum_batching_window_in_seconds = 4 [json_name = "maximum_batching_window_in_seconds"];
+
+      string server_root_ca_certificate = 5 [json_name = "server_root_ca_certificate"];
+
+      string starting_position = 6 [json_name = "starting_position"];
+
+      string topic_name = 7 [json_name = "topic_name"];
+
+      Credentials credentials = 8;
+
+      Vpc vpc = 9;
+
+      message Credentials {
+        string basic_auth = 1 [json_name = "basic_auth"];
+
+        string client_certificate_tls_auth = 2 [json_name = "client_certificate_tls_auth"];
+
+        string sasl_scram_256_auth = 3 [json_name = "sasl_scram_256_auth"];
+
+        string sasl_scram_512_auth = 4 [json_name = "sasl_scram_512_auth"];
+      }
+
+      message Vpc {
+        repeated string security_groups = 1 [json_name = "security_groups"];
+
+        repeated string subnets = 2;
+      }
+    }
+
+    message SqsQueueParameters {
+      int64 batch_size = 1 [json_name = "batch_size"];
+
+      int64 maximum_batching_window_in_seconds = 2 [json_name = "maximum_batching_window_in_seconds"];
+    }
+  }
+
+  message TargetParameters {
+    string input_template = 1 [json_name = "input_template"];
+
+    BatchJobParameters batch_job_parameters = 2 [json_name = "batch_job_parameters"];
+
+    CloudwatchLogsParameters cloudwatch_logs_parameters = 3 [json_name = "cloudwatch_logs_parameters"];
+
+    EcsTaskParameters ecs_task_parameters = 4 [json_name = "ecs_task_parameters"];
+
+    EventbridgeEventBusParameters eventbridge_event_bus_parameters = 5 [json_name = "eventbridge_event_bus_parameters"];
+
+    HttpParameters http_parameters = 6 [json_name = "http_parameters"];
+
+    KinesisStreamParameters kinesis_stream_parameters = 7 [json_name = "kinesis_stream_parameters"];
+
+    LambdaFunctionParameters lambda_function_parameters = 8 [json_name = "lambda_function_parameters"];
+
+    RedshiftDataParameters redshift_data_parameters = 9 [json_name = "redshift_data_parameters"];
+
+    SagemakerPipelineParameters sagemaker_pipeline_parameters = 10 [json_name = "sagemaker_pipeline_parameters"];
+
+    SqsQueueParameters sqs_queue_parameters = 11 [json_name = "sqs_queue_parameters"];
+
+    StepFunctionStateMachineParameters step_function_state_machine_parameters = 12 [
+      json_name = "step_function_state_machine_parameters"
+    ];
+
+    message BatchJobParameters {
+      string job_definition = 1 [json_name = "job_definition"];
+
+      string job_name = 2 [json_name = "job_name"];
+
+      map<string, string> parameters = 3;
+
+      ArrayProperties array_properties = 4 [json_name = "array_properties"];
+
+      ContainerOverrides container_overrides = 5 [json_name = "container_overrides"];
+
+      repeated DependsOn depends_on = 6 [json_name = "depends_on"];
+
+      RetryStrategy retry_strategy = 7 [json_name = "retry_strategy"];
+
+      message ArrayProperties {
+        int64 size = 1;
+      }
+
+      message ContainerOverrides {
+        repeated string command = 1;
+
+        string instance_type = 2 [json_name = "instance_type"];
+
+        repeated Environment environment = 3;
+
+        repeated ResourceRequirement resource_requirement = 4 [json_name = "resource_requirement"];
+
+        message Environment {
+          string name = 1;
+
+          string value = 2;
+        }
+
+        message ResourceRequirement {
+          string type = 1;
+
+          string value = 2;
+        }
+      }
+
+      message DependsOn {
+        string job_id = 1 [json_name = "job_id"];
+
+        string type = 2;
+      }
+
+      message RetryStrategy {
+        int64 attempts = 1;
+      }
+    }
+
+    message CloudwatchLogsParameters {
+      string log_stream_name = 1 [json_name = "log_stream_name"];
+
+      string timestamp = 2;
+    }
+
+    message EcsTaskParameters {
+      bool enable_ecs_managed_tags = 1 [json_name = "enable_ecs_managed_tags"];
+
+      bool enable_execute_command = 2 [json_name = "enable_execute_command"];
+
+      string group = 3;
+
+      string launch_type = 4 [json_name = "launch_type"];
+
+      string platform_version = 5 [json_name = "platform_version"];
+
+      string propagate_tags = 6 [json_name = "propagate_tags"];
+
+      string reference_id = 7 [json_name = "reference_id"];
+
+      map<string, string> tags = 8;
+
+      int64 task_count = 9 [json_name = "task_count"];
+
+      string task_definition_arn = 10 [json_name = "task_definition_arn"];
+
+      repeated CapacityProviderStrategy capacity_provider_strategy = 11 [json_name = "capacity_provider_strategy"];
+
+      NetworkConfiguration network_configuration = 12 [json_name = "network_configuration"];
+
+      Overrides overrides = 13;
+
+      repeated PlacementConstraint placement_constraint = 14 [json_name = "placement_constraint"];
+
+      repeated PlacementStrategy placement_strategy = 15 [json_name = "placement_strategy"];
+
+      message CapacityProviderStrategy {
+        int64 base = 1;
+
+        string capacity_provider = 2 [json_name = "capacity_provider"];
+
+        int64 weight = 3;
+      }
+
+      message NetworkConfiguration {
+        AwsVpcConfiguration aws_vpc_configuration = 1 [json_name = "aws_vpc_configuration"];
+
+        message AwsVpcConfiguration {
+          string assign_public_ip = 1 [json_name = "assign_public_ip"];
+
+          repeated string security_groups = 2 [json_name = "security_groups"];
+
+          repeated string subnets = 3;
+        }
+      }
+
+      message Overrides {
+        string cpu = 1;
+
+        string execution_role_arn = 2 [json_name = "execution_role_arn"];
+
+        string memory = 3;
+
+        string task_role_arn = 4 [json_name = "task_role_arn"];
+
+        repeated ContainerOverride container_override = 5 [json_name = "container_override"];
+
+        EphemeralStorage ephemeral_storage = 6 [json_name = "ephemeral_storage"];
+
+        repeated InferenceAcceleratorOverride inference_accelerator_override = 7 [json_name = "inference_accelerator_override"];
+
+        message ContainerOverride {
+          repeated string command = 1;
+
+          int64 cpu = 2;
+
+          int64 memory = 3;
+
+          int64 memory_reservation = 4 [json_name = "memory_reservation"];
+
+          string name = 5;
+
+          repeated Environment environment = 6;
+
+          repeated EnvironmentFile environment_file = 7 [json_name = "environment_file"];
+
+          repeated ResourceRequirement resource_requirement = 8 [json_name = "resource_requirement"];
+
+          message Environment {
+            string name = 1;
+
+            string value = 2;
+          }
+
+          message EnvironmentFile {
+            string type = 1;
+
+            string value = 2;
+          }
+
+          message ResourceRequirement {
+            string type = 1;
+
+            string value = 2;
+          }
+        }
+
+        message EphemeralStorage {
+          int64 size_in_gib = 1 [json_name = "size_in_gib"];
+        }
+
+        message InferenceAcceleratorOverride {
+          string device_name = 1 [json_name = "device_name"];
+
+          string device_type = 2 [json_name = "device_type"];
+        }
+      }
+
+      message PlacementConstraint {
+        string expression = 1;
+
+        string type = 2;
+      }
+
+      message PlacementStrategy {
+        string field = 1;
+
+        string type = 2;
+      }
+    }
+
+    message EventbridgeEventBusParameters {
+      string detail_type = 1 [json_name = "detail_type"];
+
+      string endpoint_id = 2 [json_name = "endpoint_id"];
+
+      repeated string resources = 3;
+
+      string source = 4;
+
+      string time = 5;
+    }
+
+    message HttpParameters {
+      map<string, string> header_parameters = 1 [json_name = "header_parameters"];
+
+      repeated string path_parameter_values = 2 [json_name = "path_parameter_values"];
+
+      map<string, string> query_string_parameters = 3 [json_name = "query_string_parameters"];
+    }
+
+    message KinesisStreamParameters {
+      string partition_key = 1 [json_name = "partition_key"];
+    }
+
+    message LambdaFunctionParameters {
+      string invocation_type = 1 [json_name = "invocation_type"];
+    }
+
+    message RedshiftDataParameters {
+      string database = 1;
+
+      string db_user = 2 [json_name = "db_user"];
+
+      string secret_manager_arn = 3 [json_name = "secret_manager_arn"];
+
+      repeated string sqls = 4;
+
+      string statement_name = 5 [json_name = "statement_name"];
+
+      bool with_event = 6 [json_name = "with_event"];
+    }
+
+    message SagemakerPipelineParameters {
+      repeated PipelineParameter pipeline_parameter = 1 [json_name = "pipeline_parameter"];
+
+      message PipelineParameter {
+        string name = 1;
+
+        string value = 2;
+      }
+    }
+
+    message SqsQueueParameters {
+      string message_deduplication_id = 1 [json_name = "message_deduplication_id"];
+
+      string message_group_id = 2 [json_name = "message_group_id"];
+    }
+
+    message StepFunctionStateMachineParameters {
+      string invocation_type = 1 [json_name = "invocation_type"];
+    }
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}

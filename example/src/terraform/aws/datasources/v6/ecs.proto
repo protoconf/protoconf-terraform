@@ -1,0 +1,761 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsEcsCluster version is 0
+message AwsEcsCluster {
+  string arn = 1;
+
+  string cluster_name = 2 [json_name = "cluster_name"];
+
+  string id = 3;
+
+  int64 pending_tasks_count = 4 [json_name = "pending_tasks_count"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  int64 registered_container_instances_count = 6 [json_name = "registered_container_instances_count"];
+
+  int64 running_tasks_count = 7 [json_name = "running_tasks_count"];
+
+  repeated ServiceConnectDefaults service_connect_defaults = 8 [json_name = "service_connect_defaults"];
+
+  repeated Setting setting = 9;
+
+  string status = 10;
+
+  map<string, string> tags = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message ServiceConnectDefaults {
+    // namespace: string
+    string namespace = 1;
+  }
+
+  message Setting {
+    // name: string
+    string name = 1;
+
+    // value: string
+    string value = 2;
+  }
+}
+
+// AwsEcsClusters version is 0
+message AwsEcsClusters {
+  repeated string cluster_arns = 1 [json_name = "cluster_arns"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+}
+
+// AwsEcsContainerDefinition version is 0
+message AwsEcsContainerDefinition {
+  string container_name = 1 [json_name = "container_name"];
+
+  int64 cpu = 2;
+
+  bool disable_networking = 3 [json_name = "disable_networking"];
+
+  map<string, string> docker_labels = 4 [json_name = "docker_labels"];
+
+  map<string, string> environment = 5;
+
+  string id = 6;
+
+  string image = 7;
+
+  string image_digest = 8 [json_name = "image_digest"];
+
+  int64 memory = 9;
+
+  int64 memory_reservation = 10 [json_name = "memory_reservation"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string task_definition = 12 [json_name = "task_definition"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+}
+
+// AwsEcsService version is 0
+message AwsEcsService {
+  string arn = 1;
+
+  string availability_zone_rebalancing = 2 [json_name = "availability_zone_rebalancing"];
+
+  repeated CapacityProviderStrategy capacity_provider_strategy = 3 [json_name = "capacity_provider_strategy"];
+
+  string cluster_arn = 4 [json_name = "cluster_arn"];
+
+  string created_at = 5 [json_name = "created_at"];
+
+  string created_by = 6 [json_name = "created_by"];
+
+  repeated DeploymentConfiguration deployment_configuration = 7 [json_name = "deployment_configuration"];
+
+  repeated DeploymentController deployment_controller = 8 [json_name = "deployment_controller"];
+
+  repeated Deployments deployments = 9;
+
+  int64 desired_count = 10 [json_name = "desired_count"];
+
+  bool enable_ecs_managed_tags = 11 [json_name = "enable_ecs_managed_tags"];
+
+  bool enable_execute_command = 12 [json_name = "enable_execute_command"];
+
+  repeated Events events = 13;
+
+  int64 health_check_grace_period_seconds = 14 [json_name = "health_check_grace_period_seconds"];
+
+  string iam_role = 15 [json_name = "iam_role"];
+
+  string id = 16;
+
+  string launch_type = 17 [json_name = "launch_type"];
+
+  repeated LoadBalancer load_balancer = 18 [json_name = "load_balancer"];
+
+  repeated NetworkConfiguration network_configuration = 19 [json_name = "network_configuration"];
+
+  repeated OrderedPlacementStrategy ordered_placement_strategy = 20 [json_name = "ordered_placement_strategy"];
+
+  int64 pending_count = 21 [json_name = "pending_count"];
+
+  repeated PlacementConstraints placement_constraints = 22 [json_name = "placement_constraints"];
+
+  string platform_family = 23 [json_name = "platform_family"];
+
+  string platform_version = 24 [json_name = "platform_version"];
+
+  string propagate_tags = 25 [json_name = "propagate_tags"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 26;
+
+  int64 running_count = 27 [json_name = "running_count"];
+
+  string scheduling_strategy = 28 [json_name = "scheduling_strategy"];
+
+  string service_name = 29 [json_name = "service_name"];
+
+  repeated ServiceRegistries service_registries = 30 [json_name = "service_registries"];
+
+  string status = 31;
+
+  map<string, string> tags = 32;
+
+  string task_definition = 33 [json_name = "task_definition"];
+
+  repeated TaskSets task_sets = 34 [json_name = "task_sets"];
+
+  google.protobuf.Value for_each = 35 [json_name = "for_each"];
+
+  repeated string depends_on = 36 [json_name = "depends_on"];
+
+  int32 count = 37;
+
+  string provider = 38;
+
+  terraform.v1.Lifecycle lifecycle = 39;
+
+  message CapacityProviderStrategy {
+    // base: number
+    int64 base = 1;
+
+    // capacity_provider: string
+    string capacity_provider = 2 [json_name = "capacity_provider"];
+
+    // weight: number
+    int64 weight = 3;
+  }
+
+  message DeploymentConfiguration {
+    // alarms: list of object
+    repeated Alarms alarms = 1;
+
+    // bake_time_in_minutes: string
+    string bake_time_in_minutes = 2 [json_name = "bake_time_in_minutes"];
+
+    // canary_configuration: list of object
+    repeated CanaryConfiguration canary_configuration = 3 [json_name = "canary_configuration"];
+
+    // deployment_circuit_breaker: list of object
+    repeated DeploymentCircuitBreaker deployment_circuit_breaker = 4 [json_name = "deployment_circuit_breaker"];
+
+    // lifecycle_hook: set of object
+    repeated LifecycleHook lifecycle_hook = 5 [json_name = "lifecycle_hook"];
+
+    // linear_configuration: list of object
+    repeated LinearConfiguration linear_configuration = 6 [json_name = "linear_configuration"];
+
+    // maximum_percent: number
+    int64 maximum_percent = 7 [json_name = "maximum_percent"];
+
+    // minimum_healthy_percent: number
+    int64 minimum_healthy_percent = 8 [json_name = "minimum_healthy_percent"];
+
+    // strategy: string
+    string strategy = 9;
+
+    message Alarms {
+      // alarm_names: list of string
+      repeated string alarm_names = 1 [json_name = "alarm_names"];
+
+      // enable: bool
+      bool enable = 2;
+
+      // rollback: bool
+      bool rollback = 3;
+    }
+
+    message CanaryConfiguration {
+      // canary_bake_time_in_minutes: string
+      string canary_bake_time_in_minutes = 1 [json_name = "canary_bake_time_in_minutes"];
+
+      // canary_percent: number
+      int64 canary_percent = 2 [json_name = "canary_percent"];
+    }
+
+    message DeploymentCircuitBreaker {
+      // enable: bool
+      bool enable = 1;
+
+      // rollback: bool
+      bool rollback = 2;
+    }
+
+    message LifecycleHook {
+      // hook_details: string
+      string hook_details = 1 [json_name = "hook_details"];
+
+      // hook_target_arn: string
+      string hook_target_arn = 2 [json_name = "hook_target_arn"];
+
+      // lifecycle_stages: list of string
+      repeated string lifecycle_stages = 3 [json_name = "lifecycle_stages"];
+
+      // role_arn: string
+      string role_arn = 4 [json_name = "role_arn"];
+    }
+
+    message LinearConfiguration {
+      // step_bake_time_in_minutes: string
+      string step_bake_time_in_minutes = 1 [json_name = "step_bake_time_in_minutes"];
+
+      // step_percent: number
+      int64 step_percent = 2 [json_name = "step_percent"];
+    }
+  }
+
+  message DeploymentController {
+    // type: string
+    string type = 1;
+  }
+
+  message Deployments {
+    // created_at: string
+    string created_at = 1 [json_name = "created_at"];
+
+    // desired_count: number
+    int64 desired_count = 2 [json_name = "desired_count"];
+
+    // id: string
+    string id = 3;
+
+    // pending_count: number
+    int64 pending_count = 4 [json_name = "pending_count"];
+
+    // running_count: number
+    int64 running_count = 5 [json_name = "running_count"];
+
+    // status: string
+    string status = 6;
+
+    // task_definition: string
+    string task_definition = 7 [json_name = "task_definition"];
+
+    // updated_at: string
+    string updated_at = 8 [json_name = "updated_at"];
+  }
+
+  message Events {
+    // created_at: string
+    string created_at = 1 [json_name = "created_at"];
+
+    // id: string
+    string id = 2;
+
+    // message: string
+    string message = 3;
+  }
+
+  message LoadBalancer {
+    // advanced_configuration: list of object
+    repeated AdvancedConfiguration advanced_configuration = 1 [json_name = "advanced_configuration"];
+
+    // container_name: string
+    string container_name = 2 [json_name = "container_name"];
+
+    // container_port: number
+    int64 container_port = 3 [json_name = "container_port"];
+
+    // elb_name: string
+    string elb_name = 4 [json_name = "elb_name"];
+
+    // target_group_arn: string
+    string target_group_arn = 5 [json_name = "target_group_arn"];
+
+    message AdvancedConfiguration {
+      // alternate_target_group_arn: string
+      string alternate_target_group_arn = 1 [json_name = "alternate_target_group_arn"];
+
+      // production_listener_rule: string
+      string production_listener_rule = 2 [json_name = "production_listener_rule"];
+
+      // role_arn: string
+      string role_arn = 3 [json_name = "role_arn"];
+
+      // test_listener_rule: string
+      string test_listener_rule = 4 [json_name = "test_listener_rule"];
+    }
+  }
+
+  message NetworkConfiguration {
+    // assign_public_ip: bool
+    bool assign_public_ip = 1 [json_name = "assign_public_ip"];
+
+    // security_groups: set of string
+    repeated string security_groups = 2 [json_name = "security_groups"];
+
+    // subnets: set of string
+    repeated string subnets = 3;
+  }
+
+  message OrderedPlacementStrategy {
+    // field: string
+    string field = 1;
+
+    // type: string
+    string type = 2;
+  }
+
+  message PlacementConstraints {
+    // expression: string
+    string expression = 1;
+
+    // type: string
+    string type = 2;
+  }
+
+  message ServiceRegistries {
+    // container_name: string
+    string container_name = 1 [json_name = "container_name"];
+
+    // container_port: number
+    int64 container_port = 2 [json_name = "container_port"];
+
+    // port: number
+    int64 port = 3;
+
+    // registry_arn: string
+    string registry_arn = 4 [json_name = "registry_arn"];
+  }
+
+  message TaskSets {
+    // arn: string
+    string arn = 1;
+
+    // created_at: string
+    string created_at = 2 [json_name = "created_at"];
+
+    // id: string
+    string id = 3;
+
+    // pending_count: number
+    int64 pending_count = 4 [json_name = "pending_count"];
+
+    // running_count: number
+    int64 running_count = 5 [json_name = "running_count"];
+
+    // stability_status: string
+    string stability_status = 6 [json_name = "stability_status"];
+
+    // status: string
+    string status = 7;
+
+    // task_definition: string
+    string task_definition = 8 [json_name = "task_definition"];
+
+    // updated_at: string
+    string updated_at = 9 [json_name = "updated_at"];
+  }
+}
+
+// AwsEcsTaskDefinition version is 0
+message AwsEcsTaskDefinition {
+  string arn = 1;
+
+  string arn_without_revision = 2 [json_name = "arn_without_revision"];
+
+  string container_definitions = 3 [json_name = "container_definitions"];
+
+  string cpu = 4;
+
+  bool enable_fault_injection = 5 [json_name = "enable_fault_injection"];
+
+  repeated EphemeralStorage ephemeral_storage = 6 [json_name = "ephemeral_storage"];
+
+  string execution_role_arn = 7 [json_name = "execution_role_arn"];
+
+  string family = 8;
+
+  string id = 9;
+
+  string ipc_mode = 10 [json_name = "ipc_mode"];
+
+  string memory = 11;
+
+  string network_mode = 12 [json_name = "network_mode"];
+
+  string pid_mode = 13 [json_name = "pid_mode"];
+
+  repeated PlacementConstraints placement_constraints = 14 [json_name = "placement_constraints"];
+
+  repeated ProxyConfiguration proxy_configuration = 15 [json_name = "proxy_configuration"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 16;
+
+  repeated string requires_compatibilities = 17 [json_name = "requires_compatibilities"];
+
+  int64 revision = 18;
+
+  repeated RuntimePlatform runtime_platform = 19 [json_name = "runtime_platform"];
+
+  string status = 20;
+
+  string task_definition = 21 [json_name = "task_definition"];
+
+  string task_role_arn = 22 [json_name = "task_role_arn"];
+
+  repeated Volume volume = 23;
+
+  google.protobuf.Value for_each = 24 [json_name = "for_each"];
+
+  repeated string depends_on = 25 [json_name = "depends_on"];
+
+  int32 count = 26;
+
+  string provider = 27;
+
+  terraform.v1.Lifecycle lifecycle = 28;
+
+  message EphemeralStorage {
+    // size_in_gib: number
+    int64 size_in_gib = 1 [json_name = "size_in_gib"];
+  }
+
+  message PlacementConstraints {
+    // expression: string
+    string expression = 1;
+
+    // type: string
+    string type = 2;
+  }
+
+  message ProxyConfiguration {
+    // container_name: string
+    string container_name = 1 [json_name = "container_name"];
+
+    // properties: map of string
+    map<string, string> properties = 2;
+
+    // type: string
+    string type = 3;
+  }
+
+  message RuntimePlatform {
+    // cpu_architecture: string
+    string cpu_architecture = 1 [json_name = "cpu_architecture"];
+
+    // operating_system_family: string
+    string operating_system_family = 2 [json_name = "operating_system_family"];
+  }
+
+  message Volume {
+    // configure_at_launch: bool
+    bool configure_at_launch = 1 [json_name = "configure_at_launch"];
+
+    // docker_volume_configuration: list of object
+    repeated DockerVolumeConfiguration docker_volume_configuration = 2 [json_name = "docker_volume_configuration"];
+
+    // efs_volume_configuration: list of object
+    repeated EfsVolumeConfiguration efs_volume_configuration = 3 [json_name = "efs_volume_configuration"];
+
+    // fsx_windows_file_server_volume_configuration: list of object
+    repeated FsxWindowsFileServerVolumeConfiguration fsx_windows_file_server_volume_configuration = 4 [
+      json_name = "fsx_windows_file_server_volume_configuration"
+    ];
+
+    // host_path: string
+    string host_path = 5 [json_name = "host_path"];
+
+    // name: string
+    string name = 6;
+
+    // s3files_volume_configuration: list of object
+    repeated S3filesVolumeConfiguration s3files_volume_configuration = 7 [json_name = "s3files_volume_configuration"];
+
+    message DockerVolumeConfiguration {
+      // autoprovision: bool
+      bool autoprovision = 1;
+
+      // driver: string
+      string driver = 2;
+
+      // driver_opts: map of string
+      map<string, string> driver_opts = 3 [json_name = "driver_opts"];
+
+      // labels: map of string
+      map<string, string> labels = 4;
+
+      // scope: string
+      string scope = 5;
+    }
+
+    message EfsVolumeConfiguration {
+      // authorization_config: list of object
+      repeated AuthorizationConfig authorization_config = 1 [json_name = "authorization_config"];
+
+      // file_system_id: string
+      string file_system_id = 2 [json_name = "file_system_id"];
+
+      // root_directory: string
+      string root_directory = 3 [json_name = "root_directory"];
+
+      // transit_encryption: string
+      string transit_encryption = 4 [json_name = "transit_encryption"];
+
+      // transit_encryption_port: number
+      int64 transit_encryption_port = 5 [json_name = "transit_encryption_port"];
+
+      message AuthorizationConfig {
+        // access_point_id: string
+        string access_point_id = 1 [json_name = "access_point_id"];
+
+        // iam: string
+        string iam = 2;
+      }
+    }
+
+    message FsxWindowsFileServerVolumeConfiguration {
+      // authorization_config: list of object
+      repeated AuthorizationConfig authorization_config = 1 [json_name = "authorization_config"];
+
+      // file_system_id: string
+      string file_system_id = 2 [json_name = "file_system_id"];
+
+      // root_directory: string
+      string root_directory = 3 [json_name = "root_directory"];
+
+      message AuthorizationConfig {
+        // credentials_parameter: string
+        string credentials_parameter = 1 [json_name = "credentials_parameter"];
+
+        // domain: string
+        string domain = 2;
+      }
+    }
+
+    message S3filesVolumeConfiguration {
+      // access_point_arn: string
+      string access_point_arn = 1 [json_name = "access_point_arn"];
+
+      // file_system_arn: string
+      string file_system_arn = 2 [json_name = "file_system_arn"];
+
+      // root_directory: string
+      string root_directory = 3 [json_name = "root_directory"];
+
+      // transit_encryption_port: number
+      int64 transit_encryption_port = 4 [json_name = "transit_encryption_port"];
+    }
+  }
+}
+
+// AwsEcsTaskExecution version is 0
+message AwsEcsTaskExecution {
+  string client_token = 1 [json_name = "client_token"];
+
+  string cluster = 2;
+
+  int64 desired_count = 3 [json_name = "desired_count"];
+
+  bool enable_ecs_managed_tags = 4 [json_name = "enable_ecs_managed_tags"];
+
+  bool enable_execute_command = 5 [json_name = "enable_execute_command"];
+
+  string group = 6;
+
+  string id = 7;
+
+  string launch_type = 8 [json_name = "launch_type"];
+
+  string platform_version = 9 [json_name = "platform_version"];
+
+  string propagate_tags = 10 [json_name = "propagate_tags"];
+
+  string reference_id = 11 [json_name = "reference_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  string started_by = 13 [json_name = "started_by"];
+
+  map<string, string> tags = 14;
+
+  repeated string task_arns = 15 [json_name = "task_arns"];
+
+  string task_definition = 16 [json_name = "task_definition"];
+
+  repeated CapacityProviderStrategy capacity_provider_strategy = 17 [json_name = "capacity_provider_strategy"];
+
+  NetworkConfiguration network_configuration = 18 [json_name = "network_configuration"];
+
+  Overrides overrides = 19;
+
+  repeated PlacementConstraints placement_constraints = 20 [json_name = "placement_constraints"];
+
+  repeated PlacementStrategy placement_strategy = 21 [json_name = "placement_strategy"];
+
+  google.protobuf.Value for_each = 22 [json_name = "for_each"];
+
+  repeated string depends_on = 23 [json_name = "depends_on"];
+
+  int32 count = 24;
+
+  string provider = 25;
+
+  terraform.v1.Lifecycle lifecycle = 26;
+
+  message CapacityProviderStrategy {
+    int64 base = 1;
+
+    string capacity_provider = 2 [json_name = "capacity_provider"];
+
+    int64 weight = 3;
+  }
+
+  message NetworkConfiguration {
+    bool assign_public_ip = 1 [json_name = "assign_public_ip"];
+
+    repeated string security_groups = 2 [json_name = "security_groups"];
+
+    repeated string subnets = 3;
+  }
+
+  message Overrides {
+    string cpu = 1;
+
+    string execution_role_arn = 2 [json_name = "execution_role_arn"];
+
+    string memory = 3;
+
+    string task_role_arn = 4 [json_name = "task_role_arn"];
+
+    repeated ContainerOverrides container_overrides = 5 [json_name = "container_overrides"];
+
+    message ContainerOverrides {
+      repeated string command = 1;
+
+      int64 cpu = 2;
+
+      int64 memory = 3;
+
+      int64 memory_reservation = 4 [json_name = "memory_reservation"];
+
+      string name = 5;
+
+      repeated Environment environment = 6;
+
+      repeated ResourceRequirements resource_requirements = 7 [json_name = "resource_requirements"];
+
+      message Environment {
+        string key = 1;
+
+        string value = 2;
+      }
+
+      message ResourceRequirements {
+        string type = 1;
+
+        string value = 2;
+      }
+    }
+  }
+
+  message PlacementConstraints {
+    string expression = 1;
+
+    string type = 2;
+  }
+
+  message PlacementStrategy {
+    string field = 1;
+
+    string type = 2;
+  }
+}

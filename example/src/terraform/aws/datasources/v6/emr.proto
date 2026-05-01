@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsEmrReleaseLabels version is 0
+message AwsEmrReleaseLabels {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  repeated string release_labels = 3 [json_name = "release_labels"];
+
+  Filters filters = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message Filters {
+    string application = 1;
+
+    string prefix = 2;
+  }
+}
+
+// AwsEmrSupportedInstanceTypes version is 0
+message AwsEmrSupportedInstanceTypes {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string release_label = 3 [json_name = "release_label"];
+
+  repeated SupportedInstanceTypes supported_instance_types = 4 [json_name = "supported_instance_types"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message SupportedInstanceTypes {
+    // architecture: string
+    string architecture = 1;
+
+    // ebs_optimized_available: bool
+    bool ebs_optimized_available = 2 [json_name = "ebs_optimized_available"];
+
+    // ebs_optimized_by_default: bool
+    bool ebs_optimized_by_default = 3 [json_name = "ebs_optimized_by_default"];
+
+    // ebs_storage_only: bool
+    bool ebs_storage_only = 4 [json_name = "ebs_storage_only"];
+
+    // instance_family_id: string
+    string instance_family_id = 5 [json_name = "instance_family_id"];
+
+    // is_64_bits_only: bool
+    bool is_64_bits_only = 6 [json_name = "is_64_bits_only"];
+
+    // memory_gb: number
+    int64 memory_gb = 7 [json_name = "memory_gb"];
+
+    // number_of_disks: number
+    int64 number_of_disks = 8 [json_name = "number_of_disks"];
+
+    // storage_gb: number
+    int64 storage_gb = 9 [json_name = "storage_gb"];
+
+    // type: string
+    string type = 10;
+
+    // vcpu: number
+    int64 vcpu = 11;
+  }
+}

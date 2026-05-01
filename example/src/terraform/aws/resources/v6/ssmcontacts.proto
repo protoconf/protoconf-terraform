@@ -1,0 +1,232 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSsmcontactsContact version is 0
+message AwsSsmcontactsContact {
+  string alias = 1;
+
+  string arn = 2;
+
+  string display_name = 3 [json_name = "display_name"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  string type = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsSsmcontactsContactChannel version is 0
+message AwsSsmcontactsContactChannel {
+  string activation_status = 1 [json_name = "activation_status"];
+
+  string arn = 2;
+
+  string contact_id = 3 [json_name = "contact_id"];
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string type = 7;
+
+  DeliveryAddress delivery_address = 8 [json_name = "delivery_address"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message DeliveryAddress {
+    string simple_address = 1 [json_name = "simple_address"];
+  }
+}
+
+// AwsSsmcontactsPlan version is 0
+message AwsSsmcontactsPlan {
+  string contact_id = 1 [json_name = "contact_id"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated Stage stage = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message Stage {
+    int64 duration_in_minutes = 1 [json_name = "duration_in_minutes"];
+
+    repeated Target target = 2;
+
+    message Target {
+      ChannelTargetInfo channel_target_info = 1 [json_name = "channel_target_info"];
+
+      ContactTargetInfo contact_target_info = 2 [json_name = "contact_target_info"];
+
+      message ChannelTargetInfo {
+        string contact_channel_id = 1 [json_name = "contact_channel_id"];
+
+        int64 retry_interval_in_minutes = 2 [json_name = "retry_interval_in_minutes"];
+      }
+
+      message ContactTargetInfo {
+        string contact_id = 1 [json_name = "contact_id"];
+
+        bool is_essential = 2 [json_name = "is_essential"];
+      }
+    }
+  }
+}
+
+// AwsSsmcontactsRotation version is 0
+message AwsSsmcontactsRotation {
+  string arn = 1;
+
+  repeated string contact_ids = 2 [json_name = "contact_ids"];
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string start_time = 6 [json_name = "start_time"];
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  string time_zone_id = 9 [json_name = "time_zone_id"];
+
+  repeated Recurrence recurrence = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message Recurrence {
+    int64 number_of_on_calls = 1 [json_name = "number_of_on_calls"];
+
+    int64 recurrence_multiplier = 2 [json_name = "recurrence_multiplier"];
+
+    repeated DailySettings daily_settings = 3 [json_name = "daily_settings"];
+
+    repeated MonthlySettings monthly_settings = 4 [json_name = "monthly_settings"];
+
+    repeated ShiftCoverages shift_coverages = 5 [json_name = "shift_coverages"];
+
+    repeated WeeklySettings weekly_settings = 6 [json_name = "weekly_settings"];
+
+    message DailySettings {
+      int64 hour_of_day = 1 [json_name = "hour_of_day"];
+
+      int64 minute_of_hour = 2 [json_name = "minute_of_hour"];
+    }
+
+    message MonthlySettings {
+      int64 day_of_month = 1 [json_name = "day_of_month"];
+
+      repeated HandOffTime hand_off_time = 2 [json_name = "hand_off_time"];
+
+      message HandOffTime {
+        int64 hour_of_day = 1 [json_name = "hour_of_day"];
+
+        int64 minute_of_hour = 2 [json_name = "minute_of_hour"];
+      }
+    }
+
+    message ShiftCoverages {
+      string map_block_key = 1 [json_name = "map_block_key"];
+
+      repeated CoverageTimes coverage_times = 2 [json_name = "coverage_times"];
+
+      message CoverageTimes {
+        repeated End end = 1;
+
+        repeated Start start = 2;
+
+        message End {
+          int64 hour_of_day = 1 [json_name = "hour_of_day"];
+
+          int64 minute_of_hour = 2 [json_name = "minute_of_hour"];
+        }
+
+        message Start {
+          int64 hour_of_day = 1 [json_name = "hour_of_day"];
+
+          int64 minute_of_hour = 2 [json_name = "minute_of_hour"];
+        }
+      }
+    }
+
+    message WeeklySettings {
+      string day_of_week = 1 [json_name = "day_of_week"];
+
+      repeated HandOffTime hand_off_time = 2 [json_name = "hand_off_time"];
+
+      message HandOffTime {
+        int64 hour_of_day = 1 [json_name = "hour_of_day"];
+
+        int64 minute_of_hour = 2 [json_name = "minute_of_hour"];
+      }
+    }
+  }
+}

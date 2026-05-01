@@ -1,0 +1,535 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsWafregionalByteMatchSet version is 0
+message AwsWafregionalByteMatchSet {
+  string id = 1;
+
+  string name = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated ByteMatchTuples byte_match_tuples = 4 [json_name = "byte_match_tuples"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message ByteMatchTuples {
+    string positional_constraint = 1 [json_name = "positional_constraint"];
+
+    string target_string = 2 [json_name = "target_string"];
+
+    string text_transformation = 3 [json_name = "text_transformation"];
+
+    FieldToMatch field_to_match = 4 [json_name = "field_to_match"];
+
+    message FieldToMatch {
+      string data = 1;
+
+      string type = 2;
+    }
+  }
+}
+
+// AwsWafregionalGeoMatchSet version is 0
+message AwsWafregionalGeoMatchSet {
+  string id = 1;
+
+  string name = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated GeoMatchConstraint geo_match_constraint = 4 [json_name = "geo_match_constraint"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message GeoMatchConstraint {
+    string type = 1;
+
+    string value = 2;
+  }
+}
+
+// AwsWafregionalIpset version is 0
+message AwsWafregionalIpset {
+  string arn = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated IpSetDescriptor ip_set_descriptor = 5 [json_name = "ip_set_descriptor"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message IpSetDescriptor {
+    string type = 1;
+
+    string value = 2;
+  }
+}
+
+// AwsWafregionalRateBasedRule version is 0
+message AwsWafregionalRateBasedRule {
+  string arn = 1;
+
+  string id = 2;
+
+  string metric_name = 3 [json_name = "metric_name"];
+
+  string name = 4;
+
+  string rate_key = 5 [json_name = "rate_key"];
+
+  int64 rate_limit = 6 [json_name = "rate_limit"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  repeated Predicate predicate = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message Predicate {
+    string data_id = 1 [json_name = "data_id"];
+
+    bool negated = 2;
+
+    string type = 3;
+  }
+}
+
+// AwsWafregionalRegexMatchSet version is 0
+message AwsWafregionalRegexMatchSet {
+  string id = 1;
+
+  string name = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated RegexMatchTuple regex_match_tuple = 4 [json_name = "regex_match_tuple"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message RegexMatchTuple {
+    string regex_pattern_set_id = 1 [json_name = "regex_pattern_set_id"];
+
+    string text_transformation = 2 [json_name = "text_transformation"];
+
+    FieldToMatch field_to_match = 3 [json_name = "field_to_match"];
+
+    message FieldToMatch {
+      string data = 1;
+
+      string type = 2;
+    }
+  }
+}
+
+// AwsWafregionalRegexPatternSet version is 0
+message AwsWafregionalRegexPatternSet {
+  string id = 1;
+
+  string name = 2;
+
+  repeated string regex_pattern_strings = 3 [json_name = "regex_pattern_strings"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsWafregionalRule version is 0
+message AwsWafregionalRule {
+  string arn = 1;
+
+  string id = 2;
+
+  string metric_name = 3 [json_name = "metric_name"];
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  repeated Predicate predicate = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Predicate {
+    string data_id = 1 [json_name = "data_id"];
+
+    bool negated = 2;
+
+    string type = 3;
+  }
+}
+
+// AwsWafregionalRuleGroup version is 0
+message AwsWafregionalRuleGroup {
+  string arn = 1;
+
+  string id = 2;
+
+  string metric_name = 3 [json_name = "metric_name"];
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  repeated ActivatedRule activated_rule = 8 [json_name = "activated_rule"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message ActivatedRule {
+    int64 priority = 1;
+
+    string rule_id = 2 [json_name = "rule_id"];
+
+    string type = 3;
+
+    Action action = 4;
+
+    message Action {
+      string type = 1;
+    }
+  }
+}
+
+// AwsWafregionalSizeConstraintSet version is 0
+message AwsWafregionalSizeConstraintSet {
+  string arn = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated SizeConstraints size_constraints = 5 [json_name = "size_constraints"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message SizeConstraints {
+    string comparison_operator = 1 [json_name = "comparison_operator"];
+
+    int64 size = 2;
+
+    string text_transformation = 3 [json_name = "text_transformation"];
+
+    FieldToMatch field_to_match = 4 [json_name = "field_to_match"];
+
+    message FieldToMatch {
+      string data = 1;
+
+      string type = 2;
+    }
+  }
+}
+
+// AwsWafregionalSqlInjectionMatchSet version is 0
+message AwsWafregionalSqlInjectionMatchSet {
+  string id = 1;
+
+  string name = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated SqlInjectionMatchTuple sql_injection_match_tuple = 4 [json_name = "sql_injection_match_tuple"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message SqlInjectionMatchTuple {
+    string text_transformation = 1 [json_name = "text_transformation"];
+
+    FieldToMatch field_to_match = 2 [json_name = "field_to_match"];
+
+    message FieldToMatch {
+      string data = 1;
+
+      string type = 2;
+    }
+  }
+}
+
+// AwsWafregionalWebAcl version is 0
+message AwsWafregionalWebAcl {
+  string arn = 1;
+
+  string id = 2;
+
+  string metric_name = 3 [json_name = "metric_name"];
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  DefaultAction default_action = 8 [json_name = "default_action"];
+
+  LoggingConfiguration logging_configuration = 9 [json_name = "logging_configuration"];
+
+  repeated Rule rule = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message DefaultAction {
+    string type = 1;
+  }
+
+  message LoggingConfiguration {
+    string log_destination = 1 [json_name = "log_destination"];
+
+    RedactedFields redacted_fields = 2 [json_name = "redacted_fields"];
+
+    message RedactedFields {
+      repeated FieldToMatch field_to_match = 1 [json_name = "field_to_match"];
+
+      message FieldToMatch {
+        string data = 1;
+
+        string type = 2;
+      }
+    }
+  }
+
+  message Rule {
+    int64 priority = 1;
+
+    string rule_id = 2 [json_name = "rule_id"];
+
+    string type = 3;
+
+    Action action = 4;
+
+    OverrideAction override_action = 5 [json_name = "override_action"];
+
+    message Action {
+      string type = 1;
+    }
+
+    message OverrideAction {
+      string type = 1;
+    }
+  }
+}
+
+// AwsWafregionalWebAclAssociation version is 0
+message AwsWafregionalWebAclAssociation {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string resource_arn = 3 [json_name = "resource_arn"];
+
+  string web_acl_id = 4 [json_name = "web_acl_id"];
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Timeouts {
+    string create = 1;
+  }
+}
+
+// AwsWafregionalXssMatchSet version is 0
+message AwsWafregionalXssMatchSet {
+  string id = 1;
+
+  string name = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated XssMatchTuple xss_match_tuple = 4 [json_name = "xss_match_tuple"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message XssMatchTuple {
+    string text_transformation = 1 [json_name = "text_transformation"];
+
+    FieldToMatch field_to_match = 2 [json_name = "field_to_match"];
+
+    message FieldToMatch {
+      string data = 1;
+
+      string type = 2;
+    }
+  }
+}

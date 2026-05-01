@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsVolumeAttachment version is 0
+message AwsVolumeAttachment {
+  string device_name = 1 [json_name = "device_name"];
+
+  bool force_detach = 2 [json_name = "force_detach"];
+
+  string id = 3;
+
+  string instance_id = 4 [json_name = "instance_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  bool skip_destroy = 6 [json_name = "skip_destroy"];
+
+  bool stop_instance_before_detaching = 7 [json_name = "stop_instance_before_detaching"];
+
+  string volume_id = 8 [json_name = "volume_id"];
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}

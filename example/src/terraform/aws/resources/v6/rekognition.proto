@@ -1,0 +1,267 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsRekognitionCollection version is 0
+message AwsRekognitionCollection {
+  string arn = 1;
+
+  // The name of the Rekognition collection
+  string collection_id = 2 [json_name = "collection_id"];
+
+  string face_model_version = 3 [json_name = "face_model_version"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+  }
+}
+
+// AwsRekognitionProject version is 0
+message AwsRekognitionProject {
+  string arn = 1;
+
+  string auto_update = 2 [json_name = "auto_update"];
+
+  string feature = 3;
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsRekognitionStreamProcessor version is 1
+message AwsRekognitionStreamProcessor {
+  string arn = 1;
+
+  // The identifier for your AWS Key Management Service key (AWS KMS key). You can
+  // supply the Amazon Resource Name (ARN) of your KMS key, the ID of your KMS key, an
+  // alias for your KMS key, or an alias ARN.
+  string kms_key_id = 2 [json_name = "kms_key_id"];
+
+  // An identifier you assign to the stream processor.
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  // The Amazon Resource Number (ARN) of the IAM role that allows access to the stream
+  // processor.
+  string role_arn = 5 [json_name = "role_arn"];
+
+  string stream_processor_arn = 6 [json_name = "stream_processor_arn"];
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  repeated DataSharingPreference data_sharing_preference = 9 [json_name = "data_sharing_preference"];
+
+  repeated Input input = 10;
+
+  repeated NotificationChannel notification_channel = 11 [json_name = "notification_channel"];
+
+  repeated Output output = 12;
+
+  repeated RegionsOfInterest regions_of_interest = 13 [json_name = "regions_of_interest"];
+
+  repeated Settings settings = 14;
+
+  repeated Timeouts timeouts = 15;
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message DataSharingPreference {
+    // Do you want to share data with Rekognition to improve model performance.
+    bool opt_in = 1 [json_name = "opt_in"];
+  }
+
+  message Input {
+    repeated KinesisVideoStream kinesis_video_stream = 1 [json_name = "kinesis_video_stream"];
+
+    message KinesisVideoStream {
+      // ARN of the Kinesis video stream stream that streams the source video.
+      string arn = 1;
+    }
+  }
+
+  message NotificationChannel {
+    // The Amazon Resource Number (ARN) of the Amazon Amazon Simple Notification Service
+    // topic to which Amazon Rekognition posts the completion status.
+    string sns_topic_arn = 1 [json_name = "sns_topic_arn"];
+  }
+
+  message Output {
+    repeated KinesisDataStream kinesis_data_stream = 1 [json_name = "kinesis_data_stream"];
+
+    repeated S3Destination s3_destination = 2 [json_name = "s3_destination"];
+
+    message KinesisDataStream {
+      // ARN of the output Amazon Kinesis Data Streams stream.
+      string arn = 1;
+    }
+
+    message S3Destination {
+      // The name of the Amazon S3 bucket you want to associate with the streaming video
+      // project.
+      string bucket = 1;
+
+      // The prefix value of the location within the bucket that you want the information
+      // to be published to.
+      string key_prefix = 2 [json_name = "key_prefix"];
+    }
+  }
+
+  message RegionsOfInterest {
+    repeated BoundingBox bounding_box = 1 [json_name = "bounding_box"];
+
+    repeated Polygon polygon = 2;
+
+    message BoundingBox {
+      // Height of the bounding box as a ratio of the overall image height.
+      int64 height = 1;
+
+      // Left coordinate of the bounding box as a ratio of overall image width.
+      int64 left = 2;
+
+      // Top coordinate of the bounding box as a ratio of overall image height.
+      int64 top = 3;
+
+      // Width of the bounding box as a ratio of the overall image width.
+      int64 width = 4;
+    }
+
+    message Polygon {
+      // The value of the X coordinate for a point on a Polygon.
+      int64 x = 1;
+
+      // The value of the Y coordinate for a point on a Polygon.
+      int64 y = 2;
+    }
+  }
+
+  message Settings {
+    repeated ConnectedHome connected_home = 1 [json_name = "connected_home"];
+
+    repeated FaceSearch face_search = 2 [json_name = "face_search"];
+
+    message ConnectedHome {
+      // Specifies what you want to detect in the video, such as people, packages, or
+      // pets.
+      repeated string labels = 1;
+
+      // The minimum confidence required to label an object in the video.
+      int64 min_confidence = 2 [json_name = "min_confidence"];
+    }
+
+    message FaceSearch {
+      // The ID of a collection that contains faces that you want to search for.
+      string collection_id = 1 [json_name = "collection_id"];
+
+      // Minimum face match confidence score that must be met to return a result for a
+      // recognized face.
+      int64 face_match_threshold = 2 [json_name = "face_match_threshold"];
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}

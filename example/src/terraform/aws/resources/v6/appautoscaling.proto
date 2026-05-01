@@ -1,0 +1,409 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsAppautoscalingPolicy version is 0
+message AwsAppautoscalingPolicy {
+  repeated string alarm_arns = 1 [json_name = "alarm_arns"];
+
+  string arn = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  string policy_type = 5 [json_name = "policy_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string resource_id = 7 [json_name = "resource_id"];
+
+  string scalable_dimension = 8 [json_name = "scalable_dimension"];
+
+  string service_namespace = 9 [json_name = "service_namespace"];
+
+  PredictiveScalingPolicyConfiguration predictive_scaling_policy_configuration = 10 [
+    json_name = "predictive_scaling_policy_configuration"
+  ];
+
+  StepScalingPolicyConfiguration step_scaling_policy_configuration = 11 [json_name = "step_scaling_policy_configuration"];
+
+  TargetTrackingScalingPolicyConfiguration target_tracking_scaling_policy_configuration = 12 [
+    json_name = "target_tracking_scaling_policy_configuration"
+  ];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message PredictiveScalingPolicyConfiguration {
+    string max_capacity_breach_behavior = 1 [json_name = "max_capacity_breach_behavior"];
+
+    int64 max_capacity_buffer = 2 [json_name = "max_capacity_buffer"];
+
+    string mode = 3;
+
+    int64 scheduling_buffer_time = 4 [json_name = "scheduling_buffer_time"];
+
+    repeated MetricSpecification metric_specification = 5 [json_name = "metric_specification"];
+
+    message MetricSpecification {
+      string target_value = 1 [json_name = "target_value"];
+
+      CustomizedCapacityMetricSpecification customized_capacity_metric_specification = 2 [
+        json_name = "customized_capacity_metric_specification"
+      ];
+
+      CustomizedLoadMetricSpecification customized_load_metric_specification = 3 [json_name = "customized_load_metric_specification"];
+
+      CustomizedScalingMetricSpecification customized_scaling_metric_specification = 4 [
+        json_name = "customized_scaling_metric_specification"
+      ];
+
+      PredefinedLoadMetricSpecification predefined_load_metric_specification = 5 [json_name = "predefined_load_metric_specification"];
+
+      PredefinedMetricPairSpecification predefined_metric_pair_specification = 6 [json_name = "predefined_metric_pair_specification"];
+
+      PredefinedScalingMetricSpecification predefined_scaling_metric_specification = 7 [
+        json_name = "predefined_scaling_metric_specification"
+      ];
+
+      message CustomizedCapacityMetricSpecification {
+        repeated MetricDataQuery metric_data_query = 1 [json_name = "metric_data_query"];
+
+        message MetricDataQuery {
+          string expression = 1;
+
+          string id = 2;
+
+          string label = 3;
+
+          bool return_data = 4 [json_name = "return_data"];
+
+          MetricStat metric_stat = 5 [json_name = "metric_stat"];
+
+          message MetricStat {
+            string stat = 1;
+
+            string unit = 2;
+
+            Metric metric = 3;
+
+            message Metric {
+              string metric_name = 1 [json_name = "metric_name"];
+
+              string namespace = 2;
+
+              repeated Dimension dimension = 3;
+
+              message Dimension {
+                string name = 1;
+
+                string value = 2;
+              }
+            }
+          }
+        }
+      }
+
+      message CustomizedLoadMetricSpecification {
+        repeated MetricDataQuery metric_data_query = 1 [json_name = "metric_data_query"];
+
+        message MetricDataQuery {
+          string expression = 1;
+
+          string id = 2;
+
+          string label = 3;
+
+          bool return_data = 4 [json_name = "return_data"];
+
+          MetricStat metric_stat = 5 [json_name = "metric_stat"];
+
+          message MetricStat {
+            string stat = 1;
+
+            string unit = 2;
+
+            Metric metric = 3;
+
+            message Metric {
+              string metric_name = 1 [json_name = "metric_name"];
+
+              string namespace = 2;
+
+              repeated Dimension dimension = 3;
+
+              message Dimension {
+                string name = 1;
+
+                string value = 2;
+              }
+            }
+          }
+        }
+      }
+
+      message CustomizedScalingMetricSpecification {
+        repeated MetricDataQuery metric_data_query = 1 [json_name = "metric_data_query"];
+
+        message MetricDataQuery {
+          string expression = 1;
+
+          string id = 2;
+
+          string label = 3;
+
+          bool return_data = 4 [json_name = "return_data"];
+
+          MetricStat metric_stat = 5 [json_name = "metric_stat"];
+
+          message MetricStat {
+            string stat = 1;
+
+            string unit = 2;
+
+            Metric metric = 3;
+
+            message Metric {
+              string metric_name = 1 [json_name = "metric_name"];
+
+              string namespace = 2;
+
+              repeated Dimension dimension = 3;
+
+              message Dimension {
+                string name = 1;
+
+                string value = 2;
+              }
+            }
+          }
+        }
+      }
+
+      message PredefinedLoadMetricSpecification {
+        string predefined_metric_type = 1 [json_name = "predefined_metric_type"];
+
+        string resource_label = 2 [json_name = "resource_label"];
+      }
+
+      message PredefinedMetricPairSpecification {
+        string predefined_metric_type = 1 [json_name = "predefined_metric_type"];
+
+        string resource_label = 2 [json_name = "resource_label"];
+      }
+
+      message PredefinedScalingMetricSpecification {
+        string predefined_metric_type = 1 [json_name = "predefined_metric_type"];
+
+        string resource_label = 2 [json_name = "resource_label"];
+      }
+    }
+  }
+
+  message StepScalingPolicyConfiguration {
+    string adjustment_type = 1 [json_name = "adjustment_type"];
+
+    int64 cooldown = 2;
+
+    string metric_aggregation_type = 3 [json_name = "metric_aggregation_type"];
+
+    int64 min_adjustment_magnitude = 4 [json_name = "min_adjustment_magnitude"];
+
+    repeated StepAdjustment step_adjustment = 5 [json_name = "step_adjustment"];
+
+    message StepAdjustment {
+      string metric_interval_lower_bound = 1 [json_name = "metric_interval_lower_bound"];
+
+      string metric_interval_upper_bound = 2 [json_name = "metric_interval_upper_bound"];
+
+      int64 scaling_adjustment = 3 [json_name = "scaling_adjustment"];
+    }
+  }
+
+  message TargetTrackingScalingPolicyConfiguration {
+    bool disable_scale_in = 1 [json_name = "disable_scale_in"];
+
+    int64 scale_in_cooldown = 2 [json_name = "scale_in_cooldown"];
+
+    int64 scale_out_cooldown = 3 [json_name = "scale_out_cooldown"];
+
+    int64 target_value = 4 [json_name = "target_value"];
+
+    CustomizedMetricSpecification customized_metric_specification = 5 [json_name = "customized_metric_specification"];
+
+    PredefinedMetricSpecification predefined_metric_specification = 6 [json_name = "predefined_metric_specification"];
+
+    message CustomizedMetricSpecification {
+      string metric_name = 1 [json_name = "metric_name"];
+
+      string namespace = 2;
+
+      string statistic = 3;
+
+      string unit = 4;
+
+      repeated Dimensions dimensions = 5;
+
+      repeated Metrics metrics = 6;
+
+      message Dimensions {
+        string name = 1;
+
+        string value = 2;
+      }
+
+      message Metrics {
+        string expression = 1;
+
+        string id = 2;
+
+        string label = 3;
+
+        bool return_data = 4 [json_name = "return_data"];
+
+        MetricStat metric_stat = 5 [json_name = "metric_stat"];
+
+        message MetricStat {
+          string stat = 1;
+
+          string unit = 2;
+
+          Metric metric = 3;
+
+          message Metric {
+            string metric_name = 1 [json_name = "metric_name"];
+
+            string namespace = 2;
+
+            repeated Dimensions dimensions = 3;
+
+            message Dimensions {
+              string name = 1;
+
+              string value = 2;
+            }
+          }
+        }
+      }
+    }
+
+    message PredefinedMetricSpecification {
+      string predefined_metric_type = 1 [json_name = "predefined_metric_type"];
+
+      string resource_label = 2 [json_name = "resource_label"];
+    }
+  }
+}
+
+// AwsAppautoscalingScheduledAction version is 0
+message AwsAppautoscalingScheduledAction {
+  string arn = 1;
+
+  string end_time = 2 [json_name = "end_time"];
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string resource_id = 6 [json_name = "resource_id"];
+
+  string scalable_dimension = 7 [json_name = "scalable_dimension"];
+
+  string schedule = 8;
+
+  string service_namespace = 9 [json_name = "service_namespace"];
+
+  string start_time = 10 [json_name = "start_time"];
+
+  string timezone = 11;
+
+  ScalableTargetAction scalable_target_action = 12 [json_name = "scalable_target_action"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message ScalableTargetAction {
+    string max_capacity = 1 [json_name = "max_capacity"];
+
+    string min_capacity = 2 [json_name = "min_capacity"];
+  }
+}
+
+// AwsAppautoscalingTarget version is 0
+message AwsAppautoscalingTarget {
+  string arn = 1;
+
+  string id = 2;
+
+  int64 max_capacity = 3 [json_name = "max_capacity"];
+
+  int64 min_capacity = 4 [json_name = "min_capacity"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string resource_id = 6 [json_name = "resource_id"];
+
+  string role_arn = 7 [json_name = "role_arn"];
+
+  string scalable_dimension = 8 [json_name = "scalable_dimension"];
+
+  string service_namespace = 9 [json_name = "service_namespace"];
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  SuspendedState suspended_state = 12 [json_name = "suspended_state"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message SuspendedState {
+    bool dynamic_scaling_in_suspended = 1 [json_name = "dynamic_scaling_in_suspended"];
+
+    bool dynamic_scaling_out_suspended = 2 [json_name = "dynamic_scaling_out_suspended"];
+
+    bool scheduled_scaling_suspended = 3 [json_name = "scheduled_scaling_suspended"];
+  }
+}

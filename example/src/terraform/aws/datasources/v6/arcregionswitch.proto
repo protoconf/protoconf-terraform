@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsArcregionswitchPlan version is 0
+message AwsArcregionswitchPlan {
+  string arn = 1;
+
+  string description = 2;
+
+  string execution_role = 3 [json_name = "execution_role"];
+
+  string name = 4;
+
+  string owner = 5;
+
+  string primary_region = 6 [json_name = "primary_region"];
+
+  string recovery_approach = 7 [json_name = "recovery_approach"];
+
+  int64 recovery_time_objective_minutes = 8 [json_name = "recovery_time_objective_minutes"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  repeated string regions = 10;
+
+  map<string, string> tags = 11;
+
+  string updated_at = 12 [json_name = "updated_at"];
+
+  string version = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+}
+
+// AwsArcregionswitchRoute53HealthChecks version is 0
+message AwsArcregionswitchRoute53HealthChecks {
+  repeated HealthChecks health_checks = 1 [json_name = "health_checks"];
+
+  string plan_arn = 2 [json_name = "plan_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message HealthChecks {
+    // health_check_id: string
+    string health_check_id = 1 [json_name = "health_check_id"];
+
+    // hosted_zone_id: string
+    string hosted_zone_id = 2 [json_name = "hosted_zone_id"];
+
+    // record_name: string
+    string record_name = 3 [json_name = "record_name"];
+
+    // region: string
+    string region = 4;
+
+    // status: string
+    string status = 5;
+  }
+}

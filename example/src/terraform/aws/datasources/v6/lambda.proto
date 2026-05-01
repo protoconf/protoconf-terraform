@@ -1,0 +1,444 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsLambdaAlias version is 0
+message AwsLambdaAlias {
+  string arn = 1;
+
+  string description = 2;
+
+  string function_name = 3 [json_name = "function_name"];
+
+  string function_version = 4 [json_name = "function_version"];
+
+  string id = 5;
+
+  string invoke_arn = 6 [json_name = "invoke_arn"];
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsLambdaCodeSigningConfig version is 0
+message AwsLambdaCodeSigningConfig {
+  repeated AllowedPublishers allowed_publishers = 1 [json_name = "allowed_publishers"];
+
+  string arn = 2;
+
+  string config_id = 3 [json_name = "config_id"];
+
+  string description = 4;
+
+  string id = 5;
+
+  string last_modified = 6 [json_name = "last_modified"];
+
+  repeated Policies policies = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message AllowedPublishers {
+    // signing_profile_version_arns: set of string
+    repeated string signing_profile_version_arns = 1 [json_name = "signing_profile_version_arns"];
+  }
+
+  message Policies {
+    // untrusted_artifact_on_deployment: string
+    string untrusted_artifact_on_deployment = 1 [json_name = "untrusted_artifact_on_deployment"];
+  }
+}
+
+// AwsLambdaFunction version is 0
+message AwsLambdaFunction {
+  repeated string architectures = 1;
+
+  string arn = 2;
+
+  repeated CapacityProviderConfig capacity_provider_config = 3 [json_name = "capacity_provider_config"];
+
+  string code_sha256 = 4 [json_name = "code_sha256"];
+
+  string code_signing_config_arn = 5 [json_name = "code_signing_config_arn"];
+
+  repeated DeadLetterConfig dead_letter_config = 6 [json_name = "dead_letter_config"];
+
+  string description = 7;
+
+  repeated DurableConfig durable_config = 8 [json_name = "durable_config"];
+
+  repeated Environment environment = 9;
+
+  repeated EphemeralStorage ephemeral_storage = 10 [json_name = "ephemeral_storage"];
+
+  repeated FileSystemConfig file_system_config = 11 [json_name = "file_system_config"];
+
+  string function_name = 12 [json_name = "function_name"];
+
+  string handler = 13;
+
+  string id = 14;
+
+  string image_uri = 15 [json_name = "image_uri"];
+
+  string invoke_arn = 16 [json_name = "invoke_arn"];
+
+  string kms_key_arn = 17 [json_name = "kms_key_arn"];
+
+  string last_modified = 18 [json_name = "last_modified"];
+
+  repeated string layers = 19;
+
+  repeated LoggingConfig logging_config = 20 [json_name = "logging_config"];
+
+  int64 memory_size = 21 [json_name = "memory_size"];
+
+  string qualified_arn = 22 [json_name = "qualified_arn"];
+
+  string qualified_invoke_arn = 23 [json_name = "qualified_invoke_arn"];
+
+  string qualifier = 24;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 25;
+
+  int64 reserved_concurrent_executions = 26 [json_name = "reserved_concurrent_executions"];
+
+  string response_streaming_invoke_arn = 27 [json_name = "response_streaming_invoke_arn"];
+
+  string role = 28;
+
+  string runtime = 29;
+
+  string signing_job_arn = 30 [json_name = "signing_job_arn"];
+
+  string signing_profile_version_arn = 31 [json_name = "signing_profile_version_arn"];
+
+  string source_code_hash = 32 [json_name = "source_code_hash"];
+
+  int64 source_code_size = 33 [json_name = "source_code_size"];
+
+  string source_kms_key_arn = 34 [json_name = "source_kms_key_arn"];
+
+  map<string, string> tags = 35;
+
+  repeated TenancyConfig tenancy_config = 36 [json_name = "tenancy_config"];
+
+  int64 timeout = 37;
+
+  repeated TracingConfig tracing_config = 38 [json_name = "tracing_config"];
+
+  string version = 39;
+
+  repeated VpcConfig vpc_config = 40 [json_name = "vpc_config"];
+
+  google.protobuf.Value for_each = 41 [json_name = "for_each"];
+
+  repeated string depends_on = 42 [json_name = "depends_on"];
+
+  int32 count = 43;
+
+  string provider = 44;
+
+  terraform.v1.Lifecycle lifecycle = 45;
+
+  message CapacityProviderConfig {
+    // lambda_managed_instances_capacity_provider_config: list of object
+    repeated LambdaManagedInstancesCapacityProviderConfig lambda_managed_instances_capacity_provider_config = 1 [
+      json_name = "lambda_managed_instances_capacity_provider_config"
+    ];
+
+    message LambdaManagedInstancesCapacityProviderConfig {
+      // capacity_provider_arn: string
+      string capacity_provider_arn = 1 [json_name = "capacity_provider_arn"];
+
+      // execution_environment_memory_gib_per_vcpu: number
+      int64 execution_environment_memory_gib_per_vcpu = 2 [
+        json_name = "execution_environment_memory_gib_per_vcpu"
+      ];
+
+      // per_execution_environment_max_concurrency: number
+      int64 per_execution_environment_max_concurrency = 3 [
+        json_name = "per_execution_environment_max_concurrency"
+      ];
+    }
+  }
+
+  message DeadLetterConfig {
+    // target_arn: string
+    string target_arn = 1 [json_name = "target_arn"];
+  }
+
+  message DurableConfig {
+    // execution_timeout: number
+    int64 execution_timeout = 1 [json_name = "execution_timeout"];
+
+    // retention_period: number
+    int64 retention_period = 2 [json_name = "retention_period"];
+  }
+
+  message Environment {
+    // variables: map of string
+    map<string, string> variables = 1;
+  }
+
+  message EphemeralStorage {
+    // size: number
+    int64 size = 1;
+  }
+
+  message FileSystemConfig {
+    // arn: string
+    string arn = 1;
+
+    // local_mount_path: string
+    string local_mount_path = 2 [json_name = "local_mount_path"];
+  }
+
+  message LoggingConfig {
+    // application_log_level: string
+    string application_log_level = 1 [json_name = "application_log_level"];
+
+    // log_format: string
+    string log_format = 2 [json_name = "log_format"];
+
+    // log_group: string
+    string log_group = 3 [json_name = "log_group"];
+
+    // system_log_level: string
+    string system_log_level = 4 [json_name = "system_log_level"];
+  }
+
+  message TenancyConfig {
+    // tenant_isolation_mode: string
+    string tenant_isolation_mode = 1 [json_name = "tenant_isolation_mode"];
+  }
+
+  message TracingConfig {
+    // mode: string
+    string mode = 1;
+  }
+
+  message VpcConfig {
+    // ipv6_allowed_for_dual_stack: bool
+    bool ipv6_allowed_for_dual_stack = 1 [json_name = "ipv6_allowed_for_dual_stack"];
+
+    // security_group_ids: set of string
+    repeated string security_group_ids = 2 [json_name = "security_group_ids"];
+
+    // subnet_ids: set of string
+    repeated string subnet_ids = 3 [json_name = "subnet_ids"];
+
+    // vpc_id: string
+    string vpc_id = 4 [json_name = "vpc_id"];
+  }
+}
+
+// AwsLambdaFunctionUrl version is 0
+message AwsLambdaFunctionUrl {
+  string authorization_type = 1 [json_name = "authorization_type"];
+
+  repeated Cors cors = 2;
+
+  string creation_time = 3 [json_name = "creation_time"];
+
+  string function_arn = 4 [json_name = "function_arn"];
+
+  string function_name = 5 [json_name = "function_name"];
+
+  string function_url = 6 [json_name = "function_url"];
+
+  string id = 7;
+
+  string invoke_mode = 8 [json_name = "invoke_mode"];
+
+  string last_modified_time = 9 [json_name = "last_modified_time"];
+
+  string qualifier = 10;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string url_id = 12 [json_name = "url_id"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message Cors {
+    // allow_credentials: bool
+    bool allow_credentials = 1 [json_name = "allow_credentials"];
+
+    // allow_headers: list of string
+    repeated string allow_headers = 2 [json_name = "allow_headers"];
+
+    // allow_methods: list of string
+    repeated string allow_methods = 3 [json_name = "allow_methods"];
+
+    // allow_origins: list of string
+    repeated string allow_origins = 4 [json_name = "allow_origins"];
+
+    // expose_headers: list of string
+    repeated string expose_headers = 5 [json_name = "expose_headers"];
+
+    // max_age: number
+    int64 max_age = 6 [json_name = "max_age"];
+  }
+}
+
+// AwsLambdaFunctions version is 0
+message AwsLambdaFunctions {
+  repeated string function_arns = 1 [json_name = "function_arns"];
+
+  repeated string function_names = 2 [json_name = "function_names"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsLambdaInvocation version is 0
+message AwsLambdaInvocation {
+  string function_name = 1 [json_name = "function_name"];
+
+  string id = 2;
+
+  string input = 3;
+
+  string qualifier = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string result = 6;
+
+  string tenant_id = 7 [json_name = "tenant_id"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsLambdaLayerVersion version is 0
+message AwsLambdaLayerVersion {
+  string arn = 1;
+
+  string code_sha256 = 2 [json_name = "code_sha256"];
+
+  string compatible_architecture = 3 [json_name = "compatible_architecture"];
+
+  repeated string compatible_architectures = 4 [json_name = "compatible_architectures"];
+
+  string compatible_runtime = 5 [json_name = "compatible_runtime"];
+
+  repeated string compatible_runtimes = 6 [json_name = "compatible_runtimes"];
+
+  string created_date = 7 [json_name = "created_date"];
+
+  string description = 8;
+
+  string id = 9;
+
+  string layer_arn = 10 [json_name = "layer_arn"];
+
+  string layer_name = 11 [json_name = "layer_name"];
+
+  string layer_version_arn = 12 [json_name = "layer_version_arn"];
+
+  string license_info = 13 [json_name = "license_info"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 14;
+
+  string signing_job_arn = 15 [json_name = "signing_job_arn"];
+
+  string signing_profile_version_arn = 16 [json_name = "signing_profile_version_arn"];
+
+  string source_code_hash = 17 [json_name = "source_code_hash"];
+
+  int64 source_code_size = 18 [json_name = "source_code_size"];
+
+  int64 version = 19;
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+}

@@ -1,0 +1,413 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCloudformationStack version is 0
+message AwsCloudformationStack {
+  repeated string capabilities = 1;
+
+  bool disable_rollback = 2 [json_name = "disable_rollback"];
+
+  string iam_role_arn = 3 [json_name = "iam_role_arn"];
+
+  string id = 4;
+
+  string name = 5;
+
+  repeated string notification_arns = 6 [json_name = "notification_arns"];
+
+  string on_failure = 7 [json_name = "on_failure"];
+
+  map<string, string> outputs = 8;
+
+  map<string, string> parameters = 9;
+
+  string policy_body = 10 [json_name = "policy_body"];
+
+  string policy_url = 11 [json_name = "policy_url"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  map<string, string> tags = 13;
+
+  map<string, string> tags_all = 14 [json_name = "tags_all"];
+
+  string template_body = 15 [json_name = "template_body"];
+
+  string template_url = 16 [json_name = "template_url"];
+
+  int64 timeout_in_minutes = 17 [json_name = "timeout_in_minutes"];
+
+  repeated Timeouts timeouts = 18;
+
+  google.protobuf.Value for_each = 19 [json_name = "for_each"];
+
+  repeated string depends_on = 20 [json_name = "depends_on"];
+
+  int32 count = 21;
+
+  string provider = 22;
+
+  terraform.v1.Lifecycle lifecycle = 23;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsCloudformationStackInstances version is 0
+message AwsCloudformationStackInstances {
+  repeated string accounts = 1;
+
+  string call_as = 2 [json_name = "call_as"];
+
+  string id = 3;
+
+  map<string, string> parameter_overrides = 4 [json_name = "parameter_overrides"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated string regions = 6;
+
+  bool retain_stacks = 7 [json_name = "retain_stacks"];
+
+  // List of stack instances created from an organizational unit deployment target.
+  // This will only be populated when `deployment_targets` is set.
+  repeated StackInstanceSummaries stack_instance_summaries = 8 [json_name = "stack_instance_summaries"];
+
+  string stack_set_id = 9 [json_name = "stack_set_id"];
+
+  string stack_set_name = 10 [json_name = "stack_set_name"];
+
+  DeploymentTargets deployment_targets = 11 [json_name = "deployment_targets"];
+
+  OperationPreferences operation_preferences = 12 [json_name = "operation_preferences"];
+
+  repeated Timeouts timeouts = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message StackInstanceSummaries {
+    // account_id: string
+    string account_id = 1 [json_name = "account_id"];
+
+    // detailed_status: string
+    string detailed_status = 2 [json_name = "detailed_status"];
+
+    // drift_status: string
+    string drift_status = 3 [json_name = "drift_status"];
+
+    // organizational_unit_id: string
+    string organizational_unit_id = 4 [json_name = "organizational_unit_id"];
+
+    // region: string
+    string region = 5;
+
+    // stack_id: string
+    string stack_id = 6 [json_name = "stack_id"];
+
+    // stack_set_id: string
+    string stack_set_id = 7 [json_name = "stack_set_id"];
+
+    // status: string
+    string status = 8;
+
+    // status_reason: string
+    string status_reason = 9 [json_name = "status_reason"];
+  }
+
+  message DeploymentTargets {
+    string account_filter_type = 1 [json_name = "account_filter_type"];
+
+    repeated string accounts = 2;
+
+    string accounts_url = 3 [json_name = "accounts_url"];
+
+    repeated string organizational_unit_ids = 4 [json_name = "organizational_unit_ids"];
+  }
+
+  message OperationPreferences {
+    string concurrency_mode = 1 [json_name = "concurrency_mode"];
+
+    int64 failure_tolerance_count = 2 [json_name = "failure_tolerance_count"];
+
+    int64 failure_tolerance_percentage = 3 [json_name = "failure_tolerance_percentage"];
+
+    int64 max_concurrent_count = 4 [json_name = "max_concurrent_count"];
+
+    int64 max_concurrent_percentage = 5 [json_name = "max_concurrent_percentage"];
+
+    string region_concurrency_type = 6 [json_name = "region_concurrency_type"];
+
+    repeated string region_order = 7 [json_name = "region_order"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsCloudformationStackSet version is 0
+message AwsCloudformationStackSet {
+  string administration_role_arn = 1 [json_name = "administration_role_arn"];
+
+  string arn = 2;
+
+  string call_as = 3 [json_name = "call_as"];
+
+  repeated string capabilities = 4;
+
+  string description = 5;
+
+  string execution_role_name = 6 [json_name = "execution_role_name"];
+
+  string id = 7;
+
+  string name = 8;
+
+  map<string, string> parameters = 9;
+
+  string permission_model = 10 [json_name = "permission_model"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string stack_set_id = 12 [json_name = "stack_set_id"];
+
+  map<string, string> tags = 13;
+
+  map<string, string> tags_all = 14 [json_name = "tags_all"];
+
+  string template_body = 15 [json_name = "template_body"];
+
+  string template_url = 16 [json_name = "template_url"];
+
+  AutoDeployment auto_deployment = 17 [json_name = "auto_deployment"];
+
+  ManagedExecution managed_execution = 18 [json_name = "managed_execution"];
+
+  OperationPreferences operation_preferences = 19 [json_name = "operation_preferences"];
+
+  repeated Timeouts timeouts = 20;
+
+  google.protobuf.Value for_each = 21 [json_name = "for_each"];
+
+  repeated string depends_on = 22 [json_name = "depends_on"];
+
+  int32 count = 23;
+
+  string provider = 24;
+
+  terraform.v1.Lifecycle lifecycle = 25;
+
+  message AutoDeployment {
+    repeated string depends_on_stack_sets = 1 [json_name = "depends_on_stack_sets"];
+
+    bool enabled = 2;
+
+    bool retain_stacks_on_account_removal = 3 [json_name = "retain_stacks_on_account_removal"];
+  }
+
+  message ManagedExecution {
+    bool active = 1;
+  }
+
+  message OperationPreferences {
+    int64 failure_tolerance_count = 1 [json_name = "failure_tolerance_count"];
+
+    int64 failure_tolerance_percentage = 2 [json_name = "failure_tolerance_percentage"];
+
+    int64 max_concurrent_count = 3 [json_name = "max_concurrent_count"];
+
+    int64 max_concurrent_percentage = 4 [json_name = "max_concurrent_percentage"];
+
+    string region_concurrency_type = 5 [json_name = "region_concurrency_type"];
+
+    repeated string region_order = 6 [json_name = "region_order"];
+  }
+
+  message Timeouts {
+    string update = 1;
+  }
+}
+
+// AwsCloudformationStackSetInstance version is 0
+message AwsCloudformationStackSetInstance {
+  string account_id = 1 [json_name = "account_id"];
+
+  string call_as = 2 [json_name = "call_as"];
+
+  string id = 3;
+
+  string organizational_unit_id = 4 [json_name = "organizational_unit_id"];
+
+  map<string, string> parameter_overrides = 5 [json_name = "parameter_overrides"];
+
+  string region = 6;
+
+  bool retain_stack = 7 [json_name = "retain_stack"];
+
+  string stack_id = 8 [json_name = "stack_id"];
+
+  // List of stack instances created from an organizational unit deployment target.
+  // This will only be populated when `deployment_targets` is set.
+  repeated StackInstanceSummaries stack_instance_summaries = 9 [json_name = "stack_instance_summaries"];
+
+  string stack_set_instance_region = 10 [json_name = "stack_set_instance_region"];
+
+  string stack_set_name = 11 [json_name = "stack_set_name"];
+
+  DeploymentTargets deployment_targets = 12 [json_name = "deployment_targets"];
+
+  OperationPreferences operation_preferences = 13 [json_name = "operation_preferences"];
+
+  repeated Timeouts timeouts = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message StackInstanceSummaries {
+    // account_id: string
+    string account_id = 1 [json_name = "account_id"];
+
+    // organizational_unit_id: string
+    string organizational_unit_id = 2 [json_name = "organizational_unit_id"];
+
+    // stack_id: string
+    string stack_id = 3 [json_name = "stack_id"];
+  }
+
+  message DeploymentTargets {
+    string account_filter_type = 1 [json_name = "account_filter_type"];
+
+    repeated string accounts = 2;
+
+    string accounts_url = 3 [json_name = "accounts_url"];
+
+    repeated string organizational_unit_ids = 4 [json_name = "organizational_unit_ids"];
+  }
+
+  message OperationPreferences {
+    string concurrency_mode = 1 [json_name = "concurrency_mode"];
+
+    int64 failure_tolerance_count = 2 [json_name = "failure_tolerance_count"];
+
+    int64 failure_tolerance_percentage = 3 [json_name = "failure_tolerance_percentage"];
+
+    int64 max_concurrent_count = 4 [json_name = "max_concurrent_count"];
+
+    int64 max_concurrent_percentage = 5 [json_name = "max_concurrent_percentage"];
+
+    string region_concurrency_type = 6 [json_name = "region_concurrency_type"];
+
+    repeated string region_order = 7 [json_name = "region_order"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsCloudformationType version is 0
+message AwsCloudformationType {
+  string arn = 1;
+
+  string default_version_id = 2 [json_name = "default_version_id"];
+
+  string deprecated_status = 3 [json_name = "deprecated_status"];
+
+  string description = 4;
+
+  string documentation_url = 5 [json_name = "documentation_url"];
+
+  string execution_role_arn = 6 [json_name = "execution_role_arn"];
+
+  string id = 7;
+
+  bool is_default_version = 8 [json_name = "is_default_version"];
+
+  string provisioning_type = 9 [json_name = "provisioning_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  string schema = 11;
+
+  string schema_handler_package = 12 [json_name = "schema_handler_package"];
+
+  string source_url = 13 [json_name = "source_url"];
+
+  string type = 14;
+
+  string type_arn = 15 [json_name = "type_arn"];
+
+  string type_name = 16 [json_name = "type_name"];
+
+  string version_id = 17 [json_name = "version_id"];
+
+  string visibility = 18;
+
+  LoggingConfig logging_config = 19 [json_name = "logging_config"];
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message LoggingConfig {
+    string log_group_name = 1 [json_name = "log_group_name"];
+
+    string log_role_arn = 2 [json_name = "log_role_arn"];
+  }
+}

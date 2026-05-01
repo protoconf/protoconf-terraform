@@ -1,0 +1,874 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsTransferAccess version is 0
+message AwsTransferAccess {
+  string external_id = 1 [json_name = "external_id"];
+
+  string home_directory = 2 [json_name = "home_directory"];
+
+  string home_directory_type = 3 [json_name = "home_directory_type"];
+
+  string id = 4;
+
+  string policy = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string role = 7;
+
+  string server_id = 8 [json_name = "server_id"];
+
+  repeated HomeDirectoryMappings home_directory_mappings = 9 [json_name = "home_directory_mappings"];
+
+  PosixProfile posix_profile = 10 [json_name = "posix_profile"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message HomeDirectoryMappings {
+    string entry = 1;
+
+    string target = 2;
+  }
+
+  message PosixProfile {
+    int64 gid = 1;
+
+    repeated int64 secondary_gids = 2 [json_name = "secondary_gids"];
+
+    int64 uid = 3;
+  }
+}
+
+// AwsTransferAgreement version is 0
+message AwsTransferAgreement {
+  string access_role = 1 [json_name = "access_role"];
+
+  string agreement_id = 2 [json_name = "agreement_id"];
+
+  string arn = 3;
+
+  string base_directory = 4 [json_name = "base_directory"];
+
+  string description = 5;
+
+  string id = 6;
+
+  string local_profile_id = 7 [json_name = "local_profile_id"];
+
+  string partner_profile_id = 8 [json_name = "partner_profile_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  string server_id = 10 [json_name = "server_id"];
+
+  string status = 11;
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+}
+
+// AwsTransferCertificate version is 0
+message AwsTransferCertificate {
+  string active_date = 1 [json_name = "active_date"];
+
+  string arn = 2;
+
+  string certificate = 3;
+
+  string certificate_chain = 4 [json_name = "certificate_chain"];
+
+  string certificate_id = 5 [json_name = "certificate_id"];
+
+  string description = 6;
+
+  string id = 7;
+
+  string inactive_date = 8 [json_name = "inactive_date"];
+
+  string private_key = 9 [json_name = "private_key"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  string usage = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+}
+
+// AwsTransferConnector version is 0
+message AwsTransferConnector {
+  string access_role = 1 [json_name = "access_role"];
+
+  string arn = 2;
+
+  string connector_id = 3 [json_name = "connector_id"];
+
+  string id = 4;
+
+  string logging_role = 5 [json_name = "logging_role"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string security_policy_name = 7 [json_name = "security_policy_name"];
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  string url = 10;
+
+  As2Config as2_config = 11 [json_name = "as2_config"];
+
+  EgressConfig egress_config = 12 [json_name = "egress_config"];
+
+  SftpConfig sftp_config = 13 [json_name = "sftp_config"];
+
+  repeated Timeouts timeouts = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message As2Config {
+    string compression = 1;
+
+    string encryption_algorithm = 2 [json_name = "encryption_algorithm"];
+
+    string local_profile_id = 3 [json_name = "local_profile_id"];
+
+    string mdn_response = 4 [json_name = "mdn_response"];
+
+    string mdn_signing_algorithm = 5 [json_name = "mdn_signing_algorithm"];
+
+    string message_subject = 6 [json_name = "message_subject"];
+
+    string partner_profile_id = 7 [json_name = "partner_profile_id"];
+
+    string signing_algorithm = 8 [json_name = "signing_algorithm"];
+  }
+
+  message EgressConfig {
+    VpcLattice vpc_lattice = 1 [json_name = "vpc_lattice"];
+
+    message VpcLattice {
+      int64 port_number = 1 [json_name = "port_number"];
+
+      string resource_configuration_arn = 2 [json_name = "resource_configuration_arn"];
+    }
+  }
+
+  message SftpConfig {
+    repeated string trusted_host_keys = 1 [json_name = "trusted_host_keys"];
+
+    string user_secret_id = 2 [json_name = "user_secret_id"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsTransferHostKey version is 0
+message AwsTransferHostKey {
+  string arn = 1;
+
+  string description = 2;
+
+  string host_key_body = 3 [json_name = "host_key_body"];
+
+  string host_key_body_wo = 4 [json_name = "host_key_body_wo"];
+
+  string host_key_fingerprint = 5 [json_name = "host_key_fingerprint"];
+
+  string host_key_id = 6 [json_name = "host_key_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string server_id = 8 [json_name = "server_id"];
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+}
+
+// AwsTransferProfile version is 0
+message AwsTransferProfile {
+  string arn = 1;
+
+  string as2_id = 2 [json_name = "as2_id"];
+
+  repeated string certificate_ids = 3 [json_name = "certificate_ids"];
+
+  string id = 4;
+
+  string profile_id = 5 [json_name = "profile_id"];
+
+  string profile_type = 6 [json_name = "profile_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsTransferServer version is 0
+message AwsTransferServer {
+  string arn = 1;
+
+  string certificate = 2;
+
+  string directory_id = 3 [json_name = "directory_id"];
+
+  string domain = 4;
+
+  string endpoint = 5;
+
+  string endpoint_type = 6 [json_name = "endpoint_type"];
+
+  bool force_destroy = 7 [json_name = "force_destroy"];
+
+  string function = 8;
+
+  string host_key = 9 [json_name = "host_key"];
+
+  string host_key_fingerprint = 10 [json_name = "host_key_fingerprint"];
+
+  string id = 11;
+
+  string identity_provider_type = 12 [json_name = "identity_provider_type"];
+
+  string invocation_role = 13 [json_name = "invocation_role"];
+
+  string logging_role = 14 [json_name = "logging_role"];
+
+  string post_authentication_login_banner = 15 [json_name = "post_authentication_login_banner"];
+
+  string pre_authentication_login_banner = 16 [json_name = "pre_authentication_login_banner"];
+
+  repeated string protocols = 17;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 18;
+
+  string security_policy_name = 19 [json_name = "security_policy_name"];
+
+  string sftp_authentication_methods = 20 [json_name = "sftp_authentication_methods"];
+
+  // This is a set of arns of destinations that will receive structured logs from the
+  // transfer server
+  repeated string structured_log_destinations = 21 [json_name = "structured_log_destinations"];
+
+  map<string, string> tags = 22;
+
+  map<string, string> tags_all = 23 [json_name = "tags_all"];
+
+  string url = 24;
+
+  EndpointDetails endpoint_details = 25 [json_name = "endpoint_details"];
+
+  ProtocolDetails protocol_details = 26 [json_name = "protocol_details"];
+
+  S3StorageOptions s3_storage_options = 27 [json_name = "s3_storage_options"];
+
+  WorkflowDetails workflow_details = 28 [json_name = "workflow_details"];
+
+  google.protobuf.Value for_each = 29 [json_name = "for_each"];
+
+  repeated string depends_on = 30 [json_name = "depends_on"];
+
+  int32 count = 31;
+
+  string provider = 32;
+
+  terraform.v1.Lifecycle lifecycle = 33;
+
+  message EndpointDetails {
+    repeated string address_allocation_ids = 1 [json_name = "address_allocation_ids"];
+
+    repeated string security_group_ids = 2 [json_name = "security_group_ids"];
+
+    repeated string subnet_ids = 3 [json_name = "subnet_ids"];
+
+    string vpc_endpoint_id = 4 [json_name = "vpc_endpoint_id"];
+
+    string vpc_id = 5 [json_name = "vpc_id"];
+  }
+
+  message ProtocolDetails {
+    repeated string as2_transports = 1 [json_name = "as2_transports"];
+
+    string passive_ip = 2 [json_name = "passive_ip"];
+
+    string set_stat_option = 3 [json_name = "set_stat_option"];
+
+    string tls_session_resumption_mode = 4 [json_name = "tls_session_resumption_mode"];
+  }
+
+  message S3StorageOptions {
+    string directory_listing_optimization = 1 [json_name = "directory_listing_optimization"];
+  }
+
+  message WorkflowDetails {
+    OnPartialUpload on_partial_upload = 1 [json_name = "on_partial_upload"];
+
+    OnUpload on_upload = 2 [json_name = "on_upload"];
+
+    message OnPartialUpload {
+      string execution_role = 1 [json_name = "execution_role"];
+
+      string workflow_id = 2 [json_name = "workflow_id"];
+    }
+
+    message OnUpload {
+      string execution_role = 1 [json_name = "execution_role"];
+
+      string workflow_id = 2 [json_name = "workflow_id"];
+    }
+  }
+}
+
+// AwsTransferSshKey version is 0
+message AwsTransferSshKey {
+  string body = 1;
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string server_id = 4 [json_name = "server_id"];
+
+  string ssh_key_id = 5 [json_name = "ssh_key_id"];
+
+  string user_name = 6 [json_name = "user_name"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsTransferTag version is 0
+message AwsTransferTag {
+  string id = 1;
+
+  string key = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string resource_arn = 4 [json_name = "resource_arn"];
+
+  string value = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsTransferUser version is 0
+message AwsTransferUser {
+  string arn = 1;
+
+  string home_directory = 2 [json_name = "home_directory"];
+
+  string home_directory_type = 3 [json_name = "home_directory_type"];
+
+  string id = 4;
+
+  string policy = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string role = 7;
+
+  string server_id = 8 [json_name = "server_id"];
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  string user_name = 11 [json_name = "user_name"];
+
+  repeated HomeDirectoryMappings home_directory_mappings = 12 [json_name = "home_directory_mappings"];
+
+  PosixProfile posix_profile = 13 [json_name = "posix_profile"];
+
+  repeated Timeouts timeouts = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message HomeDirectoryMappings {
+    string entry = 1;
+
+    string target = 2;
+  }
+
+  message PosixProfile {
+    int64 gid = 1;
+
+    repeated int64 secondary_gids = 2 [json_name = "secondary_gids"];
+
+    int64 uid = 3;
+  }
+
+  message Timeouts {
+    string delete = 1;
+  }
+}
+
+// AwsTransferWebApp version is 0
+message AwsTransferWebApp {
+  string access_endpoint = 1 [json_name = "access_endpoint"];
+
+  string arn = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  map<string, string> tags = 4;
+
+  map<string, string> tags_all = 5 [json_name = "tags_all"];
+
+  string web_app_endpoint_policy = 6 [json_name = "web_app_endpoint_policy"];
+
+  string web_app_id = 7 [json_name = "web_app_id"];
+
+  repeated WebAppUnits web_app_units = 8 [json_name = "web_app_units"];
+
+  repeated EndpointDetails endpoint_details = 9 [json_name = "endpoint_details"];
+
+  repeated IdentityProviderDetails identity_provider_details = 10 [json_name = "identity_provider_details"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message WebAppUnits {
+    // provisioned: number
+    int64 provisioned = 1;
+  }
+
+  message EndpointDetails {
+    repeated Vpc vpc = 1;
+
+    message Vpc {
+      repeated string security_group_ids = 1 [json_name = "security_group_ids"];
+
+      repeated string subnet_ids = 2 [json_name = "subnet_ids"];
+
+      string vpc_endpoint_id = 3 [json_name = "vpc_endpoint_id"];
+
+      string vpc_id = 4 [json_name = "vpc_id"];
+    }
+  }
+
+  message IdentityProviderDetails {
+    repeated IdentityCenterConfig identity_center_config = 1 [json_name = "identity_center_config"];
+
+    message IdentityCenterConfig {
+      string application_arn = 1 [json_name = "application_arn"];
+
+      string instance_arn = 2 [json_name = "instance_arn"];
+
+      string role = 3;
+    }
+  }
+}
+
+// AwsTransferWebAppCustomization version is 0
+message AwsTransferWebAppCustomization {
+  string favicon_file = 1 [json_name = "favicon_file"];
+
+  string logo_file = 2 [json_name = "logo_file"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string title = 4;
+
+  string web_app_id = 5 [json_name = "web_app_id"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsTransferWorkflow version is 0
+message AwsTransferWorkflow {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  map<string, string> tags = 5;
+
+  map<string, string> tags_all = 6 [json_name = "tags_all"];
+
+  repeated OnExceptionSteps on_exception_steps = 7 [json_name = "on_exception_steps"];
+
+  repeated Steps steps = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message OnExceptionSteps {
+    string type = 1;
+
+    CopyStepDetails copy_step_details = 2 [json_name = "copy_step_details"];
+
+    CustomStepDetails custom_step_details = 3 [json_name = "custom_step_details"];
+
+    DecryptStepDetails decrypt_step_details = 4 [json_name = "decrypt_step_details"];
+
+    DeleteStepDetails delete_step_details = 5 [json_name = "delete_step_details"];
+
+    TagStepDetails tag_step_details = 6 [json_name = "tag_step_details"];
+
+    message CopyStepDetails {
+      string name = 1;
+
+      string overwrite_existing = 2 [json_name = "overwrite_existing"];
+
+      string source_file_location = 3 [json_name = "source_file_location"];
+
+      DestinationFileLocation destination_file_location = 4 [json_name = "destination_file_location"];
+
+      message DestinationFileLocation {
+        EfsFileLocation efs_file_location = 1 [json_name = "efs_file_location"];
+
+        S3FileLocation s3_file_location = 2 [json_name = "s3_file_location"];
+
+        message EfsFileLocation {
+          string file_system_id = 1 [json_name = "file_system_id"];
+
+          string path = 2;
+        }
+
+        message S3FileLocation {
+          string bucket = 1;
+
+          string key = 2;
+        }
+      }
+    }
+
+    message CustomStepDetails {
+      string name = 1;
+
+      string source_file_location = 2 [json_name = "source_file_location"];
+
+      string target = 3;
+
+      int64 timeout_seconds = 4 [json_name = "timeout_seconds"];
+    }
+
+    message DecryptStepDetails {
+      string name = 1;
+
+      string overwrite_existing = 2 [json_name = "overwrite_existing"];
+
+      string source_file_location = 3 [json_name = "source_file_location"];
+
+      string type = 4;
+
+      DestinationFileLocation destination_file_location = 5 [json_name = "destination_file_location"];
+
+      message DestinationFileLocation {
+        EfsFileLocation efs_file_location = 1 [json_name = "efs_file_location"];
+
+        S3FileLocation s3_file_location = 2 [json_name = "s3_file_location"];
+
+        message EfsFileLocation {
+          string file_system_id = 1 [json_name = "file_system_id"];
+
+          string path = 2;
+        }
+
+        message S3FileLocation {
+          string bucket = 1;
+
+          string key = 2;
+        }
+      }
+    }
+
+    message DeleteStepDetails {
+      string name = 1;
+
+      string source_file_location = 2 [json_name = "source_file_location"];
+    }
+
+    message TagStepDetails {
+      string name = 1;
+
+      string source_file_location = 2 [json_name = "source_file_location"];
+
+      repeated Tags tags = 3;
+
+      message Tags {
+        string key = 1;
+
+        string value = 2;
+      }
+    }
+  }
+
+  message Steps {
+    string type = 1;
+
+    CopyStepDetails copy_step_details = 2 [json_name = "copy_step_details"];
+
+    CustomStepDetails custom_step_details = 3 [json_name = "custom_step_details"];
+
+    DecryptStepDetails decrypt_step_details = 4 [json_name = "decrypt_step_details"];
+
+    DeleteStepDetails delete_step_details = 5 [json_name = "delete_step_details"];
+
+    TagStepDetails tag_step_details = 6 [json_name = "tag_step_details"];
+
+    message CopyStepDetails {
+      string name = 1;
+
+      string overwrite_existing = 2 [json_name = "overwrite_existing"];
+
+      string source_file_location = 3 [json_name = "source_file_location"];
+
+      DestinationFileLocation destination_file_location = 4 [json_name = "destination_file_location"];
+
+      message DestinationFileLocation {
+        EfsFileLocation efs_file_location = 1 [json_name = "efs_file_location"];
+
+        S3FileLocation s3_file_location = 2 [json_name = "s3_file_location"];
+
+        message EfsFileLocation {
+          string file_system_id = 1 [json_name = "file_system_id"];
+
+          string path = 2;
+        }
+
+        message S3FileLocation {
+          string bucket = 1;
+
+          string key = 2;
+        }
+      }
+    }
+
+    message CustomStepDetails {
+      string name = 1;
+
+      string source_file_location = 2 [json_name = "source_file_location"];
+
+      string target = 3;
+
+      int64 timeout_seconds = 4 [json_name = "timeout_seconds"];
+    }
+
+    message DecryptStepDetails {
+      string name = 1;
+
+      string overwrite_existing = 2 [json_name = "overwrite_existing"];
+
+      string source_file_location = 3 [json_name = "source_file_location"];
+
+      string type = 4;
+
+      DestinationFileLocation destination_file_location = 5 [json_name = "destination_file_location"];
+
+      message DestinationFileLocation {
+        EfsFileLocation efs_file_location = 1 [json_name = "efs_file_location"];
+
+        S3FileLocation s3_file_location = 2 [json_name = "s3_file_location"];
+
+        message EfsFileLocation {
+          string file_system_id = 1 [json_name = "file_system_id"];
+
+          string path = 2;
+        }
+
+        message S3FileLocation {
+          string bucket = 1;
+
+          string key = 2;
+        }
+      }
+    }
+
+    message DeleteStepDetails {
+      string name = 1;
+
+      string source_file_location = 2 [json_name = "source_file_location"];
+    }
+
+    message TagStepDetails {
+      string name = 1;
+
+      string source_file_location = 2 [json_name = "source_file_location"];
+
+      repeated Tags tags = 3;
+
+      message Tags {
+        string key = 1;
+
+        string value = 2;
+      }
+    }
+  }
+}

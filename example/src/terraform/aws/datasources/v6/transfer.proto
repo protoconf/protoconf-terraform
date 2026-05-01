@@ -1,0 +1,148 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsTransferConnector version is 0
+message AwsTransferConnector {
+  string access_role = 1 [json_name = "access_role"];
+
+  string arn = 2;
+
+  repeated As2Config as2_config = 3 [json_name = "as2_config"];
+
+  repeated EgressConfig egress_config = 4 [json_name = "egress_config"];
+
+  string id = 5;
+
+  string logging_role = 6 [json_name = "logging_role"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string security_policy_name = 8 [json_name = "security_policy_name"];
+
+  repeated string service_managed_egress_ip_addresses = 9 [json_name = "service_managed_egress_ip_addresses"];
+
+  repeated SftpConfig sftp_config = 10 [json_name = "sftp_config"];
+
+  map<string, string> tags = 11;
+
+  string url = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message As2Config {
+    // basic_auth_secret_id: string
+    string basic_auth_secret_id = 1 [json_name = "basic_auth_secret_id"];
+
+    // compression: string
+    string compression = 2;
+
+    // encryption_algorithm: string
+    string encryption_algorithm = 3 [json_name = "encryption_algorithm"];
+
+    // local_profile_id: string
+    string local_profile_id = 4 [json_name = "local_profile_id"];
+
+    // mdn_response: string
+    string mdn_response = 5 [json_name = "mdn_response"];
+
+    // mdn_signing_algorithm: string
+    string mdn_signing_algorithm = 6 [json_name = "mdn_signing_algorithm"];
+
+    // message_subject: string
+    string message_subject = 7 [json_name = "message_subject"];
+
+    // partner_profile_id: string
+    string partner_profile_id = 8 [json_name = "partner_profile_id"];
+
+    // singing_algorithm: string
+    string singing_algorithm = 9 [json_name = "singing_algorithm"];
+  }
+
+  message EgressConfig {
+    // vpc_lattice: list of object
+    repeated VpcLattice vpc_lattice = 1 [json_name = "vpc_lattice"];
+
+    message VpcLattice {
+      // port_number: number
+      int64 port_number = 1 [json_name = "port_number"];
+
+      // resource_configuration_arn: string
+      string resource_configuration_arn = 2 [json_name = "resource_configuration_arn"];
+    }
+  }
+
+  message SftpConfig {
+    // trusted_host_keys: list of string
+    repeated string trusted_host_keys = 1 [json_name = "trusted_host_keys"];
+
+    // user_secret_id: string
+    string user_secret_id = 2 [json_name = "user_secret_id"];
+  }
+}
+
+// AwsTransferServer version is 0
+message AwsTransferServer {
+  string arn = 1;
+
+  string certificate = 2;
+
+  string domain = 3;
+
+  string endpoint = 4;
+
+  string endpoint_type = 5 [json_name = "endpoint_type"];
+
+  string id = 6;
+
+  string identity_provider_type = 7 [json_name = "identity_provider_type"];
+
+  string invocation_role = 8 [json_name = "invocation_role"];
+
+  string logging_role = 9 [json_name = "logging_role"];
+
+  repeated string protocols = 10;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string security_policy_name = 12 [json_name = "security_policy_name"];
+
+  string server_id = 13 [json_name = "server_id"];
+
+  repeated string structured_log_destinations = 14 [json_name = "structured_log_destinations"];
+
+  map<string, string> tags = 15;
+
+  string url = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+}

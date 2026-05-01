@@ -1,0 +1,558 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsMacie2Account version is 0
+message AwsMacie2Account {
+  string created_at = 1 [json_name = "created_at"];
+
+  string finding_publishing_frequency = 2 [json_name = "finding_publishing_frequency"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string service_role = 5 [json_name = "service_role"];
+
+  string status = 6;
+
+  string updated_at = 7 [json_name = "updated_at"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsMacie2ClassificationExportConfiguration version is 0
+message AwsMacie2ClassificationExportConfiguration {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  S3Destination s3_destination = 3 [json_name = "s3_destination"];
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message S3Destination {
+    string bucket_name = 1 [json_name = "bucket_name"];
+
+    string key_prefix = 2 [json_name = "key_prefix"];
+
+    string kms_key_arn = 3 [json_name = "kms_key_arn"];
+  }
+}
+
+// AwsMacie2ClassificationJob version is 0
+message AwsMacie2ClassificationJob {
+  string created_at = 1 [json_name = "created_at"];
+
+  repeated string custom_data_identifier_ids = 2 [json_name = "custom_data_identifier_ids"];
+
+  string description = 3;
+
+  string id = 4;
+
+  bool initial_run = 5 [json_name = "initial_run"];
+
+  string job_arn = 6 [json_name = "job_arn"];
+
+  string job_id = 7 [json_name = "job_id"];
+
+  string job_status = 8 [json_name = "job_status"];
+
+  string job_type = 9 [json_name = "job_type"];
+
+  string name = 10;
+
+  string name_prefix = 11 [json_name = "name_prefix"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  int64 sampling_percentage = 13 [json_name = "sampling_percentage"];
+
+  map<string, string> tags = 14;
+
+  map<string, string> tags_all = 15 [json_name = "tags_all"];
+
+  repeated UserPausedDetails user_paused_details = 16 [json_name = "user_paused_details"];
+
+  S3JobDefinition s3_job_definition = 17 [json_name = "s3_job_definition"];
+
+  ScheduleFrequency schedule_frequency = 18 [json_name = "schedule_frequency"];
+
+  repeated Timeouts timeouts = 19;
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message UserPausedDetails {
+    // job_expires_at: string
+    string job_expires_at = 1 [json_name = "job_expires_at"];
+
+    // job_imminent_expiration_health_event_arn: string
+    string job_imminent_expiration_health_event_arn = 2 [
+      json_name = "job_imminent_expiration_health_event_arn"
+    ];
+
+    // job_paused_at: string
+    string job_paused_at = 3 [json_name = "job_paused_at"];
+  }
+
+  message S3JobDefinition {
+    BucketCriteria bucket_criteria = 1 [json_name = "bucket_criteria"];
+
+    repeated BucketDefinitions bucket_definitions = 2 [json_name = "bucket_definitions"];
+
+    Scoping scoping = 3;
+
+    message BucketCriteria {
+      Excludes excludes = 1;
+
+      Includes includes = 2;
+
+      message Excludes {
+        repeated And and = 1;
+
+        message And {
+          SimpleCriterion simple_criterion = 1 [json_name = "simple_criterion"];
+
+          TagCriterion tag_criterion = 2 [json_name = "tag_criterion"];
+
+          message SimpleCriterion {
+            string comparator = 1;
+
+            string key = 2;
+
+            repeated string values = 3;
+          }
+
+          message TagCriterion {
+            string comparator = 1;
+
+            repeated TagValues tag_values = 2 [json_name = "tag_values"];
+
+            message TagValues {
+              string key = 1;
+
+              string value = 2;
+            }
+          }
+        }
+      }
+
+      message Includes {
+        repeated And and = 1;
+
+        message And {
+          SimpleCriterion simple_criterion = 1 [json_name = "simple_criterion"];
+
+          TagCriterion tag_criterion = 2 [json_name = "tag_criterion"];
+
+          message SimpleCriterion {
+            string comparator = 1;
+
+            string key = 2;
+
+            repeated string values = 3;
+          }
+
+          message TagCriterion {
+            string comparator = 1;
+
+            repeated TagValues tag_values = 2 [json_name = "tag_values"];
+
+            message TagValues {
+              string key = 1;
+
+              string value = 2;
+            }
+          }
+        }
+      }
+    }
+
+    message BucketDefinitions {
+      string account_id = 1 [json_name = "account_id"];
+
+      repeated string buckets = 2;
+    }
+
+    message Scoping {
+      Excludes excludes = 1;
+
+      Includes includes = 2;
+
+      message Excludes {
+        repeated And and = 1;
+
+        message And {
+          SimpleScopeTerm simple_scope_term = 1 [json_name = "simple_scope_term"];
+
+          TagScopeTerm tag_scope_term = 2 [json_name = "tag_scope_term"];
+
+          message SimpleScopeTerm {
+            string comparator = 1;
+
+            string key = 2;
+
+            repeated string values = 3;
+          }
+
+          message TagScopeTerm {
+            string comparator = 1;
+
+            string key = 2;
+
+            string target = 3;
+
+            repeated TagValues tag_values = 4 [json_name = "tag_values"];
+
+            message TagValues {
+              string key = 1;
+
+              string value = 2;
+            }
+          }
+        }
+      }
+
+      message Includes {
+        repeated And and = 1;
+
+        message And {
+          SimpleScopeTerm simple_scope_term = 1 [json_name = "simple_scope_term"];
+
+          TagScopeTerm tag_scope_term = 2 [json_name = "tag_scope_term"];
+
+          message SimpleScopeTerm {
+            string comparator = 1;
+
+            string key = 2;
+
+            repeated string values = 3;
+          }
+
+          message TagScopeTerm {
+            string comparator = 1;
+
+            string key = 2;
+
+            string target = 3;
+
+            repeated TagValues tag_values = 4 [json_name = "tag_values"];
+
+            message TagValues {
+              string key = 1;
+
+              string value = 2;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  message ScheduleFrequency {
+    bool daily_schedule = 1 [json_name = "daily_schedule"];
+
+    int64 monthly_schedule = 2 [json_name = "monthly_schedule"];
+
+    string weekly_schedule = 3 [json_name = "weekly_schedule"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string update = 2;
+  }
+}
+
+// AwsMacie2CustomDataIdentifier version is 0
+message AwsMacie2CustomDataIdentifier {
+  string arn = 1;
+
+  string created_at = 2 [json_name = "created_at"];
+
+  string description = 3;
+
+  string id = 4;
+
+  repeated string ignore_words = 5 [json_name = "ignore_words"];
+
+  repeated string keywords = 6;
+
+  int64 maximum_match_distance = 7 [json_name = "maximum_match_distance"];
+
+  string name = 8;
+
+  string name_prefix = 9 [json_name = "name_prefix"];
+
+  string regex = 10;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message Timeouts {
+    string create = 1;
+  }
+}
+
+// AwsMacie2FindingsFilter version is 0
+message AwsMacie2FindingsFilter {
+  string action = 1;
+
+  string arn = 2;
+
+  string description = 3;
+
+  string id = 4;
+
+  string name = 5;
+
+  string name_prefix = 6 [json_name = "name_prefix"];
+
+  int64 position = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  FindingCriteria finding_criteria = 11 [json_name = "finding_criteria"];
+
+  repeated Timeouts timeouts = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message FindingCriteria {
+    repeated Criterion criterion = 1;
+
+    message Criterion {
+      repeated string eq = 1;
+
+      repeated string eq_exact_match = 2 [json_name = "eq_exact_match"];
+
+      string field = 3;
+
+      string gt = 4;
+
+      string gte = 5;
+
+      string lt = 6;
+
+      string lte = 7;
+
+      repeated string neq = 8;
+    }
+  }
+
+  message Timeouts {
+    string create = 1;
+  }
+}
+
+// AwsMacie2InvitationAccepter version is 0
+message AwsMacie2InvitationAccepter {
+  string administrator_account_id = 1 [json_name = "administrator_account_id"];
+
+  string id = 2;
+
+  string invitation_id = 3 [json_name = "invitation_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Timeouts {
+    string create = 1;
+  }
+}
+
+// AwsMacie2Member version is 0
+message AwsMacie2Member {
+  string account_id = 1 [json_name = "account_id"];
+
+  string administrator_account_id = 2 [json_name = "administrator_account_id"];
+
+  string arn = 3;
+
+  string email = 4;
+
+  string id = 5;
+
+  bool invitation_disable_email_notification = 6 [
+    json_name = "invitation_disable_email_notification"
+  ];
+
+  string invitation_message = 7 [json_name = "invitation_message"];
+
+  bool invite = 8;
+
+  string invited_at = 9 [json_name = "invited_at"];
+
+  string master_account_id = 10 [json_name = "master_account_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string relationship_status = 12 [json_name = "relationship_status"];
+
+  string status = 13;
+
+  map<string, string> tags = 14;
+
+  map<string, string> tags_all = 15 [json_name = "tags_all"];
+
+  string updated_at = 16 [json_name = "updated_at"];
+
+  repeated Timeouts timeouts = 17;
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+
+  message Timeouts {
+    string create = 1;
+
+    string update = 2;
+  }
+}
+
+// AwsMacie2OrganizationAdminAccount version is 0
+message AwsMacie2OrganizationAdminAccount {
+  string admin_account_id = 1 [json_name = "admin_account_id"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsMacie2OrganizationConfiguration version is 0
+message AwsMacie2OrganizationConfiguration {
+  // Whether to enable Amazon Macie automatically for accounts that are added to the
+  // organization in AWS Organizations
+  bool auto_enable = 1 [json_name = "auto_enable"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+}

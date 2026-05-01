@@ -1,0 +1,180 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsLexBot version is 0
+message AwsLexBot {
+  string arn = 1;
+
+  string checksum = 2;
+
+  bool child_directed = 3 [json_name = "child_directed"];
+
+  string created_date = 4 [json_name = "created_date"];
+
+  string description = 5;
+
+  bool detect_sentiment = 6 [json_name = "detect_sentiment"];
+
+  bool enable_model_improvements = 7 [json_name = "enable_model_improvements"];
+
+  string failure_reason = 8 [json_name = "failure_reason"];
+
+  string id = 9;
+
+  int64 idle_session_ttl_in_seconds = 10 [json_name = "idle_session_ttl_in_seconds"];
+
+  string last_updated_date = 11 [json_name = "last_updated_date"];
+
+  string locale = 12;
+
+  string name = 13;
+
+  int64 nlu_intent_confidence_threshold = 14 [json_name = "nlu_intent_confidence_threshold"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 15;
+
+  string status = 16;
+
+  string version = 17;
+
+  string voice_id = 18 [json_name = "voice_id"];
+
+  google.protobuf.Value for_each = 19 [json_name = "for_each"];
+
+  repeated string depends_on = 20 [json_name = "depends_on"];
+
+  int32 count = 21;
+
+  string provider = 22;
+
+  terraform.v1.Lifecycle lifecycle = 23;
+}
+
+// AwsLexBotAlias version is 0
+message AwsLexBotAlias {
+  string arn = 1;
+
+  string bot_name = 2 [json_name = "bot_name"];
+
+  string bot_version = 3 [json_name = "bot_version"];
+
+  string checksum = 4;
+
+  string created_date = 5 [json_name = "created_date"];
+
+  string description = 6;
+
+  string id = 7;
+
+  string last_updated_date = 8 [json_name = "last_updated_date"];
+
+  string name = 9;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+}
+
+// AwsLexIntent version is 0
+message AwsLexIntent {
+  string arn = 1;
+
+  string checksum = 2;
+
+  string created_date = 3 [json_name = "created_date"];
+
+  string description = 4;
+
+  string id = 5;
+
+  string last_updated_date = 6 [json_name = "last_updated_date"];
+
+  string name = 7;
+
+  string parent_intent_signature = 8 [json_name = "parent_intent_signature"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  string version = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+}
+
+// AwsLexSlotType version is 0
+message AwsLexSlotType {
+  string checksum = 1;
+
+  string created_date = 2 [json_name = "created_date"];
+
+  string description = 3;
+
+  repeated EnumerationValue enumeration_value = 4 [json_name = "enumeration_value"];
+
+  string id = 5;
+
+  string last_updated_date = 6 [json_name = "last_updated_date"];
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  string value_selection_strategy = 9 [json_name = "value_selection_strategy"];
+
+  string version = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message EnumerationValue {
+    // synonyms: list of string
+    repeated string synonyms = 1;
+
+    // value: string
+    string value = 2;
+  }
+}

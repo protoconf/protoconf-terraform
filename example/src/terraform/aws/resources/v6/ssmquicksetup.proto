@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSsmquicksetupConfigurationManager version is 0
+message AwsSsmquicksetupConfigurationManager {
+  string description = 1;
+
+  string manager_arn = 2 [json_name = "manager_arn"];
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated StatusSummaries status_summaries = 5 [json_name = "status_summaries"];
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  repeated ConfigurationDefinition configuration_definition = 8 [json_name = "configuration_definition"];
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message StatusSummaries {
+    // status: string
+    string status = 1;
+
+    // status_message: string
+    string status_message = 2 [json_name = "status_message"];
+
+    // status_type: string
+    string status_type = 3 [json_name = "status_type"];
+  }
+
+  message ConfigurationDefinition {
+    string id = 1;
+
+    string local_deployment_administration_role_arn = 2 [
+      json_name = "local_deployment_administration_role_arn"
+    ];
+
+    string local_deployment_execution_role_name = 3 [json_name = "local_deployment_execution_role_name"];
+
+    map<string, string> parameters = 4;
+
+    string type = 5;
+
+    string type_version = 6 [json_name = "type_version"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}

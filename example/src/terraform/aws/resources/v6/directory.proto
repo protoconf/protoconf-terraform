@@ -1,0 +1,376 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsDirectoryServiceConditionalForwarder version is 0
+message AwsDirectoryServiceConditionalForwarder {
+  string directory_id = 1 [json_name = "directory_id"];
+
+  repeated string dns_ips = 2 [json_name = "dns_ips"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string remote_domain_name = 5 [json_name = "remote_domain_name"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsDirectoryServiceDirectory version is 0
+message AwsDirectoryServiceDirectory {
+  string access_url = 1 [json_name = "access_url"];
+
+  string alias = 2;
+
+  string description = 3;
+
+  int64 desired_number_of_domain_controllers = 4 [json_name = "desired_number_of_domain_controllers"];
+
+  repeated string dns_ip_addresses = 5 [json_name = "dns_ip_addresses"];
+
+  string edition = 6;
+
+  bool enable_directory_data_access = 7 [json_name = "enable_directory_data_access"];
+
+  bool enable_sso = 8 [json_name = "enable_sso"];
+
+  string id = 9;
+
+  string name = 10;
+
+  string password = 11;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  string security_group_id = 13 [json_name = "security_group_id"];
+
+  string short_name = 14 [json_name = "short_name"];
+
+  string size = 15;
+
+  map<string, string> tags = 16;
+
+  map<string, string> tags_all = 17 [json_name = "tags_all"];
+
+  string type = 18;
+
+  ConnectSettings connect_settings = 19 [json_name = "connect_settings"];
+
+  repeated Timeouts timeouts = 20;
+
+  VpcSettings vpc_settings = 21 [json_name = "vpc_settings"];
+
+  google.protobuf.Value for_each = 22 [json_name = "for_each"];
+
+  repeated string depends_on = 23 [json_name = "depends_on"];
+
+  int32 count = 24;
+
+  string provider = 25;
+
+  terraform.v1.Lifecycle lifecycle = 26;
+
+  message ConnectSettings {
+    repeated string availability_zones = 1 [json_name = "availability_zones"];
+
+    repeated string connect_ips = 2 [json_name = "connect_ips"];
+
+    repeated string customer_dns_ips = 3 [json_name = "customer_dns_ips"];
+
+    string customer_username = 4 [json_name = "customer_username"];
+
+    repeated string subnet_ids = 5 [json_name = "subnet_ids"];
+
+    string vpc_id = 6 [json_name = "vpc_id"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+
+  message VpcSettings {
+    repeated string availability_zones = 1 [json_name = "availability_zones"];
+
+    repeated string subnet_ids = 2 [json_name = "subnet_ids"];
+
+    string vpc_id = 3 [json_name = "vpc_id"];
+  }
+}
+
+// AwsDirectoryServiceLogSubscription version is 0
+message AwsDirectoryServiceLogSubscription {
+  string directory_id = 1 [json_name = "directory_id"];
+
+  string id = 2;
+
+  string log_group_name = 3 [json_name = "log_group_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsDirectoryServiceRadiusSettings version is 0
+message AwsDirectoryServiceRadiusSettings {
+  string authentication_protocol = 1 [json_name = "authentication_protocol"];
+
+  string directory_id = 2 [json_name = "directory_id"];
+
+  string display_label = 3 [json_name = "display_label"];
+
+  string id = 4;
+
+  int64 radius_port = 5 [json_name = "radius_port"];
+
+  int64 radius_retries = 6 [json_name = "radius_retries"];
+
+  repeated string radius_servers = 7 [json_name = "radius_servers"];
+
+  int64 radius_timeout = 8 [json_name = "radius_timeout"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  string shared_secret = 10 [json_name = "shared_secret"];
+
+  bool use_same_username = 11 [json_name = "use_same_username"];
+
+  repeated Timeouts timeouts = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message Timeouts {
+    string create = 1;
+
+    string update = 2;
+  }
+}
+
+// AwsDirectoryServiceRegion version is 0
+message AwsDirectoryServiceRegion {
+  int64 desired_number_of_domain_controllers = 1 [json_name = "desired_number_of_domain_controllers"];
+
+  string directory_id = 2 [json_name = "directory_id"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string region_name = 5 [json_name = "region_name"];
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 8;
+
+  VpcSettings vpc_settings = 9 [json_name = "vpc_settings"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+
+  message VpcSettings {
+    repeated string subnet_ids = 1 [json_name = "subnet_ids"];
+
+    string vpc_id = 2 [json_name = "vpc_id"];
+  }
+}
+
+// AwsDirectoryServiceSharedDirectory version is 0
+message AwsDirectoryServiceSharedDirectory {
+  string directory_id = 1 [json_name = "directory_id"];
+
+  string id = 2;
+
+  string method = 3;
+
+  string notes = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string shared_directory_id = 6 [json_name = "shared_directory_id"];
+
+  Target target = 7;
+
+  repeated Timeouts timeouts = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Target {
+    string id = 1;
+
+    string type = 2;
+  }
+
+  message Timeouts {
+    string delete = 1;
+  }
+}
+
+// AwsDirectoryServiceSharedDirectoryAccepter version is 0
+message AwsDirectoryServiceSharedDirectoryAccepter {
+  string id = 1;
+
+  string method = 2;
+
+  string notes = 3;
+
+  string owner_account_id = 4 [json_name = "owner_account_id"];
+
+  string owner_directory_id = 5 [json_name = "owner_directory_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string shared_directory_id = 7 [json_name = "shared_directory_id"];
+
+  repeated Timeouts timeouts = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsDirectoryServiceTrust version is 0
+message AwsDirectoryServiceTrust {
+  repeated string conditional_forwarder_ip_addrs = 1 [json_name = "conditional_forwarder_ip_addrs"];
+
+  string created_date_time = 2 [json_name = "created_date_time"];
+
+  bool delete_associated_conditional_forwarder = 3 [
+    json_name = "delete_associated_conditional_forwarder"
+  ];
+
+  string directory_id = 4 [json_name = "directory_id"];
+
+  string id = 5;
+
+  string last_updated_date_time = 6 [json_name = "last_updated_date_time"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string remote_domain_name = 8 [json_name = "remote_domain_name"];
+
+  string selective_auth = 9 [json_name = "selective_auth"];
+
+  string state_last_updated_date_time = 10 [json_name = "state_last_updated_date_time"];
+
+  string trust_direction = 11 [json_name = "trust_direction"];
+
+  string trust_password = 12 [json_name = "trust_password"];
+
+  string trust_state = 13 [json_name = "trust_state"];
+
+  string trust_state_reason = 14 [json_name = "trust_state_reason"];
+
+  string trust_type = 15 [json_name = "trust_type"];
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+}

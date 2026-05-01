@@ -1,0 +1,514 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCodepipeline version is 0
+message AwsCodepipeline {
+  string arn = 1;
+
+  string execution_mode = 2 [json_name = "execution_mode"];
+
+  string id = 3;
+
+  string name = 4;
+
+  string pipeline_type = 5 [json_name = "pipeline_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string role_arn = 7 [json_name = "role_arn"];
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  repeated TriggerAll trigger_all = 10 [json_name = "trigger_all"];
+
+  repeated ArtifactStore artifact_store = 11 [json_name = "artifact_store"];
+
+  repeated Stage stage = 12;
+
+  repeated Trigger trigger = 13;
+
+  repeated Variable variable = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message TriggerAll {
+    // git_configuration: list of object
+    repeated GitConfiguration git_configuration = 1 [json_name = "git_configuration"];
+
+    // provider_type: string
+    string provider_type = 2 [json_name = "provider_type"];
+
+    message GitConfiguration {
+      // pull_request: list of object
+      repeated PullRequest pull_request = 1 [json_name = "pull_request"];
+
+      // push: list of object
+      repeated Push push = 2;
+
+      // source_action_name: string
+      string source_action_name = 3 [json_name = "source_action_name"];
+
+      message PullRequest {
+        // branches: list of object
+        repeated Branches branches = 1;
+
+        // events: list of string
+        repeated string events = 2;
+
+        // file_paths: list of object
+        repeated FilePaths file_paths = 3 [json_name = "file_paths"];
+
+        message Branches {
+          // excludes: list of string
+          repeated string excludes = 1;
+
+          // includes: list of string
+          repeated string includes = 2;
+        }
+
+        message FilePaths {
+          // excludes: list of string
+          repeated string excludes = 1;
+
+          // includes: list of string
+          repeated string includes = 2;
+        }
+      }
+
+      message Push {
+        // branches: list of object
+        repeated Branches branches = 1;
+
+        // file_paths: list of object
+        repeated FilePaths file_paths = 2 [json_name = "file_paths"];
+
+        // tags: list of object
+        repeated Tags tags = 3;
+
+        message Branches {
+          // excludes: list of string
+          repeated string excludes = 1;
+
+          // includes: list of string
+          repeated string includes = 2;
+        }
+
+        message FilePaths {
+          // excludes: list of string
+          repeated string excludes = 1;
+
+          // includes: list of string
+          repeated string includes = 2;
+        }
+
+        message Tags {
+          // excludes: list of string
+          repeated string excludes = 1;
+
+          // includes: list of string
+          repeated string includes = 2;
+        }
+      }
+    }
+  }
+
+  message ArtifactStore {
+    string location = 1;
+
+    string region = 2;
+
+    string type = 3;
+
+    EncryptionKey encryption_key = 4 [json_name = "encryption_key"];
+
+    message EncryptionKey {
+      string id = 1;
+
+      string type = 2;
+    }
+  }
+
+  message Stage {
+    string name = 1;
+
+    repeated Action action = 2;
+
+    BeforeEntry before_entry = 3 [json_name = "before_entry"];
+
+    OnFailure on_failure = 4 [json_name = "on_failure"];
+
+    OnSuccess on_success = 5 [json_name = "on_success"];
+
+    message Action {
+      string category = 1;
+
+      map<string, string> configuration = 2;
+
+      repeated string input_artifacts = 3 [json_name = "input_artifacts"];
+
+      string name = 4;
+
+      string namespace = 5;
+
+      repeated string output_artifacts = 6 [json_name = "output_artifacts"];
+
+      string owner = 7;
+
+      string provider = 8;
+
+      string region = 9;
+
+      string role_arn = 10 [json_name = "role_arn"];
+
+      int64 run_order = 11 [json_name = "run_order"];
+
+      int64 timeout_in_minutes = 12 [json_name = "timeout_in_minutes"];
+
+      string version = 13;
+    }
+
+    message BeforeEntry {
+      Condition condition = 1;
+
+      message Condition {
+        string result = 1;
+
+        repeated Rule rule = 2;
+
+        message Rule {
+          repeated string commands = 1;
+
+          map<string, string> configuration = 2;
+
+          repeated string input_artifacts = 3 [json_name = "input_artifacts"];
+
+          string name = 4;
+
+          string region = 5;
+
+          string role_arn = 6 [json_name = "role_arn"];
+
+          int64 timeout_in_minutes = 7 [json_name = "timeout_in_minutes"];
+
+          RuleTypeId rule_type_id = 8 [json_name = "rule_type_id"];
+
+          message RuleTypeId {
+            string category = 1;
+
+            string owner = 2;
+
+            string provider = 3;
+
+            string version = 4;
+          }
+        }
+      }
+    }
+
+    message OnFailure {
+      string result = 1;
+
+      Condition condition = 2;
+
+      RetryConfiguration retry_configuration = 3 [json_name = "retry_configuration"];
+
+      message Condition {
+        string result = 1;
+
+        repeated Rule rule = 2;
+
+        message Rule {
+          repeated string commands = 1;
+
+          map<string, string> configuration = 2;
+
+          repeated string input_artifacts = 3 [json_name = "input_artifacts"];
+
+          string name = 4;
+
+          string region = 5;
+
+          string role_arn = 6 [json_name = "role_arn"];
+
+          int64 timeout_in_minutes = 7 [json_name = "timeout_in_minutes"];
+
+          RuleTypeId rule_type_id = 8 [json_name = "rule_type_id"];
+
+          message RuleTypeId {
+            string category = 1;
+
+            string owner = 2;
+
+            string provider = 3;
+
+            string version = 4;
+          }
+        }
+      }
+
+      message RetryConfiguration {
+        string retry_mode = 1 [json_name = "retry_mode"];
+      }
+    }
+
+    message OnSuccess {
+      Condition condition = 1;
+
+      message Condition {
+        string result = 1;
+
+        repeated Rule rule = 2;
+
+        message Rule {
+          repeated string commands = 1;
+
+          map<string, string> configuration = 2;
+
+          repeated string input_artifacts = 3 [json_name = "input_artifacts"];
+
+          string name = 4;
+
+          string region = 5;
+
+          string role_arn = 6 [json_name = "role_arn"];
+
+          int64 timeout_in_minutes = 7 [json_name = "timeout_in_minutes"];
+
+          RuleTypeId rule_type_id = 8 [json_name = "rule_type_id"];
+
+          message RuleTypeId {
+            string category = 1;
+
+            string owner = 2;
+
+            string provider = 3;
+
+            string version = 4;
+          }
+        }
+      }
+    }
+  }
+
+  message Trigger {
+    string provider_type = 1 [json_name = "provider_type"];
+
+    GitConfiguration git_configuration = 2 [json_name = "git_configuration"];
+
+    message GitConfiguration {
+      string source_action_name = 1 [json_name = "source_action_name"];
+
+      repeated PullRequest pull_request = 2 [json_name = "pull_request"];
+
+      repeated Push push = 3;
+
+      message PullRequest {
+        repeated string events = 1;
+
+        Branches branches = 2;
+
+        FilePaths file_paths = 3 [json_name = "file_paths"];
+
+        message Branches {
+          repeated string excludes = 1;
+
+          repeated string includes = 2;
+        }
+
+        message FilePaths {
+          repeated string excludes = 1;
+
+          repeated string includes = 2;
+        }
+      }
+
+      message Push {
+        Branches branches = 1;
+
+        FilePaths file_paths = 2 [json_name = "file_paths"];
+
+        Tags tags = 3;
+
+        message Branches {
+          repeated string excludes = 1;
+
+          repeated string includes = 2;
+        }
+
+        message FilePaths {
+          repeated string excludes = 1;
+
+          repeated string includes = 2;
+        }
+
+        message Tags {
+          repeated string excludes = 1;
+
+          repeated string includes = 2;
+        }
+      }
+    }
+  }
+
+  message Variable {
+    string default_value = 1 [json_name = "default_value"];
+
+    string description = 2;
+
+    string name = 3;
+  }
+}
+
+// AwsCodepipelineCustomActionType version is 0
+message AwsCodepipelineCustomActionType {
+  string arn = 1;
+
+  string category = 2;
+
+  string id = 3;
+
+  string owner = 4;
+
+  string provider_name = 5 [json_name = "provider_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  string version = 9;
+
+  repeated ConfigurationProperty configuration_property = 10 [json_name = "configuration_property"];
+
+  InputArtifactDetails input_artifact_details = 11 [json_name = "input_artifact_details"];
+
+  OutputArtifactDetails output_artifact_details = 12 [json_name = "output_artifact_details"];
+
+  Settings settings = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message ConfigurationProperty {
+    string description = 1;
+
+    bool key = 2;
+
+    string name = 3;
+
+    bool queryable = 4;
+
+    bool required = 5;
+
+    bool secret = 6;
+
+    string type = 7;
+  }
+
+  message InputArtifactDetails {
+    int64 maximum_count = 1 [json_name = "maximum_count"];
+
+    int64 minimum_count = 2 [json_name = "minimum_count"];
+  }
+
+  message OutputArtifactDetails {
+    int64 maximum_count = 1 [json_name = "maximum_count"];
+
+    int64 minimum_count = 2 [json_name = "minimum_count"];
+  }
+
+  message Settings {
+    string entity_url_template = 1 [json_name = "entity_url_template"];
+
+    string execution_url_template = 2 [json_name = "execution_url_template"];
+
+    string revision_url_template = 3 [json_name = "revision_url_template"];
+
+    string third_party_configuration_url = 4 [json_name = "third_party_configuration_url"];
+  }
+}
+
+// AwsCodepipelineWebhook version is 0
+message AwsCodepipelineWebhook {
+  string arn = 1;
+
+  string authentication = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  string target_action = 8 [json_name = "target_action"];
+
+  string target_pipeline = 9 [json_name = "target_pipeline"];
+
+  string url = 10;
+
+  AuthenticationConfiguration authentication_configuration = 11 [json_name = "authentication_configuration"];
+
+  repeated Filter filter = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message AuthenticationConfiguration {
+    string allowed_ip_range = 1 [json_name = "allowed_ip_range"];
+
+    string secret_token = 2 [json_name = "secret_token"];
+  }
+
+  message Filter {
+    string json_path = 1 [json_name = "json_path"];
+
+    string match_equals = 2 [json_name = "match_equals"];
+  }
+}

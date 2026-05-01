@@ -1,0 +1,568 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSsoadminAccountAssignment version is 0
+message AwsSsoadminAccountAssignment {
+  string id = 1;
+
+  string instance_arn = 2 [json_name = "instance_arn"];
+
+  string permission_set_arn = 3 [json_name = "permission_set_arn"];
+
+  string principal_id = 4 [json_name = "principal_id"];
+
+  string principal_type = 5 [json_name = "principal_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string target_id = 7 [json_name = "target_id"];
+
+  string target_type = 8 [json_name = "target_type"];
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsSsoadminApplication version is 0
+message AwsSsoadminApplication {
+  string application_account = 1 [json_name = "application_account"];
+
+  string application_arn = 2 [json_name = "application_arn"];
+
+  string application_provider_arn = 3 [json_name = "application_provider_arn"];
+
+  string arn = 4;
+
+  string client_token = 5 [json_name = "client_token"];
+
+  string description = 6;
+
+  string id = 7;
+
+  string instance_arn = 8 [json_name = "instance_arn"];
+
+  string name = 9;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  string status = 11;
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  repeated PortalOptions portal_options = 14 [json_name = "portal_options"];
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message PortalOptions {
+    string visibility = 1;
+
+    repeated SignInOptions sign_in_options = 2 [json_name = "sign_in_options"];
+
+    message SignInOptions {
+      string application_url = 1 [json_name = "application_url"];
+
+      string origin = 2;
+    }
+  }
+}
+
+// AwsSsoadminApplicationAccessScope version is 0
+message AwsSsoadminApplicationAccessScope {
+  string application_arn = 1 [json_name = "application_arn"];
+
+  repeated string authorized_targets = 2 [json_name = "authorized_targets"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string scope = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsSsoadminApplicationAssignment version is 0
+message AwsSsoadminApplicationAssignment {
+  string application_arn = 1 [json_name = "application_arn"];
+
+  string id = 2;
+
+  string principal_id = 3 [json_name = "principal_id"];
+
+  string principal_type = 4 [json_name = "principal_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsSsoadminApplicationAssignmentConfiguration version is 0
+message AwsSsoadminApplicationAssignmentConfiguration {
+  string application_arn = 1 [json_name = "application_arn"];
+
+  bool assignment_required = 2 [json_name = "assignment_required"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsSsoadminCustomerManagedPolicyAttachment version is 0
+message AwsSsoadminCustomerManagedPolicyAttachment {
+  string id = 1;
+
+  string instance_arn = 2 [json_name = "instance_arn"];
+
+  string permission_set_arn = 3 [json_name = "permission_set_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  CustomerManagedPolicyReference customer_managed_policy_reference = 5 [json_name = "customer_managed_policy_reference"];
+
+  repeated Timeouts timeouts = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message CustomerManagedPolicyReference {
+    string name = 1;
+
+    string path = 2;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsSsoadminCustomerManagedPolicyAttachmentsExclusive version is 0
+message AwsSsoadminCustomerManagedPolicyAttachmentsExclusive {
+  string instance_arn = 1 [json_name = "instance_arn"];
+
+  string permission_set_arn = 2 [json_name = "permission_set_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated CustomerManagedPolicyReference customer_managed_policy_reference = 4 [json_name = "customer_managed_policy_reference"];
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message CustomerManagedPolicyReference {
+    string name = 1;
+
+    string path = 2;
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 2;
+  }
+}
+
+// AwsSsoadminInstanceAccessControlAttributes version is 0
+message AwsSsoadminInstanceAccessControlAttributes {
+  string id = 1;
+
+  string instance_arn = 2 [json_name = "instance_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string status = 4;
+
+  string status_reason = 5 [json_name = "status_reason"];
+
+  repeated Attribute attribute = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Attribute {
+    string key = 1;
+
+    repeated Value value = 2;
+
+    message Value {
+      repeated string source = 1;
+    }
+  }
+}
+
+// AwsSsoadminManagedPolicyAttachment version is 0
+message AwsSsoadminManagedPolicyAttachment {
+  string id = 1;
+
+  string instance_arn = 2 [json_name = "instance_arn"];
+
+  string managed_policy_arn = 3 [json_name = "managed_policy_arn"];
+
+  string managed_policy_name = 4 [json_name = "managed_policy_name"];
+
+  string permission_set_arn = 5 [json_name = "permission_set_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  repeated Timeouts timeouts = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsSsoadminManagedPolicyAttachmentsExclusive version is 0
+message AwsSsoadminManagedPolicyAttachmentsExclusive {
+  string instance_arn = 1 [json_name = "instance_arn"];
+
+  repeated string managed_policy_arns = 2 [json_name = "managed_policy_arns"];
+
+  string permission_set_arn = 3 [json_name = "permission_set_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 2;
+  }
+}
+
+// AwsSsoadminPermissionSet version is 0
+message AwsSsoadminPermissionSet {
+  string arn = 1;
+
+  string created_date = 2 [json_name = "created_date"];
+
+  string description = 3;
+
+  string id = 4;
+
+  string instance_arn = 5 [json_name = "instance_arn"];
+
+  string name = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string relay_state = 8 [json_name = "relay_state"];
+
+  string session_duration = 9 [json_name = "session_duration"];
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message Timeouts {
+    string update = 1;
+  }
+}
+
+// AwsSsoadminPermissionSetInlinePolicy version is 0
+message AwsSsoadminPermissionSetInlinePolicy {
+  string id = 1;
+
+  string inline_policy = 2 [json_name = "inline_policy"];
+
+  string instance_arn = 3 [json_name = "instance_arn"];
+
+  string permission_set_arn = 4 [json_name = "permission_set_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated Timeouts timeouts = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsSsoadminPermissionsBoundaryAttachment version is 0
+message AwsSsoadminPermissionsBoundaryAttachment {
+  string id = 1;
+
+  string instance_arn = 2 [json_name = "instance_arn"];
+
+  string permission_set_arn = 3 [json_name = "permission_set_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  PermissionsBoundary permissions_boundary = 5 [json_name = "permissions_boundary"];
+
+  repeated Timeouts timeouts = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message PermissionsBoundary {
+    string managed_policy_arn = 1 [json_name = "managed_policy_arn"];
+
+    CustomerManagedPolicyReference customer_managed_policy_reference = 2 [json_name = "customer_managed_policy_reference"];
+
+    message CustomerManagedPolicyReference {
+      string name = 1;
+
+      string path = 2;
+    }
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsSsoadminTrustedTokenIssuer version is 0
+message AwsSsoadminTrustedTokenIssuer {
+  string arn = 1;
+
+  string client_token = 2 [json_name = "client_token"];
+
+  string id = 3;
+
+  string instance_arn = 4 [json_name = "instance_arn"];
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  string trusted_token_issuer_type = 9 [json_name = "trusted_token_issuer_type"];
+
+  repeated TrustedTokenIssuerConfiguration trusted_token_issuer_configuration = 10 [json_name = "trusted_token_issuer_configuration"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message TrustedTokenIssuerConfiguration {
+    repeated OidcJwtConfiguration oidc_jwt_configuration = 1 [json_name = "oidc_jwt_configuration"];
+
+    message OidcJwtConfiguration {
+      string claim_attribute_path = 1 [json_name = "claim_attribute_path"];
+
+      string identity_store_attribute_path = 2 [json_name = "identity_store_attribute_path"];
+
+      string issuer_url = 3 [json_name = "issuer_url"];
+
+      string jwks_retrieval_option = 4 [json_name = "jwks_retrieval_option"];
+    }
+  }
+}

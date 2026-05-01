@@ -1,0 +1,323 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsBedrockCustomModel version is 0
+message AwsBedrockCustomModel {
+  string base_model_arn = 1 [json_name = "base_model_arn"];
+
+  string creation_time = 2 [json_name = "creation_time"];
+
+  map<string, string> hyperparameters = 3;
+
+  string id = 4;
+
+  string job_arn = 5 [json_name = "job_arn"];
+
+  string job_name = 6 [json_name = "job_name"];
+
+  map<string, string> job_tags = 7 [json_name = "job_tags"];
+
+  string model_arn = 8 [json_name = "model_arn"];
+
+  string model_id = 9 [json_name = "model_id"];
+
+  string model_kms_key_arn = 10 [json_name = "model_kms_key_arn"];
+
+  string model_name = 11 [json_name = "model_name"];
+
+  map<string, string> model_tags = 12 [json_name = "model_tags"];
+
+  repeated OutputDataConfig output_data_config = 13 [json_name = "output_data_config"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 14;
+
+  repeated TrainingDataConfig training_data_config = 15 [json_name = "training_data_config"];
+
+  repeated TrainingMetrics training_metrics = 16 [json_name = "training_metrics"];
+
+  repeated ValidationDataConfig validation_data_config = 17 [json_name = "validation_data_config"];
+
+  repeated ValidationMetrics validation_metrics = 18 [json_name = "validation_metrics"];
+
+  google.protobuf.Value for_each = 19 [json_name = "for_each"];
+
+  repeated string depends_on = 20 [json_name = "depends_on"];
+
+  int32 count = 21;
+
+  string provider = 22;
+
+  terraform.v1.Lifecycle lifecycle = 23;
+
+  message OutputDataConfig {
+    // s3_uri: string
+    string s3_uri = 1 [json_name = "s3_uri"];
+  }
+
+  message TrainingDataConfig {
+    // s3_uri: string
+    string s3_uri = 1 [json_name = "s3_uri"];
+  }
+
+  message TrainingMetrics {
+    // training_loss: number
+    int64 training_loss = 1 [json_name = "training_loss"];
+  }
+
+  message ValidationDataConfig {
+    // validator: list of object
+    repeated Validator validator = 1;
+
+    message Validator {
+      // s3_uri: string
+      string s3_uri = 1 [json_name = "s3_uri"];
+    }
+  }
+
+  message ValidationMetrics {
+    // validation_loss: number
+    int64 validation_loss = 1 [json_name = "validation_loss"];
+  }
+}
+
+// AwsBedrockCustomModels version is 0
+message AwsBedrockCustomModels {
+  string id = 1;
+
+  repeated ModelSummaries model_summaries = 2 [json_name = "model_summaries"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message ModelSummaries {
+    // creation_time: string
+    string creation_time = 1 [json_name = "creation_time"];
+
+    // model_arn: string
+    string model_arn = 2 [json_name = "model_arn"];
+
+    // model_name: string
+    string model_name = 3 [json_name = "model_name"];
+  }
+}
+
+// AwsBedrockFoundationModel version is 0
+message AwsBedrockFoundationModel {
+  repeated string customizations_supported = 1 [json_name = "customizations_supported"];
+
+  string id = 2;
+
+  repeated string inference_types_supported = 3 [json_name = "inference_types_supported"];
+
+  repeated string input_modalities = 4 [json_name = "input_modalities"];
+
+  string model_arn = 5 [json_name = "model_arn"];
+
+  string model_id = 6 [json_name = "model_id"];
+
+  string model_name = 7 [json_name = "model_name"];
+
+  repeated string output_modalities = 8 [json_name = "output_modalities"];
+
+  string provider_name = 9 [json_name = "provider_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  bool response_streaming_supported = 11 [json_name = "response_streaming_supported"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+}
+
+// AwsBedrockFoundationModels version is 0
+message AwsBedrockFoundationModels {
+  string by_customization_type = 1 [json_name = "by_customization_type"];
+
+  string by_inference_type = 2 [json_name = "by_inference_type"];
+
+  string by_output_modality = 3 [json_name = "by_output_modality"];
+
+  string by_provider = 4 [json_name = "by_provider"];
+
+  string id = 5;
+
+  repeated ModelSummaries model_summaries = 6 [json_name = "model_summaries"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message ModelSummaries {
+    // customizations_supported: set of string
+    repeated string customizations_supported = 1 [json_name = "customizations_supported"];
+
+    // inference_types_supported: set of string
+    repeated string inference_types_supported = 2 [json_name = "inference_types_supported"];
+
+    // input_modalities: set of string
+    repeated string input_modalities = 3 [json_name = "input_modalities"];
+
+    // model_arn: string
+    string model_arn = 4 [json_name = "model_arn"];
+
+    // model_id: string
+    string model_id = 5 [json_name = "model_id"];
+
+    // model_name: string
+    string model_name = 6 [json_name = "model_name"];
+
+    // output_modalities: set of string
+    repeated string output_modalities = 7 [json_name = "output_modalities"];
+
+    // provider_name: string
+    string provider_name = 8 [json_name = "provider_name"];
+
+    // response_streaming_supported: bool
+    bool response_streaming_supported = 9 [json_name = "response_streaming_supported"];
+  }
+}
+
+// AwsBedrockInferenceProfile version is 0
+message AwsBedrockInferenceProfile {
+  string created_at = 1 [json_name = "created_at"];
+
+  string description = 2;
+
+  string inference_profile_arn = 3 [json_name = "inference_profile_arn"];
+
+  string inference_profile_id = 4 [json_name = "inference_profile_id"];
+
+  string inference_profile_name = 5 [json_name = "inference_profile_name"];
+
+  repeated Models models = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string status = 8;
+
+  string type = 9;
+
+  string updated_at = 10 [json_name = "updated_at"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message Models {
+    // model_arn: string
+    string model_arn = 1 [json_name = "model_arn"];
+  }
+}
+
+// AwsBedrockInferenceProfiles version is 0
+message AwsBedrockInferenceProfiles {
+  repeated InferenceProfileSummaries inference_profile_summaries = 1 [json_name = "inference_profile_summaries"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string type = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message InferenceProfileSummaries {
+    // created_at: string
+    string created_at = 1 [json_name = "created_at"];
+
+    // description: string
+    string description = 2;
+
+    // inference_profile_arn: string
+    string inference_profile_arn = 3 [json_name = "inference_profile_arn"];
+
+    // inference_profile_id: string
+    string inference_profile_id = 4 [json_name = "inference_profile_id"];
+
+    // inference_profile_name: string
+    string inference_profile_name = 5 [json_name = "inference_profile_name"];
+
+    // models: list of object
+    repeated Models models = 6;
+
+    // status: string
+    string status = 7;
+
+    // type: string
+    string type = 8;
+
+    // updated_at: string
+    string updated_at = 9 [json_name = "updated_at"];
+
+    message Models {
+      // model_arn: string
+      string model_arn = 1 [json_name = "model_arn"];
+    }
+  }
+}

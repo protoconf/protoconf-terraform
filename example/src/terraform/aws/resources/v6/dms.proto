@@ -1,0 +1,818 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsDmsCertificate version is 0
+message AwsDmsCertificate {
+  string certificate_arn = 1 [json_name = "certificate_arn"];
+
+  string certificate_id = 2 [json_name = "certificate_id"];
+
+  string certificate_pem = 3 [json_name = "certificate_pem"];
+
+  string certificate_wallet = 4 [json_name = "certificate_wallet"];
+
+  string id = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsDmsEndpoint version is 0
+message AwsDmsEndpoint {
+  string certificate_arn = 1 [json_name = "certificate_arn"];
+
+  string database_name = 2 [json_name = "database_name"];
+
+  string endpoint_arn = 3 [json_name = "endpoint_arn"];
+
+  string endpoint_id = 4 [json_name = "endpoint_id"];
+
+  string endpoint_type = 5 [json_name = "endpoint_type"];
+
+  string engine_name = 6 [json_name = "engine_name"];
+
+  string extra_connection_attributes = 7 [json_name = "extra_connection_attributes"];
+
+  string id = 8;
+
+  string kms_key_arn = 9 [json_name = "kms_key_arn"];
+
+  string password = 10;
+
+  bool pause_replication_tasks = 11 [json_name = "pause_replication_tasks"];
+
+  int64 port = 12;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  string secrets_manager_access_role_arn = 14 [json_name = "secrets_manager_access_role_arn"];
+
+  string secrets_manager_arn = 15 [json_name = "secrets_manager_arn"];
+
+  string server_name = 16 [json_name = "server_name"];
+
+  string service_access_role = 17 [json_name = "service_access_role"];
+
+  string ssl_mode = 18 [json_name = "ssl_mode"];
+
+  map<string, string> tags = 19;
+
+  map<string, string> tags_all = 20 [json_name = "tags_all"];
+
+  string username = 21;
+
+  ElasticsearchSettings elasticsearch_settings = 22 [json_name = "elasticsearch_settings"];
+
+  KafkaSettings kafka_settings = 23 [json_name = "kafka_settings"];
+
+  KinesisSettings kinesis_settings = 24 [json_name = "kinesis_settings"];
+
+  MongodbSettings mongodb_settings = 25 [json_name = "mongodb_settings"];
+
+  MysqlSettings mysql_settings = 26 [json_name = "mysql_settings"];
+
+  OracleSettings oracle_settings = 27 [json_name = "oracle_settings"];
+
+  PostgresSettings postgres_settings = 28 [json_name = "postgres_settings"];
+
+  RedisSettings redis_settings = 29 [json_name = "redis_settings"];
+
+  RedshiftSettings redshift_settings = 30 [json_name = "redshift_settings"];
+
+  repeated Timeouts timeouts = 31;
+
+  google.protobuf.Value for_each = 32 [json_name = "for_each"];
+
+  repeated string depends_on = 33 [json_name = "depends_on"];
+
+  int32 count = 34;
+
+  string provider = 35;
+
+  terraform.v1.Lifecycle lifecycle = 36;
+
+  message ElasticsearchSettings {
+    string endpoint_uri = 1 [json_name = "endpoint_uri"];
+
+    int64 error_retry_duration = 2 [json_name = "error_retry_duration"];
+
+    int64 full_load_error_percentage = 3 [json_name = "full_load_error_percentage"];
+
+    string service_access_role_arn = 4 [json_name = "service_access_role_arn"];
+
+    bool use_new_mapping_type = 5 [json_name = "use_new_mapping_type"];
+  }
+
+  message KafkaSettings {
+    string broker = 1;
+
+    bool include_control_details = 2 [json_name = "include_control_details"];
+
+    bool include_null_and_empty = 3 [json_name = "include_null_and_empty"];
+
+    bool include_partition_value = 4 [json_name = "include_partition_value"];
+
+    bool include_table_alter_operations = 5 [json_name = "include_table_alter_operations"];
+
+    bool include_transaction_details = 6 [json_name = "include_transaction_details"];
+
+    string message_format = 7 [json_name = "message_format"];
+
+    int64 message_max_bytes = 8 [json_name = "message_max_bytes"];
+
+    bool no_hex_prefix = 9 [json_name = "no_hex_prefix"];
+
+    bool partition_include_schema_table = 10 [json_name = "partition_include_schema_table"];
+
+    string sasl_mechanism = 11 [json_name = "sasl_mechanism"];
+
+    string sasl_password = 12 [json_name = "sasl_password"];
+
+    string sasl_username = 13 [json_name = "sasl_username"];
+
+    string security_protocol = 14 [json_name = "security_protocol"];
+
+    string ssl_ca_certificate_arn = 15 [json_name = "ssl_ca_certificate_arn"];
+
+    string ssl_client_certificate_arn = 16 [json_name = "ssl_client_certificate_arn"];
+
+    string ssl_client_key_arn = 17 [json_name = "ssl_client_key_arn"];
+
+    string ssl_client_key_password = 18 [json_name = "ssl_client_key_password"];
+
+    string topic = 19;
+  }
+
+  message KinesisSettings {
+    bool include_control_details = 1 [json_name = "include_control_details"];
+
+    bool include_null_and_empty = 2 [json_name = "include_null_and_empty"];
+
+    bool include_partition_value = 3 [json_name = "include_partition_value"];
+
+    bool include_table_alter_operations = 4 [json_name = "include_table_alter_operations"];
+
+    bool include_transaction_details = 5 [json_name = "include_transaction_details"];
+
+    string message_format = 6 [json_name = "message_format"];
+
+    bool partition_include_schema_table = 7 [json_name = "partition_include_schema_table"];
+
+    string service_access_role_arn = 8 [json_name = "service_access_role_arn"];
+
+    string stream_arn = 9 [json_name = "stream_arn"];
+
+    bool use_large_integer_value = 10 [json_name = "use_large_integer_value"];
+  }
+
+  message MongodbSettings {
+    string auth_mechanism = 1 [json_name = "auth_mechanism"];
+
+    string auth_source = 2 [json_name = "auth_source"];
+
+    string auth_type = 3 [json_name = "auth_type"];
+
+    string docs_to_investigate = 4 [json_name = "docs_to_investigate"];
+
+    string extract_doc_id = 5 [json_name = "extract_doc_id"];
+
+    string nesting_level = 6 [json_name = "nesting_level"];
+
+    bool use_update_lookup = 7 [json_name = "use_update_lookup"];
+  }
+
+  message MysqlSettings {
+    string after_connect_script = 1 [json_name = "after_connect_script"];
+
+    string authentication_method = 2 [json_name = "authentication_method"];
+
+    bool clean_source_metadata_on_mismatch = 3 [json_name = "clean_source_metadata_on_mismatch"];
+
+    int64 events_poll_interval = 4 [json_name = "events_poll_interval"];
+
+    int64 execute_timeout = 5 [json_name = "execute_timeout"];
+
+    int64 max_file_size = 6 [json_name = "max_file_size"];
+
+    int64 parallel_load_threads = 7 [json_name = "parallel_load_threads"];
+
+    string server_timezone = 8 [json_name = "server_timezone"];
+
+    string service_access_role_arn = 9 [json_name = "service_access_role_arn"];
+
+    string target_db_type = 10 [json_name = "target_db_type"];
+  }
+
+  message OracleSettings {
+    bool access_alternate_directly = 1 [json_name = "access_alternate_directly"];
+
+    bool add_supplemental_logging = 2 [json_name = "add_supplemental_logging"];
+
+    int64 additional_archived_log_dest_id = 3 [json_name = "additional_archived_log_dest_id"];
+
+    bool allow_selected_nested_tables = 4 [json_name = "allow_selected_nested_tables"];
+
+    int64 archived_log_dest_id = 5 [json_name = "archived_log_dest_id"];
+
+    bool archived_logs_only = 6 [json_name = "archived_logs_only"];
+
+    string asm_password = 7 [json_name = "asm_password"];
+
+    string asm_server = 8 [json_name = "asm_server"];
+
+    string asm_user = 9 [json_name = "asm_user"];
+
+    string authentication_method = 10 [json_name = "authentication_method"];
+
+    string char_length_semantics = 11 [json_name = "char_length_semantics"];
+
+    bool convert_timestamp_with_zone_to_utc = 12 [json_name = "convert_timestamp_with_zone_to_utc"];
+
+    bool direct_path_no_log = 13 [json_name = "direct_path_no_log"];
+
+    bool direct_path_parallel_load = 14 [json_name = "direct_path_parallel_load"];
+
+    bool enable_homogenous_tablespace = 15 [json_name = "enable_homogenous_tablespace"];
+
+    repeated int64 extra_archived_log_dest_ids = 16 [json_name = "extra_archived_log_dest_ids"];
+
+    bool fail_task_on_lob_truncation = 17 [json_name = "fail_task_on_lob_truncation"];
+
+    int64 number_datatype_scale = 18 [json_name = "number_datatype_scale"];
+
+    int64 open_transaction_window = 19 [json_name = "open_transaction_window"];
+
+    string oracle_path_prefix = 20 [json_name = "oracle_path_prefix"];
+
+    int64 parallel_asm_read_threads = 21 [json_name = "parallel_asm_read_threads"];
+
+    int64 read_ahead_blocks = 22 [json_name = "read_ahead_blocks"];
+
+    bool read_table_space_name = 23 [json_name = "read_table_space_name"];
+
+    bool replace_path_prefix = 24 [json_name = "replace_path_prefix"];
+
+    int64 retry_interval = 25 [json_name = "retry_interval"];
+
+    string secrets_manager_oracle_asm_access_role_arn = 26 [
+      json_name = "secrets_manager_oracle_asm_access_role_arn"
+    ];
+
+    string secrets_manager_oracle_asm_secret_id = 27 [json_name = "secrets_manager_oracle_asm_secret_id"];
+
+    string security_db_encryption = 28 [json_name = "security_db_encryption"];
+
+    string security_db_encryption_name = 29 [json_name = "security_db_encryption_name"];
+
+    string spatial_data_option_to_geo_json_function_name = 30 [
+      json_name = "spatial_data_option_to_geo_json_function_name"
+    ];
+
+    int64 standby_delay_time = 31 [json_name = "standby_delay_time"];
+
+    bool trim_space_in_char = 32 [json_name = "trim_space_in_char"];
+
+    bool use_alternate_folder_for_online = 33 [json_name = "use_alternate_folder_for_online"];
+
+    bool use_bfile = 34 [json_name = "use_bfile"];
+
+    bool use_direct_path_full_load = 35 [json_name = "use_direct_path_full_load"];
+
+    bool use_logminer_reader = 36 [json_name = "use_logminer_reader"];
+
+    string use_path_prefix = 37 [json_name = "use_path_prefix"];
+  }
+
+  message PostgresSettings {
+    string after_connect_script = 1 [json_name = "after_connect_script"];
+
+    string authentication_method = 2 [json_name = "authentication_method"];
+
+    string babelfish_database_name = 3 [json_name = "babelfish_database_name"];
+
+    bool capture_ddls = 4 [json_name = "capture_ddls"];
+
+    string database_mode = 5 [json_name = "database_mode"];
+
+    string ddl_artifacts_schema = 6 [json_name = "ddl_artifacts_schema"];
+
+    int64 execute_timeout = 7 [json_name = "execute_timeout"];
+
+    bool fail_tasks_on_lob_truncation = 8 [json_name = "fail_tasks_on_lob_truncation"];
+
+    bool heartbeat_enable = 9 [json_name = "heartbeat_enable"];
+
+    int64 heartbeat_frequency = 10 [json_name = "heartbeat_frequency"];
+
+    string heartbeat_schema = 11 [json_name = "heartbeat_schema"];
+
+    bool map_boolean_as_boolean = 12 [json_name = "map_boolean_as_boolean"];
+
+    bool map_jsonb_as_clob = 13 [json_name = "map_jsonb_as_clob"];
+
+    string map_long_varchar_as = 14 [json_name = "map_long_varchar_as"];
+
+    int64 max_file_size = 15 [json_name = "max_file_size"];
+
+    string plugin_name = 16 [json_name = "plugin_name"];
+
+    string service_access_role_arn = 17 [json_name = "service_access_role_arn"];
+
+    string slot_name = 18 [json_name = "slot_name"];
+  }
+
+  message RedisSettings {
+    string auth_password = 1 [json_name = "auth_password"];
+
+    string auth_type = 2 [json_name = "auth_type"];
+
+    string auth_user_name = 3 [json_name = "auth_user_name"];
+
+    int64 port = 4;
+
+    string server_name = 5 [json_name = "server_name"];
+
+    string ssl_ca_certificate_arn = 6 [json_name = "ssl_ca_certificate_arn"];
+
+    string ssl_security_protocol = 7 [json_name = "ssl_security_protocol"];
+  }
+
+  message RedshiftSettings {
+    string bucket_folder = 1 [json_name = "bucket_folder"];
+
+    string bucket_name = 2 [json_name = "bucket_name"];
+
+    string encryption_mode = 3 [json_name = "encryption_mode"];
+
+    string server_side_encryption_kms_key_id = 4 [json_name = "server_side_encryption_kms_key_id"];
+
+    string service_access_role_arn = 5 [json_name = "service_access_role_arn"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsDmsEventSubscription version is 0
+message AwsDmsEventSubscription {
+  string arn = 1;
+
+  bool enabled = 2;
+
+  repeated string event_categories = 3 [json_name = "event_categories"];
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string sns_topic_arn = 7 [json_name = "sns_topic_arn"];
+
+  repeated string source_ids = 8 [json_name = "source_ids"];
+
+  string source_type = 9 [json_name = "source_type"];
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsDmsReplicationConfig version is 0
+message AwsDmsReplicationConfig {
+  string arn = 1;
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string replication_config_identifier = 4 [json_name = "replication_config_identifier"];
+
+  string replication_settings = 5 [json_name = "replication_settings"];
+
+  string replication_type = 6 [json_name = "replication_type"];
+
+  string resource_identifier = 7 [json_name = "resource_identifier"];
+
+  string source_endpoint_arn = 8 [json_name = "source_endpoint_arn"];
+
+  bool start_replication = 9 [json_name = "start_replication"];
+
+  string supplemental_settings = 10 [json_name = "supplemental_settings"];
+
+  string table_mappings = 11 [json_name = "table_mappings"];
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  string target_endpoint_arn = 14 [json_name = "target_endpoint_arn"];
+
+  ComputeConfig compute_config = 15 [json_name = "compute_config"];
+
+  repeated Timeouts timeouts = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message ComputeConfig {
+    string availability_zone = 1 [json_name = "availability_zone"];
+
+    string dns_name_servers = 2 [json_name = "dns_name_servers"];
+
+    string kms_key_id = 3 [json_name = "kms_key_id"];
+
+    int64 max_capacity_units = 4 [json_name = "max_capacity_units"];
+
+    int64 min_capacity_units = 5 [json_name = "min_capacity_units"];
+
+    bool multi_az = 6 [json_name = "multi_az"];
+
+    string preferred_maintenance_window = 7 [json_name = "preferred_maintenance_window"];
+
+    string replication_subnet_group_id = 8 [json_name = "replication_subnet_group_id"];
+
+    repeated string vpc_security_group_ids = 9 [json_name = "vpc_security_group_ids"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsDmsReplicationInstance version is 0
+message AwsDmsReplicationInstance {
+  int64 allocated_storage = 1 [json_name = "allocated_storage"];
+
+  bool allow_major_version_upgrade = 2 [json_name = "allow_major_version_upgrade"];
+
+  bool apply_immediately = 3 [json_name = "apply_immediately"];
+
+  bool auto_minor_version_upgrade = 4 [json_name = "auto_minor_version_upgrade"];
+
+  string availability_zone = 5 [json_name = "availability_zone"];
+
+  string dns_name_servers = 6 [json_name = "dns_name_servers"];
+
+  string engine_version = 7 [json_name = "engine_version"];
+
+  string id = 8;
+
+  string kms_key_arn = 9 [json_name = "kms_key_arn"];
+
+  bool multi_az = 10 [json_name = "multi_az"];
+
+  string network_type = 11 [json_name = "network_type"];
+
+  string preferred_maintenance_window = 12 [json_name = "preferred_maintenance_window"];
+
+  bool publicly_accessible = 13 [json_name = "publicly_accessible"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 14;
+
+  string replication_instance_arn = 15 [json_name = "replication_instance_arn"];
+
+  string replication_instance_class = 16 [json_name = "replication_instance_class"];
+
+  string replication_instance_id = 17 [json_name = "replication_instance_id"];
+
+  repeated string replication_instance_private_ips = 18 [json_name = "replication_instance_private_ips"];
+
+  repeated string replication_instance_public_ips = 19 [json_name = "replication_instance_public_ips"];
+
+  string replication_subnet_group_id = 20 [json_name = "replication_subnet_group_id"];
+
+  map<string, string> tags = 21;
+
+  map<string, string> tags_all = 22 [json_name = "tags_all"];
+
+  repeated string vpc_security_group_ids = 23 [json_name = "vpc_security_group_ids"];
+
+  KerberosAuthenticationSettings kerberos_authentication_settings = 24 [json_name = "kerberos_authentication_settings"];
+
+  repeated Timeouts timeouts = 25;
+
+  google.protobuf.Value for_each = 26 [json_name = "for_each"];
+
+  repeated string depends_on = 27 [json_name = "depends_on"];
+
+  int32 count = 28;
+
+  string provider = 29;
+
+  terraform.v1.Lifecycle lifecycle = 30;
+
+  message KerberosAuthenticationSettings {
+    string key_cache_secret_iam_arn = 1 [json_name = "key_cache_secret_iam_arn"];
+
+    string key_cache_secret_id = 2 [json_name = "key_cache_secret_id"];
+
+    string krb5_file_contents = 3 [json_name = "krb5_file_contents"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsDmsReplicationSubnetGroup version is 0
+message AwsDmsReplicationSubnetGroup {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string replication_subnet_group_arn = 3 [json_name = "replication_subnet_group_arn"];
+
+  string replication_subnet_group_description = 4 [json_name = "replication_subnet_group_description"];
+
+  string replication_subnet_group_id = 5 [json_name = "replication_subnet_group_id"];
+
+  repeated string subnet_ids = 6 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  string vpc_id = 9 [json_name = "vpc_id"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsDmsReplicationTask version is 0
+message AwsDmsReplicationTask {
+  string cdc_start_position = 1 [json_name = "cdc_start_position"];
+
+  string cdc_start_time = 2 [json_name = "cdc_start_time"];
+
+  string id = 3;
+
+  string migration_type = 4 [json_name = "migration_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string replication_instance_arn = 6 [json_name = "replication_instance_arn"];
+
+  string replication_task_arn = 7 [json_name = "replication_task_arn"];
+
+  string replication_task_id = 8 [json_name = "replication_task_id"];
+
+  string replication_task_settings = 9 [json_name = "replication_task_settings"];
+
+  string resource_identifier = 10 [json_name = "resource_identifier"];
+
+  string source_endpoint_arn = 11 [json_name = "source_endpoint_arn"];
+
+  bool start_replication_task = 12 [json_name = "start_replication_task"];
+
+  string status = 13;
+
+  string table_mappings = 14 [json_name = "table_mappings"];
+
+  map<string, string> tags = 15;
+
+  map<string, string> tags_all = 16 [json_name = "tags_all"];
+
+  string target_endpoint_arn = 17 [json_name = "target_endpoint_arn"];
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+}
+
+// AwsDmsS3Endpoint version is 0
+message AwsDmsS3Endpoint {
+  bool add_column_name = 1 [json_name = "add_column_name"];
+
+  bool add_trailing_padding_character = 2 [json_name = "add_trailing_padding_character"];
+
+  string bucket_folder = 3 [json_name = "bucket_folder"];
+
+  string bucket_name = 4 [json_name = "bucket_name"];
+
+  string canned_acl_for_objects = 5 [json_name = "canned_acl_for_objects"];
+
+  bool cdc_inserts_and_updates = 6 [json_name = "cdc_inserts_and_updates"];
+
+  bool cdc_inserts_only = 7 [json_name = "cdc_inserts_only"];
+
+  int64 cdc_max_batch_interval = 8 [json_name = "cdc_max_batch_interval"];
+
+  int64 cdc_min_file_size = 9 [json_name = "cdc_min_file_size"];
+
+  string cdc_path = 10 [json_name = "cdc_path"];
+
+  string certificate_arn = 11 [json_name = "certificate_arn"];
+
+  string compression_type = 12 [json_name = "compression_type"];
+
+  string csv_delimiter = 13 [json_name = "csv_delimiter"];
+
+  string csv_no_sup_value = 14 [json_name = "csv_no_sup_value"];
+
+  string csv_null_value = 15 [json_name = "csv_null_value"];
+
+  string csv_row_delimiter = 16 [json_name = "csv_row_delimiter"];
+
+  string data_format = 17 [json_name = "data_format"];
+
+  int64 data_page_size = 18 [json_name = "data_page_size"];
+
+  string date_partition_delimiter = 19 [json_name = "date_partition_delimiter"];
+
+  bool date_partition_enabled = 20 [json_name = "date_partition_enabled"];
+
+  string date_partition_sequence = 21 [json_name = "date_partition_sequence"];
+
+  string date_partition_timezone = 22 [json_name = "date_partition_timezone"];
+
+  bool detach_target_on_lob_lookup_failure_parquet = 23 [
+    json_name = "detach_target_on_lob_lookup_failure_parquet"
+  ];
+
+  int64 dict_page_size_limit = 24 [json_name = "dict_page_size_limit"];
+
+  bool enable_statistics = 25 [json_name = "enable_statistics"];
+
+  string encoding_type = 26 [json_name = "encoding_type"];
+
+  string encryption_mode = 27 [json_name = "encryption_mode"];
+
+  string endpoint_arn = 28 [json_name = "endpoint_arn"];
+
+  string endpoint_id = 29 [json_name = "endpoint_id"];
+
+  string endpoint_type = 30 [json_name = "endpoint_type"];
+
+  string engine_display_name = 31 [json_name = "engine_display_name"];
+
+  string expected_bucket_owner = 32 [json_name = "expected_bucket_owner"];
+
+  string external_id = 33 [json_name = "external_id"];
+
+  string external_table_definition = 34 [json_name = "external_table_definition"];
+
+  bool glue_catalog_generation = 35 [json_name = "glue_catalog_generation"];
+
+  string id = 36;
+
+  int64 ignore_header_rows = 37 [json_name = "ignore_header_rows"];
+
+  bool include_op_for_full_load = 38 [json_name = "include_op_for_full_load"];
+
+  string kms_key_arn = 39 [json_name = "kms_key_arn"];
+
+  int64 max_file_size = 40 [json_name = "max_file_size"];
+
+  bool parquet_timestamp_in_millisecond = 41 [json_name = "parquet_timestamp_in_millisecond"];
+
+  string parquet_version = 42 [json_name = "parquet_version"];
+
+  bool preserve_transactions = 43 [json_name = "preserve_transactions"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 44;
+
+  bool rfc_4180 = 45 [json_name = "rfc_4180"];
+
+  int64 row_group_length = 46 [json_name = "row_group_length"];
+
+  string server_side_encryption_kms_key_id = 47 [json_name = "server_side_encryption_kms_key_id"];
+
+  string service_access_role_arn = 48 [json_name = "service_access_role_arn"];
+
+  string ssl_mode = 49 [json_name = "ssl_mode"];
+
+  string status = 50;
+
+  map<string, string> tags = 51;
+
+  map<string, string> tags_all = 52 [json_name = "tags_all"];
+
+  string timestamp_column_name = 53 [json_name = "timestamp_column_name"];
+
+  bool use_csv_no_sup_value = 54 [json_name = "use_csv_no_sup_value"];
+
+  bool use_task_start_time_for_full_load_timestamp = 55 [
+    json_name = "use_task_start_time_for_full_load_timestamp"
+  ];
+
+  repeated Timeouts timeouts = 56;
+
+  google.protobuf.Value for_each = 57 [json_name = "for_each"];
+
+  repeated string depends_on = 58 [json_name = "depends_on"];
+
+  int32 count = 59;
+
+  string provider = 60;
+
+  terraform.v1.Lifecycle lifecycle = 61;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}

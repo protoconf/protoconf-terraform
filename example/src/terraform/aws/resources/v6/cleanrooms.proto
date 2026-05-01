@@ -1,0 +1,221 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCleanroomsCollaboration version is 0
+message AwsCleanroomsCollaboration {
+  string analytics_engine = 1 [json_name = "analytics_engine"];
+
+  string arn = 2;
+
+  string create_time = 3 [json_name = "create_time"];
+
+  string creator_display_name = 4 [json_name = "creator_display_name"];
+
+  repeated string creator_member_abilities = 5 [json_name = "creator_member_abilities"];
+
+  string description = 6;
+
+  string id = 7;
+
+  string name = 8;
+
+  string query_log_status = 9 [json_name = "query_log_status"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  string update_time = 13 [json_name = "update_time"];
+
+  DataEncryptionMetadata data_encryption_metadata = 14 [json_name = "data_encryption_metadata"];
+
+  repeated Member member = 15;
+
+  repeated Timeouts timeouts = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message DataEncryptionMetadata {
+    bool allow_clear_text = 1 [json_name = "allow_clear_text"];
+
+    bool allow_duplicates = 2 [json_name = "allow_duplicates"];
+
+    bool allow_joins_on_columns_with_different_names = 3 [
+      json_name = "allow_joins_on_columns_with_different_names"
+    ];
+
+    bool preserve_nulls = 4 [json_name = "preserve_nulls"];
+  }
+
+  message Member {
+    string account_id = 1 [json_name = "account_id"];
+
+    string display_name = 2 [json_name = "display_name"];
+
+    repeated string member_abilities = 3 [json_name = "member_abilities"];
+
+    string status = 4;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsCleanroomsConfiguredTable version is 0
+message AwsCleanroomsConfiguredTable {
+  repeated string allowed_columns = 1 [json_name = "allowed_columns"];
+
+  string analysis_method = 2 [json_name = "analysis_method"];
+
+  string arn = 3;
+
+  string create_time = 4 [json_name = "create_time"];
+
+  string description = 5;
+
+  string id = 6;
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  string update_time = 11 [json_name = "update_time"];
+
+  TableReference table_reference = 12 [json_name = "table_reference"];
+
+  repeated Timeouts timeouts = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message TableReference {
+    string database_name = 1 [json_name = "database_name"];
+
+    string table_name = 2 [json_name = "table_name"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsCleanroomsMembership version is 0
+message AwsCleanroomsMembership {
+  string arn = 1;
+
+  string collaboration_arn = 2 [json_name = "collaboration_arn"];
+
+  string collaboration_creator_account_id = 3 [json_name = "collaboration_creator_account_id"];
+
+  string collaboration_creator_display_name = 4 [json_name = "collaboration_creator_display_name"];
+
+  string collaboration_id = 5 [json_name = "collaboration_id"];
+
+  string collaboration_name = 6 [json_name = "collaboration_name"];
+
+  string create_time = 7 [json_name = "create_time"];
+
+  string id = 8;
+
+  repeated string member_abilities = 9 [json_name = "member_abilities"];
+
+  string query_log_status = 10 [json_name = "query_log_status"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string status = 12;
+
+  map<string, string> tags = 13;
+
+  map<string, string> tags_all = 14 [json_name = "tags_all"];
+
+  string update_time = 15 [json_name = "update_time"];
+
+  repeated DefaultResultConfiguration default_result_configuration = 16 [json_name = "default_result_configuration"];
+
+  repeated PaymentConfiguration payment_configuration = 17 [json_name = "payment_configuration"];
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+
+  message DefaultResultConfiguration {
+    string role_arn = 1 [json_name = "role_arn"];
+
+    repeated OutputConfiguration output_configuration = 2 [json_name = "output_configuration"];
+
+    message OutputConfiguration {
+      repeated S3 s3 = 1;
+
+      message S3 {
+        string bucket = 1;
+
+        string key_prefix = 2 [json_name = "key_prefix"];
+
+        string result_format = 3 [json_name = "result_format"];
+      }
+    }
+  }
+
+  message PaymentConfiguration {
+    repeated QueryCompute query_compute = 1 [json_name = "query_compute"];
+
+    message QueryCompute {
+      bool is_responsible = 1 [json_name = "is_responsible"];
+    }
+  }
+}

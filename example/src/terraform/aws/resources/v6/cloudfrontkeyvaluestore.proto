@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCloudfrontkeyvaluestoreKey version is 0
+message AwsCloudfrontkeyvaluestoreKey {
+  string id = 1;
+
+  // The key to put.
+  string key = 2;
+
+  // The Amazon Resource Name (ARN) of the Key Value Store.
+  string key_value_store_arn = 3 [json_name = "key_value_store_arn"];
+
+  // Total size of the Key Value Store in bytes.
+  int64 total_size_in_bytes = 4 [json_name = "total_size_in_bytes"];
+
+  // The value to put.
+  string value = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsCloudfrontkeyvaluestoreKeysExclusive version is 0
+message AwsCloudfrontkeyvaluestoreKeysExclusive {
+  // The Amazon Resource Name (ARN) of the Key Value Store.
+  string key_value_store_arn = 1 [json_name = "key_value_store_arn"];
+
+  // Maximum resource key values pairs that you wills update in a single API request.
+  // AWS has a default quota of 50 keys or a 3 MB payload, whichever is reached first
+  int64 max_batch_size = 2 [json_name = "max_batch_size"];
+
+  // Total size of the Key Value Store in bytes.
+  int64 total_size_in_bytes = 3 [json_name = "total_size_in_bytes"];
+
+  repeated ResourceKeyValuePair resource_key_value_pair = 4 [json_name = "resource_key_value_pair"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message ResourceKeyValuePair {
+    // The key to put.
+    string key = 1;
+
+    // The value to put.
+    string value = 2;
+  }
+}

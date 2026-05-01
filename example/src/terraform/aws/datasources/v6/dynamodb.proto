@@ -1,0 +1,312 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsDynamodbBackups version is 0
+message AwsDynamodbBackups {
+  repeated BackupSummaries backup_summaries = 1 [json_name = "backup_summaries"];
+
+  string backup_type = 2 [json_name = "backup_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string table_name = 4 [json_name = "table_name"];
+
+  string time_range_lower_bound = 5 [json_name = "time_range_lower_bound"];
+
+  string time_range_upper_bound = 6 [json_name = "time_range_upper_bound"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message BackupSummaries {
+    // backup_arn: string
+    string backup_arn = 1 [json_name = "backup_arn"];
+
+    // backup_creation_date_time: string
+    string backup_creation_date_time = 2 [json_name = "backup_creation_date_time"];
+
+    // backup_expiry_date_time: string
+    string backup_expiry_date_time = 3 [json_name = "backup_expiry_date_time"];
+
+    // backup_name: string
+    string backup_name = 4 [json_name = "backup_name"];
+
+    // backup_size_bytes: number
+    int64 backup_size_bytes = 5 [json_name = "backup_size_bytes"];
+
+    // backup_status: string
+    string backup_status = 6 [json_name = "backup_status"];
+
+    // backup_type: string
+    string backup_type = 7 [json_name = "backup_type"];
+
+    // table_arn: string
+    string table_arn = 8 [json_name = "table_arn"];
+
+    // table_id: string
+    string table_id = 9 [json_name = "table_id"];
+
+    // table_name: string
+    string table_name = 10 [json_name = "table_name"];
+  }
+}
+
+// AwsDynamodbTable version is 0
+message AwsDynamodbTable {
+  string arn = 1;
+
+  repeated Attribute attribute = 2;
+
+  string billing_mode = 3 [json_name = "billing_mode"];
+
+  bool deletion_protection_enabled = 4 [json_name = "deletion_protection_enabled"];
+
+  repeated GlobalSecondaryIndex global_secondary_index = 5 [json_name = "global_secondary_index"];
+
+  string hash_key = 6 [json_name = "hash_key"];
+
+  string id = 7;
+
+  repeated LocalSecondaryIndex local_secondary_index = 8 [json_name = "local_secondary_index"];
+
+  string name = 9;
+
+  repeated OnDemandThroughput on_demand_throughput = 10 [json_name = "on_demand_throughput"];
+
+  repeated PointInTimeRecovery point_in_time_recovery = 11 [json_name = "point_in_time_recovery"];
+
+  string range_key = 12 [json_name = "range_key"];
+
+  int64 read_capacity = 13 [json_name = "read_capacity"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 14;
+
+  repeated Replica replica = 15;
+
+  string stream_arn = 16 [json_name = "stream_arn"];
+
+  bool stream_enabled = 17 [json_name = "stream_enabled"];
+
+  string stream_label = 18 [json_name = "stream_label"];
+
+  string stream_view_type = 19 [json_name = "stream_view_type"];
+
+  string table_class = 20 [json_name = "table_class"];
+
+  map<string, string> tags = 21;
+
+  repeated Ttl ttl = 22;
+
+  repeated WarmThroughput warm_throughput = 23 [json_name = "warm_throughput"];
+
+  int64 write_capacity = 24 [json_name = "write_capacity"];
+
+  ServerSideEncryption server_side_encryption = 25 [json_name = "server_side_encryption"];
+
+  google.protobuf.Value for_each = 26 [json_name = "for_each"];
+
+  repeated string depends_on = 27 [json_name = "depends_on"];
+
+  int32 count = 28;
+
+  string provider = 29;
+
+  terraform.v1.Lifecycle lifecycle = 30;
+
+  message Attribute {
+    // name: string
+    string name = 1;
+
+    // type: string
+    string type = 2;
+  }
+
+  message GlobalSecondaryIndex {
+    // hash_key: string
+    string hash_key = 1 [json_name = "hash_key"];
+
+    // key_schema: list of object
+    repeated KeySchema key_schema = 2 [json_name = "key_schema"];
+
+    // name: string
+    string name = 3;
+
+    // non_key_attributes: list of string
+    repeated string non_key_attributes = 4 [json_name = "non_key_attributes"];
+
+    // on_demand_throughput: list of object
+    repeated OnDemandThroughput on_demand_throughput = 5 [json_name = "on_demand_throughput"];
+
+    // projection_type: string
+    string projection_type = 6 [json_name = "projection_type"];
+
+    // range_key: string
+    string range_key = 7 [json_name = "range_key"];
+
+    // read_capacity: number
+    int64 read_capacity = 8 [json_name = "read_capacity"];
+
+    // warm_throughput: list of object
+    repeated WarmThroughput warm_throughput = 9 [json_name = "warm_throughput"];
+
+    // write_capacity: number
+    int64 write_capacity = 10 [json_name = "write_capacity"];
+
+    message KeySchema {
+      // attribute_name: string
+      string attribute_name = 1 [json_name = "attribute_name"];
+
+      // key_type: string
+      string key_type = 2 [json_name = "key_type"];
+    }
+
+    message OnDemandThroughput {
+      // max_read_request_units: number
+      int64 max_read_request_units = 1 [json_name = "max_read_request_units"];
+
+      // max_write_request_units: number
+      int64 max_write_request_units = 2 [json_name = "max_write_request_units"];
+    }
+
+    message WarmThroughput {
+      // read_units_per_second: number
+      int64 read_units_per_second = 1 [json_name = "read_units_per_second"];
+
+      // write_units_per_second: number
+      int64 write_units_per_second = 2 [json_name = "write_units_per_second"];
+    }
+  }
+
+  message LocalSecondaryIndex {
+    // name: string
+    string name = 1;
+
+    // non_key_attributes: list of string
+    repeated string non_key_attributes = 2 [json_name = "non_key_attributes"];
+
+    // projection_type: string
+    string projection_type = 3 [json_name = "projection_type"];
+
+    // range_key: string
+    string range_key = 4 [json_name = "range_key"];
+  }
+
+  message OnDemandThroughput {
+    // max_read_request_units: number
+    int64 max_read_request_units = 1 [json_name = "max_read_request_units"];
+
+    // max_write_request_units: number
+    int64 max_write_request_units = 2 [json_name = "max_write_request_units"];
+  }
+
+  message PointInTimeRecovery {
+    // enabled: bool
+    bool enabled = 1;
+
+    // recovery_period_in_days: number
+    int64 recovery_period_in_days = 2 [json_name = "recovery_period_in_days"];
+  }
+
+  message Replica {
+    // kms_key_arn: string
+    string kms_key_arn = 1 [json_name = "kms_key_arn"];
+
+    // region_name: string
+    string region_name = 2 [json_name = "region_name"];
+  }
+
+  message Ttl {
+    // attribute_name: string
+    string attribute_name = 1 [json_name = "attribute_name"];
+
+    // enabled: bool
+    bool enabled = 2;
+  }
+
+  message WarmThroughput {
+    // read_units_per_second: number
+    int64 read_units_per_second = 1 [json_name = "read_units_per_second"];
+
+    // write_units_per_second: number
+    int64 write_units_per_second = 2 [json_name = "write_units_per_second"];
+  }
+
+  message ServerSideEncryption {
+    bool enabled = 1;
+
+    string kms_key_arn = 2 [json_name = "kms_key_arn"];
+  }
+}
+
+// AwsDynamodbTableItem version is 0
+message AwsDynamodbTableItem {
+  map<string, string> expression_attribute_names = 1 [json_name = "expression_attribute_names"];
+
+  string id = 2;
+
+  string item = 3;
+
+  string key = 4;
+
+  string projection_expression = 5 [json_name = "projection_expression"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string table_name = 7 [json_name = "table_name"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsDynamodbTables version is 0
+message AwsDynamodbTables {
+  repeated string names = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+}

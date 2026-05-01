@@ -1,0 +1,618 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsArcregionswitchPlan version is 0
+message AwsArcregionswitchPlan {
+  string arn = 1;
+
+  string description = 2;
+
+  string execution_role = 3 [json_name = "execution_role"];
+
+  string name = 4;
+
+  string primary_region = 5 [json_name = "primary_region"];
+
+  string recovery_approach = 6 [json_name = "recovery_approach"];
+
+  int64 recovery_time_objective_minutes = 7 [json_name = "recovery_time_objective_minutes"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  repeated string regions = 9;
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  repeated AssociatedAlarms associated_alarms = 12 [json_name = "associated_alarms"];
+
+  repeated Timeouts timeouts = 13;
+
+  repeated Triggers triggers = 14;
+
+  repeated Workflow workflow = 15;
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message AssociatedAlarms {
+    string alarm_type = 1 [json_name = "alarm_type"];
+
+    string cross_account_role = 2 [json_name = "cross_account_role"];
+
+    string external_id = 3 [json_name = "external_id"];
+
+    string map_block_key = 4 [json_name = "map_block_key"];
+
+    string resource_identifier = 5 [json_name = "resource_identifier"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+
+  message Triggers {
+    string action = 1;
+
+    string description = 2;
+
+    int64 min_delay_minutes_between_executions = 3 [json_name = "min_delay_minutes_between_executions"];
+
+    string target_region = 4 [json_name = "target_region"];
+
+    repeated Conditions conditions = 5;
+
+    message Conditions {
+      string associated_alarm_name = 1 [json_name = "associated_alarm_name"];
+
+      string condition = 2;
+    }
+  }
+
+  message Workflow {
+    string workflow_description = 1 [json_name = "workflow_description"];
+
+    string workflow_target_action = 2 [json_name = "workflow_target_action"];
+
+    string workflow_target_region = 3 [json_name = "workflow_target_region"];
+
+    repeated Step step = 4;
+
+    message Step {
+      string description = 1;
+
+      string execution_block_type = 2 [json_name = "execution_block_type"];
+
+      string name = 3;
+
+      repeated ArcRoutingControlConfig arc_routing_control_config = 4 [json_name = "arc_routing_control_config"];
+
+      repeated CustomActionLambdaConfig custom_action_lambda_config = 5 [json_name = "custom_action_lambda_config"];
+
+      repeated DocumentDbConfig document_db_config = 6 [json_name = "document_db_config"];
+
+      repeated Ec2AsgCapacityIncreaseConfig ec2_asg_capacity_increase_config = 7 [json_name = "ec2_asg_capacity_increase_config"];
+
+      repeated EcsCapacityIncreaseConfig ecs_capacity_increase_config = 8 [json_name = "ecs_capacity_increase_config"];
+
+      repeated EksResourceScalingConfig eks_resource_scaling_config = 9 [json_name = "eks_resource_scaling_config"];
+
+      repeated ExecutionApprovalConfig execution_approval_config = 10 [json_name = "execution_approval_config"];
+
+      repeated GlobalAuroraConfig global_aurora_config = 11 [json_name = "global_aurora_config"];
+
+      repeated ParallelConfig parallel_config = 12 [json_name = "parallel_config"];
+
+      repeated RegionSwitchPlanConfig region_switch_plan_config = 13 [json_name = "region_switch_plan_config"];
+
+      repeated Route53HealthCheckConfig route53_health_check_config = 14 [json_name = "route53_health_check_config"];
+
+      message ArcRoutingControlConfig {
+        string cross_account_role = 1 [json_name = "cross_account_role"];
+
+        string external_id = 2 [json_name = "external_id"];
+
+        int64 timeout_minutes = 3 [json_name = "timeout_minutes"];
+
+        repeated RegionAndRoutingControls region_and_routing_controls = 4 [json_name = "region_and_routing_controls"];
+
+        message RegionAndRoutingControls {
+          string region = 1;
+
+          repeated RoutingControl routing_control = 2 [json_name = "routing_control"];
+
+          message RoutingControl {
+            string routing_control_arn = 1 [json_name = "routing_control_arn"];
+
+            string state = 2;
+          }
+        }
+      }
+
+      message CustomActionLambdaConfig {
+        string region_to_run = 1 [json_name = "region_to_run"];
+
+        int64 retry_interval_minutes = 2 [json_name = "retry_interval_minutes"];
+
+        int64 timeout_minutes = 3 [json_name = "timeout_minutes"];
+
+        repeated Lambda lambda = 4;
+
+        repeated Ungraceful ungraceful = 5;
+
+        message Lambda {
+          string arn = 1;
+
+          string cross_account_role = 2 [json_name = "cross_account_role"];
+
+          string external_id = 3 [json_name = "external_id"];
+        }
+
+        message Ungraceful {
+          string behavior = 1;
+        }
+      }
+
+      message DocumentDbConfig {
+        string behavior = 1;
+
+        string cross_account_role = 2 [json_name = "cross_account_role"];
+
+        repeated string database_cluster_arns = 3 [json_name = "database_cluster_arns"];
+
+        string external_id = 4 [json_name = "external_id"];
+
+        string global_cluster_identifier = 5 [json_name = "global_cluster_identifier"];
+
+        int64 timeout_minutes = 6 [json_name = "timeout_minutes"];
+
+        repeated Ungraceful ungraceful = 7;
+
+        message Ungraceful {
+          string ungraceful = 1;
+        }
+      }
+
+      message Ec2AsgCapacityIncreaseConfig {
+        string capacity_monitoring_approach = 1 [json_name = "capacity_monitoring_approach"];
+
+        int64 target_percent = 2 [json_name = "target_percent"];
+
+        int64 timeout_minutes = 3 [json_name = "timeout_minutes"];
+
+        repeated Asg asg = 4;
+
+        repeated Ungraceful ungraceful = 5;
+
+        message Asg {
+          string arn = 1;
+
+          string cross_account_role = 2 [json_name = "cross_account_role"];
+
+          string external_id = 3 [json_name = "external_id"];
+        }
+
+        message Ungraceful {
+          int64 minimum_success_percentage = 1 [json_name = "minimum_success_percentage"];
+        }
+      }
+
+      message EcsCapacityIncreaseConfig {
+        string capacity_monitoring_approach = 1 [json_name = "capacity_monitoring_approach"];
+
+        int64 target_percent = 2 [json_name = "target_percent"];
+
+        int64 timeout_minutes = 3 [json_name = "timeout_minutes"];
+
+        repeated Service service = 4;
+
+        repeated Ungraceful ungraceful = 5;
+
+        message Service {
+          string cluster_arn = 1 [json_name = "cluster_arn"];
+
+          string cross_account_role = 2 [json_name = "cross_account_role"];
+
+          string external_id = 3 [json_name = "external_id"];
+
+          string service_arn = 4 [json_name = "service_arn"];
+        }
+
+        message Ungraceful {
+          int64 minimum_success_percentage = 1 [json_name = "minimum_success_percentage"];
+        }
+      }
+
+      message EksResourceScalingConfig {
+        string capacity_monitoring_approach = 1 [json_name = "capacity_monitoring_approach"];
+
+        int64 target_percent = 2 [json_name = "target_percent"];
+
+        int64 timeout_minutes = 3 [json_name = "timeout_minutes"];
+
+        repeated EksClusters eks_clusters = 4 [json_name = "eks_clusters"];
+
+        repeated KubernetesResourceType kubernetes_resource_type = 5 [json_name = "kubernetes_resource_type"];
+
+        repeated ScalingResources scaling_resources = 6 [json_name = "scaling_resources"];
+
+        repeated Ungraceful ungraceful = 7;
+
+        message EksClusters {
+          string cluster_arn = 1 [json_name = "cluster_arn"];
+
+          string cross_account_role = 2 [json_name = "cross_account_role"];
+
+          string external_id = 3 [json_name = "external_id"];
+        }
+
+        message KubernetesResourceType {
+          string api_version = 1 [json_name = "api_version"];
+
+          string kind = 2;
+        }
+
+        message ScalingResources {
+          string namespace = 1;
+
+          repeated Resources resources = 2;
+
+          message Resources {
+            string hpa_name = 1 [json_name = "hpa_name"];
+
+            string name = 2;
+
+            string namespace = 3;
+
+            string resource_name = 4 [json_name = "resource_name"];
+          }
+        }
+
+        message Ungraceful {
+          int64 minimum_success_percentage = 1 [json_name = "minimum_success_percentage"];
+        }
+      }
+
+      message ExecutionApprovalConfig {
+        string approval_role = 1 [json_name = "approval_role"];
+
+        int64 timeout_minutes = 2 [json_name = "timeout_minutes"];
+      }
+
+      message GlobalAuroraConfig {
+        string behavior = 1;
+
+        string cross_account_role = 2 [json_name = "cross_account_role"];
+
+        repeated string database_cluster_arns = 3 [json_name = "database_cluster_arns"];
+
+        string external_id = 4 [json_name = "external_id"];
+
+        string global_cluster_identifier = 5 [json_name = "global_cluster_identifier"];
+
+        int64 timeout_minutes = 6 [json_name = "timeout_minutes"];
+
+        repeated Ungraceful ungraceful = 7;
+
+        message Ungraceful {
+          string ungraceful = 1;
+        }
+      }
+
+      message ParallelConfig {
+        repeated Step step = 1;
+
+        message Step {
+          string description = 1;
+
+          string execution_block_type = 2 [json_name = "execution_block_type"];
+
+          string name = 3;
+
+          repeated ArcRoutingControlConfig arc_routing_control_config = 4 [json_name = "arc_routing_control_config"];
+
+          repeated CustomActionLambdaConfig custom_action_lambda_config = 5 [json_name = "custom_action_lambda_config"];
+
+          repeated DocumentDbConfig document_db_config = 6 [json_name = "document_db_config"];
+
+          repeated Ec2AsgCapacityIncreaseConfig ec2_asg_capacity_increase_config = 7 [json_name = "ec2_asg_capacity_increase_config"];
+
+          repeated EcsCapacityIncreaseConfig ecs_capacity_increase_config = 8 [json_name = "ecs_capacity_increase_config"];
+
+          repeated EksResourceScalingConfig eks_resource_scaling_config = 9 [json_name = "eks_resource_scaling_config"];
+
+          repeated ExecutionApprovalConfig execution_approval_config = 10 [json_name = "execution_approval_config"];
+
+          repeated GlobalAuroraConfig global_aurora_config = 11 [json_name = "global_aurora_config"];
+
+          repeated RegionSwitchPlanConfig region_switch_plan_config = 12 [json_name = "region_switch_plan_config"];
+
+          repeated Route53HealthCheckConfig route53_health_check_config = 13 [json_name = "route53_health_check_config"];
+
+          message ArcRoutingControlConfig {
+            string cross_account_role = 1 [json_name = "cross_account_role"];
+
+            string external_id = 2 [json_name = "external_id"];
+
+            int64 timeout_minutes = 3 [json_name = "timeout_minutes"];
+
+            repeated RegionAndRoutingControls region_and_routing_controls = 4 [json_name = "region_and_routing_controls"];
+
+            message RegionAndRoutingControls {
+              string region = 1;
+
+              repeated RoutingControl routing_control = 2 [json_name = "routing_control"];
+
+              message RoutingControl {
+                string routing_control_arn = 1 [json_name = "routing_control_arn"];
+
+                string state = 2;
+              }
+            }
+          }
+
+          message CustomActionLambdaConfig {
+            string region_to_run = 1 [json_name = "region_to_run"];
+
+            int64 retry_interval_minutes = 2 [json_name = "retry_interval_minutes"];
+
+            int64 timeout_minutes = 3 [json_name = "timeout_minutes"];
+
+            repeated Lambda lambda = 4;
+
+            repeated Ungraceful ungraceful = 5;
+
+            message Lambda {
+              string arn = 1;
+
+              string cross_account_role = 2 [json_name = "cross_account_role"];
+
+              string external_id = 3 [json_name = "external_id"];
+            }
+
+            message Ungraceful {
+              string behavior = 1;
+            }
+          }
+
+          message DocumentDbConfig {
+            string behavior = 1;
+
+            string cross_account_role = 2 [json_name = "cross_account_role"];
+
+            repeated string database_cluster_arns = 3 [json_name = "database_cluster_arns"];
+
+            string external_id = 4 [json_name = "external_id"];
+
+            string global_cluster_identifier = 5 [json_name = "global_cluster_identifier"];
+
+            int64 timeout_minutes = 6 [json_name = "timeout_minutes"];
+
+            repeated Ungraceful ungraceful = 7;
+
+            message Ungraceful {
+              string ungraceful = 1;
+            }
+          }
+
+          message Ec2AsgCapacityIncreaseConfig {
+            string capacity_monitoring_approach = 1 [json_name = "capacity_monitoring_approach"];
+
+            int64 target_percent = 2 [json_name = "target_percent"];
+
+            int64 timeout_minutes = 3 [json_name = "timeout_minutes"];
+
+            repeated Asg asg = 4;
+
+            repeated Ungraceful ungraceful = 5;
+
+            message Asg {
+              string arn = 1;
+
+              string cross_account_role = 2 [json_name = "cross_account_role"];
+
+              string external_id = 3 [json_name = "external_id"];
+            }
+
+            message Ungraceful {
+              int64 minimum_success_percentage = 1 [json_name = "minimum_success_percentage"];
+            }
+          }
+
+          message EcsCapacityIncreaseConfig {
+            string capacity_monitoring_approach = 1 [json_name = "capacity_monitoring_approach"];
+
+            int64 target_percent = 2 [json_name = "target_percent"];
+
+            int64 timeout_minutes = 3 [json_name = "timeout_minutes"];
+
+            repeated Service service = 4;
+
+            repeated Ungraceful ungraceful = 5;
+
+            message Service {
+              string cluster_arn = 1 [json_name = "cluster_arn"];
+
+              string cross_account_role = 2 [json_name = "cross_account_role"];
+
+              string external_id = 3 [json_name = "external_id"];
+
+              string service_arn = 4 [json_name = "service_arn"];
+            }
+
+            message Ungraceful {
+              int64 minimum_success_percentage = 1 [json_name = "minimum_success_percentage"];
+            }
+          }
+
+          message EksResourceScalingConfig {
+            string capacity_monitoring_approach = 1 [json_name = "capacity_monitoring_approach"];
+
+            int64 target_percent = 2 [json_name = "target_percent"];
+
+            int64 timeout_minutes = 3 [json_name = "timeout_minutes"];
+
+            repeated EksClusters eks_clusters = 4 [json_name = "eks_clusters"];
+
+            repeated KubernetesResourceType kubernetes_resource_type = 5 [json_name = "kubernetes_resource_type"];
+
+            repeated ScalingResources scaling_resources = 6 [json_name = "scaling_resources"];
+
+            repeated Ungraceful ungraceful = 7;
+
+            message EksClusters {
+              string cluster_arn = 1 [json_name = "cluster_arn"];
+
+              string cross_account_role = 2 [json_name = "cross_account_role"];
+
+              string external_id = 3 [json_name = "external_id"];
+            }
+
+            message KubernetesResourceType {
+              string api_version = 1 [json_name = "api_version"];
+
+              string kind = 2;
+            }
+
+            message ScalingResources {
+              string namespace = 1;
+
+              repeated Resources resources = 2;
+
+              message Resources {
+                string hpa_name = 1 [json_name = "hpa_name"];
+
+                string name = 2;
+
+                string namespace = 3;
+
+                string resource_name = 4 [json_name = "resource_name"];
+              }
+            }
+
+            message Ungraceful {
+              int64 minimum_success_percentage = 1 [json_name = "minimum_success_percentage"];
+            }
+          }
+
+          message ExecutionApprovalConfig {
+            string approval_role = 1 [json_name = "approval_role"];
+
+            int64 timeout_minutes = 2 [json_name = "timeout_minutes"];
+          }
+
+          message GlobalAuroraConfig {
+            string behavior = 1;
+
+            string cross_account_role = 2 [json_name = "cross_account_role"];
+
+            repeated string database_cluster_arns = 3 [json_name = "database_cluster_arns"];
+
+            string external_id = 4 [json_name = "external_id"];
+
+            string global_cluster_identifier = 5 [json_name = "global_cluster_identifier"];
+
+            int64 timeout_minutes = 6 [json_name = "timeout_minutes"];
+
+            repeated Ungraceful ungraceful = 7;
+
+            message Ungraceful {
+              string ungraceful = 1;
+            }
+          }
+
+          message RegionSwitchPlanConfig {
+            string arn = 1;
+
+            string cross_account_role = 2 [json_name = "cross_account_role"];
+
+            string external_id = 3 [json_name = "external_id"];
+          }
+
+          message Route53HealthCheckConfig {
+            string cross_account_role = 1 [json_name = "cross_account_role"];
+
+            string external_id = 2 [json_name = "external_id"];
+
+            string hosted_zone_id = 3 [json_name = "hosted_zone_id"];
+
+            string record_name = 4 [json_name = "record_name"];
+
+            int64 timeout_minutes = 5 [json_name = "timeout_minutes"];
+
+            repeated RecordSet record_set = 6 [json_name = "record_set"];
+
+            message RecordSet {
+              string record_set_identifier = 1 [json_name = "record_set_identifier"];
+
+              string region = 2;
+            }
+          }
+        }
+      }
+
+      message RegionSwitchPlanConfig {
+        string arn = 1;
+
+        string cross_account_role = 2 [json_name = "cross_account_role"];
+
+        string external_id = 3 [json_name = "external_id"];
+      }
+
+      message Route53HealthCheckConfig {
+        string cross_account_role = 1 [json_name = "cross_account_role"];
+
+        string external_id = 2 [json_name = "external_id"];
+
+        string hosted_zone_id = 3 [json_name = "hosted_zone_id"];
+
+        string record_name = 4 [json_name = "record_name"];
+
+        int64 timeout_minutes = 5 [json_name = "timeout_minutes"];
+
+        repeated RecordSet record_set = 6 [json_name = "record_set"];
+
+        message RecordSet {
+          string record_set_identifier = 1 [json_name = "record_set_identifier"];
+
+          string region = 2;
+        }
+      }
+    }
+  }
+}

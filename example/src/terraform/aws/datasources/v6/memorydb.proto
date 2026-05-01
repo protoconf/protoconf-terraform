@@ -1,0 +1,354 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsMemorydbAcl version is 0
+message AwsMemorydbAcl {
+  string arn = 1;
+
+  string id = 2;
+
+  string minimum_engine_version = 3 [json_name = "minimum_engine_version"];
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  repeated string user_names = 7 [json_name = "user_names"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsMemorydbCluster version is 0
+message AwsMemorydbCluster {
+  string acl_name = 1 [json_name = "acl_name"];
+
+  string arn = 2;
+
+  bool auto_minor_version_upgrade = 3 [json_name = "auto_minor_version_upgrade"];
+
+  repeated ClusterEndpoint cluster_endpoint = 4 [json_name = "cluster_endpoint"];
+
+  bool data_tiering = 5 [json_name = "data_tiering"];
+
+  string description = 6;
+
+  string engine = 7;
+
+  string engine_patch_version = 8 [json_name = "engine_patch_version"];
+
+  string engine_version = 9 [json_name = "engine_version"];
+
+  string final_snapshot_name = 10 [json_name = "final_snapshot_name"];
+
+  string id = 11;
+
+  string ip_discovery = 12 [json_name = "ip_discovery"];
+
+  string kms_key_arn = 13 [json_name = "kms_key_arn"];
+
+  string maintenance_window = 14 [json_name = "maintenance_window"];
+
+  string name = 15;
+
+  string network_type = 16 [json_name = "network_type"];
+
+  string node_type = 17 [json_name = "node_type"];
+
+  int64 num_replicas_per_shard = 18 [json_name = "num_replicas_per_shard"];
+
+  int64 num_shards = 19 [json_name = "num_shards"];
+
+  string parameter_group_name = 20 [json_name = "parameter_group_name"];
+
+  int64 port = 21;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 22;
+
+  repeated string security_group_ids = 23 [json_name = "security_group_ids"];
+
+  repeated Shards shards = 24;
+
+  int64 snapshot_retention_limit = 25 [json_name = "snapshot_retention_limit"];
+
+  string snapshot_window = 26 [json_name = "snapshot_window"];
+
+  string sns_topic_arn = 27 [json_name = "sns_topic_arn"];
+
+  string subnet_group_name = 28 [json_name = "subnet_group_name"];
+
+  map<string, string> tags = 29;
+
+  bool tls_enabled = 30 [json_name = "tls_enabled"];
+
+  google.protobuf.Value for_each = 31 [json_name = "for_each"];
+
+  repeated string depends_on = 32 [json_name = "depends_on"];
+
+  int32 count = 33;
+
+  string provider = 34;
+
+  terraform.v1.Lifecycle lifecycle = 35;
+
+  message ClusterEndpoint {
+    // address: string
+    string address = 1;
+
+    // port: number
+    int64 port = 2;
+  }
+
+  message Shards {
+    // name: string
+    string name = 1;
+
+    // nodes: set of object
+    repeated Nodes nodes = 2;
+
+    // num_nodes: number
+    int64 num_nodes = 3 [json_name = "num_nodes"];
+
+    // slots: string
+    string slots = 4;
+
+    message Nodes {
+      // availability_zone: string
+      string availability_zone = 1 [json_name = "availability_zone"];
+
+      // create_time: string
+      string create_time = 2 [json_name = "create_time"];
+
+      // endpoint: list of object
+      repeated Endpoint endpoint = 3;
+
+      // name: string
+      string name = 4;
+
+      message Endpoint {
+        // address: string
+        string address = 1;
+
+        // port: number
+        int64 port = 2;
+      }
+    }
+  }
+}
+
+// AwsMemorydbParameterGroup version is 0
+message AwsMemorydbParameterGroup {
+  string arn = 1;
+
+  string description = 2;
+
+  string family = 3;
+
+  string id = 4;
+
+  string name = 5;
+
+  repeated Parameter parameter = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Parameter {
+    // name: string
+    string name = 1;
+
+    // value: string
+    string value = 2;
+  }
+}
+
+// AwsMemorydbSnapshot version is 0
+message AwsMemorydbSnapshot {
+  string arn = 1;
+
+  repeated ClusterConfiguration cluster_configuration = 2 [json_name = "cluster_configuration"];
+
+  string cluster_name = 3 [json_name = "cluster_name"];
+
+  string id = 4;
+
+  string kms_key_arn = 5 [json_name = "kms_key_arn"];
+
+  string name = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string source = 8;
+
+  map<string, string> tags = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message ClusterConfiguration {
+    // description: string
+    string description = 1;
+
+    // engine: string
+    string engine = 2;
+
+    // engine_version: string
+    string engine_version = 3 [json_name = "engine_version"];
+
+    // maintenance_window: string
+    string maintenance_window = 4 [json_name = "maintenance_window"];
+
+    // name: string
+    string name = 5;
+
+    // node_type: string
+    string node_type = 6 [json_name = "node_type"];
+
+    // num_shards: number
+    int64 num_shards = 7 [json_name = "num_shards"];
+
+    // parameter_group_name: string
+    string parameter_group_name = 8 [json_name = "parameter_group_name"];
+
+    // port: number
+    int64 port = 9;
+
+    // snapshot_retention_limit: number
+    int64 snapshot_retention_limit = 10 [json_name = "snapshot_retention_limit"];
+
+    // snapshot_window: string
+    string snapshot_window = 11 [json_name = "snapshot_window"];
+
+    // subnet_group_name: string
+    string subnet_group_name = 12 [json_name = "subnet_group_name"];
+
+    // topic_arn: string
+    string topic_arn = 13 [json_name = "topic_arn"];
+
+    // vpc_id: string
+    string vpc_id = 14 [json_name = "vpc_id"];
+  }
+}
+
+// AwsMemorydbSubnetGroup version is 0
+message AwsMemorydbSubnetGroup {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated string subnet_ids = 6 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 7;
+
+  string vpc_id = 8 [json_name = "vpc_id"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsMemorydbUser version is 0
+message AwsMemorydbUser {
+  string access_string = 1 [json_name = "access_string"];
+
+  string arn = 2;
+
+  repeated AuthenticationMode authentication_mode = 3 [json_name = "authentication_mode"];
+
+  string id = 4;
+
+  string minimum_engine_version = 5 [json_name = "minimum_engine_version"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  string user_name = 8 [json_name = "user_name"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message AuthenticationMode {
+    // password_count: number
+    int64 password_count = 1 [json_name = "password_count"];
+
+    // type: string
+    string type = 2;
+  }
+}

@@ -1,0 +1,234 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSesv2ConfigurationSet version is 0
+message AwsSesv2ConfigurationSet {
+  string arn = 1;
+
+  string configuration_set_name = 2 [json_name = "configuration_set_name"];
+
+  repeated DeliveryOptions delivery_options = 3 [json_name = "delivery_options"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated ReputationOptions reputation_options = 6 [json_name = "reputation_options"];
+
+  repeated SendingOptions sending_options = 7 [json_name = "sending_options"];
+
+  repeated SuppressionOptions suppression_options = 8 [json_name = "suppression_options"];
+
+  map<string, string> tags = 9;
+
+  repeated TrackingOptions tracking_options = 10 [json_name = "tracking_options"];
+
+  repeated VdmOptions vdm_options = 11 [json_name = "vdm_options"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message DeliveryOptions {
+    // max_delivery_seconds: number
+    int64 max_delivery_seconds = 1 [json_name = "max_delivery_seconds"];
+
+    // sending_pool_name: string
+    string sending_pool_name = 2 [json_name = "sending_pool_name"];
+
+    // tls_policy: string
+    string tls_policy = 3 [json_name = "tls_policy"];
+  }
+
+  message ReputationOptions {
+    // last_fresh_start: string
+    string last_fresh_start = 1 [json_name = "last_fresh_start"];
+
+    // reputation_metrics_enabled: bool
+    bool reputation_metrics_enabled = 2 [json_name = "reputation_metrics_enabled"];
+  }
+
+  message SendingOptions {
+    // sending_enabled: bool
+    bool sending_enabled = 1 [json_name = "sending_enabled"];
+  }
+
+  message SuppressionOptions {
+    // suppressed_reasons: list of string
+    repeated string suppressed_reasons = 1 [json_name = "suppressed_reasons"];
+  }
+
+  message TrackingOptions {
+    // custom_redirect_domain: string
+    string custom_redirect_domain = 1 [json_name = "custom_redirect_domain"];
+
+    // https_policy: string
+    string https_policy = 2 [json_name = "https_policy"];
+  }
+
+  message VdmOptions {
+    // dashboard_options: list of object
+    repeated DashboardOptions dashboard_options = 1 [json_name = "dashboard_options"];
+
+    // guardian_options: list of object
+    repeated GuardianOptions guardian_options = 2 [json_name = "guardian_options"];
+
+    message DashboardOptions {
+      // engagement_metrics: string
+      string engagement_metrics = 1 [json_name = "engagement_metrics"];
+    }
+
+    message GuardianOptions {
+      // optimized_shared_delivery: string
+      string optimized_shared_delivery = 1 [json_name = "optimized_shared_delivery"];
+    }
+  }
+}
+
+// AwsSesv2DedicatedIpPool version is 0
+message AwsSesv2DedicatedIpPool {
+  string arn = 1;
+
+  repeated DedicatedIps dedicated_ips = 2 [json_name = "dedicated_ips"];
+
+  string id = 3;
+
+  string pool_name = 4 [json_name = "pool_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string scaling_mode = 6 [json_name = "scaling_mode"];
+
+  map<string, string> tags = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message DedicatedIps {
+    // ip: string
+    string ip = 1;
+
+    // warmup_percentage: number
+    int64 warmup_percentage = 2 [json_name = "warmup_percentage"];
+
+    // warmup_status: string
+    string warmup_status = 3 [json_name = "warmup_status"];
+  }
+}
+
+// AwsSesv2EmailIdentity version is 0
+message AwsSesv2EmailIdentity {
+  string arn = 1;
+
+  string configuration_set_name = 2 [json_name = "configuration_set_name"];
+
+  repeated DkimSigningAttributes dkim_signing_attributes = 3 [json_name = "dkim_signing_attributes"];
+
+  string email_identity = 4 [json_name = "email_identity"];
+
+  string id = 5;
+
+  string identity_type = 6 [json_name = "identity_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  string verification_status = 9 [json_name = "verification_status"];
+
+  bool verified_for_sending_status = 10 [json_name = "verified_for_sending_status"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message DkimSigningAttributes {
+    // current_signing_key_length: string
+    string current_signing_key_length = 1 [json_name = "current_signing_key_length"];
+
+    // domain_signing_private_key: string
+    string domain_signing_private_key = 2 [json_name = "domain_signing_private_key"];
+
+    // domain_signing_selector: string
+    string domain_signing_selector = 3 [json_name = "domain_signing_selector"];
+
+    // last_key_generation_timestamp: string
+    string last_key_generation_timestamp = 4 [json_name = "last_key_generation_timestamp"];
+
+    // next_signing_key_length: string
+    string next_signing_key_length = 5 [json_name = "next_signing_key_length"];
+
+    // signing_attributes_origin: string
+    string signing_attributes_origin = 6 [json_name = "signing_attributes_origin"];
+
+    // status: string
+    string status = 7;
+
+    // tokens: list of string
+    repeated string tokens = 8;
+  }
+}
+
+// AwsSesv2EmailIdentityMailFromAttributes version is 0
+message AwsSesv2EmailIdentityMailFromAttributes {
+  string behavior_on_mx_failure = 1 [json_name = "behavior_on_mx_failure"];
+
+  string email_identity = 2 [json_name = "email_identity"];
+
+  string id = 3;
+
+  string mail_from_domain = 4 [json_name = "mail_from_domain"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}

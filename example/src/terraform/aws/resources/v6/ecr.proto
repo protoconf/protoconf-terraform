@@ -1,0 +1,374 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsEcrAccountSetting version is 0
+message AwsEcrAccountSetting {
+  string name = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string value = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsEcrLifecyclePolicy version is 0
+message AwsEcrLifecyclePolicy {
+  string id = 1;
+
+  string policy = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string registry_id = 4 [json_name = "registry_id"];
+
+  string repository = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsEcrPullThroughCacheRule version is 0
+message AwsEcrPullThroughCacheRule {
+  string credential_arn = 1 [json_name = "credential_arn"];
+
+  string custom_role_arn = 2 [json_name = "custom_role_arn"];
+
+  string ecr_repository_prefix = 3 [json_name = "ecr_repository_prefix"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string registry_id = 6 [json_name = "registry_id"];
+
+  string upstream_registry_url = 7 [json_name = "upstream_registry_url"];
+
+  string upstream_repository_prefix = 8 [json_name = "upstream_repository_prefix"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsEcrPullTimeUpdateExclusion version is 0
+message AwsEcrPullTimeUpdateExclusion {
+  string principal_arn = 1 [json_name = "principal_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+}
+
+// AwsEcrRegistryPolicy version is 0
+message AwsEcrRegistryPolicy {
+  string id = 1;
+
+  string policy = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string registry_id = 4 [json_name = "registry_id"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsEcrRegistryScanningConfiguration version is 0
+message AwsEcrRegistryScanningConfiguration {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string registry_id = 3 [json_name = "registry_id"];
+
+  string scan_type = 4 [json_name = "scan_type"];
+
+  repeated Rule rule = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Rule {
+    string scan_frequency = 1 [json_name = "scan_frequency"];
+
+    repeated RepositoryFilter repository_filter = 2 [json_name = "repository_filter"];
+
+    message RepositoryFilter {
+      string filter = 1;
+
+      string filter_type = 2 [json_name = "filter_type"];
+    }
+  }
+}
+
+// AwsEcrReplicationConfiguration version is 0
+message AwsEcrReplicationConfiguration {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string registry_id = 3 [json_name = "registry_id"];
+
+  ReplicationConfiguration replication_configuration = 4 [json_name = "replication_configuration"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message ReplicationConfiguration {
+    repeated Rule rule = 1;
+
+    message Rule {
+      repeated Destination destination = 1;
+
+      repeated RepositoryFilter repository_filter = 2 [json_name = "repository_filter"];
+
+      message Destination {
+        string region = 1;
+
+        string registry_id = 2 [json_name = "registry_id"];
+      }
+
+      message RepositoryFilter {
+        string filter = 1;
+
+        string filter_type = 2 [json_name = "filter_type"];
+      }
+    }
+  }
+}
+
+// AwsEcrRepository version is 0
+message AwsEcrRepository {
+  string arn = 1;
+
+  bool force_delete = 2 [json_name = "force_delete"];
+
+  string id = 3;
+
+  string image_tag_mutability = 4 [json_name = "image_tag_mutability"];
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string registry_id = 7 [json_name = "registry_id"];
+
+  string repository_url = 8 [json_name = "repository_url"];
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  repeated EncryptionConfiguration encryption_configuration = 11 [json_name = "encryption_configuration"];
+
+  ImageScanningConfiguration image_scanning_configuration = 12 [json_name = "image_scanning_configuration"];
+
+  repeated ImageTagMutabilityExclusionFilter image_tag_mutability_exclusion_filter = 13 [
+    json_name = "image_tag_mutability_exclusion_filter"
+  ];
+
+  repeated Timeouts timeouts = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message EncryptionConfiguration {
+    string encryption_type = 1 [json_name = "encryption_type"];
+
+    string kms_key = 2 [json_name = "kms_key"];
+  }
+
+  message ImageScanningConfiguration {
+    bool scan_on_push = 1 [json_name = "scan_on_push"];
+  }
+
+  message ImageTagMutabilityExclusionFilter {
+    string filter = 1;
+
+    string filter_type = 2 [json_name = "filter_type"];
+  }
+
+  message Timeouts {
+    string delete = 1;
+  }
+}
+
+// AwsEcrRepositoryCreationTemplate version is 0
+message AwsEcrRepositoryCreationTemplate {
+  repeated string applied_for = 1 [json_name = "applied_for"];
+
+  string custom_role_arn = 2 [json_name = "custom_role_arn"];
+
+  string description = 3;
+
+  string id = 4;
+
+  string image_tag_mutability = 5 [json_name = "image_tag_mutability"];
+
+  string lifecycle_policy = 6 [json_name = "lifecycle_policy"];
+
+  string prefix = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  string registry_id = 9 [json_name = "registry_id"];
+
+  string repository_policy = 10 [json_name = "repository_policy"];
+
+  map<string, string> resource_tags = 11 [json_name = "resource_tags"];
+
+  repeated EncryptionConfiguration encryption_configuration = 12 [json_name = "encryption_configuration"];
+
+  repeated ImageTagMutabilityExclusionFilter image_tag_mutability_exclusion_filter = 13 [
+    json_name = "image_tag_mutability_exclusion_filter"
+  ];
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message EncryptionConfiguration {
+    string encryption_type = 1 [json_name = "encryption_type"];
+
+    string kms_key = 2 [json_name = "kms_key"];
+  }
+
+  message ImageTagMutabilityExclusionFilter {
+    string filter = 1;
+
+    string filter_type = 2 [json_name = "filter_type"];
+  }
+}
+
+// AwsEcrRepositoryPolicy version is 0
+message AwsEcrRepositoryPolicy {
+  string id = 1;
+
+  string policy = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string registry_id = 4 [json_name = "registry_id"];
+
+  string repository = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}

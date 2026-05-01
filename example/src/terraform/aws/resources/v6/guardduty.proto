@@ -1,0 +1,571 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsGuarddutyDetector version is 0
+message AwsGuarddutyDetector {
+  string account_id = 1 [json_name = "account_id"];
+
+  string arn = 2;
+
+  bool enable = 3;
+
+  string finding_publishing_frequency = 4 [json_name = "finding_publishing_frequency"];
+
+  string id = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  Datasources datasources = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Datasources {
+    Kubernetes kubernetes = 1;
+
+    MalwareProtection malware_protection = 2 [json_name = "malware_protection"];
+
+    S3Logs s3_logs = 3 [json_name = "s3_logs"];
+
+    message Kubernetes {
+      AuditLogs audit_logs = 1 [json_name = "audit_logs"];
+
+      message AuditLogs {
+        bool enable = 1;
+      }
+    }
+
+    message MalwareProtection {
+      ScanEc2InstanceWithFindings scan_ec2_instance_with_findings = 1 [json_name = "scan_ec2_instance_with_findings"];
+
+      message ScanEc2InstanceWithFindings {
+        EbsVolumes ebs_volumes = 1 [json_name = "ebs_volumes"];
+
+        message EbsVolumes {
+          bool enable = 1;
+        }
+      }
+    }
+
+    message S3Logs {
+      bool enable = 1;
+    }
+  }
+}
+
+// AwsGuarddutyDetectorFeature version is 0
+message AwsGuarddutyDetectorFeature {
+  string detector_id = 1 [json_name = "detector_id"];
+
+  string id = 2;
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string status = 5;
+
+  repeated AdditionalConfiguration additional_configuration = 6 [json_name = "additional_configuration"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message AdditionalConfiguration {
+    string name = 1;
+
+    string status = 2;
+  }
+}
+
+// AwsGuarddutyFilter version is 0
+message AwsGuarddutyFilter {
+  string action = 1;
+
+  string arn = 2;
+
+  string description = 3;
+
+  string detector_id = 4 [json_name = "detector_id"];
+
+  string id = 5;
+
+  string name = 6;
+
+  int64 rank = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  FindingCriteria finding_criteria = 11 [json_name = "finding_criteria"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message FindingCriteria {
+    repeated Criterion criterion = 1;
+
+    message Criterion {
+      repeated string equals = 1;
+
+      string field = 2;
+
+      string greater_than = 3 [json_name = "greater_than"];
+
+      string greater_than_or_equal = 4 [json_name = "greater_than_or_equal"];
+
+      string less_than = 5 [json_name = "less_than"];
+
+      string less_than_or_equal = 6 [json_name = "less_than_or_equal"];
+
+      repeated string matches = 7;
+
+      repeated string not_equals = 8 [json_name = "not_equals"];
+
+      repeated string not_matches = 9 [json_name = "not_matches"];
+    }
+  }
+}
+
+// AwsGuarddutyInviteAccepter version is 0
+message AwsGuarddutyInviteAccepter {
+  string detector_id = 1 [json_name = "detector_id"];
+
+  string id = 2;
+
+  string master_account_id = 3 [json_name = "master_account_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Timeouts {
+    string create = 1;
+  }
+}
+
+// AwsGuarddutyIpset version is 0
+message AwsGuarddutyIpset {
+  bool activate = 1;
+
+  string arn = 2;
+
+  string detector_id = 3 [json_name = "detector_id"];
+
+  string format = 4;
+
+  string id = 5;
+
+  string ip_set_id = 6 [json_name = "ip_set_id"];
+
+  string location = 7;
+
+  string name = 8;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+}
+
+// AwsGuarddutyMalwareProtectionPlan version is 0
+message AwsGuarddutyMalwareProtectionPlan {
+  repeated Actions actions = 1;
+
+  string arn = 2;
+
+  string created_at = 3 [json_name = "created_at"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string role = 6;
+
+  string status = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  repeated ProtectedResource protected_resource = 10 [json_name = "protected_resource"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message Actions {
+    // tagging: list of object
+    repeated Tagging tagging = 1;
+
+    message Tagging {
+      // status: string
+      string status = 1;
+    }
+  }
+
+  message ProtectedResource {
+    repeated S3Bucket s3_bucket = 1 [json_name = "s3_bucket"];
+
+    message S3Bucket {
+      string bucket_name = 1 [json_name = "bucket_name"];
+
+      repeated string object_prefixes = 2 [json_name = "object_prefixes"];
+    }
+  }
+}
+
+// AwsGuarddutyMember version is 0
+message AwsGuarddutyMember {
+  string account_id = 1 [json_name = "account_id"];
+
+  string detector_id = 2 [json_name = "detector_id"];
+
+  bool disable_email_notification = 3 [json_name = "disable_email_notification"];
+
+  string email = 4;
+
+  string id = 5;
+
+  string invitation_message = 6 [json_name = "invitation_message"];
+
+  bool invite = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  string relationship_status = 9 [json_name = "relationship_status"];
+
+  repeated Timeouts timeouts = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message Timeouts {
+    string create = 1;
+
+    string update = 2;
+  }
+}
+
+// AwsGuarddutyMemberDetectorFeature version is 0
+message AwsGuarddutyMemberDetectorFeature {
+  string account_id = 1 [json_name = "account_id"];
+
+  string detector_id = 2 [json_name = "detector_id"];
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string status = 5;
+
+  repeated AdditionalConfiguration additional_configuration = 6 [json_name = "additional_configuration"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message AdditionalConfiguration {
+    string name = 1;
+
+    string status = 2;
+  }
+}
+
+// AwsGuarddutyOrganizationAdminAccount version is 0
+message AwsGuarddutyOrganizationAdminAccount {
+  string admin_account_id = 1 [json_name = "admin_account_id"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsGuarddutyOrganizationConfiguration version is 0
+message AwsGuarddutyOrganizationConfiguration {
+  string auto_enable_organization_members = 1 [json_name = "auto_enable_organization_members"];
+
+  string detector_id = 2 [json_name = "detector_id"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  Datasources datasources = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Datasources {
+    Kubernetes kubernetes = 1;
+
+    MalwareProtection malware_protection = 2 [json_name = "malware_protection"];
+
+    S3Logs s3_logs = 3 [json_name = "s3_logs"];
+
+    message Kubernetes {
+      AuditLogs audit_logs = 1 [json_name = "audit_logs"];
+
+      message AuditLogs {
+        bool enable = 1;
+      }
+    }
+
+    message MalwareProtection {
+      ScanEc2InstanceWithFindings scan_ec2_instance_with_findings = 1 [json_name = "scan_ec2_instance_with_findings"];
+
+      message ScanEc2InstanceWithFindings {
+        EbsVolumes ebs_volumes = 1 [json_name = "ebs_volumes"];
+
+        message EbsVolumes {
+          bool auto_enable = 1 [json_name = "auto_enable"];
+        }
+      }
+    }
+
+    message S3Logs {
+      bool auto_enable = 1 [json_name = "auto_enable"];
+    }
+  }
+}
+
+// AwsGuarddutyOrganizationConfigurationFeature version is 0
+message AwsGuarddutyOrganizationConfigurationFeature {
+  string auto_enable = 1 [json_name = "auto_enable"];
+
+  string detector_id = 2 [json_name = "detector_id"];
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated AdditionalConfiguration additional_configuration = 6 [json_name = "additional_configuration"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message AdditionalConfiguration {
+    string auto_enable = 1 [json_name = "auto_enable"];
+
+    string name = 2;
+  }
+}
+
+// AwsGuarddutyPublishingDestination version is 0
+message AwsGuarddutyPublishingDestination {
+  string arn = 1;
+
+  string destination_arn = 2 [json_name = "destination_arn"];
+
+  string destination_id = 3 [json_name = "destination_id"];
+
+  string destination_type = 4 [json_name = "destination_type"];
+
+  string detector_id = 5 [json_name = "detector_id"];
+
+  string id = 6;
+
+  string kms_key_arn = 7 [json_name = "kms_key_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+}
+
+// AwsGuarddutyThreatintelset version is 0
+message AwsGuarddutyThreatintelset {
+  bool activate = 1;
+
+  string arn = 2;
+
+  string detector_id = 3 [json_name = "detector_id"];
+
+  string format = 4;
+
+  string id = 5;
+
+  string location = 6;
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  string threat_intel_set_id = 11 [json_name = "threat_intel_set_id"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+}

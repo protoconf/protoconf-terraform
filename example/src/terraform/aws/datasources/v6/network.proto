@@ -1,0 +1,214 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsNetworkAcls version is 0
+message AwsNetworkAcls {
+  string id = 1;
+
+  repeated string ids = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  map<string, string> tags = 4;
+
+  string vpc_id = 5 [json_name = "vpc_id"];
+
+  repeated Filter filter = 6;
+
+  repeated Timeouts timeouts = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsNetworkInterface version is 0
+message AwsNetworkInterface {
+  string arn = 1;
+
+  repeated Association association = 2;
+
+  repeated Attachment attachment = 3;
+
+  string availability_zone = 4 [json_name = "availability_zone"];
+
+  string description = 5;
+
+  repeated EnaSrdSpecification ena_srd_specification = 6 [json_name = "ena_srd_specification"];
+
+  string id = 7;
+
+  string interface_type = 8 [json_name = "interface_type"];
+
+  repeated string ipv6_addresses = 9 [json_name = "ipv6_addresses"];
+
+  string mac_address = 10 [json_name = "mac_address"];
+
+  string outpost_arn = 11 [json_name = "outpost_arn"];
+
+  string owner_id = 12 [json_name = "owner_id"];
+
+  string private_dns_name = 13 [json_name = "private_dns_name"];
+
+  string private_ip = 14 [json_name = "private_ip"];
+
+  repeated string private_ips = 15 [json_name = "private_ips"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 16;
+
+  string requester_id = 17 [json_name = "requester_id"];
+
+  repeated string security_groups = 18 [json_name = "security_groups"];
+
+  string subnet_id = 19 [json_name = "subnet_id"];
+
+  map<string, string> tags = 20;
+
+  string vpc_id = 21 [json_name = "vpc_id"];
+
+  repeated Filter filter = 22;
+
+  repeated Timeouts timeouts = 23;
+
+  google.protobuf.Value for_each = 24 [json_name = "for_each"];
+
+  repeated string depends_on = 25 [json_name = "depends_on"];
+
+  int32 count = 26;
+
+  string provider = 27;
+
+  terraform.v1.Lifecycle lifecycle = 28;
+
+  message Association {
+    // allocation_id: string
+    string allocation_id = 1 [json_name = "allocation_id"];
+
+    // association_id: string
+    string association_id = 2 [json_name = "association_id"];
+
+    // carrier_ip: string
+    string carrier_ip = 3 [json_name = "carrier_ip"];
+
+    // customer_owned_ip: string
+    string customer_owned_ip = 4 [json_name = "customer_owned_ip"];
+
+    // ip_owner_id: string
+    string ip_owner_id = 5 [json_name = "ip_owner_id"];
+
+    // public_dns_name: string
+    string public_dns_name = 6 [json_name = "public_dns_name"];
+
+    // public_ip: string
+    string public_ip = 7 [json_name = "public_ip"];
+  }
+
+  message Attachment {
+    // attachment_id: string
+    string attachment_id = 1 [json_name = "attachment_id"];
+
+    // device_index: number
+    int64 device_index = 2 [json_name = "device_index"];
+
+    // instance_id: string
+    string instance_id = 3 [json_name = "instance_id"];
+
+    // instance_owner_id: string
+    string instance_owner_id = 4 [json_name = "instance_owner_id"];
+
+    // network_card_index: number
+    int64 network_card_index = 5 [json_name = "network_card_index"];
+  }
+
+  message EnaSrdSpecification {
+    // ena_srd_enabled: bool
+    bool ena_srd_enabled = 1 [json_name = "ena_srd_enabled"];
+
+    // ena_srd_udp_specification: list of object
+    repeated EnaSrdUdpSpecification ena_srd_udp_specification = 2 [json_name = "ena_srd_udp_specification"];
+
+    message EnaSrdUdpSpecification {
+      // ena_srd_udp_enabled: bool
+      bool ena_srd_udp_enabled = 1 [json_name = "ena_srd_udp_enabled"];
+    }
+  }
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsNetworkInterfaces version is 0
+message AwsNetworkInterfaces {
+  string id = 1;
+
+  repeated string ids = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  map<string, string> tags = 4;
+
+  repeated Filter filter = 5;
+
+  repeated Timeouts timeouts = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}

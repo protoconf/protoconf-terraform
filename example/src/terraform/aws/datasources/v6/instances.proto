@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsInstances version is 0
+message AwsInstances {
+  string id = 1;
+
+  repeated string ids = 2;
+
+  repeated string instance_state_names = 3 [json_name = "instance_state_names"];
+
+  map<string, string> instance_tags = 4 [json_name = "instance_tags"];
+
+  repeated string ipv6_addresses = 5 [json_name = "ipv6_addresses"];
+
+  repeated string private_ips = 6 [json_name = "private_ips"];
+
+  repeated string public_ips = 7 [json_name = "public_ips"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  repeated Filter filter = 9;
+
+  repeated Timeouts timeouts = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}

@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsAvailabilityZone version is 0
+message AwsAvailabilityZone {
+  bool all_availability_zones = 1 [json_name = "all_availability_zones"];
+
+  string group_long_name = 2 [json_name = "group_long_name"];
+
+  string group_name = 3 [json_name = "group_name"];
+
+  string id = 4;
+
+  string name = 5;
+
+  string name_suffix = 6 [json_name = "name_suffix"];
+
+  string network_border_group = 7 [json_name = "network_border_group"];
+
+  string opt_in_status = 8 [json_name = "opt_in_status"];
+
+  string parent_zone_id = 9 [json_name = "parent_zone_id"];
+
+  string parent_zone_name = 10 [json_name = "parent_zone_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string state = 12;
+
+  string zone_id = 13 [json_name = "zone_id"];
+
+  string zone_type = 14 [json_name = "zone_type"];
+
+  repeated Filter filter = 15;
+
+  repeated Timeouts timeouts = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsAvailabilityZones version is 0
+message AwsAvailabilityZones {
+  bool all_availability_zones = 1 [json_name = "all_availability_zones"];
+
+  repeated string exclude_names = 2 [json_name = "exclude_names"];
+
+  repeated string exclude_zone_ids = 3 [json_name = "exclude_zone_ids"];
+
+  repeated string group_names = 4 [json_name = "group_names"];
+
+  string id = 5;
+
+  repeated string names = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string state = 8;
+
+  repeated string zone_ids = 9 [json_name = "zone_ids"];
+
+  repeated Filter filter = 10;
+
+  repeated Timeouts timeouts = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}

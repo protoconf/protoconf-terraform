@@ -1,0 +1,213 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCloudtrail version is 1
+message AwsCloudtrail {
+  string arn = 1;
+
+  string cloud_watch_logs_group_arn = 2 [json_name = "cloud_watch_logs_group_arn"];
+
+  string cloud_watch_logs_role_arn = 3 [json_name = "cloud_watch_logs_role_arn"];
+
+  bool enable_log_file_validation = 4 [json_name = "enable_log_file_validation"];
+
+  bool enable_logging = 5 [json_name = "enable_logging"];
+
+  string home_region = 6 [json_name = "home_region"];
+
+  string id = 7;
+
+  bool include_global_service_events = 8 [json_name = "include_global_service_events"];
+
+  bool is_multi_region_trail = 9 [json_name = "is_multi_region_trail"];
+
+  bool is_organization_trail = 10 [json_name = "is_organization_trail"];
+
+  string kms_key_id = 11 [json_name = "kms_key_id"];
+
+  string name = 12;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  string s3_bucket_name = 14 [json_name = "s3_bucket_name"];
+
+  string s3_key_prefix = 15 [json_name = "s3_key_prefix"];
+
+  string sns_topic_arn = 16 [json_name = "sns_topic_arn"];
+
+  string sns_topic_name = 17 [json_name = "sns_topic_name"];
+
+  map<string, string> tags = 18;
+
+  map<string, string> tags_all = 19 [json_name = "tags_all"];
+
+  repeated AdvancedEventSelector advanced_event_selector = 20 [json_name = "advanced_event_selector"];
+
+  repeated EventSelector event_selector = 21 [json_name = "event_selector"];
+
+  repeated InsightSelector insight_selector = 22 [json_name = "insight_selector"];
+
+  google.protobuf.Value for_each = 23 [json_name = "for_each"];
+
+  repeated string depends_on = 24 [json_name = "depends_on"];
+
+  int32 count = 25;
+
+  string provider = 26;
+
+  terraform.v1.Lifecycle lifecycle = 27;
+
+  message AdvancedEventSelector {
+    string name = 1;
+
+    repeated FieldSelector field_selector = 2 [json_name = "field_selector"];
+
+    message FieldSelector {
+      repeated string ends_with = 1 [json_name = "ends_with"];
+
+      repeated string equals = 2;
+
+      string field = 3;
+
+      repeated string not_ends_with = 4 [json_name = "not_ends_with"];
+
+      repeated string not_equals = 5 [json_name = "not_equals"];
+
+      repeated string not_starts_with = 6 [json_name = "not_starts_with"];
+
+      repeated string starts_with = 7 [json_name = "starts_with"];
+    }
+  }
+
+  message EventSelector {
+    repeated string exclude_management_event_sources = 1 [json_name = "exclude_management_event_sources"];
+
+    bool include_management_events = 2 [json_name = "include_management_events"];
+
+    string read_write_type = 3 [json_name = "read_write_type"];
+
+    repeated DataResource data_resource = 4 [json_name = "data_resource"];
+
+    message DataResource {
+      string type = 1;
+
+      repeated string values = 2;
+    }
+  }
+
+  message InsightSelector {
+    string insight_type = 1 [json_name = "insight_type"];
+  }
+}
+
+// AwsCloudtrailEventDataStore version is 0
+message AwsCloudtrailEventDataStore {
+  string arn = 1;
+
+  string billing_mode = 2 [json_name = "billing_mode"];
+
+  string id = 3;
+
+  string kms_key_id = 4 [json_name = "kms_key_id"];
+
+  bool multi_region_enabled = 5 [json_name = "multi_region_enabled"];
+
+  string name = 6;
+
+  bool organization_enabled = 7 [json_name = "organization_enabled"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  int64 retention_period = 9 [json_name = "retention_period"];
+
+  string suspend = 10;
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  bool termination_protection_enabled = 13 [json_name = "termination_protection_enabled"];
+
+  repeated AdvancedEventSelector advanced_event_selector = 14 [json_name = "advanced_event_selector"];
+
+  repeated Timeouts timeouts = 15;
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message AdvancedEventSelector {
+    string name = 1;
+
+    repeated FieldSelector field_selector = 2 [json_name = "field_selector"];
+
+    message FieldSelector {
+      repeated string ends_with = 1 [json_name = "ends_with"];
+
+      repeated string equals = 2;
+
+      string field = 3;
+
+      repeated string not_ends_with = 4 [json_name = "not_ends_with"];
+
+      repeated string not_equals = 5 [json_name = "not_equals"];
+
+      repeated string not_starts_with = 6 [json_name = "not_starts_with"];
+
+      repeated string starts_with = 7 [json_name = "starts_with"];
+    }
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsCloudtrailOrganizationDelegatedAdminAccount version is 0
+message AwsCloudtrailOrganizationDelegatedAdminAccount {
+  string account_id = 1 [json_name = "account_id"];
+
+  string arn = 2;
+
+  string email = 3;
+
+  string id = 4;
+
+  string name = 5;
+
+  string service_principal = 6 [json_name = "service_principal"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}

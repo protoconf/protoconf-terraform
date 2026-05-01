@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsNeptunegraphGraph version is 0
+message AwsNeptunegraphGraph {
+  string arn = 1;
+
+  // A value that indicates whether the graph has deletion protection enabled. The
+  // graph can't be deleted when deletion protection is enabled.
+  bool deletion_protection = 2 [json_name = "deletion_protection"];
+
+  string endpoint = 3;
+
+  // The graph name. For example: my-graph-1.
+  //
+  // 								The name must contain from 1 to 63 letters, numbers, or hyphens,
+  //
+  // 								and its first character must be a letter. It cannot end with a hyphen or
+  // contain two consecutive hyphens.
+  //
+  // 								If you don't specify a graph name, a unique graph name is generated for
+  // you using the prefix graph-for,
+  //
+  // 								followed by a combination of Stack Name and a UUID.
+  string graph_name = 4 [json_name = "graph_name"];
+
+  // Allows user to specify name prefix and have remainder of name automatically
+  // generated.
+  string graph_name_prefix = 5 [json_name = "graph_name_prefix"];
+
+  string id = 6;
+
+  // Specifies a KMS key to use to encrypt data in the new graph.  Value must be ARN
+  // of KMS Key.
+  string kms_key_identifier = 7 [json_name = "kms_key_identifier"];
+
+  // The provisioned memory-optimized Neptune Capacity Units (m-NCUs) to use for the
+  // graph.
+  int64 provisioned_memory = 8 [json_name = "provisioned_memory"];
+
+  // Specifies whether or not the graph can be reachable over the internet.
+  //
+  // 								All access to graphs is IAM authenticated.
+  //
+  // 								When the graph is publicly available, its domain name system (DNS)
+  // endpoint resolves to
+  //
+  // 								the public IP address from the internet. When the graph isn't publicly
+  // available, you need
+  //
+  // 								to create a PrivateGraphEndpoint in a given VPC to ensure the DNS name
+  // resolves to a private
+  //
+  // 								IP address that is reachable from the VPC.
+  bool public_connectivity = 9 [json_name = "public_connectivity"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  // The number of replicas in other AZs.  Value must be between 0 and 2.
+  int64 replica_count = 11 [json_name = "replica_count"];
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 14;
+
+  repeated VectorSearchConfiguration vector_search_configuration = 15 [json_name = "vector_search_configuration"];
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+
+  message VectorSearchConfiguration {
+    // Specifies the number of dimensions for vector embeddings.  Value must be between
+    // 1 and 65,535.
+    int64 vector_search_dimension = 1 [json_name = "vector_search_dimension"];
+  }
+}

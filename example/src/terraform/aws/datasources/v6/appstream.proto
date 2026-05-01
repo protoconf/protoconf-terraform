@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsAppstreamImage version is 0
+message AwsAppstreamImage {
+  repeated Applications applications = 1;
+
+  string appstream_agent_version = 2 [json_name = "appstream_agent_version"];
+
+  string arn = 3;
+
+  string base_image_arn = 4 [json_name = "base_image_arn"];
+
+  string created_time = 5 [json_name = "created_time"];
+
+  string description = 6;
+
+  string display_name = 7 [json_name = "display_name"];
+
+  string image_builder_name = 8 [json_name = "image_builder_name"];
+
+  bool image_builder_supported = 9 [json_name = "image_builder_supported"];
+
+  repeated ImagePermissions image_permissions = 10 [json_name = "image_permissions"];
+
+  bool most_recent = 11 [json_name = "most_recent"];
+
+  string name = 12;
+
+  string name_regex = 13 [json_name = "name_regex"];
+
+  string platform = 14;
+
+  string public_base_image_released_date = 15 [json_name = "public_base_image_released_date"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 16;
+
+  string state = 17;
+
+  repeated StateChangeReason state_change_reason = 18 [json_name = "state_change_reason"];
+
+  string type = 19;
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message Applications {
+    // app_block_arn: string
+    string app_block_arn = 1 [json_name = "app_block_arn"];
+
+    // arn: string
+    string arn = 2;
+
+    // created_time: string
+    string created_time = 3 [json_name = "created_time"];
+
+    // description: string
+    string description = 4;
+
+    // display_name: string
+    string display_name = 5 [json_name = "display_name"];
+
+    // enabled: bool
+    bool enabled = 6;
+
+    // icon_s3_location: list of object
+    repeated IconS3Location icon_s3_location = 7 [json_name = "icon_s3_location"];
+
+    // icon_url: string
+    string icon_url = 8 [json_name = "icon_url"];
+
+    // instance_families: list of string
+    repeated string instance_families = 9 [json_name = "instance_families"];
+
+    // launch_parameters: string
+    string launch_parameters = 10 [json_name = "launch_parameters"];
+
+    // launch_path: string
+    string launch_path = 11 [json_name = "launch_path"];
+
+    // metadata: map of string
+    map<string, string> metadata = 12;
+
+    // name: string
+    string name = 13;
+
+    // platforms: list of string
+    repeated string platforms = 14;
+
+    // working_directory: string
+    string working_directory = 15 [json_name = "working_directory"];
+
+    message IconS3Location {
+      // s3_bucket: string
+      string s3_bucket = 1 [json_name = "s3_bucket"];
+
+      // s3_key: string
+      string s3_key = 2 [json_name = "s3_key"];
+    }
+  }
+
+  message ImagePermissions {
+    // allow_fleet: bool
+    bool allow_fleet = 1 [json_name = "allow_fleet"];
+
+    // allow_image_builder: bool
+    bool allow_image_builder = 2 [json_name = "allow_image_builder"];
+  }
+
+  message StateChangeReason {
+    // code: string
+    string code = 1;
+
+    // message: string
+    string message = 2;
+  }
+}

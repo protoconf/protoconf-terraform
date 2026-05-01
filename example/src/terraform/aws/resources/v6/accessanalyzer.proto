@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsAccessanalyzerAnalyzer version is 0
+message AwsAccessanalyzerAnalyzer {
+  string analyzer_name = 1 [json_name = "analyzer_name"];
+
+  string arn = 2;
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  map<string, string> tags = 5;
+
+  map<string, string> tags_all = 6 [json_name = "tags_all"];
+
+  string type = 7;
+
+  Configuration configuration = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Configuration {
+    InternalAccess internal_access = 1 [json_name = "internal_access"];
+
+    UnusedAccess unused_access = 2 [json_name = "unused_access"];
+
+    message InternalAccess {
+      AnalysisRule analysis_rule = 1 [json_name = "analysis_rule"];
+
+      message AnalysisRule {
+        repeated Inclusion inclusion = 1;
+
+        message Inclusion {
+          repeated string account_ids = 1 [json_name = "account_ids"];
+
+          repeated string resource_arns = 2 [json_name = "resource_arns"];
+
+          repeated string resource_types = 3 [json_name = "resource_types"];
+        }
+      }
+    }
+
+    message UnusedAccess {
+      int64 unused_access_age = 1 [json_name = "unused_access_age"];
+
+      AnalysisRule analysis_rule = 2 [json_name = "analysis_rule"];
+
+      message AnalysisRule {
+        repeated Exclusion exclusion = 1;
+
+        message Exclusion {
+          repeated string account_ids = 1 [json_name = "account_ids"];
+
+          repeated string resource_tags = 2 [json_name = "resource_tags"];
+        }
+      }
+    }
+  }
+}
+
+// AwsAccessanalyzerArchiveRule version is 0
+message AwsAccessanalyzerArchiveRule {
+  string analyzer_name = 1 [json_name = "analyzer_name"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string rule_name = 4 [json_name = "rule_name"];
+
+  repeated Filter filter = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Filter {
+    repeated string contains = 1;
+
+    string criteria = 2;
+
+    repeated string eq = 3;
+
+    string exists = 4;
+
+    repeated string neq = 5;
+  }
+}

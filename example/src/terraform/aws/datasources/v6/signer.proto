@@ -1,0 +1,170 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSignerSigningJob version is 0
+message AwsSignerSigningJob {
+  string completed_at = 1 [json_name = "completed_at"];
+
+  string created_at = 2 [json_name = "created_at"];
+
+  string id = 3;
+
+  string job_id = 4 [json_name = "job_id"];
+
+  string job_invoker = 5 [json_name = "job_invoker"];
+
+  string job_owner = 6 [json_name = "job_owner"];
+
+  string platform_display_name = 7 [json_name = "platform_display_name"];
+
+  string platform_id = 8 [json_name = "platform_id"];
+
+  string profile_name = 9 [json_name = "profile_name"];
+
+  string profile_version = 10 [json_name = "profile_version"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string requested_by = 12 [json_name = "requested_by"];
+
+  repeated RevocationRecord revocation_record = 13 [json_name = "revocation_record"];
+
+  string signature_expires_at = 14 [json_name = "signature_expires_at"];
+
+  repeated SignedObject signed_object = 15 [json_name = "signed_object"];
+
+  repeated Source source = 16;
+
+  string status = 17;
+
+  string status_reason = 18 [json_name = "status_reason"];
+
+  google.protobuf.Value for_each = 19 [json_name = "for_each"];
+
+  repeated string depends_on = 20 [json_name = "depends_on"];
+
+  int32 count = 21;
+
+  string provider = 22;
+
+  terraform.v1.Lifecycle lifecycle = 23;
+
+  message RevocationRecord {
+    // reason: string
+    string reason = 1;
+
+    // revoked_at: string
+    string revoked_at = 2 [json_name = "revoked_at"];
+
+    // revoked_by: string
+    string revoked_by = 3 [json_name = "revoked_by"];
+  }
+
+  message SignedObject {
+    // s3: list of object
+    repeated S3 s3 = 1;
+
+    message S3 {
+      // bucket: string
+      string bucket = 1;
+
+      // key: string
+      string key = 2;
+    }
+  }
+
+  message Source {
+    // s3: list of object
+    repeated S3 s3 = 1;
+
+    message S3 {
+      // bucket: string
+      string bucket = 1;
+
+      // key: string
+      string key = 2;
+
+      // version: string
+      string version = 3;
+    }
+  }
+}
+
+// AwsSignerSigningProfile version is 0
+message AwsSignerSigningProfile {
+  string arn = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  string platform_display_name = 4 [json_name = "platform_display_name"];
+
+  string platform_id = 5 [json_name = "platform_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  repeated RevocationRecord revocation_record = 7 [json_name = "revocation_record"];
+
+  repeated SignatureValidityPeriod signature_validity_period = 8 [json_name = "signature_validity_period"];
+
+  repeated SigningMaterial signing_material = 9 [json_name = "signing_material"];
+
+  map<string, string> signing_parameters = 10 [json_name = "signing_parameters"];
+
+  string status = 11;
+
+  map<string, string> tags = 12;
+
+  string version = 13;
+
+  string version_arn = 14 [json_name = "version_arn"];
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message RevocationRecord {
+    // revocation_effective_from: string
+    string revocation_effective_from = 1 [json_name = "revocation_effective_from"];
+
+    // revoked_at: string
+    string revoked_at = 2 [json_name = "revoked_at"];
+
+    // revoked_by: string
+    string revoked_by = 3 [json_name = "revoked_by"];
+  }
+
+  message SignatureValidityPeriod {
+    // type: string
+    string type = 1;
+
+    // value: number
+    int64 value = 2;
+  }
+
+  message SigningMaterial {
+    // certificate_arn: string
+    string certificate_arn = 1 [json_name = "certificate_arn"];
+  }
+}

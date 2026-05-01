@@ -1,0 +1,667 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsLakeformationDataCellsFilter version is 0
+message AwsLakeformationDataCellsFilter {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  repeated TableData table_data = 3 [json_name = "table_data"];
+
+  repeated Timeouts timeouts = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message TableData {
+    repeated string column_names = 1 [json_name = "column_names"];
+
+    string database_name = 2 [json_name = "database_name"];
+
+    string name = 3;
+
+    string table_catalog_id = 4 [json_name = "table_catalog_id"];
+
+    string table_name = 5 [json_name = "table_name"];
+
+    string version_id = 6 [json_name = "version_id"];
+
+    repeated ColumnWildcard column_wildcard = 7 [json_name = "column_wildcard"];
+
+    repeated RowFilter row_filter = 8 [json_name = "row_filter"];
+
+    message ColumnWildcard {
+      repeated string excluded_column_names = 1 [json_name = "excluded_column_names"];
+    }
+
+    message RowFilter {
+      string filter_expression = 1 [json_name = "filter_expression"];
+
+      repeated AllRowsWildcard all_rows_wildcard = 2 [json_name = "all_rows_wildcard"];
+
+      message AllRowsWildcard {
+      }
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+  }
+}
+
+// AwsLakeformationDataLakeSettings version is 0
+message AwsLakeformationDataLakeSettings {
+  repeated string admins = 1;
+
+  bool allow_external_data_filtering = 2 [json_name = "allow_external_data_filtering"];
+
+  bool allow_full_table_external_data_access = 3 [
+    json_name = "allow_full_table_external_data_access"
+  ];
+
+  repeated string authorized_session_tag_value_list = 4 [json_name = "authorized_session_tag_value_list"];
+
+  string catalog_id = 5 [json_name = "catalog_id"];
+
+  repeated string external_data_filtering_allow_list = 6 [json_name = "external_data_filtering_allow_list"];
+
+  string id = 7;
+
+  map<string, string> parameters = 8;
+
+  repeated string read_only_admins = 9 [json_name = "read_only_admins"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  repeated string trusted_resource_owners = 11 [json_name = "trusted_resource_owners"];
+
+  repeated CreateDatabaseDefaultPermissions create_database_default_permissions = 12 [json_name = "create_database_default_permissions"];
+
+  repeated CreateTableDefaultPermissions create_table_default_permissions = 13 [json_name = "create_table_default_permissions"];
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message CreateDatabaseDefaultPermissions {
+    repeated string permissions = 1;
+
+    string principal = 2;
+  }
+
+  message CreateTableDefaultPermissions {
+    repeated string permissions = 1;
+
+    string principal = 2;
+  }
+}
+
+// AwsLakeformationIdentityCenterConfiguration version is 0
+message AwsLakeformationIdentityCenterConfiguration {
+  string application_arn = 1 [json_name = "application_arn"];
+
+  // The ID of the Data Catalog.
+  string catalog_id = 2 [json_name = "catalog_id"];
+
+  // The ARN of the Identity Center instance.
+  string instance_arn = 3 [json_name = "instance_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string resource_share = 5 [json_name = "resource_share"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsLakeformationLfTag version is 0
+message AwsLakeformationLfTag {
+  string catalog_id = 1 [json_name = "catalog_id"];
+
+  string id = 2;
+
+  string key = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated string values = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsLakeformationLfTagExpression version is 0
+message AwsLakeformationLfTagExpression {
+  // The ID of the Data Catalog.
+  string catalog_id = 1 [json_name = "catalog_id"];
+
+  // A description of the LF-Tag Expression.
+  string description = 2;
+
+  // The name of the LF-Tag Expression.
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated Expression expression = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Expression {
+    string tag_key = 1 [json_name = "tag_key"];
+
+    repeated string tag_values = 2 [json_name = "tag_values"];
+  }
+}
+
+// AwsLakeformationOptIn version is 0
+message AwsLakeformationOptIn {
+  string last_modified = 1 [json_name = "last_modified"];
+
+  string last_updated_by = 2 [json_name = "last_updated_by"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated Condition condition = 4;
+
+  repeated Principal principal = 5;
+
+  repeated ResourceData resource_data = 6 [json_name = "resource_data"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Condition {
+    string expression = 1;
+  }
+
+  message Principal {
+    string data_lake_principal_identifier = 1 [json_name = "data_lake_principal_identifier"];
+  }
+
+  message ResourceData {
+    repeated Catalog catalog = 1;
+
+    repeated DataCellsFilter data_cells_filter = 2 [json_name = "data_cells_filter"];
+
+    repeated DataLocation data_location = 3 [json_name = "data_location"];
+
+    repeated Database database = 4;
+
+    repeated LfTag lf_tag = 5 [json_name = "lf_tag"];
+
+    repeated LfTagExpression lf_tag_expression = 6 [json_name = "lf_tag_expression"];
+
+    repeated LfTagPolicy lf_tag_policy = 7 [json_name = "lf_tag_policy"];
+
+    repeated Table table = 8;
+
+    repeated TableWithColumns table_with_columns = 9 [json_name = "table_with_columns"];
+
+    message Catalog {
+      string id = 1;
+    }
+
+    message DataCellsFilter {
+      string database_name = 1 [json_name = "database_name"];
+
+      string name = 2;
+
+      string table_catalog_id = 3 [json_name = "table_catalog_id"];
+
+      string table_name = 4 [json_name = "table_name"];
+    }
+
+    message DataLocation {
+      string catalog_id = 1 [json_name = "catalog_id"];
+
+      string resource_arn = 2 [json_name = "resource_arn"];
+    }
+
+    message Database {
+      string catalog_id = 1 [json_name = "catalog_id"];
+
+      string name = 2;
+    }
+
+    message LfTag {
+      string catalog_id = 1 [json_name = "catalog_id"];
+
+      string key = 2;
+
+      repeated string values = 3;
+    }
+
+    message LfTagExpression {
+      string catalog_id = 1 [json_name = "catalog_id"];
+
+      string name = 2;
+    }
+
+    message LfTagPolicy {
+      string catalog_id = 1 [json_name = "catalog_id"];
+
+      repeated string expression = 2;
+
+      string expression_name = 3 [json_name = "expression_name"];
+
+      string resource_type = 4 [json_name = "resource_type"];
+    }
+
+    message Table {
+      string catalog_id = 1 [json_name = "catalog_id"];
+
+      string database_name = 2 [json_name = "database_name"];
+
+      string name = 3;
+
+      bool wildcard = 4;
+    }
+
+    message TableWithColumns {
+      string catalog_id = 1 [json_name = "catalog_id"];
+
+      repeated string column_names = 2 [json_name = "column_names"];
+
+      string database_name = 3 [json_name = "database_name"];
+
+      string name = 4;
+
+      repeated ColumnWildcard column_wildcard = 5 [json_name = "column_wildcard"];
+
+      message ColumnWildcard {
+        repeated string excluded_column_names = 1 [json_name = "excluded_column_names"];
+      }
+    }
+  }
+}
+
+// AwsLakeformationPermissions version is 0
+message AwsLakeformationPermissions {
+  string catalog_id = 1 [json_name = "catalog_id"];
+
+  bool catalog_resource = 2 [json_name = "catalog_resource"];
+
+  string id = 3;
+
+  repeated string permissions = 4;
+
+  repeated string permissions_with_grant_option = 5 [json_name = "permissions_with_grant_option"];
+
+  string principal = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  DataCellsFilter data_cells_filter = 8 [json_name = "data_cells_filter"];
+
+  DataLocation data_location = 9 [json_name = "data_location"];
+
+  Database database = 10;
+
+  LfTag lf_tag = 11 [json_name = "lf_tag"];
+
+  LfTagPolicy lf_tag_policy = 12 [json_name = "lf_tag_policy"];
+
+  Table table = 13;
+
+  TableWithColumns table_with_columns = 14 [json_name = "table_with_columns"];
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message DataCellsFilter {
+    string database_name = 1 [json_name = "database_name"];
+
+    string name = 2;
+
+    string table_catalog_id = 3 [json_name = "table_catalog_id"];
+
+    string table_name = 4 [json_name = "table_name"];
+  }
+
+  message DataLocation {
+    string arn = 1;
+
+    string catalog_id = 2 [json_name = "catalog_id"];
+  }
+
+  message Database {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    string name = 2;
+  }
+
+  message LfTag {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    string key = 2;
+
+    repeated string values = 3;
+  }
+
+  message LfTagPolicy {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    string resource_type = 2 [json_name = "resource_type"];
+
+    repeated Expression expression = 3;
+
+    message Expression {
+      string key = 1;
+
+      repeated string values = 2;
+    }
+  }
+
+  message Table {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    string database_name = 2 [json_name = "database_name"];
+
+    string name = 3;
+
+    bool wildcard = 4;
+  }
+
+  message TableWithColumns {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    repeated string column_names = 2 [json_name = "column_names"];
+
+    string database_name = 3 [json_name = "database_name"];
+
+    repeated string excluded_column_names = 4 [json_name = "excluded_column_names"];
+
+    string name = 5;
+
+    bool wildcard = 6;
+  }
+}
+
+// AwsLakeformationResource version is 0
+message AwsLakeformationResource {
+  string arn = 1;
+
+  bool hybrid_access_enabled = 2 [json_name = "hybrid_access_enabled"];
+
+  string id = 3;
+
+  string last_modified = 4 [json_name = "last_modified"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string role_arn = 6 [json_name = "role_arn"];
+
+  bool use_service_linked_role = 7 [json_name = "use_service_linked_role"];
+
+  bool with_federation = 8 [json_name = "with_federation"];
+
+  bool with_privileged_access = 9 [json_name = "with_privileged_access"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsLakeformationResourceLfTag version is 0
+message AwsLakeformationResourceLfTag {
+  string catalog_id = 1 [json_name = "catalog_id"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated Database database = 4;
+
+  repeated LfTag lf_tag = 5 [json_name = "lf_tag"];
+
+  repeated Table table = 6;
+
+  repeated TableWithColumns table_with_columns = 7 [json_name = "table_with_columns"];
+
+  repeated Timeouts timeouts = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Database {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    string name = 2;
+  }
+
+  message LfTag {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    string key = 2;
+
+    string value = 3;
+  }
+
+  message Table {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    string database_name = 2 [json_name = "database_name"];
+
+    string name = 3;
+
+    bool wildcard = 4;
+  }
+
+  message TableWithColumns {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    repeated string column_names = 2 [json_name = "column_names"];
+
+    string database_name = 3 [json_name = "database_name"];
+
+    string name = 4;
+
+    repeated ColumnWildcard column_wildcard = 5 [json_name = "column_wildcard"];
+
+    message ColumnWildcard {
+      repeated string excluded_column_names = 1 [json_name = "excluded_column_names"];
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsLakeformationResourceLfTags version is 0
+message AwsLakeformationResourceLfTags {
+  string catalog_id = 1 [json_name = "catalog_id"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  Database database = 4;
+
+  repeated LfTag lf_tag = 5 [json_name = "lf_tag"];
+
+  Table table = 6;
+
+  TableWithColumns table_with_columns = 7 [json_name = "table_with_columns"];
+
+  repeated Timeouts timeouts = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Database {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    string name = 2;
+  }
+
+  message LfTag {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    string key = 2;
+
+    string value = 3;
+  }
+
+  message Table {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    string database_name = 2 [json_name = "database_name"];
+
+    string name = 3;
+
+    bool wildcard = 4;
+  }
+
+  message TableWithColumns {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    repeated string column_names = 2 [json_name = "column_names"];
+
+    string database_name = 3 [json_name = "database_name"];
+
+    repeated string excluded_column_names = 4 [json_name = "excluded_column_names"];
+
+    string name = 5;
+
+    bool wildcard = 6;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}

@@ -1,0 +1,183 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsEmrserverlessApplication version is 0
+message AwsEmrserverlessApplication {
+  string architecture = 1;
+
+  string arn = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string release_label = 6 [json_name = "release_label"];
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  string type = 9;
+
+  AutoStartConfiguration auto_start_configuration = 10 [json_name = "auto_start_configuration"];
+
+  AutoStopConfiguration auto_stop_configuration = 11 [json_name = "auto_stop_configuration"];
+
+  ImageConfiguration image_configuration = 12 [json_name = "image_configuration"];
+
+  repeated InitialCapacity initial_capacity = 13 [json_name = "initial_capacity"];
+
+  InteractiveConfiguration interactive_configuration = 14 [json_name = "interactive_configuration"];
+
+  JobLevelCostAllocationConfiguration job_level_cost_allocation_configuration = 15 [
+    json_name = "job_level_cost_allocation_configuration"
+  ];
+
+  MaximumCapacity maximum_capacity = 16 [json_name = "maximum_capacity"];
+
+  MonitoringConfiguration monitoring_configuration = 17 [json_name = "monitoring_configuration"];
+
+  NetworkConfiguration network_configuration = 18 [json_name = "network_configuration"];
+
+  repeated RuntimeConfiguration runtime_configuration = 19 [json_name = "runtime_configuration"];
+
+  SchedulerConfiguration scheduler_configuration = 20 [json_name = "scheduler_configuration"];
+
+  google.protobuf.Value for_each = 21 [json_name = "for_each"];
+
+  repeated string depends_on = 22 [json_name = "depends_on"];
+
+  int32 count = 23;
+
+  string provider = 24;
+
+  terraform.v1.Lifecycle lifecycle = 25;
+
+  message AutoStartConfiguration {
+    bool enabled = 1;
+  }
+
+  message AutoStopConfiguration {
+    bool enabled = 1;
+
+    int64 idle_timeout_minutes = 2 [json_name = "idle_timeout_minutes"];
+  }
+
+  message ImageConfiguration {
+    string image_uri = 1 [json_name = "image_uri"];
+  }
+
+  message InitialCapacity {
+    string initial_capacity_type = 1 [json_name = "initial_capacity_type"];
+
+    InitialCapacityConfig initial_capacity_config = 2 [json_name = "initial_capacity_config"];
+
+    message InitialCapacityConfig {
+      int64 worker_count = 1 [json_name = "worker_count"];
+
+      WorkerConfiguration worker_configuration = 2 [json_name = "worker_configuration"];
+
+      message WorkerConfiguration {
+        string cpu = 1;
+
+        string disk = 2;
+
+        string memory = 3;
+      }
+    }
+  }
+
+  message InteractiveConfiguration {
+    bool livy_endpoint_enabled = 1 [json_name = "livy_endpoint_enabled"];
+
+    bool studio_enabled = 2 [json_name = "studio_enabled"];
+  }
+
+  message JobLevelCostAllocationConfiguration {
+    bool enabled = 1;
+  }
+
+  message MaximumCapacity {
+    string cpu = 1;
+
+    string disk = 2;
+
+    string memory = 3;
+  }
+
+  message MonitoringConfiguration {
+    CloudwatchLoggingConfiguration cloudwatch_logging_configuration = 1 [json_name = "cloudwatch_logging_configuration"];
+
+    ManagedPersistenceMonitoringConfiguration managed_persistence_monitoring_configuration = 2 [
+      json_name = "managed_persistence_monitoring_configuration"
+    ];
+
+    PrometheusMonitoringConfiguration prometheus_monitoring_configuration = 3 [json_name = "prometheus_monitoring_configuration"];
+
+    S3MonitoringConfiguration s3_monitoring_configuration = 4 [json_name = "s3_monitoring_configuration"];
+
+    message CloudwatchLoggingConfiguration {
+      bool enabled = 1;
+
+      string encryption_key_arn = 2 [json_name = "encryption_key_arn"];
+
+      string log_group_name = 3 [json_name = "log_group_name"];
+
+      string log_stream_name_prefix = 4 [json_name = "log_stream_name_prefix"];
+
+      repeated LogTypes log_types = 5 [json_name = "log_types"];
+
+      message LogTypes {
+        string name = 1;
+
+        repeated string values = 2;
+      }
+    }
+
+    message ManagedPersistenceMonitoringConfiguration {
+      bool enabled = 1;
+
+      string encryption_key_arn = 2 [json_name = "encryption_key_arn"];
+    }
+
+    message PrometheusMonitoringConfiguration {
+      string remote_write_url = 1 [json_name = "remote_write_url"];
+    }
+
+    message S3MonitoringConfiguration {
+      string encryption_key_arn = 1 [json_name = "encryption_key_arn"];
+
+      string log_uri = 2 [json_name = "log_uri"];
+    }
+  }
+
+  message NetworkConfiguration {
+    repeated string security_group_ids = 1 [json_name = "security_group_ids"];
+
+    repeated string subnet_ids = 2 [json_name = "subnet_ids"];
+  }
+
+  message RuntimeConfiguration {
+    string classification = 1;
+
+    map<string, string> properties = 2;
+  }
+
+  message SchedulerConfiguration {
+    int64 max_concurrent_runs = 1 [json_name = "max_concurrent_runs"];
+
+    int64 queue_timeout_minutes = 2 [json_name = "queue_timeout_minutes"];
+  }
+}

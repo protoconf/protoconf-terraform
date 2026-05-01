@@ -1,0 +1,613 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsNetworkmanagerConnection version is 0
+message AwsNetworkmanagerConnection {
+  string arn = 1;
+
+  string connected_device_id = 2 [json_name = "connected_device_id"];
+
+  string connected_link_id = 3 [json_name = "connected_link_id"];
+
+  string connection_id = 4 [json_name = "connection_id"];
+
+  string description = 5;
+
+  string device_id = 6 [json_name = "device_id"];
+
+  string global_network_id = 7 [json_name = "global_network_id"];
+
+  string id = 8;
+
+  string link_id = 9 [json_name = "link_id"];
+
+  map<string, string> tags = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+}
+
+// AwsNetworkmanagerConnections version is 0
+message AwsNetworkmanagerConnections {
+  string device_id = 1 [json_name = "device_id"];
+
+  string global_network_id = 2 [json_name = "global_network_id"];
+
+  string id = 3;
+
+  repeated string ids = 4;
+
+  map<string, string> tags = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsNetworkmanagerCoreNetwork version is 0
+message AwsNetworkmanagerCoreNetwork {
+  string arn = 1;
+
+  string core_network_id = 2 [json_name = "core_network_id"];
+
+  string created_at = 3 [json_name = "created_at"];
+
+  string description = 4;
+
+  repeated Edges edges = 5;
+
+  string global_network_id = 6 [json_name = "global_network_id"];
+
+  repeated NetworkFunctionGroups network_function_groups = 7 [json_name = "network_function_groups"];
+
+  repeated Segments segments = 8;
+
+  string state = 9;
+
+  map<string, string> tags = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message Edges {
+    // asn: number
+    int64 asn = 1;
+
+    // edge_location: string
+    string edge_location = 2 [json_name = "edge_location"];
+
+    // inside_cidr_blocks: list of string
+    repeated string inside_cidr_blocks = 3 [json_name = "inside_cidr_blocks"];
+  }
+
+  message NetworkFunctionGroups {
+    // edge_locations: list of string
+    repeated string edge_locations = 1 [json_name = "edge_locations"];
+
+    // name: string
+    string name = 2;
+
+    // segments: list of object
+    repeated Segments segments = 3;
+
+    message Segments {
+      // send_to: list of string
+      repeated string send_to = 1 [json_name = "send_to"];
+
+      // send_via: list of string
+      repeated string send_via = 2 [json_name = "send_via"];
+    }
+  }
+
+  message Segments {
+    // edge_locations: list of string
+    repeated string edge_locations = 1 [json_name = "edge_locations"];
+
+    // name: string
+    string name = 2;
+
+    // shared_segments: list of string
+    repeated string shared_segments = 3 [json_name = "shared_segments"];
+  }
+}
+
+// AwsNetworkmanagerCoreNetworkPolicyDocument version is 0
+message AwsNetworkmanagerCoreNetworkPolicyDocument {
+  string id = 1;
+
+  string json = 2;
+
+  string version = 3;
+
+  repeated AttachmentPolicies attachment_policies = 4 [json_name = "attachment_policies"];
+
+  repeated AttachmentRoutingPolicyRules attachment_routing_policy_rules = 5 [json_name = "attachment_routing_policy_rules"];
+
+  repeated CoreNetworkConfiguration core_network_configuration = 6 [json_name = "core_network_configuration"];
+
+  repeated NetworkFunctionGroups network_function_groups = 7 [json_name = "network_function_groups"];
+
+  repeated RoutingPolicies routing_policies = 8 [json_name = "routing_policies"];
+
+  repeated SegmentActions segment_actions = 9 [json_name = "segment_actions"];
+
+  repeated Segments segments = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message AttachmentPolicies {
+    string condition_logic = 1 [json_name = "condition_logic"];
+
+    string description = 2;
+
+    int64 rule_number = 3 [json_name = "rule_number"];
+
+    Action action = 4;
+
+    repeated Conditions conditions = 5;
+
+    message Action {
+      string add_to_network_function_group = 1 [json_name = "add_to_network_function_group"];
+
+      string association_method = 2 [json_name = "association_method"];
+
+      bool require_acceptance = 3 [json_name = "require_acceptance"];
+
+      string segment = 4;
+
+      string tag_value_of_key = 5 [json_name = "tag_value_of_key"];
+    }
+
+    message Conditions {
+      string key = 1;
+
+      string operator = 2;
+
+      string type = 3;
+
+      string value = 4;
+    }
+  }
+
+  message AttachmentRoutingPolicyRules {
+    string description = 1;
+
+    repeated string edge_locations = 2 [json_name = "edge_locations"];
+
+    int64 rule_number = 3 [json_name = "rule_number"];
+
+    Action action = 4;
+
+    repeated Conditions conditions = 5;
+
+    message Action {
+      repeated string associate_routing_policies = 1 [json_name = "associate_routing_policies"];
+    }
+
+    message Conditions {
+      string type = 1;
+
+      string value = 2;
+    }
+  }
+
+  message CoreNetworkConfiguration {
+    repeated string asn_ranges = 1 [json_name = "asn_ranges"];
+
+    bool dns_support = 2 [json_name = "dns_support"];
+
+    repeated string inside_cidr_blocks = 3 [json_name = "inside_cidr_blocks"];
+
+    bool security_group_referencing_support = 4 [json_name = "security_group_referencing_support"];
+
+    bool vpn_ecmp_support = 5 [json_name = "vpn_ecmp_support"];
+
+    repeated EdgeLocations edge_locations = 6 [json_name = "edge_locations"];
+
+    message EdgeLocations {
+      string asn = 1;
+
+      repeated string inside_cidr_blocks = 2 [json_name = "inside_cidr_blocks"];
+
+      string location = 3;
+    }
+  }
+
+  message NetworkFunctionGroups {
+    string description = 1;
+
+    string name = 2;
+
+    bool require_attachment_acceptance = 3 [json_name = "require_attachment_acceptance"];
+  }
+
+  message RoutingPolicies {
+    string routing_policy_description = 1 [json_name = "routing_policy_description"];
+
+    string routing_policy_direction = 2 [json_name = "routing_policy_direction"];
+
+    string routing_policy_name = 3 [json_name = "routing_policy_name"];
+
+    int64 routing_policy_number = 4 [json_name = "routing_policy_number"];
+
+    repeated RoutingPolicyRules routing_policy_rules = 5 [json_name = "routing_policy_rules"];
+
+    message RoutingPolicyRules {
+      int64 rule_number = 1 [json_name = "rule_number"];
+
+      RuleDefinition rule_definition = 2 [json_name = "rule_definition"];
+
+      message RuleDefinition {
+        string condition_logic = 1 [json_name = "condition_logic"];
+
+        Action action = 2;
+
+        repeated MatchConditions match_conditions = 3 [json_name = "match_conditions"];
+
+        message Action {
+          string type = 1;
+
+          string value = 2;
+        }
+
+        message MatchConditions {
+          string type = 1;
+
+          string value = 2;
+        }
+      }
+    }
+  }
+
+  message SegmentActions {
+    string action = 1;
+
+    string description = 2;
+
+    repeated string destination_cidr_blocks = 3 [json_name = "destination_cidr_blocks"];
+
+    repeated string destinations = 4;
+
+    string mode = 5;
+
+    repeated string routing_policy_names = 6 [json_name = "routing_policy_names"];
+
+    string segment = 7;
+
+    repeated string share_with = 8 [json_name = "share_with"];
+
+    repeated string share_with_except = 9 [json_name = "share_with_except"];
+
+    EdgeLocationAssociation edge_location_association = 10 [json_name = "edge_location_association"];
+
+    Via via = 11;
+
+    WhenSentTo when_sent_to = 12 [json_name = "when_sent_to"];
+
+    message EdgeLocationAssociation {
+      string edge_location = 1 [json_name = "edge_location"];
+
+      string peer_edge_location = 2 [json_name = "peer_edge_location"];
+
+      repeated string routing_policy_names = 3 [json_name = "routing_policy_names"];
+    }
+
+    message Via {
+      repeated string network_function_groups = 1 [json_name = "network_function_groups"];
+
+      repeated WithEdgeOverride with_edge_override = 2 [json_name = "with_edge_override"];
+
+      message WithEdgeOverride {
+        repeated string edge_sets = 1 [json_name = "edge_sets"];
+
+        string use_edge = 2 [json_name = "use_edge"];
+
+        string use_edge_location = 3 [json_name = "use_edge_location"];
+      }
+    }
+
+    message WhenSentTo {
+      repeated string segments = 1;
+    }
+  }
+
+  message Segments {
+    repeated string allow_filter = 1 [json_name = "allow_filter"];
+
+    repeated string deny_filter = 2 [json_name = "deny_filter"];
+
+    string description = 3;
+
+    repeated string edge_locations = 4 [json_name = "edge_locations"];
+
+    bool isolate_attachments = 5 [json_name = "isolate_attachments"];
+
+    string name = 6;
+
+    bool require_attachment_acceptance = 7 [json_name = "require_attachment_acceptance"];
+  }
+}
+
+// AwsNetworkmanagerDevice version is 0
+message AwsNetworkmanagerDevice {
+  string arn = 1;
+
+  repeated AwsLocation aws_location = 2 [json_name = "aws_location"];
+
+  string description = 3;
+
+  string device_id = 4 [json_name = "device_id"];
+
+  string global_network_id = 5 [json_name = "global_network_id"];
+
+  string id = 6;
+
+  repeated Location location = 7;
+
+  string model = 8;
+
+  string serial_number = 9 [json_name = "serial_number"];
+
+  string site_id = 10 [json_name = "site_id"];
+
+  map<string, string> tags = 11;
+
+  string type = 12;
+
+  string vendor = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message AwsLocation {
+    // subnet_arn: string
+    string subnet_arn = 1 [json_name = "subnet_arn"];
+
+    // zone: string
+    string zone = 2;
+  }
+
+  message Location {
+    // address: string
+    string address = 1;
+
+    // latitude: string
+    string latitude = 2;
+
+    // longitude: string
+    string longitude = 3;
+  }
+}
+
+// AwsNetworkmanagerDevices version is 0
+message AwsNetworkmanagerDevices {
+  string global_network_id = 1 [json_name = "global_network_id"];
+
+  string id = 2;
+
+  repeated string ids = 3;
+
+  string site_id = 4 [json_name = "site_id"];
+
+  map<string, string> tags = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsNetworkmanagerGlobalNetwork version is 0
+message AwsNetworkmanagerGlobalNetwork {
+  string arn = 1;
+
+  string description = 2;
+
+  string global_network_id = 3 [json_name = "global_network_id"];
+
+  string id = 4;
+
+  map<string, string> tags = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsNetworkmanagerGlobalNetworks version is 0
+message AwsNetworkmanagerGlobalNetworks {
+  string id = 1;
+
+  repeated string ids = 2;
+
+  map<string, string> tags = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsNetworkmanagerLink version is 0
+message AwsNetworkmanagerLink {
+  string arn = 1;
+
+  repeated Bandwidth bandwidth = 2;
+
+  string description = 3;
+
+  string global_network_id = 4 [json_name = "global_network_id"];
+
+  string id = 5;
+
+  string link_id = 6 [json_name = "link_id"];
+
+  string provider_name = 7 [json_name = "provider_name"];
+
+  string site_id = 8 [json_name = "site_id"];
+
+  map<string, string> tags = 9;
+
+  string type = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message Bandwidth {
+    // download_speed: number
+    int64 download_speed = 1 [json_name = "download_speed"];
+
+    // upload_speed: number
+    int64 upload_speed = 2 [json_name = "upload_speed"];
+  }
+}
+
+// AwsNetworkmanagerLinks version is 0
+message AwsNetworkmanagerLinks {
+  string global_network_id = 1 [json_name = "global_network_id"];
+
+  string id = 2;
+
+  repeated string ids = 3;
+
+  string provider_name = 4 [json_name = "provider_name"];
+
+  string site_id = 5 [json_name = "site_id"];
+
+  map<string, string> tags = 6;
+
+  string type = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsNetworkmanagerSite version is 0
+message AwsNetworkmanagerSite {
+  string arn = 1;
+
+  string description = 2;
+
+  string global_network_id = 3 [json_name = "global_network_id"];
+
+  string id = 4;
+
+  repeated Location location = 5;
+
+  string site_id = 6 [json_name = "site_id"];
+
+  map<string, string> tags = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message Location {
+    // address: string
+    string address = 1;
+
+    // latitude: string
+    string latitude = 2;
+
+    // longitude: string
+    string longitude = 3;
+  }
+}
+
+// AwsNetworkmanagerSites version is 0
+message AwsNetworkmanagerSites {
+  string global_network_id = 1 [json_name = "global_network_id"];
+
+  string id = 2;
+
+  repeated string ids = 3;
+
+  map<string, string> tags = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}

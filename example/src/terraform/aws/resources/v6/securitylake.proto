@@ -1,0 +1,371 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSecuritylakeAwsLogSource version is 0
+message AwsSecuritylakeAwsLogSource {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  repeated Source source = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message Source {
+    repeated string accounts = 1;
+
+    repeated string regions = 2;
+
+    string source_name = 3 [json_name = "source_name"];
+
+    string source_version = 4 [json_name = "source_version"];
+  }
+}
+
+// AwsSecuritylakeCustomLogSource version is 0
+message AwsSecuritylakeCustomLogSource {
+  repeated Attributes attributes = 1;
+
+  repeated string event_classes = 2 [json_name = "event_classes"];
+
+  string id = 3;
+
+  repeated ProviderDetails provider_details = 4 [json_name = "provider_details"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string source_name = 6 [json_name = "source_name"];
+
+  string source_version = 7 [json_name = "source_version"];
+
+  repeated Configuration configuration = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Attributes {
+    // crawler_arn: string
+    string crawler_arn = 1 [json_name = "crawler_arn"];
+
+    // database_arn: string
+    string database_arn = 2 [json_name = "database_arn"];
+
+    // table_arn: string
+    string table_arn = 3 [json_name = "table_arn"];
+  }
+
+  message ProviderDetails {
+    // location: string
+    string location = 1;
+
+    // role_arn: string
+    string role_arn = 2 [json_name = "role_arn"];
+  }
+
+  message Configuration {
+    repeated CrawlerConfiguration crawler_configuration = 1 [json_name = "crawler_configuration"];
+
+    repeated ProviderIdentity provider_identity = 2 [json_name = "provider_identity"];
+
+    message CrawlerConfiguration {
+      string role_arn = 1 [json_name = "role_arn"];
+    }
+
+    message ProviderIdentity {
+      string external_id = 1 [json_name = "external_id"];
+
+      string principal = 2;
+    }
+  }
+}
+
+// AwsSecuritylakeDataLake version is 0
+message AwsSecuritylakeDataLake {
+  string arn = 1;
+
+  string id = 2;
+
+  string meta_store_manager_role_arn = 3 [json_name = "meta_store_manager_role_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string s3_bucket_arn = 5 [json_name = "s3_bucket_arn"];
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  repeated Configuration configuration = 8;
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Configuration {
+    repeated EncryptionConfiguration encryption_configuration = 1 [json_name = "encryption_configuration"];
+
+    string region = 2;
+
+    repeated LifecycleConfiguration lifecycle_configuration = 3 [json_name = "lifecycle_configuration"];
+
+    repeated ReplicationConfiguration replication_configuration = 4 [json_name = "replication_configuration"];
+
+    message EncryptionConfiguration {
+      // kms_key_id: string
+      string kms_key_id = 1 [json_name = "kms_key_id"];
+    }
+
+    message LifecycleConfiguration {
+      repeated Expiration expiration = 1;
+
+      repeated Transition transition = 2;
+
+      message Expiration {
+        int64 days = 1;
+      }
+
+      message Transition {
+        int64 days = 1;
+
+        string storage_class = 2 [json_name = "storage_class"];
+      }
+    }
+
+    message ReplicationConfiguration {
+      repeated string regions = 1;
+
+      string role_arn = 2 [json_name = "role_arn"];
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsSecuritylakeSubscriber version is 0
+message AwsSecuritylakeSubscriber {
+  string access_type = 1 [json_name = "access_type"];
+
+  string arn = 2;
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string resource_share_arn = 5 [json_name = "resource_share_arn"];
+
+  string resource_share_name = 6 [json_name = "resource_share_name"];
+
+  string role_arn = 7 [json_name = "role_arn"];
+
+  string s3_bucket_arn = 8 [json_name = "s3_bucket_arn"];
+
+  string subscriber_description = 9 [json_name = "subscriber_description"];
+
+  string subscriber_endpoint = 10 [json_name = "subscriber_endpoint"];
+
+  string subscriber_name = 11 [json_name = "subscriber_name"];
+
+  string subscriber_status = 12 [json_name = "subscriber_status"];
+
+  map<string, string> tags = 13;
+
+  map<string, string> tags_all = 14 [json_name = "tags_all"];
+
+  repeated Source source = 15;
+
+  repeated SubscriberIdentity subscriber_identity = 16 [json_name = "subscriber_identity"];
+
+  repeated Timeouts timeouts = 17;
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+
+  message Source {
+    repeated AwsLogSourceResource aws_log_source_resource = 1 [json_name = "aws_log_source_resource"];
+
+    repeated CustomLogSourceResource custom_log_source_resource = 2 [json_name = "custom_log_source_resource"];
+
+    message AwsLogSourceResource {
+      string source_name = 1 [json_name = "source_name"];
+
+      string source_version = 2 [json_name = "source_version"];
+    }
+
+    message CustomLogSourceResource {
+      repeated Attributes attributes = 1;
+
+      repeated Provider provider = 2;
+
+      string source_name = 3 [json_name = "source_name"];
+
+      string source_version = 4 [json_name = "source_version"];
+
+      message Attributes {
+        // crawler_arn: string
+        string crawler_arn = 1 [json_name = "crawler_arn"];
+
+        // database_arn: string
+        string database_arn = 2 [json_name = "database_arn"];
+
+        // table_arn: string
+        string table_arn = 3 [json_name = "table_arn"];
+      }
+
+      message Provider {
+        // location: string
+        string location = 1;
+
+        // role_arn: string
+        string role_arn = 2 [json_name = "role_arn"];
+      }
+    }
+  }
+
+  message SubscriberIdentity {
+    string external_id = 1 [json_name = "external_id"];
+
+    string principal = 2;
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsSecuritylakeSubscriberNotification version is 0
+message AwsSecuritylakeSubscriberNotification {
+  string endpoint_id = 1 [json_name = "endpoint_id"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string subscriber_endpoint = 4 [json_name = "subscriber_endpoint"];
+
+  string subscriber_id = 5 [json_name = "subscriber_id"];
+
+  repeated Configuration configuration = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Configuration {
+    repeated HttpsNotificationConfiguration https_notification_configuration = 1 [json_name = "https_notification_configuration"];
+
+    repeated SqsNotificationConfiguration sqs_notification_configuration = 2 [json_name = "sqs_notification_configuration"];
+
+    message HttpsNotificationConfiguration {
+      string authorization_api_key_name = 1 [json_name = "authorization_api_key_name"];
+
+      string authorization_api_key_value = 2 [json_name = "authorization_api_key_value"];
+
+      string endpoint = 3;
+
+      string http_method = 4 [json_name = "http_method"];
+
+      string target_role_arn = 5 [json_name = "target_role_arn"];
+    }
+
+    message SqsNotificationConfiguration {
+    }
+  }
+}

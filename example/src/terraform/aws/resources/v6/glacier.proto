@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsGlacierVault version is 0
+message AwsGlacierVault {
+  string access_policy = 1 [json_name = "access_policy"];
+
+  string arn = 2;
+
+  string id = 3;
+
+  string location = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  Notification notification = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Notification {
+    repeated string events = 1;
+
+    string sns_topic = 2 [json_name = "sns_topic"];
+  }
+}
+
+// AwsGlacierVaultLock version is 0
+message AwsGlacierVaultLock {
+  bool complete_lock = 1 [json_name = "complete_lock"];
+
+  string id = 2;
+
+  bool ignore_deletion_error = 3 [json_name = "ignore_deletion_error"];
+
+  string policy = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string vault_name = 6 [json_name = "vault_name"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}

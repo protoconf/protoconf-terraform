@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsInternetmonitorMonitor version is 0
+message AwsInternetmonitorMonitor {
+  string arn = 1;
+
+  string id = 2;
+
+  int64 max_city_networks_to_monitor = 3 [json_name = "max_city_networks_to_monitor"];
+
+  string monitor_name = 4 [json_name = "monitor_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated string resources = 6;
+
+  string status = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  int64 traffic_percentage_to_monitor = 10 [json_name = "traffic_percentage_to_monitor"];
+
+  HealthEventsConfig health_events_config = 11 [json_name = "health_events_config"];
+
+  InternetMeasurementsLogDelivery internet_measurements_log_delivery = 12 [json_name = "internet_measurements_log_delivery"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message HealthEventsConfig {
+    int64 availability_score_threshold = 1 [json_name = "availability_score_threshold"];
+
+    int64 performance_score_threshold = 2 [json_name = "performance_score_threshold"];
+  }
+
+  message InternetMeasurementsLogDelivery {
+    S3Config s3_config = 1 [json_name = "s3_config"];
+
+    message S3Config {
+      string bucket_name = 1 [json_name = "bucket_name"];
+
+      string bucket_prefix = 2 [json_name = "bucket_prefix"];
+
+      string log_delivery_status = 3 [json_name = "log_delivery_status"];
+    }
+  }
+}

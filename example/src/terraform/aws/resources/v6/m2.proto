@@ -1,0 +1,242 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsM2Application version is 0
+message AwsM2Application {
+  string application_id = 1 [json_name = "application_id"];
+
+  string arn = 2;
+
+  int64 current_version = 3 [json_name = "current_version"];
+
+  string description = 4;
+
+  string engine_type = 5 [json_name = "engine_type"];
+
+  string id = 6;
+
+  string kms_key_id = 7 [json_name = "kms_key_id"];
+
+  string name = 8;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  string role_arn = 10 [json_name = "role_arn"];
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  repeated Definition definition = 13;
+
+  repeated Timeouts timeouts = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message Definition {
+    string content = 1;
+
+    string s3_location = 2 [json_name = "s3_location"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsM2Deployment version is 0
+message AwsM2Deployment {
+  string application_id = 1 [json_name = "application_id"];
+
+  int64 application_version = 2 [json_name = "application_version"];
+
+  string deployment_id = 3 [json_name = "deployment_id"];
+
+  string environment_id = 4 [json_name = "environment_id"];
+
+  bool force_stop = 5 [json_name = "force_stop"];
+
+  string id = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  bool start = 8;
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsM2Environment version is 0
+message AwsM2Environment {
+  bool apply_changes_during_maintenance_window = 1 [
+    json_name = "apply_changes_during_maintenance_window"
+  ];
+
+  string arn = 2;
+
+  string description = 3;
+
+  string engine_type = 4 [json_name = "engine_type"];
+
+  string engine_version = 5 [json_name = "engine_version"];
+
+  string environment_id = 6 [json_name = "environment_id"];
+
+  bool force_update = 7 [json_name = "force_update"];
+
+  string id = 8;
+
+  string instance_type = 9 [json_name = "instance_type"];
+
+  string kms_key_id = 10 [json_name = "kms_key_id"];
+
+  string load_balancer_arn = 11 [json_name = "load_balancer_arn"];
+
+  string name = 12;
+
+  string preferred_maintenance_window = 13 [json_name = "preferred_maintenance_window"];
+
+  bool publicly_accessible = 14 [json_name = "publicly_accessible"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 15;
+
+  repeated string security_group_ids = 16 [json_name = "security_group_ids"];
+
+  repeated string subnet_ids = 17 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 18;
+
+  map<string, string> tags_all = 19 [json_name = "tags_all"];
+
+  repeated HighAvailabilityConfig high_availability_config = 20 [json_name = "high_availability_config"];
+
+  repeated StorageConfiguration storage_configuration = 21 [json_name = "storage_configuration"];
+
+  repeated Timeouts timeouts = 22;
+
+  google.protobuf.Value for_each = 23 [json_name = "for_each"];
+
+  repeated string depends_on = 24 [json_name = "depends_on"];
+
+  int32 count = 25;
+
+  string provider = 26;
+
+  terraform.v1.Lifecycle lifecycle = 27;
+
+  message HighAvailabilityConfig {
+    int64 desired_capacity = 1 [json_name = "desired_capacity"];
+  }
+
+  message StorageConfiguration {
+    repeated Efs efs = 1;
+
+    repeated Fsx fsx = 2;
+
+    message Efs {
+      string file_system_id = 1 [json_name = "file_system_id"];
+
+      string mount_point = 2 [json_name = "mount_point"];
+    }
+
+    message Fsx {
+      string file_system_id = 1 [json_name = "file_system_id"];
+
+      string mount_point = 2 [json_name = "mount_point"];
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}

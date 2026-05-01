@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+// Provider: random 3
+package terraform.random.resources.v3;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// RandomUuid4 version is 0
+message RandomUuid4 {
+  // The generated uuid presented in string format.
+  string id = 1;
+
+  // Arbitrary map of values that, when changed, will trigger recreation of resource.
+  // See [the main provider documentation](../index.html) for more information.
+  map<string, string> keepers = 2;
+
+  // The generated uuid presented in string format.
+  string result = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}

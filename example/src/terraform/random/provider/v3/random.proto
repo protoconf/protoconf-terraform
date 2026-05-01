@@ -1,21 +1,27 @@
-syntax = "proto3";
+syntax = "proto2";
 
-// Provider: random 3.5.1
+// Provider: random 3
 package terraform.random.provider.v3;
+
+import "google/protobuf/struct.proto";
 
 import "terraform/v1/meta.proto";
 
 // Random version is 0
 message Random {
-  map<string, string> for_each = 1 [json_name = "for_each"];
+  optional google.protobuf.Value for_each = 1 [json_name = "for_each"];
 
   repeated string depends_on = 2 [json_name = "depends_on"];
 
-  int32 count = 3;
+  optional int32 count = 3;
 
-  string provider = 4;
+  optional string provider = 4;
 
-  terraform.v1.Lifecycle lifecycle = 5;
+  optional terraform.v1.Lifecycle lifecycle = 5;
 
-  string alias = 6;
+  optional string alias = 6;
+
+  optional string provider_fqdn = 7 [default = "registry.terraform.io/hashicorp/random"];
+
+  optional string provider_version = 8 [default = "3.8.1"];
 }

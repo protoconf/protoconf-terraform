@@ -1,0 +1,1830 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSecurityhubAccount version is 1
+message AwsSecurityhubAccount {
+  string arn = 1;
+
+  bool auto_enable_controls = 2 [json_name = "auto_enable_controls"];
+
+  string control_finding_generator = 3 [json_name = "control_finding_generator"];
+
+  bool enable_default_standards = 4 [json_name = "enable_default_standards"];
+
+  string id = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsSecurityhubActionTarget version is 0
+message AwsSecurityhubActionTarget {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  string identifier = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsSecurityhubAutomationRule version is 0
+message AwsSecurityhubAutomationRule {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  bool is_terminal = 4 [json_name = "is_terminal"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string rule_name = 6 [json_name = "rule_name"];
+
+  int64 rule_order = 7 [json_name = "rule_order"];
+
+  string rule_status = 8 [json_name = "rule_status"];
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  repeated Actions actions = 11;
+
+  repeated Criteria criteria = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message Actions {
+    string type = 1;
+
+    repeated FindingFieldsUpdate finding_fields_update = 2 [json_name = "finding_fields_update"];
+
+    message FindingFieldsUpdate {
+      int64 confidence = 1;
+
+      int64 criticality = 2;
+
+      repeated string types = 3;
+
+      map<string, string> user_defined_fields = 4 [json_name = "user_defined_fields"];
+
+      string verification_state = 5 [json_name = "verification_state"];
+
+      repeated Note note = 6;
+
+      repeated RelatedFindings related_findings = 7 [json_name = "related_findings"];
+
+      repeated Severity severity = 8;
+
+      repeated Workflow workflow = 9;
+
+      message Note {
+        string text = 1;
+
+        string updated_by = 2 [json_name = "updated_by"];
+      }
+
+      message RelatedFindings {
+        string id = 1;
+
+        string product_arn = 2 [json_name = "product_arn"];
+      }
+
+      message Severity {
+        string label = 1;
+
+        int64 product = 2;
+      }
+
+      message Workflow {
+        string status = 1;
+      }
+    }
+  }
+
+  message Criteria {
+    repeated AwsAccountId aws_account_id = 1 [json_name = "aws_account_id"];
+
+    repeated AwsAccountName aws_account_name = 2 [json_name = "aws_account_name"];
+
+    repeated CompanyName company_name = 3 [json_name = "company_name"];
+
+    repeated ComplianceAssociatedStandardsId compliance_associated_standards_id = 4 [json_name = "compliance_associated_standards_id"];
+
+    repeated ComplianceSecurityControlId compliance_security_control_id = 5 [json_name = "compliance_security_control_id"];
+
+    repeated ComplianceStatus compliance_status = 6 [json_name = "compliance_status"];
+
+    repeated Confidence confidence = 7;
+
+    repeated CreatedAt created_at = 8 [json_name = "created_at"];
+
+    repeated Criticality criticality = 9;
+
+    repeated Description description = 10;
+
+    repeated FirstObservedAt first_observed_at = 11 [json_name = "first_observed_at"];
+
+    repeated GeneratorId generator_id = 12 [json_name = "generator_id"];
+
+    repeated Id id = 13;
+
+    repeated LastObservedAt last_observed_at = 14 [json_name = "last_observed_at"];
+
+    repeated NoteText note_text = 15 [json_name = "note_text"];
+
+    repeated NoteUpdatedAt note_updated_at = 16 [json_name = "note_updated_at"];
+
+    repeated NoteUpdatedBy note_updated_by = 17 [json_name = "note_updated_by"];
+
+    repeated ProductArn product_arn = 18 [json_name = "product_arn"];
+
+    repeated ProductName product_name = 19 [json_name = "product_name"];
+
+    repeated RecordState record_state = 20 [json_name = "record_state"];
+
+    repeated RelatedFindingsId related_findings_id = 21 [json_name = "related_findings_id"];
+
+    repeated RelatedFindingsProductArn related_findings_product_arn = 22 [json_name = "related_findings_product_arn"];
+
+    repeated ResourceApplicationArn resource_application_arn = 23 [json_name = "resource_application_arn"];
+
+    repeated ResourceApplicationName resource_application_name = 24 [json_name = "resource_application_name"];
+
+    repeated ResourceDetailsOther resource_details_other = 25 [json_name = "resource_details_other"];
+
+    repeated ResourceId resource_id = 26 [json_name = "resource_id"];
+
+    repeated ResourcePartition resource_partition = 27 [json_name = "resource_partition"];
+
+    repeated ResourceRegion resource_region = 28 [json_name = "resource_region"];
+
+    repeated ResourceTags resource_tags = 29 [json_name = "resource_tags"];
+
+    repeated ResourceType resource_type = 30 [json_name = "resource_type"];
+
+    repeated SeverityLabel severity_label = 31 [json_name = "severity_label"];
+
+    repeated SourceUrl source_url = 32 [json_name = "source_url"];
+
+    repeated Title title = 33;
+
+    repeated Type type = 34;
+
+    repeated UpdatedAt updated_at = 35 [json_name = "updated_at"];
+
+    repeated UserDefinedFields user_defined_fields = 36 [json_name = "user_defined_fields"];
+
+    repeated VerificationState verification_state = 37 [json_name = "verification_state"];
+
+    repeated WorkflowStatus workflow_status = 38 [json_name = "workflow_status"];
+
+    message AwsAccountId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message AwsAccountName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message CompanyName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ComplianceAssociatedStandardsId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ComplianceSecurityControlId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ComplianceStatus {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message Confidence {
+      int64 eq = 1;
+
+      int64 gt = 2;
+
+      int64 gte = 3;
+
+      int64 lt = 4;
+
+      int64 lte = 5;
+    }
+
+    message CreatedAt {
+      string end = 1;
+
+      string start = 2;
+
+      repeated DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message Criticality {
+      int64 eq = 1;
+
+      int64 gt = 2;
+
+      int64 gte = 3;
+
+      int64 lt = 4;
+
+      int64 lte = 5;
+    }
+
+    message Description {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message FirstObservedAt {
+      string end = 1;
+
+      string start = 2;
+
+      repeated DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message GeneratorId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message Id {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message LastObservedAt {
+      string end = 1;
+
+      string start = 2;
+
+      repeated DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message NoteText {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message NoteUpdatedAt {
+      string end = 1;
+
+      string start = 2;
+
+      repeated DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message NoteUpdatedBy {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ProductArn {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ProductName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message RecordState {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message RelatedFindingsId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message RelatedFindingsProductArn {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceApplicationArn {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceApplicationName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceDetailsOther {
+      string comparison = 1;
+
+      string key = 2;
+
+      string value = 3;
+    }
+
+    message ResourceId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourcePartition {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceRegion {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceTags {
+      string comparison = 1;
+
+      string key = 2;
+
+      string value = 3;
+    }
+
+    message ResourceType {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message SeverityLabel {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message SourceUrl {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message Title {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message Type {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message UpdatedAt {
+      string end = 1;
+
+      string start = 2;
+
+      repeated DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message UserDefinedFields {
+      string comparison = 1;
+
+      string key = 2;
+
+      string value = 3;
+    }
+
+    message VerificationState {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message WorkflowStatus {
+      string comparison = 1;
+
+      string value = 2;
+    }
+  }
+}
+
+// AwsSecurityhubConfigurationPolicy version is 0
+message AwsSecurityhubConfigurationPolicy {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  ConfigurationPolicy configuration_policy = 6 [json_name = "configuration_policy"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message ConfigurationPolicy {
+    repeated string enabled_standard_arns = 1 [json_name = "enabled_standard_arns"];
+
+    bool service_enabled = 2 [json_name = "service_enabled"];
+
+    SecurityControlsConfiguration security_controls_configuration = 3 [json_name = "security_controls_configuration"];
+
+    message SecurityControlsConfiguration {
+      repeated string disabled_control_identifiers = 1 [json_name = "disabled_control_identifiers"];
+
+      repeated string enabled_control_identifiers = 2 [json_name = "enabled_control_identifiers"];
+
+      repeated SecurityControlCustomParameter security_control_custom_parameter = 3 [json_name = "security_control_custom_parameter"];
+
+      message SecurityControlCustomParameter {
+        string security_control_id = 1 [json_name = "security_control_id"];
+
+        repeated Parameter parameter = 2;
+
+        message Parameter {
+          string name = 1;
+
+          string value_type = 2 [json_name = "value_type"];
+
+          Bool bool = 3;
+
+          Double double = 4;
+
+          Enum enum = 5;
+
+          EnumList enum_list = 6 [json_name = "enum_list"];
+
+          Int int = 7;
+
+          IntList int_list = 8 [json_name = "int_list"];
+
+          String string = 9;
+
+          StringList string_list = 10 [json_name = "string_list"];
+
+          message Bool {
+            bool value = 1;
+          }
+
+          message Double {
+            int64 value = 1;
+          }
+
+          message Enum {
+            string value = 1;
+          }
+
+          message EnumList {
+            repeated string value = 1;
+          }
+
+          message Int {
+            int64 value = 1;
+          }
+
+          message IntList {
+            repeated int64 value = 1;
+          }
+
+          message String {
+            string value = 1;
+          }
+
+          message StringList {
+            repeated string value = 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+// AwsSecurityhubConfigurationPolicyAssociation version is 0
+message AwsSecurityhubConfigurationPolicyAssociation {
+  string id = 1;
+
+  // The universally unique identifier (UUID) of the configuration policy.
+  string policy_id = 2 [json_name = "policy_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  // The identifier of the target account, organizational unit, or the root to
+  // associate with the specified configuration.
+  string target_id = 4 [json_name = "target_id"];
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Timeouts {
+    string create = 1;
+
+    string update = 2;
+  }
+}
+
+// AwsSecurityhubFindingAggregator version is 0
+message AwsSecurityhubFindingAggregator {
+  string id = 1;
+
+  string linking_mode = 2 [json_name = "linking_mode"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated string specified_regions = 4 [json_name = "specified_regions"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsSecurityhubInsight version is 0
+message AwsSecurityhubInsight {
+  string arn = 1;
+
+  string group_by_attribute = 2 [json_name = "group_by_attribute"];
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  Filters filters = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Filters {
+    repeated AwsAccountId aws_account_id = 1 [json_name = "aws_account_id"];
+
+    repeated AwsAccountName aws_account_name = 2 [json_name = "aws_account_name"];
+
+    repeated CompanyName company_name = 3 [json_name = "company_name"];
+
+    repeated ComplianceAssociatedStandardsId compliance_associated_standards_id = 4 [json_name = "compliance_associated_standards_id"];
+
+    repeated ComplianceSecurityControlId compliance_security_control_id = 5 [json_name = "compliance_security_control_id"];
+
+    repeated ComplianceSecurityControlParametersName compliance_security_control_parameters_name = 6 [
+      json_name = "compliance_security_control_parameters_name"
+    ];
+
+    repeated ComplianceSecurityControlParametersValue compliance_security_control_parameters_value = 7 [
+      json_name = "compliance_security_control_parameters_value"
+    ];
+
+    repeated ComplianceStatus compliance_status = 8 [json_name = "compliance_status"];
+
+    repeated Confidence confidence = 9;
+
+    repeated CreatedAt created_at = 10 [json_name = "created_at"];
+
+    repeated Criticality criticality = 11;
+
+    repeated Description description = 12;
+
+    repeated FindingProviderFieldsConfidence finding_provider_fields_confidence = 13 [json_name = "finding_provider_fields_confidence"];
+
+    repeated FindingProviderFieldsCriticality finding_provider_fields_criticality = 14 [json_name = "finding_provider_fields_criticality"];
+
+    repeated FindingProviderFieldsRelatedFindingsId finding_provider_fields_related_findings_id = 15 [
+      json_name = "finding_provider_fields_related_findings_id"
+    ];
+
+    repeated FindingProviderFieldsRelatedFindingsProductArn finding_provider_fields_related_findings_product_arn = 16 [
+      json_name = "finding_provider_fields_related_findings_product_arn"
+    ];
+
+    repeated FindingProviderFieldsSeverityLabel finding_provider_fields_severity_label = 17 [
+      json_name = "finding_provider_fields_severity_label"
+    ];
+
+    repeated FindingProviderFieldsSeverityOriginal finding_provider_fields_severity_original = 18 [
+      json_name = "finding_provider_fields_severity_original"
+    ];
+
+    repeated FindingProviderFieldsTypes finding_provider_fields_types = 19 [json_name = "finding_provider_fields_types"];
+
+    repeated FirstObservedAt first_observed_at = 20 [json_name = "first_observed_at"];
+
+    repeated GeneratorId generator_id = 21 [json_name = "generator_id"];
+
+    repeated Id id = 22;
+
+    repeated Keyword keyword = 23;
+
+    repeated LastObservedAt last_observed_at = 24 [json_name = "last_observed_at"];
+
+    repeated MalwareName malware_name = 25 [json_name = "malware_name"];
+
+    repeated MalwarePath malware_path = 26 [json_name = "malware_path"];
+
+    repeated MalwareState malware_state = 27 [json_name = "malware_state"];
+
+    repeated MalwareType malware_type = 28 [json_name = "malware_type"];
+
+    repeated NetworkDestinationDomain network_destination_domain = 29 [json_name = "network_destination_domain"];
+
+    repeated NetworkDestinationIpv4 network_destination_ipv4 = 30 [json_name = "network_destination_ipv4"];
+
+    repeated NetworkDestinationIpv6 network_destination_ipv6 = 31 [json_name = "network_destination_ipv6"];
+
+    repeated NetworkDestinationPort network_destination_port = 32 [json_name = "network_destination_port"];
+
+    repeated NetworkDirection network_direction = 33 [json_name = "network_direction"];
+
+    repeated NetworkProtocol network_protocol = 34 [json_name = "network_protocol"];
+
+    repeated NetworkSourceDomain network_source_domain = 35 [json_name = "network_source_domain"];
+
+    repeated NetworkSourceIpv4 network_source_ipv4 = 36 [json_name = "network_source_ipv4"];
+
+    repeated NetworkSourceIpv6 network_source_ipv6 = 37 [json_name = "network_source_ipv6"];
+
+    repeated NetworkSourceMac network_source_mac = 38 [json_name = "network_source_mac"];
+
+    repeated NetworkSourcePort network_source_port = 39 [json_name = "network_source_port"];
+
+    repeated NoteText note_text = 40 [json_name = "note_text"];
+
+    repeated NoteUpdatedAt note_updated_at = 41 [json_name = "note_updated_at"];
+
+    repeated NoteUpdatedBy note_updated_by = 42 [json_name = "note_updated_by"];
+
+    repeated ProcessLaunchedAt process_launched_at = 43 [json_name = "process_launched_at"];
+
+    repeated ProcessName process_name = 44 [json_name = "process_name"];
+
+    repeated ProcessParentPid process_parent_pid = 45 [json_name = "process_parent_pid"];
+
+    repeated ProcessPath process_path = 46 [json_name = "process_path"];
+
+    repeated ProcessPid process_pid = 47 [json_name = "process_pid"];
+
+    repeated ProcessTerminatedAt process_terminated_at = 48 [json_name = "process_terminated_at"];
+
+    repeated ProductArn product_arn = 49 [json_name = "product_arn"];
+
+    repeated ProductFields product_fields = 50 [json_name = "product_fields"];
+
+    repeated ProductName product_name = 51 [json_name = "product_name"];
+
+    repeated RecommendationText recommendation_text = 52 [json_name = "recommendation_text"];
+
+    repeated RecordState record_state = 53 [json_name = "record_state"];
+
+    repeated RelatedFindingsId related_findings_id = 54 [json_name = "related_findings_id"];
+
+    repeated RelatedFindingsProductArn related_findings_product_arn = 55 [json_name = "related_findings_product_arn"];
+
+    repeated ResourceAwsEc2InstanceIamInstanceProfileArn resource_aws_ec2_instance_iam_instance_profile_arn = 56 [
+      json_name = "resource_aws_ec2_instance_iam_instance_profile_arn"
+    ];
+
+    repeated ResourceAwsEc2InstanceImageId resource_aws_ec2_instance_image_id = 57 [json_name = "resource_aws_ec2_instance_image_id"];
+
+    repeated ResourceAwsEc2InstanceIpv4Addresses resource_aws_ec2_instance_ipv4_addresses = 58 [
+      json_name = "resource_aws_ec2_instance_ipv4_addresses"
+    ];
+
+    repeated ResourceAwsEc2InstanceIpv6Addresses resource_aws_ec2_instance_ipv6_addresses = 59 [
+      json_name = "resource_aws_ec2_instance_ipv6_addresses"
+    ];
+
+    repeated ResourceAwsEc2InstanceKeyName resource_aws_ec2_instance_key_name = 60 [json_name = "resource_aws_ec2_instance_key_name"];
+
+    repeated ResourceAwsEc2InstanceLaunchedAt resource_aws_ec2_instance_launched_at = 61 [
+      json_name = "resource_aws_ec2_instance_launched_at"
+    ];
+
+    repeated ResourceAwsEc2InstanceSubnetId resource_aws_ec2_instance_subnet_id = 62 [json_name = "resource_aws_ec2_instance_subnet_id"];
+
+    repeated ResourceAwsEc2InstanceType resource_aws_ec2_instance_type = 63 [json_name = "resource_aws_ec2_instance_type"];
+
+    repeated ResourceAwsEc2InstanceVpcId resource_aws_ec2_instance_vpc_id = 64 [json_name = "resource_aws_ec2_instance_vpc_id"];
+
+    repeated ResourceAwsIamAccessKeyCreatedAt resource_aws_iam_access_key_created_at = 65 [
+      json_name = "resource_aws_iam_access_key_created_at"
+    ];
+
+    repeated ResourceAwsIamAccessKeyStatus resource_aws_iam_access_key_status = 66 [json_name = "resource_aws_iam_access_key_status"];
+
+    repeated ResourceAwsIamAccessKeyUserName resource_aws_iam_access_key_user_name = 67 [
+      json_name = "resource_aws_iam_access_key_user_name"
+    ];
+
+    repeated ResourceAwsS3BucketOwnerId resource_aws_s3_bucket_owner_id = 68 [json_name = "resource_aws_s3_bucket_owner_id"];
+
+    repeated ResourceAwsS3BucketOwnerName resource_aws_s3_bucket_owner_name = 69 [json_name = "resource_aws_s3_bucket_owner_name"];
+
+    repeated ResourceContainerImageId resource_container_image_id = 70 [json_name = "resource_container_image_id"];
+
+    repeated ResourceContainerImageName resource_container_image_name = 71 [json_name = "resource_container_image_name"];
+
+    repeated ResourceContainerLaunchedAt resource_container_launched_at = 72 [json_name = "resource_container_launched_at"];
+
+    repeated ResourceContainerName resource_container_name = 73 [json_name = "resource_container_name"];
+
+    repeated ResourceDetailsOther resource_details_other = 74 [json_name = "resource_details_other"];
+
+    repeated ResourceId resource_id = 75 [json_name = "resource_id"];
+
+    repeated ResourcePartition resource_partition = 76 [json_name = "resource_partition"];
+
+    repeated ResourceRegion resource_region = 77 [json_name = "resource_region"];
+
+    repeated ResourceTags resource_tags = 78 [json_name = "resource_tags"];
+
+    repeated ResourceType resource_type = 79 [json_name = "resource_type"];
+
+    repeated SeverityLabel severity_label = 80 [json_name = "severity_label"];
+
+    repeated SourceUrl source_url = 81 [json_name = "source_url"];
+
+    repeated ThreatIntelIndicatorCategory threat_intel_indicator_category = 82 [json_name = "threat_intel_indicator_category"];
+
+    repeated ThreatIntelIndicatorLastObservedAt threat_intel_indicator_last_observed_at = 83 [
+      json_name = "threat_intel_indicator_last_observed_at"
+    ];
+
+    repeated ThreatIntelIndicatorSource threat_intel_indicator_source = 84 [json_name = "threat_intel_indicator_source"];
+
+    repeated ThreatIntelIndicatorSourceUrl threat_intel_indicator_source_url = 85 [json_name = "threat_intel_indicator_source_url"];
+
+    repeated ThreatIntelIndicatorType threat_intel_indicator_type = 86 [json_name = "threat_intel_indicator_type"];
+
+    repeated ThreatIntelIndicatorValue threat_intel_indicator_value = 87 [json_name = "threat_intel_indicator_value"];
+
+    repeated Title title = 88;
+
+    repeated Type type = 89;
+
+    repeated UpdatedAt updated_at = 90 [json_name = "updated_at"];
+
+    repeated UserDefinedValues user_defined_values = 91 [json_name = "user_defined_values"];
+
+    repeated VerificationState verification_state = 92 [json_name = "verification_state"];
+
+    repeated WorkflowStatus workflow_status = 93 [json_name = "workflow_status"];
+
+    message AwsAccountId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message AwsAccountName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message CompanyName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ComplianceAssociatedStandardsId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ComplianceSecurityControlId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ComplianceSecurityControlParametersName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ComplianceSecurityControlParametersValue {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ComplianceStatus {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message Confidence {
+      string eq = 1;
+
+      string gte = 2;
+
+      string lte = 3;
+    }
+
+    message CreatedAt {
+      string end = 1;
+
+      string start = 2;
+
+      DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message Criticality {
+      string eq = 1;
+
+      string gte = 2;
+
+      string lte = 3;
+    }
+
+    message Description {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message FindingProviderFieldsConfidence {
+      string eq = 1;
+
+      string gte = 2;
+
+      string lte = 3;
+    }
+
+    message FindingProviderFieldsCriticality {
+      string eq = 1;
+
+      string gte = 2;
+
+      string lte = 3;
+    }
+
+    message FindingProviderFieldsRelatedFindingsId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message FindingProviderFieldsRelatedFindingsProductArn {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message FindingProviderFieldsSeverityLabel {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message FindingProviderFieldsSeverityOriginal {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message FindingProviderFieldsTypes {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message FirstObservedAt {
+      string end = 1;
+
+      string start = 2;
+
+      DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message GeneratorId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message Id {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message Keyword {
+      string value = 1;
+    }
+
+    message LastObservedAt {
+      string end = 1;
+
+      string start = 2;
+
+      DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message MalwareName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message MalwarePath {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message MalwareState {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message MalwareType {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message NetworkDestinationDomain {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message NetworkDestinationIpv4 {
+      string cidr = 1;
+    }
+
+    message NetworkDestinationIpv6 {
+      string cidr = 1;
+    }
+
+    message NetworkDestinationPort {
+      string eq = 1;
+
+      string gte = 2;
+
+      string lte = 3;
+    }
+
+    message NetworkDirection {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message NetworkProtocol {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message NetworkSourceDomain {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message NetworkSourceIpv4 {
+      string cidr = 1;
+    }
+
+    message NetworkSourceIpv6 {
+      string cidr = 1;
+    }
+
+    message NetworkSourceMac {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message NetworkSourcePort {
+      string eq = 1;
+
+      string gte = 2;
+
+      string lte = 3;
+    }
+
+    message NoteText {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message NoteUpdatedAt {
+      string end = 1;
+
+      string start = 2;
+
+      DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message NoteUpdatedBy {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ProcessLaunchedAt {
+      string end = 1;
+
+      string start = 2;
+
+      DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message ProcessName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ProcessParentPid {
+      string eq = 1;
+
+      string gte = 2;
+
+      string lte = 3;
+    }
+
+    message ProcessPath {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ProcessPid {
+      string eq = 1;
+
+      string gte = 2;
+
+      string lte = 3;
+    }
+
+    message ProcessTerminatedAt {
+      string end = 1;
+
+      string start = 2;
+
+      DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message ProductArn {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ProductFields {
+      string comparison = 1;
+
+      string key = 2;
+
+      string value = 3;
+    }
+
+    message ProductName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message RecommendationText {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message RecordState {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message RelatedFindingsId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message RelatedFindingsProductArn {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceAwsEc2InstanceIamInstanceProfileArn {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceAwsEc2InstanceImageId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceAwsEc2InstanceIpv4Addresses {
+      string cidr = 1;
+    }
+
+    message ResourceAwsEc2InstanceIpv6Addresses {
+      string cidr = 1;
+    }
+
+    message ResourceAwsEc2InstanceKeyName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceAwsEc2InstanceLaunchedAt {
+      string end = 1;
+
+      string start = 2;
+
+      DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message ResourceAwsEc2InstanceSubnetId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceAwsEc2InstanceType {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceAwsEc2InstanceVpcId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceAwsIamAccessKeyCreatedAt {
+      string end = 1;
+
+      string start = 2;
+
+      DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message ResourceAwsIamAccessKeyStatus {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceAwsIamAccessKeyUserName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceAwsS3BucketOwnerId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceAwsS3BucketOwnerName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceContainerImageId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceContainerImageName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceContainerLaunchedAt {
+      string end = 1;
+
+      string start = 2;
+
+      DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message ResourceContainerName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceDetailsOther {
+      string comparison = 1;
+
+      string key = 2;
+
+      string value = 3;
+    }
+
+    message ResourceId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourcePartition {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceRegion {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceTags {
+      string comparison = 1;
+
+      string key = 2;
+
+      string value = 3;
+    }
+
+    message ResourceType {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message SeverityLabel {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message SourceUrl {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ThreatIntelIndicatorCategory {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ThreatIntelIndicatorLastObservedAt {
+      string end = 1;
+
+      string start = 2;
+
+      DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message ThreatIntelIndicatorSource {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ThreatIntelIndicatorSourceUrl {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ThreatIntelIndicatorType {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ThreatIntelIndicatorValue {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message Title {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message Type {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message UpdatedAt {
+      string end = 1;
+
+      string start = 2;
+
+      DateRange date_range = 3 [json_name = "date_range"];
+
+      message DateRange {
+        string unit = 1;
+
+        int64 value = 2;
+      }
+    }
+
+    message UserDefinedValues {
+      string comparison = 1;
+
+      string key = 2;
+
+      string value = 3;
+    }
+
+    message VerificationState {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message WorkflowStatus {
+      string comparison = 1;
+
+      string value = 2;
+    }
+  }
+}
+
+// AwsSecurityhubInviteAccepter version is 0
+message AwsSecurityhubInviteAccepter {
+  string id = 1;
+
+  string invitation_id = 2 [json_name = "invitation_id"];
+
+  string master_id = 3 [json_name = "master_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsSecurityhubMember version is 0
+message AwsSecurityhubMember {
+  string account_id = 1 [json_name = "account_id"];
+
+  string email = 2;
+
+  string id = 3;
+
+  bool invite = 4;
+
+  string master_id = 5 [json_name = "master_id"];
+
+  string member_status = 6 [json_name = "member_status"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsSecurityhubOrganizationAdminAccount version is 0
+message AwsSecurityhubOrganizationAdminAccount {
+  string admin_account_id = 1 [json_name = "admin_account_id"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsSecurityhubOrganizationConfiguration version is 0
+message AwsSecurityhubOrganizationConfiguration {
+  bool auto_enable = 1 [json_name = "auto_enable"];
+
+  string auto_enable_standards = 2 [json_name = "auto_enable_standards"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  OrganizationConfiguration organization_configuration = 5 [json_name = "organization_configuration"];
+
+  repeated Timeouts timeouts = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message OrganizationConfiguration {
+    string configuration_type = 1 [json_name = "configuration_type"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsSecurityhubProductSubscription version is 0
+message AwsSecurityhubProductSubscription {
+  string arn = 1;
+
+  string id = 2;
+
+  string product_arn = 3 [json_name = "product_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsSecurityhubStandardsControl version is 0
+message AwsSecurityhubStandardsControl {
+  string control_id = 1 [json_name = "control_id"];
+
+  string control_status = 2 [json_name = "control_status"];
+
+  string control_status_updated_at = 3 [json_name = "control_status_updated_at"];
+
+  string description = 4;
+
+  string disabled_reason = 5 [json_name = "disabled_reason"];
+
+  string id = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  repeated string related_requirements = 8 [json_name = "related_requirements"];
+
+  string remediation_url = 9 [json_name = "remediation_url"];
+
+  string severity_rating = 10 [json_name = "severity_rating"];
+
+  string standards_control_arn = 11 [json_name = "standards_control_arn"];
+
+  string title = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+}
+
+// AwsSecurityhubStandardsControlAssociation version is 0
+message AwsSecurityhubStandardsControlAssociation {
+  string association_status = 1 [json_name = "association_status"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string security_control_id = 4 [json_name = "security_control_id"];
+
+  string standards_arn = 5 [json_name = "standards_arn"];
+
+  string updated_reason = 6 [json_name = "updated_reason"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsSecurityhubStandardsSubscription version is 0
+message AwsSecurityhubStandardsSubscription {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string standards_arn = 3 [json_name = "standards_arn"];
+
+  repeated Timeouts timeouts = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}

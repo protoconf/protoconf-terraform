@@ -1,0 +1,699 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsLaunchConfiguration version is 0
+message AwsLaunchConfiguration {
+  string arn = 1;
+
+  bool associate_public_ip_address = 2 [json_name = "associate_public_ip_address"];
+
+  repeated EbsBlockDevice ebs_block_device = 3 [json_name = "ebs_block_device"];
+
+  bool ebs_optimized = 4 [json_name = "ebs_optimized"];
+
+  bool enable_monitoring = 5 [json_name = "enable_monitoring"];
+
+  repeated EphemeralBlockDevice ephemeral_block_device = 6 [json_name = "ephemeral_block_device"];
+
+  string iam_instance_profile = 7 [json_name = "iam_instance_profile"];
+
+  string id = 8;
+
+  string image_id = 9 [json_name = "image_id"];
+
+  string instance_type = 10 [json_name = "instance_type"];
+
+  string key_name = 11 [json_name = "key_name"];
+
+  repeated MetadataOptions metadata_options = 12 [json_name = "metadata_options"];
+
+  string name = 13;
+
+  string placement_tenancy = 14 [json_name = "placement_tenancy"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 15;
+
+  repeated RootBlockDevice root_block_device = 16 [json_name = "root_block_device"];
+
+  repeated string security_groups = 17 [json_name = "security_groups"];
+
+  string spot_price = 18 [json_name = "spot_price"];
+
+  string user_data = 19 [json_name = "user_data"];
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message EbsBlockDevice {
+    // delete_on_termination: bool
+    bool delete_on_termination = 1 [json_name = "delete_on_termination"];
+
+    // device_name: string
+    string device_name = 2 [json_name = "device_name"];
+
+    // encrypted: bool
+    bool encrypted = 3;
+
+    // iops: number
+    int64 iops = 4;
+
+    // no_device: bool
+    bool no_device = 5 [json_name = "no_device"];
+
+    // snapshot_id: string
+    string snapshot_id = 6 [json_name = "snapshot_id"];
+
+    // throughput: number
+    int64 throughput = 7;
+
+    // volume_size: number
+    int64 volume_size = 8 [json_name = "volume_size"];
+
+    // volume_type: string
+    string volume_type = 9 [json_name = "volume_type"];
+  }
+
+  message EphemeralBlockDevice {
+    // device_name: string
+    string device_name = 1 [json_name = "device_name"];
+
+    // virtual_name: string
+    string virtual_name = 2 [json_name = "virtual_name"];
+  }
+
+  message MetadataOptions {
+    // http_endpoint: string
+    string http_endpoint = 1 [json_name = "http_endpoint"];
+
+    // http_put_response_hop_limit: number
+    int64 http_put_response_hop_limit = 2 [json_name = "http_put_response_hop_limit"];
+
+    // http_tokens: string
+    string http_tokens = 3 [json_name = "http_tokens"];
+  }
+
+  message RootBlockDevice {
+    // delete_on_termination: bool
+    bool delete_on_termination = 1 [json_name = "delete_on_termination"];
+
+    // encrypted: bool
+    bool encrypted = 2;
+
+    // iops: number
+    int64 iops = 3;
+
+    // throughput: number
+    int64 throughput = 4;
+
+    // volume_size: number
+    int64 volume_size = 5 [json_name = "volume_size"];
+
+    // volume_type: string
+    string volume_type = 6 [json_name = "volume_type"];
+  }
+}
+
+// AwsLaunchTemplate version is 0
+message AwsLaunchTemplate {
+  string arn = 1;
+
+  repeated BlockDeviceMappings block_device_mappings = 2 [json_name = "block_device_mappings"];
+
+  repeated CapacityReservationSpecification capacity_reservation_specification = 3 [json_name = "capacity_reservation_specification"];
+
+  repeated CpuOptions cpu_options = 4 [json_name = "cpu_options"];
+
+  repeated CreditSpecification credit_specification = 5 [json_name = "credit_specification"];
+
+  int64 default_version = 6 [json_name = "default_version"];
+
+  string description = 7;
+
+  bool disable_api_stop = 8 [json_name = "disable_api_stop"];
+
+  bool disable_api_termination = 9 [json_name = "disable_api_termination"];
+
+  string ebs_optimized = 10 [json_name = "ebs_optimized"];
+
+  repeated EnclaveOptions enclave_options = 11 [json_name = "enclave_options"];
+
+  repeated HibernationOptions hibernation_options = 12 [json_name = "hibernation_options"];
+
+  repeated IamInstanceProfile iam_instance_profile = 13 [json_name = "iam_instance_profile"];
+
+  string id = 14;
+
+  string image_id = 15 [json_name = "image_id"];
+
+  string instance_initiated_shutdown_behavior = 16 [json_name = "instance_initiated_shutdown_behavior"];
+
+  repeated InstanceMarketOptions instance_market_options = 17 [json_name = "instance_market_options"];
+
+  repeated InstanceRequirements instance_requirements = 18 [json_name = "instance_requirements"];
+
+  string instance_type = 19 [json_name = "instance_type"];
+
+  string kernel_id = 20 [json_name = "kernel_id"];
+
+  string key_name = 21 [json_name = "key_name"];
+
+  int64 latest_version = 22 [json_name = "latest_version"];
+
+  repeated LicenseSpecification license_specification = 23 [json_name = "license_specification"];
+
+  repeated MaintenanceOptions maintenance_options = 24 [json_name = "maintenance_options"];
+
+  repeated MetadataOptions metadata_options = 25 [json_name = "metadata_options"];
+
+  repeated Monitoring monitoring = 26;
+
+  string name = 27;
+
+  repeated NetworkInterfaces network_interfaces = 28 [json_name = "network_interfaces"];
+
+  repeated NetworkPerformanceOptions network_performance_options = 29 [json_name = "network_performance_options"];
+
+  repeated Placement placement = 30;
+
+  repeated PrivateDnsNameOptions private_dns_name_options = 31 [json_name = "private_dns_name_options"];
+
+  string ram_disk_id = 32 [json_name = "ram_disk_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 33;
+
+  repeated SecondaryInterfaces secondary_interfaces = 34 [json_name = "secondary_interfaces"];
+
+  repeated string security_group_names = 35 [json_name = "security_group_names"];
+
+  repeated TagSpecifications tag_specifications = 36 [json_name = "tag_specifications"];
+
+  map<string, string> tags = 37;
+
+  string user_data = 38 [json_name = "user_data"];
+
+  repeated string vpc_security_group_ids = 39 [json_name = "vpc_security_group_ids"];
+
+  repeated Filter filter = 40;
+
+  repeated Timeouts timeouts = 41;
+
+  google.protobuf.Value for_each = 42 [json_name = "for_each"];
+
+  repeated string depends_on = 43 [json_name = "depends_on"];
+
+  int32 count = 44;
+
+  string provider = 45;
+
+  terraform.v1.Lifecycle lifecycle = 46;
+
+  message BlockDeviceMappings {
+    // device_name: string
+    string device_name = 1 [json_name = "device_name"];
+
+    // ebs: list of object
+    repeated Ebs ebs = 2;
+
+    // no_device: string
+    string no_device = 3 [json_name = "no_device"];
+
+    // virtual_name: string
+    string virtual_name = 4 [json_name = "virtual_name"];
+
+    message Ebs {
+      // delete_on_termination: string
+      string delete_on_termination = 1 [json_name = "delete_on_termination"];
+
+      // encrypted: string
+      string encrypted = 2;
+
+      // iops: number
+      int64 iops = 3;
+
+      // kms_key_id: string
+      string kms_key_id = 4 [json_name = "kms_key_id"];
+
+      // snapshot_id: string
+      string snapshot_id = 5 [json_name = "snapshot_id"];
+
+      // throughput: number
+      int64 throughput = 6;
+
+      // volume_initialization_rate: number
+      int64 volume_initialization_rate = 7 [json_name = "volume_initialization_rate"];
+
+      // volume_size: number
+      int64 volume_size = 8 [json_name = "volume_size"];
+
+      // volume_type: string
+      string volume_type = 9 [json_name = "volume_type"];
+    }
+  }
+
+  message CapacityReservationSpecification {
+    // capacity_reservation_preference: string
+    string capacity_reservation_preference = 1 [json_name = "capacity_reservation_preference"];
+
+    // capacity_reservation_target: list of object
+    repeated CapacityReservationTarget capacity_reservation_target = 2 [json_name = "capacity_reservation_target"];
+
+    message CapacityReservationTarget {
+      // capacity_reservation_id: string
+      string capacity_reservation_id = 1 [json_name = "capacity_reservation_id"];
+
+      // capacity_reservation_resource_group_arn: string
+      string capacity_reservation_resource_group_arn = 2 [
+        json_name = "capacity_reservation_resource_group_arn"
+      ];
+    }
+  }
+
+  message CpuOptions {
+    // amd_sev_snp: string
+    string amd_sev_snp = 1 [json_name = "amd_sev_snp"];
+
+    // core_count: number
+    int64 core_count = 2 [json_name = "core_count"];
+
+    // nested_virtualization: string
+    string nested_virtualization = 3 [json_name = "nested_virtualization"];
+
+    // threads_per_core: number
+    int64 threads_per_core = 4 [json_name = "threads_per_core"];
+  }
+
+  message CreditSpecification {
+    // cpu_credits: string
+    string cpu_credits = 1 [json_name = "cpu_credits"];
+  }
+
+  message EnclaveOptions {
+    // enabled: bool
+    bool enabled = 1;
+  }
+
+  message HibernationOptions {
+    // configured: bool
+    bool configured = 1;
+  }
+
+  message IamInstanceProfile {
+    // arn: string
+    string arn = 1;
+
+    // name: string
+    string name = 2;
+  }
+
+  message InstanceMarketOptions {
+    // market_type: string
+    string market_type = 1 [json_name = "market_type"];
+
+    // spot_options: list of object
+    repeated SpotOptions spot_options = 2 [json_name = "spot_options"];
+
+    message SpotOptions {
+      // block_duration_minutes: number
+      int64 block_duration_minutes = 1 [json_name = "block_duration_minutes"];
+
+      // instance_interruption_behavior: string
+      string instance_interruption_behavior = 2 [json_name = "instance_interruption_behavior"];
+
+      // max_price: string
+      string max_price = 3 [json_name = "max_price"];
+
+      // spot_instance_type: string
+      string spot_instance_type = 4 [json_name = "spot_instance_type"];
+
+      // valid_until: string
+      string valid_until = 5 [json_name = "valid_until"];
+    }
+  }
+
+  message InstanceRequirements {
+    // accelerator_count: list of object
+    repeated AcceleratorCount accelerator_count = 1 [json_name = "accelerator_count"];
+
+    // accelerator_manufacturers: set of string
+    repeated string accelerator_manufacturers = 2 [json_name = "accelerator_manufacturers"];
+
+    // accelerator_names: set of string
+    repeated string accelerator_names = 3 [json_name = "accelerator_names"];
+
+    // accelerator_total_memory_mib: list of object
+    repeated AcceleratorTotalMemoryMib accelerator_total_memory_mib = 4 [json_name = "accelerator_total_memory_mib"];
+
+    // accelerator_types: set of string
+    repeated string accelerator_types = 5 [json_name = "accelerator_types"];
+
+    // allowed_instance_types: set of string
+    repeated string allowed_instance_types = 6 [json_name = "allowed_instance_types"];
+
+    // bare_metal: string
+    string bare_metal = 7 [json_name = "bare_metal"];
+
+    // baseline_ebs_bandwidth_mbps: list of object
+    repeated BaselineEbsBandwidthMbps baseline_ebs_bandwidth_mbps = 8 [json_name = "baseline_ebs_bandwidth_mbps"];
+
+    // burstable_performance: string
+    string burstable_performance = 9 [json_name = "burstable_performance"];
+
+    // cpu_manufacturers: set of string
+    repeated string cpu_manufacturers = 10 [json_name = "cpu_manufacturers"];
+
+    // excluded_instance_types: set of string
+    repeated string excluded_instance_types = 11 [json_name = "excluded_instance_types"];
+
+    // instance_generations: set of string
+    repeated string instance_generations = 12 [json_name = "instance_generations"];
+
+    // local_storage: string
+    string local_storage = 13 [json_name = "local_storage"];
+
+    // local_storage_types: set of string
+    repeated string local_storage_types = 14 [json_name = "local_storage_types"];
+
+    // max_spot_price_as_percentage_of_optimal_on_demand_price: number
+    int64 max_spot_price_as_percentage_of_optimal_on_demand_price = 15 [
+      json_name = "max_spot_price_as_percentage_of_optimal_on_demand_price"
+    ];
+
+    // memory_gib_per_vcpu: list of object
+    repeated MemoryGibPerVcpu memory_gib_per_vcpu = 16 [json_name = "memory_gib_per_vcpu"];
+
+    // memory_mib: list of object
+    repeated MemoryMib memory_mib = 17 [json_name = "memory_mib"];
+
+    // network_bandwidth_gbps: list of object
+    repeated NetworkBandwidthGbps network_bandwidth_gbps = 18 [json_name = "network_bandwidth_gbps"];
+
+    // network_interface_count: list of object
+    repeated NetworkInterfaceCount network_interface_count = 19 [json_name = "network_interface_count"];
+
+    // on_demand_max_price_percentage_over_lowest_price: number
+    int64 on_demand_max_price_percentage_over_lowest_price = 20 [
+      json_name = "on_demand_max_price_percentage_over_lowest_price"
+    ];
+
+    // require_hibernate_support: bool
+    bool require_hibernate_support = 21 [json_name = "require_hibernate_support"];
+
+    // spot_max_price_percentage_over_lowest_price: number
+    int64 spot_max_price_percentage_over_lowest_price = 22 [
+      json_name = "spot_max_price_percentage_over_lowest_price"
+    ];
+
+    // total_local_storage_gb: list of object
+    repeated TotalLocalStorageGb total_local_storage_gb = 23 [json_name = "total_local_storage_gb"];
+
+    // vcpu_count: list of object
+    repeated VcpuCount vcpu_count = 24 [json_name = "vcpu_count"];
+
+    message AcceleratorCount {
+      // max: number
+      int64 max = 1;
+
+      // min: number
+      int64 min = 2;
+    }
+
+    message AcceleratorTotalMemoryMib {
+      // max: number
+      int64 max = 1;
+
+      // min: number
+      int64 min = 2;
+    }
+
+    message BaselineEbsBandwidthMbps {
+      // max: number
+      int64 max = 1;
+
+      // min: number
+      int64 min = 2;
+    }
+
+    message MemoryGibPerVcpu {
+      // max: number
+      int64 max = 1;
+
+      // min: number
+      int64 min = 2;
+    }
+
+    message MemoryMib {
+      // max: number
+      int64 max = 1;
+
+      // min: number
+      int64 min = 2;
+    }
+
+    message NetworkBandwidthGbps {
+      // max: number
+      int64 max = 1;
+
+      // min: number
+      int64 min = 2;
+    }
+
+    message NetworkInterfaceCount {
+      // max: number
+      int64 max = 1;
+
+      // min: number
+      int64 min = 2;
+    }
+
+    message TotalLocalStorageGb {
+      // max: number
+      int64 max = 1;
+
+      // min: number
+      int64 min = 2;
+    }
+
+    message VcpuCount {
+      // max: number
+      int64 max = 1;
+
+      // min: number
+      int64 min = 2;
+    }
+  }
+
+  message LicenseSpecification {
+    // license_configuration_arn: string
+    string license_configuration_arn = 1 [json_name = "license_configuration_arn"];
+  }
+
+  message MaintenanceOptions {
+    // auto_recovery: string
+    string auto_recovery = 1 [json_name = "auto_recovery"];
+  }
+
+  message MetadataOptions {
+    // http_endpoint: string
+    string http_endpoint = 1 [json_name = "http_endpoint"];
+
+    // http_protocol_ipv6: string
+    string http_protocol_ipv6 = 2 [json_name = "http_protocol_ipv6"];
+
+    // http_put_response_hop_limit: number
+    int64 http_put_response_hop_limit = 3 [json_name = "http_put_response_hop_limit"];
+
+    // http_tokens: string
+    string http_tokens = 4 [json_name = "http_tokens"];
+
+    // instance_metadata_tags: string
+    string instance_metadata_tags = 5 [json_name = "instance_metadata_tags"];
+  }
+
+  message Monitoring {
+    // enabled: bool
+    bool enabled = 1;
+  }
+
+  message NetworkInterfaces {
+    // associate_carrier_ip_address: string
+    string associate_carrier_ip_address = 1 [json_name = "associate_carrier_ip_address"];
+
+    // associate_public_ip_address: string
+    string associate_public_ip_address = 2 [json_name = "associate_public_ip_address"];
+
+    // connection_tracking_specification: list of object
+    repeated ConnectionTrackingSpecification connection_tracking_specification = 3 [json_name = "connection_tracking_specification"];
+
+    // delete_on_termination: string
+    string delete_on_termination = 4 [json_name = "delete_on_termination"];
+
+    // description: string
+    string description = 5;
+
+    // device_index: number
+    int64 device_index = 6 [json_name = "device_index"];
+
+    // interface_type: string
+    string interface_type = 7 [json_name = "interface_type"];
+
+    // ipv4_address_count: number
+    int64 ipv4_address_count = 8 [json_name = "ipv4_address_count"];
+
+    // ipv4_addresses: set of string
+    repeated string ipv4_addresses = 9 [json_name = "ipv4_addresses"];
+
+    // ipv4_prefix_count: number
+    int64 ipv4_prefix_count = 10 [json_name = "ipv4_prefix_count"];
+
+    // ipv4_prefixes: set of string
+    repeated string ipv4_prefixes = 11 [json_name = "ipv4_prefixes"];
+
+    // ipv6_address_count: number
+    int64 ipv6_address_count = 12 [json_name = "ipv6_address_count"];
+
+    // ipv6_addresses: set of string
+    repeated string ipv6_addresses = 13 [json_name = "ipv6_addresses"];
+
+    // ipv6_prefix_count: number
+    int64 ipv6_prefix_count = 14 [json_name = "ipv6_prefix_count"];
+
+    // ipv6_prefixes: set of string
+    repeated string ipv6_prefixes = 15 [json_name = "ipv6_prefixes"];
+
+    // network_card_index: number
+    int64 network_card_index = 16 [json_name = "network_card_index"];
+
+    // network_interface_id: string
+    string network_interface_id = 17 [json_name = "network_interface_id"];
+
+    // primary_ipv6: string
+    string primary_ipv6 = 18 [json_name = "primary_ipv6"];
+
+    // private_ip_address: string
+    string private_ip_address = 19 [json_name = "private_ip_address"];
+
+    // security_groups: set of string
+    repeated string security_groups = 20 [json_name = "security_groups"];
+
+    // subnet_id: string
+    string subnet_id = 21 [json_name = "subnet_id"];
+
+    message ConnectionTrackingSpecification {
+      // tcp_established_timeout: number
+      int64 tcp_established_timeout = 1 [json_name = "tcp_established_timeout"];
+
+      // udp_stream_timeout: number
+      int64 udp_stream_timeout = 2 [json_name = "udp_stream_timeout"];
+
+      // udp_timeout: number
+      int64 udp_timeout = 3 [json_name = "udp_timeout"];
+    }
+  }
+
+  message NetworkPerformanceOptions {
+    // bandwidth_weighting: string
+    string bandwidth_weighting = 1 [json_name = "bandwidth_weighting"];
+  }
+
+  message Placement {
+    // affinity: string
+    string affinity = 1;
+
+    // availability_zone: string
+    string availability_zone = 2 [json_name = "availability_zone"];
+
+    // group_id: string
+    string group_id = 3 [json_name = "group_id"];
+
+    // group_name: string
+    string group_name = 4 [json_name = "group_name"];
+
+    // host_id: string
+    string host_id = 5 [json_name = "host_id"];
+
+    // host_resource_group_arn: string
+    string host_resource_group_arn = 6 [json_name = "host_resource_group_arn"];
+
+    // partition_number: number
+    int64 partition_number = 7 [json_name = "partition_number"];
+
+    // spread_domain: string
+    string spread_domain = 8 [json_name = "spread_domain"];
+
+    // tenancy: string
+    string tenancy = 9;
+  }
+
+  message PrivateDnsNameOptions {
+    // enable_resource_name_dns_a_record: bool
+    bool enable_resource_name_dns_a_record = 1 [json_name = "enable_resource_name_dns_a_record"];
+
+    // enable_resource_name_dns_aaaa_record: bool
+    bool enable_resource_name_dns_aaaa_record = 2 [json_name = "enable_resource_name_dns_aaaa_record"];
+
+    // hostname_type: string
+    string hostname_type = 3 [json_name = "hostname_type"];
+  }
+
+  message SecondaryInterfaces {
+    // delete_on_termination: bool
+    bool delete_on_termination = 1 [json_name = "delete_on_termination"];
+
+    // device_index: number
+    int64 device_index = 2 [json_name = "device_index"];
+
+    // interface_type: string
+    string interface_type = 3 [json_name = "interface_type"];
+
+    // network_card_index: number
+    int64 network_card_index = 4 [json_name = "network_card_index"];
+
+    // private_ip_address_count: number
+    int64 private_ip_address_count = 5 [json_name = "private_ip_address_count"];
+
+    // private_ip_addresses: set of string
+    repeated string private_ip_addresses = 6 [json_name = "private_ip_addresses"];
+
+    // secondary_subnet_id: string
+    string secondary_subnet_id = 7 [json_name = "secondary_subnet_id"];
+  }
+
+  message TagSpecifications {
+    // resource_type: string
+    string resource_type = 1 [json_name = "resource_type"];
+
+    // tags: map of string
+    map<string, string> tags = 2;
+  }
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}

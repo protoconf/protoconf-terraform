@@ -1,0 +1,1211 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsFsxBackup version is 0
+message AwsFsxBackup {
+  string arn = 1;
+
+  string file_system_id = 2 [json_name = "file_system_id"];
+
+  string id = 3;
+
+  string kms_key_id = 4 [json_name = "kms_key_id"];
+
+  string owner_id = 5 [json_name = "owner_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  string type = 9;
+
+  string volume_id = 10 [json_name = "volume_id"];
+
+  repeated Timeouts timeouts = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsFsxDataRepositoryAssociation version is 0
+message AwsFsxDataRepositoryAssociation {
+  string arn = 1;
+
+  string association_id = 2 [json_name = "association_id"];
+
+  bool batch_import_meta_data_on_create = 3 [json_name = "batch_import_meta_data_on_create"];
+
+  string data_repository_path = 4 [json_name = "data_repository_path"];
+
+  bool delete_data_in_filesystem = 5 [json_name = "delete_data_in_filesystem"];
+
+  string file_system_id = 6 [json_name = "file_system_id"];
+
+  string file_system_path = 7 [json_name = "file_system_path"];
+
+  string id = 8;
+
+  int64 imported_file_chunk_size = 9 [json_name = "imported_file_chunk_size"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  S3 s3 = 13;
+
+  repeated Timeouts timeouts = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message S3 {
+    AutoExportPolicy auto_export_policy = 1 [json_name = "auto_export_policy"];
+
+    AutoImportPolicy auto_import_policy = 2 [json_name = "auto_import_policy"];
+
+    message AutoExportPolicy {
+      repeated string events = 1;
+    }
+
+    message AutoImportPolicy {
+      repeated string events = 1;
+    }
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsFsxFileCache version is 0
+message AwsFsxFileCache {
+  string arn = 1;
+
+  bool copy_tags_to_data_repository_associations = 2 [
+    json_name = "copy_tags_to_data_repository_associations"
+  ];
+
+  repeated string data_repository_association_ids = 3 [json_name = "data_repository_association_ids"];
+
+  string dns_name = 4 [json_name = "dns_name"];
+
+  string file_cache_id = 5 [json_name = "file_cache_id"];
+
+  string file_cache_type = 6 [json_name = "file_cache_type"];
+
+  string file_cache_type_version = 7 [json_name = "file_cache_type_version"];
+
+  string id = 8;
+
+  string kms_key_id = 9 [json_name = "kms_key_id"];
+
+  repeated string network_interface_ids = 10 [json_name = "network_interface_ids"];
+
+  string owner_id = 11 [json_name = "owner_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  repeated string security_group_ids = 13 [json_name = "security_group_ids"];
+
+  int64 storage_capacity = 14 [json_name = "storage_capacity"];
+
+  repeated string subnet_ids = 15 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 16;
+
+  map<string, string> tags_all = 17 [json_name = "tags_all"];
+
+  string vpc_id = 18 [json_name = "vpc_id"];
+
+  repeated DataRepositoryAssociation data_repository_association = 19 [json_name = "data_repository_association"];
+
+  repeated LustreConfiguration lustre_configuration = 20 [json_name = "lustre_configuration"];
+
+  repeated Timeouts timeouts = 21;
+
+  google.protobuf.Value for_each = 22 [json_name = "for_each"];
+
+  repeated string depends_on = 23 [json_name = "depends_on"];
+
+  int32 count = 24;
+
+  string provider = 25;
+
+  terraform.v1.Lifecycle lifecycle = 26;
+
+  message DataRepositoryAssociation {
+    string association_id = 1 [json_name = "association_id"];
+
+    string data_repository_path = 2 [json_name = "data_repository_path"];
+
+    repeated string data_repository_subdirectories = 3 [json_name = "data_repository_subdirectories"];
+
+    string file_cache_id = 4 [json_name = "file_cache_id"];
+
+    string file_cache_path = 5 [json_name = "file_cache_path"];
+
+    string file_system_id = 6 [json_name = "file_system_id"];
+
+    string file_system_path = 7 [json_name = "file_system_path"];
+
+    int64 imported_file_chunk_size = 8 [json_name = "imported_file_chunk_size"];
+
+    string resource_arn = 9 [json_name = "resource_arn"];
+
+    map<string, string> tags = 10;
+
+    repeated Nfs nfs = 11;
+
+    message Nfs {
+      repeated string dns_ips = 1 [json_name = "dns_ips"];
+
+      string version = 2;
+    }
+  }
+
+  message LustreConfiguration {
+    string deployment_type = 1 [json_name = "deployment_type"];
+
+    repeated LogConfiguration log_configuration = 2 [json_name = "log_configuration"];
+
+    string mount_name = 3 [json_name = "mount_name"];
+
+    int64 per_unit_storage_throughput = 4 [json_name = "per_unit_storage_throughput"];
+
+    string weekly_maintenance_start_time = 5 [json_name = "weekly_maintenance_start_time"];
+
+    repeated MetadataConfiguration metadata_configuration = 6 [json_name = "metadata_configuration"];
+
+    message LogConfiguration {
+      // destination: string
+      string destination = 1;
+
+      // level: string
+      string level = 2;
+    }
+
+    message MetadataConfiguration {
+      int64 storage_capacity = 1 [json_name = "storage_capacity"];
+    }
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsFsxLustreFileSystem version is 0
+message AwsFsxLustreFileSystem {
+  string arn = 1;
+
+  string auto_import_policy = 2 [json_name = "auto_import_policy"];
+
+  int64 automatic_backup_retention_days = 3 [json_name = "automatic_backup_retention_days"];
+
+  string backup_id = 4 [json_name = "backup_id"];
+
+  bool copy_tags_to_backups = 5 [json_name = "copy_tags_to_backups"];
+
+  string daily_automatic_backup_start_time = 6 [json_name = "daily_automatic_backup_start_time"];
+
+  string data_compression_type = 7 [json_name = "data_compression_type"];
+
+  string deployment_type = 8 [json_name = "deployment_type"];
+
+  string dns_name = 9 [json_name = "dns_name"];
+
+  string drive_cache_type = 10 [json_name = "drive_cache_type"];
+
+  bool efa_enabled = 11 [json_name = "efa_enabled"];
+
+  string export_path = 12 [json_name = "export_path"];
+
+  string file_system_type_version = 13 [json_name = "file_system_type_version"];
+
+  map<string, string> final_backup_tags = 14 [json_name = "final_backup_tags"];
+
+  string id = 15;
+
+  string import_path = 16 [json_name = "import_path"];
+
+  int64 imported_file_chunk_size = 17 [json_name = "imported_file_chunk_size"];
+
+  string kms_key_id = 18 [json_name = "kms_key_id"];
+
+  string mount_name = 19 [json_name = "mount_name"];
+
+  repeated string network_interface_ids = 20 [json_name = "network_interface_ids"];
+
+  string owner_id = 21 [json_name = "owner_id"];
+
+  int64 per_unit_storage_throughput = 22 [json_name = "per_unit_storage_throughput"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 23;
+
+  repeated string security_group_ids = 24 [json_name = "security_group_ids"];
+
+  bool skip_final_backup = 25 [json_name = "skip_final_backup"];
+
+  int64 storage_capacity = 26 [json_name = "storage_capacity"];
+
+  string storage_type = 27 [json_name = "storage_type"];
+
+  repeated string subnet_ids = 28 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 29;
+
+  map<string, string> tags_all = 30 [json_name = "tags_all"];
+
+  int64 throughput_capacity = 31 [json_name = "throughput_capacity"];
+
+  string vpc_id = 32 [json_name = "vpc_id"];
+
+  string weekly_maintenance_start_time = 33 [json_name = "weekly_maintenance_start_time"];
+
+  DataReadCacheConfiguration data_read_cache_configuration = 34 [json_name = "data_read_cache_configuration"];
+
+  LogConfiguration log_configuration = 35 [json_name = "log_configuration"];
+
+  MetadataConfiguration metadata_configuration = 36 [json_name = "metadata_configuration"];
+
+  RootSquashConfiguration root_squash_configuration = 37 [json_name = "root_squash_configuration"];
+
+  repeated Timeouts timeouts = 38;
+
+  google.protobuf.Value for_each = 39 [json_name = "for_each"];
+
+  repeated string depends_on = 40 [json_name = "depends_on"];
+
+  int32 count = 41;
+
+  string provider = 42;
+
+  terraform.v1.Lifecycle lifecycle = 43;
+
+  message DataReadCacheConfiguration {
+    int64 size = 1;
+
+    string sizing_mode = 2 [json_name = "sizing_mode"];
+  }
+
+  message LogConfiguration {
+    string destination = 1;
+
+    string level = 2;
+  }
+
+  message MetadataConfiguration {
+    int64 iops = 1;
+
+    string mode = 2;
+  }
+
+  message RootSquashConfiguration {
+    repeated string no_squash_nids = 1 [json_name = "no_squash_nids"];
+
+    string root_squash = 2 [json_name = "root_squash"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsFsxOntapFileSystem version is 0
+message AwsFsxOntapFileSystem {
+  string arn = 1;
+
+  int64 automatic_backup_retention_days = 2 [json_name = "automatic_backup_retention_days"];
+
+  string daily_automatic_backup_start_time = 3 [json_name = "daily_automatic_backup_start_time"];
+
+  string deployment_type = 4 [json_name = "deployment_type"];
+
+  string dns_name = 5 [json_name = "dns_name"];
+
+  string endpoint_ip_address_range = 6 [json_name = "endpoint_ip_address_range"];
+
+  repeated Endpoints endpoints = 7;
+
+  string fsx_admin_password = 8 [json_name = "fsx_admin_password"];
+
+  int64 ha_pairs = 9 [json_name = "ha_pairs"];
+
+  string id = 10;
+
+  string kms_key_id = 11 [json_name = "kms_key_id"];
+
+  repeated string network_interface_ids = 12 [json_name = "network_interface_ids"];
+
+  string owner_id = 13 [json_name = "owner_id"];
+
+  string preferred_subnet_id = 14 [json_name = "preferred_subnet_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 15;
+
+  repeated string route_table_ids = 16 [json_name = "route_table_ids"];
+
+  repeated string security_group_ids = 17 [json_name = "security_group_ids"];
+
+  int64 storage_capacity = 18 [json_name = "storage_capacity"];
+
+  string storage_type = 19 [json_name = "storage_type"];
+
+  repeated string subnet_ids = 20 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 21;
+
+  map<string, string> tags_all = 22 [json_name = "tags_all"];
+
+  int64 throughput_capacity = 23 [json_name = "throughput_capacity"];
+
+  int64 throughput_capacity_per_ha_pair = 24 [json_name = "throughput_capacity_per_ha_pair"];
+
+  string vpc_id = 25 [json_name = "vpc_id"];
+
+  string weekly_maintenance_start_time = 26 [json_name = "weekly_maintenance_start_time"];
+
+  DiskIopsConfiguration disk_iops_configuration = 27 [json_name = "disk_iops_configuration"];
+
+  repeated Timeouts timeouts = 28;
+
+  google.protobuf.Value for_each = 29 [json_name = "for_each"];
+
+  repeated string depends_on = 30 [json_name = "depends_on"];
+
+  int32 count = 31;
+
+  string provider = 32;
+
+  terraform.v1.Lifecycle lifecycle = 33;
+
+  message Endpoints {
+    // intercluster: list of object
+    repeated Intercluster intercluster = 1;
+
+    // management: list of object
+    repeated Management management = 2;
+
+    message Intercluster {
+      // dns_name: string
+      string dns_name = 1 [json_name = "dns_name"];
+
+      // ip_addresses: set of string
+      repeated string ip_addresses = 2 [json_name = "ip_addresses"];
+    }
+
+    message Management {
+      // dns_name: string
+      string dns_name = 1 [json_name = "dns_name"];
+
+      // ip_addresses: set of string
+      repeated string ip_addresses = 2 [json_name = "ip_addresses"];
+    }
+  }
+
+  message DiskIopsConfiguration {
+    int64 iops = 1;
+
+    string mode = 2;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsFsxOntapStorageVirtualMachine version is 1
+message AwsFsxOntapStorageVirtualMachine {
+  string arn = 1;
+
+  repeated Endpoints endpoints = 2;
+
+  string file_system_id = 3 [json_name = "file_system_id"];
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string root_volume_security_style = 7 [json_name = "root_volume_security_style"];
+
+  string subtype = 8;
+
+  string svm_admin_password = 9 [json_name = "svm_admin_password"];
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  string uuid = 12;
+
+  ActiveDirectoryConfiguration active_directory_configuration = 13 [json_name = "active_directory_configuration"];
+
+  repeated Timeouts timeouts = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message Endpoints {
+    // iscsi: list of object
+    repeated Iscsi iscsi = 1;
+
+    // management: list of object
+    repeated Management management = 2;
+
+    // nfs: list of object
+    repeated Nfs nfs = 3;
+
+    // smb: list of object
+    repeated Smb smb = 4;
+
+    message Iscsi {
+      // dns_name: string
+      string dns_name = 1 [json_name = "dns_name"];
+
+      // ip_addresses: set of string
+      repeated string ip_addresses = 2 [json_name = "ip_addresses"];
+    }
+
+    message Management {
+      // dns_name: string
+      string dns_name = 1 [json_name = "dns_name"];
+
+      // ip_addresses: set of string
+      repeated string ip_addresses = 2 [json_name = "ip_addresses"];
+    }
+
+    message Nfs {
+      // dns_name: string
+      string dns_name = 1 [json_name = "dns_name"];
+
+      // ip_addresses: set of string
+      repeated string ip_addresses = 2 [json_name = "ip_addresses"];
+    }
+
+    message Smb {
+      // dns_name: string
+      string dns_name = 1 [json_name = "dns_name"];
+
+      // ip_addresses: set of string
+      repeated string ip_addresses = 2 [json_name = "ip_addresses"];
+    }
+  }
+
+  message ActiveDirectoryConfiguration {
+    string netbios_name = 1 [json_name = "netbios_name"];
+
+    SelfManagedActiveDirectoryConfiguration self_managed_active_directory_configuration = 2 [
+      json_name = "self_managed_active_directory_configuration"
+    ];
+
+    message SelfManagedActiveDirectoryConfiguration {
+      repeated string dns_ips = 1 [json_name = "dns_ips"];
+
+      string domain_name = 2 [json_name = "domain_name"];
+
+      string file_system_administrators_group = 3 [json_name = "file_system_administrators_group"];
+
+      string organizational_unit_distinguished_name = 4 [
+        json_name = "organizational_unit_distinguished_name"
+      ];
+
+      string password = 5;
+
+      string username = 6;
+    }
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsFsxOntapVolume version is 0
+message AwsFsxOntapVolume {
+  string arn = 1;
+
+  bool bypass_snaplock_enterprise_retention = 2 [json_name = "bypass_snaplock_enterprise_retention"];
+
+  bool copy_tags_to_backups = 3 [json_name = "copy_tags_to_backups"];
+
+  string file_system_id = 4 [json_name = "file_system_id"];
+
+  map<string, string> final_backup_tags = 5 [json_name = "final_backup_tags"];
+
+  string flexcache_endpoint_type = 6 [json_name = "flexcache_endpoint_type"];
+
+  string id = 7;
+
+  string junction_path = 8 [json_name = "junction_path"];
+
+  string name = 9;
+
+  string ontap_volume_type = 10 [json_name = "ontap_volume_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string security_style = 12 [json_name = "security_style"];
+
+  string size_in_bytes = 13 [json_name = "size_in_bytes"];
+
+  int64 size_in_megabytes = 14 [json_name = "size_in_megabytes"];
+
+  bool skip_final_backup = 15 [json_name = "skip_final_backup"];
+
+  string snapshot_policy = 16 [json_name = "snapshot_policy"];
+
+  bool storage_efficiency_enabled = 17 [json_name = "storage_efficiency_enabled"];
+
+  string storage_virtual_machine_id = 18 [json_name = "storage_virtual_machine_id"];
+
+  map<string, string> tags = 19;
+
+  map<string, string> tags_all = 20 [json_name = "tags_all"];
+
+  string uuid = 21;
+
+  string volume_style = 22 [json_name = "volume_style"];
+
+  string volume_type = 23 [json_name = "volume_type"];
+
+  AggregateConfiguration aggregate_configuration = 24 [json_name = "aggregate_configuration"];
+
+  SnaplockConfiguration snaplock_configuration = 25 [json_name = "snaplock_configuration"];
+
+  TieringPolicy tiering_policy = 26 [json_name = "tiering_policy"];
+
+  repeated Timeouts timeouts = 27;
+
+  google.protobuf.Value for_each = 28 [json_name = "for_each"];
+
+  repeated string depends_on = 29 [json_name = "depends_on"];
+
+  int32 count = 30;
+
+  string provider = 31;
+
+  terraform.v1.Lifecycle lifecycle = 32;
+
+  message AggregateConfiguration {
+    repeated string aggregates = 1;
+
+    int64 constituents_per_aggregate = 2 [json_name = "constituents_per_aggregate"];
+
+    int64 total_constituents = 3 [json_name = "total_constituents"];
+  }
+
+  message SnaplockConfiguration {
+    bool audit_log_volume = 1 [json_name = "audit_log_volume"];
+
+    string privileged_delete = 2 [json_name = "privileged_delete"];
+
+    string snaplock_type = 3 [json_name = "snaplock_type"];
+
+    bool volume_append_mode_enabled = 4 [json_name = "volume_append_mode_enabled"];
+
+    AutocommitPeriod autocommit_period = 5 [json_name = "autocommit_period"];
+
+    RetentionPeriod retention_period = 6 [json_name = "retention_period"];
+
+    message AutocommitPeriod {
+      string type = 1;
+
+      int64 value = 2;
+    }
+
+    message RetentionPeriod {
+      DefaultRetention default_retention = 1 [json_name = "default_retention"];
+
+      MaximumRetention maximum_retention = 2 [json_name = "maximum_retention"];
+
+      MinimumRetention minimum_retention = 3 [json_name = "minimum_retention"];
+
+      message DefaultRetention {
+        string type = 1;
+
+        int64 value = 2;
+      }
+
+      message MaximumRetention {
+        string type = 1;
+
+        int64 value = 2;
+      }
+
+      message MinimumRetention {
+        string type = 1;
+
+        int64 value = 2;
+      }
+    }
+  }
+
+  message TieringPolicy {
+    int64 cooling_period = 1 [json_name = "cooling_period"];
+
+    string name = 2;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsFsxOpenzfsFileSystem version is 0
+message AwsFsxOpenzfsFileSystem {
+  string arn = 1;
+
+  int64 automatic_backup_retention_days = 2 [json_name = "automatic_backup_retention_days"];
+
+  string backup_id = 3 [json_name = "backup_id"];
+
+  bool copy_tags_to_backups = 4 [json_name = "copy_tags_to_backups"];
+
+  bool copy_tags_to_volumes = 5 [json_name = "copy_tags_to_volumes"];
+
+  string daily_automatic_backup_start_time = 6 [json_name = "daily_automatic_backup_start_time"];
+
+  repeated string delete_options = 7 [json_name = "delete_options"];
+
+  string deployment_type = 8 [json_name = "deployment_type"];
+
+  string dns_name = 9 [json_name = "dns_name"];
+
+  string endpoint_ip_address = 10 [json_name = "endpoint_ip_address"];
+
+  string endpoint_ip_address_range = 11 [json_name = "endpoint_ip_address_range"];
+
+  map<string, string> final_backup_tags = 12 [json_name = "final_backup_tags"];
+
+  string id = 13;
+
+  string kms_key_id = 14 [json_name = "kms_key_id"];
+
+  repeated string network_interface_ids = 15 [json_name = "network_interface_ids"];
+
+  string owner_id = 16 [json_name = "owner_id"];
+
+  string preferred_subnet_id = 17 [json_name = "preferred_subnet_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 18;
+
+  string root_volume_id = 19 [json_name = "root_volume_id"];
+
+  repeated string route_table_ids = 20 [json_name = "route_table_ids"];
+
+  repeated string security_group_ids = 21 [json_name = "security_group_ids"];
+
+  bool skip_final_backup = 22 [json_name = "skip_final_backup"];
+
+  int64 storage_capacity = 23 [json_name = "storage_capacity"];
+
+  string storage_type = 24 [json_name = "storage_type"];
+
+  repeated string subnet_ids = 25 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 26;
+
+  map<string, string> tags_all = 27 [json_name = "tags_all"];
+
+  int64 throughput_capacity = 28 [json_name = "throughput_capacity"];
+
+  string vpc_id = 29 [json_name = "vpc_id"];
+
+  string weekly_maintenance_start_time = 30 [json_name = "weekly_maintenance_start_time"];
+
+  DiskIopsConfiguration disk_iops_configuration = 31 [json_name = "disk_iops_configuration"];
+
+  ReadCacheConfiguration read_cache_configuration = 32 [json_name = "read_cache_configuration"];
+
+  RootVolumeConfiguration root_volume_configuration = 33 [json_name = "root_volume_configuration"];
+
+  repeated Timeouts timeouts = 34;
+
+  google.protobuf.Value for_each = 35 [json_name = "for_each"];
+
+  repeated string depends_on = 36 [json_name = "depends_on"];
+
+  int32 count = 37;
+
+  string provider = 38;
+
+  terraform.v1.Lifecycle lifecycle = 39;
+
+  message DiskIopsConfiguration {
+    int64 iops = 1;
+
+    string mode = 2;
+  }
+
+  message ReadCacheConfiguration {
+    int64 size = 1;
+
+    string sizing_mode = 2 [json_name = "sizing_mode"];
+  }
+
+  message RootVolumeConfiguration {
+    bool copy_tags_to_snapshots = 1 [json_name = "copy_tags_to_snapshots"];
+
+    string data_compression_type = 2 [json_name = "data_compression_type"];
+
+    bool read_only = 3 [json_name = "read_only"];
+
+    int64 record_size_kib = 4 [json_name = "record_size_kib"];
+
+    NfsExports nfs_exports = 5 [json_name = "nfs_exports"];
+
+    repeated UserAndGroupQuotas user_and_group_quotas = 6 [json_name = "user_and_group_quotas"];
+
+    message NfsExports {
+      repeated ClientConfigurations client_configurations = 1 [json_name = "client_configurations"];
+
+      message ClientConfigurations {
+        string clients = 1;
+
+        repeated string options = 2;
+      }
+    }
+
+    message UserAndGroupQuotas {
+      int64 id = 1;
+
+      int64 storage_capacity_quota_gib = 2 [json_name = "storage_capacity_quota_gib"];
+
+      string type = 3;
+    }
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsFsxOpenzfsSnapshot version is 0
+message AwsFsxOpenzfsSnapshot {
+  string arn = 1;
+
+  string creation_time = 2 [json_name = "creation_time"];
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  string volume_id = 8 [json_name = "volume_id"];
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string read = 3;
+
+    string update = 4;
+  }
+}
+
+// AwsFsxOpenzfsVolume version is 0
+message AwsFsxOpenzfsVolume {
+  string arn = 1;
+
+  bool copy_tags_to_snapshots = 2 [json_name = "copy_tags_to_snapshots"];
+
+  string data_compression_type = 3 [json_name = "data_compression_type"];
+
+  repeated string delete_volume_options = 4 [json_name = "delete_volume_options"];
+
+  string id = 5;
+
+  string name = 6;
+
+  string parent_volume_id = 7 [json_name = "parent_volume_id"];
+
+  bool read_only = 8 [json_name = "read_only"];
+
+  int64 record_size_kib = 9 [json_name = "record_size_kib"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  int64 storage_capacity_quota_gib = 11 [json_name = "storage_capacity_quota_gib"];
+
+  int64 storage_capacity_reservation_gib = 12 [json_name = "storage_capacity_reservation_gib"];
+
+  map<string, string> tags = 13;
+
+  map<string, string> tags_all = 14 [json_name = "tags_all"];
+
+  string volume_type = 15 [json_name = "volume_type"];
+
+  NfsExports nfs_exports = 16 [json_name = "nfs_exports"];
+
+  OriginSnapshot origin_snapshot = 17 [json_name = "origin_snapshot"];
+
+  repeated Timeouts timeouts = 18;
+
+  repeated UserAndGroupQuotas user_and_group_quotas = 19 [json_name = "user_and_group_quotas"];
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message NfsExports {
+    repeated ClientConfigurations client_configurations = 1 [json_name = "client_configurations"];
+
+    message ClientConfigurations {
+      string clients = 1;
+
+      repeated string options = 2;
+    }
+  }
+
+  message OriginSnapshot {
+    string copy_strategy = 1 [json_name = "copy_strategy"];
+
+    string snapshot_arn = 2 [json_name = "snapshot_arn"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+
+  message UserAndGroupQuotas {
+    int64 id = 1;
+
+    int64 storage_capacity_quota_gib = 2 [json_name = "storage_capacity_quota_gib"];
+
+    string type = 3;
+  }
+}
+
+// AwsFsxS3AccessPointAttachment version is 0
+message AwsFsxS3AccessPointAttachment {
+  string name = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string s3_access_point_alias = 3 [json_name = "s3_access_point_alias"];
+
+  string s3_access_point_arn = 4 [json_name = "s3_access_point_arn"];
+
+  string type = 5;
+
+  repeated OpenzfsConfiguration openzfs_configuration = 6 [json_name = "openzfs_configuration"];
+
+  repeated S3AccessPoint s3_access_point = 7 [json_name = "s3_access_point"];
+
+  repeated Timeouts timeouts = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message OpenzfsConfiguration {
+    string volume_id = 1 [json_name = "volume_id"];
+
+    repeated FileSystemIdentity file_system_identity = 2 [json_name = "file_system_identity"];
+
+    message FileSystemIdentity {
+      string type = 1;
+
+      repeated PosixUser posix_user = 2 [json_name = "posix_user"];
+
+      message PosixUser {
+        int64 gid = 1;
+
+        repeated int64 secondary_gids = 2 [json_name = "secondary_gids"];
+
+        int64 uid = 3;
+      }
+    }
+  }
+
+  message S3AccessPoint {
+    string policy = 1;
+
+    repeated VpcConfiguration vpc_configuration = 2 [json_name = "vpc_configuration"];
+
+    message VpcConfiguration {
+      string vpc_id = 1 [json_name = "vpc_id"];
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsFsxWindowsFileSystem version is 0
+message AwsFsxWindowsFileSystem {
+  string active_directory_id = 1 [json_name = "active_directory_id"];
+
+  repeated string aliases = 2;
+
+  string arn = 3;
+
+  int64 automatic_backup_retention_days = 4 [json_name = "automatic_backup_retention_days"];
+
+  string backup_id = 5 [json_name = "backup_id"];
+
+  bool copy_tags_to_backups = 6 [json_name = "copy_tags_to_backups"];
+
+  string daily_automatic_backup_start_time = 7 [json_name = "daily_automatic_backup_start_time"];
+
+  string deployment_type = 8 [json_name = "deployment_type"];
+
+  string dns_name = 9 [json_name = "dns_name"];
+
+  map<string, string> final_backup_tags = 10 [json_name = "final_backup_tags"];
+
+  string id = 11;
+
+  string kms_key_id = 12 [json_name = "kms_key_id"];
+
+  repeated string network_interface_ids = 13 [json_name = "network_interface_ids"];
+
+  string owner_id = 14 [json_name = "owner_id"];
+
+  string preferred_file_server_ip = 15 [json_name = "preferred_file_server_ip"];
+
+  string preferred_subnet_id = 16 [json_name = "preferred_subnet_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 17;
+
+  string remote_administration_endpoint = 18 [json_name = "remote_administration_endpoint"];
+
+  repeated string security_group_ids = 19 [json_name = "security_group_ids"];
+
+  bool skip_final_backup = 20 [json_name = "skip_final_backup"];
+
+  int64 storage_capacity = 21 [json_name = "storage_capacity"];
+
+  string storage_type = 22 [json_name = "storage_type"];
+
+  repeated string subnet_ids = 23 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 24;
+
+  map<string, string> tags_all = 25 [json_name = "tags_all"];
+
+  int64 throughput_capacity = 26 [json_name = "throughput_capacity"];
+
+  string vpc_id = 27 [json_name = "vpc_id"];
+
+  string weekly_maintenance_start_time = 28 [json_name = "weekly_maintenance_start_time"];
+
+  AuditLogConfiguration audit_log_configuration = 29 [json_name = "audit_log_configuration"];
+
+  DiskIopsConfiguration disk_iops_configuration = 30 [json_name = "disk_iops_configuration"];
+
+  SelfManagedActiveDirectory self_managed_active_directory = 31 [json_name = "self_managed_active_directory"];
+
+  repeated Timeouts timeouts = 32;
+
+  google.protobuf.Value for_each = 33 [json_name = "for_each"];
+
+  repeated string depends_on = 34 [json_name = "depends_on"];
+
+  int32 count = 35;
+
+  string provider = 36;
+
+  terraform.v1.Lifecycle lifecycle = 37;
+
+  message AuditLogConfiguration {
+    string audit_log_destination = 1 [json_name = "audit_log_destination"];
+
+    string file_access_audit_log_level = 2 [json_name = "file_access_audit_log_level"];
+
+    string file_share_access_audit_log_level = 3 [json_name = "file_share_access_audit_log_level"];
+  }
+
+  message DiskIopsConfiguration {
+    int64 iops = 1;
+
+    string mode = 2;
+  }
+
+  message SelfManagedActiveDirectory {
+    repeated string dns_ips = 1 [json_name = "dns_ips"];
+
+    string domain_join_service_account_secret = 2 [json_name = "domain_join_service_account_secret"];
+
+    string domain_name = 3 [json_name = "domain_name"];
+
+    string file_system_administrators_group = 4 [json_name = "file_system_administrators_group"];
+
+    string organizational_unit_distinguished_name = 5 [
+      json_name = "organizational_unit_distinguished_name"
+    ];
+
+    string password = 6;
+
+    string username = 7;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}

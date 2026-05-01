@@ -1,0 +1,129 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsPaymentcryptographyKey version is 1
+message AwsPaymentcryptographyKey {
+  string arn = 1;
+
+  int64 deletion_window_in_days = 2 [json_name = "deletion_window_in_days"];
+
+  bool enabled = 3;
+
+  bool exportable = 4;
+
+  string id = 5;
+
+  string key_check_value = 6 [json_name = "key_check_value"];
+
+  string key_check_value_algorithm = 7 [json_name = "key_check_value_algorithm"];
+
+  string key_origin = 8 [json_name = "key_origin"];
+
+  string key_state = 9 [json_name = "key_state"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  repeated KeyAttributes key_attributes = 13 [json_name = "key_attributes"];
+
+  repeated Timeouts timeouts = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message KeyAttributes {
+    string key_algorithm = 1 [json_name = "key_algorithm"];
+
+    string key_class = 2 [json_name = "key_class"];
+
+    string key_usage = 3 [json_name = "key_usage"];
+
+    repeated KeyModesOfUse key_modes_of_use = 4 [json_name = "key_modes_of_use"];
+
+    message KeyModesOfUse {
+      bool decrypt = 1;
+
+      bool derive_key = 2 [json_name = "derive_key"];
+
+      bool encrypt = 3;
+
+      bool generate = 4;
+
+      bool no_restrictions = 5 [json_name = "no_restrictions"];
+
+      bool sign = 6;
+
+      bool unwrap = 7;
+
+      bool verify = 8;
+
+      bool wrap = 9;
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsPaymentcryptographyKeyAlias version is 0
+message AwsPaymentcryptographyKeyAlias {
+  string alias_name = 1 [json_name = "alias_name"];
+
+  string id = 2;
+
+  string key_arn = 3 [json_name = "key_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}

@@ -1,0 +1,651 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsS3AccessPoint version is 0
+message AwsS3AccessPoint {
+  string account_id = 1 [json_name = "account_id"];
+
+  string alias = 2;
+
+  string arn = 3;
+
+  string bucket = 4;
+
+  string bucket_account_id = 5 [json_name = "bucket_account_id"];
+
+  string data_source_id = 6 [json_name = "data_source_id"];
+
+  string data_source_type = 7 [json_name = "data_source_type"];
+
+  map<string, string> endpoints = 8;
+
+  string name = 9;
+
+  string network_origin = 10 [json_name = "network_origin"];
+
+  repeated PublicAccessBlockConfiguration public_access_block_configuration = 11 [json_name = "public_access_block_configuration"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  map<string, string> tags = 13;
+
+  repeated VpcConfiguration vpc_configuration = 14 [json_name = "vpc_configuration"];
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message PublicAccessBlockConfiguration {
+    // block_public_acls: bool
+    bool block_public_acls = 1 [json_name = "block_public_acls"];
+
+    // block_public_policy: bool
+    bool block_public_policy = 2 [json_name = "block_public_policy"];
+
+    // ignore_public_acls: bool
+    bool ignore_public_acls = 3 [json_name = "ignore_public_acls"];
+
+    // restrict_public_buckets: bool
+    bool restrict_public_buckets = 4 [json_name = "restrict_public_buckets"];
+  }
+
+  message VpcConfiguration {
+    // vpc_id: string
+    string vpc_id = 1 [json_name = "vpc_id"];
+  }
+}
+
+// AwsS3AccountPublicAccessBlock version is 0
+message AwsS3AccountPublicAccessBlock {
+  string account_id = 1 [json_name = "account_id"];
+
+  bool block_public_acls = 2 [json_name = "block_public_acls"];
+
+  bool block_public_policy = 3 [json_name = "block_public_policy"];
+
+  string id = 4;
+
+  bool ignore_public_acls = 5 [json_name = "ignore_public_acls"];
+
+  bool restrict_public_buckets = 6 [json_name = "restrict_public_buckets"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsS3Bucket version is 0
+message AwsS3Bucket {
+  string arn = 1;
+
+  string bucket = 2;
+
+  string bucket_domain_name = 3 [json_name = "bucket_domain_name"];
+
+  string bucket_region = 4 [json_name = "bucket_region"];
+
+  string bucket_regional_domain_name = 5 [json_name = "bucket_regional_domain_name"];
+
+  string hosted_zone_id = 6 [json_name = "hosted_zone_id"];
+
+  string id = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  string website_domain = 9 [json_name = "website_domain"];
+
+  string website_endpoint = 10 [json_name = "website_endpoint"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+}
+
+// AwsS3BucketObject version is 0
+message AwsS3BucketObject {
+  string arn = 1;
+
+  string body = 2;
+
+  string bucket = 3;
+
+  bool bucket_key_enabled = 4 [json_name = "bucket_key_enabled"];
+
+  string cache_control = 5 [json_name = "cache_control"];
+
+  string content_disposition = 6 [json_name = "content_disposition"];
+
+  string content_encoding = 7 [json_name = "content_encoding"];
+
+  string content_language = 8 [json_name = "content_language"];
+
+  int64 content_length = 9 [json_name = "content_length"];
+
+  string content_type = 10 [json_name = "content_type"];
+
+  string etag = 11;
+
+  string expiration = 12;
+
+  string expires = 13;
+
+  string id = 14;
+
+  string key = 15;
+
+  string last_modified = 16 [json_name = "last_modified"];
+
+  map<string, string> metadata = 17;
+
+  string object_lock_legal_hold_status = 18 [json_name = "object_lock_legal_hold_status"];
+
+  string object_lock_mode = 19 [json_name = "object_lock_mode"];
+
+  string object_lock_retain_until_date = 20 [json_name = "object_lock_retain_until_date"];
+
+  string range = 21;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 22;
+
+  string server_side_encryption = 23 [json_name = "server_side_encryption"];
+
+  string sse_kms_key_id = 24 [json_name = "sse_kms_key_id"];
+
+  string storage_class = 25 [json_name = "storage_class"];
+
+  map<string, string> tags = 26;
+
+  string version_id = 27 [json_name = "version_id"];
+
+  string website_redirect_location = 28 [json_name = "website_redirect_location"];
+
+  google.protobuf.Value for_each = 29 [json_name = "for_each"];
+
+  repeated string depends_on = 30 [json_name = "depends_on"];
+
+  int32 count = 31;
+
+  string provider = 32;
+
+  terraform.v1.Lifecycle lifecycle = 33;
+}
+
+// AwsS3BucketObjectLockConfiguration version is 0
+message AwsS3BucketObjectLockConfiguration {
+  string bucket = 1;
+
+  string expected_bucket_owner = 2 [json_name = "expected_bucket_owner"];
+
+  string object_lock_enabled = 3 [json_name = "object_lock_enabled"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated Rule rule = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Rule {
+    // default_retention: list of object
+    repeated DefaultRetention default_retention = 1 [json_name = "default_retention"];
+
+    message DefaultRetention {
+      // days: number
+      int64 days = 1;
+
+      // mode: string
+      string mode = 2;
+
+      // years: number
+      int64 years = 3;
+    }
+  }
+}
+
+// AwsS3BucketObjects version is 0
+message AwsS3BucketObjects {
+  string bucket = 1;
+
+  repeated string common_prefixes = 2 [json_name = "common_prefixes"];
+
+  string delimiter = 3;
+
+  string encoding_type = 4 [json_name = "encoding_type"];
+
+  bool fetch_owner = 5 [json_name = "fetch_owner"];
+
+  string id = 6;
+
+  repeated string keys = 7;
+
+  int64 max_keys = 8 [json_name = "max_keys"];
+
+  repeated string owners = 9;
+
+  string prefix = 10;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string start_after = 12 [json_name = "start_after"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+}
+
+// AwsS3BucketPolicy version is 0
+message AwsS3BucketPolicy {
+  string bucket = 1;
+
+  string id = 2;
+
+  string policy = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsS3BucketReplicationConfiguration version is 0
+message AwsS3BucketReplicationConfiguration {
+  string bucket = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string role = 3;
+
+  repeated Rule rule = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message Rule {
+    // delete_marker_replication: list of object
+    repeated DeleteMarkerReplication delete_marker_replication = 1 [json_name = "delete_marker_replication"];
+
+    // destination: list of object
+    repeated Destination destination = 2;
+
+    // existing_object_replication: list of object
+    repeated ExistingObjectReplication existing_object_replication = 3 [json_name = "existing_object_replication"];
+
+    // filter: list of object
+    repeated Filter filter = 4;
+
+    // id: string
+    string id = 5;
+
+    // prefix: string
+    string prefix = 6;
+
+    // priority: number
+    int64 priority = 7;
+
+    // source_selection_criteria: list of object
+    repeated SourceSelectionCriteria source_selection_criteria = 8 [json_name = "source_selection_criteria"];
+
+    // status: string
+    string status = 9;
+
+    message DeleteMarkerReplication {
+      // status: string
+      string status = 1;
+    }
+
+    message Destination {
+      // access_control_translation: list of object
+      repeated AccessControlTranslation access_control_translation = 1 [json_name = "access_control_translation"];
+
+      // account: string
+      string account = 2;
+
+      // bucket: string
+      string bucket = 3;
+
+      // encryption_configuration: list of object
+      repeated EncryptionConfiguration encryption_configuration = 4 [json_name = "encryption_configuration"];
+
+      // metrics: list of object
+      repeated Metrics metrics = 5;
+
+      // replication_time: list of object
+      repeated ReplicationTime replication_time = 6 [json_name = "replication_time"];
+
+      // storage_class: string
+      string storage_class = 7 [json_name = "storage_class"];
+
+      message AccessControlTranslation {
+        // owner: string
+        string owner = 1;
+      }
+
+      message EncryptionConfiguration {
+        // replica_kms_key_id: string
+        string replica_kms_key_id = 1 [json_name = "replica_kms_key_id"];
+      }
+
+      message Metrics {
+        // event_threshold: list of object
+        repeated EventThreshold event_threshold = 1 [json_name = "event_threshold"];
+
+        // status: string
+        string status = 2;
+
+        message EventThreshold {
+          // minutes: number
+          int64 minutes = 1;
+        }
+      }
+
+      message ReplicationTime {
+        // status: string
+        string status = 1;
+
+        // time: list of object
+        repeated Time time = 2;
+
+        message Time {
+          // minutes: number
+          int64 minutes = 1;
+        }
+      }
+    }
+
+    message ExistingObjectReplication {
+      // status: string
+      string status = 1;
+    }
+
+    message Filter {
+      // and: list of object
+      repeated And and = 1;
+
+      // prefix: string
+      string prefix = 2;
+
+      // tag: list of object
+      repeated Tag tag = 3;
+
+      message And {
+        // prefix: string
+        string prefix = 1;
+
+        // tag: list of object
+        repeated Tag tag = 2;
+
+        message Tag {
+          // key: string
+          string key = 1;
+
+          // value: string
+          string value = 2;
+        }
+      }
+
+      message Tag {
+        // key: string
+        string key = 1;
+
+        // value: string
+        string value = 2;
+      }
+    }
+
+    message SourceSelectionCriteria {
+      // replica_modifications: list of object
+      repeated ReplicaModifications replica_modifications = 1 [json_name = "replica_modifications"];
+
+      // sse_kms_encrypted_objects: list of object
+      repeated SseKmsEncryptedObjects sse_kms_encrypted_objects = 2 [json_name = "sse_kms_encrypted_objects"];
+
+      message ReplicaModifications {
+        // status: string
+        string status = 1;
+      }
+
+      message SseKmsEncryptedObjects {
+        // status: string
+        string status = 1;
+      }
+    }
+  }
+}
+
+// AwsS3DirectoryBuckets version is 0
+message AwsS3DirectoryBuckets {
+  repeated string arns = 1;
+
+  repeated string buckets = 2;
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsS3Object version is 0
+message AwsS3Object {
+  string arn = 1;
+
+  string body = 2;
+
+  string body_base64 = 3 [json_name = "body_base64"];
+
+  string bucket = 4;
+
+  bool bucket_key_enabled = 5 [json_name = "bucket_key_enabled"];
+
+  string cache_control = 6 [json_name = "cache_control"];
+
+  string checksum_crc32 = 7 [json_name = "checksum_crc32"];
+
+  string checksum_crc32c = 8 [json_name = "checksum_crc32c"];
+
+  string checksum_crc64nvme = 9 [json_name = "checksum_crc64nvme"];
+
+  string checksum_mode = 10 [json_name = "checksum_mode"];
+
+  string checksum_sha1 = 11 [json_name = "checksum_sha1"];
+
+  string checksum_sha256 = 12 [json_name = "checksum_sha256"];
+
+  string content_disposition = 13 [json_name = "content_disposition"];
+
+  string content_encoding = 14 [json_name = "content_encoding"];
+
+  string content_language = 15 [json_name = "content_language"];
+
+  int64 content_length = 16 [json_name = "content_length"];
+
+  string content_type = 17 [json_name = "content_type"];
+
+  string download_body = 18 [json_name = "download_body"];
+
+  string etag = 19;
+
+  string expiration = 20;
+
+  string expires = 21;
+
+  string id = 22;
+
+  string key = 23;
+
+  string last_modified = 24 [json_name = "last_modified"];
+
+  map<string, string> metadata = 25;
+
+  string object_lock_legal_hold_status = 26 [json_name = "object_lock_legal_hold_status"];
+
+  string object_lock_mode = 27 [json_name = "object_lock_mode"];
+
+  string object_lock_retain_until_date = 28 [json_name = "object_lock_retain_until_date"];
+
+  string range = 29;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 30;
+
+  string server_side_encryption = 31 [json_name = "server_side_encryption"];
+
+  string sse_kms_key_id = 32 [json_name = "sse_kms_key_id"];
+
+  string storage_class = 33 [json_name = "storage_class"];
+
+  map<string, string> tags = 34;
+
+  string version_id = 35 [json_name = "version_id"];
+
+  string website_redirect_location = 36 [json_name = "website_redirect_location"];
+
+  google.protobuf.Value for_each = 37 [json_name = "for_each"];
+
+  repeated string depends_on = 38 [json_name = "depends_on"];
+
+  int32 count = 39;
+
+  string provider = 40;
+
+  terraform.v1.Lifecycle lifecycle = 41;
+}
+
+// AwsS3Objects version is 0
+message AwsS3Objects {
+  string bucket = 1;
+
+  repeated string common_prefixes = 2 [json_name = "common_prefixes"];
+
+  string delimiter = 3;
+
+  string encoding_type = 4 [json_name = "encoding_type"];
+
+  bool fetch_owner = 5 [json_name = "fetch_owner"];
+
+  string id = 6;
+
+  repeated string keys = 7;
+
+  int64 max_keys = 8 [json_name = "max_keys"];
+
+  repeated string owners = 9;
+
+  string prefix = 10;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string request_charged = 12 [json_name = "request_charged"];
+
+  string request_payer = 13 [json_name = "request_payer"];
+
+  string start_after = 14 [json_name = "start_after"];
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+}

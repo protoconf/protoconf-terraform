@@ -1,0 +1,769 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsElasticacheCluster version is 0
+message AwsElasticacheCluster {
+  bool apply_immediately = 1 [json_name = "apply_immediately"];
+
+  string arn = 2;
+
+  string auto_minor_version_upgrade = 3 [json_name = "auto_minor_version_upgrade"];
+
+  string availability_zone = 4 [json_name = "availability_zone"];
+
+  string az_mode = 5 [json_name = "az_mode"];
+
+  repeated CacheNodes cache_nodes = 6 [json_name = "cache_nodes"];
+
+  string cluster_address = 7 [json_name = "cluster_address"];
+
+  string cluster_id = 8 [json_name = "cluster_id"];
+
+  string configuration_endpoint = 9 [json_name = "configuration_endpoint"];
+
+  string engine = 10;
+
+  string engine_version = 11 [json_name = "engine_version"];
+
+  string engine_version_actual = 12 [json_name = "engine_version_actual"];
+
+  string final_snapshot_identifier = 13 [json_name = "final_snapshot_identifier"];
+
+  string id = 14;
+
+  string ip_discovery = 15 [json_name = "ip_discovery"];
+
+  string maintenance_window = 16 [json_name = "maintenance_window"];
+
+  string network_type = 17 [json_name = "network_type"];
+
+  string node_type = 18 [json_name = "node_type"];
+
+  string notification_topic_arn = 19 [json_name = "notification_topic_arn"];
+
+  int64 num_cache_nodes = 20 [json_name = "num_cache_nodes"];
+
+  string outpost_mode = 21 [json_name = "outpost_mode"];
+
+  string parameter_group_name = 22 [json_name = "parameter_group_name"];
+
+  int64 port = 23;
+
+  repeated string preferred_availability_zones = 24 [json_name = "preferred_availability_zones"];
+
+  string preferred_outpost_arn = 25 [json_name = "preferred_outpost_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 26;
+
+  string replication_group_id = 27 [json_name = "replication_group_id"];
+
+  repeated string security_group_ids = 28 [json_name = "security_group_ids"];
+
+  repeated string snapshot_arns = 29 [json_name = "snapshot_arns"];
+
+  string snapshot_name = 30 [json_name = "snapshot_name"];
+
+  int64 snapshot_retention_limit = 31 [json_name = "snapshot_retention_limit"];
+
+  string snapshot_window = 32 [json_name = "snapshot_window"];
+
+  string subnet_group_name = 33 [json_name = "subnet_group_name"];
+
+  map<string, string> tags = 34;
+
+  map<string, string> tags_all = 35 [json_name = "tags_all"];
+
+  bool transit_encryption_enabled = 36 [json_name = "transit_encryption_enabled"];
+
+  repeated LogDeliveryConfiguration log_delivery_configuration = 37 [json_name = "log_delivery_configuration"];
+
+  repeated Timeouts timeouts = 38;
+
+  google.protobuf.Value for_each = 39 [json_name = "for_each"];
+
+  repeated string depends_on = 40 [json_name = "depends_on"];
+
+  int32 count = 41;
+
+  string provider = 42;
+
+  terraform.v1.Lifecycle lifecycle = 43;
+
+  message CacheNodes {
+    // address: string
+    string address = 1;
+
+    // availability_zone: string
+    string availability_zone = 2 [json_name = "availability_zone"];
+
+    // id: string
+    string id = 3;
+
+    // outpost_arn: string
+    string outpost_arn = 4 [json_name = "outpost_arn"];
+
+    // port: number
+    int64 port = 5;
+  }
+
+  message LogDeliveryConfiguration {
+    string destination = 1;
+
+    string destination_type = 2 [json_name = "destination_type"];
+
+    string log_format = 3 [json_name = "log_format"];
+
+    string log_type = 4 [json_name = "log_type"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsElasticacheGlobalReplicationGroup version is 0
+message AwsElasticacheGlobalReplicationGroup {
+  string arn = 1;
+
+  bool at_rest_encryption_enabled = 2 [json_name = "at_rest_encryption_enabled"];
+
+  bool auth_token_enabled = 3 [json_name = "auth_token_enabled"];
+
+  bool automatic_failover_enabled = 4 [json_name = "automatic_failover_enabled"];
+
+  string cache_node_type = 5 [json_name = "cache_node_type"];
+
+  bool cluster_enabled = 6 [json_name = "cluster_enabled"];
+
+  string engine = 7;
+
+  string engine_version = 8 [json_name = "engine_version"];
+
+  string engine_version_actual = 9 [json_name = "engine_version_actual"];
+
+  repeated GlobalNodeGroups global_node_groups = 10 [json_name = "global_node_groups"];
+
+  string global_replication_group_description = 11 [json_name = "global_replication_group_description"];
+
+  string global_replication_group_id = 12 [json_name = "global_replication_group_id"];
+
+  string global_replication_group_id_suffix = 13 [json_name = "global_replication_group_id_suffix"];
+
+  string id = 14;
+
+  int64 num_node_groups = 15 [json_name = "num_node_groups"];
+
+  string parameter_group_name = 16 [json_name = "parameter_group_name"];
+
+  string primary_replication_group_id = 17 [json_name = "primary_replication_group_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 18;
+
+  bool transit_encryption_enabled = 19 [json_name = "transit_encryption_enabled"];
+
+  repeated Timeouts timeouts = 20;
+
+  google.protobuf.Value for_each = 21 [json_name = "for_each"];
+
+  repeated string depends_on = 22 [json_name = "depends_on"];
+
+  int32 count = 23;
+
+  string provider = 24;
+
+  terraform.v1.Lifecycle lifecycle = 25;
+
+  message GlobalNodeGroups {
+    // global_node_group_id: string
+    string global_node_group_id = 1 [json_name = "global_node_group_id"];
+
+    // slots: string
+    string slots = 2;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsElasticacheParameterGroup version is 0
+message AwsElasticacheParameterGroup {
+  string arn = 1;
+
+  string description = 2;
+
+  string family = 3;
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  repeated Parameter parameter = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Parameter {
+    string name = 1;
+
+    string value = 2;
+  }
+}
+
+// AwsElasticacheReplicationGroup version is 3
+message AwsElasticacheReplicationGroup {
+  bool apply_immediately = 1 [json_name = "apply_immediately"];
+
+  string arn = 2;
+
+  string at_rest_encryption_enabled = 3 [json_name = "at_rest_encryption_enabled"];
+
+  string auth_token = 4 [json_name = "auth_token"];
+
+  string auth_token_update_strategy = 5 [json_name = "auth_token_update_strategy"];
+
+  string auto_minor_version_upgrade = 6 [json_name = "auto_minor_version_upgrade"];
+
+  bool automatic_failover_enabled = 7 [json_name = "automatic_failover_enabled"];
+
+  bool cluster_enabled = 8 [json_name = "cluster_enabled"];
+
+  string cluster_mode = 9 [json_name = "cluster_mode"];
+
+  string configuration_endpoint_address = 10 [json_name = "configuration_endpoint_address"];
+
+  bool data_tiering_enabled = 11 [json_name = "data_tiering_enabled"];
+
+  string description = 12;
+
+  string engine = 13;
+
+  string engine_version = 14 [json_name = "engine_version"];
+
+  string engine_version_actual = 15 [json_name = "engine_version_actual"];
+
+  string final_snapshot_identifier = 16 [json_name = "final_snapshot_identifier"];
+
+  string global_replication_group_id = 17 [json_name = "global_replication_group_id"];
+
+  string id = 18;
+
+  string ip_discovery = 19 [json_name = "ip_discovery"];
+
+  string kms_key_id = 20 [json_name = "kms_key_id"];
+
+  string maintenance_window = 21 [json_name = "maintenance_window"];
+
+  repeated string member_clusters = 22 [json_name = "member_clusters"];
+
+  bool multi_az_enabled = 23 [json_name = "multi_az_enabled"];
+
+  string network_type = 24 [json_name = "network_type"];
+
+  string node_type = 25 [json_name = "node_type"];
+
+  string notification_topic_arn = 26 [json_name = "notification_topic_arn"];
+
+  int64 num_cache_clusters = 27 [json_name = "num_cache_clusters"];
+
+  int64 num_node_groups = 28 [json_name = "num_node_groups"];
+
+  string parameter_group_name = 29 [json_name = "parameter_group_name"];
+
+  int64 port = 30;
+
+  repeated string preferred_cache_cluster_azs = 31 [json_name = "preferred_cache_cluster_azs"];
+
+  string primary_endpoint_address = 32 [json_name = "primary_endpoint_address"];
+
+  string reader_endpoint_address = 33 [json_name = "reader_endpoint_address"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 34;
+
+  int64 replicas_per_node_group = 35 [json_name = "replicas_per_node_group"];
+
+  string replication_group_id = 36 [json_name = "replication_group_id"];
+
+  repeated string security_group_ids = 37 [json_name = "security_group_ids"];
+
+  repeated string security_group_names = 38 [json_name = "security_group_names"];
+
+  repeated string snapshot_arns = 39 [json_name = "snapshot_arns"];
+
+  string snapshot_name = 40 [json_name = "snapshot_name"];
+
+  int64 snapshot_retention_limit = 41 [json_name = "snapshot_retention_limit"];
+
+  string snapshot_window = 42 [json_name = "snapshot_window"];
+
+  string subnet_group_name = 43 [json_name = "subnet_group_name"];
+
+  map<string, string> tags = 44;
+
+  map<string, string> tags_all = 45 [json_name = "tags_all"];
+
+  bool transit_encryption_enabled = 46 [json_name = "transit_encryption_enabled"];
+
+  string transit_encryption_mode = 47 [json_name = "transit_encryption_mode"];
+
+  repeated string user_group_ids = 48 [json_name = "user_group_ids"];
+
+  repeated LogDeliveryConfiguration log_delivery_configuration = 49 [json_name = "log_delivery_configuration"];
+
+  repeated NodeGroupConfiguration node_group_configuration = 50 [json_name = "node_group_configuration"];
+
+  repeated Timeouts timeouts = 51;
+
+  google.protobuf.Value for_each = 52 [json_name = "for_each"];
+
+  repeated string depends_on = 53 [json_name = "depends_on"];
+
+  int32 count = 54;
+
+  string provider = 55;
+
+  terraform.v1.Lifecycle lifecycle = 56;
+
+  message LogDeliveryConfiguration {
+    string destination = 1;
+
+    string destination_type = 2 [json_name = "destination_type"];
+
+    string log_format = 3 [json_name = "log_format"];
+
+    string log_type = 4 [json_name = "log_type"];
+  }
+
+  message NodeGroupConfiguration {
+    string node_group_id = 1 [json_name = "node_group_id"];
+
+    string primary_availability_zone = 2 [json_name = "primary_availability_zone"];
+
+    string primary_outpost_arn = 3 [json_name = "primary_outpost_arn"];
+
+    repeated string replica_availability_zones = 4 [json_name = "replica_availability_zones"];
+
+    int64 replica_count = 5 [json_name = "replica_count"];
+
+    repeated string replica_outpost_arns = 6 [json_name = "replica_outpost_arns"];
+
+    string slots = 7;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsElasticacheReservedCacheNode version is 0
+message AwsElasticacheReservedCacheNode {
+  string arn = 1;
+
+  int64 cache_node_count = 2 [json_name = "cache_node_count"];
+
+  string cache_node_type = 3 [json_name = "cache_node_type"];
+
+  string duration = 4;
+
+  int64 fixed_price = 5 [json_name = "fixed_price"];
+
+  string id = 6;
+
+  string offering_type = 7 [json_name = "offering_type"];
+
+  string product_description = 8 [json_name = "product_description"];
+
+  repeated RecurringCharges recurring_charges = 9 [json_name = "recurring_charges"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  string reserved_cache_nodes_offering_id = 11 [json_name = "reserved_cache_nodes_offering_id"];
+
+  string start_time = 12 [json_name = "start_time"];
+
+  string state = 13;
+
+  map<string, string> tags = 14;
+
+  map<string, string> tags_all = 15 [json_name = "tags_all"];
+
+  int64 usage_price = 16 [json_name = "usage_price"];
+
+  repeated Timeouts timeouts = 17;
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+
+  message RecurringCharges {
+    // recurring_charge_amount: number
+    int64 recurring_charge_amount = 1 [json_name = "recurring_charge_amount"];
+
+    // recurring_charge_frequency: string
+    string recurring_charge_frequency = 2 [json_name = "recurring_charge_frequency"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsElasticacheServerlessCache version is 0
+message AwsElasticacheServerlessCache {
+  string arn = 1;
+
+  string create_time = 2 [json_name = "create_time"];
+
+  string daily_snapshot_time = 3 [json_name = "daily_snapshot_time"];
+
+  string description = 4;
+
+  repeated Endpoint endpoint = 5;
+
+  string engine = 6;
+
+  string full_engine_version = 7 [json_name = "full_engine_version"];
+
+  string id = 8;
+
+  string kms_key_id = 9 [json_name = "kms_key_id"];
+
+  string major_engine_version = 10 [json_name = "major_engine_version"];
+
+  string name = 11;
+
+  repeated ReaderEndpoint reader_endpoint = 12 [json_name = "reader_endpoint"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  repeated string security_group_ids = 14 [json_name = "security_group_ids"];
+
+  repeated string snapshot_arns_to_restore = 15 [json_name = "snapshot_arns_to_restore"];
+
+  int64 snapshot_retention_limit = 16 [json_name = "snapshot_retention_limit"];
+
+  string status = 17;
+
+  repeated string subnet_ids = 18 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 19;
+
+  map<string, string> tags_all = 20 [json_name = "tags_all"];
+
+  string user_group_id = 21 [json_name = "user_group_id"];
+
+  repeated CacheUsageLimits cache_usage_limits = 22 [json_name = "cache_usage_limits"];
+
+  repeated Timeouts timeouts = 23;
+
+  google.protobuf.Value for_each = 24 [json_name = "for_each"];
+
+  repeated string depends_on = 25 [json_name = "depends_on"];
+
+  int32 count = 26;
+
+  string provider = 27;
+
+  terraform.v1.Lifecycle lifecycle = 28;
+
+  message Endpoint {
+    // address: string
+    string address = 1;
+
+    // port: number
+    int64 port = 2;
+  }
+
+  message ReaderEndpoint {
+    // address: string
+    string address = 1;
+
+    // port: number
+    int64 port = 2;
+  }
+
+  message CacheUsageLimits {
+    repeated DataStorage data_storage = 1 [json_name = "data_storage"];
+
+    repeated EcpuPerSecond ecpu_per_second = 2 [json_name = "ecpu_per_second"];
+
+    message DataStorage {
+      int64 maximum = 1;
+
+      int64 minimum = 2;
+
+      string unit = 3;
+    }
+
+    message EcpuPerSecond {
+      int64 maximum = 1;
+
+      int64 minimum = 2;
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsElasticacheSubnetGroup version is 0
+message AwsElasticacheSubnetGroup {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated string subnet_ids = 6 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  string vpc_id = 9 [json_name = "vpc_id"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsElasticacheUser version is 0
+message AwsElasticacheUser {
+  string access_string = 1 [json_name = "access_string"];
+
+  string arn = 2;
+
+  string engine = 3;
+
+  string id = 4;
+
+  bool no_password_required = 5 [json_name = "no_password_required"];
+
+  repeated string passwords = 6;
+
+  string passwords_wo = 7 [json_name = "passwords_wo"];
+
+  int64 passwords_wo_version = 8 [json_name = "passwords_wo_version"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  string user_id = 12 [json_name = "user_id"];
+
+  string user_name = 13 [json_name = "user_name"];
+
+  AuthenticationMode authentication_mode = 14 [json_name = "authentication_mode"];
+
+  repeated Timeouts timeouts = 15;
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message AuthenticationMode {
+    int64 password_count = 1 [json_name = "password_count"];
+
+    repeated string passwords = 2;
+
+    string type = 3;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string read = 3;
+
+    string update = 4;
+  }
+}
+
+// AwsElasticacheUserGroup version is 0
+message AwsElasticacheUserGroup {
+  string arn = 1;
+
+  string engine = 2;
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  map<string, string> tags = 5;
+
+  map<string, string> tags_all = 6 [json_name = "tags_all"];
+
+  string user_group_id = 7 [json_name = "user_group_id"];
+
+  repeated string user_ids = 8 [json_name = "user_ids"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsElasticacheUserGroupAssociation version is 0
+message AwsElasticacheUserGroupAssociation {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string user_group_id = 3 [json_name = "user_group_id"];
+
+  string user_id = 4 [json_name = "user_id"];
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}

@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsGuarddutyDetector version is 0
+message AwsGuarddutyDetector {
+  string arn = 1;
+
+  repeated Features features = 2;
+
+  string finding_publishing_frequency = 3 [json_name = "finding_publishing_frequency"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string service_role_arn = 6 [json_name = "service_role_arn"];
+
+  string status = 7;
+
+  map<string, string> tags = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Features {
+    // additional_configuration: list of object
+    repeated AdditionalConfiguration additional_configuration = 1 [json_name = "additional_configuration"];
+
+    // name: string
+    string name = 2;
+
+    // status: string
+    string status = 3;
+
+    message AdditionalConfiguration {
+      // name: string
+      string name = 1;
+
+      // status: string
+      string status = 2;
+    }
+  }
+}
+
+// AwsGuarddutyFindingIds version is 0
+message AwsGuarddutyFindingIds {
+  string detector_id = 1 [json_name = "detector_id"];
+
+  repeated string finding_ids = 2 [json_name = "finding_ids"];
+
+  bool has_findings = 3 [json_name = "has_findings"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}

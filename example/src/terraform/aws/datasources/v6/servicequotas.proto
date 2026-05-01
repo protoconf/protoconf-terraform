@@ -1,0 +1,149 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsServicequotasService version is 0
+message AwsServicequotasService {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string service_code = 3 [json_name = "service_code"];
+
+  string service_name = 4 [json_name = "service_name"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsServicequotasServiceQuota version is 0
+message AwsServicequotasServiceQuota {
+  bool adjustable = 1;
+
+  string arn = 2;
+
+  int64 default_value = 3 [json_name = "default_value"];
+
+  bool global_quota = 4 [json_name = "global_quota"];
+
+  string id = 5;
+
+  string quota_code = 6 [json_name = "quota_code"];
+
+  string quota_name = 7 [json_name = "quota_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  string service_code = 9 [json_name = "service_code"];
+
+  string service_name = 10 [json_name = "service_name"];
+
+  repeated UsageMetric usage_metric = 11 [json_name = "usage_metric"];
+
+  int64 value = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message UsageMetric {
+    // metric_dimensions: list of object
+    repeated MetricDimensions metric_dimensions = 1 [json_name = "metric_dimensions"];
+
+    // metric_name: string
+    string metric_name = 2 [json_name = "metric_name"];
+
+    // metric_namespace: string
+    string metric_namespace = 3 [json_name = "metric_namespace"];
+
+    // metric_statistic_recommendation: string
+    string metric_statistic_recommendation = 4 [json_name = "metric_statistic_recommendation"];
+
+    message MetricDimensions {
+      // class: string
+      string class = 1;
+
+      // resource: string
+      string resource = 2;
+
+      // service: string
+      string service = 3;
+
+      // type: string
+      string type = 4;
+    }
+  }
+}
+
+// AwsServicequotasTemplates version is 0
+message AwsServicequotasTemplates {
+  string aws_region = 1 [json_name = "aws_region"];
+
+  string id = 2;
+
+  string region = 3;
+
+  repeated Templates templates = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message Templates {
+    // global_quota: bool
+    bool global_quota = 1 [json_name = "global_quota"];
+
+    // quota_code: string
+    string quota_code = 2 [json_name = "quota_code"];
+
+    // quota_name: string
+    string quota_name = 3 [json_name = "quota_name"];
+
+    // region: string
+    string region = 4;
+
+    // service_code: string
+    string service_code = 5 [json_name = "service_code"];
+
+    // service_name: string
+    string service_name = 6 [json_name = "service_name"];
+
+    // unit: string
+    string unit = 7;
+
+    // value: number
+    int64 value = 8;
+  }
+}

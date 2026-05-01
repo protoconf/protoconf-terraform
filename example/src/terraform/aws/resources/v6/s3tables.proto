@@ -1,0 +1,349 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsS3tablesNamespace version is 0
+message AwsS3tablesNamespace {
+  string created_at = 1 [json_name = "created_at"];
+
+  string created_by = 2 [json_name = "created_by"];
+
+  string namespace = 3;
+
+  string owner_account_id = 4 [json_name = "owner_account_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string table_bucket_arn = 6 [json_name = "table_bucket_arn"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsS3tablesTable version is 0
+message AwsS3tablesTable {
+  string arn = 1;
+
+  string created_at = 2 [json_name = "created_at"];
+
+  string created_by = 3 [json_name = "created_by"];
+
+  EncryptionConfiguration encryption_configuration = 4 [json_name = "encryption_configuration"];
+
+  string format = 5;
+
+  MaintenanceConfiguration maintenance_configuration = 6 [json_name = "maintenance_configuration"];
+
+  string metadata_location = 7 [json_name = "metadata_location"];
+
+  string modified_at = 8 [json_name = "modified_at"];
+
+  string modified_by = 9 [json_name = "modified_by"];
+
+  string name = 10;
+
+  string namespace = 11;
+
+  string owner_account_id = 12 [json_name = "owner_account_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  string table_bucket_arn = 14 [json_name = "table_bucket_arn"];
+
+  map<string, string> tags = 15;
+
+  map<string, string> tags_all = 16 [json_name = "tags_all"];
+
+  string type = 17;
+
+  string version_token = 18 [json_name = "version_token"];
+
+  string warehouse_location = 19 [json_name = "warehouse_location"];
+
+  repeated Metadata metadata = 20;
+
+  google.protobuf.Value for_each = 21 [json_name = "for_each"];
+
+  repeated string depends_on = 22 [json_name = "depends_on"];
+
+  int32 count = 23;
+
+  string provider = 24;
+
+  terraform.v1.Lifecycle lifecycle = 25;
+
+  message EncryptionConfiguration {
+    // kms_key_arn: string
+    string kms_key_arn = 1 [json_name = "kms_key_arn"];
+
+    // sse_algorithm: string
+    string sse_algorithm = 2 [json_name = "sse_algorithm"];
+  }
+
+  message MaintenanceConfiguration {
+    // iceberg_compaction: object
+    IcebergCompaction iceberg_compaction = 1 [json_name = "iceberg_compaction"];
+
+    // iceberg_snapshot_management: object
+    IcebergSnapshotManagement iceberg_snapshot_management = 2 [json_name = "iceberg_snapshot_management"];
+
+    message IcebergCompaction {
+      // settings: object
+      Settings settings = 1;
+
+      // status: string
+      string status = 2;
+
+      message Settings {
+        // target_file_size_mb: number
+        int64 target_file_size_mb = 1 [json_name = "target_file_size_mb"];
+      }
+    }
+
+    message IcebergSnapshotManagement {
+      // settings: object
+      Settings settings = 1;
+
+      // status: string
+      string status = 2;
+
+      message Settings {
+        // max_snapshot_age_hours: number
+        int64 max_snapshot_age_hours = 1 [json_name = "max_snapshot_age_hours"];
+
+        // min_snapshots_to_keep: number
+        int64 min_snapshots_to_keep = 2 [json_name = "min_snapshots_to_keep"];
+      }
+    }
+  }
+
+  message Metadata {
+    repeated Iceberg iceberg = 1;
+
+    message Iceberg {
+      repeated Schema schema = 1;
+
+      message Schema {
+        repeated Field field = 1;
+
+        message Field {
+          // The name of the field.
+          string name = 1;
+
+          // A Boolean value that specifies whether values are required for each row in this
+          // field. Default: false.
+          bool required = 2;
+
+          // The field type. S3 Tables supports all Apache Iceberg primitive types.
+          string type = 3;
+        }
+      }
+    }
+  }
+}
+
+// AwsS3tablesTableBucket version is 0
+message AwsS3tablesTableBucket {
+  string arn = 1;
+
+  string created_at = 2 [json_name = "created_at"];
+
+  EncryptionConfiguration encryption_configuration = 3 [json_name = "encryption_configuration"];
+
+  bool force_destroy = 4 [json_name = "force_destroy"];
+
+  MaintenanceConfiguration maintenance_configuration = 5 [json_name = "maintenance_configuration"];
+
+  string name = 6;
+
+  string owner_account_id = 7 [json_name = "owner_account_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message EncryptionConfiguration {
+    // kms_key_arn: string
+    string kms_key_arn = 1 [json_name = "kms_key_arn"];
+
+    // sse_algorithm: string
+    string sse_algorithm = 2 [json_name = "sse_algorithm"];
+  }
+
+  message MaintenanceConfiguration {
+    // iceberg_unreferenced_file_removal: object
+    IcebergUnreferencedFileRemoval iceberg_unreferenced_file_removal = 1 [json_name = "iceberg_unreferenced_file_removal"];
+
+    message IcebergUnreferencedFileRemoval {
+      // settings: object
+      Settings settings = 1;
+
+      // status: string
+      string status = 2;
+
+      message Settings {
+        // non_current_days: number
+        int64 non_current_days = 1 [json_name = "non_current_days"];
+
+        // unreferenced_days: number
+        int64 unreferenced_days = 2 [json_name = "unreferenced_days"];
+      }
+    }
+  }
+}
+
+// AwsS3tablesTableBucketPolicy version is 0
+message AwsS3tablesTableBucketPolicy {
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 1;
+
+  string resource_policy = 2 [json_name = "resource_policy"];
+
+  string table_bucket_arn = 3 [json_name = "table_bucket_arn"];
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsS3tablesTableBucketReplication version is 0
+message AwsS3tablesTableBucketReplication {
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 1;
+
+  string role = 2;
+
+  string table_bucket_arn = 3 [json_name = "table_bucket_arn"];
+
+  string version_token = 4 [json_name = "version_token"];
+
+  repeated Rule rule = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Rule {
+    repeated Destination destination = 1;
+
+    message Destination {
+      string destination_table_bucket_arn = 1 [json_name = "destination_table_bucket_arn"];
+    }
+  }
+}
+
+// AwsS3tablesTablePolicy version is 0
+message AwsS3tablesTablePolicy {
+  string name = 1;
+
+  string namespace = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string resource_policy = 4 [json_name = "resource_policy"];
+
+  string table_bucket_arn = 5 [json_name = "table_bucket_arn"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsS3tablesTableReplication version is 0
+message AwsS3tablesTableReplication {
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 1;
+
+  string role = 2;
+
+  string table_arn = 3 [json_name = "table_arn"];
+
+  string version_token = 4 [json_name = "version_token"];
+
+  repeated Rule rule = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Rule {
+    repeated Destination destination = 1;
+
+    message Destination {
+      string destination_table_bucket_arn = 1 [json_name = "destination_table_bucket_arn"];
+    }
+  }
+}

@@ -1,0 +1,1140 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsEcsAccountSettingDefault version is 0
+message AwsEcsAccountSettingDefault {
+  string id = 1;
+
+  string name = 2;
+
+  string principal_arn = 3 [json_name = "principal_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string value = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsEcsCapacityProvider version is 0
+message AwsEcsCapacityProvider {
+  string arn = 1;
+
+  string cluster = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  AutoScalingGroupProvider auto_scaling_group_provider = 8 [json_name = "auto_scaling_group_provider"];
+
+  ManagedInstancesProvider managed_instances_provider = 9 [json_name = "managed_instances_provider"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message AutoScalingGroupProvider {
+    string auto_scaling_group_arn = 1 [json_name = "auto_scaling_group_arn"];
+
+    string managed_draining = 2 [json_name = "managed_draining"];
+
+    string managed_termination_protection = 3 [json_name = "managed_termination_protection"];
+
+    ManagedScaling managed_scaling = 4 [json_name = "managed_scaling"];
+
+    message ManagedScaling {
+      int64 instance_warmup_period = 1 [json_name = "instance_warmup_period"];
+
+      int64 maximum_scaling_step_size = 2 [json_name = "maximum_scaling_step_size"];
+
+      int64 minimum_scaling_step_size = 3 [json_name = "minimum_scaling_step_size"];
+
+      string status = 4;
+
+      int64 target_capacity = 5 [json_name = "target_capacity"];
+    }
+  }
+
+  message ManagedInstancesProvider {
+    string infrastructure_role_arn = 1 [json_name = "infrastructure_role_arn"];
+
+    string propagate_tags = 2 [json_name = "propagate_tags"];
+
+    InfrastructureOptimization infrastructure_optimization = 3 [json_name = "infrastructure_optimization"];
+
+    InstanceLaunchTemplate instance_launch_template = 4 [json_name = "instance_launch_template"];
+
+    message InfrastructureOptimization {
+      int64 scale_in_after = 1 [json_name = "scale_in_after"];
+    }
+
+    message InstanceLaunchTemplate {
+      string capacity_option_type = 1 [json_name = "capacity_option_type"];
+
+      string ec2_instance_profile_arn = 2 [json_name = "ec2_instance_profile_arn"];
+
+      string monitoring = 3;
+
+      InstanceRequirements instance_requirements = 4 [json_name = "instance_requirements"];
+
+      NetworkConfiguration network_configuration = 5 [json_name = "network_configuration"];
+
+      StorageConfiguration storage_configuration = 6 [json_name = "storage_configuration"];
+
+      message InstanceRequirements {
+        repeated string accelerator_manufacturers = 1 [json_name = "accelerator_manufacturers"];
+
+        repeated string accelerator_names = 2 [json_name = "accelerator_names"];
+
+        repeated string accelerator_types = 3 [json_name = "accelerator_types"];
+
+        repeated string allowed_instance_types = 4 [json_name = "allowed_instance_types"];
+
+        string bare_metal = 5 [json_name = "bare_metal"];
+
+        string burstable_performance = 6 [json_name = "burstable_performance"];
+
+        repeated string cpu_manufacturers = 7 [json_name = "cpu_manufacturers"];
+
+        repeated string excluded_instance_types = 8 [json_name = "excluded_instance_types"];
+
+        repeated string instance_generations = 9 [json_name = "instance_generations"];
+
+        string local_storage = 10 [json_name = "local_storage"];
+
+        repeated string local_storage_types = 11 [json_name = "local_storage_types"];
+
+        int64 max_spot_price_as_percentage_of_optimal_on_demand_price = 12 [
+          json_name = "max_spot_price_as_percentage_of_optimal_on_demand_price"
+        ];
+
+        int64 on_demand_max_price_percentage_over_lowest_price = 13 [
+          json_name = "on_demand_max_price_percentage_over_lowest_price"
+        ];
+
+        bool require_hibernate_support = 14 [json_name = "require_hibernate_support"];
+
+        int64 spot_max_price_percentage_over_lowest_price = 15 [
+          json_name = "spot_max_price_percentage_over_lowest_price"
+        ];
+
+        AcceleratorCount accelerator_count = 16 [json_name = "accelerator_count"];
+
+        AcceleratorTotalMemoryMib accelerator_total_memory_mib = 17 [json_name = "accelerator_total_memory_mib"];
+
+        BaselineEbsBandwidthMbps baseline_ebs_bandwidth_mbps = 18 [json_name = "baseline_ebs_bandwidth_mbps"];
+
+        MemoryGibPerVcpu memory_gib_per_vcpu = 19 [json_name = "memory_gib_per_vcpu"];
+
+        MemoryMib memory_mib = 20 [json_name = "memory_mib"];
+
+        NetworkBandwidthGbps network_bandwidth_gbps = 21 [json_name = "network_bandwidth_gbps"];
+
+        NetworkInterfaceCount network_interface_count = 22 [json_name = "network_interface_count"];
+
+        TotalLocalStorageGb total_local_storage_gb = 23 [json_name = "total_local_storage_gb"];
+
+        VcpuCount vcpu_count = 24 [json_name = "vcpu_count"];
+
+        message AcceleratorCount {
+          int64 max = 1;
+
+          int64 min = 2;
+        }
+
+        message AcceleratorTotalMemoryMib {
+          int64 max = 1;
+
+          int64 min = 2;
+        }
+
+        message BaselineEbsBandwidthMbps {
+          int64 max = 1;
+
+          int64 min = 2;
+        }
+
+        message MemoryGibPerVcpu {
+          int64 max = 1;
+
+          int64 min = 2;
+        }
+
+        message MemoryMib {
+          int64 max = 1;
+
+          int64 min = 2;
+        }
+
+        message NetworkBandwidthGbps {
+          int64 max = 1;
+
+          int64 min = 2;
+        }
+
+        message NetworkInterfaceCount {
+          int64 max = 1;
+
+          int64 min = 2;
+        }
+
+        message TotalLocalStorageGb {
+          int64 max = 1;
+
+          int64 min = 2;
+        }
+
+        message VcpuCount {
+          int64 max = 1;
+
+          int64 min = 2;
+        }
+      }
+
+      message NetworkConfiguration {
+        repeated string security_groups = 1 [json_name = "security_groups"];
+
+        repeated string subnets = 2;
+      }
+
+      message StorageConfiguration {
+        int64 storage_size_gib = 1 [json_name = "storage_size_gib"];
+      }
+    }
+  }
+}
+
+// AwsEcsCluster version is 0
+message AwsEcsCluster {
+  string arn = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  map<string, string> tags = 5;
+
+  map<string, string> tags_all = 6 [json_name = "tags_all"];
+
+  Configuration configuration = 7;
+
+  ServiceConnectDefaults service_connect_defaults = 8 [json_name = "service_connect_defaults"];
+
+  repeated Setting setting = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Configuration {
+    ExecuteCommandConfiguration execute_command_configuration = 1 [json_name = "execute_command_configuration"];
+
+    ManagedStorageConfiguration managed_storage_configuration = 2 [json_name = "managed_storage_configuration"];
+
+    message ExecuteCommandConfiguration {
+      string kms_key_id = 1 [json_name = "kms_key_id"];
+
+      string logging = 2;
+
+      LogConfiguration log_configuration = 3 [json_name = "log_configuration"];
+
+      message LogConfiguration {
+        bool cloud_watch_encryption_enabled = 1 [json_name = "cloud_watch_encryption_enabled"];
+
+        string cloud_watch_log_group_name = 2 [json_name = "cloud_watch_log_group_name"];
+
+        bool s3_bucket_encryption_enabled = 3 [json_name = "s3_bucket_encryption_enabled"];
+
+        string s3_bucket_name = 4 [json_name = "s3_bucket_name"];
+
+        string s3_key_prefix = 5 [json_name = "s3_key_prefix"];
+      }
+    }
+
+    message ManagedStorageConfiguration {
+      string fargate_ephemeral_storage_kms_key_id = 1 [json_name = "fargate_ephemeral_storage_kms_key_id"];
+
+      string kms_key_id = 2 [json_name = "kms_key_id"];
+    }
+  }
+
+  message ServiceConnectDefaults {
+    string namespace = 1;
+  }
+
+  message Setting {
+    string name = 1;
+
+    string value = 2;
+  }
+}
+
+// AwsEcsClusterCapacityProviders version is 0
+message AwsEcsClusterCapacityProviders {
+  repeated string capacity_providers = 1 [json_name = "capacity_providers"];
+
+  string cluster_name = 2 [json_name = "cluster_name"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated DefaultCapacityProviderStrategy default_capacity_provider_strategy = 5 [json_name = "default_capacity_provider_strategy"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message DefaultCapacityProviderStrategy {
+    int64 base = 1;
+
+    string capacity_provider = 2 [json_name = "capacity_provider"];
+
+    int64 weight = 3;
+  }
+}
+
+// AwsEcsExpressGatewayService version is 0
+message AwsEcsExpressGatewayService {
+  string cluster = 1;
+
+  string cpu = 2;
+
+  string current_deployment = 3 [json_name = "current_deployment"];
+
+  string execution_role_arn = 4 [json_name = "execution_role_arn"];
+
+  string health_check_path = 5 [json_name = "health_check_path"];
+
+  string infrastructure_role_arn = 6 [json_name = "infrastructure_role_arn"];
+
+  repeated IngressPaths ingress_paths = 7 [json_name = "ingress_paths"];
+
+  string memory = 8;
+
+  repeated NetworkConfiguration network_configuration = 9 [json_name = "network_configuration"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  repeated ScalingTarget scaling_target = 11 [json_name = "scaling_target"];
+
+  string service_arn = 12 [json_name = "service_arn"];
+
+  string service_name = 13 [json_name = "service_name"];
+
+  string service_revision_arn = 14 [json_name = "service_revision_arn"];
+
+  map<string, string> tags = 15;
+
+  map<string, string> tags_all = 16 [json_name = "tags_all"];
+
+  string task_role_arn = 17 [json_name = "task_role_arn"];
+
+  bool wait_for_steady_state = 18 [json_name = "wait_for_steady_state"];
+
+  repeated PrimaryContainer primary_container = 19 [json_name = "primary_container"];
+
+  repeated Timeouts timeouts = 20;
+
+  google.protobuf.Value for_each = 21 [json_name = "for_each"];
+
+  repeated string depends_on = 22 [json_name = "depends_on"];
+
+  int32 count = 23;
+
+  string provider = 24;
+
+  terraform.v1.Lifecycle lifecycle = 25;
+
+  message IngressPaths {
+    // access_type: string
+    string access_type = 1 [json_name = "access_type"];
+
+    // endpoint: string
+    string endpoint = 2;
+  }
+
+  message NetworkConfiguration {
+    // security_groups: set of string
+    repeated string security_groups = 1 [json_name = "security_groups"];
+
+    // subnets: set of string
+    repeated string subnets = 2;
+  }
+
+  message ScalingTarget {
+    // auto_scaling_metric: string
+    string auto_scaling_metric = 1 [json_name = "auto_scaling_metric"];
+
+    // auto_scaling_target_value: number
+    int64 auto_scaling_target_value = 2 [json_name = "auto_scaling_target_value"];
+
+    // max_task_count: number
+    int64 max_task_count = 3 [json_name = "max_task_count"];
+
+    // min_task_count: number
+    int64 min_task_count = 4 [json_name = "min_task_count"];
+  }
+
+  message PrimaryContainer {
+    repeated AwsLogsConfiguration aws_logs_configuration = 1 [json_name = "aws_logs_configuration"];
+
+    repeated string command = 2;
+
+    int64 container_port = 3 [json_name = "container_port"];
+
+    string image = 4;
+
+    repeated Environment environment = 5;
+
+    repeated RepositoryCredentials repository_credentials = 6 [json_name = "repository_credentials"];
+
+    repeated Secret secret = 7;
+
+    message AwsLogsConfiguration {
+      // log_group: string
+      string log_group = 1 [json_name = "log_group"];
+
+      // log_stream_prefix: string
+      string log_stream_prefix = 2 [json_name = "log_stream_prefix"];
+    }
+
+    message Environment {
+      string name = 1;
+
+      string value = 2;
+    }
+
+    message RepositoryCredentials {
+      string credentials_parameter = 1 [json_name = "credentials_parameter"];
+    }
+
+    message Secret {
+      string name = 1;
+
+      string value_from = 2 [json_name = "value_from"];
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsEcsService version is 1
+message AwsEcsService {
+  string arn = 1;
+
+  string availability_zone_rebalancing = 2 [json_name = "availability_zone_rebalancing"];
+
+  string cluster = 3;
+
+  int64 deployment_maximum_percent = 4 [json_name = "deployment_maximum_percent"];
+
+  int64 deployment_minimum_healthy_percent = 5 [json_name = "deployment_minimum_healthy_percent"];
+
+  int64 desired_count = 6 [json_name = "desired_count"];
+
+  bool enable_ecs_managed_tags = 7 [json_name = "enable_ecs_managed_tags"];
+
+  bool enable_execute_command = 8 [json_name = "enable_execute_command"];
+
+  bool force_delete = 9 [json_name = "force_delete"];
+
+  bool force_new_deployment = 10 [json_name = "force_new_deployment"];
+
+  int64 health_check_grace_period_seconds = 11 [json_name = "health_check_grace_period_seconds"];
+
+  string iam_role = 12 [json_name = "iam_role"];
+
+  string id = 13;
+
+  string launch_type = 14 [json_name = "launch_type"];
+
+  string name = 15;
+
+  string platform_version = 16 [json_name = "platform_version"];
+
+  string propagate_tags = 17 [json_name = "propagate_tags"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 18;
+
+  string scheduling_strategy = 19 [json_name = "scheduling_strategy"];
+
+  bool sigint_rollback = 20 [json_name = "sigint_rollback"];
+
+  map<string, string> tags = 21;
+
+  map<string, string> tags_all = 22 [json_name = "tags_all"];
+
+  string task_definition = 23 [json_name = "task_definition"];
+
+  map<string, string> triggers = 24;
+
+  bool wait_for_steady_state = 25 [json_name = "wait_for_steady_state"];
+
+  Alarms alarms = 26;
+
+  repeated CapacityProviderStrategy capacity_provider_strategy = 27 [json_name = "capacity_provider_strategy"];
+
+  DeploymentCircuitBreaker deployment_circuit_breaker = 28 [json_name = "deployment_circuit_breaker"];
+
+  DeploymentConfiguration deployment_configuration = 29 [json_name = "deployment_configuration"];
+
+  DeploymentController deployment_controller = 30 [json_name = "deployment_controller"];
+
+  repeated LoadBalancer load_balancer = 31 [json_name = "load_balancer"];
+
+  NetworkConfiguration network_configuration = 32 [json_name = "network_configuration"];
+
+  repeated OrderedPlacementStrategy ordered_placement_strategy = 33 [json_name = "ordered_placement_strategy"];
+
+  repeated PlacementConstraints placement_constraints = 34 [json_name = "placement_constraints"];
+
+  ServiceConnectConfiguration service_connect_configuration = 35 [json_name = "service_connect_configuration"];
+
+  ServiceRegistries service_registries = 36 [json_name = "service_registries"];
+
+  repeated Timeouts timeouts = 37;
+
+  VolumeConfiguration volume_configuration = 38 [json_name = "volume_configuration"];
+
+  repeated VpcLatticeConfigurations vpc_lattice_configurations = 39 [json_name = "vpc_lattice_configurations"];
+
+  google.protobuf.Value for_each = 40 [json_name = "for_each"];
+
+  repeated string depends_on = 41 [json_name = "depends_on"];
+
+  int32 count = 42;
+
+  string provider = 43;
+
+  terraform.v1.Lifecycle lifecycle = 44;
+
+  message Alarms {
+    repeated string alarm_names = 1 [json_name = "alarm_names"];
+
+    bool enable = 2;
+
+    bool rollback = 3;
+  }
+
+  message CapacityProviderStrategy {
+    int64 base = 1;
+
+    string capacity_provider = 2 [json_name = "capacity_provider"];
+
+    int64 weight = 3;
+  }
+
+  message DeploymentCircuitBreaker {
+    bool enable = 1;
+
+    bool rollback = 2;
+  }
+
+  message DeploymentConfiguration {
+    string bake_time_in_minutes = 1 [json_name = "bake_time_in_minutes"];
+
+    string strategy = 2;
+
+    CanaryConfiguration canary_configuration = 3 [json_name = "canary_configuration"];
+
+    repeated LifecycleHook lifecycle_hook = 4 [json_name = "lifecycle_hook"];
+
+    LinearConfiguration linear_configuration = 5 [json_name = "linear_configuration"];
+
+    message CanaryConfiguration {
+      string canary_bake_time_in_minutes = 1 [json_name = "canary_bake_time_in_minutes"];
+
+      int64 canary_percent = 2 [json_name = "canary_percent"];
+    }
+
+    message LifecycleHook {
+      string hook_details = 1 [json_name = "hook_details"];
+
+      string hook_target_arn = 2 [json_name = "hook_target_arn"];
+
+      repeated string lifecycle_stages = 3 [json_name = "lifecycle_stages"];
+
+      string role_arn = 4 [json_name = "role_arn"];
+    }
+
+    message LinearConfiguration {
+      string step_bake_time_in_minutes = 1 [json_name = "step_bake_time_in_minutes"];
+
+      int64 step_percent = 2 [json_name = "step_percent"];
+    }
+  }
+
+  message DeploymentController {
+    string type = 1;
+  }
+
+  message LoadBalancer {
+    string container_name = 1 [json_name = "container_name"];
+
+    int64 container_port = 2 [json_name = "container_port"];
+
+    string elb_name = 3 [json_name = "elb_name"];
+
+    string target_group_arn = 4 [json_name = "target_group_arn"];
+
+    AdvancedConfiguration advanced_configuration = 5 [json_name = "advanced_configuration"];
+
+    message AdvancedConfiguration {
+      string alternate_target_group_arn = 1 [json_name = "alternate_target_group_arn"];
+
+      string production_listener_rule = 2 [json_name = "production_listener_rule"];
+
+      string role_arn = 3 [json_name = "role_arn"];
+
+      string test_listener_rule = 4 [json_name = "test_listener_rule"];
+    }
+  }
+
+  message NetworkConfiguration {
+    bool assign_public_ip = 1 [json_name = "assign_public_ip"];
+
+    repeated string security_groups = 2 [json_name = "security_groups"];
+
+    repeated string subnets = 3;
+  }
+
+  message OrderedPlacementStrategy {
+    string field = 1;
+
+    string type = 2;
+  }
+
+  message PlacementConstraints {
+    string expression = 1;
+
+    string type = 2;
+  }
+
+  message ServiceConnectConfiguration {
+    bool enabled = 1;
+
+    string namespace = 2;
+
+    AccessLogConfiguration access_log_configuration = 3 [json_name = "access_log_configuration"];
+
+    LogConfiguration log_configuration = 4 [json_name = "log_configuration"];
+
+    repeated Service service = 5;
+
+    message AccessLogConfiguration {
+      string format = 1;
+
+      string include_query_parameters = 2 [json_name = "include_query_parameters"];
+    }
+
+    message LogConfiguration {
+      string log_driver = 1 [json_name = "log_driver"];
+
+      map<string, string> options = 2;
+
+      repeated SecretOption secret_option = 3 [json_name = "secret_option"];
+
+      message SecretOption {
+        string name = 1;
+
+        string value_from = 2 [json_name = "value_from"];
+      }
+    }
+
+    message Service {
+      string discovery_name = 1 [json_name = "discovery_name"];
+
+      int64 ingress_port_override = 2 [json_name = "ingress_port_override"];
+
+      string port_name = 3 [json_name = "port_name"];
+
+      ClientAlias client_alias = 4 [json_name = "client_alias"];
+
+      Timeout timeout = 5;
+
+      Tls tls = 6;
+
+      message ClientAlias {
+        string dns_name = 1 [json_name = "dns_name"];
+
+        int64 port = 2;
+
+        repeated TestTrafficRules test_traffic_rules = 3 [json_name = "test_traffic_rules"];
+
+        message TestTrafficRules {
+          Header header = 1;
+
+          message Header {
+            string name = 1;
+
+            Value value = 2;
+
+            message Value {
+              string exact = 1;
+            }
+          }
+        }
+      }
+
+      message Timeout {
+        int64 idle_timeout_seconds = 1 [json_name = "idle_timeout_seconds"];
+
+        int64 per_request_timeout_seconds = 2 [json_name = "per_request_timeout_seconds"];
+      }
+
+      message Tls {
+        string kms_key = 1 [json_name = "kms_key"];
+
+        string role_arn = 2 [json_name = "role_arn"];
+
+        IssuerCertAuthority issuer_cert_authority = 3 [json_name = "issuer_cert_authority"];
+
+        message IssuerCertAuthority {
+          string aws_pca_authority_arn = 1 [json_name = "aws_pca_authority_arn"];
+        }
+      }
+    }
+  }
+
+  message ServiceRegistries {
+    string container_name = 1 [json_name = "container_name"];
+
+    int64 container_port = 2 [json_name = "container_port"];
+
+    int64 port = 3;
+
+    string registry_arn = 4 [json_name = "registry_arn"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+
+  message VolumeConfiguration {
+    string name = 1;
+
+    ManagedEbsVolume managed_ebs_volume = 2 [json_name = "managed_ebs_volume"];
+
+    message ManagedEbsVolume {
+      bool encrypted = 1;
+
+      string file_system_type = 2 [json_name = "file_system_type"];
+
+      int64 iops = 3;
+
+      string kms_key_id = 4 [json_name = "kms_key_id"];
+
+      string role_arn = 5 [json_name = "role_arn"];
+
+      int64 size_in_gb = 6 [json_name = "size_in_gb"];
+
+      string snapshot_id = 7 [json_name = "snapshot_id"];
+
+      int64 throughput = 8;
+
+      int64 volume_initialization_rate = 9 [json_name = "volume_initialization_rate"];
+
+      string volume_type = 10 [json_name = "volume_type"];
+
+      repeated TagSpecifications tag_specifications = 11 [json_name = "tag_specifications"];
+
+      message TagSpecifications {
+        string propagate_tags = 1 [json_name = "propagate_tags"];
+
+        string resource_type = 2 [json_name = "resource_type"];
+
+        map<string, string> tags = 3;
+      }
+    }
+  }
+
+  message VpcLatticeConfigurations {
+    string port_name = 1 [json_name = "port_name"];
+
+    string role_arn = 2 [json_name = "role_arn"];
+
+    string target_group_arn = 3 [json_name = "target_group_arn"];
+  }
+}
+
+// AwsEcsTag version is 0
+message AwsEcsTag {
+  string id = 1;
+
+  string key = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string resource_arn = 4 [json_name = "resource_arn"];
+
+  string value = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsEcsTaskDefinition version is 1
+message AwsEcsTaskDefinition {
+  string arn = 1;
+
+  string arn_without_revision = 2 [json_name = "arn_without_revision"];
+
+  string container_definitions = 3 [json_name = "container_definitions"];
+
+  string cpu = 4;
+
+  bool enable_fault_injection = 5 [json_name = "enable_fault_injection"];
+
+  string execution_role_arn = 6 [json_name = "execution_role_arn"];
+
+  string family = 7;
+
+  string id = 8;
+
+  string ipc_mode = 9 [json_name = "ipc_mode"];
+
+  string memory = 10;
+
+  string network_mode = 11 [json_name = "network_mode"];
+
+  string pid_mode = 12 [json_name = "pid_mode"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  repeated string requires_compatibilities = 14 [json_name = "requires_compatibilities"];
+
+  int64 revision = 15;
+
+  bool skip_destroy = 16 [json_name = "skip_destroy"];
+
+  map<string, string> tags = 17;
+
+  map<string, string> tags_all = 18 [json_name = "tags_all"];
+
+  string task_role_arn = 19 [json_name = "task_role_arn"];
+
+  bool track_latest = 20 [json_name = "track_latest"];
+
+  EphemeralStorage ephemeral_storage = 21 [json_name = "ephemeral_storage"];
+
+  repeated PlacementConstraints placement_constraints = 22 [json_name = "placement_constraints"];
+
+  ProxyConfiguration proxy_configuration = 23 [json_name = "proxy_configuration"];
+
+  RuntimePlatform runtime_platform = 24 [json_name = "runtime_platform"];
+
+  repeated Volume volume = 25;
+
+  google.protobuf.Value for_each = 26 [json_name = "for_each"];
+
+  repeated string depends_on = 27 [json_name = "depends_on"];
+
+  int32 count = 28;
+
+  string provider = 29;
+
+  terraform.v1.Lifecycle lifecycle = 30;
+
+  message EphemeralStorage {
+    int64 size_in_gib = 1 [json_name = "size_in_gib"];
+  }
+
+  message PlacementConstraints {
+    string expression = 1;
+
+    string type = 2;
+  }
+
+  message ProxyConfiguration {
+    string container_name = 1 [json_name = "container_name"];
+
+    map<string, string> properties = 2;
+
+    string type = 3;
+  }
+
+  message RuntimePlatform {
+    string cpu_architecture = 1 [json_name = "cpu_architecture"];
+
+    string operating_system_family = 2 [json_name = "operating_system_family"];
+  }
+
+  message Volume {
+    bool configure_at_launch = 1 [json_name = "configure_at_launch"];
+
+    string host_path = 2 [json_name = "host_path"];
+
+    string name = 3;
+
+    DockerVolumeConfiguration docker_volume_configuration = 4 [json_name = "docker_volume_configuration"];
+
+    EfsVolumeConfiguration efs_volume_configuration = 5 [json_name = "efs_volume_configuration"];
+
+    FsxWindowsFileServerVolumeConfiguration fsx_windows_file_server_volume_configuration = 6 [
+      json_name = "fsx_windows_file_server_volume_configuration"
+    ];
+
+    S3filesVolumeConfiguration s3files_volume_configuration = 7 [json_name = "s3files_volume_configuration"];
+
+    message DockerVolumeConfiguration {
+      bool autoprovision = 1;
+
+      string driver = 2;
+
+      map<string, string> driver_opts = 3 [json_name = "driver_opts"];
+
+      map<string, string> labels = 4;
+
+      string scope = 5;
+    }
+
+    message EfsVolumeConfiguration {
+      string file_system_id = 1 [json_name = "file_system_id"];
+
+      string root_directory = 2 [json_name = "root_directory"];
+
+      string transit_encryption = 3 [json_name = "transit_encryption"];
+
+      int64 transit_encryption_port = 4 [json_name = "transit_encryption_port"];
+
+      AuthorizationConfig authorization_config = 5 [json_name = "authorization_config"];
+
+      message AuthorizationConfig {
+        string access_point_id = 1 [json_name = "access_point_id"];
+
+        string iam = 2;
+      }
+    }
+
+    message FsxWindowsFileServerVolumeConfiguration {
+      string file_system_id = 1 [json_name = "file_system_id"];
+
+      string root_directory = 2 [json_name = "root_directory"];
+
+      AuthorizationConfig authorization_config = 3 [json_name = "authorization_config"];
+
+      message AuthorizationConfig {
+        string credentials_parameter = 1 [json_name = "credentials_parameter"];
+
+        string domain = 2;
+      }
+    }
+
+    message S3filesVolumeConfiguration {
+      string access_point_arn = 1 [json_name = "access_point_arn"];
+
+      string file_system_arn = 2 [json_name = "file_system_arn"];
+
+      string root_directory = 3 [json_name = "root_directory"];
+
+      int64 transit_encryption_port = 4 [json_name = "transit_encryption_port"];
+    }
+  }
+}
+
+// AwsEcsTaskSet version is 0
+message AwsEcsTaskSet {
+  string arn = 1;
+
+  string cluster = 2;
+
+  string external_id = 3 [json_name = "external_id"];
+
+  bool force_delete = 4 [json_name = "force_delete"];
+
+  string id = 5;
+
+  string launch_type = 6 [json_name = "launch_type"];
+
+  string platform_version = 7 [json_name = "platform_version"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  string service = 9;
+
+  string stability_status = 10 [json_name = "stability_status"];
+
+  string status = 11;
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  string task_definition = 14 [json_name = "task_definition"];
+
+  string task_set_id = 15 [json_name = "task_set_id"];
+
+  bool wait_until_stable = 16 [json_name = "wait_until_stable"];
+
+  string wait_until_stable_timeout = 17 [json_name = "wait_until_stable_timeout"];
+
+  repeated CapacityProviderStrategy capacity_provider_strategy = 18 [json_name = "capacity_provider_strategy"];
+
+  repeated LoadBalancer load_balancer = 19 [json_name = "load_balancer"];
+
+  NetworkConfiguration network_configuration = 20 [json_name = "network_configuration"];
+
+  Scale scale = 21;
+
+  ServiceRegistries service_registries = 22 [json_name = "service_registries"];
+
+  google.protobuf.Value for_each = 23 [json_name = "for_each"];
+
+  repeated string depends_on = 24 [json_name = "depends_on"];
+
+  int32 count = 25;
+
+  string provider = 26;
+
+  terraform.v1.Lifecycle lifecycle = 27;
+
+  message CapacityProviderStrategy {
+    int64 base = 1;
+
+    string capacity_provider = 2 [json_name = "capacity_provider"];
+
+    int64 weight = 3;
+  }
+
+  message LoadBalancer {
+    string container_name = 1 [json_name = "container_name"];
+
+    int64 container_port = 2 [json_name = "container_port"];
+
+    string load_balancer_name = 3 [json_name = "load_balancer_name"];
+
+    string target_group_arn = 4 [json_name = "target_group_arn"];
+  }
+
+  message NetworkConfiguration {
+    bool assign_public_ip = 1 [json_name = "assign_public_ip"];
+
+    repeated string security_groups = 2 [json_name = "security_groups"];
+
+    repeated string subnets = 3;
+  }
+
+  message Scale {
+    string unit = 1;
+
+    int64 value = 2;
+  }
+
+  message ServiceRegistries {
+    string container_name = 1 [json_name = "container_name"];
+
+    int64 container_port = 2 [json_name = "container_port"];
+
+    int64 port = 3;
+
+    string registry_arn = 4 [json_name = "registry_arn"];
+  }
+}

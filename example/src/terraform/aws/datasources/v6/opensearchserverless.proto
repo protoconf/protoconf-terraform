@@ -1,0 +1,397 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsOpensearchserverlessAccessPolicy version is 0
+message AwsOpensearchserverlessAccessPolicy {
+  // Description of the policy. Typically used to store information about the
+  // permissions defined in the policy.
+  string description = 1;
+
+  string id = 2;
+
+  // Name of the policy.
+  string name = 3;
+
+  // JSON policy document to use as the content for the new policy.
+  string policy = 4;
+
+  // Version of the policy.
+  string policy_version = 5 [json_name = "policy_version"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  // Type of access policy. Must be `data`.
+  string type = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsOpensearchserverlessCollection version is 0
+message AwsOpensearchserverlessCollection {
+  string arn = 1;
+
+  // Collection-specific endpoint used to submit index, search, and data upload
+  // requests to an OpenSearch Serverless collection.
+  string collection_endpoint = 2 [json_name = "collection_endpoint"];
+
+  // Date the Collection was created.
+  string created_date = 3 [json_name = "created_date"];
+
+  // Collection-specific endpoint used to access OpenSearch Dashboards.
+  string dashboard_endpoint = 4 [json_name = "dashboard_endpoint"];
+
+  // Description of the collection.
+  string description = 5;
+
+  // A failure code associated with the collection.
+  string failure_code = 6 [json_name = "failure_code"];
+
+  // A failure reason associated with the collection.
+  string failure_message = 7 [json_name = "failure_message"];
+
+  // ID of the collection.
+  string id = 8;
+
+  // The ARN of the Amazon Web Services KMS key used to encrypt the collection.
+  string kms_key_arn = 9 [json_name = "kms_key_arn"];
+
+  // Date the Collection was last modified.
+  string last_modified_date = 10 [json_name = "last_modified_date"];
+
+  // Name of the collection.
+  string name = 11;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  // Indicates whether standby replicas should be used for a collection.
+  string standby_replicas = 13 [json_name = "standby_replicas"];
+
+  map<string, string> tags = 14;
+
+  // Type of collection.
+  string type = 15;
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+}
+
+// AwsOpensearchserverlessCollectionGroup version is 0
+message AwsOpensearchserverlessCollectionGroup {
+  string arn = 1;
+
+  repeated CapacityLimits capacity_limits = 2 [json_name = "capacity_limits"];
+
+  // Date the collection group was created.
+  string created_date = 3 [json_name = "created_date"];
+
+  // Description of the collection group.
+  string description = 4;
+
+  // ID of the collection group.
+  string id = 5;
+
+  // Name of the collection group.
+  string name = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  // Indicates whether standby replicas should be used for collections in this group.
+  string standby_replicas = 8 [json_name = "standby_replicas"];
+
+  map<string, string> tags = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message CapacityLimits {
+    // max_indexing_capacity_in_ocu: number
+    int64 max_indexing_capacity_in_ocu = 1 [json_name = "max_indexing_capacity_in_ocu"];
+
+    // max_search_capacity_in_ocu: number
+    int64 max_search_capacity_in_ocu = 2 [json_name = "max_search_capacity_in_ocu"];
+
+    // min_indexing_capacity_in_ocu: number
+    int64 min_indexing_capacity_in_ocu = 3 [json_name = "min_indexing_capacity_in_ocu"];
+
+    // min_search_capacity_in_ocu: number
+    int64 min_search_capacity_in_ocu = 4 [json_name = "min_search_capacity_in_ocu"];
+  }
+}
+
+// AwsOpensearchserverlessCollectionGroups version is 0
+message AwsOpensearchserverlessCollectionGroups {
+  // List of collection group summaries.
+  repeated CollectionGroupSummaries collection_group_summaries = 1 [json_name = "collection_group_summaries"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+
+  message CollectionGroupSummaries {
+    // arn: string
+    string arn = 1;
+
+    // capacity_limits: list of object
+    repeated CapacityLimits capacity_limits = 2 [json_name = "capacity_limits"];
+
+    // created_date: string
+    string created_date = 3 [json_name = "created_date"];
+
+    // id: string
+    string id = 4;
+
+    // name: string
+    string name = 5;
+
+    // number_of_collections: number
+    int64 number_of_collections = 6 [json_name = "number_of_collections"];
+
+    // standby_replicas: string
+    string standby_replicas = 7 [json_name = "standby_replicas"];
+
+    message CapacityLimits {
+      // max_indexing_capacity_in_ocu: number
+      int64 max_indexing_capacity_in_ocu = 1 [json_name = "max_indexing_capacity_in_ocu"];
+
+      // max_search_capacity_in_ocu: number
+      int64 max_search_capacity_in_ocu = 2 [json_name = "max_search_capacity_in_ocu"];
+
+      // min_indexing_capacity_in_ocu: number
+      int64 min_indexing_capacity_in_ocu = 3 [json_name = "min_indexing_capacity_in_ocu"];
+
+      // min_search_capacity_in_ocu: number
+      int64 min_search_capacity_in_ocu = 4 [json_name = "min_search_capacity_in_ocu"];
+    }
+  }
+}
+
+// AwsOpensearchserverlessLifecyclePolicy version is 0
+message AwsOpensearchserverlessLifecyclePolicy {
+  // The date the lifecycle policy was created.
+  string created_date = 1 [json_name = "created_date"];
+
+  // Description of the policy. Typically used to store information about the
+  // permissions defined in the policy.
+  string description = 2;
+
+  string id = 3;
+
+  // The date the lifecycle policy was last modified.
+  string last_modified_date = 4 [json_name = "last_modified_date"];
+
+  // Name of the policy.
+  string name = 5;
+
+  // JSON policy document to use as the content for the new policy.
+  string policy = 6;
+
+  // Version of the policy.
+  string policy_version = 7 [json_name = "policy_version"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  // Type of lifecycle policy. Must be `retention`.
+  string type = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsOpensearchserverlessSecurityConfig version is 0
+message AwsOpensearchserverlessSecurityConfig {
+  // The version of the security configuration.
+  string config_version = 1 [json_name = "config_version"];
+
+  // The date the configuration was created.
+  string created_date = 2 [json_name = "created_date"];
+
+  // The description of the security configuration.
+  string description = 3;
+
+  // The unique identifier of the security configuration.
+  string id = 4;
+
+  // The date the configuration was last modified.
+  string last_modified_date = 5 [json_name = "last_modified_date"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  // The type of security configuration.
+  string type = 7;
+
+  repeated SamlOptions saml_options = 8 [json_name = "saml_options"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message SamlOptions {
+    // Group attribute for this SAML integration.
+    string group_attribute = 1 [json_name = "group_attribute"];
+
+    // The XML IdP metadata file generated from your identity provider.
+    string metadata = 2;
+
+    // Session timeout, in minutes. Minimum is 5 minutes and maximum is 720 minutes (12
+    // hours). Default is 60 minutes.
+    int64 session_timeout = 3 [json_name = "session_timeout"];
+
+    // User attribute for this SAML integration.
+    string user_attribute = 4 [json_name = "user_attribute"];
+  }
+}
+
+// AwsOpensearchserverlessSecurityPolicy version is 0
+message AwsOpensearchserverlessSecurityPolicy {
+  // The date the security policy was created.
+  string created_date = 1 [json_name = "created_date"];
+
+  // Description of the security policy.
+  string description = 2;
+
+  string id = 3;
+
+  // The date the security policy was last modified.
+  string last_modified_date = 4 [json_name = "last_modified_date"];
+
+  // Name of the policy.
+  string name = 5;
+
+  // The JSON policy document without any whitespaces.
+  string policy = 6;
+
+  // Version of the policy.
+  string policy_version = 7 [json_name = "policy_version"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  // Type of security policy. One of `encryption` or `network`.
+  string type = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsOpensearchserverlessVpcEndpoint version is 0
+message AwsOpensearchserverlessVpcEndpoint {
+  // The date the endpoint was created.
+  string created_date = 1 [json_name = "created_date"];
+
+  string id = 2;
+
+  // The name of the endpoint.
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  // The IDs of the security groups that define the ports, protocols, and sources for
+  // inbound traffic that you are authorizing into your endpoint.
+  repeated string security_group_ids = 5 [json_name = "security_group_ids"];
+
+  // The IDs of the subnets from which you access OpenSearch Serverless.
+  repeated string subnet_ids = 6 [json_name = "subnet_ids"];
+
+  // The unique identifier of the endpoint.
+  string vpc_endpoint_id = 7 [json_name = "vpc_endpoint_id"];
+
+  // The ID of the VPC from which you access OpenSearch Serverless.
+  string vpc_id = 8 [json_name = "vpc_id"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}

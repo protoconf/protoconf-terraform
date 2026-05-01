@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCodecatalystDevEnvironment version is 0
+message AwsCodecatalystDevEnvironment {
+  string alias = 1;
+
+  string creator_id = 2 [json_name = "creator_id"];
+
+  string env_id = 3 [json_name = "env_id"];
+
+  string id = 4;
+
+  repeated Ides ides = 5;
+
+  int64 inactivity_timeout_minutes = 6 [json_name = "inactivity_timeout_minutes"];
+
+  string instance_type = 7 [json_name = "instance_type"];
+
+  string last_updated_time = 8 [json_name = "last_updated_time"];
+
+  repeated PersistentStorage persistent_storage = 9 [json_name = "persistent_storage"];
+
+  string project_name = 10 [json_name = "project_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string space_name = 12 [json_name = "space_name"];
+
+  string status = 13;
+
+  string status_reason = 14 [json_name = "status_reason"];
+
+  map<string, string> tags = 15;
+
+  repeated Repositories repositories = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message Ides {
+    // name: string
+    string name = 1;
+
+    // runtime: string
+    string runtime = 2;
+  }
+
+  message PersistentStorage {
+    // size: number
+    int64 size = 1;
+  }
+
+  message Repositories {
+    string branch_name = 1 [json_name = "branch_name"];
+
+    string repository_name = 2 [json_name = "repository_name"];
+  }
+}

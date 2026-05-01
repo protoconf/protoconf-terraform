@@ -1,0 +1,198 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsFisExperimentTemplate version is 0
+message AwsFisExperimentTemplate {
+  string description = 1;
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string role_arn = 4 [json_name = "role_arn"];
+
+  map<string, string> tags = 5;
+
+  map<string, string> tags_all = 6 [json_name = "tags_all"];
+
+  repeated Action action = 7;
+
+  ExperimentOptions experiment_options = 8 [json_name = "experiment_options"];
+
+  ExperimentReportConfiguration experiment_report_configuration = 9 [json_name = "experiment_report_configuration"];
+
+  LogConfiguration log_configuration = 10 [json_name = "log_configuration"];
+
+  repeated StopCondition stop_condition = 11 [json_name = "stop_condition"];
+
+  repeated Target target = 12;
+
+  repeated Timeouts timeouts = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message Action {
+    string action_id = 1 [json_name = "action_id"];
+
+    string description = 2;
+
+    string name = 3;
+
+    repeated string start_after = 4 [json_name = "start_after"];
+
+    repeated Parameter parameter = 5;
+
+    Target target = 6;
+
+    message Parameter {
+      string key = 1;
+
+      string value = 2;
+    }
+
+    message Target {
+      string key = 1;
+
+      string value = 2;
+    }
+  }
+
+  message ExperimentOptions {
+    string account_targeting = 1 [json_name = "account_targeting"];
+
+    string empty_target_resolution_mode = 2 [json_name = "empty_target_resolution_mode"];
+  }
+
+  message ExperimentReportConfiguration {
+    string post_experiment_duration = 1 [json_name = "post_experiment_duration"];
+
+    string pre_experiment_duration = 2 [json_name = "pre_experiment_duration"];
+
+    DataSources data_sources = 3 [json_name = "data_sources"];
+
+    Outputs outputs = 4;
+
+    message DataSources {
+      repeated CloudwatchDashboard cloudwatch_dashboard = 1 [json_name = "cloudwatch_dashboard"];
+
+      message CloudwatchDashboard {
+        string dashboard_arn = 1 [json_name = "dashboard_arn"];
+      }
+    }
+
+    message Outputs {
+      S3Configuration s3_configuration = 1 [json_name = "s3_configuration"];
+
+      message S3Configuration {
+        string bucket_name = 1 [json_name = "bucket_name"];
+
+        string prefix = 2;
+      }
+    }
+  }
+
+  message LogConfiguration {
+    int64 log_schema_version = 1 [json_name = "log_schema_version"];
+
+    CloudwatchLogsConfiguration cloudwatch_logs_configuration = 2 [json_name = "cloudwatch_logs_configuration"];
+
+    S3Configuration s3_configuration = 3 [json_name = "s3_configuration"];
+
+    message CloudwatchLogsConfiguration {
+      string log_group_arn = 1 [json_name = "log_group_arn"];
+    }
+
+    message S3Configuration {
+      string bucket_name = 1 [json_name = "bucket_name"];
+
+      string prefix = 2;
+    }
+  }
+
+  message StopCondition {
+    string source = 1;
+
+    string value = 2;
+  }
+
+  message Target {
+    string name = 1;
+
+    map<string, string> parameters = 2;
+
+    repeated string resource_arns = 3 [json_name = "resource_arns"];
+
+    string resource_type = 4 [json_name = "resource_type"];
+
+    string selection_mode = 5 [json_name = "selection_mode"];
+
+    repeated Filter filter = 6;
+
+    repeated ResourceTag resource_tag = 7 [json_name = "resource_tag"];
+
+    message Filter {
+      string path = 1;
+
+      repeated string values = 2;
+    }
+
+    message ResourceTag {
+      string key = 1;
+
+      string value = 2;
+    }
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsFisTargetAccountConfiguration version is 0
+message AwsFisTargetAccountConfiguration {
+  string account_id = 1 [json_name = "account_id"];
+
+  string description = 2;
+
+  string experiment_template_id = 3 [json_name = "experiment_template_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string role_arn = 5 [json_name = "role_arn"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}

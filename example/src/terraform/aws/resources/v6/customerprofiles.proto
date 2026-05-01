@@ -1,0 +1,296 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCustomerprofilesDomain version is 0
+message AwsCustomerprofilesDomain {
+  string arn = 1;
+
+  string dead_letter_queue_url = 2 [json_name = "dead_letter_queue_url"];
+
+  string default_encryption_key = 3 [json_name = "default_encryption_key"];
+
+  int64 default_expiration_days = 4 [json_name = "default_expiration_days"];
+
+  string domain_name = 5 [json_name = "domain_name"];
+
+  string id = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  Matching matching = 10;
+
+  RuleBasedMatching rule_based_matching = 11 [json_name = "rule_based_matching"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message Matching {
+    bool enabled = 1;
+
+    AutoMerging auto_merging = 2 [json_name = "auto_merging"];
+
+    ExportingConfig exporting_config = 3 [json_name = "exporting_config"];
+
+    JobSchedule job_schedule = 4 [json_name = "job_schedule"];
+
+    message AutoMerging {
+      bool enabled = 1;
+
+      int64 min_allowed_confidence_score_for_merging = 2 [
+        json_name = "min_allowed_confidence_score_for_merging"
+      ];
+
+      ConflictResolution conflict_resolution = 3 [json_name = "conflict_resolution"];
+
+      Consolidation consolidation = 4;
+
+      message ConflictResolution {
+        string conflict_resolving_model = 1 [json_name = "conflict_resolving_model"];
+
+        string source_name = 2 [json_name = "source_name"];
+      }
+
+      message Consolidation {
+        repeated string matching_attributes_list = 1 [json_name = "matching_attributes_list"];
+      }
+    }
+
+    message ExportingConfig {
+      S3Exporting s3_exporting = 1 [json_name = "s3_exporting"];
+
+      message S3Exporting {
+        string s3_bucket_name = 1 [json_name = "s3_bucket_name"];
+
+        string s3_key_name = 2 [json_name = "s3_key_name"];
+      }
+    }
+
+    message JobSchedule {
+      string day_of_the_week = 1 [json_name = "day_of_the_week"];
+
+      string time = 2;
+    }
+  }
+
+  message RuleBasedMatching {
+    bool enabled = 1;
+
+    int64 max_allowed_rule_level_for_matching = 2 [json_name = "max_allowed_rule_level_for_matching"];
+
+    int64 max_allowed_rule_level_for_merging = 3 [json_name = "max_allowed_rule_level_for_merging"];
+
+    string status = 4;
+
+    AttributeTypesSelector attribute_types_selector = 5 [json_name = "attribute_types_selector"];
+
+    ConflictResolution conflict_resolution = 6 [json_name = "conflict_resolution"];
+
+    ExportingConfig exporting_config = 7 [json_name = "exporting_config"];
+
+    repeated MatchingRules matching_rules = 8 [json_name = "matching_rules"];
+
+    message AttributeTypesSelector {
+      repeated string address = 1;
+
+      string attribute_matching_model = 2 [json_name = "attribute_matching_model"];
+
+      repeated string email_address = 3 [json_name = "email_address"];
+
+      repeated string phone_number = 4 [json_name = "phone_number"];
+    }
+
+    message ConflictResolution {
+      string conflict_resolving_model = 1 [json_name = "conflict_resolving_model"];
+
+      string source_name = 2 [json_name = "source_name"];
+    }
+
+    message ExportingConfig {
+      S3Exporting s3_exporting = 1 [json_name = "s3_exporting"];
+
+      message S3Exporting {
+        string s3_bucket_name = 1 [json_name = "s3_bucket_name"];
+
+        string s3_key_name = 2 [json_name = "s3_key_name"];
+      }
+    }
+
+    message MatchingRules {
+      repeated string rule = 1;
+    }
+  }
+}
+
+// AwsCustomerprofilesProfile version is 0
+message AwsCustomerprofilesProfile {
+  string account_number = 1 [json_name = "account_number"];
+
+  string additional_information = 2 [json_name = "additional_information"];
+
+  map<string, string> attributes = 3;
+
+  string birth_date = 4 [json_name = "birth_date"];
+
+  string business_email_address = 5 [json_name = "business_email_address"];
+
+  string business_name = 6 [json_name = "business_name"];
+
+  string business_phone_number = 7 [json_name = "business_phone_number"];
+
+  string domain_name = 8 [json_name = "domain_name"];
+
+  string email_address = 9 [json_name = "email_address"];
+
+  string first_name = 10 [json_name = "first_name"];
+
+  string gender_string = 11 [json_name = "gender_string"];
+
+  string home_phone_number = 12 [json_name = "home_phone_number"];
+
+  string id = 13;
+
+  string last_name = 14 [json_name = "last_name"];
+
+  string middle_name = 15 [json_name = "middle_name"];
+
+  string mobile_phone_number = 16 [json_name = "mobile_phone_number"];
+
+  string party_type_string = 17 [json_name = "party_type_string"];
+
+  string personal_email_address = 18 [json_name = "personal_email_address"];
+
+  string phone_number = 19 [json_name = "phone_number"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 20;
+
+  Address address = 21;
+
+  BillingAddress billing_address = 22 [json_name = "billing_address"];
+
+  MailingAddress mailing_address = 23 [json_name = "mailing_address"];
+
+  ShippingAddress shipping_address = 24 [json_name = "shipping_address"];
+
+  google.protobuf.Value for_each = 25 [json_name = "for_each"];
+
+  repeated string depends_on = 26 [json_name = "depends_on"];
+
+  int32 count = 27;
+
+  string provider = 28;
+
+  terraform.v1.Lifecycle lifecycle = 29;
+
+  message Address {
+    string address_1 = 1 [json_name = "address_1"];
+
+    string address_2 = 2 [json_name = "address_2"];
+
+    string address_3 = 3 [json_name = "address_3"];
+
+    string address_4 = 4 [json_name = "address_4"];
+
+    string city = 5;
+
+    string country = 6;
+
+    string county = 7;
+
+    string postal_code = 8 [json_name = "postal_code"];
+
+    string province = 9;
+
+    string state = 10;
+  }
+
+  message BillingAddress {
+    string address_1 = 1 [json_name = "address_1"];
+
+    string address_2 = 2 [json_name = "address_2"];
+
+    string address_3 = 3 [json_name = "address_3"];
+
+    string address_4 = 4 [json_name = "address_4"];
+
+    string city = 5;
+
+    string country = 6;
+
+    string county = 7;
+
+    string postal_code = 8 [json_name = "postal_code"];
+
+    string province = 9;
+
+    string state = 10;
+  }
+
+  message MailingAddress {
+    string address_1 = 1 [json_name = "address_1"];
+
+    string address_2 = 2 [json_name = "address_2"];
+
+    string address_3 = 3 [json_name = "address_3"];
+
+    string address_4 = 4 [json_name = "address_4"];
+
+    string city = 5;
+
+    string country = 6;
+
+    string county = 7;
+
+    string postal_code = 8 [json_name = "postal_code"];
+
+    string province = 9;
+
+    string state = 10;
+  }
+
+  message ShippingAddress {
+    string address_1 = 1 [json_name = "address_1"];
+
+    string address_2 = 2 [json_name = "address_2"];
+
+    string address_3 = 3 [json_name = "address_3"];
+
+    string address_4 = 4 [json_name = "address_4"];
+
+    string city = 5;
+
+    string country = 6;
+
+    string county = 7;
+
+    string postal_code = 8 [json_name = "postal_code"];
+
+    string province = 9;
+
+    string state = 10;
+  }
+}

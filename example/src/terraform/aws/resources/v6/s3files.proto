@@ -1,0 +1,320 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsS3filesAccessPoint version is 0
+message AwsS3filesAccessPoint {
+  string arn = 1;
+
+  // File system ID
+  string file_system_id = 2 [json_name = "file_system_id"];
+
+  string id = 3;
+
+  // Access point name
+  string name = 4;
+
+  // AWS account ID of the owner
+  string owner_id = 5 [json_name = "owner_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  // Access point status
+  string status = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  repeated PosixUser posix_user = 10 [json_name = "posix_user"];
+
+  repeated RootDirectory root_directory = 11 [json_name = "root_directory"];
+
+  repeated Timeouts timeouts = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message PosixUser {
+    // POSIX group ID
+    int64 gid = 1;
+
+    // Secondary POSIX group IDs
+    repeated int64 secondary_gids = 2 [json_name = "secondary_gids"];
+
+    // POSIX user ID
+    int64 uid = 3;
+  }
+
+  message RootDirectory {
+    // Root directory path
+    string path = 1;
+
+    repeated CreationPermissions creation_permissions = 2 [json_name = "creation_permissions"];
+
+    message CreationPermissions {
+      // Owner group ID
+      int64 owner_gid = 1 [json_name = "owner_gid"];
+
+      // Owner user ID
+      int64 owner_uid = 2 [json_name = "owner_uid"];
+
+      // POSIX permissions
+      string permissions = 3;
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsS3filesFileSystem version is 0
+message AwsS3filesFileSystem {
+  bool accept_bucket_warning = 1 [json_name = "accept_bucket_warning"];
+
+  string arn = 2;
+
+  // S3 bucket ARN
+  string bucket = 3;
+
+  // Creation time
+  string creation_time = 4 [json_name = "creation_time"];
+
+  string id = 5;
+
+  // KMS key ID for encryption
+  string kms_key_id = 6 [json_name = "kms_key_id"];
+
+  // File system name
+  string name = 7;
+
+  // AWS account ID of the owner
+  string owner_id = 8 [json_name = "owner_id"];
+
+  // S3 bucket prefix
+  string prefix = 9;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  // IAM role ARN for S3 access
+  string role_arn = 11 [json_name = "role_arn"];
+
+  // File system status
+  string status = 12;
+
+  // Status message
+  string status_message = 13 [json_name = "status_message"];
+
+  map<string, string> tags = 14;
+
+  map<string, string> tags_all = 15 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsS3filesFileSystemPolicy version is 0
+message AwsS3filesFileSystemPolicy {
+  // File system ID
+  string file_system_id = 1 [json_name = "file_system_id"];
+
+  // File system policy JSON
+  string policy = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsS3filesMountTarget version is 0
+message AwsS3filesMountTarget {
+  // Availability Zone ID
+  string availability_zone_id = 1 [json_name = "availability_zone_id"];
+
+  // File system ID
+  string file_system_id = 2 [json_name = "file_system_id"];
+
+  string id = 3;
+
+  // IP address type
+  string ip_address_type = 4 [json_name = "ip_address_type"];
+
+  // IPv4 address
+  string ipv4_address = 5 [json_name = "ipv4_address"];
+
+  // IPv6 address
+  string ipv6_address = 6 [json_name = "ipv6_address"];
+
+  // Network interface ID
+  string network_interface_id = 7 [json_name = "network_interface_id"];
+
+  // AWS account ID of the owner
+  string owner_id = 8 [json_name = "owner_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  // Security group IDs
+  repeated string security_groups = 10 [json_name = "security_groups"];
+
+  // Mount target status
+  string status = 11;
+
+  // Status message
+  string status_message = 12 [json_name = "status_message"];
+
+  // Subnet ID
+  string subnet_id = 13 [json_name = "subnet_id"];
+
+  // VPC ID
+  string vpc_id = 14 [json_name = "vpc_id"];
+
+  repeated Timeouts timeouts = 15;
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsS3filesSynchronizationConfiguration version is 0
+message AwsS3filesSynchronizationConfiguration {
+  // File system ID
+  string file_system_id = 1 [json_name = "file_system_id"];
+
+  // Latest version number for optimistic locking
+  int64 latest_version_number = 2 [json_name = "latest_version_number"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated ExpirationDataRule expiration_data_rule = 4 [json_name = "expiration_data_rule"];
+
+  repeated ImportDataRule import_data_rule = 5 [json_name = "import_data_rule"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message ExpirationDataRule {
+    // Days after last access before data expires
+    int64 days_after_last_access = 1 [json_name = "days_after_last_access"];
+  }
+
+  message ImportDataRule {
+    // S3 prefix for import
+    string prefix = 1;
+
+    // Maximum file size to import
+    int64 size_less_than = 2 [json_name = "size_less_than"];
+
+    // Import trigger type
+    string trigger = 3;
+  }
+}

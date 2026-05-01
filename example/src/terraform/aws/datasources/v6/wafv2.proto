@@ -1,0 +1,307 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsWafv2IpSet version is 0
+message AwsWafv2IpSet {
+  repeated string addresses = 1;
+
+  string arn = 2;
+
+  string description = 3;
+
+  string id = 4;
+
+  string ip_address_version = 5 [json_name = "ip_address_version"];
+
+  string name = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string scope = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsWafv2ManagedRuleGroup version is 0
+message AwsWafv2ManagedRuleGroup {
+  repeated AvailableLabels available_labels = 1 [json_name = "available_labels"];
+
+  int64 capacity = 2;
+
+  repeated ConsumedLabels consumed_labels = 3 [json_name = "consumed_labels"];
+
+  string label_namespace = 4 [json_name = "label_namespace"];
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  repeated Rules rules = 7;
+
+  string scope = 8;
+
+  string sns_topic_arn = 9 [json_name = "sns_topic_arn"];
+
+  string vendor_name = 10 [json_name = "vendor_name"];
+
+  string version_name = 11 [json_name = "version_name"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message AvailableLabels {
+    // name: string
+    string name = 1;
+  }
+
+  message ConsumedLabels {
+    // name: string
+    string name = 1;
+  }
+
+  message Rules {
+    // action: list of object
+    repeated Action action = 1;
+
+    // name: string
+    string name = 2;
+
+    message Action {
+      // allow: list of object
+      repeated Allow allow = 1;
+
+      // block: list of object
+      repeated Block block = 2;
+
+      // captcha: list of object
+      repeated Captcha captcha = 3;
+
+      // challenge: list of object
+      repeated Challenge challenge = 4;
+
+      // count: list of object
+      repeated Count count = 5;
+
+      message Allow {
+        // custom_request_handling: list of object
+        repeated CustomRequestHandling custom_request_handling = 1 [json_name = "custom_request_handling"];
+
+        message CustomRequestHandling {
+          // insert_header: list of object
+          repeated InsertHeader insert_header = 1 [json_name = "insert_header"];
+
+          message InsertHeader {
+            // name: string
+            string name = 1;
+
+            // value: string
+            string value = 2;
+          }
+        }
+      }
+
+      message Block {
+        // custom_response: list of object
+        repeated CustomResponse custom_response = 1 [json_name = "custom_response"];
+
+        message CustomResponse {
+          // custom_response_body_key: string
+          string custom_response_body_key = 1 [json_name = "custom_response_body_key"];
+
+          // response_code: number
+          int64 response_code = 2 [json_name = "response_code"];
+
+          // response_header: list of object
+          repeated ResponseHeader response_header = 3 [json_name = "response_header"];
+
+          message ResponseHeader {
+            // name: string
+            string name = 1;
+
+            // value: string
+            string value = 2;
+          }
+        }
+      }
+
+      message Captcha {
+        // custom_request_handling: list of object
+        repeated CustomRequestHandling custom_request_handling = 1 [json_name = "custom_request_handling"];
+
+        message CustomRequestHandling {
+          // insert_header: list of object
+          repeated InsertHeader insert_header = 1 [json_name = "insert_header"];
+
+          message InsertHeader {
+            // name: string
+            string name = 1;
+
+            // value: string
+            string value = 2;
+          }
+        }
+      }
+
+      message Challenge {
+        // custom_request_handling: list of object
+        repeated CustomRequestHandling custom_request_handling = 1 [json_name = "custom_request_handling"];
+
+        message CustomRequestHandling {
+          // insert_header: list of object
+          repeated InsertHeader insert_header = 1 [json_name = "insert_header"];
+
+          message InsertHeader {
+            // name: string
+            string name = 1;
+
+            // value: string
+            string value = 2;
+          }
+        }
+      }
+
+      message Count {
+        // custom_request_handling: list of object
+        repeated CustomRequestHandling custom_request_handling = 1 [json_name = "custom_request_handling"];
+
+        message CustomRequestHandling {
+          // insert_header: list of object
+          repeated InsertHeader insert_header = 1 [json_name = "insert_header"];
+
+          message InsertHeader {
+            // name: string
+            string name = 1;
+
+            // value: string
+            string value = 2;
+          }
+        }
+      }
+    }
+  }
+}
+
+// AwsWafv2RegexPatternSet version is 0
+message AwsWafv2RegexPatternSet {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated RegularExpression regular_expression = 6 [json_name = "regular_expression"];
+
+  string scope = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message RegularExpression {
+    // regex_string: string
+    string regex_string = 1 [json_name = "regex_string"];
+  }
+}
+
+// AwsWafv2RuleGroup version is 0
+message AwsWafv2RuleGroup {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string scope = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsWafv2WebAcl version is 0
+message AwsWafv2WebAcl {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string resource_arn = 6 [json_name = "resource_arn"];
+
+  string scope = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}

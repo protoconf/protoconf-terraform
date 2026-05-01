@@ -1,0 +1,625 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsDatazoneAssetType version is 0
+message AwsDatazoneAssetType {
+  string created_at = 1 [json_name = "created_at"];
+
+  string created_by = 2 [json_name = "created_by"];
+
+  string description = 3;
+
+  string domain_identifier = 4 [json_name = "domain_identifier"];
+
+  string name = 5;
+
+  string owning_project_identifier = 6 [json_name = "owning_project_identifier"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string revision = 8;
+
+  repeated FormsInput forms_input = 9 [json_name = "forms_input"];
+
+  repeated Timeouts timeouts = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message FormsInput {
+    string map_block_key = 1 [json_name = "map_block_key"];
+
+    bool required = 2;
+
+    string type_identifier = 3 [json_name = "type_identifier"];
+
+    string type_revision = 4 [json_name = "type_revision"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+  }
+}
+
+// AwsDatazoneDomain version is 0
+message AwsDatazoneDomain {
+  string arn = 1;
+
+  string description = 2;
+
+  string domain_execution_role = 3 [json_name = "domain_execution_role"];
+
+  string domain_version = 4 [json_name = "domain_version"];
+
+  string id = 5;
+
+  string kms_key_identifier = 6 [json_name = "kms_key_identifier"];
+
+  string name = 7;
+
+  string portal_url = 8 [json_name = "portal_url"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  string root_domain_unit_id = 10 [json_name = "root_domain_unit_id"];
+
+  string service_role = 11 [json_name = "service_role"];
+
+  bool skip_deletion_check = 12 [json_name = "skip_deletion_check"];
+
+  map<string, string> tags = 13;
+
+  map<string, string> tags_all = 14 [json_name = "tags_all"];
+
+  repeated SingleSignOn single_sign_on = 15 [json_name = "single_sign_on"];
+
+  repeated Timeouts timeouts = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message SingleSignOn {
+    string type = 1;
+
+    string user_assignment = 2 [json_name = "user_assignment"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsDatazoneEnvironment version is 0
+message AwsDatazoneEnvironment {
+  string account_identifier = 1 [json_name = "account_identifier"];
+
+  string account_region = 2 [json_name = "account_region"];
+
+  string blueprint_identifier = 3 [json_name = "blueprint_identifier"];
+
+  string created_at = 4 [json_name = "created_at"];
+
+  string created_by = 5 [json_name = "created_by"];
+
+  string description = 6;
+
+  string domain_identifier = 7 [json_name = "domain_identifier"];
+
+  repeated string glossary_terms = 8 [json_name = "glossary_terms"];
+
+  string id = 9;
+
+  repeated LastDeployment last_deployment = 10 [json_name = "last_deployment"];
+
+  string name = 11;
+
+  string profile_identifier = 12 [json_name = "profile_identifier"];
+
+  string project_identifier = 13 [json_name = "project_identifier"];
+
+  string provider_environment = 14 [json_name = "provider_environment"];
+
+  repeated ProvisionedResources provisioned_resources = 15 [json_name = "provisioned_resources"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 16;
+
+  repeated Timeouts timeouts = 17;
+
+  repeated UserParameters user_parameters = 18 [json_name = "user_parameters"];
+
+  google.protobuf.Value for_each = 19 [json_name = "for_each"];
+
+  repeated string depends_on = 20 [json_name = "depends_on"];
+
+  int32 count = 21;
+
+  string provider = 22;
+
+  terraform.v1.Lifecycle lifecycle = 23;
+
+  message LastDeployment {
+    // deployment_id: string
+    string deployment_id = 1 [json_name = "deployment_id"];
+
+    // deployment_status: string
+    string deployment_status = 2 [json_name = "deployment_status"];
+
+    // deployment_type: string
+    string deployment_type = 3 [json_name = "deployment_type"];
+
+    // failure_reasons: list of object
+    repeated FailureReasons failure_reasons = 4 [json_name = "failure_reasons"];
+
+    // is_deployment_complete: bool
+    bool is_deployment_complete = 5 [json_name = "is_deployment_complete"];
+
+    // messages: list of string
+    repeated string messages = 6;
+
+    message FailureReasons {
+      // code: string
+      string code = 1;
+
+      // message: string
+      string message = 2;
+    }
+  }
+
+  message ProvisionedResources {
+    // name: string
+    string name = 1;
+
+    // provider: string
+    string provider = 2;
+
+    // type: string
+    string type = 3;
+
+    // value: string
+    string value = 4;
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+
+  message UserParameters {
+    string name = 1;
+
+    string value = 2;
+  }
+}
+
+// AwsDatazoneEnvironmentBlueprintConfiguration version is 0
+message AwsDatazoneEnvironmentBlueprintConfiguration {
+  string domain_id = 1 [json_name = "domain_id"];
+
+  repeated string enabled_regions = 2 [json_name = "enabled_regions"];
+
+  string environment_blueprint_id = 3 [json_name = "environment_blueprint_id"];
+
+  string manage_access_role_arn = 4 [json_name = "manage_access_role_arn"];
+
+  string provisioning_role_arn = 5 [json_name = "provisioning_role_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> regional_parameters = 7 [json_name = "regional_parameters"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsDatazoneEnvironmentProfile version is 0
+message AwsDatazoneEnvironmentProfile {
+  string aws_account_id = 1 [json_name = "aws_account_id"];
+
+  string aws_account_region = 2 [json_name = "aws_account_region"];
+
+  string created_at = 3 [json_name = "created_at"];
+
+  string created_by = 4 [json_name = "created_by"];
+
+  string description = 5;
+
+  string domain_identifier = 6 [json_name = "domain_identifier"];
+
+  string environment_blueprint_identifier = 7 [json_name = "environment_blueprint_identifier"];
+
+  string id = 8;
+
+  string name = 9;
+
+  string project_identifier = 10 [json_name = "project_identifier"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string updated_at = 12 [json_name = "updated_at"];
+
+  repeated UserParameters user_parameters = 13 [json_name = "user_parameters"];
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message UserParameters {
+    string name = 1;
+
+    string value = 2;
+  }
+}
+
+// AwsDatazoneFormType version is 0
+message AwsDatazoneFormType {
+  string created_at = 1 [json_name = "created_at"];
+
+  string created_by = 2 [json_name = "created_by"];
+
+  string description = 3;
+
+  string domain_identifier = 4 [json_name = "domain_identifier"];
+
+  repeated Imports imports = 5;
+
+  string name = 6;
+
+  string origin_domain_id = 7 [json_name = "origin_domain_id"];
+
+  string origin_project_id = 8 [json_name = "origin_project_id"];
+
+  string owning_project_identifier = 9 [json_name = "owning_project_identifier"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  string revision = 11;
+
+  string status = 12;
+
+  repeated Model model = 13;
+
+  repeated Timeouts timeouts = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message Imports {
+    // name: string
+    string name = 1;
+
+    // revision: string
+    string revision = 2;
+  }
+
+  message Model {
+    string smithy = 1;
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+  }
+}
+
+// AwsDatazoneGlossary version is 0
+message AwsDatazoneGlossary {
+  string description = 1;
+
+  string domain_identifier = 2 [json_name = "domain_identifier"];
+
+  string id = 3;
+
+  string name = 4;
+
+  string owning_project_identifier = 5 [json_name = "owning_project_identifier"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string status = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsDatazoneGlossaryTerm version is 0
+message AwsDatazoneGlossaryTerm {
+  string created_at = 1 [json_name = "created_at"];
+
+  string created_by = 2 [json_name = "created_by"];
+
+  string domain_identifier = 3 [json_name = "domain_identifier"];
+
+  string glossary_identifier = 4 [json_name = "glossary_identifier"];
+
+  string id = 5;
+
+  string long_description = 6 [json_name = "long_description"];
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  string short_description = 9 [json_name = "short_description"];
+
+  string status = 10;
+
+  repeated TermRelations term_relations = 11 [json_name = "term_relations"];
+
+  repeated Timeouts timeouts = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message TermRelations {
+    repeated string classifies = 1;
+
+    repeated string is_a = 2 [json_name = "is_a"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+  }
+}
+
+// AwsDatazoneProject version is 0
+message AwsDatazoneProject {
+  string created_at = 1 [json_name = "created_at"];
+
+  string created_by = 2 [json_name = "created_by"];
+
+  string description = 3;
+
+  string domain_identifier = 4 [json_name = "domain_identifier"];
+
+  repeated FailureReasons failure_reasons = 5 [json_name = "failure_reasons"];
+
+  repeated string glossary_terms = 6 [json_name = "glossary_terms"];
+
+  string id = 7;
+
+  string last_updated_at = 8 [json_name = "last_updated_at"];
+
+  string name = 9;
+
+  string project_status = 10 [json_name = "project_status"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  bool skip_deletion_check = 12 [json_name = "skip_deletion_check"];
+
+  repeated Timeouts timeouts = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message FailureReasons {
+    // code: string
+    string code = 1;
+
+    // message: string
+    string message = 2;
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsDatazoneUserProfile version is 0
+message AwsDatazoneUserProfile {
+  repeated Details details = 1;
+
+  string domain_identifier = 2 [json_name = "domain_identifier"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string status = 5;
+
+  string type = 6;
+
+  string user_identifier = 7 [json_name = "user_identifier"];
+
+  string user_type = 8 [json_name = "user_type"];
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Details {
+    // iam: list of object
+    repeated Iam iam = 1;
+
+    // sso: list of object
+    repeated Sso sso = 2;
+
+    message Iam {
+      // arn: string
+      string arn = 1;
+    }
+
+    message Sso {
+      // first_name: string
+      string first_name = 1 [json_name = "first_name"];
+
+      // last_name: string
+      string last_name = 2 [json_name = "last_name"];
+
+      // user_name: string
+      string user_name = 3 [json_name = "user_name"];
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 2;
+  }
+}

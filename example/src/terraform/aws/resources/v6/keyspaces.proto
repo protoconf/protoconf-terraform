@@ -1,0 +1,170 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsKeyspacesKeyspace version is 0
+message AwsKeyspacesKeyspace {
+  string arn = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  map<string, string> tags = 5;
+
+  map<string, string> tags_all = 6 [json_name = "tags_all"];
+
+  ReplicationSpecification replication_specification = 7 [json_name = "replication_specification"];
+
+  repeated Timeouts timeouts = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message ReplicationSpecification {
+    repeated string region_list = 1 [json_name = "region_list"];
+
+    string replication_strategy = 2 [json_name = "replication_strategy"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsKeyspacesTable version is 0
+message AwsKeyspacesTable {
+  string arn = 1;
+
+  int64 default_time_to_live = 2 [json_name = "default_time_to_live"];
+
+  string id = 3;
+
+  string keyspace_name = 4 [json_name = "keyspace_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string table_name = 6 [json_name = "table_name"];
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  CapacitySpecification capacity_specification = 9 [json_name = "capacity_specification"];
+
+  ClientSideTimestamps client_side_timestamps = 10 [json_name = "client_side_timestamps"];
+
+  Comment comment = 11;
+
+  EncryptionSpecification encryption_specification = 12 [json_name = "encryption_specification"];
+
+  PointInTimeRecovery point_in_time_recovery = 13 [json_name = "point_in_time_recovery"];
+
+  SchemaDefinition schema_definition = 14 [json_name = "schema_definition"];
+
+  repeated Timeouts timeouts = 15;
+
+  Ttl ttl = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message CapacitySpecification {
+    int64 read_capacity_units = 1 [json_name = "read_capacity_units"];
+
+    string throughput_mode = 2 [json_name = "throughput_mode"];
+
+    int64 write_capacity_units = 3 [json_name = "write_capacity_units"];
+  }
+
+  message ClientSideTimestamps {
+    string status = 1;
+  }
+
+  message Comment {
+    string message = 1;
+  }
+
+  message EncryptionSpecification {
+    string kms_key_identifier = 1 [json_name = "kms_key_identifier"];
+
+    string type = 2;
+  }
+
+  message PointInTimeRecovery {
+    string status = 1;
+  }
+
+  message SchemaDefinition {
+    repeated ClusteringKey clustering_key = 1 [json_name = "clustering_key"];
+
+    repeated Column column = 2;
+
+    repeated PartitionKey partition_key = 3 [json_name = "partition_key"];
+
+    repeated StaticColumn static_column = 4 [json_name = "static_column"];
+
+    message ClusteringKey {
+      string name = 1;
+
+      string order_by = 2 [json_name = "order_by"];
+    }
+
+    message Column {
+      string name = 1;
+
+      string type = 2;
+    }
+
+    message PartitionKey {
+      string name = 1;
+    }
+
+    message StaticColumn {
+      string name = 1;
+    }
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+
+  message Ttl {
+    string status = 1;
+  }
+}

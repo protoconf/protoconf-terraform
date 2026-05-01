@@ -1,0 +1,215 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsLakeformationDataLakeSettings version is 0
+message AwsLakeformationDataLakeSettings {
+  repeated string admins = 1;
+
+  bool allow_external_data_filtering = 2 [json_name = "allow_external_data_filtering"];
+
+  bool allow_full_table_external_data_access = 3 [
+    json_name = "allow_full_table_external_data_access"
+  ];
+
+  repeated string authorized_session_tag_value_list = 4 [json_name = "authorized_session_tag_value_list"];
+
+  string catalog_id = 5 [json_name = "catalog_id"];
+
+  repeated CreateDatabaseDefaultPermissions create_database_default_permissions = 6 [json_name = "create_database_default_permissions"];
+
+  repeated CreateTableDefaultPermissions create_table_default_permissions = 7 [json_name = "create_table_default_permissions"];
+
+  repeated string external_data_filtering_allow_list = 8 [json_name = "external_data_filtering_allow_list"];
+
+  string id = 9;
+
+  map<string, string> parameters = 10;
+
+  repeated string read_only_admins = 11 [json_name = "read_only_admins"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  repeated string trusted_resource_owners = 13 [json_name = "trusted_resource_owners"];
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message CreateDatabaseDefaultPermissions {
+    // permissions: set of string
+    repeated string permissions = 1;
+
+    // principal: string
+    string principal = 2;
+  }
+
+  message CreateTableDefaultPermissions {
+    // permissions: set of string
+    repeated string permissions = 1;
+
+    // principal: string
+    string principal = 2;
+  }
+}
+
+// AwsLakeformationPermissions version is 0
+message AwsLakeformationPermissions {
+  string catalog_id = 1 [json_name = "catalog_id"];
+
+  bool catalog_resource = 2 [json_name = "catalog_resource"];
+
+  string id = 3;
+
+  repeated string permissions = 4;
+
+  repeated string permissions_with_grant_option = 5 [json_name = "permissions_with_grant_option"];
+
+  string principal = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  DataCellsFilter data_cells_filter = 8 [json_name = "data_cells_filter"];
+
+  DataLocation data_location = 9 [json_name = "data_location"];
+
+  Database database = 10;
+
+  LfTag lf_tag = 11 [json_name = "lf_tag"];
+
+  LfTagPolicy lf_tag_policy = 12 [json_name = "lf_tag_policy"];
+
+  Table table = 13;
+
+  TableWithColumns table_with_columns = 14 [json_name = "table_with_columns"];
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message DataCellsFilter {
+    string database_name = 1 [json_name = "database_name"];
+
+    string name = 2;
+
+    string table_catalog_id = 3 [json_name = "table_catalog_id"];
+
+    string table_name = 4 [json_name = "table_name"];
+  }
+
+  message DataLocation {
+    string arn = 1;
+
+    string catalog_id = 2 [json_name = "catalog_id"];
+  }
+
+  message Database {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    string name = 2;
+  }
+
+  message LfTag {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    string key = 2;
+
+    repeated string values = 3;
+  }
+
+  message LfTagPolicy {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    string resource_type = 2 [json_name = "resource_type"];
+
+    repeated Expression expression = 3;
+
+    message Expression {
+      string key = 1;
+
+      repeated string values = 2;
+    }
+  }
+
+  message Table {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    string database_name = 2 [json_name = "database_name"];
+
+    string name = 3;
+
+    bool wildcard = 4;
+  }
+
+  message TableWithColumns {
+    string catalog_id = 1 [json_name = "catalog_id"];
+
+    repeated string column_names = 2 [json_name = "column_names"];
+
+    string database_name = 3 [json_name = "database_name"];
+
+    repeated string excluded_column_names = 4 [json_name = "excluded_column_names"];
+
+    string name = 5;
+
+    bool wildcard = 6;
+  }
+}
+
+// AwsLakeformationResource version is 0
+message AwsLakeformationResource {
+  string arn = 1;
+
+  bool hybrid_access_enabled = 2 [json_name = "hybrid_access_enabled"];
+
+  string id = 3;
+
+  string last_modified = 4 [json_name = "last_modified"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string role_arn = 6 [json_name = "role_arn"];
+
+  bool with_federation = 7 [json_name = "with_federation"];
+
+  bool with_privileged_access = 8 [json_name = "with_privileged_access"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}

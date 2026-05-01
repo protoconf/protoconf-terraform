@@ -1,0 +1,781 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsLb version is 0
+message AwsLb {
+  repeated AccessLogs access_logs = 1 [json_name = "access_logs"];
+
+  string arn = 2;
+
+  string arn_suffix = 3 [json_name = "arn_suffix"];
+
+  int64 client_keep_alive = 4 [json_name = "client_keep_alive"];
+
+  repeated ConnectionLogs connection_logs = 5 [json_name = "connection_logs"];
+
+  string customer_owned_ipv4_pool = 6 [json_name = "customer_owned_ipv4_pool"];
+
+  string desync_mitigation_mode = 7 [json_name = "desync_mitigation_mode"];
+
+  string dns_name = 8 [json_name = "dns_name"];
+
+  string dns_record_client_routing_policy = 9 [json_name = "dns_record_client_routing_policy"];
+
+  bool drop_invalid_header_fields = 10 [json_name = "drop_invalid_header_fields"];
+
+  bool enable_cross_zone_load_balancing = 11 [json_name = "enable_cross_zone_load_balancing"];
+
+  bool enable_deletion_protection = 12 [json_name = "enable_deletion_protection"];
+
+  bool enable_http2 = 13 [json_name = "enable_http2"];
+
+  bool enable_tls_version_and_cipher_suite_headers = 14 [
+    json_name = "enable_tls_version_and_cipher_suite_headers"
+  ];
+
+  bool enable_waf_fail_open = 15 [json_name = "enable_waf_fail_open"];
+
+  bool enable_xff_client_port = 16 [json_name = "enable_xff_client_port"];
+
+  bool enable_zonal_shift = 17 [json_name = "enable_zonal_shift"];
+
+  string enforce_security_group_inbound_rules_on_private_link_traffic = 18 [
+    json_name = "enforce_security_group_inbound_rules_on_private_link_traffic"
+  ];
+
+  repeated HealthCheckLogs health_check_logs = 19 [json_name = "health_check_logs"];
+
+  string id = 20;
+
+  int64 idle_timeout = 21 [json_name = "idle_timeout"];
+
+  bool internal = 22;
+
+  string ip_address_type = 23 [json_name = "ip_address_type"];
+
+  repeated IpamPools ipam_pools = 24 [json_name = "ipam_pools"];
+
+  string load_balancer_type = 25 [json_name = "load_balancer_type"];
+
+  string name = 26;
+
+  bool preserve_host_header = 27 [json_name = "preserve_host_header"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 28;
+
+  int64 secondary_ips_auto_assigned_per_subnet = 29 [
+    json_name = "secondary_ips_auto_assigned_per_subnet"
+  ];
+
+  repeated string security_groups = 30 [json_name = "security_groups"];
+
+  repeated SubnetMapping subnet_mapping = 31 [json_name = "subnet_mapping"];
+
+  repeated string subnets = 32;
+
+  map<string, string> tags = 33;
+
+  string vpc_id = 34 [json_name = "vpc_id"];
+
+  string xff_header_processing_mode = 35 [json_name = "xff_header_processing_mode"];
+
+  string zone_id = 36 [json_name = "zone_id"];
+
+  repeated Timeouts timeouts = 37;
+
+  google.protobuf.Value for_each = 38 [json_name = "for_each"];
+
+  repeated string depends_on = 39 [json_name = "depends_on"];
+
+  int32 count = 40;
+
+  string provider = 41;
+
+  terraform.v1.Lifecycle lifecycle = 42;
+
+  message AccessLogs {
+    // bucket: string
+    string bucket = 1;
+
+    // enabled: bool
+    bool enabled = 2;
+
+    // prefix: string
+    string prefix = 3;
+  }
+
+  message ConnectionLogs {
+    // bucket: string
+    string bucket = 1;
+
+    // enabled: bool
+    bool enabled = 2;
+
+    // prefix: string
+    string prefix = 3;
+  }
+
+  message HealthCheckLogs {
+    // bucket: string
+    string bucket = 1;
+
+    // enabled: bool
+    bool enabled = 2;
+
+    // prefix: string
+    string prefix = 3;
+  }
+
+  message IpamPools {
+    // ipv4_ipam_pool_id: string
+    string ipv4_ipam_pool_id = 1 [json_name = "ipv4_ipam_pool_id"];
+  }
+
+  message SubnetMapping {
+    // allocation_id: string
+    string allocation_id = 1 [json_name = "allocation_id"];
+
+    // ipv6_address: string
+    string ipv6_address = 2 [json_name = "ipv6_address"];
+
+    // outpost_id: string
+    string outpost_id = 3 [json_name = "outpost_id"];
+
+    // private_ipv4_address: string
+    string private_ipv4_address = 4 [json_name = "private_ipv4_address"];
+
+    // subnet_id: string
+    string subnet_id = 5 [json_name = "subnet_id"];
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsLbHostedZoneId version is 0
+message AwsLbHostedZoneId {
+  string id = 1;
+
+  string load_balancer_type = 2 [json_name = "load_balancer_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsLbListener version is 0
+message AwsLbListener {
+  string alpn_policy = 1 [json_name = "alpn_policy"];
+
+  string arn = 2;
+
+  string certificate_arn = 3 [json_name = "certificate_arn"];
+
+  repeated DefaultAction default_action = 4 [json_name = "default_action"];
+
+  string id = 5;
+
+  string load_balancer_arn = 6 [json_name = "load_balancer_arn"];
+
+  repeated MutualAuthentication mutual_authentication = 7 [json_name = "mutual_authentication"];
+
+  int64 port = 8;
+
+  string protocol = 9;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  string ssl_policy = 11 [json_name = "ssl_policy"];
+
+  map<string, string> tags = 12;
+
+  repeated Timeouts timeouts = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message DefaultAction {
+    // authenticate_cognito: list of object
+    repeated AuthenticateCognito authenticate_cognito = 1 [json_name = "authenticate_cognito"];
+
+    // authenticate_oidc: list of object
+    repeated AuthenticateOidc authenticate_oidc = 2 [json_name = "authenticate_oidc"];
+
+    // fixed_response: list of object
+    repeated FixedResponse fixed_response = 3 [json_name = "fixed_response"];
+
+    // forward: list of object
+    repeated Forward forward = 4;
+
+    // jwt_validation: list of object
+    repeated JwtValidation jwt_validation = 5 [json_name = "jwt_validation"];
+
+    // order: number
+    int64 order = 6;
+
+    // redirect: list of object
+    repeated Redirect redirect = 7;
+
+    // target_group_arn: string
+    string target_group_arn = 8 [json_name = "target_group_arn"];
+
+    // type: string
+    string type = 9;
+
+    message AuthenticateCognito {
+      // authentication_request_extra_params: map of string
+      map<string, string> authentication_request_extra_params = 1 [json_name = "authentication_request_extra_params"];
+
+      // on_unauthenticated_request: string
+      string on_unauthenticated_request = 2 [json_name = "on_unauthenticated_request"];
+
+      // scope: string
+      string scope = 3;
+
+      // session_cookie_name: string
+      string session_cookie_name = 4 [json_name = "session_cookie_name"];
+
+      // session_timeout: number
+      int64 session_timeout = 5 [json_name = "session_timeout"];
+
+      // user_pool_arn: string
+      string user_pool_arn = 6 [json_name = "user_pool_arn"];
+
+      // user_pool_client_id: string
+      string user_pool_client_id = 7 [json_name = "user_pool_client_id"];
+
+      // user_pool_domain: string
+      string user_pool_domain = 8 [json_name = "user_pool_domain"];
+    }
+
+    message AuthenticateOidc {
+      // authentication_request_extra_params: map of string
+      map<string, string> authentication_request_extra_params = 1 [json_name = "authentication_request_extra_params"];
+
+      // authorization_endpoint: string
+      string authorization_endpoint = 2 [json_name = "authorization_endpoint"];
+
+      // client_id: string
+      string client_id = 3 [json_name = "client_id"];
+
+      // client_secret: string
+      string client_secret = 4 [json_name = "client_secret"];
+
+      // issuer: string
+      string issuer = 5;
+
+      // on_unauthenticated_request: string
+      string on_unauthenticated_request = 6 [json_name = "on_unauthenticated_request"];
+
+      // scope: string
+      string scope = 7;
+
+      // session_cookie_name: string
+      string session_cookie_name = 8 [json_name = "session_cookie_name"];
+
+      // session_timeout: number
+      int64 session_timeout = 9 [json_name = "session_timeout"];
+
+      // token_endpoint: string
+      string token_endpoint = 10 [json_name = "token_endpoint"];
+
+      // user_info_endpoint: string
+      string user_info_endpoint = 11 [json_name = "user_info_endpoint"];
+    }
+
+    message FixedResponse {
+      // content_type: string
+      string content_type = 1 [json_name = "content_type"];
+
+      // message_body: string
+      string message_body = 2 [json_name = "message_body"];
+
+      // status_code: string
+      string status_code = 3 [json_name = "status_code"];
+    }
+
+    message Forward {
+      // stickiness: list of object
+      repeated Stickiness stickiness = 1;
+
+      // target_group: set of object
+      repeated TargetGroup target_group = 2 [json_name = "target_group"];
+
+      message Stickiness {
+        // duration: number
+        int64 duration = 1;
+
+        // enabled: bool
+        bool enabled = 2;
+      }
+
+      message TargetGroup {
+        // arn: string
+        string arn = 1;
+
+        // weight: number
+        int64 weight = 2;
+      }
+    }
+
+    message JwtValidation {
+      // additional_claim: set of object
+      repeated AdditionalClaim additional_claim = 1 [json_name = "additional_claim"];
+
+      // issuer: string
+      string issuer = 2;
+
+      // jwks_endpoint: string
+      string jwks_endpoint = 3 [json_name = "jwks_endpoint"];
+
+      message AdditionalClaim {
+        // format: string
+        string format = 1;
+
+        // name: string
+        string name = 2;
+
+        // values: set of string
+        repeated string values = 3;
+      }
+    }
+
+    message Redirect {
+      // host: string
+      string host = 1;
+
+      // path: string
+      string path = 2;
+
+      // port: string
+      string port = 3;
+
+      // protocol: string
+      string protocol = 4;
+
+      // query: string
+      string query = 5;
+
+      // status_code: string
+      string status_code = 6 [json_name = "status_code"];
+    }
+  }
+
+  message MutualAuthentication {
+    // advertise_trust_store_ca_names: string
+    string advertise_trust_store_ca_names = 1 [json_name = "advertise_trust_store_ca_names"];
+
+    // ignore_client_certificate_expiry: bool
+    bool ignore_client_certificate_expiry = 2 [json_name = "ignore_client_certificate_expiry"];
+
+    // mode: string
+    string mode = 3;
+
+    // trust_store_arn: string
+    string trust_store_arn = 4 [json_name = "trust_store_arn"];
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsLbListenerRule version is 0
+message AwsLbListenerRule {
+  string arn = 1;
+
+  string listener_arn = 2 [json_name = "listener_arn"];
+
+  int64 priority = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  map<string, string> tags = 5;
+
+  repeated Action action = 6;
+
+  repeated Condition condition = 7;
+
+  repeated Transform transform = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Action {
+    int64 order = 1;
+
+    string type = 2;
+
+    repeated AuthenticateCognito authenticate_cognito = 3 [json_name = "authenticate_cognito"];
+
+    repeated AuthenticateOidc authenticate_oidc = 4 [json_name = "authenticate_oidc"];
+
+    repeated FixedResponse fixed_response = 5 [json_name = "fixed_response"];
+
+    repeated Forward forward = 6;
+
+    repeated JwtValidation jwt_validation = 7 [json_name = "jwt_validation"];
+
+    repeated Redirect redirect = 8;
+
+    message AuthenticateCognito {
+      map<string, string> authentication_request_extra_params = 1 [json_name = "authentication_request_extra_params"];
+
+      string on_unauthenticated_request = 2 [json_name = "on_unauthenticated_request"];
+
+      string scope = 3;
+
+      string session_cookie_name = 4 [json_name = "session_cookie_name"];
+
+      int64 session_timeout = 5 [json_name = "session_timeout"];
+
+      string user_pool_arn = 6 [json_name = "user_pool_arn"];
+
+      string user_pool_client_id = 7 [json_name = "user_pool_client_id"];
+
+      string user_pool_domain = 8 [json_name = "user_pool_domain"];
+    }
+
+    message AuthenticateOidc {
+      map<string, string> authentication_request_extra_params = 1 [json_name = "authentication_request_extra_params"];
+
+      string authorization_endpoint = 2 [json_name = "authorization_endpoint"];
+
+      string client_id = 3 [json_name = "client_id"];
+
+      string issuer = 4;
+
+      string on_unauthenticated_request = 5 [json_name = "on_unauthenticated_request"];
+
+      string scope = 6;
+
+      string session_cookie_name = 7 [json_name = "session_cookie_name"];
+
+      int64 session_timeout = 8 [json_name = "session_timeout"];
+
+      string token_endpoint = 9 [json_name = "token_endpoint"];
+
+      string user_info_endpoint = 10 [json_name = "user_info_endpoint"];
+    }
+
+    message FixedResponse {
+      string content_type = 1 [json_name = "content_type"];
+
+      string message_body = 2 [json_name = "message_body"];
+
+      string status_code = 3 [json_name = "status_code"];
+    }
+
+    message Forward {
+      repeated Stickiness stickiness = 1;
+
+      repeated TargetGroup target_group = 2 [json_name = "target_group"];
+
+      message Stickiness {
+        int64 duration = 1;
+
+        bool enabled = 2;
+      }
+
+      message TargetGroup {
+        string arn = 1;
+
+        int64 weight = 2;
+      }
+    }
+
+    message JwtValidation {
+      string issuer = 1;
+
+      string jwks_endpoint = 2 [json_name = "jwks_endpoint"];
+
+      repeated AdditionalClaim additional_claim = 3 [json_name = "additional_claim"];
+
+      message AdditionalClaim {
+        string format = 1;
+
+        string name = 2;
+
+        repeated string values = 3;
+      }
+    }
+
+    message Redirect {
+      string host = 1;
+
+      string path = 2;
+
+      string port = 3;
+
+      string protocol = 4;
+
+      string query = 5;
+
+      string status_code = 6 [json_name = "status_code"];
+    }
+  }
+
+  message Condition {
+    repeated HostHeader host_header = 1 [json_name = "host_header"];
+
+    repeated HttpHeader http_header = 2 [json_name = "http_header"];
+
+    repeated HttpRequestMethod http_request_method = 3 [json_name = "http_request_method"];
+
+    repeated PathPattern path_pattern = 4 [json_name = "path_pattern"];
+
+    repeated QueryString query_string = 5 [json_name = "query_string"];
+
+    repeated SourceIp source_ip = 6 [json_name = "source_ip"];
+
+    message HostHeader {
+      repeated string regex_values = 1 [json_name = "regex_values"];
+
+      repeated string values = 2;
+    }
+
+    message HttpHeader {
+      string http_header_name = 1 [json_name = "http_header_name"];
+
+      repeated string regex_values = 2 [json_name = "regex_values"];
+
+      repeated string values = 3;
+    }
+
+    message HttpRequestMethod {
+      repeated string values = 1;
+    }
+
+    message PathPattern {
+      repeated string regex_values = 1 [json_name = "regex_values"];
+
+      repeated string values = 2;
+    }
+
+    message QueryString {
+      repeated Values values = 1;
+
+      message Values {
+        string key = 1;
+
+        string value = 2;
+      }
+    }
+
+    message SourceIp {
+      repeated string values = 1;
+    }
+  }
+
+  message Transform {
+    string type = 1;
+
+    repeated HostHeaderRewriteConfig host_header_rewrite_config = 2 [json_name = "host_header_rewrite_config"];
+
+    repeated UrlRewriteConfig url_rewrite_config = 3 [json_name = "url_rewrite_config"];
+
+    message HostHeaderRewriteConfig {
+      repeated Rewrite rewrite = 1;
+
+      message Rewrite {
+        string regex = 1;
+
+        string replace = 2;
+      }
+    }
+
+    message UrlRewriteConfig {
+      repeated Rewrite rewrite = 1;
+
+      message Rewrite {
+        string regex = 1;
+
+        string replace = 2;
+      }
+    }
+  }
+}
+
+// AwsLbTargetGroup version is 0
+message AwsLbTargetGroup {
+  string arn = 1;
+
+  string arn_suffix = 2 [json_name = "arn_suffix"];
+
+  bool connection_termination = 3 [json_name = "connection_termination"];
+
+  string deregistration_delay = 4 [json_name = "deregistration_delay"];
+
+  repeated HealthCheck health_check = 5 [json_name = "health_check"];
+
+  string id = 6;
+
+  bool lambda_multi_value_headers_enabled = 7 [json_name = "lambda_multi_value_headers_enabled"];
+
+  repeated string load_balancer_arns = 8 [json_name = "load_balancer_arns"];
+
+  string load_balancing_algorithm_type = 9 [json_name = "load_balancing_algorithm_type"];
+
+  string load_balancing_anomaly_mitigation = 10 [json_name = "load_balancing_anomaly_mitigation"];
+
+  string load_balancing_cross_zone_enabled = 11 [json_name = "load_balancing_cross_zone_enabled"];
+
+  string name = 12;
+
+  int64 port = 13;
+
+  string preserve_client_ip = 14 [json_name = "preserve_client_ip"];
+
+  string protocol = 15;
+
+  string protocol_version = 16 [json_name = "protocol_version"];
+
+  bool proxy_protocol_v2 = 17 [json_name = "proxy_protocol_v2"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 18;
+
+  int64 slow_start = 19 [json_name = "slow_start"];
+
+  repeated Stickiness stickiness = 20;
+
+  map<string, string> tags = 21;
+
+  int64 target_control_port = 22 [json_name = "target_control_port"];
+
+  string target_type = 23 [json_name = "target_type"];
+
+  string vpc_id = 24 [json_name = "vpc_id"];
+
+  repeated Timeouts timeouts = 25;
+
+  google.protobuf.Value for_each = 26 [json_name = "for_each"];
+
+  repeated string depends_on = 27 [json_name = "depends_on"];
+
+  int32 count = 28;
+
+  string provider = 29;
+
+  terraform.v1.Lifecycle lifecycle = 30;
+
+  message HealthCheck {
+    // enabled: bool
+    bool enabled = 1;
+
+    // healthy_threshold: number
+    int64 healthy_threshold = 2 [json_name = "healthy_threshold"];
+
+    // interval: number
+    int64 interval = 3;
+
+    // matcher: string
+    string matcher = 4;
+
+    // path: string
+    string path = 5;
+
+    // port: string
+    string port = 6;
+
+    // protocol: string
+    string protocol = 7;
+
+    // timeout: number
+    int64 timeout = 8;
+
+    // unhealthy_threshold: number
+    int64 unhealthy_threshold = 9 [json_name = "unhealthy_threshold"];
+  }
+
+  message Stickiness {
+    // cookie_duration: number
+    int64 cookie_duration = 1 [json_name = "cookie_duration"];
+
+    // cookie_name: string
+    string cookie_name = 2 [json_name = "cookie_name"];
+
+    // enabled: bool
+    bool enabled = 3;
+
+    // type: string
+    string type = 4;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsLbTrustStore version is 0
+message AwsLbTrustStore {
+  string arn = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}

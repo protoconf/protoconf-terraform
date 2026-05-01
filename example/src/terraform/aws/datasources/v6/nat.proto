@@ -1,0 +1,156 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsNatGateway version is 0
+message AwsNatGateway {
+  string allocation_id = 1 [json_name = "allocation_id"];
+
+  string association_id = 2 [json_name = "association_id"];
+
+  string auto_provision_zones = 3 [json_name = "auto_provision_zones"];
+
+  string auto_scaling_ips = 4 [json_name = "auto_scaling_ips"];
+
+  string availability_mode = 5 [json_name = "availability_mode"];
+
+  repeated AvailabilityZoneAddress availability_zone_address = 6 [json_name = "availability_zone_address"];
+
+  string connectivity_type = 7 [json_name = "connectivity_type"];
+
+  string id = 8;
+
+  string network_interface_id = 9 [json_name = "network_interface_id"];
+
+  string private_ip = 10 [json_name = "private_ip"];
+
+  string public_ip = 11 [json_name = "public_ip"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  repeated RegionalNatGatewayAddress regional_nat_gateway_address = 13 [json_name = "regional_nat_gateway_address"];
+
+  string route_table_id = 14 [json_name = "route_table_id"];
+
+  repeated string secondary_allocation_ids = 15 [json_name = "secondary_allocation_ids"];
+
+  int64 secondary_private_ip_address_count = 16 [json_name = "secondary_private_ip_address_count"];
+
+  repeated string secondary_private_ip_addresses = 17 [json_name = "secondary_private_ip_addresses"];
+
+  string state = 18;
+
+  string subnet_id = 19 [json_name = "subnet_id"];
+
+  map<string, string> tags = 20;
+
+  string vpc_id = 21 [json_name = "vpc_id"];
+
+  repeated Filter filter = 22;
+
+  repeated Timeouts timeouts = 23;
+
+  google.protobuf.Value for_each = 24 [json_name = "for_each"];
+
+  repeated string depends_on = 25 [json_name = "depends_on"];
+
+  int32 count = 26;
+
+  string provider = 27;
+
+  terraform.v1.Lifecycle lifecycle = 28;
+
+  message AvailabilityZoneAddress {
+    // allocation_ids: set of string
+    repeated string allocation_ids = 1 [json_name = "allocation_ids"];
+
+    // availability_zone: string
+    string availability_zone = 2 [json_name = "availability_zone"];
+
+    // availability_zone_id: string
+    string availability_zone_id = 3 [json_name = "availability_zone_id"];
+  }
+
+  message RegionalNatGatewayAddress {
+    // allocation_id: string
+    string allocation_id = 1 [json_name = "allocation_id"];
+
+    // association_id: string
+    string association_id = 2 [json_name = "association_id"];
+
+    // availability_zone: string
+    string availability_zone = 3 [json_name = "availability_zone"];
+
+    // availability_zone_id: string
+    string availability_zone_id = 4 [json_name = "availability_zone_id"];
+
+    // network_interface_id: string
+    string network_interface_id = 5 [json_name = "network_interface_id"];
+
+    // public_ip: string
+    string public_ip = 6 [json_name = "public_ip"];
+
+    // status: string
+    string status = 7;
+  }
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}
+
+// AwsNatGateways version is 0
+message AwsNatGateways {
+  string id = 1;
+
+  repeated string ids = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  map<string, string> tags = 4;
+
+  string vpc_id = 5 [json_name = "vpc_id"];
+
+  repeated Filter filter = 6;
+
+  repeated Timeouts timeouts = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+
+  message Timeouts {
+    string read = 1;
+  }
+}

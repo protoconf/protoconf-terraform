@@ -1,0 +1,164 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsEip version is 0
+message AwsEip {
+  string address = 1;
+
+  string allocation_id = 2 [json_name = "allocation_id"];
+
+  string arn = 3;
+
+  string associate_with_private_ip = 4 [json_name = "associate_with_private_ip"];
+
+  string association_id = 5 [json_name = "association_id"];
+
+  string carrier_ip = 6 [json_name = "carrier_ip"];
+
+  string customer_owned_ip = 7 [json_name = "customer_owned_ip"];
+
+  string customer_owned_ipv4_pool = 8 [json_name = "customer_owned_ipv4_pool"];
+
+  string domain = 9;
+
+  string id = 10;
+
+  string instance = 11;
+
+  string ipam_pool_id = 12 [json_name = "ipam_pool_id"];
+
+  string network_border_group = 13 [json_name = "network_border_group"];
+
+  string network_interface = 14 [json_name = "network_interface"];
+
+  string private_dns = 15 [json_name = "private_dns"];
+
+  string private_ip = 16 [json_name = "private_ip"];
+
+  string ptr_record = 17 [json_name = "ptr_record"];
+
+  string public_dns = 18 [json_name = "public_dns"];
+
+  string public_ip = 19 [json_name = "public_ip"];
+
+  string public_ipv4_pool = 20 [json_name = "public_ipv4_pool"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 21;
+
+  map<string, string> tags = 22;
+
+  map<string, string> tags_all = 23 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 24;
+
+  google.protobuf.Value for_each = 25 [json_name = "for_each"];
+
+  repeated string depends_on = 26 [json_name = "depends_on"];
+
+  int32 count = 27;
+
+  string provider = 28;
+
+  terraform.v1.Lifecycle lifecycle = 29;
+
+  message Timeouts {
+    string delete = 1;
+
+    string read = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsEipAssociation version is 0
+message AwsEipAssociation {
+  string allocation_id = 1 [json_name = "allocation_id"];
+
+  bool allow_reassociation = 2 [json_name = "allow_reassociation"];
+
+  string id = 3;
+
+  string instance_id = 4 [json_name = "instance_id"];
+
+  string network_interface_id = 5 [json_name = "network_interface_id"];
+
+  string private_ip_address = 6 [json_name = "private_ip_address"];
+
+  string public_ip = 7 [json_name = "public_ip"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsEipDomainName version is 0
+message AwsEipDomainName {
+  string allocation_id = 1 [json_name = "allocation_id"];
+
+  string domain_name = 2 [json_name = "domain_name"];
+
+  string id = 3;
+
+  string ptr_record = 4 [json_name = "ptr_record"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated Timeouts timeouts = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}

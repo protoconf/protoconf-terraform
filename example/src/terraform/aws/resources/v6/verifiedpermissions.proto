@@ -1,0 +1,249 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsVerifiedpermissionsIdentitySource version is 0
+message AwsVerifiedpermissionsIdentitySource {
+  string id = 1;
+
+  string policy_store_id = 2 [json_name = "policy_store_id"];
+
+  string principal_entity_type = 3 [json_name = "principal_entity_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated Configuration configuration = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Configuration {
+    repeated CognitoUserPoolConfiguration cognito_user_pool_configuration = 1 [json_name = "cognito_user_pool_configuration"];
+
+    repeated OpenIdConnectConfiguration open_id_connect_configuration = 2 [json_name = "open_id_connect_configuration"];
+
+    message CognitoUserPoolConfiguration {
+      repeated string client_ids = 1 [json_name = "client_ids"];
+
+      string user_pool_arn = 2 [json_name = "user_pool_arn"];
+
+      repeated GroupConfiguration group_configuration = 3 [json_name = "group_configuration"];
+
+      message GroupConfiguration {
+        string group_entity_type = 1 [json_name = "group_entity_type"];
+      }
+    }
+
+    message OpenIdConnectConfiguration {
+      string entity_id_prefix = 1 [json_name = "entity_id_prefix"];
+
+      string issuer = 2;
+
+      repeated GroupConfiguration group_configuration = 3 [json_name = "group_configuration"];
+
+      repeated TokenSelection token_selection = 4 [json_name = "token_selection"];
+
+      message GroupConfiguration {
+        string group_claim = 1 [json_name = "group_claim"];
+
+        string group_entity_type = 2 [json_name = "group_entity_type"];
+      }
+
+      message TokenSelection {
+        repeated AccessTokenOnly access_token_only = 1 [json_name = "access_token_only"];
+
+        repeated IdentityTokenOnly identity_token_only = 2 [json_name = "identity_token_only"];
+
+        message AccessTokenOnly {
+          repeated string audiences = 1;
+
+          string principal_id_claim = 2 [json_name = "principal_id_claim"];
+        }
+
+        message IdentityTokenOnly {
+          repeated string client_ids = 1 [json_name = "client_ids"];
+
+          string principal_id_claim = 2 [json_name = "principal_id_claim"];
+        }
+      }
+    }
+  }
+}
+
+// AwsVerifiedpermissionsPolicy version is 0
+message AwsVerifiedpermissionsPolicy {
+  string created_date = 1 [json_name = "created_date"];
+
+  string id = 2;
+
+  string policy_id = 3 [json_name = "policy_id"];
+
+  string policy_store_id = 4 [json_name = "policy_store_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  repeated Definition definition = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Definition {
+    repeated Static static = 1;
+
+    repeated TemplateLinked template_linked = 2 [json_name = "template_linked"];
+
+    message Static {
+      string description = 1;
+
+      string statement = 2;
+    }
+
+    message TemplateLinked {
+      string policy_template_id = 1 [json_name = "policy_template_id"];
+
+      repeated Principal principal = 2;
+
+      repeated Resource resource = 3;
+
+      message Principal {
+        string entity_id = 1 [json_name = "entity_id"];
+
+        string entity_type = 2 [json_name = "entity_type"];
+      }
+
+      message Resource {
+        string entity_id = 1 [json_name = "entity_id"];
+
+        string entity_type = 2 [json_name = "entity_type"];
+      }
+    }
+  }
+}
+
+// AwsVerifiedpermissionsPolicyStore version is 0
+message AwsVerifiedpermissionsPolicyStore {
+  string arn = 1;
+
+  string deletion_protection = 2 [json_name = "deletion_protection"];
+
+  string description = 3;
+
+  string id = 4;
+
+  string policy_store_id = 5 [json_name = "policy_store_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  repeated ValidationSettings validation_settings = 9 [json_name = "validation_settings"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message ValidationSettings {
+    string mode = 1;
+  }
+}
+
+// AwsVerifiedpermissionsPolicyTemplate version is 0
+message AwsVerifiedpermissionsPolicyTemplate {
+  string created_date = 1 [json_name = "created_date"];
+
+  string description = 2;
+
+  string id = 3;
+
+  string policy_store_id = 4 [json_name = "policy_store_id"];
+
+  string policy_template_id = 5 [json_name = "policy_template_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string statement = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsVerifiedpermissionsSchema version is 1
+message AwsVerifiedpermissionsSchema {
+  string id = 1;
+
+  repeated string namespaces = 2;
+
+  string policy_store_id = 3 [json_name = "policy_store_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  repeated Definition definition = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Definition {
+    string value = 1;
+  }
+}

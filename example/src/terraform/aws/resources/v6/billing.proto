@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsBillingView version is 0
+message AwsBillingView {
+  string arn = 1;
+
+  string billing_view_type = 2 [json_name = "billing_view_type"];
+
+  string created_at = 3 [json_name = "created_at"];
+
+  int64 derived_view_count = 4 [json_name = "derived_view_count"];
+
+  string description = 5;
+
+  string name = 6;
+
+  string owner_account_id = 7 [json_name = "owner_account_id"];
+
+  string source_account_id = 8 [json_name = "source_account_id"];
+
+  int64 source_view_count = 9 [json_name = "source_view_count"];
+
+  repeated string source_views = 10 [json_name = "source_views"];
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  string updated_at = 13 [json_name = "updated_at"];
+
+  string view_definition_last_updated_at = 14 [json_name = "view_definition_last_updated_at"];
+
+  repeated DataFilterExpression data_filter_expression = 15 [json_name = "data_filter_expression"];
+
+  repeated Timeouts timeouts = 16;
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message DataFilterExpression {
+    repeated Dimensions dimensions = 1;
+
+    repeated Tags tags = 2;
+
+    repeated TimeRange time_range = 3 [json_name = "time_range"];
+
+    message Dimensions {
+      string key = 1;
+
+      repeated string values = 2;
+    }
+
+    message Tags {
+      string key = 1;
+
+      repeated string values = 2;
+    }
+
+    message TimeRange {
+      string begin_date_inclusive = 1 [json_name = "begin_date_inclusive"];
+
+      string end_date_inclusive = 2 [json_name = "end_date_inclusive"];
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}

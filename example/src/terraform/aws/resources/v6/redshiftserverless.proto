@@ -1,0 +1,372 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsRedshiftserverlessCustomDomainAssociation version is 0
+message AwsRedshiftserverlessCustomDomainAssociation {
+  string custom_domain_certificate_arn = 1 [json_name = "custom_domain_certificate_arn"];
+
+  string custom_domain_certificate_expiry_time = 2 [
+    json_name = "custom_domain_certificate_expiry_time"
+  ];
+
+  string custom_domain_name = 3 [json_name = "custom_domain_name"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string workgroup_name = 6 [json_name = "workgroup_name"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsRedshiftserverlessEndpointAccess version is 0
+message AwsRedshiftserverlessEndpointAccess {
+  string address = 1;
+
+  string arn = 2;
+
+  string endpoint_name = 3 [json_name = "endpoint_name"];
+
+  string id = 4;
+
+  string owner_account = 5 [json_name = "owner_account"];
+
+  int64 port = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  repeated string subnet_ids = 8 [json_name = "subnet_ids"];
+
+  repeated VpcEndpoint vpc_endpoint = 9 [json_name = "vpc_endpoint"];
+
+  repeated string vpc_security_group_ids = 10 [json_name = "vpc_security_group_ids"];
+
+  string workgroup_name = 11 [json_name = "workgroup_name"];
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message VpcEndpoint {
+    // network_interface: list of object
+    repeated NetworkInterface network_interface = 1 [json_name = "network_interface"];
+
+    // vpc_endpoint_id: string
+    string vpc_endpoint_id = 2 [json_name = "vpc_endpoint_id"];
+
+    // vpc_id: string
+    string vpc_id = 3 [json_name = "vpc_id"];
+
+    message NetworkInterface {
+      // availability_zone: string
+      string availability_zone = 1 [json_name = "availability_zone"];
+
+      // network_interface_id: string
+      string network_interface_id = 2 [json_name = "network_interface_id"];
+
+      // private_ip_address: string
+      string private_ip_address = 3 [json_name = "private_ip_address"];
+
+      // subnet_id: string
+      string subnet_id = 4 [json_name = "subnet_id"];
+    }
+  }
+}
+
+// AwsRedshiftserverlessNamespace version is 0
+message AwsRedshiftserverlessNamespace {
+  string admin_password_secret_arn = 1 [json_name = "admin_password_secret_arn"];
+
+  string admin_password_secret_kms_key_id = 2 [json_name = "admin_password_secret_kms_key_id"];
+
+  string admin_user_password = 3 [json_name = "admin_user_password"];
+
+  string admin_user_password_wo = 4 [json_name = "admin_user_password_wo"];
+
+  int64 admin_user_password_wo_version = 5 [json_name = "admin_user_password_wo_version"];
+
+  string admin_username = 6 [json_name = "admin_username"];
+
+  string arn = 7;
+
+  string db_name = 8 [json_name = "db_name"];
+
+  string default_iam_role_arn = 9 [json_name = "default_iam_role_arn"];
+
+  repeated string iam_roles = 10 [json_name = "iam_roles"];
+
+  string id = 11;
+
+  string kms_key_id = 12 [json_name = "kms_key_id"];
+
+  repeated string log_exports = 13 [json_name = "log_exports"];
+
+  bool manage_admin_password = 14 [json_name = "manage_admin_password"];
+
+  string namespace_id = 15 [json_name = "namespace_id"];
+
+  string namespace_name = 16 [json_name = "namespace_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 17;
+
+  map<string, string> tags = 18;
+
+  map<string, string> tags_all = 19 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+}
+
+// AwsRedshiftserverlessResourcePolicy version is 0
+message AwsRedshiftserverlessResourcePolicy {
+  string id = 1;
+
+  string policy = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string resource_arn = 4 [json_name = "resource_arn"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsRedshiftserverlessSnapshot version is 0
+message AwsRedshiftserverlessSnapshot {
+  repeated string accounts_with_provisioned_restore_access = 1 [
+    json_name = "accounts_with_provisioned_restore_access"
+  ];
+
+  repeated string accounts_with_restore_access = 2 [json_name = "accounts_with_restore_access"];
+
+  string admin_username = 3 [json_name = "admin_username"];
+
+  string arn = 4;
+
+  string id = 5;
+
+  string kms_key_id = 6 [json_name = "kms_key_id"];
+
+  string namespace_arn = 7 [json_name = "namespace_arn"];
+
+  string namespace_name = 8 [json_name = "namespace_name"];
+
+  string owner_account = 9 [json_name = "owner_account"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  int64 retention_period = 11 [json_name = "retention_period"];
+
+  string snapshot_name = 12 [json_name = "snapshot_name"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+}
+
+// AwsRedshiftserverlessUsageLimit version is 0
+message AwsRedshiftserverlessUsageLimit {
+  int64 amount = 1;
+
+  string arn = 2;
+
+  string breach_action = 3 [json_name = "breach_action"];
+
+  string id = 4;
+
+  string period = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string resource_arn = 7 [json_name = "resource_arn"];
+
+  string usage_type = 8 [json_name = "usage_type"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsRedshiftserverlessWorkgroup version is 0
+message AwsRedshiftserverlessWorkgroup {
+  string arn = 1;
+
+  int64 base_capacity = 2 [json_name = "base_capacity"];
+
+  repeated Endpoint endpoint = 3;
+
+  bool enhanced_vpc_routing = 4 [json_name = "enhanced_vpc_routing"];
+
+  string id = 5;
+
+  int64 max_capacity = 6 [json_name = "max_capacity"];
+
+  string namespace_name = 7 [json_name = "namespace_name"];
+
+  int64 port = 8;
+
+  bool publicly_accessible = 9 [json_name = "publicly_accessible"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  repeated string security_group_ids = 11 [json_name = "security_group_ids"];
+
+  repeated string subnet_ids = 12 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 13;
+
+  map<string, string> tags_all = 14 [json_name = "tags_all"];
+
+  string track_name = 15 [json_name = "track_name"];
+
+  string workgroup_id = 16 [json_name = "workgroup_id"];
+
+  string workgroup_name = 17 [json_name = "workgroup_name"];
+
+  repeated ConfigParameter config_parameter = 18 [json_name = "config_parameter"];
+
+  PricePerformanceTarget price_performance_target = 19 [json_name = "price_performance_target"];
+
+  repeated Timeouts timeouts = 20;
+
+  google.protobuf.Value for_each = 21 [json_name = "for_each"];
+
+  repeated string depends_on = 22 [json_name = "depends_on"];
+
+  int32 count = 23;
+
+  string provider = 24;
+
+  terraform.v1.Lifecycle lifecycle = 25;
+
+  message Endpoint {
+    // address: string
+    string address = 1;
+
+    // port: number
+    int64 port = 2;
+
+    // vpc_endpoint: list of object
+    repeated VpcEndpoint vpc_endpoint = 3 [json_name = "vpc_endpoint"];
+
+    message VpcEndpoint {
+      // network_interface: list of object
+      repeated NetworkInterface network_interface = 1 [json_name = "network_interface"];
+
+      // vpc_endpoint_id: string
+      string vpc_endpoint_id = 2 [json_name = "vpc_endpoint_id"];
+
+      // vpc_id: string
+      string vpc_id = 3 [json_name = "vpc_id"];
+
+      message NetworkInterface {
+        // availability_zone: string
+        string availability_zone = 1 [json_name = "availability_zone"];
+
+        // network_interface_id: string
+        string network_interface_id = 2 [json_name = "network_interface_id"];
+
+        // private_ip_address: string
+        string private_ip_address = 3 [json_name = "private_ip_address"];
+
+        // subnet_id: string
+        string subnet_id = 4 [json_name = "subnet_id"];
+      }
+    }
+  }
+
+  message ConfigParameter {
+    string parameter_key = 1 [json_name = "parameter_key"];
+
+    string parameter_value = 2 [json_name = "parameter_value"];
+  }
+
+  message PricePerformanceTarget {
+    bool enabled = 1;
+
+    int64 level = 2;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}

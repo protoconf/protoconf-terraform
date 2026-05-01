@@ -1,0 +1,290 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSnsPlatformApplication version is 0
+message AwsSnsPlatformApplication {
+  string apple_platform_bundle_id = 1 [json_name = "apple_platform_bundle_id"];
+
+  string apple_platform_team_id = 2 [json_name = "apple_platform_team_id"];
+
+  string arn = 3;
+
+  string event_delivery_failure_topic_arn = 4 [json_name = "event_delivery_failure_topic_arn"];
+
+  string event_endpoint_created_topic_arn = 5 [json_name = "event_endpoint_created_topic_arn"];
+
+  string event_endpoint_deleted_topic_arn = 6 [json_name = "event_endpoint_deleted_topic_arn"];
+
+  string event_endpoint_updated_topic_arn = 7 [json_name = "event_endpoint_updated_topic_arn"];
+
+  string failure_feedback_role_arn = 8 [json_name = "failure_feedback_role_arn"];
+
+  string id = 9;
+
+  string name = 10;
+
+  string platform = 11;
+
+  string platform_credential = 12 [json_name = "platform_credential"];
+
+  string platform_principal = 13 [json_name = "platform_principal"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 14;
+
+  string success_feedback_role_arn = 15 [json_name = "success_feedback_role_arn"];
+
+  string success_feedback_sample_rate = 16 [json_name = "success_feedback_sample_rate"];
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+}
+
+// AwsSnsSmsPreferences version is 0
+message AwsSnsSmsPreferences {
+  string default_sender_id = 1 [json_name = "default_sender_id"];
+
+  string default_sms_type = 2 [json_name = "default_sms_type"];
+
+  string delivery_status_iam_role_arn = 3 [json_name = "delivery_status_iam_role_arn"];
+
+  string delivery_status_success_sampling_rate = 4 [
+    json_name = "delivery_status_success_sampling_rate"
+  ];
+
+  string id = 5;
+
+  int64 monthly_spend_limit = 6 [json_name = "monthly_spend_limit"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string usage_report_s3_bucket = 8 [json_name = "usage_report_s3_bucket"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsSnsTopic version is 0
+message AwsSnsTopic {
+  string application_failure_feedback_role_arn = 1 [
+    json_name = "application_failure_feedback_role_arn"
+  ];
+
+  string application_success_feedback_role_arn = 2 [
+    json_name = "application_success_feedback_role_arn"
+  ];
+
+  int64 application_success_feedback_sample_rate = 3 [
+    json_name = "application_success_feedback_sample_rate"
+  ];
+
+  string archive_policy = 4 [json_name = "archive_policy"];
+
+  string arn = 5;
+
+  string beginning_archive_time = 6 [json_name = "beginning_archive_time"];
+
+  bool content_based_deduplication = 7 [json_name = "content_based_deduplication"];
+
+  string delivery_policy = 8 [json_name = "delivery_policy"];
+
+  string display_name = 9 [json_name = "display_name"];
+
+  string fifo_throughput_scope = 10 [json_name = "fifo_throughput_scope"];
+
+  bool fifo_topic = 11 [json_name = "fifo_topic"];
+
+  string firehose_failure_feedback_role_arn = 12 [json_name = "firehose_failure_feedback_role_arn"];
+
+  string firehose_success_feedback_role_arn = 13 [json_name = "firehose_success_feedback_role_arn"];
+
+  int64 firehose_success_feedback_sample_rate = 14 [
+    json_name = "firehose_success_feedback_sample_rate"
+  ];
+
+  string http_failure_feedback_role_arn = 15 [json_name = "http_failure_feedback_role_arn"];
+
+  string http_success_feedback_role_arn = 16 [json_name = "http_success_feedback_role_arn"];
+
+  int64 http_success_feedback_sample_rate = 17 [json_name = "http_success_feedback_sample_rate"];
+
+  string id = 18;
+
+  string kms_master_key_id = 19 [json_name = "kms_master_key_id"];
+
+  string lambda_failure_feedback_role_arn = 20 [json_name = "lambda_failure_feedback_role_arn"];
+
+  string lambda_success_feedback_role_arn = 21 [json_name = "lambda_success_feedback_role_arn"];
+
+  int64 lambda_success_feedback_sample_rate = 22 [json_name = "lambda_success_feedback_sample_rate"];
+
+  string name = 23;
+
+  string name_prefix = 24 [json_name = "name_prefix"];
+
+  string owner = 25;
+
+  string policy = 26;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 27;
+
+  int64 signature_version = 28 [json_name = "signature_version"];
+
+  string sqs_failure_feedback_role_arn = 29 [json_name = "sqs_failure_feedback_role_arn"];
+
+  string sqs_success_feedback_role_arn = 30 [json_name = "sqs_success_feedback_role_arn"];
+
+  int64 sqs_success_feedback_sample_rate = 31 [json_name = "sqs_success_feedback_sample_rate"];
+
+  map<string, string> tags = 32;
+
+  map<string, string> tags_all = 33 [json_name = "tags_all"];
+
+  string tracing_config = 34 [json_name = "tracing_config"];
+
+  google.protobuf.Value for_each = 35 [json_name = "for_each"];
+
+  repeated string depends_on = 36 [json_name = "depends_on"];
+
+  int32 count = 37;
+
+  string provider = 38;
+
+  terraform.v1.Lifecycle lifecycle = 39;
+}
+
+// AwsSnsTopicDataProtectionPolicy version is 0
+message AwsSnsTopicDataProtectionPolicy {
+  string arn = 1;
+
+  string id = 2;
+
+  string policy = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsSnsTopicPolicy version is 0
+message AwsSnsTopicPolicy {
+  string arn = 1;
+
+  string id = 2;
+
+  string owner = 3;
+
+  string policy = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsSnsTopicSubscription version is 0
+message AwsSnsTopicSubscription {
+  string arn = 1;
+
+  int64 confirmation_timeout_in_minutes = 2 [json_name = "confirmation_timeout_in_minutes"];
+
+  bool confirmation_was_authenticated = 3 [json_name = "confirmation_was_authenticated"];
+
+  string delivery_policy = 4 [json_name = "delivery_policy"];
+
+  string endpoint = 5;
+
+  bool endpoint_auto_confirms = 6 [json_name = "endpoint_auto_confirms"];
+
+  string filter_policy = 7 [json_name = "filter_policy"];
+
+  string filter_policy_scope = 8 [json_name = "filter_policy_scope"];
+
+  string id = 9;
+
+  string owner_id = 10 [json_name = "owner_id"];
+
+  bool pending_confirmation = 11 [json_name = "pending_confirmation"];
+
+  string protocol = 12;
+
+  bool raw_message_delivery = 13 [json_name = "raw_message_delivery"];
+
+  string redrive_policy = 14 [json_name = "redrive_policy"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 15;
+
+  string replay_policy = 16 [json_name = "replay_policy"];
+
+  string subscription_role_arn = 17 [json_name = "subscription_role_arn"];
+
+  string topic_arn = 18 [json_name = "topic_arn"];
+
+  google.protobuf.Value for_each = 19 [json_name = "for_each"];
+
+  repeated string depends_on = 20 [json_name = "depends_on"];
+
+  int32 count = 21;
+
+  string provider = 22;
+
+  terraform.v1.Lifecycle lifecycle = 23;
+}

@@ -1,0 +1,203 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsS3controlAccessPoints version is 0
+message AwsS3controlAccessPoints {
+  repeated AccessPoints access_points = 1 [json_name = "access_points"];
+
+  string account_id = 2 [json_name = "account_id"];
+
+  string bucket = 3;
+
+  string data_source_id = 4 [json_name = "data_source_id"];
+
+  string data_source_type = 5 [json_name = "data_source_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message AccessPoints {
+    // access_point_arn: string
+    string access_point_arn = 1 [json_name = "access_point_arn"];
+
+    // alias: string
+    string alias = 2;
+
+    // bucket: string
+    string bucket = 3;
+
+    // bucket_account_id: string
+    string bucket_account_id = 4 [json_name = "bucket_account_id"];
+
+    // data_source_id: string
+    string data_source_id = 5 [json_name = "data_source_id"];
+
+    // data_source_type: string
+    string data_source_type = 6 [json_name = "data_source_type"];
+
+    // name: string
+    string name = 7;
+
+    // network_origin: string
+    string network_origin = 8 [json_name = "network_origin"];
+
+    // vpc_configuration: list of object
+    repeated VpcConfiguration vpc_configuration = 9 [json_name = "vpc_configuration"];
+
+    message VpcConfiguration {
+      // vpc_id: string
+      string vpc_id = 1 [json_name = "vpc_id"];
+    }
+  }
+}
+
+// AwsS3controlMultiRegionAccessPoint version is 0
+message AwsS3controlMultiRegionAccessPoint {
+  string account_id = 1 [json_name = "account_id"];
+
+  string alias = 2;
+
+  string arn = 3;
+
+  string created_at = 4 [json_name = "created_at"];
+
+  string domain_name = 5 [json_name = "domain_name"];
+
+  string id = 6;
+
+  string name = 7;
+
+  repeated PublicAccessBlock public_access_block = 8 [json_name = "public_access_block"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  repeated Regions regions = 10;
+
+  string status = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message PublicAccessBlock {
+    // block_public_acls: bool
+    bool block_public_acls = 1 [json_name = "block_public_acls"];
+
+    // block_public_policy: bool
+    bool block_public_policy = 2 [json_name = "block_public_policy"];
+
+    // ignore_public_acls: bool
+    bool ignore_public_acls = 3 [json_name = "ignore_public_acls"];
+
+    // restrict_public_buckets: bool
+    bool restrict_public_buckets = 4 [json_name = "restrict_public_buckets"];
+  }
+
+  message Regions {
+    // bucket: string
+    string bucket = 1;
+
+    // bucket_account_id: string
+    string bucket_account_id = 2 [json_name = "bucket_account_id"];
+
+    // region: string
+    string region = 3;
+  }
+}
+
+// AwsS3controlMultiRegionAccessPoints version is 0
+message AwsS3controlMultiRegionAccessPoints {
+  repeated AccessPoints access_points = 1 [json_name = "access_points"];
+
+  string account_id = 2 [json_name = "account_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message AccessPoints {
+    // alias: string
+    string alias = 1;
+
+    // created_at: string
+    string created_at = 2 [json_name = "created_at"];
+
+    // name: string
+    string name = 3;
+
+    // public_access_block: list of object
+    repeated PublicAccessBlock public_access_block = 4 [json_name = "public_access_block"];
+
+    // regions: list of object
+    repeated Regions regions = 5;
+
+    // status: string
+    string status = 6;
+
+    message PublicAccessBlock {
+      // block_public_acls: bool
+      bool block_public_acls = 1 [json_name = "block_public_acls"];
+
+      // block_public_policy: bool
+      bool block_public_policy = 2 [json_name = "block_public_policy"];
+
+      // ignore_public_acls: bool
+      bool ignore_public_acls = 3 [json_name = "ignore_public_acls"];
+
+      // restrict_public_buckets: bool
+      bool restrict_public_buckets = 4 [json_name = "restrict_public_buckets"];
+    }
+
+    message Regions {
+      // bucket: string
+      string bucket = 1;
+
+      // bucket_account_id: string
+      string bucket_account_id = 2 [json_name = "bucket_account_id"];
+
+      // region: string
+      string region = 3;
+    }
+  }
+}

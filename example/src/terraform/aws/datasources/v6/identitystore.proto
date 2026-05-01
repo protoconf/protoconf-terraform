@@ -1,0 +1,462 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsIdentitystoreGroup version is 0
+message AwsIdentitystoreGroup {
+  string description = 1;
+
+  string display_name = 2 [json_name = "display_name"];
+
+  repeated ExternalIds external_ids = 3 [json_name = "external_ids"];
+
+  string group_id = 4 [json_name = "group_id"];
+
+  string id = 5;
+
+  string identity_store_id = 6 [json_name = "identity_store_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  AlternateIdentifier alternate_identifier = 8 [json_name = "alternate_identifier"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message ExternalIds {
+    // id: string
+    string id = 1;
+
+    // issuer: string
+    string issuer = 2;
+  }
+
+  message AlternateIdentifier {
+    ExternalId external_id = 1 [json_name = "external_id"];
+
+    UniqueAttribute unique_attribute = 2 [json_name = "unique_attribute"];
+
+    message ExternalId {
+      string id = 1;
+
+      string issuer = 2;
+    }
+
+    message UniqueAttribute {
+      string attribute_path = 1 [json_name = "attribute_path"];
+
+      string attribute_value = 2 [json_name = "attribute_value"];
+    }
+  }
+}
+
+// AwsIdentitystoreGroupMemberships version is 0
+message AwsIdentitystoreGroupMemberships {
+  string group_id = 1 [json_name = "group_id"];
+
+  repeated GroupMemberships group_memberships = 2 [json_name = "group_memberships"];
+
+  string identity_store_id = 3 [json_name = "identity_store_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message GroupMemberships {
+    // group_id: string
+    string group_id = 1 [json_name = "group_id"];
+
+    // identity_store_id: string
+    string identity_store_id = 2 [json_name = "identity_store_id"];
+
+    // member_id: object
+    MemberId member_id = 3 [json_name = "member_id"];
+
+    // membership_id: string
+    string membership_id = 4 [json_name = "membership_id"];
+
+    message MemberId {
+      // user_id: string
+      string user_id = 1 [json_name = "user_id"];
+    }
+  }
+}
+
+// AwsIdentitystoreGroups version is 0
+message AwsIdentitystoreGroups {
+  repeated Groups groups = 1;
+
+  string identity_store_id = 2 [json_name = "identity_store_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message Groups {
+    // description: string
+    string description = 1;
+
+    // display_name: string
+    string display_name = 2 [json_name = "display_name"];
+
+    // external_ids: list of object
+    repeated ExternalIds external_ids = 3 [json_name = "external_ids"];
+
+    // group_id: string
+    string group_id = 4 [json_name = "group_id"];
+
+    // identity_store_id: string
+    string identity_store_id = 5 [json_name = "identity_store_id"];
+
+    message ExternalIds {
+      // id: string
+      string id = 1;
+
+      // issuer: string
+      string issuer = 2;
+    }
+  }
+}
+
+// AwsIdentitystoreUser version is 0
+message AwsIdentitystoreUser {
+  repeated Addresses addresses = 1;
+
+  string display_name = 2 [json_name = "display_name"];
+
+  repeated Emails emails = 3;
+
+  repeated ExternalIds external_ids = 4 [json_name = "external_ids"];
+
+  string id = 5;
+
+  string identity_store_id = 6 [json_name = "identity_store_id"];
+
+  string locale = 7;
+
+  repeated Name name = 8;
+
+  string nickname = 9;
+
+  repeated PhoneNumbers phone_numbers = 10 [json_name = "phone_numbers"];
+
+  string preferred_language = 11 [json_name = "preferred_language"];
+
+  string profile_url = 12 [json_name = "profile_url"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  string timezone = 14;
+
+  string title = 15;
+
+  string user_id = 16 [json_name = "user_id"];
+
+  string user_name = 17 [json_name = "user_name"];
+
+  string user_status = 18 [json_name = "user_status"];
+
+  string user_type = 19 [json_name = "user_type"];
+
+  AlternateIdentifier alternate_identifier = 20 [json_name = "alternate_identifier"];
+
+  google.protobuf.Value for_each = 21 [json_name = "for_each"];
+
+  repeated string depends_on = 22 [json_name = "depends_on"];
+
+  int32 count = 23;
+
+  string provider = 24;
+
+  terraform.v1.Lifecycle lifecycle = 25;
+
+  message Addresses {
+    // country: string
+    string country = 1;
+
+    // formatted: string
+    string formatted = 2;
+
+    // locality: string
+    string locality = 3;
+
+    // postal_code: string
+    string postal_code = 4 [json_name = "postal_code"];
+
+    // primary: bool
+    bool primary = 5;
+
+    // region: string
+    string region = 6;
+
+    // street_address: string
+    string street_address = 7 [json_name = "street_address"];
+
+    // type: string
+    string type = 8;
+  }
+
+  message Emails {
+    // primary: bool
+    bool primary = 1;
+
+    // type: string
+    string type = 2;
+
+    // value: string
+    string value = 3;
+  }
+
+  message ExternalIds {
+    // id: string
+    string id = 1;
+
+    // issuer: string
+    string issuer = 2;
+  }
+
+  message Name {
+    // family_name: string
+    string family_name = 1 [json_name = "family_name"];
+
+    // formatted: string
+    string formatted = 2;
+
+    // given_name: string
+    string given_name = 3 [json_name = "given_name"];
+
+    // honorific_prefix: string
+    string honorific_prefix = 4 [json_name = "honorific_prefix"];
+
+    // honorific_suffix: string
+    string honorific_suffix = 5 [json_name = "honorific_suffix"];
+
+    // middle_name: string
+    string middle_name = 6 [json_name = "middle_name"];
+  }
+
+  message PhoneNumbers {
+    // primary: bool
+    bool primary = 1;
+
+    // type: string
+    string type = 2;
+
+    // value: string
+    string value = 3;
+  }
+
+  message AlternateIdentifier {
+    ExternalId external_id = 1 [json_name = "external_id"];
+
+    UniqueAttribute unique_attribute = 2 [json_name = "unique_attribute"];
+
+    message ExternalId {
+      string id = 1;
+
+      string issuer = 2;
+    }
+
+    message UniqueAttribute {
+      string attribute_path = 1 [json_name = "attribute_path"];
+
+      string attribute_value = 2 [json_name = "attribute_value"];
+    }
+  }
+}
+
+// AwsIdentitystoreUsers version is 0
+message AwsIdentitystoreUsers {
+  string identity_store_id = 1 [json_name = "identity_store_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  repeated Users users = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message Users {
+    // addresses: list of object
+    repeated Addresses addresses = 1;
+
+    // display_name: string
+    string display_name = 2 [json_name = "display_name"];
+
+    // emails: list of object
+    repeated Emails emails = 3;
+
+    // external_ids: list of object
+    repeated ExternalIds external_ids = 4 [json_name = "external_ids"];
+
+    // identity_store_id: string
+    string identity_store_id = 5 [json_name = "identity_store_id"];
+
+    // locale: string
+    string locale = 6;
+
+    // name: list of object
+    repeated Name name = 7;
+
+    // nickname: string
+    string nickname = 8;
+
+    // phone_numbers: list of object
+    repeated PhoneNumbers phone_numbers = 9 [json_name = "phone_numbers"];
+
+    // preferred_language: string
+    string preferred_language = 10 [json_name = "preferred_language"];
+
+    // profile_url: string
+    string profile_url = 11 [json_name = "profile_url"];
+
+    // timezone: string
+    string timezone = 12;
+
+    // title: string
+    string title = 13;
+
+    // user_id: string
+    string user_id = 14 [json_name = "user_id"];
+
+    // user_name: string
+    string user_name = 15 [json_name = "user_name"];
+
+    // user_status: string
+    string user_status = 16 [json_name = "user_status"];
+
+    // user_type: string
+    string user_type = 17 [json_name = "user_type"];
+
+    message Addresses {
+      // country: string
+      string country = 1;
+
+      // formatted: string
+      string formatted = 2;
+
+      // locality: string
+      string locality = 3;
+
+      // postal_code: string
+      string postal_code = 4 [json_name = "postal_code"];
+
+      // primary: bool
+      bool primary = 5;
+
+      // region: string
+      string region = 6;
+
+      // street_address: string
+      string street_address = 7 [json_name = "street_address"];
+
+      // type: string
+      string type = 8;
+    }
+
+    message Emails {
+      // primary: bool
+      bool primary = 1;
+
+      // type: string
+      string type = 2;
+
+      // value: string
+      string value = 3;
+    }
+
+    message ExternalIds {
+      // id: string
+      string id = 1;
+
+      // issuer: string
+      string issuer = 2;
+    }
+
+    message Name {
+      // family_name: string
+      string family_name = 1 [json_name = "family_name"];
+
+      // formatted: string
+      string formatted = 2;
+
+      // given_name: string
+      string given_name = 3 [json_name = "given_name"];
+
+      // honorific_prefix: string
+      string honorific_prefix = 4 [json_name = "honorific_prefix"];
+
+      // honorific_suffix: string
+      string honorific_suffix = 5 [json_name = "honorific_suffix"];
+
+      // middle_name: string
+      string middle_name = 6 [json_name = "middle_name"];
+    }
+
+    message PhoneNumbers {
+      // primary: bool
+      bool primary = 1;
+
+      // type: string
+      string type = 2;
+
+      // value: string
+      string value = 3;
+    }
+  }
+}

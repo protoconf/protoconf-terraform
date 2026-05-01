@@ -1,0 +1,169 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSavingsplansOfferings version is 0
+message AwsSavingsplansOfferings {
+  repeated string currencies = 1;
+
+  repeated string descriptions = 2;
+
+  repeated int64 durations = 3;
+
+  repeated string offering_ids = 4 [json_name = "offering_ids"];
+
+  repeated Offerings offerings = 5;
+
+  repeated string operations = 6;
+
+  repeated string payment_options = 7 [json_name = "payment_options"];
+
+  repeated string plan_types = 8 [json_name = "plan_types"];
+
+  string product_type = 9 [json_name = "product_type"];
+
+  repeated string service_codes = 10 [json_name = "service_codes"];
+
+  repeated string usage_types = 11 [json_name = "usage_types"];
+
+  repeated Filter filter = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message Offerings {
+    // currency: string
+    string currency = 1;
+
+    // description: string
+    string description = 2;
+
+    // duration_seconds: number
+    int64 duration_seconds = 3 [json_name = "duration_seconds"];
+
+    // offering_id: string
+    string offering_id = 4 [json_name = "offering_id"];
+
+    // operation: string
+    string operation = 5;
+
+    // payment_option: string
+    string payment_option = 6 [json_name = "payment_option"];
+
+    // plan_type: string
+    string plan_type = 7 [json_name = "plan_type"];
+
+    // product_types: set of string
+    repeated string product_types = 8 [json_name = "product_types"];
+
+    // properties: list of object
+    repeated Properties properties = 9;
+
+    // service_code: string
+    string service_code = 10 [json_name = "service_code"];
+
+    // usage_type: string
+    string usage_type = 11 [json_name = "usage_type"];
+
+    message Properties {
+      // name: string
+      string name = 1;
+
+      // value: string
+      string value = 2;
+    }
+  }
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+}
+
+// AwsSavingsplansSavingsPlan version is 0
+message AwsSavingsplansSavingsPlan {
+  // The hourly commitment, in USD.
+  string commitment = 1;
+
+  // The currency of the Savings Plan.
+  string currency = 2;
+
+  // The description.
+  string description = 3;
+
+  // The EC2 instance family for the Savings Plan.
+  string ec2_instance_family = 4 [json_name = "ec2_instance_family"];
+
+  // The end time of the Savings Plan.
+  string end = 5;
+
+  // The ID of the offering.
+  string offering_id = 6 [json_name = "offering_id"];
+
+  // The payment option for the Savings Plan.
+  string payment_option = 7 [json_name = "payment_option"];
+
+  // The product types.
+  repeated string product_types = 8 [json_name = "product_types"];
+
+  // The time at which to purchase the Savings Plan, in UTC format
+  // (YYYY-MM-DDTHH:MM:SSZ).
+  string purchase_time = 9 [json_name = "purchase_time"];
+
+  // The recurring payment amount.
+  string recurring_payment_amount = 10 [json_name = "recurring_payment_amount"];
+
+  // The AWS Region.
+  string region = 11;
+
+  // The recurring payment amount.
+  string returnable_until = 12 [json_name = "returnable_until"];
+
+  string savings_plan_arn = 13 [json_name = "savings_plan_arn"];
+
+  // The ID of the Savings Plan.
+  string savings_plan_id = 14 [json_name = "savings_plan_id"];
+
+  // The unique ID of a Savings Plan offering.
+  string savings_plan_offering_id = 15 [json_name = "savings_plan_offering_id"];
+
+  // The type of Savings Plan.
+  string savings_plan_type = 16 [json_name = "savings_plan_type"];
+
+  // The start time of the Savings Plan.
+  string start = 17;
+
+  // The current state of the Savings Plan.
+  string state = 18;
+
+  map<string, string> tags = 19;
+
+  // The duration of the term, in seconds.
+  int64 term_duration_in_seconds = 20 [json_name = "term_duration_in_seconds"];
+
+  // The up-front payment amount.
+  string upfront_payment_amount = 21 [json_name = "upfront_payment_amount"];
+
+  google.protobuf.Value for_each = 22 [json_name = "for_each"];
+
+  repeated string depends_on = 23 [json_name = "depends_on"];
+
+  int32 count = 24;
+
+  string provider = 25;
+
+  terraform.v1.Lifecycle lifecycle = 26;
+}

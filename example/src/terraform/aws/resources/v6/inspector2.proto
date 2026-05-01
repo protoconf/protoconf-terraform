@@ -1,0 +1,627 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsInspector2DelegatedAdminAccount version is 0
+message AwsInspector2DelegatedAdminAccount {
+  string account_id = 1 [json_name = "account_id"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string relationship_status = 4 [json_name = "relationship_status"];
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsInspector2Enabler version is 0
+message AwsInspector2Enabler {
+  repeated string account_ids = 1 [json_name = "account_ids"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated string resource_types = 4 [json_name = "resource_types"];
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsInspector2Filter version is 0
+message AwsInspector2Filter {
+  string action = 1;
+
+  string arn = 2;
+
+  string description = 3;
+
+  string name = 4;
+
+  string reason = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  repeated FilterCriteria filter_criteria = 9 [json_name = "filter_criteria"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message FilterCriteria {
+    repeated AwsAccountId aws_account_id = 1 [json_name = "aws_account_id"];
+
+    repeated CodeRepositoryProjectName code_repository_project_name = 2 [json_name = "code_repository_project_name"];
+
+    repeated CodeRepositoryProviderType code_repository_provider_type = 3 [json_name = "code_repository_provider_type"];
+
+    repeated CodeVulnerabilityDetectorName code_vulnerability_detector_name = 4 [json_name = "code_vulnerability_detector_name"];
+
+    repeated CodeVulnerabilityDetectorTags code_vulnerability_detector_tags = 5 [json_name = "code_vulnerability_detector_tags"];
+
+    repeated CodeVulnerabilityFilePath code_vulnerability_file_path = 6 [json_name = "code_vulnerability_file_path"];
+
+    repeated ComponentId component_id = 7 [json_name = "component_id"];
+
+    repeated ComponentType component_type = 8 [json_name = "component_type"];
+
+    repeated Ec2InstanceImageId ec2_instance_image_id = 9 [json_name = "ec2_instance_image_id"];
+
+    repeated Ec2InstanceSubnetId ec2_instance_subnet_id = 10 [json_name = "ec2_instance_subnet_id"];
+
+    repeated Ec2InstanceVpcId ec2_instance_vpc_id = 11 [json_name = "ec2_instance_vpc_id"];
+
+    repeated EcrImageArchitecture ecr_image_architecture = 12 [json_name = "ecr_image_architecture"];
+
+    repeated EcrImageHash ecr_image_hash = 13 [json_name = "ecr_image_hash"];
+
+    repeated EcrImageInUseCount ecr_image_in_use_count = 14 [json_name = "ecr_image_in_use_count"];
+
+    repeated EcrImageLastInUseAt ecr_image_last_in_use_at = 15 [json_name = "ecr_image_last_in_use_at"];
+
+    repeated EcrImagePushedAt ecr_image_pushed_at = 16 [json_name = "ecr_image_pushed_at"];
+
+    repeated EcrImageRegistry ecr_image_registry = 17 [json_name = "ecr_image_registry"];
+
+    repeated EcrImageRepositoryName ecr_image_repository_name = 18 [json_name = "ecr_image_repository_name"];
+
+    repeated EcrImageTags ecr_image_tags = 19 [json_name = "ecr_image_tags"];
+
+    repeated EpssScore epss_score = 20 [json_name = "epss_score"];
+
+    repeated ExploitAvailable exploit_available = 21 [json_name = "exploit_available"];
+
+    repeated FindingArn finding_arn = 22 [json_name = "finding_arn"];
+
+    repeated FindingStatus finding_status = 23 [json_name = "finding_status"];
+
+    repeated FindingType finding_type = 24 [json_name = "finding_type"];
+
+    repeated FirstObservedAt first_observed_at = 25 [json_name = "first_observed_at"];
+
+    repeated FixAvailable fix_available = 26 [json_name = "fix_available"];
+
+    repeated InspectorScore inspector_score = 27 [json_name = "inspector_score"];
+
+    repeated LambdaFunctionExecutionRoleArn lambda_function_execution_role_arn = 28 [json_name = "lambda_function_execution_role_arn"];
+
+    repeated LambdaFunctionLastModifiedAt lambda_function_last_modified_at = 29 [json_name = "lambda_function_last_modified_at"];
+
+    repeated LambdaFunctionLayers lambda_function_layers = 30 [json_name = "lambda_function_layers"];
+
+    repeated LambdaFunctionName lambda_function_name = 31 [json_name = "lambda_function_name"];
+
+    repeated LambdaFunctionRuntime lambda_function_runtime = 32 [json_name = "lambda_function_runtime"];
+
+    repeated LastObservedAt last_observed_at = 33 [json_name = "last_observed_at"];
+
+    repeated NetworkProtocol network_protocol = 34 [json_name = "network_protocol"];
+
+    repeated PortRange port_range = 35 [json_name = "port_range"];
+
+    repeated RelatedVulnerabilities related_vulnerabilities = 36 [json_name = "related_vulnerabilities"];
+
+    repeated ResourceId resource_id = 37 [json_name = "resource_id"];
+
+    repeated ResourceTags resource_tags = 38 [json_name = "resource_tags"];
+
+    repeated ResourceType resource_type = 39 [json_name = "resource_type"];
+
+    repeated Severity severity = 40;
+
+    repeated Title title = 41;
+
+    repeated UpdatedAt updated_at = 42 [json_name = "updated_at"];
+
+    repeated VendorSeverity vendor_severity = 43 [json_name = "vendor_severity"];
+
+    repeated VulnerabilityId vulnerability_id = 44 [json_name = "vulnerability_id"];
+
+    repeated VulnerabilitySource vulnerability_source = 45 [json_name = "vulnerability_source"];
+
+    repeated VulnerablePackages vulnerable_packages = 46 [json_name = "vulnerable_packages"];
+
+    message AwsAccountId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message CodeRepositoryProjectName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message CodeRepositoryProviderType {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message CodeVulnerabilityDetectorName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message CodeVulnerabilityDetectorTags {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message CodeVulnerabilityFilePath {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ComponentId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ComponentType {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message Ec2InstanceImageId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message Ec2InstanceSubnetId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message Ec2InstanceVpcId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message EcrImageArchitecture {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message EcrImageHash {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message EcrImageInUseCount {
+      int64 lower_inclusive = 1 [json_name = "lower_inclusive"];
+
+      int64 upper_inclusive = 2 [json_name = "upper_inclusive"];
+    }
+
+    message EcrImageLastInUseAt {
+      string end_inclusive = 1 [json_name = "end_inclusive"];
+
+      string start_inclusive = 2 [json_name = "start_inclusive"];
+    }
+
+    message EcrImagePushedAt {
+      string end_inclusive = 1 [json_name = "end_inclusive"];
+
+      string start_inclusive = 2 [json_name = "start_inclusive"];
+    }
+
+    message EcrImageRegistry {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message EcrImageRepositoryName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message EcrImageTags {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message EpssScore {
+      int64 lower_inclusive = 1 [json_name = "lower_inclusive"];
+
+      int64 upper_inclusive = 2 [json_name = "upper_inclusive"];
+    }
+
+    message ExploitAvailable {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message FindingArn {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message FindingStatus {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message FindingType {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message FirstObservedAt {
+      string end_inclusive = 1 [json_name = "end_inclusive"];
+
+      string start_inclusive = 2 [json_name = "start_inclusive"];
+    }
+
+    message FixAvailable {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message InspectorScore {
+      int64 lower_inclusive = 1 [json_name = "lower_inclusive"];
+
+      int64 upper_inclusive = 2 [json_name = "upper_inclusive"];
+    }
+
+    message LambdaFunctionExecutionRoleArn {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message LambdaFunctionLastModifiedAt {
+      string end_inclusive = 1 [json_name = "end_inclusive"];
+
+      string start_inclusive = 2 [json_name = "start_inclusive"];
+    }
+
+    message LambdaFunctionLayers {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message LambdaFunctionName {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message LambdaFunctionRuntime {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message LastObservedAt {
+      string end_inclusive = 1 [json_name = "end_inclusive"];
+
+      string start_inclusive = 2 [json_name = "start_inclusive"];
+    }
+
+    message NetworkProtocol {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message PortRange {
+      int64 begin_inclusive = 1 [json_name = "begin_inclusive"];
+
+      int64 end_inclusive = 2 [json_name = "end_inclusive"];
+    }
+
+    message RelatedVulnerabilities {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message ResourceTags {
+      string comparison = 1;
+
+      string key = 2;
+
+      string value = 3;
+    }
+
+    message ResourceType {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message Severity {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message Title {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message UpdatedAt {
+      string end_inclusive = 1 [json_name = "end_inclusive"];
+
+      string start_inclusive = 2 [json_name = "start_inclusive"];
+    }
+
+    message VendorSeverity {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message VulnerabilityId {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message VulnerabilitySource {
+      string comparison = 1;
+
+      string value = 2;
+    }
+
+    message VulnerablePackages {
+      repeated Architecture architecture = 1;
+
+      repeated Epoch epoch = 2;
+
+      repeated FilePath file_path = 3 [json_name = "file_path"];
+
+      repeated Name name = 4;
+
+      repeated Release release = 5;
+
+      repeated SourceLambdaLayerArn source_lambda_layer_arn = 6 [json_name = "source_lambda_layer_arn"];
+
+      repeated SourceLayerHash source_layer_hash = 7 [json_name = "source_layer_hash"];
+
+      repeated Version version = 8;
+
+      message Architecture {
+        string comparison = 1;
+
+        string value = 2;
+      }
+
+      message Epoch {
+        int64 lower_inclusive = 1 [json_name = "lower_inclusive"];
+
+        int64 upper_inclusive = 2 [json_name = "upper_inclusive"];
+      }
+
+      message FilePath {
+        string comparison = 1;
+
+        string value = 2;
+      }
+
+      message Name {
+        string comparison = 1;
+
+        string value = 2;
+      }
+
+      message Release {
+        string comparison = 1;
+
+        string value = 2;
+      }
+
+      message SourceLambdaLayerArn {
+        string comparison = 1;
+
+        string value = 2;
+      }
+
+      message SourceLayerHash {
+        string comparison = 1;
+
+        string value = 2;
+      }
+
+      message Version {
+        string comparison = 1;
+
+        string value = 2;
+      }
+    }
+  }
+}
+
+// AwsInspector2MemberAssociation version is 0
+message AwsInspector2MemberAssociation {
+  string account_id = 1 [json_name = "account_id"];
+
+  string delegated_admin_account_id = 2 [json_name = "delegated_admin_account_id"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string relationship_status = 5 [json_name = "relationship_status"];
+
+  string updated_at = 6 [json_name = "updated_at"];
+
+  repeated Timeouts timeouts = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsInspector2OrganizationConfiguration version is 0
+message AwsInspector2OrganizationConfiguration {
+  string id = 1;
+
+  bool max_account_limit_reached = 2 [json_name = "max_account_limit_reached"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  AutoEnable auto_enable = 4 [json_name = "auto_enable"];
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message AutoEnable {
+    bool code_repository = 1 [json_name = "code_repository"];
+
+    bool ec2 = 2;
+
+    bool ecr = 3;
+
+    bool lambda = 4;
+
+    bool lambda_code = 5 [json_name = "lambda_code"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}

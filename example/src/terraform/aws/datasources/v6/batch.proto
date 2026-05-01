@@ -1,0 +1,725 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsBatchComputeEnvironment version is 0
+message AwsBatchComputeEnvironment {
+  string arn = 1;
+
+  string ecs_cluster_arn = 2 [json_name = "ecs_cluster_arn"];
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string service_role = 6 [json_name = "service_role"];
+
+  string state = 7;
+
+  string status = 8;
+
+  string status_reason = 9 [json_name = "status_reason"];
+
+  map<string, string> tags = 10;
+
+  string type = 11;
+
+  repeated UpdatePolicy update_policy = 12 [json_name = "update_policy"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message UpdatePolicy {
+    // job_execution_timeout_minutes: number
+    int64 job_execution_timeout_minutes = 1 [json_name = "job_execution_timeout_minutes"];
+
+    // terminate_jobs_on_update: bool
+    bool terminate_jobs_on_update = 2 [json_name = "terminate_jobs_on_update"];
+  }
+}
+
+// AwsBatchJobDefinition version is 0
+message AwsBatchJobDefinition {
+  string arn = 1;
+
+  string arn_prefix = 2 [json_name = "arn_prefix"];
+
+  string container_orchestration_type = 3 [json_name = "container_orchestration_type"];
+
+  repeated EksProperties eks_properties = 4 [json_name = "eks_properties"];
+
+  string id = 5;
+
+  string name = 6;
+
+  repeated NodeProperties node_properties = 7 [json_name = "node_properties"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  repeated RetryStrategy retry_strategy = 9 [json_name = "retry_strategy"];
+
+  int64 revision = 10;
+
+  int64 scheduling_priority = 11 [json_name = "scheduling_priority"];
+
+  string status = 12;
+
+  map<string, string> tags = 13;
+
+  repeated Timeout timeout = 14;
+
+  string type = 15;
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message EksProperties {
+    // pod_properties: list of object
+    repeated PodProperties pod_properties = 1 [json_name = "pod_properties"];
+
+    message PodProperties {
+      // containers: list of object
+      repeated Containers containers = 1;
+
+      // dns_policy: string
+      string dns_policy = 2 [json_name = "dns_policy"];
+
+      // host_network: bool
+      bool host_network = 3 [json_name = "host_network"];
+
+      // image_pull_secrets: list of object
+      repeated ImagePullSecrets image_pull_secrets = 4 [json_name = "image_pull_secrets"];
+
+      // init_containers: list of object
+      repeated InitContainers init_containers = 5 [json_name = "init_containers"];
+
+      // metadata: list of object
+      repeated Metadata metadata = 6;
+
+      // service_account_name: string
+      string service_account_name = 7 [json_name = "service_account_name"];
+
+      // share_process_namespace: bool
+      bool share_process_namespace = 8 [json_name = "share_process_namespace"];
+
+      // volumes: list of object
+      repeated Volumes volumes = 9;
+
+      message Containers {
+        // args: list of string
+        repeated string args = 1;
+
+        // command: list of string
+        repeated string command = 2;
+
+        // env: list of object
+        repeated Env env = 3;
+
+        // image: string
+        string image = 4;
+
+        // image_pull_policy: string
+        string image_pull_policy = 5 [json_name = "image_pull_policy"];
+
+        // name: string
+        string name = 6;
+
+        // resources: list of object
+        repeated Resources resources = 7;
+
+        // security_context: list of object
+        repeated SecurityContext security_context = 8 [json_name = "security_context"];
+
+        // volume_mounts: list of object
+        repeated VolumeMounts volume_mounts = 9 [json_name = "volume_mounts"];
+
+        message Env {
+          // name: string
+          string name = 1;
+
+          // value: string
+          string value = 2;
+        }
+
+        message Resources {
+          // limits: map of string
+          map<string, string> limits = 1;
+
+          // requests: map of string
+          map<string, string> requests = 2;
+        }
+
+        message SecurityContext {
+          // allow_privilege_escalation: bool
+          bool allow_privilege_escalation = 1 [json_name = "allow_privilege_escalation"];
+
+          // privileged: bool
+          bool privileged = 2;
+
+          // read_only_root_file_system: bool
+          bool read_only_root_file_system = 3 [json_name = "read_only_root_file_system"];
+
+          // run_as_group: number
+          int64 run_as_group = 4 [json_name = "run_as_group"];
+
+          // run_as_non_root: bool
+          bool run_as_non_root = 5 [json_name = "run_as_non_root"];
+
+          // run_as_user: number
+          int64 run_as_user = 6 [json_name = "run_as_user"];
+        }
+
+        message VolumeMounts {
+          // mount_path: string
+          string mount_path = 1 [json_name = "mount_path"];
+
+          // name: string
+          string name = 2;
+
+          // read_only: bool
+          bool read_only = 3 [json_name = "read_only"];
+        }
+      }
+
+      message ImagePullSecrets {
+        // name: string
+        string name = 1;
+      }
+
+      message InitContainers {
+        // args: list of string
+        repeated string args = 1;
+
+        // command: list of string
+        repeated string command = 2;
+
+        // env: list of object
+        repeated Env env = 3;
+
+        // image: string
+        string image = 4;
+
+        // image_pull_policy: string
+        string image_pull_policy = 5 [json_name = "image_pull_policy"];
+
+        // name: string
+        string name = 6;
+
+        // resources: list of object
+        repeated Resources resources = 7;
+
+        // security_context: list of object
+        repeated SecurityContext security_context = 8 [json_name = "security_context"];
+
+        // volume_mounts: list of object
+        repeated VolumeMounts volume_mounts = 9 [json_name = "volume_mounts"];
+
+        message Env {
+          // name: string
+          string name = 1;
+
+          // value: string
+          string value = 2;
+        }
+
+        message Resources {
+          // limits: map of string
+          map<string, string> limits = 1;
+
+          // requests: map of string
+          map<string, string> requests = 2;
+        }
+
+        message SecurityContext {
+          // allow_privilege_escalation: bool
+          bool allow_privilege_escalation = 1 [json_name = "allow_privilege_escalation"];
+
+          // privileged: bool
+          bool privileged = 2;
+
+          // read_only_root_file_system: bool
+          bool read_only_root_file_system = 3 [json_name = "read_only_root_file_system"];
+
+          // run_as_group: number
+          int64 run_as_group = 4 [json_name = "run_as_group"];
+
+          // run_as_non_root: bool
+          bool run_as_non_root = 5 [json_name = "run_as_non_root"];
+
+          // run_as_user: number
+          int64 run_as_user = 6 [json_name = "run_as_user"];
+        }
+
+        message VolumeMounts {
+          // mount_path: string
+          string mount_path = 1 [json_name = "mount_path"];
+
+          // name: string
+          string name = 2;
+
+          // read_only: bool
+          bool read_only = 3 [json_name = "read_only"];
+        }
+      }
+
+      message Metadata {
+        // labels: map of string
+        map<string, string> labels = 1;
+      }
+
+      message Volumes {
+        // empty_dir: list of object
+        repeated EmptyDir empty_dir = 1 [json_name = "empty_dir"];
+
+        // host_path: list of object
+        repeated HostPath host_path = 2 [json_name = "host_path"];
+
+        // name: string
+        string name = 3;
+
+        // secret: list of object
+        repeated Secret secret = 4;
+
+        message EmptyDir {
+          // medium: string
+          string medium = 1;
+
+          // size_limit: string
+          string size_limit = 2 [json_name = "size_limit"];
+        }
+
+        message HostPath {
+          // path: string
+          string path = 1;
+        }
+
+        message Secret {
+          // optional: bool
+          bool optional = 1;
+
+          // secret_name: string
+          string secret_name = 2 [json_name = "secret_name"];
+        }
+      }
+    }
+  }
+
+  message NodeProperties {
+    // main_node: number
+    int64 main_node = 1 [json_name = "main_node"];
+
+    // node_range_properties: list of object
+    repeated NodeRangeProperties node_range_properties = 2 [json_name = "node_range_properties"];
+
+    // num_nodes: number
+    int64 num_nodes = 3 [json_name = "num_nodes"];
+
+    message NodeRangeProperties {
+      // container: list of object
+      repeated Container container = 1;
+
+      // target_nodes: string
+      string target_nodes = 2 [json_name = "target_nodes"];
+
+      message Container {
+        // command: list of string
+        repeated string command = 1;
+
+        // environment: list of object
+        repeated Environment environment = 2;
+
+        // ephemeral_storage: list of object
+        repeated EphemeralStorage ephemeral_storage = 3 [json_name = "ephemeral_storage"];
+
+        // execution_role_arn: string
+        string execution_role_arn = 4 [json_name = "execution_role_arn"];
+
+        // fargate_platform_configuration: list of object
+        repeated FargatePlatformConfiguration fargate_platform_configuration = 5 [json_name = "fargate_platform_configuration"];
+
+        // image: string
+        string image = 6;
+
+        // instance_type: string
+        string instance_type = 7 [json_name = "instance_type"];
+
+        // job_role_arn: string
+        string job_role_arn = 8 [json_name = "job_role_arn"];
+
+        // linux_parameters: list of object
+        repeated LinuxParameters linux_parameters = 9 [json_name = "linux_parameters"];
+
+        // log_configuration: list of object
+        repeated LogConfiguration log_configuration = 10 [json_name = "log_configuration"];
+
+        // mount_points: list of object
+        repeated MountPoints mount_points = 11 [json_name = "mount_points"];
+
+        // network_configuration: list of object
+        repeated NetworkConfiguration network_configuration = 12 [json_name = "network_configuration"];
+
+        // privileged: bool
+        bool privileged = 13;
+
+        // readonly_root_filesystem: bool
+        bool readonly_root_filesystem = 14 [json_name = "readonly_root_filesystem"];
+
+        // resource_requirements: list of object
+        repeated ResourceRequirements resource_requirements = 15 [json_name = "resource_requirements"];
+
+        // runtime_platform: list of object
+        repeated RuntimePlatform runtime_platform = 16 [json_name = "runtime_platform"];
+
+        // secrets: list of object
+        repeated Secrets secrets = 17;
+
+        // ulimits: list of object
+        repeated Ulimits ulimits = 18;
+
+        // user: string
+        string user = 19;
+
+        // volumes: list of object
+        repeated Volumes volumes = 20;
+
+        message Environment {
+          // name: string
+          string name = 1;
+
+          // value: string
+          string value = 2;
+        }
+
+        message EphemeralStorage {
+          // size_in_gib: number
+          int64 size_in_gib = 1 [json_name = "size_in_gib"];
+        }
+
+        message FargatePlatformConfiguration {
+          // platform_version: string
+          string platform_version = 1 [json_name = "platform_version"];
+        }
+
+        message LinuxParameters {
+          // devices: list of object
+          repeated Devices devices = 1;
+
+          // init_process_enabled: bool
+          bool init_process_enabled = 2 [json_name = "init_process_enabled"];
+
+          // max_swap: number
+          int64 max_swap = 3 [json_name = "max_swap"];
+
+          // shared_memory_size: number
+          int64 shared_memory_size = 4 [json_name = "shared_memory_size"];
+
+          // swappiness: number
+          int64 swappiness = 5;
+
+          // tmpfs: list of object
+          repeated Tmpfs tmpfs = 6;
+
+          message Devices {
+            // container_path: string
+            string container_path = 1 [json_name = "container_path"];
+
+            // host_path: string
+            string host_path = 2 [json_name = "host_path"];
+
+            // permissions: list of string
+            repeated string permissions = 3;
+          }
+
+          message Tmpfs {
+            // container_path: string
+            string container_path = 1 [json_name = "container_path"];
+
+            // mount_options: list of string
+            repeated string mount_options = 2 [json_name = "mount_options"];
+
+            // size: number
+            int64 size = 3;
+          }
+        }
+
+        message LogConfiguration {
+          // log_driver: string
+          string log_driver = 1 [json_name = "log_driver"];
+
+          // options: map of string
+          map<string, string> options = 2;
+
+          // secret_options: list of object
+          repeated SecretOptions secret_options = 3 [json_name = "secret_options"];
+
+          message SecretOptions {
+            // name: string
+            string name = 1;
+
+            // value_from: string
+            string value_from = 2 [json_name = "value_from"];
+          }
+        }
+
+        message MountPoints {
+          // container_path: string
+          string container_path = 1 [json_name = "container_path"];
+
+          // read_only: bool
+          bool read_only = 2 [json_name = "read_only"];
+
+          // source_volume: string
+          string source_volume = 3 [json_name = "source_volume"];
+        }
+
+        message NetworkConfiguration {
+          // assign_public_ip: bool
+          bool assign_public_ip = 1 [json_name = "assign_public_ip"];
+        }
+
+        message ResourceRequirements {
+          // type: string
+          string type = 1;
+
+          // value: string
+          string value = 2;
+        }
+
+        message RuntimePlatform {
+          // cpu_architecture: string
+          string cpu_architecture = 1 [json_name = "cpu_architecture"];
+
+          // operating_system_family: string
+          string operating_system_family = 2 [json_name = "operating_system_family"];
+        }
+
+        message Secrets {
+          // name: string
+          string name = 1;
+
+          // value_from: string
+          string value_from = 2 [json_name = "value_from"];
+        }
+
+        message Ulimits {
+          // hard_limit: number
+          int64 hard_limit = 1 [json_name = "hard_limit"];
+
+          // name: string
+          string name = 2;
+
+          // soft_limit: number
+          int64 soft_limit = 3 [json_name = "soft_limit"];
+        }
+
+        message Volumes {
+          // efs_volume_configuration: list of object
+          repeated EfsVolumeConfiguration efs_volume_configuration = 1 [json_name = "efs_volume_configuration"];
+
+          // host: list of object
+          repeated Host host = 2;
+
+          // name: string
+          string name = 3;
+
+          message EfsVolumeConfiguration {
+            // authorization_config: list of object
+            repeated AuthorizationConfig authorization_config = 1 [json_name = "authorization_config"];
+
+            // file_system_id: string
+            string file_system_id = 2 [json_name = "file_system_id"];
+
+            // root_directory: string
+            string root_directory = 3 [json_name = "root_directory"];
+
+            // transit_encryption: string
+            string transit_encryption = 4 [json_name = "transit_encryption"];
+
+            // transit_encryption_port: number
+            int64 transit_encryption_port = 5 [json_name = "transit_encryption_port"];
+
+            message AuthorizationConfig {
+              // access_point_id: string
+              string access_point_id = 1 [json_name = "access_point_id"];
+
+              // iam: string
+              string iam = 2;
+            }
+          }
+
+          message Host {
+            // source_path: string
+            string source_path = 1 [json_name = "source_path"];
+          }
+        }
+      }
+    }
+  }
+
+  message RetryStrategy {
+    // attempts: number
+    int64 attempts = 1;
+
+    // evaluate_on_exit: list of object
+    repeated EvaluateOnExit evaluate_on_exit = 2 [json_name = "evaluate_on_exit"];
+
+    message EvaluateOnExit {
+      // action: string
+      string action = 1;
+
+      // on_exit_code: string
+      string on_exit_code = 2 [json_name = "on_exit_code"];
+
+      // on_reason: string
+      string on_reason = 3 [json_name = "on_reason"];
+
+      // on_status_reason: string
+      string on_status_reason = 4 [json_name = "on_status_reason"];
+    }
+  }
+
+  message Timeout {
+    // attempt_duration_seconds: number
+    int64 attempt_duration_seconds = 1 [json_name = "attempt_duration_seconds"];
+  }
+}
+
+// AwsBatchJobQueue version is 0
+message AwsBatchJobQueue {
+  string arn = 1;
+
+  repeated ComputeEnvironmentOrder compute_environment_order = 2 [json_name = "compute_environment_order"];
+
+  string id = 3;
+
+  repeated JobStateTimeLimitAction job_state_time_limit_action = 4 [json_name = "job_state_time_limit_action"];
+
+  string name = 5;
+
+  int64 priority = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string scheduling_policy_arn = 8 [json_name = "scheduling_policy_arn"];
+
+  string state = 9;
+
+  string status = 10;
+
+  string status_reason = 11 [json_name = "status_reason"];
+
+  map<string, string> tags = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message ComputeEnvironmentOrder {
+    // compute_environment: string
+    string compute_environment = 1 [json_name = "compute_environment"];
+
+    // order: number
+    int64 order = 2;
+  }
+
+  message JobStateTimeLimitAction {
+    // action: string
+    string action = 1;
+
+    // max_time_seconds: number
+    int64 max_time_seconds = 2 [json_name = "max_time_seconds"];
+
+    // reason: string
+    string reason = 3;
+
+    // state: string
+    string state = 4;
+  }
+}
+
+// AwsBatchSchedulingPolicy version is 0
+message AwsBatchSchedulingPolicy {
+  string arn = 1;
+
+  repeated FairSharePolicy fair_share_policy = 2 [json_name = "fair_share_policy"];
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message FairSharePolicy {
+    // compute_reservation: number
+    int64 compute_reservation = 1 [json_name = "compute_reservation"];
+
+    // share_decay_seconds: number
+    int64 share_decay_seconds = 2 [json_name = "share_decay_seconds"];
+
+    // share_distribution: set of object
+    repeated ShareDistribution share_distribution = 3 [json_name = "share_distribution"];
+
+    message ShareDistribution {
+      // share_identifier: string
+      string share_identifier = 1 [json_name = "share_identifier"];
+
+      // weight_factor: number
+      int64 weight_factor = 2 [json_name = "weight_factor"];
+    }
+  }
+}

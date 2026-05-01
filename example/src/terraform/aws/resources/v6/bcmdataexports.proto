@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsBcmdataexportsExport version is 1
+message AwsBcmdataexportsExport {
+  string arn = 1;
+
+  string id = 2;
+
+  map<string, string> tags = 3;
+
+  map<string, string> tags_all = 4 [json_name = "tags_all"];
+
+  repeated Export export = 5;
+
+  repeated Timeouts timeouts = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Export {
+    string description = 1;
+
+    string export_arn = 2 [json_name = "export_arn"];
+
+    string name = 3;
+
+    repeated DataQuery data_query = 4 [json_name = "data_query"];
+
+    repeated DestinationConfigurations destination_configurations = 5 [json_name = "destination_configurations"];
+
+    repeated RefreshCadence refresh_cadence = 6 [json_name = "refresh_cadence"];
+
+    message DataQuery {
+      string query_statement = 1 [json_name = "query_statement"];
+
+      map<string, string> table_configurations = 2 [json_name = "table_configurations"];
+    }
+
+    message DestinationConfigurations {
+      repeated S3Destination s3_destination = 1 [json_name = "s3_destination"];
+
+      message S3Destination {
+        string s3_bucket = 1 [json_name = "s3_bucket"];
+
+        string s3_prefix = 2 [json_name = "s3_prefix"];
+
+        string s3_region = 3 [json_name = "s3_region"];
+
+        repeated S3OutputConfigurations s3_output_configurations = 4 [json_name = "s3_output_configurations"];
+
+        message S3OutputConfigurations {
+          string compression = 1;
+
+          string format = 2;
+
+          string output_type = 3 [json_name = "output_type"];
+
+          string overwrite = 4;
+        }
+      }
+    }
+
+    message RefreshCadence {
+      string frequency = 1;
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 2;
+  }
+}

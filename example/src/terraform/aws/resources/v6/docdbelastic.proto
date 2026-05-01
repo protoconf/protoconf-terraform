@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsDocdbelasticCluster version is 0
+message AwsDocdbelasticCluster {
+  string admin_user_name = 1 [json_name = "admin_user_name"];
+
+  string admin_user_password = 2 [json_name = "admin_user_password"];
+
+  string arn = 3;
+
+  string auth_type = 4 [json_name = "auth_type"];
+
+  int64 backup_retention_period = 5 [json_name = "backup_retention_period"];
+
+  string endpoint = 6;
+
+  string id = 7;
+
+  string kms_key_id = 8 [json_name = "kms_key_id"];
+
+  string name = 9;
+
+  string preferred_backup_window = 10 [json_name = "preferred_backup_window"];
+
+  string preferred_maintenance_window = 11 [json_name = "preferred_maintenance_window"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  int64 shard_capacity = 13 [json_name = "shard_capacity"];
+
+  int64 shard_count = 14 [json_name = "shard_count"];
+
+  int64 shard_instance_count = 15 [json_name = "shard_instance_count"];
+
+  repeated string subnet_ids = 16 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 17;
+
+  map<string, string> tags_all = 18 [json_name = "tags_all"];
+
+  repeated string vpc_security_group_ids = 19 [json_name = "vpc_security_group_ids"];
+
+  repeated Timeouts timeouts = 20;
+
+  google.protobuf.Value for_each = 21 [json_name = "for_each"];
+
+  repeated string depends_on = 22 [json_name = "depends_on"];
+
+  int32 count = 23;
+
+  string provider = 24;
+
+  terraform.v1.Lifecycle lifecycle = 25;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}

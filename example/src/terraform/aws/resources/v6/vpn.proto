@@ -1,0 +1,401 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsVpnConcentrator version is 0
+message AwsVpnConcentrator {
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 1;
+
+  map<string, string> tags = 2;
+
+  map<string, string> tags_all = 3 [json_name = "tags_all"];
+
+  string transit_gateway_attachment_id = 4 [json_name = "transit_gateway_attachment_id"];
+
+  string transit_gateway_id = 5 [json_name = "transit_gateway_id"];
+
+  string type = 6;
+
+  string vpn_concentrator_id = 7 [json_name = "vpn_concentrator_id"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsVpnConnection version is 0
+message AwsVpnConnection {
+  string arn = 1;
+
+  string core_network_arn = 2 [json_name = "core_network_arn"];
+
+  string core_network_attachment_arn = 3 [json_name = "core_network_attachment_arn"];
+
+  string customer_gateway_configuration = 4 [json_name = "customer_gateway_configuration"];
+
+  string customer_gateway_id = 5 [json_name = "customer_gateway_id"];
+
+  bool enable_acceleration = 6 [json_name = "enable_acceleration"];
+
+  string id = 7;
+
+  string local_ipv4_network_cidr = 8 [json_name = "local_ipv4_network_cidr"];
+
+  string local_ipv6_network_cidr = 9 [json_name = "local_ipv6_network_cidr"];
+
+  string outside_ip_address_type = 10 [json_name = "outside_ip_address_type"];
+
+  string preshared_key_arn = 11 [json_name = "preshared_key_arn"];
+
+  string preshared_key_storage = 12 [json_name = "preshared_key_storage"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  string remote_ipv4_network_cidr = 14 [json_name = "remote_ipv4_network_cidr"];
+
+  string remote_ipv6_network_cidr = 15 [json_name = "remote_ipv6_network_cidr"];
+
+  repeated Routes routes = 16;
+
+  bool static_routes_only = 17 [json_name = "static_routes_only"];
+
+  map<string, string> tags = 18;
+
+  map<string, string> tags_all = 19 [json_name = "tags_all"];
+
+  string transit_gateway_attachment_id = 20 [json_name = "transit_gateway_attachment_id"];
+
+  string transit_gateway_id = 21 [json_name = "transit_gateway_id"];
+
+  string transport_transit_gateway_attachment_id = 22 [
+    json_name = "transport_transit_gateway_attachment_id"
+  ];
+
+  string tunnel1_address = 23 [json_name = "tunnel1_address"];
+
+  string tunnel1_bgp_asn = 24 [json_name = "tunnel1_bgp_asn"];
+
+  int64 tunnel1_bgp_holdtime = 25 [json_name = "tunnel1_bgp_holdtime"];
+
+  string tunnel1_cgw_inside_address = 26 [json_name = "tunnel1_cgw_inside_address"];
+
+  string tunnel1_dpd_timeout_action = 27 [json_name = "tunnel1_dpd_timeout_action"];
+
+  int64 tunnel1_dpd_timeout_seconds = 28 [json_name = "tunnel1_dpd_timeout_seconds"];
+
+  bool tunnel1_enable_tunnel_lifecycle_control = 29 [
+    json_name = "tunnel1_enable_tunnel_lifecycle_control"
+  ];
+
+  repeated string tunnel1_ike_versions = 30 [json_name = "tunnel1_ike_versions"];
+
+  string tunnel1_inside_cidr = 31 [json_name = "tunnel1_inside_cidr"];
+
+  string tunnel1_inside_ipv6_cidr = 32 [json_name = "tunnel1_inside_ipv6_cidr"];
+
+  repeated int64 tunnel1_phase1_dh_group_numbers = 33 [json_name = "tunnel1_phase1_dh_group_numbers"];
+
+  repeated string tunnel1_phase1_encryption_algorithms = 34 [json_name = "tunnel1_phase1_encryption_algorithms"];
+
+  repeated string tunnel1_phase1_integrity_algorithms = 35 [json_name = "tunnel1_phase1_integrity_algorithms"];
+
+  int64 tunnel1_phase1_lifetime_seconds = 36 [json_name = "tunnel1_phase1_lifetime_seconds"];
+
+  repeated int64 tunnel1_phase2_dh_group_numbers = 37 [json_name = "tunnel1_phase2_dh_group_numbers"];
+
+  repeated string tunnel1_phase2_encryption_algorithms = 38 [json_name = "tunnel1_phase2_encryption_algorithms"];
+
+  repeated string tunnel1_phase2_integrity_algorithms = 39 [json_name = "tunnel1_phase2_integrity_algorithms"];
+
+  int64 tunnel1_phase2_lifetime_seconds = 40 [json_name = "tunnel1_phase2_lifetime_seconds"];
+
+  string tunnel1_preshared_key = 41 [json_name = "tunnel1_preshared_key"];
+
+  int64 tunnel1_rekey_fuzz_percentage = 42 [json_name = "tunnel1_rekey_fuzz_percentage"];
+
+  int64 tunnel1_rekey_margin_time_seconds = 43 [json_name = "tunnel1_rekey_margin_time_seconds"];
+
+  int64 tunnel1_replay_window_size = 44 [json_name = "tunnel1_replay_window_size"];
+
+  string tunnel1_startup_action = 45 [json_name = "tunnel1_startup_action"];
+
+  string tunnel1_vgw_inside_address = 46 [json_name = "tunnel1_vgw_inside_address"];
+
+  string tunnel2_address = 47 [json_name = "tunnel2_address"];
+
+  string tunnel2_bgp_asn = 48 [json_name = "tunnel2_bgp_asn"];
+
+  int64 tunnel2_bgp_holdtime = 49 [json_name = "tunnel2_bgp_holdtime"];
+
+  string tunnel2_cgw_inside_address = 50 [json_name = "tunnel2_cgw_inside_address"];
+
+  string tunnel2_dpd_timeout_action = 51 [json_name = "tunnel2_dpd_timeout_action"];
+
+  int64 tunnel2_dpd_timeout_seconds = 52 [json_name = "tunnel2_dpd_timeout_seconds"];
+
+  bool tunnel2_enable_tunnel_lifecycle_control = 53 [
+    json_name = "tunnel2_enable_tunnel_lifecycle_control"
+  ];
+
+  repeated string tunnel2_ike_versions = 54 [json_name = "tunnel2_ike_versions"];
+
+  string tunnel2_inside_cidr = 55 [json_name = "tunnel2_inside_cidr"];
+
+  string tunnel2_inside_ipv6_cidr = 56 [json_name = "tunnel2_inside_ipv6_cidr"];
+
+  repeated int64 tunnel2_phase1_dh_group_numbers = 57 [json_name = "tunnel2_phase1_dh_group_numbers"];
+
+  repeated string tunnel2_phase1_encryption_algorithms = 58 [json_name = "tunnel2_phase1_encryption_algorithms"];
+
+  repeated string tunnel2_phase1_integrity_algorithms = 59 [json_name = "tunnel2_phase1_integrity_algorithms"];
+
+  int64 tunnel2_phase1_lifetime_seconds = 60 [json_name = "tunnel2_phase1_lifetime_seconds"];
+
+  repeated int64 tunnel2_phase2_dh_group_numbers = 61 [json_name = "tunnel2_phase2_dh_group_numbers"];
+
+  repeated string tunnel2_phase2_encryption_algorithms = 62 [json_name = "tunnel2_phase2_encryption_algorithms"];
+
+  repeated string tunnel2_phase2_integrity_algorithms = 63 [json_name = "tunnel2_phase2_integrity_algorithms"];
+
+  int64 tunnel2_phase2_lifetime_seconds = 64 [json_name = "tunnel2_phase2_lifetime_seconds"];
+
+  string tunnel2_preshared_key = 65 [json_name = "tunnel2_preshared_key"];
+
+  int64 tunnel2_rekey_fuzz_percentage = 66 [json_name = "tunnel2_rekey_fuzz_percentage"];
+
+  int64 tunnel2_rekey_margin_time_seconds = 67 [json_name = "tunnel2_rekey_margin_time_seconds"];
+
+  int64 tunnel2_replay_window_size = 68 [json_name = "tunnel2_replay_window_size"];
+
+  string tunnel2_startup_action = 69 [json_name = "tunnel2_startup_action"];
+
+  string tunnel2_vgw_inside_address = 70 [json_name = "tunnel2_vgw_inside_address"];
+
+  string tunnel_bandwidth = 71 [json_name = "tunnel_bandwidth"];
+
+  string tunnel_inside_ip_version = 72 [json_name = "tunnel_inside_ip_version"];
+
+  string type = 73;
+
+  repeated VgwTelemetry vgw_telemetry = 74 [json_name = "vgw_telemetry"];
+
+  string vpn_concentrator_id = 75 [json_name = "vpn_concentrator_id"];
+
+  string vpn_gateway_id = 76 [json_name = "vpn_gateway_id"];
+
+  Tunnel1LogOptions tunnel1_log_options = 77 [json_name = "tunnel1_log_options"];
+
+  Tunnel2LogOptions tunnel2_log_options = 78 [json_name = "tunnel2_log_options"];
+
+  google.protobuf.Value for_each = 79 [json_name = "for_each"];
+
+  repeated string depends_on = 80 [json_name = "depends_on"];
+
+  int32 count = 81;
+
+  string provider = 82;
+
+  terraform.v1.Lifecycle lifecycle = 83;
+
+  message Routes {
+    // destination_cidr_block: string
+    string destination_cidr_block = 1 [json_name = "destination_cidr_block"];
+
+    // source: string
+    string source = 2;
+
+    // state: string
+    string state = 3;
+  }
+
+  message VgwTelemetry {
+    // accepted_route_count: number
+    int64 accepted_route_count = 1 [json_name = "accepted_route_count"];
+
+    // certificate_arn: string
+    string certificate_arn = 2 [json_name = "certificate_arn"];
+
+    // last_status_change: string
+    string last_status_change = 3 [json_name = "last_status_change"];
+
+    // outside_ip_address: string
+    string outside_ip_address = 4 [json_name = "outside_ip_address"];
+
+    // status: string
+    string status = 5;
+
+    // status_message: string
+    string status_message = 6 [json_name = "status_message"];
+  }
+
+  message Tunnel1LogOptions {
+    CloudwatchLogOptions cloudwatch_log_options = 1 [json_name = "cloudwatch_log_options"];
+
+    message CloudwatchLogOptions {
+      bool bgp_log_enabled = 1 [json_name = "bgp_log_enabled"];
+
+      string bgp_log_group_arn = 2 [json_name = "bgp_log_group_arn"];
+
+      string bgp_log_output_format = 3 [json_name = "bgp_log_output_format"];
+
+      bool log_enabled = 4 [json_name = "log_enabled"];
+
+      string log_group_arn = 5 [json_name = "log_group_arn"];
+
+      string log_output_format = 6 [json_name = "log_output_format"];
+    }
+  }
+
+  message Tunnel2LogOptions {
+    CloudwatchLogOptions cloudwatch_log_options = 1 [json_name = "cloudwatch_log_options"];
+
+    message CloudwatchLogOptions {
+      bool bgp_log_enabled = 1 [json_name = "bgp_log_enabled"];
+
+      string bgp_log_group_arn = 2 [json_name = "bgp_log_group_arn"];
+
+      string bgp_log_output_format = 3 [json_name = "bgp_log_output_format"];
+
+      bool log_enabled = 4 [json_name = "log_enabled"];
+
+      string log_group_arn = 5 [json_name = "log_group_arn"];
+
+      string log_output_format = 6 [json_name = "log_output_format"];
+    }
+  }
+}
+
+// AwsVpnConnectionRoute version is 0
+message AwsVpnConnectionRoute {
+  string destination_cidr_block = 1 [json_name = "destination_cidr_block"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string vpn_connection_id = 4 [json_name = "vpn_connection_id"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsVpnGateway version is 0
+message AwsVpnGateway {
+  string amazon_side_asn = 1 [json_name = "amazon_side_asn"];
+
+  string arn = 2;
+
+  string availability_zone = 3 [json_name = "availability_zone"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  string vpc_id = 8 [json_name = "vpc_id"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsVpnGatewayAttachment version is 0
+message AwsVpnGatewayAttachment {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string vpc_id = 3 [json_name = "vpc_id"];
+
+  string vpn_gateway_id = 4 [json_name = "vpn_gateway_id"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsVpnGatewayRoutePropagation version is 0
+message AwsVpnGatewayRoutePropagation {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string route_table_id = 3 [json_name = "route_table_id"];
+
+  string vpn_gateway_id = 4 [json_name = "vpn_gateway_id"];
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}

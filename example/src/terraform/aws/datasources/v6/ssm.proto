@@ -1,0 +1,320 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSsmDocument version is 0
+message AwsSsmDocument {
+  string arn = 1;
+
+  string content = 2;
+
+  string document_format = 3 [json_name = "document_format"];
+
+  string document_type = 4 [json_name = "document_type"];
+
+  string document_version = 5 [json_name = "document_version"];
+
+  string id = 6;
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsSsmInstances version is 0
+message AwsSsmInstances {
+  string id = 1;
+
+  repeated string ids = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated Filter filter = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+}
+
+// AwsSsmMaintenanceWindows version is 0
+message AwsSsmMaintenanceWindows {
+  string id = 1;
+
+  repeated string ids = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated Filter filter = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+}
+
+// AwsSsmParameter version is 0
+message AwsSsmParameter {
+  string arn = 1;
+
+  string id = 2;
+
+  string insecure_value = 3 [json_name = "insecure_value"];
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string type = 6;
+
+  string value = 7;
+
+  int64 version = 8;
+
+  bool with_decryption = 9 [json_name = "with_decryption"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsSsmParametersByPath version is 0
+message AwsSsmParametersByPath {
+  repeated string arns = 1;
+
+  string id = 2;
+
+  repeated string names = 3;
+
+  string path = 4;
+
+  bool recursive = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  repeated string types = 7;
+
+  repeated string values = 8;
+
+  bool with_decryption = 9 [json_name = "with_decryption"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsSsmPatchBaseline version is 0
+message AwsSsmPatchBaseline {
+  repeated ApprovalRule approval_rule = 1 [json_name = "approval_rule"];
+
+  repeated string approved_patches = 2 [json_name = "approved_patches"];
+
+  string approved_patches_compliance_level = 3 [json_name = "approved_patches_compliance_level"];
+
+  bool approved_patches_enable_non_security = 4 [json_name = "approved_patches_enable_non_security"];
+
+  string available_security_updates_compliance_status = 5 [
+    json_name = "available_security_updates_compliance_status"
+  ];
+
+  bool default_baseline = 6 [json_name = "default_baseline"];
+
+  string description = 7;
+
+  repeated GlobalFilter global_filter = 8 [json_name = "global_filter"];
+
+  string id = 9;
+
+  string json = 10;
+
+  string name = 11;
+
+  string name_prefix = 12 [json_name = "name_prefix"];
+
+  string operating_system = 13 [json_name = "operating_system"];
+
+  string owner = 14;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 15;
+
+  repeated string rejected_patches = 16 [json_name = "rejected_patches"];
+
+  string rejected_patches_action = 17 [json_name = "rejected_patches_action"];
+
+  repeated Source source = 18;
+
+  google.protobuf.Value for_each = 19 [json_name = "for_each"];
+
+  repeated string depends_on = 20 [json_name = "depends_on"];
+
+  int32 count = 21;
+
+  string provider = 22;
+
+  terraform.v1.Lifecycle lifecycle = 23;
+
+  message ApprovalRule {
+    // approve_after_days: number
+    int64 approve_after_days = 1 [json_name = "approve_after_days"];
+
+    // approve_until_date: string
+    string approve_until_date = 2 [json_name = "approve_until_date"];
+
+    // compliance_level: string
+    string compliance_level = 3 [json_name = "compliance_level"];
+
+    // enable_non_security: bool
+    bool enable_non_security = 4 [json_name = "enable_non_security"];
+
+    // patch_filter: list of object
+    repeated PatchFilter patch_filter = 5 [json_name = "patch_filter"];
+
+    message PatchFilter {
+      // key: string
+      string key = 1;
+
+      // values: list of string
+      repeated string values = 2;
+    }
+  }
+
+  message GlobalFilter {
+    // key: string
+    string key = 1;
+
+    // values: list of string
+    repeated string values = 2;
+  }
+
+  message Source {
+    // configuration: string
+    string configuration = 1;
+
+    // name: string
+    string name = 2;
+
+    // products: list of string
+    repeated string products = 3;
+  }
+}
+
+// AwsSsmPatchBaselines version is 0
+message AwsSsmPatchBaselines {
+  repeated BaselineIdentities baseline_identities = 1 [json_name = "baseline_identities"];
+
+  bool default_baselines = 2 [json_name = "default_baselines"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated Filter filter = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message BaselineIdentities {
+    // baseline_description: string
+    string baseline_description = 1 [json_name = "baseline_description"];
+
+    // baseline_id: string
+    string baseline_id = 2 [json_name = "baseline_id"];
+
+    // baseline_name: string
+    string baseline_name = 3 [json_name = "baseline_name"];
+
+    // default_baseline: bool
+    bool default_baseline = 4 [json_name = "default_baseline"];
+
+    // operating_system: string
+    string operating_system = 5 [json_name = "operating_system"];
+  }
+
+  message Filter {
+    string key = 1;
+
+    repeated string values = 2;
+  }
+}

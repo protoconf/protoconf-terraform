@@ -1,0 +1,411 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsKmsAlias version is 0
+message AwsKmsAlias {
+  string arn = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  string name_prefix = 4 [json_name = "name_prefix"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string target_key_arn = 6 [json_name = "target_key_arn"];
+
+  string target_key_id = 7 [json_name = "target_key_id"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsKmsCiphertext version is 0
+message AwsKmsCiphertext {
+  string ciphertext_blob = 1 [json_name = "ciphertext_blob"];
+
+  map<string, string> context = 2;
+
+  string id = 3;
+
+  string key_id = 4 [json_name = "key_id"];
+
+  string plaintext = 5;
+
+  string plaintext_wo = 6 [json_name = "plaintext_wo"];
+
+  string plaintext_wo_version = 7 [json_name = "plaintext_wo_version"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsKmsCustomKeyStore version is 0
+message AwsKmsCustomKeyStore {
+  string cloud_hsm_cluster_id = 1 [json_name = "cloud_hsm_cluster_id"];
+
+  string custom_key_store_name = 2 [json_name = "custom_key_store_name"];
+
+  string custom_key_store_type = 3 [json_name = "custom_key_store_type"];
+
+  string id = 4;
+
+  string key_store_password = 5 [json_name = "key_store_password"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string trust_anchor_certificate = 7 [json_name = "trust_anchor_certificate"];
+
+  string xks_proxy_connectivity = 8 [json_name = "xks_proxy_connectivity"];
+
+  string xks_proxy_uri_endpoint = 9 [json_name = "xks_proxy_uri_endpoint"];
+
+  string xks_proxy_uri_path = 10 [json_name = "xks_proxy_uri_path"];
+
+  string xks_proxy_vpc_endpoint_service_name = 11 [json_name = "xks_proxy_vpc_endpoint_service_name"];
+
+  repeated Timeouts timeouts = 12;
+
+  XksProxyAuthenticationCredential xks_proxy_authentication_credential = 13 [json_name = "xks_proxy_authentication_credential"];
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+
+  message XksProxyAuthenticationCredential {
+    string access_key_id = 1 [json_name = "access_key_id"];
+
+    string raw_secret_access_key = 2 [json_name = "raw_secret_access_key"];
+  }
+}
+
+// AwsKmsExternalKey version is 0
+message AwsKmsExternalKey {
+  string arn = 1;
+
+  bool bypass_policy_lockout_safety_check = 2 [json_name = "bypass_policy_lockout_safety_check"];
+
+  int64 deletion_window_in_days = 3 [json_name = "deletion_window_in_days"];
+
+  string description = 4;
+
+  bool enabled = 5;
+
+  string expiration_model = 6 [json_name = "expiration_model"];
+
+  string id = 7;
+
+  string key_material_base64 = 8 [json_name = "key_material_base64"];
+
+  string key_spec = 9 [json_name = "key_spec"];
+
+  string key_state = 10 [json_name = "key_state"];
+
+  string key_usage = 11 [json_name = "key_usage"];
+
+  bool multi_region = 12 [json_name = "multi_region"];
+
+  string policy = 13;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 14;
+
+  map<string, string> tags = 15;
+
+  map<string, string> tags_all = 16 [json_name = "tags_all"];
+
+  string valid_to = 17 [json_name = "valid_to"];
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+}
+
+// AwsKmsGrant version is 0
+message AwsKmsGrant {
+  repeated string grant_creation_tokens = 1 [json_name = "grant_creation_tokens"];
+
+  string grant_id = 2 [json_name = "grant_id"];
+
+  string grant_token = 3 [json_name = "grant_token"];
+
+  string grantee_principal = 4 [json_name = "grantee_principal"];
+
+  string id = 5;
+
+  string key_id = 6 [json_name = "key_id"];
+
+  string name = 7;
+
+  repeated string operations = 8;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  bool retire_on_delete = 10 [json_name = "retire_on_delete"];
+
+  string retiring_principal = 11 [json_name = "retiring_principal"];
+
+  repeated Constraints constraints = 12;
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message Constraints {
+    map<string, string> encryption_context_equals = 1 [json_name = "encryption_context_equals"];
+
+    map<string, string> encryption_context_subset = 2 [json_name = "encryption_context_subset"];
+  }
+}
+
+// AwsKmsKey version is 0
+message AwsKmsKey {
+  string arn = 1;
+
+  bool bypass_policy_lockout_safety_check = 2 [json_name = "bypass_policy_lockout_safety_check"];
+
+  string custom_key_store_id = 3 [json_name = "custom_key_store_id"];
+
+  string customer_master_key_spec = 4 [json_name = "customer_master_key_spec"];
+
+  int64 deletion_window_in_days = 5 [json_name = "deletion_window_in_days"];
+
+  string description = 6;
+
+  bool enable_key_rotation = 7 [json_name = "enable_key_rotation"];
+
+  string id = 8;
+
+  bool is_enabled = 9 [json_name = "is_enabled"];
+
+  string key_id = 10 [json_name = "key_id"];
+
+  string key_usage = 11 [json_name = "key_usage"];
+
+  bool multi_region = 12 [json_name = "multi_region"];
+
+  string policy = 13;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 14;
+
+  int64 rotation_period_in_days = 15 [json_name = "rotation_period_in_days"];
+
+  map<string, string> tags = 16;
+
+  map<string, string> tags_all = 17 [json_name = "tags_all"];
+
+  string xks_key_id = 18 [json_name = "xks_key_id"];
+
+  repeated Timeouts timeouts = 19;
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message Timeouts {
+    string create = 1;
+  }
+}
+
+// AwsKmsKeyPolicy version is 0
+message AwsKmsKeyPolicy {
+  bool bypass_policy_lockout_safety_check = 1 [json_name = "bypass_policy_lockout_safety_check"];
+
+  string id = 2;
+
+  string key_id = 3 [json_name = "key_id"];
+
+  string policy = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsKmsReplicaExternalKey version is 0
+message AwsKmsReplicaExternalKey {
+  string arn = 1;
+
+  bool bypass_policy_lockout_safety_check = 2 [json_name = "bypass_policy_lockout_safety_check"];
+
+  int64 deletion_window_in_days = 3 [json_name = "deletion_window_in_days"];
+
+  string description = 4;
+
+  bool enabled = 5;
+
+  string expiration_model = 6 [json_name = "expiration_model"];
+
+  string id = 7;
+
+  string key_id = 8 [json_name = "key_id"];
+
+  string key_material_base64 = 9 [json_name = "key_material_base64"];
+
+  string key_state = 10 [json_name = "key_state"];
+
+  string key_usage = 11 [json_name = "key_usage"];
+
+  string policy = 12;
+
+  string primary_key_arn = 13 [json_name = "primary_key_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 14;
+
+  map<string, string> tags = 15;
+
+  map<string, string> tags_all = 16 [json_name = "tags_all"];
+
+  string valid_to = 17 [json_name = "valid_to"];
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+}
+
+// AwsKmsReplicaKey version is 0
+message AwsKmsReplicaKey {
+  string arn = 1;
+
+  bool bypass_policy_lockout_safety_check = 2 [json_name = "bypass_policy_lockout_safety_check"];
+
+  int64 deletion_window_in_days = 3 [json_name = "deletion_window_in_days"];
+
+  string description = 4;
+
+  bool enabled = 5;
+
+  string id = 6;
+
+  string key_id = 7 [json_name = "key_id"];
+
+  bool key_rotation_enabled = 8 [json_name = "key_rotation_enabled"];
+
+  string key_spec = 9 [json_name = "key_spec"];
+
+  string key_usage = 10 [json_name = "key_usage"];
+
+  string policy = 11;
+
+  string primary_key_arn = 12 [json_name = "primary_key_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  map<string, string> tags = 14;
+
+  map<string, string> tags_all = 15 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+}

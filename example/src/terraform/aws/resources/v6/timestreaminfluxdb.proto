@@ -1,0 +1,414 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsTimestreaminfluxdbDbCluster version is 0
+message AwsTimestreaminfluxdbDbCluster {
+  // The amount of storage to allocate for your DB storage type in GiB (gibibytes).
+  //
+  // 					This field is forbidden for InfluxDB V3 clusters (when using an InfluxDB V3
+  // db parameter group).
+  int64 allocated_storage = 1 [json_name = "allocated_storage"];
+
+  string arn = 2;
+
+  // Name of the initial InfluxDB bucket. All InfluxDB data is stored in a bucket.
+  //
+  // 					A bucket combines the concept of a database and a retention period (the
+  // duration of time
+  //
+  // 					that each data point persists). A bucket belongs to an organization. Along
+  // with organization,
+  //
+  // 					username, and password, this argument will be stored in the secret referred
+  // to by the
+  //
+  // 					influx_auth_parameters_secret_arn attribute. This field is forbidden for
+  // InfluxDB V3 clusters
+  //
+  // 					(when using an InfluxDB V3 db parameter group).
+  string bucket = 3;
+
+  // The Timestream for InfluxDB DB instance type to run InfluxDB on.
+  string db_instance_type = 4 [json_name = "db_instance_type"];
+
+  // The ID of the DB parameter group to assign to your DB cluster.
+  //
+  // 					DB parameter groups specify how the database is configured. For example, DB
+  // parameter groups
+  //
+  // 					can specify the limit for query concurrency.
+  string db_parameter_group_identifier = 5 [json_name = "db_parameter_group_identifier"];
+
+  // The Timestream for InfluxDB DB storage type to read and write InfluxDB data.
+  //
+  // 					You can choose between 3 different types of provisioned Influx IOPS included
+  // storage according
+  //
+  // 					to your workloads requirements: Influx IO Included 3000 IOPS, Influx IO
+  // Included 12000 IOPS,
+  //
+  // 					Influx IO Included 16000 IOPS.
+  string db_storage_type = 6 [json_name = "db_storage_type"];
+
+  // Specifies the type of cluster to create. This field is forbidden for InfluxDB V3
+  // clusters
+  //
+  // 					(when using an InfluxDB V3 db parameter group).
+  string deployment_type = 7 [json_name = "deployment_type"];
+
+  // The endpoint used to connect to InfluxDB. The default InfluxDB port is 8086.
+  string endpoint = 8;
+
+  // The database engine type of the DB cluster.
+  string engine_type = 9 [json_name = "engine_type"];
+
+  // Specifies the behavior of failure recovery when the primary node of the cluster
+  //
+  // 					fails.
+  string failover_mode = 10 [json_name = "failover_mode"];
+
+  string id = 11;
+
+  // The Amazon Resource Name (ARN) of the AWS Secrets Manager secret containing the
+  //
+  // 					initial InfluxDB authorization parameters. For InfluxDB V2 clusters, the
+  // secret value is a JSON
+  //
+  // 					formatted key-value pair holding InfluxDB authorization values:
+  // organization, bucket,
+  //
+  // 					username, and password. For InfluxDB V3 clusters, the secret contains the
+  // InfluxDB admin token.
+  string influx_auth_parameters_secret_arn = 12 [json_name = "influx_auth_parameters_secret_arn"];
+
+  // The name that uniquely identifies the DB cluster when interacting with the
+  //
+  // 					Amazon Timestream for InfluxDB API and CLI commands. This name will also be
+  // 					prefix included in the endpoint. DB cluster names must be unique per
+  // customer
+  //
+  // 					and per region.
+  string name = 13;
+
+  // Specifies whether the networkType of the Timestream for InfluxDB cluster is
+  //
+  // 					IPV4, which can communicate over IPv4 protocol only, or DUAL, which can
+  // communicate
+  //
+  // 					over both IPv4 and IPv6 protocols.
+  string network_type = 14 [json_name = "network_type"];
+
+  // Name of the initial organization for the initial admin user in InfluxDB. An
+  //
+  // 					InfluxDB organization is a workspace for a group of users. Along with
+  // bucket, username,
+  //
+  // 					and password, this argument will be stored in the secret referred to by the
+  //
+  // 					influx_auth_parameters_secret_arn attribute. This field is forbidden for
+  // InfluxDB V3 clusters
+  //
+  // 					(when using an InfluxDB V3 db parameter group).
+  string organization = 15;
+
+  // Password of the initial admin user created in InfluxDB. This password will
+  //
+  // 					allow you to access the InfluxDB UI to perform various administrative tasks
+  // and
+  //
+  // 					also use the InfluxDB CLI to create an operator token. Along with bucket,
+  // username,
+  //
+  // 					and organization, this argument will be stored in the secret referred to by
+  // the
+  //
+  // 					influx_auth_parameters_secret_arn attribute. This field is forbidden for
+  // InfluxDB V3 clusters
+  //
+  // 					(when using an InfluxDB V3 db parameter group) as the AWS API rejects it.
+  string password = 16;
+
+  // The port number on which InfluxDB accepts connections.
+  int64 port = 17;
+
+  // Configures the Timestream for InfluxDB cluster with a public IP to facilitate
+  // access.
+  bool publicly_accessible = 18 [json_name = "publicly_accessible"];
+
+  // The endpoint used to connect to the Timestream for InfluxDB cluster for
+  //
+  // 					read-only operations.
+  string reader_endpoint = 19 [json_name = "reader_endpoint"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 20;
+
+  map<string, string> tags = 21;
+
+  map<string, string> tags_all = 22 [json_name = "tags_all"];
+
+  // Username of the initial admin user created in InfluxDB. Must start with a letter
+  //
+  // 					and can't end with a hyphen or contain two consecutive hyphens. This
+  // username will allow
+  //
+  // 					you to access the InfluxDB UI to perform various administrative tasks and
+  // also use the
+  //
+  // 					InfluxDB CLI to create an operator token. Along with bucket, organization,
+  // and password,
+  //
+  // 					this argument will be stored in the secret referred to by the
+  // influx_auth_parameters_secret_arn
+  //
+  // 					attribute. This field is forbidden for InfluxDB V3 clusters (when using an
+  // InfluxDB V3 db parameter group).
+  string username = 23;
+
+  // A list of VPC security group IDs to associate with the Timestream for InfluxDB
+  // cluster.
+  repeated string vpc_security_group_ids = 24 [json_name = "vpc_security_group_ids"];
+
+  // A list of VPC subnet IDs to associate with the DB cluster. Provide at least
+  //
+  // 					two VPC subnet IDs in different availability zones when deploying with a
+  // Multi-AZ standby.
+  repeated string vpc_subnet_ids = 25 [json_name = "vpc_subnet_ids"];
+
+  repeated LogDeliveryConfiguration log_delivery_configuration = 26 [json_name = "log_delivery_configuration"];
+
+  repeated Timeouts timeouts = 27;
+
+  google.protobuf.Value for_each = 28 [json_name = "for_each"];
+
+  repeated string depends_on = 29 [json_name = "depends_on"];
+
+  int32 count = 30;
+
+  string provider = 31;
+
+  terraform.v1.Lifecycle lifecycle = 32;
+
+  message LogDeliveryConfiguration {
+    repeated S3Configuration s3_configuration = 1 [json_name = "s3_configuration"];
+
+    message S3Configuration {
+      // The name of the S3 bucket to deliver logs to.
+      string bucket_name = 1 [json_name = "bucket_name"];
+
+      // Indicates whether log delivery to the S3 bucket is enabled.
+      bool enabled = 2;
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsTimestreaminfluxdbDbInstance version is 0
+message AwsTimestreaminfluxdbDbInstance {
+  // The amount of storage to allocate for your DB storage type in GiB (gibibytes).
+  int64 allocated_storage = 1 [json_name = "allocated_storage"];
+
+  string arn = 2;
+
+  // The Availability Zone in which the DB instance resides.
+  string availability_zone = 3 [json_name = "availability_zone"];
+
+  // The name of the initial InfluxDB bucket. All InfluxDB data is stored in a bucket.
+  //
+  // 					A bucket combines the concept of a database and a retention period (the
+  // duration of time
+  //
+  // 					that each data point persists). A bucket belongs to an organization.
+  string bucket = 4;
+
+  // The Timestream for InfluxDB DB instance type to run InfluxDB on.
+  string db_instance_type = 5 [json_name = "db_instance_type"];
+
+  // The id of the DB parameter group assigned to your DB instance.
+  string db_parameter_group_identifier = 6 [json_name = "db_parameter_group_identifier"];
+
+  // The Timestream for InfluxDB DB storage type to read and write InfluxDB data.
+  //
+  // 					You can choose between 3 different types of provisioned Influx IOPS included
+  // storage according
+  //
+  // 					to your workloads requirements: Influx IO Included 3000 IOPS, Influx IO
+  // Included 12000 IOPS,
+  //
+  // 					Influx IO Included 16000 IOPS.
+  string db_storage_type = 7 [json_name = "db_storage_type"];
+
+  // Specifies whether the DB instance will be deployed as a standalone instance or
+  //
+  // 					with a Multi-AZ standby for high availability.
+  string deployment_type = 8 [json_name = "deployment_type"];
+
+  // The endpoint used to connect to InfluxDB. The default InfluxDB port is 8086.
+  string endpoint = 9;
+
+  string id = 10;
+
+  // The Amazon Resource Name (ARN) of the AWS Secrets Manager secret containing the
+  //
+  // 					initial InfluxDB authorization parameters. The secret value is a JSON
+  // formatted
+  //
+  // 					key-value pair holding InfluxDB authorization values: organization, bucket,
+  //
+  // 					username, and password.
+  string influx_auth_parameters_secret_arn = 11 [json_name = "influx_auth_parameters_secret_arn"];
+
+  // The name that uniquely identifies the DB instance when interacting with the
+  //
+  // 					Amazon Timestream for InfluxDB API and CLI commands. This name will also be
+  // 					prefix included in the endpoint. DB instance names must be unique per
+  // customer
+  //
+  // 					and per region.
+  string name = 12;
+
+  // Specifies whether the networkType of the Timestream for InfluxDB instance is
+  //
+  // 					IPV4, which can communicate over IPv4 protocol only, or DUAL, which can
+  // communicate
+  //
+  // 					over both IPv4 and IPv6 protocols.
+  string network_type = 13 [json_name = "network_type"];
+
+  // The name of the initial organization for the initial admin user in InfluxDB. An
+  //
+  // 					InfluxDB organization is a workspace for a group of users.
+  string organization = 14;
+
+  // The password of the initial admin user created in InfluxDB. This password will
+  //
+  // 					allow you to access the InfluxDB UI to perform various administrative tasks
+  // and
+  //
+  // 					also use the InfluxDB CLI to create an operator token. These attributes will
+  // be
+  //
+  // 					stored in a Secret created in AWS SecretManager in your account.
+  string password = 15;
+
+  // The port number on which InfluxDB accepts connections.
+  int64 port = 16;
+
+  // Configures the DB instance with a public IP to facilitate access.
+  bool publicly_accessible = 17 [json_name = "publicly_accessible"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 18;
+
+  // The Availability Zone in which the standby instance is located when deploying
+  //
+  // 					with a MultiAZ standby instance.
+  string secondary_availability_zone = 19 [json_name = "secondary_availability_zone"];
+
+  map<string, string> tags = 20;
+
+  map<string, string> tags_all = 21 [json_name = "tags_all"];
+
+  // The username of the initial admin user created in InfluxDB.
+  //
+  // 					Must start with a letter and can't end with a hyphen or contain two
+  //
+  // 					consecutive hyphens. For example, my-user1. This username will allow
+  //
+  // 					you to access the InfluxDB UI to perform various administrative tasks
+  //
+  // 					and also use the InfluxDB CLI to create an operator token. These
+  //
+  // 					attributes will be stored in a Secret created in Amazon Secrets
+  //
+  // 					Manager in your account
+  string username = 22;
+
+  // A list of VPC security group IDs to associate with the DB instance.
+  repeated string vpc_security_group_ids = 23 [json_name = "vpc_security_group_ids"];
+
+  // A list of VPC subnet IDs to associate with the DB instance. Provide at least
+  //
+  // 					two VPC subnet IDs in different availability zones when deploying with a
+  // Multi-AZ standby.
+  repeated string vpc_subnet_ids = 24 [json_name = "vpc_subnet_ids"];
+
+  repeated LogDeliveryConfiguration log_delivery_configuration = 25 [json_name = "log_delivery_configuration"];
+
+  repeated Timeouts timeouts = 26;
+
+  google.protobuf.Value for_each = 27 [json_name = "for_each"];
+
+  repeated string depends_on = 28 [json_name = "depends_on"];
+
+  int32 count = 29;
+
+  string provider = 30;
+
+  terraform.v1.Lifecycle lifecycle = 31;
+
+  message LogDeliveryConfiguration {
+    repeated S3Configuration s3_configuration = 1 [json_name = "s3_configuration"];
+
+    message S3Configuration {
+      // The name of the S3 bucket to deliver logs to.
+      string bucket_name = 1 [json_name = "bucket_name"];
+
+      // Indicates whether log delivery to the S3 bucket is enabled.
+      bool enabled = 2;
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}

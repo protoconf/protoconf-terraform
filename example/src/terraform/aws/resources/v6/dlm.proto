@@ -1,0 +1,261 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsDlmLifecyclePolicy version is 0
+message AwsDlmLifecyclePolicy {
+  string arn = 1;
+
+  string default_policy = 2 [json_name = "default_policy"];
+
+  string description = 3;
+
+  string execution_role_arn = 4 [json_name = "execution_role_arn"];
+
+  string id = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string state = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  PolicyDetails policy_details = 10 [json_name = "policy_details"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message PolicyDetails {
+    bool copy_tags = 1 [json_name = "copy_tags"];
+
+    int64 create_interval = 2 [json_name = "create_interval"];
+
+    bool extend_deletion = 3 [json_name = "extend_deletion"];
+
+    string policy_language = 4 [json_name = "policy_language"];
+
+    string policy_type = 5 [json_name = "policy_type"];
+
+    repeated string resource_locations = 6 [json_name = "resource_locations"];
+
+    string resource_type = 7 [json_name = "resource_type"];
+
+    repeated string resource_types = 8 [json_name = "resource_types"];
+
+    int64 retain_interval = 9 [json_name = "retain_interval"];
+
+    map<string, string> target_tags = 10 [json_name = "target_tags"];
+
+    Action action = 11;
+
+    EventSource event_source = 12 [json_name = "event_source"];
+
+    Exclusions exclusions = 13;
+
+    Parameters parameters = 14;
+
+    repeated Schedule schedule = 15;
+
+    message Action {
+      string name = 1;
+
+      repeated CrossRegionCopy cross_region_copy = 2 [json_name = "cross_region_copy"];
+
+      message CrossRegionCopy {
+        string target = 1;
+
+        EncryptionConfiguration encryption_configuration = 2 [json_name = "encryption_configuration"];
+
+        RetainRule retain_rule = 3 [json_name = "retain_rule"];
+
+        message EncryptionConfiguration {
+          string cmk_arn = 1 [json_name = "cmk_arn"];
+
+          bool encrypted = 2;
+        }
+
+        message RetainRule {
+          int64 interval = 1;
+
+          string interval_unit = 2 [json_name = "interval_unit"];
+        }
+      }
+    }
+
+    message EventSource {
+      string type = 1;
+
+      Parameters parameters = 2;
+
+      message Parameters {
+        string description_regex = 1 [json_name = "description_regex"];
+
+        string event_type = 2 [json_name = "event_type"];
+
+        repeated string snapshot_owner = 3 [json_name = "snapshot_owner"];
+      }
+    }
+
+    message Exclusions {
+      bool exclude_boot_volumes = 1 [json_name = "exclude_boot_volumes"];
+
+      map<string, string> exclude_tags = 2 [json_name = "exclude_tags"];
+
+      repeated string exclude_volume_types = 3 [json_name = "exclude_volume_types"];
+    }
+
+    message Parameters {
+      bool exclude_boot_volume = 1 [json_name = "exclude_boot_volume"];
+
+      bool no_reboot = 2 [json_name = "no_reboot"];
+    }
+
+    message Schedule {
+      bool copy_tags = 1 [json_name = "copy_tags"];
+
+      string name = 2;
+
+      map<string, string> tags_to_add = 3 [json_name = "tags_to_add"];
+
+      map<string, string> variable_tags = 4 [json_name = "variable_tags"];
+
+      ArchiveRule archive_rule = 5 [json_name = "archive_rule"];
+
+      CreateRule create_rule = 6 [json_name = "create_rule"];
+
+      repeated CrossRegionCopyRule cross_region_copy_rule = 7 [json_name = "cross_region_copy_rule"];
+
+      DeprecateRule deprecate_rule = 8 [json_name = "deprecate_rule"];
+
+      FastRestoreRule fast_restore_rule = 9 [json_name = "fast_restore_rule"];
+
+      RetainRule retain_rule = 10 [json_name = "retain_rule"];
+
+      ShareRule share_rule = 11 [json_name = "share_rule"];
+
+      message ArchiveRule {
+        ArchiveRetainRule archive_retain_rule = 1 [json_name = "archive_retain_rule"];
+
+        message ArchiveRetainRule {
+          RetentionArchiveTier retention_archive_tier = 1 [json_name = "retention_archive_tier"];
+
+          message RetentionArchiveTier {
+            int64 count = 1;
+
+            int64 interval = 2;
+
+            string interval_unit = 3 [json_name = "interval_unit"];
+          }
+        }
+      }
+
+      message CreateRule {
+        string cron_expression = 1 [json_name = "cron_expression"];
+
+        int64 interval = 2;
+
+        string interval_unit = 3 [json_name = "interval_unit"];
+
+        string location = 4;
+
+        repeated string times = 5;
+
+        Scripts scripts = 6;
+
+        message Scripts {
+          bool execute_operation_on_script_failure = 1 [json_name = "execute_operation_on_script_failure"];
+
+          string execution_handler = 2 [json_name = "execution_handler"];
+
+          string execution_handler_service = 3 [json_name = "execution_handler_service"];
+
+          int64 execution_timeout = 4 [json_name = "execution_timeout"];
+
+          int64 maximum_retry_count = 5 [json_name = "maximum_retry_count"];
+
+          repeated string stages = 6;
+        }
+      }
+
+      message CrossRegionCopyRule {
+        string cmk_arn = 1 [json_name = "cmk_arn"];
+
+        bool copy_tags = 2 [json_name = "copy_tags"];
+
+        bool encrypted = 3;
+
+        string target = 4;
+
+        string target_region = 5 [json_name = "target_region"];
+
+        DeprecateRule deprecate_rule = 6 [json_name = "deprecate_rule"];
+
+        RetainRule retain_rule = 7 [json_name = "retain_rule"];
+
+        message DeprecateRule {
+          int64 interval = 1;
+
+          string interval_unit = 2 [json_name = "interval_unit"];
+        }
+
+        message RetainRule {
+          int64 interval = 1;
+
+          string interval_unit = 2 [json_name = "interval_unit"];
+        }
+      }
+
+      message DeprecateRule {
+        int64 count = 1;
+
+        int64 interval = 2;
+
+        string interval_unit = 3 [json_name = "interval_unit"];
+      }
+
+      message FastRestoreRule {
+        repeated string availability_zones = 1 [json_name = "availability_zones"];
+
+        int64 count = 2;
+
+        int64 interval = 3;
+
+        string interval_unit = 4 [json_name = "interval_unit"];
+      }
+
+      message RetainRule {
+        int64 count = 1;
+
+        int64 interval = 2;
+
+        string interval_unit = 3 [json_name = "interval_unit"];
+      }
+
+      message ShareRule {
+        repeated string target_accounts = 1 [json_name = "target_accounts"];
+
+        int64 unshare_interval = 2 [json_name = "unshare_interval"];
+
+        string unshare_interval_unit = 3 [json_name = "unshare_interval_unit"];
+      }
+    }
+  }
+}

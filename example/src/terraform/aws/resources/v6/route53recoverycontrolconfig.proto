@@ -1,0 +1,146 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsRoute53recoverycontrolconfigCluster version is 0
+message AwsRoute53recoverycontrolconfigCluster {
+  string arn = 1;
+
+  repeated ClusterEndpoints cluster_endpoints = 2 [json_name = "cluster_endpoints"];
+
+  string id = 3;
+
+  string name = 4;
+
+  string network_type = 5 [json_name = "network_type"];
+
+  string status = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message ClusterEndpoints {
+    // endpoint: string
+    string endpoint = 1;
+
+    // region: string
+    string region = 2;
+  }
+}
+
+// AwsRoute53recoverycontrolconfigControlPanel version is 0
+message AwsRoute53recoverycontrolconfigControlPanel {
+  string arn = 1;
+
+  string cluster_arn = 2 [json_name = "cluster_arn"];
+
+  bool default_control_panel = 3 [json_name = "default_control_panel"];
+
+  string id = 4;
+
+  string name = 5;
+
+  int64 routing_control_count = 6 [json_name = "routing_control_count"];
+
+  string status = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsRoute53recoverycontrolconfigRoutingControl version is 0
+message AwsRoute53recoverycontrolconfigRoutingControl {
+  string arn = 1;
+
+  string cluster_arn = 2 [json_name = "cluster_arn"];
+
+  string control_panel_arn = 3 [json_name = "control_panel_arn"];
+
+  string id = 4;
+
+  string name = 5;
+
+  string status = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsRoute53recoverycontrolconfigSafetyRule version is 0
+message AwsRoute53recoverycontrolconfigSafetyRule {
+  string arn = 1;
+
+  repeated string asserted_controls = 2 [json_name = "asserted_controls"];
+
+  string control_panel_arn = 3 [json_name = "control_panel_arn"];
+
+  repeated string gating_controls = 4 [json_name = "gating_controls"];
+
+  string id = 5;
+
+  string name = 6;
+
+  string status = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  repeated string target_controls = 10 [json_name = "target_controls"];
+
+  int64 wait_period_ms = 11 [json_name = "wait_period_ms"];
+
+  RuleConfig rule_config = 12 [json_name = "rule_config"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message RuleConfig {
+    bool inverted = 1;
+
+    int64 threshold = 2;
+
+    string type = 3;
+  }
+}

@@ -1,0 +1,133 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsTimestreamwriteDatabase version is 0
+message AwsTimestreamwriteDatabase {
+  string arn = 1;
+
+  string created_time = 2 [json_name = "created_time"];
+
+  string kms_key_id = 3 [json_name = "kms_key_id"];
+
+  string last_updated_time = 4 [json_name = "last_updated_time"];
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  int64 table_count = 7 [json_name = "table_count"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsTimestreamwriteTable version is 0
+message AwsTimestreamwriteTable {
+  string arn = 1;
+
+  string creation_time = 2 [json_name = "creation_time"];
+
+  string database_name = 3 [json_name = "database_name"];
+
+  string last_updated_time = 4 [json_name = "last_updated_time"];
+
+  repeated MagneticStoreWriteProperties magnetic_store_write_properties = 5 [json_name = "magnetic_store_write_properties"];
+
+  string name = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  repeated RetentionProperties retention_properties = 8 [json_name = "retention_properties"];
+
+  repeated Schema schema = 9;
+
+  string table_status = 10 [json_name = "table_status"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message MagneticStoreWriteProperties {
+    // enable_magnetic_store_writes: bool
+    bool enable_magnetic_store_writes = 1 [json_name = "enable_magnetic_store_writes"];
+
+    // magnetic_store_rejected_data_location: list of object
+    repeated MagneticStoreRejectedDataLocation magnetic_store_rejected_data_location = 2 [
+      json_name = "magnetic_store_rejected_data_location"
+    ];
+
+    message MagneticStoreRejectedDataLocation {
+      // s3_configuration: list of object
+      repeated S3Configuration s3_configuration = 1 [json_name = "s3_configuration"];
+
+      message S3Configuration {
+        // bucket_name: string
+        string bucket_name = 1 [json_name = "bucket_name"];
+
+        // encryption_option: string
+        string encryption_option = 2 [json_name = "encryption_option"];
+
+        // kms_key_id: string
+        string kms_key_id = 3 [json_name = "kms_key_id"];
+
+        // object_key_prefix: string
+        string object_key_prefix = 4 [json_name = "object_key_prefix"];
+      }
+    }
+  }
+
+  message RetentionProperties {
+    // magnetic_store_retention_period_in_days: number
+    int64 magnetic_store_retention_period_in_days = 1 [
+      json_name = "magnetic_store_retention_period_in_days"
+    ];
+
+    // memory_store_retention_period_in_hours: number
+    int64 memory_store_retention_period_in_hours = 2 [
+      json_name = "memory_store_retention_period_in_hours"
+    ];
+  }
+
+  message Schema {
+    // composite_partition_key: list of object
+    repeated CompositePartitionKey composite_partition_key = 1 [json_name = "composite_partition_key"];
+
+    message CompositePartitionKey {
+      // enforcement_in_record: string
+      string enforcement_in_record = 1 [json_name = "enforcement_in_record"];
+
+      // name: string
+      string name = 2;
+
+      // type: string
+      string type = 3;
+    }
+  }
+}

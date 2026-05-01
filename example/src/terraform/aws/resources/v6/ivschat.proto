@@ -1,0 +1,124 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsIvschatLoggingConfiguration version is 0
+message AwsIvschatLoggingConfiguration {
+  string arn = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string state = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  DestinationConfiguration destination_configuration = 8 [json_name = "destination_configuration"];
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message DestinationConfiguration {
+    CloudwatchLogs cloudwatch_logs = 1 [json_name = "cloudwatch_logs"];
+
+    Firehose firehose = 2;
+
+    S3 s3 = 3;
+
+    message CloudwatchLogs {
+      string log_group_name = 1 [json_name = "log_group_name"];
+    }
+
+    message Firehose {
+      string delivery_stream_name = 1 [json_name = "delivery_stream_name"];
+    }
+
+    message S3 {
+      string bucket_name = 1 [json_name = "bucket_name"];
+    }
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsIvschatRoom version is 0
+message AwsIvschatRoom {
+  string arn = 1;
+
+  string id = 2;
+
+  repeated string logging_configuration_identifiers = 3 [json_name = "logging_configuration_identifiers"];
+
+  int64 maximum_message_length = 4 [json_name = "maximum_message_length"];
+
+  int64 maximum_message_rate_per_second = 5 [json_name = "maximum_message_rate_per_second"];
+
+  string name = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  MessageReviewHandler message_review_handler = 10 [json_name = "message_review_handler"];
+
+  repeated Timeouts timeouts = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message MessageReviewHandler {
+    string fallback_result = 1 [json_name = "fallback_result"];
+
+    string uri = 2;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}

@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsEmrcontainersVirtualCluster version is 0
+message AwsEmrcontainersVirtualCluster {
+  string arn = 1;
+
+  repeated ContainerProvider container_provider = 2 [json_name = "container_provider"];
+
+  string created_at = 3 [json_name = "created_at"];
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string state = 7;
+
+  map<string, string> tags = 8;
+
+  string virtual_cluster_id = 9 [json_name = "virtual_cluster_id"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message ContainerProvider {
+    // id: string
+    string id = 1;
+
+    // info: list of object
+    repeated Info info = 2;
+
+    // type: string
+    string type = 3;
+
+    message Info {
+      // eks_info: list of object
+      repeated EksInfo eks_info = 1 [json_name = "eks_info"];
+
+      message EksInfo {
+        // namespace: string
+        string namespace = 1;
+      }
+    }
+  }
+}

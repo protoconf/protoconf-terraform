@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsPartition version is 0
+message AwsPartition {
+  string dns_suffix = 1 [json_name = "dns_suffix"];
+
+  string id = 2;
+
+  string partition = 3;
+
+  string reverse_dns_prefix = 4 [json_name = "reverse_dns_prefix"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}

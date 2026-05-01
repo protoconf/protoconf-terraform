@@ -1,0 +1,183 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSfnActivity version is 0
+message AwsSfnActivity {
+  string arn = 1;
+
+  string creation_date = 2 [json_name = "creation_date"];
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  EncryptionConfiguration encryption_configuration = 8 [json_name = "encryption_configuration"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message EncryptionConfiguration {
+    int64 kms_data_key_reuse_period_seconds = 1 [json_name = "kms_data_key_reuse_period_seconds"];
+
+    string kms_key_id = 2 [json_name = "kms_key_id"];
+
+    string type = 3;
+  }
+}
+
+// AwsSfnAlias version is 0
+message AwsSfnAlias {
+  string arn = 1;
+
+  string creation_date = 2 [json_name = "creation_date"];
+
+  string description = 3;
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  repeated RoutingConfiguration routing_configuration = 7 [json_name = "routing_configuration"];
+
+  repeated Timeouts timeouts = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message RoutingConfiguration {
+    string state_machine_version_arn = 1 [json_name = "state_machine_version_arn"];
+
+    int64 weight = 2;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsSfnStateMachine version is 0
+message AwsSfnStateMachine {
+  string arn = 1;
+
+  string creation_date = 2 [json_name = "creation_date"];
+
+  string definition = 3;
+
+  string description = 4;
+
+  string id = 5;
+
+  string name = 6;
+
+  string name_prefix = 7 [json_name = "name_prefix"];
+
+  bool publish = 8;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  string revision_id = 10 [json_name = "revision_id"];
+
+  string role_arn = 11 [json_name = "role_arn"];
+
+  string state_machine_version_arn = 12 [json_name = "state_machine_version_arn"];
+
+  string status = 13;
+
+  map<string, string> tags = 14;
+
+  map<string, string> tags_all = 15 [json_name = "tags_all"];
+
+  string type = 16;
+
+  string version_description = 17 [json_name = "version_description"];
+
+  EncryptionConfiguration encryption_configuration = 18 [json_name = "encryption_configuration"];
+
+  LoggingConfiguration logging_configuration = 19 [json_name = "logging_configuration"];
+
+  repeated Timeouts timeouts = 20;
+
+  TracingConfiguration tracing_configuration = 21 [json_name = "tracing_configuration"];
+
+  google.protobuf.Value for_each = 22 [json_name = "for_each"];
+
+  repeated string depends_on = 23 [json_name = "depends_on"];
+
+  int32 count = 24;
+
+  string provider = 25;
+
+  terraform.v1.Lifecycle lifecycle = 26;
+
+  message EncryptionConfiguration {
+    int64 kms_data_key_reuse_period_seconds = 1 [json_name = "kms_data_key_reuse_period_seconds"];
+
+    string kms_key_id = 2 [json_name = "kms_key_id"];
+
+    string type = 3;
+  }
+
+  message LoggingConfiguration {
+    bool include_execution_data = 1 [json_name = "include_execution_data"];
+
+    string level = 2;
+
+    string log_destination = 3 [json_name = "log_destination"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+
+  message TracingConfiguration {
+    bool enabled = 1;
+  }
+}

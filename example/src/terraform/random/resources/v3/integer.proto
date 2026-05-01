@@ -1,7 +1,9 @@
 syntax = "proto3";
 
-// Provider: random 3.5.1
+// Provider: random 3
 package terraform.random.resources.v3;
+
+import "google/protobuf/struct.proto";
 
 import "terraform/v1/meta.proto";
 
@@ -10,7 +12,8 @@ message RandomInteger {
   // The string representation of the integer result.
   string id = 1;
 
-  // Arbitrary map of values that, when changed, will trigger recreation of resource. See [the main provider documentation](../index.html) for more information.
+  // Arbitrary map of values that, when changed, will trigger recreation of resource.
+  // See [the main provider documentation](../index.html) for more information.
   map<string, string> keepers = 2;
 
   // The maximum inclusive value of the range.
@@ -25,7 +28,7 @@ message RandomInteger {
   // A custom seed to always produce the same value.
   string seed = 6;
 
-  map<string, string> for_each = 7 [json_name = "for_each"];
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
 
   repeated string depends_on = 8 [json_name = "depends_on"];
 

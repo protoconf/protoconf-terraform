@@ -1,0 +1,321 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsGrafanaLicenseAssociation version is 0
+message AwsGrafanaLicenseAssociation {
+  string free_trial_expiration = 1 [json_name = "free_trial_expiration"];
+
+  string grafana_token = 2 [json_name = "grafana_token"];
+
+  string id = 3;
+
+  string license_expiration = 4 [json_name = "license_expiration"];
+
+  string license_type = 5 [json_name = "license_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string workspace_id = 7 [json_name = "workspace_id"];
+
+  repeated Timeouts timeouts = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsGrafanaRoleAssociation version is 0
+message AwsGrafanaRoleAssociation {
+  repeated string group_ids = 1 [json_name = "group_ids"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string role = 4;
+
+  repeated string user_ids = 5 [json_name = "user_ids"];
+
+  string workspace_id = 6 [json_name = "workspace_id"];
+
+  repeated Timeouts timeouts = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsGrafanaWorkspace version is 0
+message AwsGrafanaWorkspace {
+  string account_access_type = 1 [json_name = "account_access_type"];
+
+  string arn = 2;
+
+  repeated string authentication_providers = 3 [json_name = "authentication_providers"];
+
+  string configuration = 4;
+
+  repeated string data_sources = 5 [json_name = "data_sources"];
+
+  string description = 6;
+
+  string endpoint = 7;
+
+  string grafana_version = 8 [json_name = "grafana_version"];
+
+  string id = 9;
+
+  string kms_key_id = 10 [json_name = "kms_key_id"];
+
+  string name = 11;
+
+  repeated string notification_destinations = 12 [json_name = "notification_destinations"];
+
+  string organization_role_name = 13 [json_name = "organization_role_name"];
+
+  repeated string organizational_units = 14 [json_name = "organizational_units"];
+
+  string permission_type = 15 [json_name = "permission_type"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 16;
+
+  string role_arn = 17 [json_name = "role_arn"];
+
+  string saml_configuration_status = 18 [json_name = "saml_configuration_status"];
+
+  string stack_set_name = 19 [json_name = "stack_set_name"];
+
+  map<string, string> tags = 20;
+
+  map<string, string> tags_all = 21 [json_name = "tags_all"];
+
+  NetworkAccessControl network_access_control = 22 [json_name = "network_access_control"];
+
+  repeated Timeouts timeouts = 23;
+
+  VpcConfiguration vpc_configuration = 24 [json_name = "vpc_configuration"];
+
+  google.protobuf.Value for_each = 25 [json_name = "for_each"];
+
+  repeated string depends_on = 26 [json_name = "depends_on"];
+
+  int32 count = 27;
+
+  string provider = 28;
+
+  terraform.v1.Lifecycle lifecycle = 29;
+
+  message NetworkAccessControl {
+    repeated string prefix_list_ids = 1 [json_name = "prefix_list_ids"];
+
+    repeated string vpce_ids = 2 [json_name = "vpce_ids"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string update = 2;
+  }
+
+  message VpcConfiguration {
+    repeated string security_group_ids = 1 [json_name = "security_group_ids"];
+
+    repeated string subnet_ids = 2 [json_name = "subnet_ids"];
+  }
+}
+
+// AwsGrafanaWorkspaceApiKey version is 0
+message AwsGrafanaWorkspaceApiKey {
+  string id = 1;
+
+  string key = 2;
+
+  string key_name = 3 [json_name = "key_name"];
+
+  string key_role = 4 [json_name = "key_role"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  int64 seconds_to_live = 6 [json_name = "seconds_to_live"];
+
+  string workspace_id = 7 [json_name = "workspace_id"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsGrafanaWorkspaceSamlConfiguration version is 0
+message AwsGrafanaWorkspaceSamlConfiguration {
+  repeated string admin_role_values = 1 [json_name = "admin_role_values"];
+
+  repeated string allowed_organizations = 2 [json_name = "allowed_organizations"];
+
+  repeated string editor_role_values = 3 [json_name = "editor_role_values"];
+
+  string email_assertion = 4 [json_name = "email_assertion"];
+
+  string groups_assertion = 5 [json_name = "groups_assertion"];
+
+  string id = 6;
+
+  string idp_metadata_url = 7 [json_name = "idp_metadata_url"];
+
+  string idp_metadata_xml = 8 [json_name = "idp_metadata_xml"];
+
+  string login_assertion = 9 [json_name = "login_assertion"];
+
+  int64 login_validity_duration = 10 [json_name = "login_validity_duration"];
+
+  string name_assertion = 11 [json_name = "name_assertion"];
+
+  string org_assertion = 12 [json_name = "org_assertion"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  string role_assertion = 14 [json_name = "role_assertion"];
+
+  string status = 15;
+
+  string workspace_id = 16 [json_name = "workspace_id"];
+
+  repeated Timeouts timeouts = 17;
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsGrafanaWorkspaceServiceAccount version is 0
+message AwsGrafanaWorkspaceServiceAccount {
+  string grafana_role = 1 [json_name = "grafana_role"];
+
+  string id = 2;
+
+  string name = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string service_account_id = 5 [json_name = "service_account_id"];
+
+  string workspace_id = 6 [json_name = "workspace_id"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsGrafanaWorkspaceServiceAccountToken version is 0
+message AwsGrafanaWorkspaceServiceAccountToken {
+  string created_at = 1 [json_name = "created_at"];
+
+  string expires_at = 2 [json_name = "expires_at"];
+
+  string id = 3;
+
+  string key = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  int64 seconds_to_live = 7 [json_name = "seconds_to_live"];
+
+  string service_account_id = 8 [json_name = "service_account_id"];
+
+  string service_account_token_id = 9 [json_name = "service_account_token_id"];
+
+  string workspace_id = 10 [json_name = "workspace_id"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+}

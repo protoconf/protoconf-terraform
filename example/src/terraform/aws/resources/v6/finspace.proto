@@ -1,0 +1,566 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsFinspaceKxCluster version is 0
+message AwsFinspaceKxCluster {
+  string arn = 1;
+
+  string availability_zone_id = 2 [json_name = "availability_zone_id"];
+
+  string az_mode = 3 [json_name = "az_mode"];
+
+  map<string, string> command_line_arguments = 4 [json_name = "command_line_arguments"];
+
+  string created_timestamp = 5 [json_name = "created_timestamp"];
+
+  string description = 6;
+
+  string environment_id = 7 [json_name = "environment_id"];
+
+  string execution_role = 8 [json_name = "execution_role"];
+
+  string id = 9;
+
+  string initialization_script = 10 [json_name = "initialization_script"];
+
+  string last_modified_timestamp = 11 [json_name = "last_modified_timestamp"];
+
+  string name = 12;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  string release_label = 14 [json_name = "release_label"];
+
+  string status = 15;
+
+  string status_reason = 16 [json_name = "status_reason"];
+
+  map<string, string> tags = 17;
+
+  map<string, string> tags_all = 18 [json_name = "tags_all"];
+
+  string type = 19;
+
+  AutoScalingConfiguration auto_scaling_configuration = 20 [json_name = "auto_scaling_configuration"];
+
+  repeated CacheStorageConfigurations cache_storage_configurations = 21 [json_name = "cache_storage_configurations"];
+
+  CapacityConfiguration capacity_configuration = 22 [json_name = "capacity_configuration"];
+
+  Code code = 23;
+
+  repeated Database database = 24;
+
+  SavedownStorageConfiguration savedown_storage_configuration = 25 [json_name = "savedown_storage_configuration"];
+
+  ScalingGroupConfiguration scaling_group_configuration = 26 [json_name = "scaling_group_configuration"];
+
+  repeated TickerplantLogConfiguration tickerplant_log_configuration = 27 [json_name = "tickerplant_log_configuration"];
+
+  repeated Timeouts timeouts = 28;
+
+  VpcConfiguration vpc_configuration = 29 [json_name = "vpc_configuration"];
+
+  google.protobuf.Value for_each = 30 [json_name = "for_each"];
+
+  repeated string depends_on = 31 [json_name = "depends_on"];
+
+  int32 count = 32;
+
+  string provider = 33;
+
+  terraform.v1.Lifecycle lifecycle = 34;
+
+  message AutoScalingConfiguration {
+    string auto_scaling_metric = 1 [json_name = "auto_scaling_metric"];
+
+    int64 max_node_count = 2 [json_name = "max_node_count"];
+
+    int64 metric_target = 3 [json_name = "metric_target"];
+
+    int64 min_node_count = 4 [json_name = "min_node_count"];
+
+    int64 scale_in_cooldown_seconds = 5 [json_name = "scale_in_cooldown_seconds"];
+
+    int64 scale_out_cooldown_seconds = 6 [json_name = "scale_out_cooldown_seconds"];
+  }
+
+  message CacheStorageConfigurations {
+    int64 size = 1;
+
+    string type = 2;
+  }
+
+  message CapacityConfiguration {
+    int64 node_count = 1 [json_name = "node_count"];
+
+    string node_type = 2 [json_name = "node_type"];
+  }
+
+  message Code {
+    string s3_bucket = 1 [json_name = "s3_bucket"];
+
+    string s3_key = 2 [json_name = "s3_key"];
+
+    string s3_object_version = 3 [json_name = "s3_object_version"];
+  }
+
+  message Database {
+    string changeset_id = 1 [json_name = "changeset_id"];
+
+    string database_name = 2 [json_name = "database_name"];
+
+    string dataview_name = 3 [json_name = "dataview_name"];
+
+    repeated CacheConfigurations cache_configurations = 4 [json_name = "cache_configurations"];
+
+    message CacheConfigurations {
+      string cache_type = 1 [json_name = "cache_type"];
+
+      repeated string db_paths = 2 [json_name = "db_paths"];
+    }
+  }
+
+  message SavedownStorageConfiguration {
+    int64 size = 1;
+
+    string type = 2;
+
+    string volume_name = 3 [json_name = "volume_name"];
+  }
+
+  message ScalingGroupConfiguration {
+    int64 cpu = 1;
+
+    int64 memory_limit = 2 [json_name = "memory_limit"];
+
+    int64 memory_reservation = 3 [json_name = "memory_reservation"];
+
+    int64 node_count = 4 [json_name = "node_count"];
+
+    string scaling_group_name = 5 [json_name = "scaling_group_name"];
+  }
+
+  message TickerplantLogConfiguration {
+    repeated string tickerplant_log_volumes = 1 [json_name = "tickerplant_log_volumes"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+
+  message VpcConfiguration {
+    string ip_address_type = 1 [json_name = "ip_address_type"];
+
+    repeated string security_group_ids = 2 [json_name = "security_group_ids"];
+
+    repeated string subnet_ids = 3 [json_name = "subnet_ids"];
+
+    string vpc_id = 4 [json_name = "vpc_id"];
+  }
+}
+
+// AwsFinspaceKxDatabase version is 0
+message AwsFinspaceKxDatabase {
+  string arn = 1;
+
+  string created_timestamp = 2 [json_name = "created_timestamp"];
+
+  string description = 3;
+
+  string environment_id = 4 [json_name = "environment_id"];
+
+  string id = 5;
+
+  string last_modified_timestamp = 6 [json_name = "last_modified_timestamp"];
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsFinspaceKxDataview version is 0
+message AwsFinspaceKxDataview {
+  string arn = 1;
+
+  bool auto_update = 2 [json_name = "auto_update"];
+
+  string availability_zone_id = 3 [json_name = "availability_zone_id"];
+
+  string az_mode = 4 [json_name = "az_mode"];
+
+  string changeset_id = 5 [json_name = "changeset_id"];
+
+  string created_timestamp = 6 [json_name = "created_timestamp"];
+
+  string database_name = 7 [json_name = "database_name"];
+
+  string description = 8;
+
+  string environment_id = 9 [json_name = "environment_id"];
+
+  string id = 10;
+
+  string last_modified_timestamp = 11 [json_name = "last_modified_timestamp"];
+
+  string name = 12;
+
+  bool read_write = 13 [json_name = "read_write"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 14;
+
+  string status = 15;
+
+  map<string, string> tags = 16;
+
+  map<string, string> tags_all = 17 [json_name = "tags_all"];
+
+  repeated SegmentConfigurations segment_configurations = 18 [json_name = "segment_configurations"];
+
+  repeated Timeouts timeouts = 19;
+
+  google.protobuf.Value for_each = 20 [json_name = "for_each"];
+
+  repeated string depends_on = 21 [json_name = "depends_on"];
+
+  int32 count = 22;
+
+  string provider = 23;
+
+  terraform.v1.Lifecycle lifecycle = 24;
+
+  message SegmentConfigurations {
+    repeated string db_paths = 1 [json_name = "db_paths"];
+
+    bool on_demand = 2 [json_name = "on_demand"];
+
+    string volume_name = 3 [json_name = "volume_name"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsFinspaceKxEnvironment version is 0
+message AwsFinspaceKxEnvironment {
+  string arn = 1;
+
+  repeated string availability_zones = 2 [json_name = "availability_zones"];
+
+  string created_timestamp = 3 [json_name = "created_timestamp"];
+
+  string description = 4;
+
+  string id = 5;
+
+  string infrastructure_account_id = 6 [json_name = "infrastructure_account_id"];
+
+  string kms_key_id = 7 [json_name = "kms_key_id"];
+
+  string last_modified_timestamp = 8 [json_name = "last_modified_timestamp"];
+
+  string name = 9;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  string status = 11;
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  repeated CustomDnsConfiguration custom_dns_configuration = 14 [json_name = "custom_dns_configuration"];
+
+  repeated Timeouts timeouts = 15;
+
+  TransitGatewayConfiguration transit_gateway_configuration = 16 [json_name = "transit_gateway_configuration"];
+
+  google.protobuf.Value for_each = 17 [json_name = "for_each"];
+
+  repeated string depends_on = 18 [json_name = "depends_on"];
+
+  int32 count = 19;
+
+  string provider = 20;
+
+  terraform.v1.Lifecycle lifecycle = 21;
+
+  message CustomDnsConfiguration {
+    string custom_dns_server_ip = 1 [json_name = "custom_dns_server_ip"];
+
+    string custom_dns_server_name = 2 [json_name = "custom_dns_server_name"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+
+  message TransitGatewayConfiguration {
+    string routable_cidr_space = 1 [json_name = "routable_cidr_space"];
+
+    string transit_gateway_id = 2 [json_name = "transit_gateway_id"];
+
+    repeated AttachmentNetworkAclConfiguration attachment_network_acl_configuration = 3 [json_name = "attachment_network_acl_configuration"];
+
+    message AttachmentNetworkAclConfiguration {
+      string cidr_block = 1 [json_name = "cidr_block"];
+
+      string protocol = 2;
+
+      string rule_action = 3 [json_name = "rule_action"];
+
+      int64 rule_number = 4 [json_name = "rule_number"];
+
+      IcmpTypeCode icmp_type_code = 5 [json_name = "icmp_type_code"];
+
+      PortRange port_range = 6 [json_name = "port_range"];
+
+      message IcmpTypeCode {
+        int64 code = 1;
+
+        int64 type = 2;
+      }
+
+      message PortRange {
+        int64 from = 1;
+
+        int64 to = 2;
+      }
+    }
+  }
+}
+
+// AwsFinspaceKxScalingGroup version is 0
+message AwsFinspaceKxScalingGroup {
+  string arn = 1;
+
+  string availability_zone_id = 2 [json_name = "availability_zone_id"];
+
+  repeated string clusters = 3;
+
+  string created_timestamp = 4 [json_name = "created_timestamp"];
+
+  string environment_id = 5 [json_name = "environment_id"];
+
+  string host_type = 6 [json_name = "host_type"];
+
+  string id = 7;
+
+  string last_modified_timestamp = 8 [json_name = "last_modified_timestamp"];
+
+  string name = 9;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  string status = 11;
+
+  string status_reason = 12 [json_name = "status_reason"];
+
+  map<string, string> tags = 13;
+
+  map<string, string> tags_all = 14 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 15;
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsFinspaceKxUser version is 0
+message AwsFinspaceKxUser {
+  string arn = 1;
+
+  string environment_id = 2 [json_name = "environment_id"];
+
+  string iam_role = 3 [json_name = "iam_role"];
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsFinspaceKxVolume version is 0
+message AwsFinspaceKxVolume {
+  string arn = 1;
+
+  repeated AttachedClusters attached_clusters = 2 [json_name = "attached_clusters"];
+
+  repeated string availability_zones = 3 [json_name = "availability_zones"];
+
+  string az_mode = 4 [json_name = "az_mode"];
+
+  string created_timestamp = 5 [json_name = "created_timestamp"];
+
+  string description = 6;
+
+  string environment_id = 7 [json_name = "environment_id"];
+
+  string id = 8;
+
+  string last_modified_timestamp = 9 [json_name = "last_modified_timestamp"];
+
+  string name = 10;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  string status = 12;
+
+  string status_reason = 13 [json_name = "status_reason"];
+
+  map<string, string> tags = 14;
+
+  map<string, string> tags_all = 15 [json_name = "tags_all"];
+
+  string type = 16;
+
+  repeated Nas1Configuration nas1_configuration = 17 [json_name = "nas1_configuration"];
+
+  repeated Timeouts timeouts = 18;
+
+  google.protobuf.Value for_each = 19 [json_name = "for_each"];
+
+  repeated string depends_on = 20 [json_name = "depends_on"];
+
+  int32 count = 21;
+
+  string provider = 22;
+
+  terraform.v1.Lifecycle lifecycle = 23;
+
+  message AttachedClusters {
+    // cluster_name: string
+    string cluster_name = 1 [json_name = "cluster_name"];
+
+    // cluster_status: string
+    string cluster_status = 2 [json_name = "cluster_status"];
+
+    // cluster_type: string
+    string cluster_type = 3 [json_name = "cluster_type"];
+  }
+
+  message Nas1Configuration {
+    int64 size = 1;
+
+    string type = 2;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}

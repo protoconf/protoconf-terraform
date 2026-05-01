@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCodebuildFleet version is 0
+message AwsCodebuildFleet {
+  string arn = 1;
+
+  int64 base_capacity = 2 [json_name = "base_capacity"];
+
+  repeated ComputeConfiguration compute_configuration = 3 [json_name = "compute_configuration"];
+
+  string compute_type = 4 [json_name = "compute_type"];
+
+  string created = 5;
+
+  string environment_type = 6 [json_name = "environment_type"];
+
+  string fleet_service_role = 7 [json_name = "fleet_service_role"];
+
+  string id = 8;
+
+  string image_id = 9 [json_name = "image_id"];
+
+  string last_modified = 10 [json_name = "last_modified"];
+
+  string name = 11;
+
+  string overflow_behavior = 12 [json_name = "overflow_behavior"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 13;
+
+  repeated ScalingConfiguration scaling_configuration = 14 [json_name = "scaling_configuration"];
+
+  repeated Status status = 15;
+
+  map<string, string> tags = 16;
+
+  repeated VpcConfig vpc_config = 17 [json_name = "vpc_config"];
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+
+  message ComputeConfiguration {
+    // disk: number
+    int64 disk = 1;
+
+    // instance_type: string
+    string instance_type = 2 [json_name = "instance_type"];
+
+    // machine_type: string
+    string machine_type = 3 [json_name = "machine_type"];
+
+    // memory: number
+    int64 memory = 4;
+
+    // vcpu: number
+    int64 vcpu = 5;
+  }
+
+  message ScalingConfiguration {
+    // desired_capacity: number
+    int64 desired_capacity = 1 [json_name = "desired_capacity"];
+
+    // max_capacity: number
+    int64 max_capacity = 2 [json_name = "max_capacity"];
+
+    // scaling_type: string
+    string scaling_type = 3 [json_name = "scaling_type"];
+
+    // target_tracking_scaling_configs: list of object
+    repeated TargetTrackingScalingConfigs target_tracking_scaling_configs = 4 [json_name = "target_tracking_scaling_configs"];
+
+    message TargetTrackingScalingConfigs {
+      // metric_type: string
+      string metric_type = 1 [json_name = "metric_type"];
+
+      // target_value: number
+      int64 target_value = 2 [json_name = "target_value"];
+    }
+  }
+
+  message Status {
+    // context: string
+    string context = 1;
+
+    // message: string
+    string message = 2;
+
+    // status_code: string
+    string status_code = 3 [json_name = "status_code"];
+  }
+
+  message VpcConfig {
+    // security_group_ids: set of string
+    repeated string security_group_ids = 1 [json_name = "security_group_ids"];
+
+    // subnets: set of string
+    repeated string subnets = 2;
+
+    // vpc_id: string
+    string vpc_id = 3 [json_name = "vpc_id"];
+  }
+}

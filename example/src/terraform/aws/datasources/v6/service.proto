@@ -1,0 +1,204 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsService version is 0
+message AwsService {
+  string dns_name = 1 [json_name = "dns_name"];
+
+  string id = 2;
+
+  string partition = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string reverse_dns_name = 5 [json_name = "reverse_dns_name"];
+
+  string reverse_dns_prefix = 6 [json_name = "reverse_dns_prefix"];
+
+  string service_id = 7 [json_name = "service_id"];
+
+  bool supported = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsServiceDiscoveryDnsNamespace version is 0
+message AwsServiceDiscoveryDnsNamespace {
+  string arn = 1;
+
+  string description = 2;
+
+  string hosted_zone = 3 [json_name = "hosted_zone"];
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  string type = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsServiceDiscoveryHttpNamespace version is 0
+message AwsServiceDiscoveryHttpNamespace {
+  string arn = 1;
+
+  string description = 2;
+
+  string http_name = 3 [json_name = "http_name"];
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsServiceDiscoveryService version is 0
+message AwsServiceDiscoveryService {
+  string arn = 1;
+
+  string description = 2;
+
+  repeated DnsConfig dns_config = 3 [json_name = "dns_config"];
+
+  repeated HealthCheckConfig health_check_config = 4 [json_name = "health_check_config"];
+
+  repeated HealthCheckCustomConfig health_check_custom_config = 5 [json_name = "health_check_custom_config"];
+
+  string id = 6;
+
+  string name = 7;
+
+  string namespace_id = 8 [json_name = "namespace_id"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  map<string, string> tags = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message DnsConfig {
+    // dns_records: list of object
+    repeated DnsRecords dns_records = 1 [json_name = "dns_records"];
+
+    // namespace_id: string
+    string namespace_id = 2 [json_name = "namespace_id"];
+
+    // routing_policy: string
+    string routing_policy = 3 [json_name = "routing_policy"];
+
+    message DnsRecords {
+      // ttl: number
+      int64 ttl = 1;
+
+      // type: string
+      string type = 2;
+    }
+  }
+
+  message HealthCheckConfig {
+    // failure_threshold: number
+    int64 failure_threshold = 1 [json_name = "failure_threshold"];
+
+    // resource_path: string
+    string resource_path = 2 [json_name = "resource_path"];
+
+    // type: string
+    string type = 3;
+  }
+
+  message HealthCheckCustomConfig {
+    // failure_threshold: number
+    int64 failure_threshold = 1 [json_name = "failure_threshold"];
+  }
+}
+
+// AwsServicePrincipal version is 0
+message AwsServicePrincipal {
+  string id = 1;
+
+  string name = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string service_name = 4 [json_name = "service_name"];
+
+  string suffix = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}

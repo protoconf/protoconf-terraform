@@ -1,0 +1,716 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsWorkspaceswebBrowserSettings version is 0
+message AwsWorkspaceswebBrowserSettings {
+  map<string, string> additional_encryption_context = 1 [json_name = "additional_encryption_context"];
+
+  repeated string associated_portal_arns = 2 [json_name = "associated_portal_arns"];
+
+  string browser_policy = 3 [json_name = "browser_policy"];
+
+  string browser_settings_arn = 4 [json_name = "browser_settings_arn"];
+
+  string customer_managed_key = 5 [json_name = "customer_managed_key"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsWorkspaceswebBrowserSettingsAssociation version is 0
+message AwsWorkspaceswebBrowserSettingsAssociation {
+  string browser_settings_arn = 1 [json_name = "browser_settings_arn"];
+
+  string portal_arn = 2 [json_name = "portal_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsWorkspaceswebDataProtectionSettings version is 0
+message AwsWorkspaceswebDataProtectionSettings {
+  map<string, string> additional_encryption_context = 1 [json_name = "additional_encryption_context"];
+
+  repeated string associated_portal_arns = 2 [json_name = "associated_portal_arns"];
+
+  string customer_managed_key = 3 [json_name = "customer_managed_key"];
+
+  string data_protection_settings_arn = 4 [json_name = "data_protection_settings_arn"];
+
+  string description = 5;
+
+  string display_name = 6 [json_name = "display_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  repeated InlineRedactionConfiguration inline_redaction_configuration = 10 [json_name = "inline_redaction_configuration"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message InlineRedactionConfiguration {
+    int64 global_confidence_level = 1 [json_name = "global_confidence_level"];
+
+    repeated string global_enforced_urls = 2 [json_name = "global_enforced_urls"];
+
+    repeated string global_exempt_urls = 3 [json_name = "global_exempt_urls"];
+
+    repeated InlineRedactionPattern inline_redaction_pattern = 4 [json_name = "inline_redaction_pattern"];
+
+    message InlineRedactionPattern {
+      string built_in_pattern_id = 1 [json_name = "built_in_pattern_id"];
+
+      int64 confidence_level = 2 [json_name = "confidence_level"];
+
+      repeated string enforced_urls = 3 [json_name = "enforced_urls"];
+
+      repeated string exempt_urls = 4 [json_name = "exempt_urls"];
+
+      repeated CustomPattern custom_pattern = 5 [json_name = "custom_pattern"];
+
+      repeated RedactionPlaceHolder redaction_place_holder = 6 [json_name = "redaction_place_holder"];
+
+      message CustomPattern {
+        string keyword_regex = 1 [json_name = "keyword_regex"];
+
+        string pattern_description = 2 [json_name = "pattern_description"];
+
+        string pattern_name = 3 [json_name = "pattern_name"];
+
+        string pattern_regex = 4 [json_name = "pattern_regex"];
+      }
+
+      message RedactionPlaceHolder {
+        string redaction_place_holder_text = 1 [json_name = "redaction_place_holder_text"];
+
+        string redaction_place_holder_type = 2 [json_name = "redaction_place_holder_type"];
+      }
+    }
+  }
+}
+
+// AwsWorkspaceswebDataProtectionSettingsAssociation version is 0
+message AwsWorkspaceswebDataProtectionSettingsAssociation {
+  string data_protection_settings_arn = 1 [json_name = "data_protection_settings_arn"];
+
+  string portal_arn = 2 [json_name = "portal_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsWorkspaceswebIdentityProvider version is 0
+message AwsWorkspaceswebIdentityProvider {
+  string identity_provider_arn = 1 [json_name = "identity_provider_arn"];
+
+  map<string, string> identity_provider_details = 2 [json_name = "identity_provider_details"];
+
+  string identity_provider_name = 3 [json_name = "identity_provider_name"];
+
+  string identity_provider_type = 4 [json_name = "identity_provider_type"];
+
+  string portal_arn = 5 [json_name = "portal_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsWorkspaceswebIpAccessSettings version is 0
+message AwsWorkspaceswebIpAccessSettings {
+  map<string, string> additional_encryption_context = 1 [json_name = "additional_encryption_context"];
+
+  repeated string associated_portal_arns = 2 [json_name = "associated_portal_arns"];
+
+  string customer_managed_key = 3 [json_name = "customer_managed_key"];
+
+  string description = 4;
+
+  string display_name = 5 [json_name = "display_name"];
+
+  string ip_access_settings_arn = 6 [json_name = "ip_access_settings_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  repeated IpRule ip_rule = 10 [json_name = "ip_rule"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message IpRule {
+    string description = 1;
+
+    string ip_range = 2 [json_name = "ip_range"];
+  }
+}
+
+// AwsWorkspaceswebIpAccessSettingsAssociation version is 0
+message AwsWorkspaceswebIpAccessSettingsAssociation {
+  string ip_access_settings_arn = 1 [json_name = "ip_access_settings_arn"];
+
+  string portal_arn = 2 [json_name = "portal_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsWorkspaceswebNetworkSettings version is 0
+message AwsWorkspaceswebNetworkSettings {
+  repeated string associated_portal_arns = 1 [json_name = "associated_portal_arns"];
+
+  string network_settings_arn = 2 [json_name = "network_settings_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated string security_group_ids = 4 [json_name = "security_group_ids"];
+
+  repeated string subnet_ids = 5 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  string vpc_id = 8 [json_name = "vpc_id"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsWorkspaceswebNetworkSettingsAssociation version is 0
+message AwsWorkspaceswebNetworkSettingsAssociation {
+  string network_settings_arn = 1 [json_name = "network_settings_arn"];
+
+  string portal_arn = 2 [json_name = "portal_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsWorkspaceswebPortal version is 0
+message AwsWorkspaceswebPortal {
+  map<string, string> additional_encryption_context = 1 [json_name = "additional_encryption_context"];
+
+  string authentication_type = 2 [json_name = "authentication_type"];
+
+  string browser_settings_arn = 3 [json_name = "browser_settings_arn"];
+
+  string browser_type = 4 [json_name = "browser_type"];
+
+  string creation_date = 5 [json_name = "creation_date"];
+
+  string customer_managed_key = 6 [json_name = "customer_managed_key"];
+
+  string data_protection_settings_arn = 7 [json_name = "data_protection_settings_arn"];
+
+  string display_name = 8 [json_name = "display_name"];
+
+  string instance_type = 9 [json_name = "instance_type"];
+
+  string ip_access_settings_arn = 10 [json_name = "ip_access_settings_arn"];
+
+  int64 max_concurrent_sessions = 11 [json_name = "max_concurrent_sessions"];
+
+  string network_settings_arn = 12 [json_name = "network_settings_arn"];
+
+  string portal_arn = 13 [json_name = "portal_arn"];
+
+  string portal_endpoint = 14 [json_name = "portal_endpoint"];
+
+  string portal_status = 15 [json_name = "portal_status"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 16;
+
+  string renderer_type = 17 [json_name = "renderer_type"];
+
+  string session_logger_arn = 18 [json_name = "session_logger_arn"];
+
+  string status_reason = 19 [json_name = "status_reason"];
+
+  map<string, string> tags = 20;
+
+  map<string, string> tags_all = 21 [json_name = "tags_all"];
+
+  string trust_store_arn = 22 [json_name = "trust_store_arn"];
+
+  string user_access_logging_settings_arn = 23 [json_name = "user_access_logging_settings_arn"];
+
+  string user_settings_arn = 24 [json_name = "user_settings_arn"];
+
+  repeated Timeouts timeouts = 25;
+
+  google.protobuf.Value for_each = 26 [json_name = "for_each"];
+
+  repeated string depends_on = 27 [json_name = "depends_on"];
+
+  int32 count = 28;
+
+  string provider = 29;
+
+  terraform.v1.Lifecycle lifecycle = 30;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsWorkspaceswebSessionLogger version is 0
+message AwsWorkspaceswebSessionLogger {
+  map<string, string> additional_encryption_context = 1 [json_name = "additional_encryption_context"];
+
+  repeated string associated_portal_arns = 2 [json_name = "associated_portal_arns"];
+
+  string customer_managed_key = 3 [json_name = "customer_managed_key"];
+
+  string display_name = 4 [json_name = "display_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string session_logger_arn = 6 [json_name = "session_logger_arn"];
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  repeated EventFilter event_filter = 9 [json_name = "event_filter"];
+
+  repeated LogConfiguration log_configuration = 10 [json_name = "log_configuration"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message EventFilter {
+    repeated string include = 1;
+
+    repeated All all = 2;
+
+    message All {
+    }
+  }
+
+  message LogConfiguration {
+    repeated S3 s3 = 1;
+
+    message S3 {
+      string bucket = 1;
+
+      string bucket_owner = 2 [json_name = "bucket_owner"];
+
+      string folder_structure = 3 [json_name = "folder_structure"];
+
+      string key_prefix = 4 [json_name = "key_prefix"];
+
+      string log_file_format = 5 [json_name = "log_file_format"];
+    }
+  }
+}
+
+// AwsWorkspaceswebSessionLoggerAssociation version is 0
+message AwsWorkspaceswebSessionLoggerAssociation {
+  string portal_arn = 1 [json_name = "portal_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string session_logger_arn = 3 [json_name = "session_logger_arn"];
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsWorkspaceswebTrustStore version is 0
+message AwsWorkspaceswebTrustStore {
+  repeated string associated_portal_arns = 1 [json_name = "associated_portal_arns"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  map<string, string> tags = 3;
+
+  map<string, string> tags_all = 4 [json_name = "tags_all"];
+
+  string trust_store_arn = 5 [json_name = "trust_store_arn"];
+
+  repeated Certificate certificate = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Certificate {
+    string body = 1;
+
+    string issuer = 2;
+
+    string not_valid_after = 3 [json_name = "not_valid_after"];
+
+    string not_valid_before = 4 [json_name = "not_valid_before"];
+
+    string subject = 5;
+
+    string thumbprint = 6;
+  }
+}
+
+// AwsWorkspaceswebTrustStoreAssociation version is 0
+message AwsWorkspaceswebTrustStoreAssociation {
+  string portal_arn = 1 [json_name = "portal_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string trust_store_arn = 3 [json_name = "trust_store_arn"];
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsWorkspaceswebUserAccessLoggingSettings version is 0
+message AwsWorkspaceswebUserAccessLoggingSettings {
+  repeated string associated_portal_arns = 1 [json_name = "associated_portal_arns"];
+
+  string kinesis_stream_arn = 2 [json_name = "kinesis_stream_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  map<string, string> tags = 4;
+
+  map<string, string> tags_all = 5 [json_name = "tags_all"];
+
+  string user_access_logging_settings_arn = 6 [json_name = "user_access_logging_settings_arn"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsWorkspaceswebUserAccessLoggingSettingsAssociation version is 0
+message AwsWorkspaceswebUserAccessLoggingSettingsAssociation {
+  string portal_arn = 1 [json_name = "portal_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string user_access_logging_settings_arn = 3 [json_name = "user_access_logging_settings_arn"];
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}
+
+// AwsWorkspaceswebUserSettings version is 0
+message AwsWorkspaceswebUserSettings {
+  map<string, string> additional_encryption_context = 1 [json_name = "additional_encryption_context"];
+
+  repeated string associated_portal_arns = 2 [json_name = "associated_portal_arns"];
+
+  string copy_allowed = 3 [json_name = "copy_allowed"];
+
+  string customer_managed_key = 4 [json_name = "customer_managed_key"];
+
+  string deep_link_allowed = 5 [json_name = "deep_link_allowed"];
+
+  int64 disconnect_timeout_in_minutes = 6 [json_name = "disconnect_timeout_in_minutes"];
+
+  string download_allowed = 7 [json_name = "download_allowed"];
+
+  int64 idle_disconnect_timeout_in_minutes = 8 [json_name = "idle_disconnect_timeout_in_minutes"];
+
+  string paste_allowed = 9 [json_name = "paste_allowed"];
+
+  string print_allowed = 10 [json_name = "print_allowed"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  string upload_allowed = 14 [json_name = "upload_allowed"];
+
+  string user_settings_arn = 15 [json_name = "user_settings_arn"];
+
+  repeated CookieSynchronizationConfiguration cookie_synchronization_configuration = 16 [json_name = "cookie_synchronization_configuration"];
+
+  repeated ToolbarConfiguration toolbar_configuration = 17 [json_name = "toolbar_configuration"];
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+
+  message CookieSynchronizationConfiguration {
+    repeated Allowlist allowlist = 1;
+
+    repeated Blocklist blocklist = 2;
+
+    message Allowlist {
+      string domain = 1;
+
+      string name = 2;
+
+      string path = 3;
+    }
+
+    message Blocklist {
+      string domain = 1;
+
+      string name = 2;
+
+      string path = 3;
+    }
+  }
+
+  message ToolbarConfiguration {
+    repeated string hidden_toolbar_items = 1 [json_name = "hidden_toolbar_items"];
+
+    string max_display_resolution = 2 [json_name = "max_display_resolution"];
+
+    string toolbar_type = 3 [json_name = "toolbar_type"];
+
+    string visual_mode = 4 [json_name = "visual_mode"];
+  }
+}
+
+// AwsWorkspaceswebUserSettingsAssociation version is 0
+message AwsWorkspaceswebUserSettingsAssociation {
+  string portal_arn = 1 [json_name = "portal_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string user_settings_arn = 3 [json_name = "user_settings_arn"];
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+}

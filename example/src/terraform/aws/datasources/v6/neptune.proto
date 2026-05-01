@@ -1,0 +1,138 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsNeptuneEngineVersion version is 0
+message AwsNeptuneEngineVersion {
+  string default_character_set = 1 [json_name = "default_character_set"];
+
+  bool default_only = 2 [json_name = "default_only"];
+
+  string engine = 3;
+
+  string engine_description = 4 [json_name = "engine_description"];
+
+  repeated string exportable_log_types = 5 [json_name = "exportable_log_types"];
+
+  bool has_major_target = 6 [json_name = "has_major_target"];
+
+  bool has_minor_target = 7 [json_name = "has_minor_target"];
+
+  string id = 8;
+
+  bool latest = 9;
+
+  string parameter_group_family = 10 [json_name = "parameter_group_family"];
+
+  repeated string preferred_major_targets = 11 [json_name = "preferred_major_targets"];
+
+  repeated string preferred_upgrade_targets = 12 [json_name = "preferred_upgrade_targets"];
+
+  repeated string preferred_versions = 13 [json_name = "preferred_versions"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 14;
+
+  repeated string supported_character_sets = 15 [json_name = "supported_character_sets"];
+
+  repeated string supported_timezones = 16 [json_name = "supported_timezones"];
+
+  bool supports_global_databases = 17 [json_name = "supports_global_databases"];
+
+  bool supports_log_exports_to_cloudwatch = 18 [json_name = "supports_log_exports_to_cloudwatch"];
+
+  bool supports_read_replica = 19 [json_name = "supports_read_replica"];
+
+  repeated string valid_major_targets = 20 [json_name = "valid_major_targets"];
+
+  repeated string valid_minor_targets = 21 [json_name = "valid_minor_targets"];
+
+  repeated string valid_upgrade_targets = 22 [json_name = "valid_upgrade_targets"];
+
+  string version = 23;
+
+  string version_actual = 24 [json_name = "version_actual"];
+
+  string version_description = 25 [json_name = "version_description"];
+
+  google.protobuf.Value for_each = 26 [json_name = "for_each"];
+
+  repeated string depends_on = 27 [json_name = "depends_on"];
+
+  int32 count = 28;
+
+  string provider = 29;
+
+  terraform.v1.Lifecycle lifecycle = 30;
+}
+
+// AwsNeptuneOrderableDbInstance version is 0
+message AwsNeptuneOrderableDbInstance {
+  repeated string availability_zones = 1 [json_name = "availability_zones"];
+
+  string engine = 2;
+
+  string engine_version = 3 [json_name = "engine_version"];
+
+  string id = 4;
+
+  string instance_class = 5 [json_name = "instance_class"];
+
+  string license_model = 6 [json_name = "license_model"];
+
+  int64 max_iops_per_db_instance = 7 [json_name = "max_iops_per_db_instance"];
+
+  int64 max_iops_per_gib = 8 [json_name = "max_iops_per_gib"];
+
+  int64 max_storage_size = 9 [json_name = "max_storage_size"];
+
+  int64 min_iops_per_db_instance = 10 [json_name = "min_iops_per_db_instance"];
+
+  int64 min_iops_per_gib = 11 [json_name = "min_iops_per_gib"];
+
+  int64 min_storage_size = 12 [json_name = "min_storage_size"];
+
+  bool multi_az_capable = 13 [json_name = "multi_az_capable"];
+
+  repeated string preferred_instance_classes = 14 [json_name = "preferred_instance_classes"];
+
+  bool read_replica_capable = 15 [json_name = "read_replica_capable"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 16;
+
+  string storage_type = 17 [json_name = "storage_type"];
+
+  bool supports_enhanced_monitoring = 18 [json_name = "supports_enhanced_monitoring"];
+
+  bool supports_iam_database_authentication = 19 [json_name = "supports_iam_database_authentication"];
+
+  bool supports_iops = 20 [json_name = "supports_iops"];
+
+  bool supports_performance_insights = 21 [json_name = "supports_performance_insights"];
+
+  bool supports_storage_encryption = 22 [json_name = "supports_storage_encryption"];
+
+  bool vpc = 23;
+
+  google.protobuf.Value for_each = 24 [json_name = "for_each"];
+
+  repeated string depends_on = 25 [json_name = "depends_on"];
+
+  int32 count = 26;
+
+  string provider = 27;
+
+  terraform.v1.Lifecycle lifecycle = 28;
+}

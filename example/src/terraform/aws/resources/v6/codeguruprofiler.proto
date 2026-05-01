@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCodeguruprofilerProfilingGroup version is 0
+message AwsCodeguruprofilerProfilingGroup {
+  string arn = 1;
+
+  string compute_platform = 2 [json_name = "compute_platform"];
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  repeated AgentOrchestrationConfig agent_orchestration_config = 8 [json_name = "agent_orchestration_config"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message AgentOrchestrationConfig {
+    bool profiling_enabled = 1 [json_name = "profiling_enabled"];
+  }
+}

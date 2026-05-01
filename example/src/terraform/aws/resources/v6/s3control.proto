@@ -1,0 +1,788 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsS3controlAccessGrant version is 0
+message AwsS3controlAccessGrant {
+  string access_grant_arn = 1 [json_name = "access_grant_arn"];
+
+  string access_grant_id = 2 [json_name = "access_grant_id"];
+
+  string access_grants_location_id = 3 [json_name = "access_grants_location_id"];
+
+  string account_id = 4 [json_name = "account_id"];
+
+  string grant_scope = 5 [json_name = "grant_scope"];
+
+  string id = 6;
+
+  string permission = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  string s3_prefix_type = 9 [json_name = "s3_prefix_type"];
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  repeated AccessGrantsLocationConfiguration access_grants_location_configuration = 12 [json_name = "access_grants_location_configuration"];
+
+  repeated Grantee grantee = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message AccessGrantsLocationConfiguration {
+    string s3_sub_prefix = 1 [json_name = "s3_sub_prefix"];
+  }
+
+  message Grantee {
+    string grantee_identifier = 1 [json_name = "grantee_identifier"];
+
+    string grantee_type = 2 [json_name = "grantee_type"];
+  }
+}
+
+// AwsS3controlAccessGrantsInstance version is 0
+message AwsS3controlAccessGrantsInstance {
+  string access_grants_instance_arn = 1 [json_name = "access_grants_instance_arn"];
+
+  string access_grants_instance_id = 2 [json_name = "access_grants_instance_id"];
+
+  string account_id = 3 [json_name = "account_id"];
+
+  string id = 4;
+
+  string identity_center_application_arn = 5 [json_name = "identity_center_application_arn"];
+
+  string identity_center_arn = 6 [json_name = "identity_center_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsS3controlAccessGrantsInstanceResourcePolicy version is 0
+message AwsS3controlAccessGrantsInstanceResourcePolicy {
+  string account_id = 1 [json_name = "account_id"];
+
+  string id = 2;
+
+  string policy = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsS3controlAccessGrantsLocation version is 0
+message AwsS3controlAccessGrantsLocation {
+  string access_grants_location_arn = 1 [json_name = "access_grants_location_arn"];
+
+  string access_grants_location_id = 2 [json_name = "access_grants_location_id"];
+
+  string account_id = 3 [json_name = "account_id"];
+
+  string iam_role_arn = 4 [json_name = "iam_role_arn"];
+
+  string id = 5;
+
+  string location_scope = 6 [json_name = "location_scope"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsS3controlAccessPointPolicy version is 0
+message AwsS3controlAccessPointPolicy {
+  string access_point_arn = 1 [json_name = "access_point_arn"];
+
+  bool has_public_access_policy = 2 [json_name = "has_public_access_policy"];
+
+  string id = 3;
+
+  string policy = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsS3controlBucket version is 0
+message AwsS3controlBucket {
+  string arn = 1;
+
+  string bucket = 2;
+
+  string creation_date = 3 [json_name = "creation_date"];
+
+  string id = 4;
+
+  string outpost_id = 5 [json_name = "outpost_id"];
+
+  bool public_access_block_enabled = 6 [json_name = "public_access_block_enabled"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  map<string, string> tags = 8;
+
+  map<string, string> tags_all = 9 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsS3controlBucketLifecycleConfiguration version is 0
+message AwsS3controlBucketLifecycleConfiguration {
+  string bucket = 1;
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated Rule rule = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message Rule {
+    string id = 1;
+
+    string status = 2;
+
+    AbortIncompleteMultipartUpload abort_incomplete_multipart_upload = 3 [json_name = "abort_incomplete_multipart_upload"];
+
+    Expiration expiration = 4;
+
+    Filter filter = 5;
+
+    message AbortIncompleteMultipartUpload {
+      int64 days_after_initiation = 1 [json_name = "days_after_initiation"];
+    }
+
+    message Expiration {
+      string date = 1;
+
+      int64 days = 2;
+
+      bool expired_object_delete_marker = 3 [json_name = "expired_object_delete_marker"];
+    }
+
+    message Filter {
+      string prefix = 1;
+
+      map<string, string> tags = 2;
+    }
+  }
+}
+
+// AwsS3controlBucketPolicy version is 0
+message AwsS3controlBucketPolicy {
+  string bucket = 1;
+
+  string id = 2;
+
+  string policy = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsS3controlDirectoryBucketAccessPointScope version is 0
+message AwsS3controlDirectoryBucketAccessPointScope {
+  string account_id = 1 [json_name = "account_id"];
+
+  string name = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  repeated Scope scope = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message Scope {
+    repeated string permissions = 1;
+
+    repeated string prefixes = 2;
+  }
+}
+
+// AwsS3controlMultiRegionAccessPoint version is 0
+message AwsS3controlMultiRegionAccessPoint {
+  string account_id = 1 [json_name = "account_id"];
+
+  string alias = 2;
+
+  string arn = 3;
+
+  string domain_name = 4 [json_name = "domain_name"];
+
+  string id = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string status = 7;
+
+  Details details = 8;
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Details {
+    string name = 1;
+
+    PublicAccessBlock public_access_block = 2 [json_name = "public_access_block"];
+
+    repeated Region region = 3;
+
+    message PublicAccessBlock {
+      bool block_public_acls = 1 [json_name = "block_public_acls"];
+
+      bool block_public_policy = 2 [json_name = "block_public_policy"];
+
+      bool ignore_public_acls = 3 [json_name = "ignore_public_acls"];
+
+      bool restrict_public_buckets = 4 [json_name = "restrict_public_buckets"];
+    }
+
+    message Region {
+      string bucket = 1;
+
+      string bucket_account_id = 2 [json_name = "bucket_account_id"];
+
+      string region = 3;
+    }
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsS3controlMultiRegionAccessPointPolicy version is 0
+message AwsS3controlMultiRegionAccessPointPolicy {
+  string account_id = 1 [json_name = "account_id"];
+
+  string established = 2;
+
+  string id = 3;
+
+  string proposed = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  Details details = 6;
+
+  repeated Timeouts timeouts = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message Details {
+    string name = 1;
+
+    string policy = 2;
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string update = 2;
+  }
+}
+
+// AwsS3controlObjectLambdaAccessPoint version is 0
+message AwsS3controlObjectLambdaAccessPoint {
+  string account_id = 1 [json_name = "account_id"];
+
+  string alias = 2;
+
+  string arn = 3;
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  Configuration configuration = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message Configuration {
+    repeated string allowed_features = 1 [json_name = "allowed_features"];
+
+    bool cloud_watch_metrics_enabled = 2 [json_name = "cloud_watch_metrics_enabled"];
+
+    string supporting_access_point = 3 [json_name = "supporting_access_point"];
+
+    repeated TransformationConfiguration transformation_configuration = 4 [json_name = "transformation_configuration"];
+
+    message TransformationConfiguration {
+      repeated string actions = 1;
+
+      ContentTransformation content_transformation = 2 [json_name = "content_transformation"];
+
+      message ContentTransformation {
+        AwsLambda aws_lambda = 1 [json_name = "aws_lambda"];
+
+        message AwsLambda {
+          string function_arn = 1 [json_name = "function_arn"];
+
+          string function_payload = 2 [json_name = "function_payload"];
+        }
+      }
+    }
+  }
+}
+
+// AwsS3controlObjectLambdaAccessPointPolicy version is 0
+message AwsS3controlObjectLambdaAccessPointPolicy {
+  string account_id = 1 [json_name = "account_id"];
+
+  bool has_public_access_policy = 2 [json_name = "has_public_access_policy"];
+
+  string id = 3;
+
+  string name = 4;
+
+  string policy = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsS3controlStorageLensConfiguration version is 0
+message AwsS3controlStorageLensConfiguration {
+  string account_id = 1 [json_name = "account_id"];
+
+  string arn = 2;
+
+  string config_id = 3 [json_name = "config_id"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  StorageLensConfiguration storage_lens_configuration = 8 [json_name = "storage_lens_configuration"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message StorageLensConfiguration {
+    bool enabled = 1;
+
+    string prefix_delimiter = 2 [json_name = "prefix_delimiter"];
+
+    AccountLevel account_level = 3 [json_name = "account_level"];
+
+    AwsOrg aws_org = 4 [json_name = "aws_org"];
+
+    DataExport data_export = 5 [json_name = "data_export"];
+
+    Exclude exclude = 6;
+
+    ExpandedPrefixesDataExport expanded_prefixes_data_export = 7 [json_name = "expanded_prefixes_data_export"];
+
+    Include include = 8;
+
+    message AccountLevel {
+      ActivityMetrics activity_metrics = 1 [json_name = "activity_metrics"];
+
+      AdvancedCostOptimizationMetrics advanced_cost_optimization_metrics = 2 [json_name = "advanced_cost_optimization_metrics"];
+
+      AdvancedDataProtectionMetrics advanced_data_protection_metrics = 3 [json_name = "advanced_data_protection_metrics"];
+
+      AdvancedPerformanceMetrics advanced_performance_metrics = 4 [json_name = "advanced_performance_metrics"];
+
+      BucketLevel bucket_level = 5 [json_name = "bucket_level"];
+
+      DetailedStatusCodeMetrics detailed_status_code_metrics = 6 [json_name = "detailed_status_code_metrics"];
+
+      message ActivityMetrics {
+        bool enabled = 1;
+      }
+
+      message AdvancedCostOptimizationMetrics {
+        bool enabled = 1;
+      }
+
+      message AdvancedDataProtectionMetrics {
+        bool enabled = 1;
+      }
+
+      message AdvancedPerformanceMetrics {
+        bool enabled = 1;
+      }
+
+      message BucketLevel {
+        ActivityMetrics activity_metrics = 1 [json_name = "activity_metrics"];
+
+        AdvancedCostOptimizationMetrics advanced_cost_optimization_metrics = 2 [json_name = "advanced_cost_optimization_metrics"];
+
+        AdvancedDataProtectionMetrics advanced_data_protection_metrics = 3 [json_name = "advanced_data_protection_metrics"];
+
+        AdvancedPerformanceMetrics advanced_performance_metrics = 4 [json_name = "advanced_performance_metrics"];
+
+        DetailedStatusCodeMetrics detailed_status_code_metrics = 5 [json_name = "detailed_status_code_metrics"];
+
+        PrefixLevel prefix_level = 6 [json_name = "prefix_level"];
+
+        message ActivityMetrics {
+          bool enabled = 1;
+        }
+
+        message AdvancedCostOptimizationMetrics {
+          bool enabled = 1;
+        }
+
+        message AdvancedDataProtectionMetrics {
+          bool enabled = 1;
+        }
+
+        message AdvancedPerformanceMetrics {
+          bool enabled = 1;
+        }
+
+        message DetailedStatusCodeMetrics {
+          bool enabled = 1;
+        }
+
+        message PrefixLevel {
+          StorageMetrics storage_metrics = 1 [json_name = "storage_metrics"];
+
+          message StorageMetrics {
+            bool enabled = 1;
+
+            SelectionCriteria selection_criteria = 2 [json_name = "selection_criteria"];
+
+            message SelectionCriteria {
+              string delimiter = 1;
+
+              int64 max_depth = 2 [json_name = "max_depth"];
+
+              int64 min_storage_bytes_percentage = 3 [json_name = "min_storage_bytes_percentage"];
+            }
+          }
+        }
+      }
+
+      message DetailedStatusCodeMetrics {
+        bool enabled = 1;
+      }
+    }
+
+    message AwsOrg {
+      string arn = 1;
+    }
+
+    message DataExport {
+      CloudWatchMetrics cloud_watch_metrics = 1 [json_name = "cloud_watch_metrics"];
+
+      S3BucketDestination s3_bucket_destination = 2 [json_name = "s3_bucket_destination"];
+
+      StorageLensTableDestination storage_lens_table_destination = 3 [json_name = "storage_lens_table_destination"];
+
+      message CloudWatchMetrics {
+        bool enabled = 1;
+      }
+
+      message S3BucketDestination {
+        string account_id = 1 [json_name = "account_id"];
+
+        string arn = 2;
+
+        string format = 3;
+
+        string output_schema_version = 4 [json_name = "output_schema_version"];
+
+        string prefix = 5;
+
+        Encryption encryption = 6;
+
+        message Encryption {
+          SseKms sse_kms = 1 [json_name = "sse_kms"];
+
+          repeated SseS3 sse_s3 = 2 [json_name = "sse_s3"];
+
+          message SseKms {
+            string key_id = 1 [json_name = "key_id"];
+          }
+
+          message SseS3 {
+          }
+        }
+      }
+
+      message StorageLensTableDestination {
+        bool enabled = 1;
+
+        Encryption encryption = 2;
+
+        message Encryption {
+          SseKms sse_kms = 1 [json_name = "sse_kms"];
+
+          repeated SseS3 sse_s3 = 2 [json_name = "sse_s3"];
+
+          message SseKms {
+            string key_id = 1 [json_name = "key_id"];
+          }
+
+          message SseS3 {
+          }
+        }
+      }
+    }
+
+    message Exclude {
+      repeated string buckets = 1;
+
+      repeated string regions = 2;
+    }
+
+    message ExpandedPrefixesDataExport {
+      S3BucketDestination s3_bucket_destination = 1 [json_name = "s3_bucket_destination"];
+
+      StorageLensTableDestination storage_lens_table_destination = 2 [json_name = "storage_lens_table_destination"];
+
+      message S3BucketDestination {
+        string account_id = 1 [json_name = "account_id"];
+
+        string arn = 2;
+
+        string format = 3;
+
+        string output_schema_version = 4 [json_name = "output_schema_version"];
+
+        string prefix = 5;
+
+        Encryption encryption = 6;
+
+        message Encryption {
+          SseKms sse_kms = 1 [json_name = "sse_kms"];
+
+          repeated SseS3 sse_s3 = 2 [json_name = "sse_s3"];
+
+          message SseKms {
+            string key_id = 1 [json_name = "key_id"];
+          }
+
+          message SseS3 {
+          }
+        }
+      }
+
+      message StorageLensTableDestination {
+        bool enabled = 1;
+
+        Encryption encryption = 2;
+
+        message Encryption {
+          SseKms sse_kms = 1 [json_name = "sse_kms"];
+
+          repeated SseS3 sse_s3 = 2 [json_name = "sse_s3"];
+
+          message SseKms {
+            string key_id = 1 [json_name = "key_id"];
+          }
+
+          message SseS3 {
+          }
+        }
+      }
+    }
+
+    message Include {
+      repeated string buckets = 1;
+
+      repeated string regions = 2;
+    }
+  }
+}

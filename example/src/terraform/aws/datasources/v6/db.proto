@@ -1,0 +1,455 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsDbClusterSnapshot version is 0
+message AwsDbClusterSnapshot {
+  int64 allocated_storage = 1 [json_name = "allocated_storage"];
+
+  repeated string availability_zones = 2 [json_name = "availability_zones"];
+
+  string db_cluster_identifier = 3 [json_name = "db_cluster_identifier"];
+
+  string db_cluster_snapshot_arn = 4 [json_name = "db_cluster_snapshot_arn"];
+
+  string db_cluster_snapshot_identifier = 5 [json_name = "db_cluster_snapshot_identifier"];
+
+  string engine = 6;
+
+  string engine_version = 7 [json_name = "engine_version"];
+
+  string id = 8;
+
+  bool include_public = 9 [json_name = "include_public"];
+
+  bool include_shared = 10 [json_name = "include_shared"];
+
+  string kms_key_id = 11 [json_name = "kms_key_id"];
+
+  string license_model = 12 [json_name = "license_model"];
+
+  bool most_recent = 13 [json_name = "most_recent"];
+
+  int64 port = 14;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 15;
+
+  string snapshot_create_time = 16 [json_name = "snapshot_create_time"];
+
+  string snapshot_type = 17 [json_name = "snapshot_type"];
+
+  string source_db_cluster_snapshot_arn = 18 [json_name = "source_db_cluster_snapshot_arn"];
+
+  string status = 19;
+
+  bool storage_encrypted = 20 [json_name = "storage_encrypted"];
+
+  map<string, string> tags = 21;
+
+  string vpc_id = 22 [json_name = "vpc_id"];
+
+  google.protobuf.Value for_each = 23 [json_name = "for_each"];
+
+  repeated string depends_on = 24 [json_name = "depends_on"];
+
+  int32 count = 25;
+
+  string provider = 26;
+
+  terraform.v1.Lifecycle lifecycle = 27;
+}
+
+// AwsDbEventCategories version is 0
+message AwsDbEventCategories {
+  repeated string event_categories = 1 [json_name = "event_categories"];
+
+  string id = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string source_type = 4 [json_name = "source_type"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsDbInstance version is 0
+message AwsDbInstance {
+  string address = 1;
+
+  int64 allocated_storage = 2 [json_name = "allocated_storage"];
+
+  bool auto_minor_version_upgrade = 3 [json_name = "auto_minor_version_upgrade"];
+
+  string availability_zone = 4 [json_name = "availability_zone"];
+
+  int64 backup_retention_period = 5 [json_name = "backup_retention_period"];
+
+  string ca_cert_identifier = 6 [json_name = "ca_cert_identifier"];
+
+  string database_insights_mode = 7 [json_name = "database_insights_mode"];
+
+  string db_cluster_identifier = 8 [json_name = "db_cluster_identifier"];
+
+  string db_instance_arn = 9 [json_name = "db_instance_arn"];
+
+  string db_instance_class = 10 [json_name = "db_instance_class"];
+
+  string db_instance_identifier = 11 [json_name = "db_instance_identifier"];
+
+  int64 db_instance_port = 12 [json_name = "db_instance_port"];
+
+  string db_name = 13 [json_name = "db_name"];
+
+  repeated string db_parameter_groups = 14 [json_name = "db_parameter_groups"];
+
+  string db_subnet_group = 15 [json_name = "db_subnet_group"];
+
+  repeated string enabled_cloudwatch_logs_exports = 16 [json_name = "enabled_cloudwatch_logs_exports"];
+
+  string endpoint = 17;
+
+  string engine = 18;
+
+  string engine_version = 19 [json_name = "engine_version"];
+
+  string hosted_zone_id = 20 [json_name = "hosted_zone_id"];
+
+  string id = 21;
+
+  int64 iops = 22;
+
+  string kms_key_id = 23 [json_name = "kms_key_id"];
+
+  string license_model = 24 [json_name = "license_model"];
+
+  repeated MasterUserSecret master_user_secret = 25 [json_name = "master_user_secret"];
+
+  string master_username = 26 [json_name = "master_username"];
+
+  int64 max_allocated_storage = 27 [json_name = "max_allocated_storage"];
+
+  int64 monitoring_interval = 28 [json_name = "monitoring_interval"];
+
+  string monitoring_role_arn = 29 [json_name = "monitoring_role_arn"];
+
+  bool multi_az = 30 [json_name = "multi_az"];
+
+  string network_type = 31 [json_name = "network_type"];
+
+  repeated string option_group_memberships = 32 [json_name = "option_group_memberships"];
+
+  int64 port = 33;
+
+  string preferred_backup_window = 34 [json_name = "preferred_backup_window"];
+
+  string preferred_maintenance_window = 35 [json_name = "preferred_maintenance_window"];
+
+  bool publicly_accessible = 36 [json_name = "publicly_accessible"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 37;
+
+  string replicate_source_db = 38 [json_name = "replicate_source_db"];
+
+  string resource_id = 39 [json_name = "resource_id"];
+
+  bool storage_encrypted = 40 [json_name = "storage_encrypted"];
+
+  int64 storage_throughput = 41 [json_name = "storage_throughput"];
+
+  string storage_type = 42 [json_name = "storage_type"];
+
+  map<string, string> tags = 43;
+
+  string timezone = 44;
+
+  string upgrade_rollout_order = 45 [json_name = "upgrade_rollout_order"];
+
+  repeated string vpc_security_groups = 46 [json_name = "vpc_security_groups"];
+
+  google.protobuf.Value for_each = 47 [json_name = "for_each"];
+
+  repeated string depends_on = 48 [json_name = "depends_on"];
+
+  int32 count = 49;
+
+  string provider = 50;
+
+  terraform.v1.Lifecycle lifecycle = 51;
+
+  message MasterUserSecret {
+    // kms_key_id: string
+    string kms_key_id = 1 [json_name = "kms_key_id"];
+
+    // secret_arn: string
+    string secret_arn = 2 [json_name = "secret_arn"];
+
+    // secret_status: string
+    string secret_status = 3 [json_name = "secret_status"];
+  }
+}
+
+// AwsDbInstances version is 0
+message AwsDbInstances {
+  string id = 1;
+
+  repeated string instance_arns = 2 [json_name = "instance_arns"];
+
+  repeated string instance_identifiers = 3 [json_name = "instance_identifiers"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  map<string, string> tags = 5;
+
+  repeated Filter filter = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+
+  message Filter {
+    string name = 1;
+
+    repeated string values = 2;
+  }
+}
+
+// AwsDbParameterGroup version is 0
+message AwsDbParameterGroup {
+  string arn = 1;
+
+  string description = 2;
+
+  string family = 3;
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsDbProxy version is 0
+message AwsDbProxy {
+  string arn = 1;
+
+  repeated Auth auth = 2;
+
+  bool debug_logging = 3 [json_name = "debug_logging"];
+
+  string default_auth_scheme = 4 [json_name = "default_auth_scheme"];
+
+  string endpoint = 5;
+
+  string endpoint_network_type = 6 [json_name = "endpoint_network_type"];
+
+  string engine_family = 7 [json_name = "engine_family"];
+
+  string id = 8;
+
+  int64 idle_client_timeout = 9 [json_name = "idle_client_timeout"];
+
+  string name = 10;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 11;
+
+  bool require_tls = 12 [json_name = "require_tls"];
+
+  string role_arn = 13 [json_name = "role_arn"];
+
+  string target_connection_network_type = 14 [json_name = "target_connection_network_type"];
+
+  string vpc_id = 15 [json_name = "vpc_id"];
+
+  repeated string vpc_security_group_ids = 16 [json_name = "vpc_security_group_ids"];
+
+  repeated string vpc_subnet_ids = 17 [json_name = "vpc_subnet_ids"];
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+
+  message Auth {
+    // auth_scheme: string
+    string auth_scheme = 1 [json_name = "auth_scheme"];
+
+    // client_password_auth_type: string
+    string client_password_auth_type = 2 [json_name = "client_password_auth_type"];
+
+    // description: string
+    string description = 3;
+
+    // iam_auth: string
+    string iam_auth = 4 [json_name = "iam_auth"];
+
+    // secret_arn: string
+    string secret_arn = 5 [json_name = "secret_arn"];
+
+    // username: string
+    string username = 6;
+  }
+}
+
+// AwsDbSnapshot version is 0
+message AwsDbSnapshot {
+  int64 allocated_storage = 1 [json_name = "allocated_storage"];
+
+  string availability_zone = 2 [json_name = "availability_zone"];
+
+  string db_instance_identifier = 3 [json_name = "db_instance_identifier"];
+
+  string db_snapshot_arn = 4 [json_name = "db_snapshot_arn"];
+
+  string db_snapshot_identifier = 5 [json_name = "db_snapshot_identifier"];
+
+  bool encrypted = 6;
+
+  string engine = 7;
+
+  string engine_version = 8 [json_name = "engine_version"];
+
+  string id = 9;
+
+  bool include_public = 10 [json_name = "include_public"];
+
+  bool include_shared = 11 [json_name = "include_shared"];
+
+  int64 iops = 12;
+
+  string kms_key_id = 13 [json_name = "kms_key_id"];
+
+  string license_model = 14 [json_name = "license_model"];
+
+  bool most_recent = 15 [json_name = "most_recent"];
+
+  string option_group_name = 16 [json_name = "option_group_name"];
+
+  string original_snapshot_create_time = 17 [json_name = "original_snapshot_create_time"];
+
+  int64 port = 18;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 19;
+
+  string snapshot_create_time = 20 [json_name = "snapshot_create_time"];
+
+  string snapshot_type = 21 [json_name = "snapshot_type"];
+
+  string source_db_snapshot_identifier = 22 [json_name = "source_db_snapshot_identifier"];
+
+  string source_region = 23 [json_name = "source_region"];
+
+  string status = 24;
+
+  string storage_type = 25 [json_name = "storage_type"];
+
+  map<string, string> tags = 26;
+
+  string vpc_id = 27 [json_name = "vpc_id"];
+
+  google.protobuf.Value for_each = 28 [json_name = "for_each"];
+
+  repeated string depends_on = 29 [json_name = "depends_on"];
+
+  int32 count = 30;
+
+  string provider = 31;
+
+  terraform.v1.Lifecycle lifecycle = 32;
+}
+
+// AwsDbSubnetGroup version is 0
+message AwsDbSubnetGroup {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string status = 6;
+
+  repeated string subnet_ids = 7 [json_name = "subnet_ids"];
+
+  repeated string supported_network_types = 8 [json_name = "supported_network_types"];
+
+  string vpc_id = 9 [json_name = "vpc_id"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}

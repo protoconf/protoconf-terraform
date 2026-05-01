@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSagemakerPrebuiltEcrImage version is 0
+message AwsSagemakerPrebuiltEcrImage {
+  string dns_suffix = 1 [json_name = "dns_suffix"];
+
+  string id = 2;
+
+  string image_tag = 3 [json_name = "image_tag"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string registry_id = 5 [json_name = "registry_id"];
+
+  string registry_path = 6 [json_name = "registry_path"];
+
+  string repository_name = 7 [json_name = "repository_name"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}

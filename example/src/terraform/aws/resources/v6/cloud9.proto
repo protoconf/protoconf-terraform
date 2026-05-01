@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCloud9EnvironmentEc2 version is 0
+message AwsCloud9EnvironmentEc2 {
+  string arn = 1;
+
+  int64 automatic_stop_time_minutes = 2 [json_name = "automatic_stop_time_minutes"];
+
+  string connection_type = 3 [json_name = "connection_type"];
+
+  string description = 4;
+
+  string id = 5;
+
+  string image_id = 6 [json_name = "image_id"];
+
+  string instance_type = 7 [json_name = "instance_type"];
+
+  string name = 8;
+
+  string owner_arn = 9 [json_name = "owner_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  string subnet_id = 11 [json_name = "subnet_id"];
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  string type = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+}
+
+// AwsCloud9EnvironmentMembership version is 0
+message AwsCloud9EnvironmentMembership {
+  string environment_id = 1 [json_name = "environment_id"];
+
+  string id = 2;
+
+  string permissions = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string user_arn = 5 [json_name = "user_arn"];
+
+  string user_id = 6 [json_name = "user_id"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}

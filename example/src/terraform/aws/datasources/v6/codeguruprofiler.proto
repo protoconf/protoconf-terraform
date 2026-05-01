@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCodeguruprofilerProfilingGroup version is 0
+message AwsCodeguruprofilerProfilingGroup {
+  repeated AgentOrchestrationConfig agent_orchestration_config = 1 [json_name = "agent_orchestration_config"];
+
+  string arn = 2;
+
+  string compute_platform = 3 [json_name = "compute_platform"];
+
+  string created_at = 4 [json_name = "created_at"];
+
+  string id = 5;
+
+  string name = 6;
+
+  repeated ProfilingStatus profiling_status = 7 [json_name = "profiling_status"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  string updated_at = 10 [json_name = "updated_at"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message AgentOrchestrationConfig {
+    // profiling_enabled: bool
+    bool profiling_enabled = 1 [json_name = "profiling_enabled"];
+  }
+
+  message ProfilingStatus {
+    // latest_agent_orchestrated_at: string
+    string latest_agent_orchestrated_at = 1 [json_name = "latest_agent_orchestrated_at"];
+
+    // latest_agent_profile_reported_at: string
+    string latest_agent_profile_reported_at = 2 [json_name = "latest_agent_profile_reported_at"];
+
+    // latest_aggregated_profile: list of object
+    repeated LatestAggregatedProfile latest_aggregated_profile = 3 [json_name = "latest_aggregated_profile"];
+
+    message LatestAggregatedProfile {
+      // period: string
+      string period = 1;
+
+      // start: string
+      string start = 2;
+    }
+  }
+}

@@ -1,0 +1,198 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsNotificationsChannelAssociation version is 0
+message AwsNotificationsChannelAssociation {
+  string arn = 1;
+
+  string notification_configuration_arn = 2 [json_name = "notification_configuration_arn"];
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+}
+
+// AwsNotificationsEventRule version is 0
+message AwsNotificationsEventRule {
+  string arn = 1;
+
+  string event_pattern = 2 [json_name = "event_pattern"];
+
+  string event_type = 3 [json_name = "event_type"];
+
+  string notification_configuration_arn = 4 [json_name = "notification_configuration_arn"];
+
+  repeated string regions = 5;
+
+  string source = 6;
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsNotificationsManagedNotificationAccountContactAssociation version is 0
+message AwsNotificationsManagedNotificationAccountContactAssociation {
+  string contact_identifier = 1 [json_name = "contact_identifier"];
+
+  string managed_notification_configuration_arn = 2 [
+    json_name = "managed_notification_configuration_arn"
+  ];
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+}
+
+// AwsNotificationsManagedNotificationAdditionalChannelAssociation version is 0
+message AwsNotificationsManagedNotificationAdditionalChannelAssociation {
+  string channel_arn = 1 [json_name = "channel_arn"];
+
+  string managed_notification_arn = 2 [json_name = "managed_notification_arn"];
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+}
+
+// AwsNotificationsNotificationConfiguration version is 0
+message AwsNotificationsNotificationConfiguration {
+  string aggregation_duration = 1 [json_name = "aggregation_duration"];
+
+  string arn = 2;
+
+  string description = 3;
+
+  string name = 4;
+
+  map<string, string> tags = 5;
+
+  map<string, string> tags_all = 6 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 7 [json_name = "for_each"];
+
+  repeated string depends_on = 8 [json_name = "depends_on"];
+
+  int32 count = 9;
+
+  string provider = 10;
+
+  terraform.v1.Lifecycle lifecycle = 11;
+}
+
+// AwsNotificationsNotificationHub version is 0
+message AwsNotificationsNotificationHub {
+  string notification_hub_region = 1 [json_name = "notification_hub_region"];
+
+  repeated Timeouts timeouts = 2;
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsNotificationsOrganizationalUnitAssociation version is 0
+message AwsNotificationsOrganizationalUnitAssociation {
+  string notification_configuration_arn = 1 [json_name = "notification_configuration_arn"];
+
+  string organizational_unit_id = 2 [json_name = "organizational_unit_id"];
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+}
+
+// AwsNotificationsOrganizationsAccess version is 0
+message AwsNotificationsOrganizationsAccess {
+  bool enabled = 1;
+
+  repeated Timeouts timeouts = 2;
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}

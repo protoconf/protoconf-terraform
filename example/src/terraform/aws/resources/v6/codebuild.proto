@@ -1,0 +1,605 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCodebuildFleet version is 0
+message AwsCodebuildFleet {
+  string arn = 1;
+
+  int64 base_capacity = 2 [json_name = "base_capacity"];
+
+  string compute_type = 3 [json_name = "compute_type"];
+
+  string created = 4;
+
+  string environment_type = 5 [json_name = "environment_type"];
+
+  string fleet_service_role = 6 [json_name = "fleet_service_role"];
+
+  string id = 7;
+
+  string image_id = 8 [json_name = "image_id"];
+
+  string last_modified = 9 [json_name = "last_modified"];
+
+  string name = 10;
+
+  string overflow_behavior = 11 [json_name = "overflow_behavior"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  repeated Status status = 13;
+
+  map<string, string> tags = 14;
+
+  map<string, string> tags_all = 15 [json_name = "tags_all"];
+
+  ComputeConfiguration compute_configuration = 16 [json_name = "compute_configuration"];
+
+  ScalingConfiguration scaling_configuration = 17 [json_name = "scaling_configuration"];
+
+  repeated VpcConfig vpc_config = 18 [json_name = "vpc_config"];
+
+  google.protobuf.Value for_each = 19 [json_name = "for_each"];
+
+  repeated string depends_on = 20 [json_name = "depends_on"];
+
+  int32 count = 21;
+
+  string provider = 22;
+
+  terraform.v1.Lifecycle lifecycle = 23;
+
+  message Status {
+    // context: string
+    string context = 1;
+
+    // message: string
+    string message = 2;
+
+    // status_code: string
+    string status_code = 3 [json_name = "status_code"];
+  }
+
+  message ComputeConfiguration {
+    int64 disk = 1;
+
+    string instance_type = 2 [json_name = "instance_type"];
+
+    string machine_type = 3 [json_name = "machine_type"];
+
+    int64 memory = 4;
+
+    int64 vcpu = 5;
+  }
+
+  message ScalingConfiguration {
+    int64 desired_capacity = 1 [json_name = "desired_capacity"];
+
+    int64 max_capacity = 2 [json_name = "max_capacity"];
+
+    string scaling_type = 3 [json_name = "scaling_type"];
+
+    repeated TargetTrackingScalingConfigs target_tracking_scaling_configs = 4 [json_name = "target_tracking_scaling_configs"];
+
+    message TargetTrackingScalingConfigs {
+      string metric_type = 1 [json_name = "metric_type"];
+
+      int64 target_value = 2 [json_name = "target_value"];
+    }
+  }
+
+  message VpcConfig {
+    repeated string security_group_ids = 1 [json_name = "security_group_ids"];
+
+    repeated string subnets = 2;
+
+    string vpc_id = 3 [json_name = "vpc_id"];
+  }
+}
+
+// AwsCodebuildProject version is 0
+message AwsCodebuildProject {
+  string arn = 1;
+
+  // Maximum number of additional automatic retries after a failed build. The default
+  // value is 0.
+  int64 auto_retry_limit = 2 [json_name = "auto_retry_limit"];
+
+  bool badge_enabled = 3 [json_name = "badge_enabled"];
+
+  string badge_url = 4 [json_name = "badge_url"];
+
+  int64 build_timeout = 5 [json_name = "build_timeout"];
+
+  int64 concurrent_build_limit = 6 [json_name = "concurrent_build_limit"];
+
+  string description = 7;
+
+  string encryption_key = 8 [json_name = "encryption_key"];
+
+  string id = 9;
+
+  string name = 10;
+
+  string project_visibility = 11 [json_name = "project_visibility"];
+
+  string public_project_alias = 12 [json_name = "public_project_alias"];
+
+  int64 queued_timeout = 13 [json_name = "queued_timeout"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 14;
+
+  string resource_access_role = 15 [json_name = "resource_access_role"];
+
+  string service_role = 16 [json_name = "service_role"];
+
+  string source_version = 17 [json_name = "source_version"];
+
+  map<string, string> tags = 18;
+
+  map<string, string> tags_all = 19 [json_name = "tags_all"];
+
+  Artifacts artifacts = 20;
+
+  BuildBatchConfig build_batch_config = 21 [json_name = "build_batch_config"];
+
+  Cache cache = 22;
+
+  Environment environment = 23;
+
+  repeated FileSystemLocations file_system_locations = 24 [json_name = "file_system_locations"];
+
+  LogsConfig logs_config = 25 [json_name = "logs_config"];
+
+  repeated SecondaryArtifacts secondary_artifacts = 26 [json_name = "secondary_artifacts"];
+
+  repeated SecondarySourceVersion secondary_source_version = 27 [json_name = "secondary_source_version"];
+
+  repeated SecondarySources secondary_sources = 28 [json_name = "secondary_sources"];
+
+  Source source = 29;
+
+  VpcConfig vpc_config = 30 [json_name = "vpc_config"];
+
+  google.protobuf.Value for_each = 31 [json_name = "for_each"];
+
+  repeated string depends_on = 32 [json_name = "depends_on"];
+
+  int32 count = 33;
+
+  string provider = 34;
+
+  terraform.v1.Lifecycle lifecycle = 35;
+
+  message Artifacts {
+    string artifact_identifier = 1 [json_name = "artifact_identifier"];
+
+    string bucket_owner_access = 2 [json_name = "bucket_owner_access"];
+
+    bool encryption_disabled = 3 [json_name = "encryption_disabled"];
+
+    string location = 4;
+
+    string name = 5;
+
+    string namespace_type = 6 [json_name = "namespace_type"];
+
+    bool override_artifact_name = 7 [json_name = "override_artifact_name"];
+
+    string packaging = 8;
+
+    string path = 9;
+
+    string type = 10;
+  }
+
+  message BuildBatchConfig {
+    bool combine_artifacts = 1 [json_name = "combine_artifacts"];
+
+    string service_role = 2 [json_name = "service_role"];
+
+    int64 timeout_in_mins = 3 [json_name = "timeout_in_mins"];
+
+    Restrictions restrictions = 4;
+
+    message Restrictions {
+      repeated string compute_types_allowed = 1 [json_name = "compute_types_allowed"];
+
+      int64 maximum_builds_allowed = 2 [json_name = "maximum_builds_allowed"];
+    }
+  }
+
+  message Cache {
+    string cache_namespace = 1 [json_name = "cache_namespace"];
+
+    string location = 2;
+
+    repeated string modes = 3;
+
+    string type = 4;
+  }
+
+  message Environment {
+    string certificate = 1;
+
+    string compute_type = 2 [json_name = "compute_type"];
+
+    string image = 3;
+
+    string image_pull_credentials_type = 4 [json_name = "image_pull_credentials_type"];
+
+    bool privileged_mode = 5 [json_name = "privileged_mode"];
+
+    string type = 6;
+
+    DockerServer docker_server = 7 [json_name = "docker_server"];
+
+    repeated EnvironmentVariable environment_variable = 8 [json_name = "environment_variable"];
+
+    Fleet fleet = 9;
+
+    RegistryCredential registry_credential = 10 [json_name = "registry_credential"];
+
+    message DockerServer {
+      string compute_type = 1 [json_name = "compute_type"];
+
+      repeated string security_group_ids = 2 [json_name = "security_group_ids"];
+    }
+
+    message EnvironmentVariable {
+      string name = 1;
+
+      string type = 2;
+
+      string value = 3;
+    }
+
+    message Fleet {
+      string fleet_arn = 1 [json_name = "fleet_arn"];
+    }
+
+    message RegistryCredential {
+      string credential = 1;
+
+      string credential_provider = 2 [json_name = "credential_provider"];
+    }
+  }
+
+  message FileSystemLocations {
+    string identifier = 1;
+
+    string location = 2;
+
+    string mount_options = 3 [json_name = "mount_options"];
+
+    string mount_point = 4 [json_name = "mount_point"];
+
+    string type = 5;
+  }
+
+  message LogsConfig {
+    CloudwatchLogs cloudwatch_logs = 1 [json_name = "cloudwatch_logs"];
+
+    S3Logs s3_logs = 2 [json_name = "s3_logs"];
+
+    message CloudwatchLogs {
+      string group_name = 1 [json_name = "group_name"];
+
+      string status = 2;
+
+      string stream_name = 3 [json_name = "stream_name"];
+    }
+
+    message S3Logs {
+      string bucket_owner_access = 1 [json_name = "bucket_owner_access"];
+
+      bool encryption_disabled = 2 [json_name = "encryption_disabled"];
+
+      string location = 3;
+
+      string status = 4;
+    }
+  }
+
+  message SecondaryArtifacts {
+    string artifact_identifier = 1 [json_name = "artifact_identifier"];
+
+    string bucket_owner_access = 2 [json_name = "bucket_owner_access"];
+
+    bool encryption_disabled = 3 [json_name = "encryption_disabled"];
+
+    string location = 4;
+
+    string name = 5;
+
+    string namespace_type = 6 [json_name = "namespace_type"];
+
+    bool override_artifact_name = 7 [json_name = "override_artifact_name"];
+
+    string packaging = 8;
+
+    string path = 9;
+
+    string type = 10;
+  }
+
+  message SecondarySourceVersion {
+    string source_identifier = 1 [json_name = "source_identifier"];
+
+    string source_version = 2 [json_name = "source_version"];
+  }
+
+  message SecondarySources {
+    string buildspec = 1;
+
+    int64 git_clone_depth = 2 [json_name = "git_clone_depth"];
+
+    bool insecure_ssl = 3 [json_name = "insecure_ssl"];
+
+    string location = 4;
+
+    bool report_build_status = 5 [json_name = "report_build_status"];
+
+    string source_identifier = 6 [json_name = "source_identifier"];
+
+    string type = 7;
+
+    Auth auth = 8;
+
+    BuildStatusConfig build_status_config = 9 [json_name = "build_status_config"];
+
+    GitSubmodulesConfig git_submodules_config = 10 [json_name = "git_submodules_config"];
+
+    message Auth {
+      string resource = 1;
+
+      string type = 2;
+    }
+
+    message BuildStatusConfig {
+      string context = 1;
+
+      string target_url = 2 [json_name = "target_url"];
+    }
+
+    message GitSubmodulesConfig {
+      bool fetch_submodules = 1 [json_name = "fetch_submodules"];
+    }
+  }
+
+  message Source {
+    string buildspec = 1;
+
+    int64 git_clone_depth = 2 [json_name = "git_clone_depth"];
+
+    bool insecure_ssl = 3 [json_name = "insecure_ssl"];
+
+    string location = 4;
+
+    bool report_build_status = 5 [json_name = "report_build_status"];
+
+    string type = 6;
+
+    Auth auth = 7;
+
+    BuildStatusConfig build_status_config = 8 [json_name = "build_status_config"];
+
+    GitSubmodulesConfig git_submodules_config = 9 [json_name = "git_submodules_config"];
+
+    message Auth {
+      string resource = 1;
+
+      string type = 2;
+    }
+
+    message BuildStatusConfig {
+      string context = 1;
+
+      string target_url = 2 [json_name = "target_url"];
+    }
+
+    message GitSubmodulesConfig {
+      bool fetch_submodules = 1 [json_name = "fetch_submodules"];
+    }
+  }
+
+  message VpcConfig {
+    repeated string security_group_ids = 1 [json_name = "security_group_ids"];
+
+    repeated string subnets = 2;
+
+    string vpc_id = 3 [json_name = "vpc_id"];
+  }
+}
+
+// AwsCodebuildReportGroup version is 0
+message AwsCodebuildReportGroup {
+  string arn = 1;
+
+  string created = 2;
+
+  bool delete_reports = 3 [json_name = "delete_reports"];
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  string type = 9;
+
+  ExportConfig export_config = 10 [json_name = "export_config"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message ExportConfig {
+    string type = 1;
+
+    S3Destination s3_destination = 2 [json_name = "s3_destination"];
+
+    message S3Destination {
+      string bucket = 1;
+
+      bool encryption_disabled = 2 [json_name = "encryption_disabled"];
+
+      string encryption_key = 3 [json_name = "encryption_key"];
+
+      string packaging = 4;
+
+      string path = 5;
+    }
+  }
+}
+
+// AwsCodebuildResourcePolicy version is 0
+message AwsCodebuildResourcePolicy {
+  string id = 1;
+
+  string policy = 2;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  string resource_arn = 4 [json_name = "resource_arn"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsCodebuildSourceCredential version is 0
+message AwsCodebuildSourceCredential {
+  string arn = 1;
+
+  string auth_type = 2 [json_name = "auth_type"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string server_type = 5 [json_name = "server_type"];
+
+  string token = 6;
+
+  string user_name = 7 [json_name = "user_name"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsCodebuildWebhook version is 0
+message AwsCodebuildWebhook {
+  string branch_filter = 1 [json_name = "branch_filter"];
+
+  string build_type = 2 [json_name = "build_type"];
+
+  string id = 3;
+
+  bool manual_creation = 4 [json_name = "manual_creation"];
+
+  string payload_url = 5 [json_name = "payload_url"];
+
+  string project_name = 6 [json_name = "project_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string secret = 8;
+
+  string url = 9;
+
+  repeated FilterGroup filter_group = 10 [json_name = "filter_group"];
+
+  PullRequestBuildPolicy pull_request_build_policy = 11 [json_name = "pull_request_build_policy"];
+
+  ScopeConfiguration scope_configuration = 12 [json_name = "scope_configuration"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+
+  message FilterGroup {
+    repeated Filter filter = 1;
+
+    message Filter {
+      bool exclude_matched_pattern = 1 [json_name = "exclude_matched_pattern"];
+
+      string pattern = 2;
+
+      string type = 3;
+    }
+  }
+
+  message PullRequestBuildPolicy {
+    repeated string approver_roles = 1 [json_name = "approver_roles"];
+
+    string requires_comment_approval = 2 [json_name = "requires_comment_approval"];
+  }
+
+  message ScopeConfiguration {
+    string domain = 1;
+
+    string name = 2;
+
+    string scope = 3;
+  }
+}

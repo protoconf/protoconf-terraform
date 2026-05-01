@@ -1,0 +1,363 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsOrganizationsAccount version is 0
+message AwsOrganizationsAccount {
+  string arn = 1;
+
+  bool close_on_deletion = 2 [json_name = "close_on_deletion"];
+
+  bool create_govcloud = 3 [json_name = "create_govcloud"];
+
+  string email = 4;
+
+  string govcloud_id = 5 [json_name = "govcloud_id"];
+
+  string iam_user_access_to_billing = 6 [json_name = "iam_user_access_to_billing"];
+
+  string id = 7;
+
+  string joined_method = 8 [json_name = "joined_method"];
+
+  string joined_timestamp = 9 [json_name = "joined_timestamp"];
+
+  string name = 10;
+
+  string parent_id = 11 [json_name = "parent_id"];
+
+  string role_name = 12 [json_name = "role_name"];
+
+  string state = 13;
+
+  string status = 14;
+
+  map<string, string> tags = 15;
+
+  map<string, string> tags_all = 16 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 17;
+
+  google.protobuf.Value for_each = 18 [json_name = "for_each"];
+
+  repeated string depends_on = 19 [json_name = "depends_on"];
+
+  int32 count = 20;
+
+  string provider = 21;
+
+  terraform.v1.Lifecycle lifecycle = 22;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsOrganizationsAwsServiceAccess version is 0
+message AwsOrganizationsAwsServiceAccess {
+  string date_enabled = 1 [json_name = "date_enabled"];
+
+  string service_principal = 2 [json_name = "service_principal"];
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+}
+
+// AwsOrganizationsDelegatedAdministrator version is 0
+message AwsOrganizationsDelegatedAdministrator {
+  string account_id = 1 [json_name = "account_id"];
+
+  string arn = 2;
+
+  string delegation_enabled_date = 3 [json_name = "delegation_enabled_date"];
+
+  string email = 4;
+
+  string id = 5;
+
+  string joined_method = 6 [json_name = "joined_method"];
+
+  string joined_timestamp = 7 [json_name = "joined_timestamp"];
+
+  string name = 8;
+
+  string service_principal = 9 [json_name = "service_principal"];
+
+  string status = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+}
+
+// AwsOrganizationsOrganization version is 0
+message AwsOrganizationsOrganization {
+  repeated Accounts accounts = 1;
+
+  string arn = 2;
+
+  repeated string aws_service_access_principals = 3 [json_name = "aws_service_access_principals"];
+
+  repeated string enabled_policy_types = 4 [json_name = "enabled_policy_types"];
+
+  string feature_set = 5 [json_name = "feature_set"];
+
+  string id = 6;
+
+  string master_account_arn = 7 [json_name = "master_account_arn"];
+
+  string master_account_email = 8 [json_name = "master_account_email"];
+
+  string master_account_id = 9 [json_name = "master_account_id"];
+
+  string master_account_name = 10 [json_name = "master_account_name"];
+
+  repeated NonMasterAccounts non_master_accounts = 11 [json_name = "non_master_accounts"];
+
+  bool return_organization_only = 12 [json_name = "return_organization_only"];
+
+  repeated Roots roots = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message Accounts {
+    // arn: string
+    string arn = 1;
+
+    // email: string
+    string email = 2;
+
+    // id: string
+    string id = 3;
+
+    // joined_method: string
+    string joined_method = 4 [json_name = "joined_method"];
+
+    // joined_timestamp: string
+    string joined_timestamp = 5 [json_name = "joined_timestamp"];
+
+    // name: string
+    string name = 6;
+
+    // state: string
+    string state = 7;
+
+    // status: string
+    string status = 8;
+  }
+
+  message NonMasterAccounts {
+    // arn: string
+    string arn = 1;
+
+    // email: string
+    string email = 2;
+
+    // id: string
+    string id = 3;
+
+    // joined_method: string
+    string joined_method = 4 [json_name = "joined_method"];
+
+    // joined_timestamp: string
+    string joined_timestamp = 5 [json_name = "joined_timestamp"];
+
+    // name: string
+    string name = 6;
+
+    // state: string
+    string state = 7;
+
+    // status: string
+    string status = 8;
+  }
+
+  message Roots {
+    // arn: string
+    string arn = 1;
+
+    // id: string
+    string id = 2;
+
+    // name: string
+    string name = 3;
+
+    // policy_types: list of object
+    repeated PolicyTypes policy_types = 4 [json_name = "policy_types"];
+
+    message PolicyTypes {
+      // status: string
+      string status = 1;
+
+      // type: string
+      string type = 2;
+    }
+  }
+}
+
+// AwsOrganizationsOrganizationalUnit version is 0
+message AwsOrganizationsOrganizationalUnit {
+  repeated Accounts accounts = 1;
+
+  string arn = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  string parent_id = 5 [json_name = "parent_id"];
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message Accounts {
+    // arn: string
+    string arn = 1;
+
+    // email: string
+    string email = 2;
+
+    // id: string
+    string id = 3;
+
+    // name: string
+    string name = 4;
+  }
+}
+
+// AwsOrganizationsPolicy version is 0
+message AwsOrganizationsPolicy {
+  string arn = 1;
+
+  string content = 2;
+
+  string description = 3;
+
+  string id = 4;
+
+  string name = 5;
+
+  bool skip_destroy = 6 [json_name = "skip_destroy"];
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  string type = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}
+
+// AwsOrganizationsPolicyAttachment version is 0
+message AwsOrganizationsPolicyAttachment {
+  string id = 1;
+
+  string policy_id = 2 [json_name = "policy_id"];
+
+  bool skip_destroy = 3 [json_name = "skip_destroy"];
+
+  string target_id = 4 [json_name = "target_id"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}
+
+// AwsOrganizationsResourcePolicy version is 0
+message AwsOrganizationsResourcePolicy {
+  string arn = 1;
+
+  string content = 2;
+
+  string id = 3;
+
+  map<string, string> tags = 4;
+
+  map<string, string> tags_all = 5 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}
+
+// AwsOrganizationsTag version is 0
+message AwsOrganizationsTag {
+  string id = 1;
+
+  string key = 2;
+
+  string resource_id = 3 [json_name = "resource_id"];
+
+  string value = 4;
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+}

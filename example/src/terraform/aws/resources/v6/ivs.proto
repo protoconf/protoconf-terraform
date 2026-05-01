@@ -1,0 +1,159 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsIvsChannel version is 0
+message AwsIvsChannel {
+  string arn = 1;
+
+  bool authorized = 2;
+
+  string id = 3;
+
+  string ingest_endpoint = 4 [json_name = "ingest_endpoint"];
+
+  string latency_mode = 5 [json_name = "latency_mode"];
+
+  string name = 6;
+
+  string playback_url = 7 [json_name = "playback_url"];
+
+  string recording_configuration_arn = 8 [json_name = "recording_configuration_arn"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  map<string, string> tags = 10;
+
+  map<string, string> tags_all = 11 [json_name = "tags_all"];
+
+  string type = 12;
+
+  repeated Timeouts timeouts = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+}
+
+// AwsIvsPlaybackKeyPair version is 0
+message AwsIvsPlaybackKeyPair {
+  string arn = 1;
+
+  string fingerprint = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  string public_key = 5 [json_name = "public_key"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  repeated Timeouts timeouts = 9;
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}
+
+// AwsIvsRecordingConfiguration version is 0
+message AwsIvsRecordingConfiguration {
+  string arn = 1;
+
+  string id = 2;
+
+  string name = 3;
+
+  int64 recording_reconnect_window_seconds = 4 [json_name = "recording_reconnect_window_seconds"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string state = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  DestinationConfiguration destination_configuration = 9 [json_name = "destination_configuration"];
+
+  ThumbnailConfiguration thumbnail_configuration = 10 [json_name = "thumbnail_configuration"];
+
+  repeated Timeouts timeouts = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message DestinationConfiguration {
+    S3 s3 = 1;
+
+    message S3 {
+      string bucket_name = 1 [json_name = "bucket_name"];
+    }
+  }
+
+  message ThumbnailConfiguration {
+    string recording_mode = 1 [json_name = "recording_mode"];
+
+    int64 target_interval_seconds = 2 [json_name = "target_interval_seconds"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+  }
+}

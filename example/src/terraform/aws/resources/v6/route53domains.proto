@@ -1,0 +1,505 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsRoute53domainsDelegationSignerRecord version is 0
+message AwsRoute53domainsDelegationSignerRecord {
+  string dnssec_key_id = 1 [json_name = "dnssec_key_id"];
+
+  string domain_name = 2 [json_name = "domain_name"];
+
+  string id = 3;
+
+  repeated SigningAttributes signing_attributes = 4 [json_name = "signing_attributes"];
+
+  repeated Timeouts timeouts = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+
+  message SigningAttributes {
+    int64 algorithm = 1;
+
+    int64 flags = 2;
+
+    string public_key = 3 [json_name = "public_key"];
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}
+
+// AwsRoute53domainsDomain version is 0
+message AwsRoute53domainsDomain {
+  string abuse_contact_email = 1 [json_name = "abuse_contact_email"];
+
+  string abuse_contact_phone = 2 [json_name = "abuse_contact_phone"];
+
+  bool admin_privacy = 3 [json_name = "admin_privacy"];
+
+  bool auto_renew = 4 [json_name = "auto_renew"];
+
+  repeated BillingContact billing_contact = 5 [json_name = "billing_contact"];
+
+  bool billing_privacy = 6 [json_name = "billing_privacy"];
+
+  string creation_date = 7 [json_name = "creation_date"];
+
+  string domain_name = 8 [json_name = "domain_name"];
+
+  int64 duration_in_years = 9 [json_name = "duration_in_years"];
+
+  string expiration_date = 10 [json_name = "expiration_date"];
+
+  string hosted_zone_id = 11 [json_name = "hosted_zone_id"];
+
+  repeated NameServer name_server = 12 [json_name = "name_server"];
+
+  bool registrant_privacy = 13 [json_name = "registrant_privacy"];
+
+  string registrar_name = 14 [json_name = "registrar_name"];
+
+  string registrar_url = 15 [json_name = "registrar_url"];
+
+  repeated string status_list = 16 [json_name = "status_list"];
+
+  map<string, string> tags = 17;
+
+  map<string, string> tags_all = 18 [json_name = "tags_all"];
+
+  bool tech_privacy = 19 [json_name = "tech_privacy"];
+
+  bool transfer_lock = 20 [json_name = "transfer_lock"];
+
+  string updated_date = 21 [json_name = "updated_date"];
+
+  string whois_server = 22 [json_name = "whois_server"];
+
+  repeated AdminContact admin_contact = 23 [json_name = "admin_contact"];
+
+  repeated RegistrantContact registrant_contact = 24 [json_name = "registrant_contact"];
+
+  repeated TechContact tech_contact = 25 [json_name = "tech_contact"];
+
+  repeated Timeouts timeouts = 26;
+
+  google.protobuf.Value for_each = 27 [json_name = "for_each"];
+
+  repeated string depends_on = 28 [json_name = "depends_on"];
+
+  int32 count = 29;
+
+  string provider = 30;
+
+  terraform.v1.Lifecycle lifecycle = 31;
+
+  message BillingContact {
+    // address_line_1: string
+    string address_line_1 = 1 [json_name = "address_line_1"];
+
+    // address_line_2: string
+    string address_line_2 = 2 [json_name = "address_line_2"];
+
+    // city: string
+    string city = 3;
+
+    // contact_type: string
+    string contact_type = 4 [json_name = "contact_type"];
+
+    // country_code: string
+    string country_code = 5 [json_name = "country_code"];
+
+    // email: string
+    string email = 6;
+
+    // extra_param: list of object
+    repeated ExtraParam extra_param = 7 [json_name = "extra_param"];
+
+    // fax: string
+    string fax = 8;
+
+    // first_name: string
+    string first_name = 9 [json_name = "first_name"];
+
+    // last_name: string
+    string last_name = 10 [json_name = "last_name"];
+
+    // organization_name: string
+    string organization_name = 11 [json_name = "organization_name"];
+
+    // phone_number: string
+    string phone_number = 12 [json_name = "phone_number"];
+
+    // state: string
+    string state = 13;
+
+    // zip_code: string
+    string zip_code = 14 [json_name = "zip_code"];
+
+    message ExtraParam {
+      // name: string
+      string name = 1;
+
+      // value: string
+      string value = 2;
+    }
+  }
+
+  message NameServer {
+    // glue_ips: set of string
+    repeated string glue_ips = 1 [json_name = "glue_ips"];
+
+    // name: string
+    string name = 2;
+  }
+
+  message AdminContact {
+    string address_line_1 = 1 [json_name = "address_line_1"];
+
+    string address_line_2 = 2 [json_name = "address_line_2"];
+
+    string city = 3;
+
+    string contact_type = 4 [json_name = "contact_type"];
+
+    string country_code = 5 [json_name = "country_code"];
+
+    string email = 6;
+
+    string fax = 7;
+
+    string first_name = 8 [json_name = "first_name"];
+
+    string last_name = 9 [json_name = "last_name"];
+
+    string organization_name = 10 [json_name = "organization_name"];
+
+    string phone_number = 11 [json_name = "phone_number"];
+
+    string state = 12;
+
+    string zip_code = 13 [json_name = "zip_code"];
+
+    repeated ExtraParam extra_param = 14 [json_name = "extra_param"];
+
+    message ExtraParam {
+      string name = 1;
+
+      string value = 2;
+    }
+  }
+
+  message RegistrantContact {
+    string address_line_1 = 1 [json_name = "address_line_1"];
+
+    string address_line_2 = 2 [json_name = "address_line_2"];
+
+    string city = 3;
+
+    string contact_type = 4 [json_name = "contact_type"];
+
+    string country_code = 5 [json_name = "country_code"];
+
+    string email = 6;
+
+    string fax = 7;
+
+    string first_name = 8 [json_name = "first_name"];
+
+    string last_name = 9 [json_name = "last_name"];
+
+    string organization_name = 10 [json_name = "organization_name"];
+
+    string phone_number = 11 [json_name = "phone_number"];
+
+    string state = 12;
+
+    string zip_code = 13 [json_name = "zip_code"];
+
+    repeated ExtraParam extra_param = 14 [json_name = "extra_param"];
+
+    message ExtraParam {
+      string name = 1;
+
+      string value = 2;
+    }
+  }
+
+  message TechContact {
+    string address_line_1 = 1 [json_name = "address_line_1"];
+
+    string address_line_2 = 2 [json_name = "address_line_2"];
+
+    string city = 3;
+
+    string contact_type = 4 [json_name = "contact_type"];
+
+    string country_code = 5 [json_name = "country_code"];
+
+    string email = 6;
+
+    string fax = 7;
+
+    string first_name = 8 [json_name = "first_name"];
+
+    string last_name = 9 [json_name = "last_name"];
+
+    string organization_name = 10 [json_name = "organization_name"];
+
+    string phone_number = 11 [json_name = "phone_number"];
+
+    string state = 12;
+
+    string zip_code = 13 [json_name = "zip_code"];
+
+    repeated ExtraParam extra_param = 14 [json_name = "extra_param"];
+
+    message ExtraParam {
+      string name = 1;
+
+      string value = 2;
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string update = 3;
+  }
+}
+
+// AwsRoute53domainsRegisteredDomain version is 0
+message AwsRoute53domainsRegisteredDomain {
+  string abuse_contact_email = 1 [json_name = "abuse_contact_email"];
+
+  string abuse_contact_phone = 2 [json_name = "abuse_contact_phone"];
+
+  bool admin_privacy = 3 [json_name = "admin_privacy"];
+
+  bool auto_renew = 4 [json_name = "auto_renew"];
+
+  bool billing_privacy = 5 [json_name = "billing_privacy"];
+
+  string creation_date = 6 [json_name = "creation_date"];
+
+  string domain_name = 7 [json_name = "domain_name"];
+
+  string expiration_date = 8 [json_name = "expiration_date"];
+
+  string id = 9;
+
+  bool registrant_privacy = 10 [json_name = "registrant_privacy"];
+
+  string registrar_name = 11 [json_name = "registrar_name"];
+
+  string registrar_url = 12 [json_name = "registrar_url"];
+
+  string reseller = 13;
+
+  repeated string status_list = 14 [json_name = "status_list"];
+
+  map<string, string> tags = 15;
+
+  map<string, string> tags_all = 16 [json_name = "tags_all"];
+
+  bool tech_privacy = 17 [json_name = "tech_privacy"];
+
+  bool transfer_lock = 18 [json_name = "transfer_lock"];
+
+  string updated_date = 19 [json_name = "updated_date"];
+
+  string whois_server = 20 [json_name = "whois_server"];
+
+  AdminContact admin_contact = 21 [json_name = "admin_contact"];
+
+  BillingContact billing_contact = 22 [json_name = "billing_contact"];
+
+  repeated NameServer name_server = 23 [json_name = "name_server"];
+
+  RegistrantContact registrant_contact = 24 [json_name = "registrant_contact"];
+
+  TechContact tech_contact = 25 [json_name = "tech_contact"];
+
+  repeated Timeouts timeouts = 26;
+
+  google.protobuf.Value for_each = 27 [json_name = "for_each"];
+
+  repeated string depends_on = 28 [json_name = "depends_on"];
+
+  int32 count = 29;
+
+  string provider = 30;
+
+  terraform.v1.Lifecycle lifecycle = 31;
+
+  message AdminContact {
+    string address_line_1 = 1 [json_name = "address_line_1"];
+
+    string address_line_2 = 2 [json_name = "address_line_2"];
+
+    string city = 3;
+
+    string contact_type = 4 [json_name = "contact_type"];
+
+    string country_code = 5 [json_name = "country_code"];
+
+    string email = 6;
+
+    map<string, string> extra_params = 7 [json_name = "extra_params"];
+
+    string fax = 8;
+
+    string first_name = 9 [json_name = "first_name"];
+
+    string last_name = 10 [json_name = "last_name"];
+
+    string organization_name = 11 [json_name = "organization_name"];
+
+    string phone_number = 12 [json_name = "phone_number"];
+
+    string state = 13;
+
+    string zip_code = 14 [json_name = "zip_code"];
+  }
+
+  message BillingContact {
+    string address_line_1 = 1 [json_name = "address_line_1"];
+
+    string address_line_2 = 2 [json_name = "address_line_2"];
+
+    string city = 3;
+
+    string contact_type = 4 [json_name = "contact_type"];
+
+    string country_code = 5 [json_name = "country_code"];
+
+    string email = 6;
+
+    map<string, string> extra_params = 7 [json_name = "extra_params"];
+
+    string fax = 8;
+
+    string first_name = 9 [json_name = "first_name"];
+
+    string last_name = 10 [json_name = "last_name"];
+
+    string organization_name = 11 [json_name = "organization_name"];
+
+    string phone_number = 12 [json_name = "phone_number"];
+
+    string state = 13;
+
+    string zip_code = 14 [json_name = "zip_code"];
+  }
+
+  message NameServer {
+    repeated string glue_ips = 1 [json_name = "glue_ips"];
+
+    string name = 2;
+  }
+
+  message RegistrantContact {
+    string address_line_1 = 1 [json_name = "address_line_1"];
+
+    string address_line_2 = 2 [json_name = "address_line_2"];
+
+    string city = 3;
+
+    string contact_type = 4 [json_name = "contact_type"];
+
+    string country_code = 5 [json_name = "country_code"];
+
+    string email = 6;
+
+    map<string, string> extra_params = 7 [json_name = "extra_params"];
+
+    string fax = 8;
+
+    string first_name = 9 [json_name = "first_name"];
+
+    string last_name = 10 [json_name = "last_name"];
+
+    string organization_name = 11 [json_name = "organization_name"];
+
+    string phone_number = 12 [json_name = "phone_number"];
+
+    string state = 13;
+
+    string zip_code = 14 [json_name = "zip_code"];
+  }
+
+  message TechContact {
+    string address_line_1 = 1 [json_name = "address_line_1"];
+
+    string address_line_2 = 2 [json_name = "address_line_2"];
+
+    string city = 3;
+
+    string contact_type = 4 [json_name = "contact_type"];
+
+    string country_code = 5 [json_name = "country_code"];
+
+    string email = 6;
+
+    map<string, string> extra_params = 7 [json_name = "extra_params"];
+
+    string fax = 8;
+
+    string first_name = 9 [json_name = "first_name"];
+
+    string last_name = 10 [json_name = "last_name"];
+
+    string organization_name = 11 [json_name = "organization_name"];
+
+    string phone_number = 12 [json_name = "phone_number"];
+
+    string state = 13;
+
+    string zip_code = 14 [json_name = "zip_code"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string update = 2;
+  }
+}

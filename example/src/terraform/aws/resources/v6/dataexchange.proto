@@ -1,0 +1,240 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsDataexchangeDataSet version is 0
+message AwsDataexchangeDataSet {
+  string arn = 1;
+
+  string asset_type = 2 [json_name = "asset_type"];
+
+  string description = 3;
+
+  string id = 4;
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsDataexchangeEventAction version is 0
+message AwsDataexchangeEventAction {
+  string arn = 1;
+
+  string created_at = 2 [json_name = "created_at"];
+
+  string id = 3;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 4;
+
+  string updated_at = 5 [json_name = "updated_at"];
+
+  repeated Action action = 6;
+
+  repeated Event event = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message Action {
+    repeated ExportRevisionToS3 export_revision_to_s3 = 1 [json_name = "export_revision_to_s3"];
+
+    message ExportRevisionToS3 {
+      repeated Encryption encryption = 1;
+
+      repeated RevisionDestination revision_destination = 2 [json_name = "revision_destination"];
+
+      message Encryption {
+        string kms_key_arn = 1 [json_name = "kms_key_arn"];
+
+        string type = 2;
+      }
+
+      message RevisionDestination {
+        string bucket = 1;
+
+        string key_pattern = 2 [json_name = "key_pattern"];
+      }
+    }
+  }
+
+  message Event {
+    repeated RevisionPublished revision_published = 1 [json_name = "revision_published"];
+
+    message RevisionPublished {
+      string data_set_id = 1 [json_name = "data_set_id"];
+    }
+  }
+}
+
+// AwsDataexchangeRevision version is 0
+message AwsDataexchangeRevision {
+  string arn = 1;
+
+  string comment = 2;
+
+  string data_set_id = 3 [json_name = "data_set_id"];
+
+  string id = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  string revision_id = 6 [json_name = "revision_id"];
+
+  map<string, string> tags = 7;
+
+  map<string, string> tags_all = 8 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+}
+
+// AwsDataexchangeRevisionAssets version is 0
+message AwsDataexchangeRevisionAssets {
+  string arn = 1;
+
+  string comment = 2;
+
+  string created_at = 3 [json_name = "created_at"];
+
+  string data_set_id = 4 [json_name = "data_set_id"];
+
+  bool finalized = 5;
+
+  bool force_destroy = 6 [json_name = "force_destroy"];
+
+  string id = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  string updated_at = 11 [json_name = "updated_at"];
+
+  repeated Asset asset = 12;
+
+  repeated Timeouts timeouts = 13;
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+
+  message Asset {
+    string arn = 1;
+
+    string created_at = 2 [json_name = "created_at"];
+
+    string id = 3;
+
+    string name = 4;
+
+    string updated_at = 5 [json_name = "updated_at"];
+
+    repeated CreateS3DataAccessFromS3Bucket create_s3_data_access_from_s3_bucket = 6 [json_name = "create_s3_data_access_from_s3_bucket"];
+
+    repeated ImportAssetsFromS3 import_assets_from_s3 = 7 [json_name = "import_assets_from_s3"];
+
+    repeated ImportAssetsFromSignedUrl import_assets_from_signed_url = 8 [json_name = "import_assets_from_signed_url"];
+
+    message CreateS3DataAccessFromS3Bucket {
+      string access_point_alias = 1 [json_name = "access_point_alias"];
+
+      string access_point_arn = 2 [json_name = "access_point_arn"];
+
+      repeated AssetSource asset_source = 3 [json_name = "asset_source"];
+
+      message AssetSource {
+        string bucket = 1;
+
+        repeated string key_prefixes = 2 [json_name = "key_prefixes"];
+
+        repeated string keys = 3;
+
+        repeated KmsKeysToGrant kms_keys_to_grant = 4 [json_name = "kms_keys_to_grant"];
+
+        message KmsKeysToGrant {
+          string kms_key_arn = 1 [json_name = "kms_key_arn"];
+        }
+      }
+    }
+
+    message ImportAssetsFromS3 {
+      repeated AssetSource asset_source = 1 [json_name = "asset_source"];
+
+      message AssetSource {
+        string bucket = 1;
+
+        string key = 2;
+      }
+    }
+
+    message ImportAssetsFromSignedUrl {
+      string filename = 1;
+    }
+  }
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+  }
+}

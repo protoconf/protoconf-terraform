@@ -1,0 +1,347 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsCloudwatchContributorManagedInsightRules version is 0
+message AwsCloudwatchContributorManagedInsightRules {
+  repeated ManagedRules managed_rules = 1 [json_name = "managed_rules"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string resource_arn = 3 [json_name = "resource_arn"];
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message ManagedRules {
+    // resource_arn: string
+    string resource_arn = 1 [json_name = "resource_arn"];
+
+    // rule_state: list of object
+    repeated RuleState rule_state = 2 [json_name = "rule_state"];
+
+    // template_name: string
+    string template_name = 3 [json_name = "template_name"];
+
+    message RuleState {
+      // rule_name: string
+      string rule_name = 1 [json_name = "rule_name"];
+
+      // state: string
+      string state = 2;
+    }
+  }
+}
+
+// AwsCloudwatchEventBus version is 0
+message AwsCloudwatchEventBus {
+  string arn = 1;
+
+  repeated DeadLetterConfig dead_letter_config = 2 [json_name = "dead_letter_config"];
+
+  string description = 3;
+
+  string id = 4;
+
+  string kms_key_identifier = 5 [json_name = "kms_key_identifier"];
+
+  repeated LogConfig log_config = 6 [json_name = "log_config"];
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  google.protobuf.Value for_each = 9 [json_name = "for_each"];
+
+  repeated string depends_on = 10 [json_name = "depends_on"];
+
+  int32 count = 11;
+
+  string provider = 12;
+
+  terraform.v1.Lifecycle lifecycle = 13;
+
+  message DeadLetterConfig {
+    // arn: string
+    string arn = 1;
+  }
+
+  message LogConfig {
+    // include_detail: string
+    string include_detail = 1 [json_name = "include_detail"];
+
+    // level: string
+    string level = 2;
+  }
+}
+
+// AwsCloudwatchEventBuses version is 0
+message AwsCloudwatchEventBuses {
+  repeated EventBuses event_buses = 1 [json_name = "event_buses"];
+
+  string name_prefix = 2 [json_name = "name_prefix"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 3;
+
+  google.protobuf.Value for_each = 4 [json_name = "for_each"];
+
+  repeated string depends_on = 5 [json_name = "depends_on"];
+
+  int32 count = 6;
+
+  string provider = 7;
+
+  terraform.v1.Lifecycle lifecycle = 8;
+
+  message EventBuses {
+    // arn: string
+    string arn = 1;
+
+    // creation_time: string
+    string creation_time = 2 [json_name = "creation_time"];
+
+    // description: string
+    string description = 3;
+
+    // last_modified_time: string
+    string last_modified_time = 4 [json_name = "last_modified_time"];
+
+    // name: string
+    string name = 5;
+
+    // policy: string
+    string policy = 6;
+  }
+}
+
+// AwsCloudwatchEventConnection version is 0
+message AwsCloudwatchEventConnection {
+  string arn = 1;
+
+  string authorization_type = 2 [json_name = "authorization_type"];
+
+  string id = 3;
+
+  string kms_key_identifier = 4 [json_name = "kms_key_identifier"];
+
+  string name = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string secret_arn = 7 [json_name = "secret_arn"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsCloudwatchEventSource version is 0
+message AwsCloudwatchEventSource {
+  string arn = 1;
+
+  string created_by = 2 [json_name = "created_by"];
+
+  string id = 3;
+
+  string name = 4;
+
+  string name_prefix = 5 [json_name = "name_prefix"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string state = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsCloudwatchLogDataProtectionPolicyDocument version is 0
+message AwsCloudwatchLogDataProtectionPolicyDocument {
+  string description = 1;
+
+  string id = 2;
+
+  string json = 3;
+
+  string name = 4;
+
+  string version = 5;
+
+  Configuration configuration = 6;
+
+  repeated Statement statement = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+
+  message Configuration {
+    repeated CustomDataIdentifier custom_data_identifier = 1 [json_name = "custom_data_identifier"];
+
+    message CustomDataIdentifier {
+      string name = 1;
+
+      string regex = 2;
+    }
+  }
+
+  message Statement {
+    repeated string data_identifiers = 1 [json_name = "data_identifiers"];
+
+    string sid = 2;
+
+    Operation operation = 3;
+
+    message Operation {
+      Audit audit = 1;
+
+      Deidentify deidentify = 2;
+
+      message Audit {
+        FindingsDestination findings_destination = 1 [json_name = "findings_destination"];
+
+        message FindingsDestination {
+          CloudwatchLogs cloudwatch_logs = 1 [json_name = "cloudwatch_logs"];
+
+          Firehose firehose = 2;
+
+          S3 s3 = 3;
+
+          message CloudwatchLogs {
+            string log_group = 1 [json_name = "log_group"];
+          }
+
+          message Firehose {
+            string delivery_stream = 1 [json_name = "delivery_stream"];
+          }
+
+          message S3 {
+            string bucket = 1;
+          }
+        }
+      }
+
+      message Deidentify {
+        MaskConfig mask_config = 1 [json_name = "mask_config"];
+
+        message MaskConfig {
+        }
+      }
+    }
+  }
+}
+
+// AwsCloudwatchLogGroup version is 0
+message AwsCloudwatchLogGroup {
+  string arn = 1;
+
+  int64 creation_time = 2 [json_name = "creation_time"];
+
+  bool deletion_protection_enabled = 3 [json_name = "deletion_protection_enabled"];
+
+  string id = 4;
+
+  string kms_key_id = 5 [json_name = "kms_key_id"];
+
+  string log_group_class = 6 [json_name = "log_group_class"];
+
+  string name = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  int64 retention_in_days = 9 [json_name = "retention_in_days"];
+
+  map<string, string> tags = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+}
+
+// AwsCloudwatchLogGroups version is 0
+message AwsCloudwatchLogGroups {
+  repeated string arns = 1;
+
+  string id = 2;
+
+  string log_group_name_prefix = 3 [json_name = "log_group_name_prefix"];
+
+  repeated string log_group_names = 4 [json_name = "log_group_names"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  google.protobuf.Value for_each = 6 [json_name = "for_each"];
+
+  repeated string depends_on = 7 [json_name = "depends_on"];
+
+  int32 count = 8;
+
+  string provider = 9;
+
+  terraform.v1.Lifecycle lifecycle = 10;
+}

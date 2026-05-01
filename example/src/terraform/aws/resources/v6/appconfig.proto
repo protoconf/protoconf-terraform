@@ -1,0 +1,350 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsAppconfigApplication version is 0
+message AwsAppconfigApplication {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsAppconfigConfigurationProfile version is 0
+message AwsAppconfigConfigurationProfile {
+  string application_id = 1 [json_name = "application_id"];
+
+  string arn = 2;
+
+  string configuration_profile_id = 3 [json_name = "configuration_profile_id"];
+
+  string description = 4;
+
+  string id = 5;
+
+  string kms_key_identifier = 6 [json_name = "kms_key_identifier"];
+
+  string location_uri = 7 [json_name = "location_uri"];
+
+  string name = 8;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  string retrieval_role_arn = 10 [json_name = "retrieval_role_arn"];
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  string type = 13;
+
+  repeated Validator validator = 14;
+
+  google.protobuf.Value for_each = 15 [json_name = "for_each"];
+
+  repeated string depends_on = 16 [json_name = "depends_on"];
+
+  int32 count = 17;
+
+  string provider = 18;
+
+  terraform.v1.Lifecycle lifecycle = 19;
+
+  message Validator {
+    string content = 1;
+
+    string type = 2;
+  }
+}
+
+// AwsAppconfigDeployment version is 0
+message AwsAppconfigDeployment {
+  string application_id = 1 [json_name = "application_id"];
+
+  string arn = 2;
+
+  string configuration_profile_id = 3 [json_name = "configuration_profile_id"];
+
+  string configuration_version = 4 [json_name = "configuration_version"];
+
+  int64 deployment_number = 5 [json_name = "deployment_number"];
+
+  string deployment_strategy_id = 6 [json_name = "deployment_strategy_id"];
+
+  string description = 7;
+
+  string environment_id = 8 [json_name = "environment_id"];
+
+  string id = 9;
+
+  string kms_key_arn = 10 [json_name = "kms_key_arn"];
+
+  string kms_key_identifier = 11 [json_name = "kms_key_identifier"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 12;
+
+  string state = 13;
+
+  map<string, string> tags = 14;
+
+  map<string, string> tags_all = 15 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 16 [json_name = "for_each"];
+
+  repeated string depends_on = 17 [json_name = "depends_on"];
+
+  int32 count = 18;
+
+  string provider = 19;
+
+  terraform.v1.Lifecycle lifecycle = 20;
+}
+
+// AwsAppconfigDeploymentStrategy version is 0
+message AwsAppconfigDeploymentStrategy {
+  string arn = 1;
+
+  int64 deployment_duration_in_minutes = 2 [json_name = "deployment_duration_in_minutes"];
+
+  string description = 3;
+
+  int64 final_bake_time_in_minutes = 4 [json_name = "final_bake_time_in_minutes"];
+
+  int64 growth_factor = 5 [json_name = "growth_factor"];
+
+  string growth_type = 6 [json_name = "growth_type"];
+
+  string id = 7;
+
+  string name = 8;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 9;
+
+  string replicate_to = 10 [json_name = "replicate_to"];
+
+  map<string, string> tags = 11;
+
+  map<string, string> tags_all = 12 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 13 [json_name = "for_each"];
+
+  repeated string depends_on = 14 [json_name = "depends_on"];
+
+  int32 count = 15;
+
+  string provider = 16;
+
+  terraform.v1.Lifecycle lifecycle = 17;
+}
+
+// AwsAppconfigEnvironment version is 0
+message AwsAppconfigEnvironment {
+  string application_id = 1 [json_name = "application_id"];
+
+  string arn = 2;
+
+  string description = 3;
+
+  string environment_id = 4 [json_name = "environment_id"];
+
+  string id = 5;
+
+  string name = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  string state = 8;
+
+  map<string, string> tags = 9;
+
+  map<string, string> tags_all = 10 [json_name = "tags_all"];
+
+  repeated Monitor monitor = 11;
+
+  google.protobuf.Value for_each = 12 [json_name = "for_each"];
+
+  repeated string depends_on = 13 [json_name = "depends_on"];
+
+  int32 count = 14;
+
+  string provider = 15;
+
+  terraform.v1.Lifecycle lifecycle = 16;
+
+  message Monitor {
+    string alarm_arn = 1 [json_name = "alarm_arn"];
+
+    string alarm_role_arn = 2 [json_name = "alarm_role_arn"];
+  }
+}
+
+// AwsAppconfigExtension version is 0
+message AwsAppconfigExtension {
+  string arn = 1;
+
+  string description = 2;
+
+  string id = 3;
+
+  string name = 4;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 5;
+
+  map<string, string> tags = 6;
+
+  map<string, string> tags_all = 7 [json_name = "tags_all"];
+
+  int64 version = 8;
+
+  repeated ActionPoint action_point = 9 [json_name = "action_point"];
+
+  repeated Parameter parameter = 10;
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message ActionPoint {
+    string point = 1;
+
+    repeated Action action = 2;
+
+    message Action {
+      string description = 1;
+
+      string name = 2;
+
+      string role_arn = 3 [json_name = "role_arn"];
+
+      string uri = 4;
+    }
+  }
+
+  message Parameter {
+    string description = 1;
+
+    string name = 2;
+
+    bool required = 3;
+  }
+}
+
+// AwsAppconfigExtensionAssociation version is 0
+message AwsAppconfigExtensionAssociation {
+  string arn = 1;
+
+  string extension_arn = 2 [json_name = "extension_arn"];
+
+  int64 extension_version = 3 [json_name = "extension_version"];
+
+  string id = 4;
+
+  map<string, string> parameters = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string resource_arn = 7 [json_name = "resource_arn"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsAppconfigHostedConfigurationVersion version is 0
+message AwsAppconfigHostedConfigurationVersion {
+  string application_id = 1 [json_name = "application_id"];
+
+  string arn = 2;
+
+  string configuration_profile_id = 3 [json_name = "configuration_profile_id"];
+
+  string content = 4;
+
+  string content_type = 5 [json_name = "content_type"];
+
+  string description = 6;
+
+  string id = 7;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 8;
+
+  int64 version_number = 9 [json_name = "version_number"];
+
+  google.protobuf.Value for_each = 10 [json_name = "for_each"];
+
+  repeated string depends_on = 11 [json_name = "depends_on"];
+
+  int32 count = 12;
+
+  string provider = 13;
+
+  terraform.v1.Lifecycle lifecycle = 14;
+}

@@ -1,0 +1,321 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsAmplifyApp version is 0
+message AwsAmplifyApp {
+  string access_token = 1 [json_name = "access_token"];
+
+  string arn = 2;
+
+  repeated string auto_branch_creation_patterns = 3 [json_name = "auto_branch_creation_patterns"];
+
+  string basic_auth_credentials = 4 [json_name = "basic_auth_credentials"];
+
+  string build_spec = 5 [json_name = "build_spec"];
+
+  string compute_role_arn = 6 [json_name = "compute_role_arn"];
+
+  string custom_headers = 7 [json_name = "custom_headers"];
+
+  string default_domain = 8 [json_name = "default_domain"];
+
+  string description = 9;
+
+  bool enable_auto_branch_creation = 10 [json_name = "enable_auto_branch_creation"];
+
+  bool enable_basic_auth = 11 [json_name = "enable_basic_auth"];
+
+  bool enable_branch_auto_build = 12 [json_name = "enable_branch_auto_build"];
+
+  bool enable_branch_auto_deletion = 13 [json_name = "enable_branch_auto_deletion"];
+
+  map<string, string> environment_variables = 14 [json_name = "environment_variables"];
+
+  string iam_service_role_arn = 15 [json_name = "iam_service_role_arn"];
+
+  string id = 16;
+
+  string name = 17;
+
+  string oauth_token = 18 [json_name = "oauth_token"];
+
+  string platform = 19;
+
+  repeated ProductionBranch production_branch = 20 [json_name = "production_branch"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 21;
+
+  string repository = 22;
+
+  map<string, string> tags = 23;
+
+  map<string, string> tags_all = 24 [json_name = "tags_all"];
+
+  AutoBranchCreationConfig auto_branch_creation_config = 25 [json_name = "auto_branch_creation_config"];
+
+  CacheConfig cache_config = 26 [json_name = "cache_config"];
+
+  repeated CustomRule custom_rule = 27 [json_name = "custom_rule"];
+
+  JobConfig job_config = 28 [json_name = "job_config"];
+
+  google.protobuf.Value for_each = 29 [json_name = "for_each"];
+
+  repeated string depends_on = 30 [json_name = "depends_on"];
+
+  int32 count = 31;
+
+  string provider = 32;
+
+  terraform.v1.Lifecycle lifecycle = 33;
+
+  message ProductionBranch {
+    // branch_name: string
+    string branch_name = 1 [json_name = "branch_name"];
+
+    // last_deploy_time: string
+    string last_deploy_time = 2 [json_name = "last_deploy_time"];
+
+    // status: string
+    string status = 3;
+
+    // thumbnail_url: string
+    string thumbnail_url = 4 [json_name = "thumbnail_url"];
+  }
+
+  message AutoBranchCreationConfig {
+    string basic_auth_credentials = 1 [json_name = "basic_auth_credentials"];
+
+    string build_spec = 2 [json_name = "build_spec"];
+
+    bool enable_auto_build = 3 [json_name = "enable_auto_build"];
+
+    bool enable_basic_auth = 4 [json_name = "enable_basic_auth"];
+
+    bool enable_performance_mode = 5 [json_name = "enable_performance_mode"];
+
+    bool enable_pull_request_preview = 6 [json_name = "enable_pull_request_preview"];
+
+    map<string, string> environment_variables = 7 [json_name = "environment_variables"];
+
+    string framework = 8;
+
+    string pull_request_environment_name = 9 [json_name = "pull_request_environment_name"];
+
+    string stage = 10;
+  }
+
+  message CacheConfig {
+    string type = 1;
+  }
+
+  message CustomRule {
+    string condition = 1;
+
+    string source = 2;
+
+    string status = 3;
+
+    string target = 4;
+  }
+
+  message JobConfig {
+    string build_compute_type = 1 [json_name = "build_compute_type"];
+  }
+}
+
+// AwsAmplifyBackendEnvironment version is 0
+message AwsAmplifyBackendEnvironment {
+  string app_id = 1 [json_name = "app_id"];
+
+  string arn = 2;
+
+  string deployment_artifacts = 3 [json_name = "deployment_artifacts"];
+
+  string environment_name = 4 [json_name = "environment_name"];
+
+  string id = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string stack_name = 7 [json_name = "stack_name"];
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}
+
+// AwsAmplifyBranch version is 0
+message AwsAmplifyBranch {
+  string app_id = 1 [json_name = "app_id"];
+
+  string arn = 2;
+
+  repeated string associated_resources = 3 [json_name = "associated_resources"];
+
+  string backend_environment_arn = 4 [json_name = "backend_environment_arn"];
+
+  string basic_auth_credentials = 5 [json_name = "basic_auth_credentials"];
+
+  string branch_name = 6 [json_name = "branch_name"];
+
+  repeated string custom_domains = 7 [json_name = "custom_domains"];
+
+  string description = 8;
+
+  string destination_branch = 9 [json_name = "destination_branch"];
+
+  string display_name = 10 [json_name = "display_name"];
+
+  bool enable_auto_build = 11 [json_name = "enable_auto_build"];
+
+  bool enable_basic_auth = 12 [json_name = "enable_basic_auth"];
+
+  bool enable_notification = 13 [json_name = "enable_notification"];
+
+  bool enable_performance_mode = 14 [json_name = "enable_performance_mode"];
+
+  bool enable_pull_request_preview = 15 [json_name = "enable_pull_request_preview"];
+
+  bool enable_skew_protection = 16 [json_name = "enable_skew_protection"];
+
+  map<string, string> environment_variables = 17 [json_name = "environment_variables"];
+
+  string framework = 18;
+
+  string id = 19;
+
+  string pull_request_environment_name = 20 [json_name = "pull_request_environment_name"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 21;
+
+  string source_branch = 22 [json_name = "source_branch"];
+
+  string stage = 23;
+
+  map<string, string> tags = 24;
+
+  map<string, string> tags_all = 25 [json_name = "tags_all"];
+
+  string ttl = 26;
+
+  google.protobuf.Value for_each = 27 [json_name = "for_each"];
+
+  repeated string depends_on = 28 [json_name = "depends_on"];
+
+  int32 count = 29;
+
+  string provider = 30;
+
+  terraform.v1.Lifecycle lifecycle = 31;
+}
+
+// AwsAmplifyDomainAssociation version is 0
+message AwsAmplifyDomainAssociation {
+  string app_id = 1 [json_name = "app_id"];
+
+  string arn = 2;
+
+  string certificate_verification_dns_record = 3 [json_name = "certificate_verification_dns_record"];
+
+  string domain_name = 4 [json_name = "domain_name"];
+
+  bool enable_auto_sub_domain = 5 [json_name = "enable_auto_sub_domain"];
+
+  string id = 6;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 7;
+
+  bool wait_for_verification = 8 [json_name = "wait_for_verification"];
+
+  CertificateSettings certificate_settings = 9 [json_name = "certificate_settings"];
+
+  repeated SubDomain sub_domain = 10 [json_name = "sub_domain"];
+
+  google.protobuf.Value for_each = 11 [json_name = "for_each"];
+
+  repeated string depends_on = 12 [json_name = "depends_on"];
+
+  int32 count = 13;
+
+  string provider = 14;
+
+  terraform.v1.Lifecycle lifecycle = 15;
+
+  message CertificateSettings {
+    string certificate_verification_dns_record = 1 [json_name = "certificate_verification_dns_record"];
+
+    string custom_certificate_arn = 2 [json_name = "custom_certificate_arn"];
+
+    string type = 3;
+  }
+
+  message SubDomain {
+    string branch_name = 1 [json_name = "branch_name"];
+
+    string dns_record = 2 [json_name = "dns_record"];
+
+    string prefix = 3;
+
+    bool verified = 4;
+  }
+}
+
+// AwsAmplifyWebhook version is 0
+message AwsAmplifyWebhook {
+  string app_id = 1 [json_name = "app_id"];
+
+  string arn = 2;
+
+  string branch_name = 3 [json_name = "branch_name"];
+
+  string description = 4;
+
+  string id = 5;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 6;
+
+  string url = 7;
+
+  google.protobuf.Value for_each = 8 [json_name = "for_each"];
+
+  repeated string depends_on = 9 [json_name = "depends_on"];
+
+  int32 count = 10;
+
+  string provider = 11;
+
+  terraform.v1.Lifecycle lifecycle = 12;
+}

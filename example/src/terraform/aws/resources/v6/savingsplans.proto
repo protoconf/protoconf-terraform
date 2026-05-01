@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSavingsplansSavingsPlan version is 0
+message AwsSavingsplansSavingsPlan {
+  // The hourly commitment, in USD.
+  string commitment = 1;
+
+  // The currency of the Savings Plan.
+  string currency = 2;
+
+  // The description.
+  string description = 3;
+
+  // The EC2 instance family for the Savings Plan.
+  string ec2_instance_family = 4 [json_name = "ec2_instance_family"];
+
+  // The end time of the Savings Plan.
+  string end = 5;
+
+  // The ID of the offering.
+  string offering_id = 6 [json_name = "offering_id"];
+
+  // The payment option for the Savings Plan.
+  string payment_option = 7 [json_name = "payment_option"];
+
+  // The product types.
+  repeated string product_types = 8 [json_name = "product_types"];
+
+  // The time at which to purchase the Savings Plan, in UTC format
+  // (YYYY-MM-DDTHH:MM:SSZ).
+  string purchase_time = 9 [json_name = "purchase_time"];
+
+  // The recurring payment amount.
+  string recurring_payment_amount = 10 [json_name = "recurring_payment_amount"];
+
+  // The AWS Region.
+  string region = 11;
+
+  // The recurring payment amount.
+  string returnable_until = 12 [json_name = "returnable_until"];
+
+  string savings_plan_arn = 13 [json_name = "savings_plan_arn"];
+
+  string savings_plan_id = 14 [json_name = "savings_plan_id"];
+
+  // The unique ID of a Savings Plan offering.
+  string savings_plan_offering_id = 15 [json_name = "savings_plan_offering_id"];
+
+  // The type of Savings Plan.
+  string savings_plan_type = 16 [json_name = "savings_plan_type"];
+
+  // The start time of the Savings Plan.
+  string start = 17;
+
+  // The current state of the Savings Plan.
+  string state = 18;
+
+  map<string, string> tags = 19;
+
+  map<string, string> tags_all = 20 [json_name = "tags_all"];
+
+  // The duration of the term, in seconds.
+  int64 term_duration_in_seconds = 21 [json_name = "term_duration_in_seconds"];
+
+  // The up-front payment amount.
+  string upfront_payment_amount = 22 [json_name = "upfront_payment_amount"];
+
+  repeated Timeouts timeouts = 23;
+
+  google.protobuf.Value for_each = 24 [json_name = "for_each"];
+
+  repeated string depends_on = 25 [json_name = "depends_on"];
+
+  int32 count = 26;
+
+  string provider = 27;
+
+  terraform.v1.Lifecycle lifecycle = 28;
+
+  message Timeouts {
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours).
+    string create = 1;
+
+    // A string that can be [parsed as a
+    // duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit
+    // suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m"
+    // (minutes), "h" (hours). Setting a timeout for a Delete operation is only
+    // applicable if changes are saved into state before the destroy operation occurs.
+    string delete = 2;
+  }
+}

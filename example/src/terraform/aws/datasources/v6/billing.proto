@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsBillingServiceAccount version is 0
+message AwsBillingServiceAccount {
+  string arn = 1;
+
+  string id = 2;
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+}
+
+// AwsBillingViews version is 0
+message AwsBillingViews {
+  repeated BillingView billing_view = 1 [json_name = "billing_view"];
+
+  repeated string billing_view_types = 2 [json_name = "billing_view_types"];
+
+  google.protobuf.Value for_each = 3 [json_name = "for_each"];
+
+  repeated string depends_on = 4 [json_name = "depends_on"];
+
+  int32 count = 5;
+
+  string provider = 6;
+
+  terraform.v1.Lifecycle lifecycle = 7;
+
+  message BillingView {
+    // arn: string
+    string arn = 1;
+
+    // billing_view_type: string
+    string billing_view_type = 2 [json_name = "billing_view_type"];
+
+    // description: string
+    string description = 3;
+
+    // name: string
+    string name = 4;
+
+    // owner_account_id: string
+    string owner_account_id = 5 [json_name = "owner_account_id"];
+  }
+}

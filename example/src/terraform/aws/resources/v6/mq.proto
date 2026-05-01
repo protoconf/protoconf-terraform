@@ -1,0 +1,205 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.resources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsMqBroker version is 0
+message AwsMqBroker {
+  bool apply_immediately = 1 [json_name = "apply_immediately"];
+
+  string arn = 2;
+
+  string authentication_strategy = 3 [json_name = "authentication_strategy"];
+
+  bool auto_minor_version_upgrade = 4 [json_name = "auto_minor_version_upgrade"];
+
+  string broker_name = 5 [json_name = "broker_name"];
+
+  string data_replication_mode = 6 [json_name = "data_replication_mode"];
+
+  string data_replication_primary_broker_arn = 7 [json_name = "data_replication_primary_broker_arn"];
+
+  string deployment_mode = 8 [json_name = "deployment_mode"];
+
+  string engine_type = 9 [json_name = "engine_type"];
+
+  string engine_version = 10 [json_name = "engine_version"];
+
+  string host_instance_type = 11 [json_name = "host_instance_type"];
+
+  string id = 12;
+
+  repeated Instances instances = 13;
+
+  string pending_data_replication_mode = 14 [json_name = "pending_data_replication_mode"];
+
+  bool publicly_accessible = 15 [json_name = "publicly_accessible"];
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 16;
+
+  repeated string security_groups = 17 [json_name = "security_groups"];
+
+  string storage_type = 18 [json_name = "storage_type"];
+
+  repeated string subnet_ids = 19 [json_name = "subnet_ids"];
+
+  map<string, string> tags = 20;
+
+  map<string, string> tags_all = 21 [json_name = "tags_all"];
+
+  Configuration configuration = 22;
+
+  EncryptionOptions encryption_options = 23 [json_name = "encryption_options"];
+
+  LdapServerMetadata ldap_server_metadata = 24 [json_name = "ldap_server_metadata"];
+
+  Logs logs = 25;
+
+  MaintenanceWindowStartTime maintenance_window_start_time = 26 [json_name = "maintenance_window_start_time"];
+
+  repeated Timeouts timeouts = 27;
+
+  repeated User user = 28;
+
+  google.protobuf.Value for_each = 29 [json_name = "for_each"];
+
+  repeated string depends_on = 30 [json_name = "depends_on"];
+
+  int32 count = 31;
+
+  string provider = 32;
+
+  terraform.v1.Lifecycle lifecycle = 33;
+
+  message Instances {
+    // console_url: string
+    string console_url = 1 [json_name = "console_url"];
+
+    // endpoints: list of string
+    repeated string endpoints = 2;
+
+    // ip_address: string
+    string ip_address = 3 [json_name = "ip_address"];
+  }
+
+  message Configuration {
+    string id = 1;
+
+    int64 revision = 2;
+  }
+
+  message EncryptionOptions {
+    string kms_key_id = 1 [json_name = "kms_key_id"];
+
+    bool use_aws_owned_key = 2 [json_name = "use_aws_owned_key"];
+  }
+
+  message LdapServerMetadata {
+    repeated string hosts = 1;
+
+    string role_base = 2 [json_name = "role_base"];
+
+    string role_name = 3 [json_name = "role_name"];
+
+    string role_search_matching = 4 [json_name = "role_search_matching"];
+
+    bool role_search_subtree = 5 [json_name = "role_search_subtree"];
+
+    string service_account_password = 6 [json_name = "service_account_password"];
+
+    string service_account_username = 7 [json_name = "service_account_username"];
+
+    string user_base = 8 [json_name = "user_base"];
+
+    string user_role_name = 9 [json_name = "user_role_name"];
+
+    string user_search_matching = 10 [json_name = "user_search_matching"];
+
+    bool user_search_subtree = 11 [json_name = "user_search_subtree"];
+  }
+
+  message Logs {
+    string audit = 1;
+
+    bool general = 2;
+  }
+
+  message MaintenanceWindowStartTime {
+    string day_of_week = 1 [json_name = "day_of_week"];
+
+    string time_of_day = 2 [json_name = "time_of_day"];
+
+    string time_zone = 3 [json_name = "time_zone"];
+  }
+
+  message Timeouts {
+    string create = 1;
+
+    string delete = 2;
+
+    string update = 3;
+  }
+
+  message User {
+    bool console_access = 1 [json_name = "console_access"];
+
+    repeated string groups = 2;
+
+    string password = 3;
+
+    bool replication_user = 4 [json_name = "replication_user"];
+
+    string username = 5;
+  }
+}
+
+// AwsMqConfiguration version is 0
+message AwsMqConfiguration {
+  string arn = 1;
+
+  string authentication_strategy = 2 [json_name = "authentication_strategy"];
+
+  string data = 3;
+
+  string description = 4;
+
+  string engine_type = 5 [json_name = "engine_type"];
+
+  string engine_version = 6 [json_name = "engine_version"];
+
+  string id = 7;
+
+  int64 latest_revision = 8 [json_name = "latest_revision"];
+
+  string name = 9;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 10;
+
+  bool skip_destroy = 11 [json_name = "skip_destroy"];
+
+  map<string, string> tags = 12;
+
+  map<string, string> tags_all = 13 [json_name = "tags_all"];
+
+  google.protobuf.Value for_each = 14 [json_name = "for_each"];
+
+  repeated string depends_on = 15 [json_name = "depends_on"];
+
+  int32 count = 16;
+
+  string provider = 17;
+
+  terraform.v1.Lifecycle lifecycle = 18;
+}

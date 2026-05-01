@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+// Provider: aws 6
+package terraform.aws.datasources.v6;
+
+import "google/protobuf/struct.proto";
+
+import "terraform/v1/meta.proto";
+
+// AwsSecurityhubStandardsControlAssociations version is 0
+message AwsSecurityhubStandardsControlAssociations {
+  string id = 1;
+
+  // Region where this resource will be
+  // ed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints).
+  // Defaults to the Region set in the [provider
+  // ry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+  string region = 2;
+
+  string security_control_id = 3 [json_name = "security_control_id"];
+
+  repeated StandardsControlAssociations standards_control_associations = 4 [json_name = "standards_control_associations"];
+
+  google.protobuf.Value for_each = 5 [json_name = "for_each"];
+
+  repeated string depends_on = 6 [json_name = "depends_on"];
+
+  int32 count = 7;
+
+  string provider = 8;
+
+  terraform.v1.Lifecycle lifecycle = 9;
+
+  message StandardsControlAssociations {
+    // association_status: string
+    string association_status = 1 [json_name = "association_status"];
+
+    // related_requirements: list of string
+    repeated string related_requirements = 2 [json_name = "related_requirements"];
+
+    // security_control_arn: string
+    string security_control_arn = 3 [json_name = "security_control_arn"];
+
+    // security_control_id: string
+    string security_control_id = 4 [json_name = "security_control_id"];
+
+    // standards_arn: string
+    string standards_arn = 5 [json_name = "standards_arn"];
+
+    // standards_control_description: string
+    string standards_control_description = 6 [json_name = "standards_control_description"];
+
+    // standards_control_title: string
+    string standards_control_title = 7 [json_name = "standards_control_title"];
+
+    // updated_at: string
+    string updated_at = 8 [json_name = "updated_at"];
+
+    // updated_reason: string
+    string updated_reason = 9 [json_name = "updated_reason"];
+  }
+}
