@@ -164,6 +164,127 @@ func TestOptimize_PrunesUnusedFieldsAndImports(t *testing.T) {
 	}
 }
 
+// Two separate materialized files, each with disjoint usage. Optimize
+// must union them — keep aws_instance, random_pet, aws_ami; keep both
+// providers; drop nothing.
+const testMaterializedA = `{
+  "protoFile": "terraform/v1/terraform.proto",
+  "value": {
+    "@type": "type.googleapis.com/terraform.v1.Terraform",
+    "resource": { "random_pet": { "fido": {} } },
+    "provider": { "random": [{}] }
+  }
+}`
+
+const testMaterializedB = `{
+  "protoFile": "terraform/v1/terraform.proto",
+  "value": {
+    "@type": "type.googleapis.com/terraform.v1.Terraform",
+    "resource": { "aws_instance": { "web": {} } },
+    "data":     { "aws_ami": { "ubuntu": {} } },
+    "provider": { "aws": [{}] }
+  }
+}`
+
+func TestOptimize_UnionsAcrossMultipleMaterializedFiles(t *testing.T) {
+	root := t.TempDir()
+	src := filepath.Join(root, "src")
+	mat := filepath.Join(root, "materialized_config")
+
+	writeFile(t, src, "terraform/v1/terraform.proto", testTerraformProto)
+	writeFile(t, src, "terraform/aws/resources/v6/instance.proto", testAwsInstanceProto)
+	writeFile(t, src, "terraform/random/resources/v3/pet.proto", testRandomPetProto)
+	writeFile(t, src, "terraform/aws/datasources/v6/ami.proto", testAwsAmiProto)
+	writeFile(t, src, "terraform/aws/provider/v6/aws.proto", testAwsProviderProto)
+	writeFile(t, src, "terraform/random/provider/v3/random.proto", testRandomProviderProto)
+	writeFile(t, mat, "alpha/a.materialized_JSON", testMaterializedA)
+	writeFile(t, mat, "beta/b.materialized_JSON", testMaterializedB)
+
+	report, err := Optimize(Options{
+		ProtoPath:       filepath.Join(src, "terraform/v1/terraform.proto"),
+		MaterializedDir: mat,
+		SrcRoot:         src,
+	})
+	if err != nil {
+		t.Fatalf("Optimize: %v", err)
+	}
+
+	wantRes := []string{"aws_instance", "random_pet"}
+	if !reflect.DeepEqual(report.UsedResources, wantRes) {
+		t.Errorf("UsedResources = %v, want %v", report.UsedResources, wantRes)
+	}
+	wantDS := []string{"aws_ami"}
+	if !reflect.DeepEqual(report.UsedDatasources, wantDS) {
+		t.Errorf("UsedDatasources = %v, want %v", report.UsedDatasources, wantDS)
+	}
+	wantProv := []string{"aws", "random"}
+	if !reflect.DeepEqual(report.UsedProviders, wantProv) {
+		t.Errorf("UsedProviders = %v, want %v", report.UsedProviders, wantProv)
+	}
+	if len(report.RemovedResources)+len(report.RemovedDatasources)+len(report.RemovedProviders) != 0 {
+		t.Errorf("expected no removals (every field is used across the two files); got R=%v D=%v P=%v",
+			report.RemovedResources, report.RemovedDatasources, report.RemovedProviders)
+	}
+}
+
+// Materialized output where the Terraform message is NOT the top-level
+// @type — instead it sits as a field of an outer wrapper message. The
+// scanner must recurse and find it.
+const testMaterializedNested = `{
+  "protoFile": "some/wrapper.proto",
+  "value": {
+    "@type": "type.googleapis.com/example.Wrapper",
+    "name": "deploy",
+    "staging": {
+      "@type": "type.googleapis.com/terraform.v1.Terraform",
+      "resource": { "aws_instance": { "web": {} } },
+      "provider": { "aws": [{}] }
+    },
+    "production": {
+      "@type": "type.googleapis.com/terraform.v1.Terraform",
+      "resource": { "random_pet": { "name": {} } },
+      "provider": { "random": [{}] }
+    }
+  }
+}`
+
+func TestOptimize_FindsNestedTerraformMessages(t *testing.T) {
+	root := t.TempDir()
+	src := filepath.Join(root, "src")
+	mat := filepath.Join(root, "materialized_config")
+
+	writeFile(t, src, "terraform/v1/terraform.proto", testTerraformProto)
+	writeFile(t, src, "terraform/aws/resources/v6/instance.proto", testAwsInstanceProto)
+	writeFile(t, src, "terraform/random/resources/v3/pet.proto", testRandomPetProto)
+	writeFile(t, src, "terraform/aws/datasources/v6/ami.proto", testAwsAmiProto)
+	writeFile(t, src, "terraform/aws/provider/v6/aws.proto", testAwsProviderProto)
+	writeFile(t, src, "terraform/random/provider/v3/random.proto", testRandomProviderProto)
+	writeFile(t, mat, "wrapper.materialized_JSON", testMaterializedNested)
+
+	report, err := Optimize(Options{
+		ProtoPath:       filepath.Join(src, "terraform/v1/terraform.proto"),
+		MaterializedDir: mat,
+		SrcRoot:         src,
+	})
+	if err != nil {
+		t.Fatalf("Optimize: %v", err)
+	}
+
+	wantRes := []string{"aws_instance", "random_pet"}
+	if !reflect.DeepEqual(report.UsedResources, wantRes) {
+		t.Errorf("UsedResources = %v, want %v (scanner must recurse into wrapper messages)", report.UsedResources, wantRes)
+	}
+	wantProv := []string{"aws", "random"}
+	if !reflect.DeepEqual(report.UsedProviders, wantProv) {
+		t.Errorf("UsedProviders = %v, want %v", report.UsedProviders, wantProv)
+	}
+	// aws_ami isn't used in either nested Terraform → must be removed.
+	wantRemovedDS := []string{"aws_ami"}
+	if !reflect.DeepEqual(report.RemovedDatasources, wantRemovedDS) {
+		t.Errorf("RemovedDatasources = %v, want %v", report.RemovedDatasources, wantRemovedDS)
+	}
+}
+
 func TestOptimize_RefusesEmptyUsage(t *testing.T) {
 	root := t.TempDir()
 	src := filepath.Join(root, "src")

@@ -231,19 +231,6 @@ func newUsedSet() *usedSet {
 	}
 }
 
-// matFile / matValue mirror the materialized JSON shape we care about.
-// The full document is `{ "protoFile": ..., "value": <inner> }` where
-// the inner carries `@type` and the populated message fields.
-type matFile struct {
-	Value json.RawMessage `json:"value"`
-}
-type matValue struct {
-	AtType   string                     `json:"@type"`
-	Resource map[string]json.RawMessage `json:"resource"`
-	Data     map[string]json.RawMessage `json:"data"`
-	Provider map[string]json.RawMessage `json:"provider"`
-}
-
 func scanMaterialized(root string) (*usedSet, error) {
 	used := newUsedSet()
 	if root == "" {
@@ -264,36 +251,65 @@ func scanMaterialized(root string) (*usedSet, error) {
 	return used, walkErr
 }
 
+// absorbMaterialized parses a single .materialized_JSON file and walks
+// its content recursively. Any object whose `@type` is the Terraform
+// type-URL contributes the keys of its `resource` / `data` / `provider`
+// maps to `used`. Recursion handles three patterns the optimizer used to
+// miss when it only checked the top-level @type:
+//   - top-level Terraform message (the common GenerateTerraformConfigs case)
+//   - Terraform message wrapped under `value` in the {protoFile,value}
+//     envelope produced by .pconf / .mpconf entry points
+//   - Terraform messages nested as fields of a wrapper message returned
+//     from main(), e.g. main() returning {"deploy": MyDeploy(staging=tf,
+//     prod=tf2)} where MyDeploy holds two Terraform fields.
 func absorbMaterialized(path string, used *usedSet) error {
 	b, err := os.ReadFile(path)
 	if err != nil {
 		return fmt.Errorf("read %s: %w", path, err)
 	}
-	var outer matFile
-	if err := json.Unmarshal(b, &outer); err != nil {
-		// Not every materialized file has the {protoFile, value} shape; skip silently.
+	var doc interface{}
+	if err := json.Unmarshal(b, &doc); err != nil {
+		// Not all materialized files are JSON-shaped this way; skip silently.
 		return nil
 	}
-	if len(outer.Value) == 0 {
-		return nil
-	}
-	var v matValue
-	if err := json.Unmarshal(outer.Value, &v); err != nil {
-		return nil
-	}
-	if v.AtType != terraformTypeURL {
-		return nil
-	}
-	for k := range v.Resource {
-		used.resources[k] = true
-	}
-	for k := range v.Data {
-		used.datasources[k] = true
-	}
-	for k := range v.Provider {
-		used.providers[k] = true
-	}
+	absorbAny(doc, used)
 	return nil
+}
+
+// absorbAny recursively walks `node` looking for any object whose @type
+// is terraformTypeURL. When found, it harvests resource/data/provider
+// keys; it does NOT recurse into the Terraform message itself (Terraform
+// doesn't nest Terraforms, and recursing would pick up resource-instance
+// names like "dog" as if they were resource types).
+func absorbAny(node interface{}, used *usedSet) {
+	switch n := node.(type) {
+	case map[string]interface{}:
+		if t, ok := n["@type"].(string); ok && t == terraformTypeURL {
+			collectKeys(n["resource"], used.resources)
+			collectKeys(n["data"], used.datasources)
+			collectKeys(n["provider"], used.providers)
+			return
+		}
+		for _, v := range n {
+			absorbAny(v, used)
+		}
+	case []interface{}:
+		for _, v := range n {
+			absorbAny(v, used)
+		}
+	}
+}
+
+// collectKeys adds the keys of node (if it's a JSON object) to dst.
+// No-op for any other JSON shape (missing field, null, array, etc.).
+func collectKeys(node interface{}, dst map[string]bool) {
+	m, ok := node.(map[string]interface{})
+	if !ok {
+		return
+	}
+	for k := range m {
+		dst[k] = true
+	}
 }
 
 // keptImports returns the set of proto file paths the slimmed file still
