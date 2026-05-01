@@ -7,6 +7,7 @@ import (
 	"github.com/mitchellh/cli"
 	"github.com/protoconf/protoconf-terraform/cmd/generate"
 	initcmd "github.com/protoconf/protoconf-terraform/cmd/init"
+	optimizecmd "github.com/protoconf/protoconf-terraform/cmd/optimize"
 	"github.com/protoconf/protoconf-terraform/cmd/run"
 	"github.com/protoconf/protoconf-terraform/pkg/build"
 )
@@ -23,6 +24,7 @@ func main() {
 		"init":     initcmd.NewCommand,
 		"run":      run.NewCommand,
 		"generate": generate.NewCommand,
+		"optimize": optimizecmd.NewCommand,
 	}
 
 	code, err := cmd.Run()
