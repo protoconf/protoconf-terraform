@@ -198,6 +198,9 @@ func (p *ProviderImporter) ctyTypeToProtoField(name string, t cty.Type) *builder
 	if t.IsObjectType() {
 		return f
 	}
+	if t == cty.NilType {
+		return f
+	}
 	f.SetType(ctyTypeToProtoFieldType(t))
 	return f
 }

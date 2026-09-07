@@ -38,8 +38,9 @@ type ProviderImporter struct {
 // NewProviderImporter returns a ProviderImporter
 func NewProviderImporter(fqdn string, schemaResponse *parse.Provider, importer *importers.Importer, ui cli.Ui) (*ProviderImporter, error) {
 	parts := strings.Split(fqdn, "/")
-	name := safeProviderName(parts[len(parts)-1])
-	meta := discovery.PluginMeta{Name: name, Version: discovery.VersionStr(strings.Split(schemaResponse.ProviderVersion, ".")[0])}
+	providerName := parts[len(parts)-1]
+	providerSafeName := safeProviderName(providerName)
+	meta := discovery.PluginMeta{Name: providerSafeName, Version: discovery.VersionStr(strings.Split(schemaResponse.ProviderVersion, ".")[0])}
 	p := &ProviderImporter{importer: importer, meta: meta, ui: &cli.PrefixedUi{OutputPrefix: importer.MasterFile.Package, Ui: ui}}
 
 	tfmsg := importer.MasterFile.GetMessage("Terraform")
@@ -49,15 +50,15 @@ func NewProviderImporter(fqdn string, schemaResponse *parse.Provider, importer *
 
 	p.populateResources(resources, schemaResponse.ResourceSchemas)
 	p.populateResources(datasources, schemaResponse.DataSourceSchemas)
-	providerFile := resourceFile(importer, name, "provider", string(meta.Version), name)
+	providerFile := resourceFile(importer, providerSafeName, "provider", string(meta.Version), providerSafeName)
 	providerFile.IsProto3 = false
-	providerConfigMsg := p.schemaToProtoMessage(capitalizeMessageName(name), schemaResponse.Provider)
+	providerConfigMsg := p.schemaToProtoMessage(capitalizeMessageName(providerName), schemaResponse.Provider)
 	providerConfigMsg.AddField(builder.NewField("alias", builder.FieldTypeString()))
 	providerConfigMsg.AddField(builder.NewField("provider_fqdn", builder.FieldTypeString()).SetDefaultValue(fqdn))
 	providerConfigMsg.AddField(builder.NewField("provider_version", builder.FieldTypeString()).SetDefaultValue(string(schemaResponse.ProviderVersion)))
 
 	providerFile.AddMessage(providerConfigMsg)
-	providers.AddField(builder.NewField(name, builder.FieldTypeMessage(providerFile.GetMessage(providerConfigMsg.GetName()))).SetRepeated())
+	providers.AddField(builder.NewField(providerName, builder.FieldTypeMessage(providerFile.GetMessage(providerConfigMsg.GetName()))).SetRepeated())
 
 	return p, nil
 }
