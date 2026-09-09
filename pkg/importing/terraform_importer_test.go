@@ -3,6 +3,7 @@ package importing
 import (
 	"log"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"testing"
 
@@ -11,6 +12,9 @@ import (
 )
 
 func TestGenerate(t *testing.T) {
+	if _, err := exec.LookPath("terraform"); err != nil {
+		t.Skip("terraform not found in PATH, skipping")
+	}
 	dir := t.TempDir()
 	dst := filepath.Join(dir, "src")
 	providersSource := `
