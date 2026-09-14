@@ -68,7 +68,11 @@ func (g *Generator) PopulateProviders() error {
 		return err
 	}
 
+	g.addBuiltinDatasources()
 	for fqdn, schema := range meta.Schemas {
+		if strings.HasPrefix(fqdn, builtinProviderPrefix) {
+			continue
+		}
 		parts := strings.Split(fqdn, "/")
 		name := parts[len(parts)-1]
 		p, err := NewProviderImporter(fqdn, schema, g.Importer, g.ui)
