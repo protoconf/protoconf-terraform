@@ -2,6 +2,7 @@ package importing
 
 import (
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/jhump/protoreflect/desc/builder"
@@ -360,8 +361,28 @@ func addTerraformConfigMessage(main *builder.MessageBuilder) error {
 }
 
 // Save will write all protofiles to disk
+func sortFields(m *builder.MessageBuilder) {
+	fields := []*builder.FieldBuilder{}
+	for _, c := range m.GetChildren() {
+		if f, ok := c.(*builder.FieldBuilder); ok {
+			fields = append(fields, f)
+		}
+	}
+	sort.Slice(fields, func(i, j int) bool { return fields[i].GetName() < fields[j].GetName() })
+	for _, f := range fields {
+		m.RemoveField(f.GetName())
+	}
+	for _, f := range fields {
+		m.AddField(f)
+	}
+}
+
 func (g *Generator) Save() error {
 	main := g.Importer.MasterFile.GetMessage("Terraform")
+	// providers are collected from a map; sort so regenerating yields identical field order/numbers
+	for _, n := range []string{"Resources", "Datasources", "Providers"} {
+		sortFields(main.GetNestedMessage(n))
+	}
 
 	addVariableMessage(main)
 	addOutputMessage(main)
